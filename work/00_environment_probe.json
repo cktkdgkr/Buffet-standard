@@ -1,0 +1,69 @@
+{
+  "probe_run_at_utc": "2026-08-08T15:12:54Z",
+  "date_verified_by": "system `date` and `date -u` commands (HARD RULE R1)",
+  "purpose": "Document, with reproducible evidence, which data sources are reachable from this execution environment. Required before any figure can be assigned a source URL + retrieval date under HARD RULE R3.",
+
+  "channels_tested": {
+    "curl_direct": {
+      "path": "container -> local agent proxy (127.0.0.1:39273) -> policy-enforcing egress gateway",
+      "blocked_hosts": [
+        {"host": "www.sec.gov:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "data.sec.gov:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "dart.fss.or.kr:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "opendart.fss.or.kr:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "query1.finance.yahoo.com:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "stooq.com:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "companiesmarketcap.com:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "investor.apple.com:443", "result": "403 to CONNECT (policy denial)"},
+        {"host": "www.wikipedia.org:443", "result": "403 to CONNECT (policy denial)"}
+      ],
+      "reachable_hosts": [
+        {"host": "raw.githubusercontent.com", "result": "301 (reachable)"},
+        {"host": "pypi.org / files.pythonhosted.org", "result": "reachable (in proxy noProxy list)"}
+      ]
+    },
+    "WebFetch_server_side": {
+      "blocked_domains": [
+        "data.sec.gov", "www.sec.gov", "www.stocktitan.net", "en.wikipedia.org", "www.fool.com"
+      ],
+      "blocked_error": "EGRESS_BLOCKED: Access to <domain> is blocked by the network egress proxy.",
+      "reachable_domains": ["raw.githubusercontent.com"],
+      "conclusion": "WebFetch is governed by the same allowlist. Developer infrastructure passes; the entire financial and reference web is denied."
+    },
+    "WebSearch": {
+      "status": "WORKING",
+      "returns": "result titles, URLs, and a backend-synthesized summary of snippets",
+      "critical_limitation": "Returns synthesized snippet summaries only. The underlying documents CANNOT be opened, so no figure obtained this way can be verified against its cited source."
+    }
+  },
+
+  "empirical_yield_test": {
+    "note": "Two probe searches run to measure what WebSearch can actually deliver on real line items, rather than speculating.",
+    "AAPL_FY2025": {
+      "obtained": ["net sales 416,161M", "gross margin 195,201M / 46.9%", "operating income 133,050M"],
+      "missing": ["net income (not returned)"],
+      "contaminated": [
+        "capex quoted as '-$12.72B' from a third-party aggregator, not the filing",
+        "D&A returned as a TTM ending 2025-06-30 from macrotrends - a period that does NOT match the FY2025 fiscal year ending 2025-09-27. Silently combining these would corrupt any owner-earnings calculation."
+      ],
+      "primary_source_seen_but_unreachable": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm (appeared in results; EGRESS_BLOCKED on fetch)"
+    },
+    "SK_HYNIX_FY2025": {
+      "obtained": ["revenue KRW 97.1467T", "operating profit KRW 47.2063T", "net profit KRW 42.9479T (official IR newsroom)"],
+      "missing": ["CapEx", "invested capital", "ROIC", "working capital", "share count", "interest-bearing debt"]
+    }
+  },
+
+  "impact_on_mandated_deliverable": {
+    "required_datapoints_estimate": "52 companies x ~11 line items x 5-10 years = 3,000-5,700 figures, each requiring a verified primary source",
+    "principle_1_ROIC_10yr_and_incremental": "NOT COMPUTABLE - requires invested-capital history (balance sheet series). Unobtainable via search snippets.",
+    "principle_2_ROE_vs_ROIC_spread_debt": "NOT COMPUTABLE - requires equity, interest-bearing debt, EBITDA, interest expense series.",
+    "principle_3_owner_earnings": "NOT COMPUTABLE - requires D&A, CapEx and change in working capital on matched fiscal periods. Probe showed period mismatch is the default failure mode.",
+    "principle_5_6_DCF_intrinsic_value": "NOT COMPUTABLE - depends on all of the above plus beta/WACC inputs.",
+    "phase_6_A6_verification": "STRUCTURALLY IMPOSSIBLE - the spec requires re-fetching each source URL to confirm it exists and contains the figure. No URL can be fetched.",
+    "confidence_grade_HIGH": "UNREACHABLE BY DEFINITION - grade 'HIGH' requires direct primary-document confirmation plus two independent corroborating sources."
+  },
+
+  "conclusion": "The mandated analysis cannot be completed to the evidentiary standard the task itself defines. Completing it anyway would require populating roughly 90% of figures from model memory and attaching source URLs that were never opened - the exact failure mode the task designates as its single worst outcome ('추측으로 빈칸을 채우는 것은 이 작업의 최대 실패'). Work is halted for a data-access decision rather than proceeding into fabrication.",
+  "not_a_transient_error": "Per /root/.ccr/README.md, 403/407 responses are organization egress-policy denials and must be reported, not retried or routed around. These were not retried."
+}
