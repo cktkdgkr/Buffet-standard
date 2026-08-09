@@ -51,6 +51,7 @@ CONCEPTS = {
     "capex": [
         "PaymentsToAcquirePropertyPlantAndEquipment",
         "PaymentsToAcquireProductiveAssets",
+        "PaymentsToAcquireOtherPropertyPlantAndEquipment",
     ],
     # Lets owner earnings be cross-checked as (operating cash flow - capex),
     # which already embeds D&A and the working-capital swing. Useful where the
@@ -73,7 +74,17 @@ CONCEPTS = {
     "long_term_debt": ["LongTermDebtNoncurrent", "LongTermDebt"],
     "current_assets": ["AssetsCurrent"],
     "current_liabilities": ["LiabilitiesCurrent"],
-    "interest_expense": ["InterestExpense", "InterestExpenseDebt", "InterestIncomeExpenseNet"],
+    "interest_expense": [
+        "InterestExpense",
+        "InterestExpenseDebt",
+        "InterestAndDebtExpense",
+        "InterestExpenseNonoperating",
+        "InterestExpenseOther",
+        "InterestIncomeExpenseNet",
+    ],
+    # Needed to turn pretax income into EBIT for the filers that publish no
+    # operating-income subtotal at all (see EBIT handling in analyse.py).
+    "nonoperating_income": ["NonoperatingIncomeExpense", "OtherNonoperatingIncomeExpense"],
     "income_tax_expense": ["IncomeTaxExpenseBenefit"],
     "pretax_income": [
         "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
@@ -91,8 +102,12 @@ CONCEPTS = {
 FLOW_METRICS = {
     "revenue", "operating_income", "net_income", "depreciation_amortization",
     "capex", "interest_expense", "income_tax_expense", "pretax_income",
-    "operating_cash_flow",
+    "operating_cash_flow", "nonoperating_income",
 }
+
+# Share counts are a cover-page disclosure, so some filers tag them only in the
+# `dei` taxonomy and never in us-gaap. Metrics listed here fall back to dei.
+DEI_FALLBACK = {"shares_outstanding": ["EntityCommonStockSharesOutstanding"]}
 
 
 def fetch(url: str, retries: int = 4):
@@ -205,9 +220,12 @@ def _pick_annual(units, is_flow):
 
 def extract(facts, metric, tags):
     """Return the first tag that yields an annual series, with provenance."""
-    gaap = facts.get("facts", {}).get("us-gaap", {})
-    for tag in tags:
-        node = gaap.get(tag)
+    all_facts = facts.get("facts", {})
+    candidates = [("us-gaap", t) for t in tags]
+    candidates += [("dei", t) for t in DEI_FALLBACK.get(metric, [])]
+
+    for taxonomy, tag in candidates:
+        node = all_facts.get(taxonomy, {}).get(tag)
         if not node:
             continue
         for unit_key in ("USD", "shares", "USD/shares"):
@@ -218,12 +236,13 @@ def extract(facts, metric, tags):
                 return {
                     "metric": metric,
                     "xbrl_tag": tag,
+                    "taxonomy": taxonomy,
                     "unit": unit_key,
                     "series": series,
                     "source_url": None,      # filled by caller (company-level)
                     "confidence": "HIGH",
                     "confidence_reason": (
-                        f"Audited XBRL tag us-gaap:{tag} from the company's own "
+                        f"Audited XBRL tag {taxonomy}:{tag} from the company's own "
                         f"annual filing; each year carries its accession number."
                     ),
                 }
@@ -231,7 +250,7 @@ def extract(facts, metric, tags):
         "metric": metric, "xbrl_tag": None, "series": [],
         "status": "DATA_UNAVAILABLE",
         "confidence": "LOW",
-        "confidence_reason": f"No usable us-gaap tag found among {tags}.",
+        "confidence_reason": f"No usable tag found among {[c[1] for c in candidates]}.",
     }
 
 
