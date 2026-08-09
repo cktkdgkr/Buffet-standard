@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-09T06:52:41.187088+00:00",
+  "generated_at_utc": "2026-08-09T07:09:31.309562+00:00",
   "risk_free_rate": {
     "rate": 0.046900000000000004,
     "as_of": "2026-08-06",
@@ -22075,7 +22075,7 @@
         "status": "OK",
         "shares_outstanding": 3085635641.0,
         "by_class": {
-          "unresolved:c-1819": 3085635641.0
+          "undimensioned": 3085635641.0
         },
         "classes_excluded": [],
         "conversion_note": "all classes summed at 1:1",

@@ -140,6 +140,31 @@ def collect(ticker: str, cik: int):
     html = fetch(filing["url"]).decode("utf-8", "replace")
     contexts = parse_contexts(html)
     facts = parse_share_facts(html)
+
+    # A filing split across documents declares its contexts in only one of them.
+    # Wells Fargo's cover page sits in the companion file and references a
+    # context defined next door, so the share count arrives with no share class
+    # attached. Pull the sibling documents in only when that actually happens.
+    if facts and any(contexts.get(f["context"]) is None for f in facts):
+        base = f"https://www.sec.gov/Archives/edgar/data/{cik}/{filing['accession'].replace('-', '')}"
+        try:
+            index = json.loads(fetch(f"{base}/index.json"))
+            primary_name = filing["url"].rsplit("/", 1)[-1]
+            siblings = sorted(
+                (i for i in index.get("directory", {}).get("item", [])
+                 if i.get("name", "").endswith(".htm")
+                 and not re.match(r"^R\d+\.htm$", i["name"])
+                 and int(i.get("size") or 0) > 100_000
+                 and i["name"] != primary_name),
+                key=lambda i: int(i.get("size") or 0), reverse=True)
+            siblings = [i["name"] for i in siblings]
+            for name in siblings[:3]:
+                time.sleep(0.5)
+                contexts.update(parse_contexts(fetch(f"{base}/{name}").decode("utf-8", "replace")))
+                if all(contexts.get(f["context"]) is not None for f in facts):
+                    break
+        except Exception:                               # noqa: BLE001
+            pass                                        # keep the unresolved label
     if not facts:
         return {"ticker": ticker, "status": "DATA_UNAVAILABLE",
                 "reason": f"no inline {SHARE_TAG} fact on the cover page",
