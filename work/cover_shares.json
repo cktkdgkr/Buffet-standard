@@ -1,0 +1,930 @@
+{
+  "NVDA": {
+    "ticker": "NVDA",
+    "status": "OK",
+    "shares_outstanding": 24300000000.0,
+    "by_class": {
+      "undimensioned": 24300000000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+    "accession": "0001045810-26-000021",
+    "form": "10-K",
+    "filed": "2026-02-25",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AAPL": {
+    "ticker": "AAPL",
+    "status": "OK",
+    "shares_outstanding": 14776353000.0,
+    "by_class": {
+      "undimensioned": 14776353000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+    "accession": "0000320193-25-000079",
+    "form": "10-K",
+    "filed": "2025-10-31",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "GOOG": {
+    "ticker": "GOOG",
+    "status": "OK",
+    "shares_outstanding": 12097000000.0,
+    "by_class": {
+      "CommonClassAMember": 5822000000.0,
+      "CommonClassBMember": 837000000.0,
+      "CapitalClassCMember": 5438000000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+    "accession": "0001652044-26-000018",
+    "form": "10-K",
+    "filed": "2026-02-05",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "MSFT": {
+    "ticker": "MSFT",
+    "status": "OK",
+    "shares_outstanding": 7425545491.0,
+    "by_class": {
+      "undimensioned": 7425545491.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "accession": "0001193125-26-323660",
+    "form": "10-K",
+    "filed": "2026-07-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AMZN": {
+    "ticker": "AMZN",
+    "status": "OK",
+    "shares_outstanding": 10734920870.0,
+    "by_class": {
+      "undimensioned": 10734920870.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+    "accession": "0001018724-26-000004",
+    "form": "10-K",
+    "filed": "2026-02-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AVGO": {
+    "ticker": "AVGO",
+    "status": "OK",
+    "shares_outstanding": 4741273799.0,
+    "by_class": {
+      "undimensioned": 4741273799.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+    "accession": "0001730168-25-000121",
+    "form": "10-K",
+    "filed": "2025-12-18",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "META": {
+    "ticker": "META",
+    "status": "OK",
+    "shares_outstanding": 2529555464.0,
+    "by_class": {
+      "CommonClassAMember": 2187177748.0,
+      "CommonClassBMember": 342377716.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+    "accession": "0001628280-26-003942",
+    "form": "10-K",
+    "filed": "2026-01-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "TSLA": {
+    "ticker": "TSLA",
+    "status": "OK",
+    "shares_outstanding": 3752431984.0,
+    "by_class": {
+      "undimensioned": 3752431984.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+    "accession": "0001628280-26-003952",
+    "form": "10-K",
+    "filed": "2026-01-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "BRK-B": {
+    "ticker": "BRK-B",
+    "status": "OK",
+    "shares_outstanding": 2157335139.0,
+    "by_class": {
+      "CommonClassAMember": 511820.0,
+      "CommonClassBMember": 1389605139.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "expressed in Class B equivalents (A = 1,500 B, per the charter)",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526083899/brka-20251231.htm",
+    "accession": "0001193125-26-083899",
+    "form": "10-K",
+    "filed": "2026-03-02",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "LLY": {
+    "ticker": "LLY",
+    "status": "OK",
+    "shares_outstanding": 943357420.0,
+    "by_class": {
+      "undimensioned": 943357420.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000013/lly-20251231.htm",
+    "accession": "0000059478-26-000013",
+    "form": "10-K",
+    "filed": "2026-02-12",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "MU": {
+    "ticker": "MU",
+    "status": "OK",
+    "shares_outstanding": 1122466035.0,
+    "by_class": {
+      "undimensioned": 1122466035.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "August&#160;28, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
+    "accession": "0000723125-25-000028",
+    "form": "10-K",
+    "filed": "2025-10-03",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "JPM": {
+    "ticker": "JPM",
+    "status": "OK",
+    "shares_outstanding": 2697032375.0,
+    "by_class": {
+      "undimensioned": 2697032375.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+    "accession": "0001628280-26-008131",
+    "form": "10-K",
+    "filed": "2026-02-13",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "status": "OK",
+    "shares_outstanding": 7972402501.0,
+    "by_class": {
+      "undimensioned": 7972402501.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+    "accession": "0000104169-26-000055",
+    "form": "10-K",
+    "filed": "2026-03-13",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AMD": {
+    "ticker": "AMD",
+    "status": "OK",
+    "shares_outstanding": 1630410843.0,
+    "by_class": {
+      "undimensioned": 1630410843.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "December 27, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+    "accession": "0000002488-26-000018",
+    "form": "10-K",
+    "filed": "2026-02-04",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "V": {
+    "ticker": "V",
+    "status": "OK",
+    "shares_outstanding": 1687629770.0,
+    "by_class": {
+      "CommonClassAMember": 1687629770.0,
+      "CommonClassB1Member": 4835384.0,
+      "CommonClassB2Member": 120338948.0,
+      "CommonClassCMember": 8938707.0
+    },
+    "classes_excluded": [
+      {
+        "class": "CommonClassB1Member",
+        "shares": 4835384.0,
+        "reason": "no sourced conversion ratio"
+      },
+      {
+        "class": "CommonClassB2Member",
+        "shares": 120338948.0,
+        "reason": "no sourced conversion ratio"
+      },
+      {
+        "class": "CommonClassCMember",
+        "shares": 8938707.0,
+        "reason": "no sourced conversion ratio"
+      }
+    ],
+    "conversion_note": "Class A only; B-1/B-2/C excluded because their conversion rates are periodically reset and not derivable from the cover page, so the resulting market cap understates the as-converted total",
+    "incomplete": true,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316125000089/v-20250930.htm",
+    "accession": "0001403161-25-000089",
+    "form": "10-K",
+    "filed": "2025-11-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "XOM": {
+    "ticker": "XOM",
+    "status": "OK",
+    "shares_outstanding": 4166763453.0,
+    "by_class": {
+      "undimensioned": 4166763453.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/34088/000003408826000045/xom-20251231.htm",
+    "accession": "0000034088-26-000045",
+    "form": "10-K",
+    "filed": "2026-02-18",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "JNJ": {
+    "ticker": "JNJ",
+    "status": "OK",
+    "shares_outstanding": 2409898936.0,
+    "by_class": {
+      "undimensioned": 2409898936.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm",
+    "accession": "0000200406-26-000016",
+    "form": "10-K",
+    "filed": "2026-02-11",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "INTC": {
+    "ticker": "INTC",
+    "status": "OK",
+    "shares_outstanding": 4995000000.0,
+    "by_class": {
+      "undimensioned": 4995000000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "December 27, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/intc-20251227.htm",
+    "accession": "0000050863-26-000011",
+    "form": "10-K",
+    "filed": "2026-01-23",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "MA": {
+    "ticker": "MA",
+    "status": "OK",
+    "shares_outstanding": 891812311.0,
+    "by_class": {
+      "CommonClassAMember": 885216386.0,
+      "CommonClassBMember": 6595925.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1141391/000114139126000013/ma-20251231.htm",
+    "accession": "0001141391-26-000013",
+    "form": "10-K",
+    "filed": "2026-02-11",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "CSCO": {
+    "ticker": "CSCO",
+    "status": "OK",
+    "shares_outstanding": 3953196953.0,
+    "by_class": {
+      "undimensioned": 3953196953.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/858877/000085887725000111/csco-20250726.htm",
+    "accession": "0000858877-25-000111",
+    "form": "10-K",
+    "filed": "2025-09-03",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "BAC": {
+    "ticker": "BAC",
+    "status": "OK",
+    "shares_outstanding": 7176682170.0,
+    "by_class": {
+      "undimensioned": 7176682170.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/70858/000007085826000157/bac-20251231.htm",
+    "accession": "0000070858-26-000157",
+    "form": "10-K",
+    "filed": "2026-02-25",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "ABBV": {
+    "ticker": "ABBV",
+    "status": "OK",
+    "shares_outstanding": 1768169012.0,
+    "by_class": {
+      "undimensioned": 1768169012.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1551152/000155115226000008/abbv-20251231.htm",
+    "accession": "0001551152-26-000008",
+    "form": "10-K",
+    "filed": "2026-02-20",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AMAT": {
+    "ticker": "AMAT",
+    "status": "OK",
+    "shares_outstanding": 792943366.0,
+    "by_class": {
+      "undimensioned": 792943366.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/6951/000162828025056742/amat-20251026.htm",
+    "accession": "0001628280-25-056742",
+    "form": "10-K",
+    "filed": "2025-12-12",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "ORCL": {
+    "ticker": "ORCL",
+    "status": "OK",
+    "shares_outstanding": 2880471000.0,
+    "by_class": {
+      "undimensioned": 2880471000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+    "accession": "0001193125-26-277521",
+    "form": "10-K",
+    "filed": "2026-06-22",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "COST": {
+    "ticker": "COST",
+    "status": "OK",
+    "shares_outstanding": 443179176.0,
+    "by_class": {
+      "undimensioned": 443179176.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "August 31, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+    "accession": "0000909832-25-000101",
+    "form": "10-K",
+    "filed": "2025-10-08",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "PLTR": {
+    "ticker": "PLTR",
+    "status": "OK",
+    "shares_outstanding": 2391675711.0,
+    "by_class": {
+      "CommonClassAMember": 2291470751.0,
+      "CommonClassBMember": 99199960.0,
+      "CommonClassFMember": 1005000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+    "accession": "0001321655-26-000011",
+    "form": "10-K",
+    "filed": "2026-02-17",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "LRCX": {
+    "ticker": "LRCX",
+    "status": "OK",
+    "shares_outstanding": 1251321000.0,
+    "by_class": {
+      "undimensioned": 1251321000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+    "accession": "0000707549-26-000037",
+    "form": "10-K",
+    "filed": "2026-08-07",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "CAT": {
+    "ticker": "CAT",
+    "status": "OK",
+    "shares_outstanding": 465287332.0,
+    "by_class": {
+      "undimensioned": 465287332.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/18230/000001823026000008/cat-20251231.htm",
+    "accession": "0000018230-26-000008",
+    "form": "10-K",
+    "filed": "2026-02-13",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "GE": {
+    "ticker": "GE",
+    "status": "OK",
+    "shares_outstanding": 1048813612.0,
+    "by_class": {
+      "undimensioned": 1048813612.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000008/ge-20251231.htm",
+    "accession": "0000040545-26-000008",
+    "form": "10-K",
+    "filed": "2026-01-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "KO": {
+    "ticker": "KO",
+    "status": "OK",
+    "shares_outstanding": 4300723069.0,
+    "by_class": {
+      "undimensioned": 4300723069.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm",
+    "accession": "0001628280-26-010047",
+    "form": "10-K",
+    "filed": "2026-02-20",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "UNH": {
+    "ticker": "UNH",
+    "status": "OK",
+    "shares_outstanding": 907675839.0,
+    "by_class": {
+      "undimensioned": 907675839.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "December 31, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+    "accession": "0000731766-26-000062",
+    "form": "10-K",
+    "filed": "2026-03-02",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "CVX": {
+    "ticker": "CVX",
+    "status": "OK",
+    "shares_outstanding": 1995385539.0,
+    "by_class": {
+      "undimensioned": 1995385539.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341026000078/cvx-20251231.htm",
+    "accession": "0000093410-26-000078",
+    "form": "10-K",
+    "filed": "2026-02-24",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "HD": {
+    "ticker": "HD",
+    "status": "OK",
+    "shares_outstanding": 996011466.0,
+    "by_class": {
+      "undimensioned": 996011466.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/354950/000162828026019436/hd-20260201.htm",
+    "accession": "0001628280-26-019436",
+    "form": "10-K",
+    "filed": "2026-03-18",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "MS": {
+    "ticker": "MS",
+    "status": "OK",
+    "shares_outstanding": 1587860206.0,
+    "by_class": {
+      "undimensioned": 1587860206.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/895421/000089542126000086/ms-20251231.htm",
+    "accession": "0000895421-26-000086",
+    "form": "10-K",
+    "filed": "2026-02-19",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "PG": {
+    "ticker": "PG",
+    "status": "OK",
+    "shares_outstanding": 2324433060.0,
+    "by_class": {
+      "undimensioned": 2324433060.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+    "accession": "0000080424-26-000103",
+    "form": "10-K",
+    "filed": "2026-08-04",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "MRK": {
+    "ticker": "MRK",
+    "status": "OK",
+    "shares_outstanding": 2472392003.0,
+    "by_class": {
+      "undimensioned": 2472392003.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/310158/000031015826000063/mrk-20251231.htm",
+    "accession": "0000310158-26-000063",
+    "form": "10-K",
+    "filed": "2026-02-24",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "NFLX": {
+    "ticker": "NFLX",
+    "status": "OK",
+    "shares_outstanding": 4222162150.0,
+    "by_class": {
+      "undimensioned": 4222162150.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+    "accession": "0001065280-26-000034",
+    "form": "10-K",
+    "filed": "2026-01-23",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "GS": {
+    "ticker": "GS",
+    "status": "OK",
+    "shares_outstanding": 296752922.0,
+    "by_class": {
+      "undimensioned": 296752922.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/886982/000088698226000091/gs-20251231.htm",
+    "accession": "0000886982-26-000091",
+    "form": "10-K",
+    "filed": "2026-02-25",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "RTX": {
+    "ticker": "RTX",
+    "status": "OK",
+    "shares_outstanding": 1342287676.0,
+    "by_class": {
+      "undimensioned": 1342287676.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/101829/000010182926000006/rtx-20251231.htm",
+    "accession": "0000101829-26-000006",
+    "form": "10-K",
+    "filed": "2026-02-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "PANW": {
+    "ticker": "PANW",
+    "status": "OK",
+    "shares_outstanding": 668900000.0,
+    "by_class": {
+      "undimensioned": 668900000.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1327567/000132756725000027/panw-20250731.htm",
+    "accession": "0001327567-25-000027",
+    "form": "10-K",
+    "filed": "2025-08-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "PM": {
+    "ticker": "PM",
+    "status": "OK",
+    "shares_outstanding": 1556679579.0,
+    "by_class": {
+      "undimensioned": 1556679579.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1413329/000162828026005939/pm-20251231.htm",
+    "accession": "0001628280-26-005939",
+    "form": "10-K",
+    "filed": "2026-02-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "DELL": {
+    "ticker": "DELL",
+    "status": "OK",
+    "shares_outstanding": 645748451.0,
+    "by_class": {
+      "CommonClassCMember": 318358135.0,
+      "CommonClassAMember": 276744341.0,
+      "CommonClassBMember": 50645975.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1571996/000157199626000008/dell-20260130.htm",
+    "accession": "0001571996-26-000008",
+    "form": "10-K",
+    "filed": "2026-03-16",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "WFC": {
+    "ticker": "WFC",
+    "status": "OK",
+    "shares_outstanding": 3085635641.0,
+    "by_class": {
+      "unresolved:c-1819": 3085635641.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": "December&#160;31, 2025",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/wfc-20251231_d2.htm",
+    "accession": "0000072971-26-000133",
+    "form": "10-K",
+    "filed": "2026-02-24",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "GEV": {
+    "ticker": "GEV",
+    "status": "OK",
+    "shares_outstanding": 269529464.0,
+    "by_class": {
+      "undimensioned": 269529464.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000015/gev-20251231.htm",
+    "accession": "0001996810-26-000015",
+    "form": "10-K",
+    "filed": "2026-01-29",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "TXN": {
+    "ticker": "TXN",
+    "status": "OK",
+    "shares_outstanding": 907550774.0,
+    "by_class": {
+      "undimensioned": 907550774.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000059/txn-20251231.htm",
+    "accession": "0000097476-26-000059",
+    "form": "10-K",
+    "filed": "2026-02-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "KLAC": {
+    "ticker": "KLAC",
+    "status": "OK",
+    "shares_outstanding": 1306546783.0,
+    "by_class": {
+      "undimensioned": 1306546783.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+    "accession": "0000319201-26-000027",
+    "form": "10-K",
+    "filed": "2026-08-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "ANET": {
+    "ticker": "ANET",
+    "status": "OK",
+    "shares_outstanding": 1256537906.0,
+    "by_class": {
+      "undimensioned": 1256537906.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000013/anet-20251231.htm",
+    "accession": "0001596532-26-000013",
+    "form": "10-K",
+    "filed": "2026-02-17",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "AXP": {
+    "ticker": "AXP",
+    "status": "OK",
+    "shares_outstanding": 686614005.0,
+    "by_class": {
+      "undimensioned": 686614005.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/4962/000000496226000080/axp-20251231.htm",
+    "accession": "0000004962-26-000080",
+    "form": "10-K",
+    "filed": "2026-02-06",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "C": {
+    "ticker": "C",
+    "status": "OK",
+    "shares_outstanding": 1749319009.0,
+    "by_class": {
+      "undimensioned": 1749319009.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/831001/000083100126000011/c-20251231.htm",
+    "accession": "0000831001-26-000011",
+    "form": "10-K",
+    "filed": "2026-02-20",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  },
+  "IBM": {
+    "ticker": "IBM",
+    "status": "OK",
+    "shares_outstanding": 938034404.0,
+    "by_class": {
+      "undimensioned": 938034404.0
+    },
+    "classes_excluded": [],
+    "conversion_note": "all classes summed at 1:1",
+    "incomplete": false,
+    "document_period_end": null,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/51143/000005114326000010/ibm-20251231.htm",
+    "accession": "0000051143-26-000010",
+    "form": "10-K",
+    "filed": "2026-02-24",
+    "confidence": "HIGH",
+    "confidence_reason": "read from the inline XBRL on the cover page of the company's own annual report"
+  }
+}

@@ -70,8 +70,27 @@ CONCEPTS = {
         "CashAndCashEquivalentsAtCarryingValue",
         "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
     ],
-    "short_term_debt": ["ShortTermBorrowings", "LongTermDebtCurrent", "DebtCurrent"],
-    "long_term_debt": ["LongTermDebtNoncurrent", "LongTermDebt"],
+    # Ordered most-inclusive first. Filers split borrowings across several tags
+    # (Coca-Cola carries commercial paper separately from the current portion of
+    # long-term debt), and only one tag is taken, so the broadest wins. Note
+    # that tags naming "debt securities" are investments the company HOLDS, not
+    # money it owes, and are deliberately absent from both lists.
+    "short_term_debt": [
+        "DebtCurrent",
+        "ShortTermBorrowings",
+        "LongTermDebtAndCapitalLeaseObligationsCurrent",
+        "LongTermDebtCurrent",
+        "ConvertibleDebtCurrent",
+        "OtherShortTermBorrowings",
+        "CommercialPaper",
+        "NotesPayableCurrent",
+    ],
+    "long_term_debt": [
+        "LongTermDebtNoncurrent",
+        "LongTermDebtAndCapitalLeaseObligations",
+        "LongTermDebt",
+        "ConvertibleDebtNoncurrent",
+    ],
     "current_assets": ["AssetsCurrent"],
     "current_liabilities": ["LiabilitiesCurrent"],
     "interest_expense": [
@@ -219,12 +238,22 @@ def _pick_annual(units, is_flow):
 
 
 def extract(facts, metric, tags):
-    """Return the first tag that yields an annual series, with provenance."""
+    """
+    Pick the candidate tag that best covers recent history, with provenance.
+
+    Not simply the first tag that returns anything. Filers abandon tags: Tesla's
+    LongTermDebtCurrent stops in 2012, Visa's StockholdersEquity in 2011, GE's
+    CashAndCashEquivalentsAtCarryingValue in 2017, each superseded by a later
+    tag. Taking the first non-empty hit locks onto the dead one and reports a
+    decade-old balance sheet as current, so candidates are scored on how recent
+    and how complete their series is, with the priority order breaking ties.
+    """
     all_facts = facts.get("facts", {})
     candidates = [("us-gaap", t) for t in tags]
     candidates += [("dei", t) for t in DEI_FALLBACK.get(metric, [])]
 
-    for taxonomy, tag in candidates:
+    found = []
+    for priority, (taxonomy, tag) in enumerate(candidates):
         node = all_facts.get(taxonomy, {}).get(tag)
         if not node:
             continue
@@ -233,24 +262,47 @@ def extract(facts, metric, tags):
                 continue
             series = _pick_annual(node["units"][unit_key], metric in FLOW_METRICS)
             if series:
-                return {
-                    "metric": metric,
-                    "xbrl_tag": tag,
-                    "taxonomy": taxonomy,
-                    "unit": unit_key,
-                    "series": series,
-                    "source_url": None,      # filled by caller (company-level)
-                    "confidence": "HIGH",
-                    "confidence_reason": (
-                        f"Audited XBRL tag {taxonomy}:{tag} from the company's own "
-                        f"annual filing; each year carries its accession number."
-                    ),
-                }
+                found.append({"taxonomy": taxonomy, "tag": tag, "unit": unit_key,
+                              "series": series, "priority": priority,
+                              "latest": series[-1]["fiscal_year"]})
+                break
+
+    if not found:
+        return {
+            "metric": metric, "xbrl_tag": None, "series": [],
+            "status": "DATA_UNAVAILABLE",
+            "confidence": "LOW",
+            "confidence_reason": f"No usable tag found among {[c[1] for c in candidates]}.",
+        }
+
+    newest = max(f["latest"] for f in found)
+    # Reaching the newest year matters most - a stale series is worse than a
+    # short one. Then take the longest run, then the caller's stated priority.
+    def score(f):
+        recent = sum(1 for r in f["series"] if r["fiscal_year"] > newest - 10)
+        return (f["latest"] == newest, recent, -f["priority"])
+
+    best = max(found, key=score)
+    rejected = [{"tag": f["tag"], "latest_fiscal_year": f["latest"], "years": len(f["series"])}
+                for f in found if f is not best]
     return {
-        "metric": metric, "xbrl_tag": None, "series": [],
-        "status": "DATA_UNAVAILABLE",
-        "confidence": "LOW",
-        "confidence_reason": f"No usable tag found among {[c[1] for c in candidates]}.",
+        "metric": metric,
+        "xbrl_tag": best["tag"],
+        "taxonomy": best["taxonomy"],
+        "unit": best["unit"],
+        "series": best["series"],
+        "source_url": None,          # filled by caller (company-level)
+        "confidence": "HIGH",
+        "confidence_reason": (
+            f"Audited XBRL tag {best['taxonomy']}:{best['tag']} from the company's own "
+            f"annual filing; each year carries its accession number."
+        ),
+        "tag_selection": {
+            "chosen_because": "best coverage of recent fiscal years among candidates",
+            "latest_fiscal_year": best["latest"],
+            "years": len(best["series"]),
+            "alternatives_rejected": rejected,
+        },
     }
 
 
