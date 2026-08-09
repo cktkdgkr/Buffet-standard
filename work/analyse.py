@@ -115,6 +115,60 @@ def accession_map(raw, metric):
     return {r["fiscal_year"]: r["accession"] for r in node.get("series", [])}
 
 
+def split_adjust_shares(shares, period_end_by_year, split_events):
+    """
+    Restate a share-count series into current, post-split units.
+
+    Each year's count is reported in the units of the filing it came from, and a
+    10-K only restates two prior years, so a decade-long series straddles every
+    split the company has done since. Left alone, NVIDIA's 4:1 and 10:1 splits
+    turn a buyback into 41% annual "dilution" and Amazon's 20:1 does the same,
+    which reverses the capital-allocation reading for five of the fifty.
+
+    Every count is multiplied by the splits that happened after its period end.
+    """
+    # The quote feed files spin-offs in the same channel as splits, as a price
+    # adjustment like "1806:1000" (Dell shedding VMware) or "1281:1000" (GE
+    # spinning out HealthCare). Those change the price, not the share count, so
+    # applying them here would invent shares that were never issued. A real
+    # split is a small whole-number exchange - 2:1, 3:2, 10:1, 1:8 - so ratios
+    # that are not are set aside and recorded.
+    real, ignored = [], []
+    for ev in split_events:
+        parts = str(ev.get("as_stated") or "").split(":")
+        try:
+            num, den = int(parts[0]), int(parts[1])
+        except (ValueError, IndexError):
+            ignored.append(ev)
+            continue
+        (real if (num <= 100 and den <= 100) else ignored).append(ev)
+
+    ignored_note = ""
+    if ignored:
+        ignored_note = ("; ignored as price adjustments rather than share splits: "
+                        + ", ".join(f"{e['as_stated']} on {e['date']}" for e in ignored))
+    if not real:
+        return dict(shares), ("no share splits on record; counts already comparable"
+                              + ignored_note)
+    split_events = real
+    adjusted, applied = {}, []
+    for year, val in shares.items():
+        end = period_end_by_year.get(year)
+        if not end:
+            adjusted[year] = val
+            continue
+        factor = 1.0
+        for ev in split_events:
+            if ev["date"] > end:
+                factor *= ev["ratio"]
+        adjusted[year] = val * factor
+        if factor != 1.0:
+            applied.append(f"FY{year} x{factor:g}")
+    note = ("restated into post-split units: " + ", ".join(applied)) if applied else \
+           "splits on record but all predate the series; no adjustment needed"
+    return adjusted, note + ignored_note
+
+
 def avg2(prev, cur):
     """Average of opening and closing balance; falls back to whichever exists."""
     if prev is None:
@@ -234,7 +288,13 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
     years = [y for y in years if y >= max(years) - 11] if years else []
 
     price = (mkt.get("price") or {}).get("price")
-    shares_series = S.get("shares_outstanding", {})
+    # Share counts must be on one basis before any of them are compared.
+    period_ends = {r["fiscal_year"]: r["period_end"]
+                   for r in raw.get("metrics", {}).get("shares_outstanding", {}).get("series", [])}
+    shares_series, split_note = split_adjust_shares(
+        S.get("shares_outstanding", {}), period_ends,
+        (mkt.get("splits") or {}).get("splits") or [])
+    S["shares_outstanding"] = shares_series
     latest_share_year = max(shares_series) if shares_series else None
 
     # The cover page of the latest annual report is both more current than the
@@ -374,6 +434,7 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
         "price": mkt.get("price"),
         "shares_outstanding_used": shares,
         "shares_source": shares_src,
+        "share_series_split_adjustment": split_note,
         "shares_cover_page": cover,
         "shares_as_of_fiscal_year": latest_share_year,
         "market_cap_usd": market_cap,
@@ -429,11 +490,26 @@ def summarise(rec, rf, erp):
     inc = None
     nop = [(r["fiscal_year"], r["nopat"], r["invested_capital"]) for r in rows
            if r.get("nopat") is not None and r.get("invested_capital") is not None]
+    inc_status = "DATA_UNAVAILABLE"
     if len(nop) >= 2 and not fin:
         (_, n0, i0), (_, n1, i1) = nop[0], nop[-1]
         inc = calc.incremental_roic(n0, n1, i0, i1)
         out["incremental_roic_window"] = f"FY{nop[0][0]}..FY{nop[-1][0]}"
+        # The ratio needs a denominator worth dividing by. Apple's invested
+        # capital is barely larger than it was a decade ago - it returns its
+        # cash rather than redeploying it - so the change in capital is a
+        # rounding error and the quotient reads as 4,000%. That says nothing
+        # about the returns on capital management actually put to work.
+        if inc is None:
+            inc_status = "NOT_MEANINGFUL_INVESTED_CAPITAL_SHRANK"
+        elif i0 and abs(i1 - i0) < 0.10 * abs(i0):
+            inc, inc_status = None, "NOT_MEANINGFUL_CAPITAL_BASE_ESSENTIALLY_UNCHANGED"
+        else:
+            inc_status = "OK"
+    elif fin:
+        inc_status = "FRAMEWORK_NOT_APPLICABLE"
     out["incremental_roic"] = inc
+    out["incremental_roic_status"] = inc_status
 
     out["roic_gross_latest"] = latest_of(vals("roic_gross"), "roic_gross")[0]
     out["roic_status_latest"] = rows[-1].get("roic_status") if rows else None
@@ -455,11 +531,30 @@ def summarise(rec, rf, erp):
     out["owner_earnings_years"] = len(oes)
     # The DCF runs off a normalised figure: a single year swings on one-off
     # capex or a working-capital snap, and compounding that for a decade is how
-    # a DCF turns into fiction.
-    recent = [v for _, v in oes[-3:]]
-    out["owner_earnings_normalised"] = statistics.median(recent) if recent else None
-    out["owner_earnings_normalisation"] = (
-        f"median of last {len(recent)} years" if recent else "DATA_UNAVAILABLE")
+    # a DCF turns into fiction. Coca-Cola's owner earnings went $16.6bn ->
+    # $2.1bn in one year on working-capital timing alone.
+    #
+    # Normalising the MARGIN and applying it to current revenue, rather than
+    # taking a median of the levels, smooths that timing without discarding
+    # growth. A median of levels values Arista off a year when it was a third
+    # its current size, which is staleness dressed up as conservatism.
+    margins_recent = [v for _, v in vals("owner_earnings_margin")][-5:]
+    latest_rev = next((r["revenue"] for r in reversed(rows) if r.get("revenue")), None)
+    recent_levels = [v for _, v in oes[-3:]]
+    if margins_recent and latest_rev:
+        out["owner_earnings_normalised"] = statistics.median(margins_recent) * latest_rev
+        out["owner_earnings_normalisation"] = (
+            f"median owner-earnings margin of the last {len(margins_recent)} years "
+            f"({statistics.median(margins_recent):.1%}) applied to FY{latest_fy} revenue")
+    elif recent_levels:
+        out["owner_earnings_normalised"] = statistics.median(recent_levels)
+        out["owner_earnings_normalisation"] = (
+            f"median of the last {len(recent_levels)} years (no margin history)")
+    else:
+        out["owner_earnings_normalised"] = None
+        out["owner_earnings_normalisation"] = "DATA_UNAVAILABLE"
+    out["owner_earnings_median_level"] = (
+        statistics.median(recent_levels) if recent_levels else None)
     if len(oes) >= 4 and oes[0][1] and oes[-1][1] and oes[0][1] > 0 and oes[-1][1] > 0:
         out["owner_earnings_cagr"] = calc.cagr(oes[0][1], oes[-1][1], oes[-1][0] - oes[0][0])
         out["owner_earnings_cagr_window"] = f"FY{oes[0][0]}..FY{oes[-1][0]}"

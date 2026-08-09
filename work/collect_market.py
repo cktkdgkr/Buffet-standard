@@ -83,6 +83,40 @@ def latest_price(sym: str):
     }
 
 
+def splits(sym: str):
+    """
+    Split history, needed to put a share-count series on one basis.
+
+    A company's share count for a given year comes from the 10-K filed that
+    year, in the units of that year. A 10-K restates only two prior years, so
+    anything older keeps its pre-split count, and a series spanning a split
+    reads as explosive share issuance: NVIDIA's 4:1 and 10:1 splits make it look
+    like 41% annual dilution when it has in fact been buying stock back. That
+    inverts the capital-allocation judgment entirely.
+    """
+    url = CHART.format(sym=urllib.request.quote(sym), rng="25y", iv="1mo") + "&events=split"
+    try:
+        j = json.loads(fetch(url))
+    except Exception:                                   # noqa: BLE001
+        return {"status": "DATA_UNAVAILABLE", "source_url": url}
+    res = (j.get("chart") or {}).get("result")
+    if not res:
+        return {"status": "DATA_UNAVAILABLE", "source_url": url}
+    events = (res[0].get("events") or {}).get("splits") or {}
+    out = []
+    for ts, ev in events.items():
+        num, den = ev.get("numerator"), ev.get("denominator")
+        if not num or not den:
+            continue
+        out.append({
+            "date": datetime.fromtimestamp(int(ts), timezone.utc).date().isoformat(),
+            "ratio": num / den,
+            "as_stated": ev.get("splitRatio"),
+        })
+    out.sort(key=lambda s: s["date"])
+    return {"status": "OK", "splits": out, "source_url": url}
+
+
 def monthly_closes(sym: str):
     r, url = chart(sym, "5y", "1mo")
     if not r:
@@ -204,7 +238,8 @@ def main():
         # but the screen may hand us a dot form.
         ysym = sym.replace(".", "-") if c["exchange_country"] == "US" else sym
         print(f"[{sym}] price + beta...")
-        rec = {"ticker": sym, "yahoo_symbol": ysym, "price": latest_price(ysym)}
+        rec = {"ticker": sym, "yahoo_symbol": ysym, "price": latest_price(ysym),
+               "splits": splits(ysym)}
         if bench:
             stock, surl = monthly_closes(ysym)
             rec["beta"] = regress_beta(stock, bench) if stock else {
@@ -223,6 +258,8 @@ def main():
     path = os.path.join(WORK, "market.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=2)
+    ns = sum(1 for r in companies.values() if (r.get("splits") or {}).get("splits"))
+    print(f"companies with split history: {ns}")
     ok = sum(1 for r in companies.values() if r["price"].get("price") is not None)
     nb = sum(1 for r in companies.values() if (r.get("beta") or {}).get("beta") is not None)
     print(f"\nprices {ok}/{len(companies)}, betas {nb}/{len(companies)} -> {path}")

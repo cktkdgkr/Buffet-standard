@@ -1,5 +1,5 @@
 {
-  "collected_at_utc": "2026-08-09T06:35:33.239387+00:00",
+  "collected_at_utc": "2026-08-09T07:20:11.360899+00:00",
   "risk_free_rate": {
     "rate": 0.046900000000000004,
     "as_of": "2026-08-06",
@@ -27,10 +27,41 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2001-09-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2006-04-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2007-09-01",
+            "ratio": 1.5,
+            "as_stated": "3:2"
+          },
+          {
+            "date": "2021-07-01",
+            "ratio": 4.0,
+            "as_stated": "4:1"
+          },
+          {
+            "date": "2024-06-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 2.2185203119037853,
+        "beta": 2.218521286924047,
         "observations": 59,
-        "r_squared": 0.4777305936575391,
+        "r_squared": 0.47773099231076643,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -50,10 +81,31 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2005-02-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2014-06-01",
+            "ratio": 7.0,
+            "as_stated": "7:1"
+          },
+          {
+            "date": "2020-08-01",
+            "ratio": 4.0,
+            "as_stated": "4:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.078089855635314,
+        "beta": 1.0780889860198775,
         "observations": 59,
-        "r_squared": 0.46484541952865216,
+        "r_squared": 0.4648450836432585,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -73,10 +125,31 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2014-03-01",
+            "ratio": 2.002,
+            "as_stated": "2002:1000"
+          },
+          {
+            "date": "2015-04-01",
+            "ratio": 1.0027455,
+            "as_stated": "10027455:10000000"
+          },
+          {
+            "date": "2022-07-01",
+            "ratio": 20.0,
+            "as_stated": "20:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2128970706963733,
+        "beta": 1.212897321324837,
         "observations": 59,
-        "r_squared": 0.375959410558076,
+        "r_squared": 0.3759595272482854,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -96,10 +169,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2003-02-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.095420246578151,
+        "beta": 1.0954202666906312,
         "observations": 59,
-        "r_squared": 0.3986993434796497,
+        "r_squared": 0.3986994717700739,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -118,6 +202,17 @@
         "as_of_utc": "2026-08-07T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2022-06-01",
+            "ratio": 20.0,
+            "as_stated": "20:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 1.4620741941968687,
@@ -142,10 +237,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2024-07-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.4729853625388059,
+        "beta": 1.472984890414136,
         "observations": 59,
-        "r_squared": 0.3084058130809213,
+        "r_squared": 0.3084056817624658,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -165,10 +271,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2200078671870465,
+        "beta": 1.2200079596172708,
         "observations": 59,
-        "r_squared": 0.212694454113209,
+        "r_squared": 0.21269449511713326,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -187,6 +298,22 @@
         "as_of_utc": "2026-08-07T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2020-08-01",
+            "ratio": 5.0,
+            "as_stated": "5:1"
+          },
+          {
+            "date": "2022-08-01",
+            "ratio": 3.0,
+            "as_stated": "3:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 1.8948796790354783,
@@ -211,6 +338,17 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2010-01-01",
+            "ratio": 50.0,
+            "as_stated": "50:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=25y&interval=1mo&events=split"
+      },
       "beta": {
         "beta": 0.6047919896859809,
         "observations": 59,
@@ -234,10 +372,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.45680092344600576,
+        "beta": 0.45680091315426435,
         "observations": 59,
-        "r_squared": 0.05125963900891706,
+        "r_squared": 0.05125963797181887,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -257,10 +400,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 2.2316120194101274,
+        "beta": 2.2316111632371074,
         "observations": 59,
-        "r_squared": 0.2641360026478855,
+        "r_squared": 0.2641357970468804,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -280,10 +428,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.0206964511157886,
+        "beta": 1.0206962124000236,
         "observations": 59,
-        "r_squared": 0.4463880190940516,
+        "r_squared": 0.4463878570119379,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -303,10 +456,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2024-02-01",
+            "ratio": 3.0,
+            "as_stated": "3:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.5867437016764088,
+        "beta": 0.5867431729848555,
         "observations": 59,
-        "r_squared": 0.20305972003339778,
+        "r_squared": 0.20305947650834452,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -325,6 +489,11 @@
         "as_of_utc": "2026-08-07T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 2.5046724266795906,
@@ -349,10 +518,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2015-03-01",
+            "ratio": 4.0,
+            "as_stated": "4:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.7648510196625374,
+        "beta": 0.7648511169377007,
         "observations": 59,
-        "r_squared": 0.37897935001070077,
+        "r_squared": 0.37897966227077756,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -372,10 +552,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.21376825993953993,
+        "beta": 0.21376808420710763,
         "observations": 59,
-        "r_squared": 0.01528443751444802,
+        "r_squared": 0.015284413146863237,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -395,10 +580,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.21134732524094127,
+        "beta": 0.2113471453558554,
         "observations": 59,
-        "r_squared": 0.03500769298753033,
+        "r_squared": 0.035007630776006715,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -418,10 +608,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 2.28116075839637,
+        "beta": 2.281160325567547,
         "observations": 59,
-        "r_squared": 0.2530463438051113,
+        "r_squared": 0.25304624319593955,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -441,10 +636,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2014-01-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.754506307513322,
+        "beta": 0.7545068230436852,
         "observations": 59,
-        "r_squared": 0.3273565849238088,
+        "r_squared": 0.327356742515638,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -464,10 +670,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.9990460544002838,
+        "beta": 0.9990454459431002,
         "observations": 59,
-        "r_squared": 0.36708276086514685,
+        "r_squared": 0.3670824068036519,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -487,10 +698,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2004-08-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2010647889098724,
+        "beta": 1.2010643209544136,
         "observations": 59,
-        "r_squared": 0.4853609384626936,
+        "r_squared": 0.4853609303197646,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -510,10 +732,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.24373390234463013,
+        "beta": 0.2437343121711204,
         "observations": 59,
-        "r_squared": 0.028856038449282896,
+        "r_squared": 0.02885614028722581,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -533,10 +760,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2002-04-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.6284401514304758,
+        "beta": 1.628440204053399,
         "observations": 59,
-        "r_squared": 0.2718159713727402,
+        "r_squared": 0.2718160529875833,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -556,10 +794,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.7549070458367393,
+        "beta": 1.7549068943078594,
         "observations": 59,
-        "r_squared": 0.35603330710400927,
+        "r_squared": 0.35603323742406523,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -579,10 +822,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.8812337099253725,
+        "beta": 0.8812333117662756,
         "observations": 59,
-        "r_squared": 0.3515263630689703,
+        "r_squared": 0.35152624580501285,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -601,6 +849,11 @@
         "as_of_utc": "2026-08-07T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 1.5442175380201457,
@@ -625,10 +878,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2024-10-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.8660397393963273,
+        "beta": 1.8660392483142025,
         "observations": 59,
-        "r_squared": 0.36262976308181183,
+        "r_squared": 0.3626296237003534,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -648,10 +912,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2005-07-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.602230446412261,
+        "beta": 1.6022302413689002,
         "observations": 59,
-        "r_squared": 0.4375999835420048,
+        "r_squared": 0.4375998506699978,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -671,10 +946,36 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2019-02-01",
+            "ratio": 1.04,
+            "as_stated": "104:100"
+          },
+          {
+            "date": "2021-08-01",
+            "ratio": 0.125,
+            "as_stated": "1:8"
+          },
+          {
+            "date": "2023-01-01",
+            "ratio": 1.281,
+            "as_stated": "1281:1000"
+          },
+          {
+            "date": "2024-04-01",
+            "ratio": 1.253,
+            "as_stated": "1253:1000"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.3913194610282043,
+        "beta": 1.3913194534142945,
         "observations": 59,
-        "r_squared": 0.42502406596025083,
+        "r_squared": 0.4250241949194643,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -694,10 +995,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2012-08-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.3149434707819025,
+        "beta": 0.31494342849351076,
         "observations": 59,
-        "r_squared": 0.0919758484574491,
+        "r_squared": 0.09197587658860042,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -717,10 +1029,26 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2003-06-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2005-05-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.6102031102658284,
+        "beta": 0.6102028160189752,
         "observations": 59,
-        "r_squared": 0.07523056999231058,
+        "r_squared": 0.0752305158070734,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -740,10 +1068,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2004-09-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.5286134014579918,
+        "beta": 0.5286131559789455,
         "observations": 59,
-        "r_squared": 0.08240470459882378,
+        "r_squared": 0.08240464322946046,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -763,10 +1102,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.9896520166104599,
+        "beta": 0.9896517627418087,
         "observations": 59,
-        "r_squared": 0.4086866394623605,
+        "r_squared": 0.4086866502749693,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -786,10 +1130,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2128315697959142,
+        "beta": 1.2128324333582226,
         "observations": 59,
-        "r_squared": 0.48863060933098484,
+        "r_squared": 0.4886306483264621,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -809,10 +1158,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2004-06-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.38777208325414175,
+        "beta": 0.3877724670620839,
         "observations": 59,
-        "r_squared": 0.10889795259120004,
+        "r_squared": 0.10889820714732425,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -832,10 +1192,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2021-06-01",
+            "ratio": 1.048,
+            "as_stated": "1048:1000"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.1905388252040411,
+        "beta": 0.1905390469533364,
         "observations": 59,
-        "r_squared": 0.015206450625113173,
+        "r_squared": 0.015206487926142417,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -854,6 +1225,27 @@
         "as_of_utc": "2026-08-07T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2004-02-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2015-07-01",
+            "ratio": 7.0,
+            "as_stated": "7:1"
+          },
+          {
+            "date": "2025-11-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 1.583875915747081,
@@ -878,10 +1270,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2811822314276602,
+        "beta": 1.2811824805734782,
         "observations": 59,
-        "r_squared": 0.5558601416853806,
+        "r_squared": 0.5558602407720902,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -901,10 +1298,26 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2005-06-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          },
+          {
+            "date": "2020-04-01",
+            "ratio": 1.589,
+            "as_stated": "15890:10000"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.30870658548723856,
+        "beta": 0.30870659743634815,
         "observations": 59,
-        "r_squared": 0.042831045726439,
+        "r_squared": 0.04283104452477066,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -923,6 +1336,22 @@
         "as_of_utc": "2026-08-07T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2022-09-01",
+            "ratio": 3.0,
+            "as_stated": "3:1"
+          },
+          {
+            "date": "2024-12-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 0.9240732692927824,
@@ -947,10 +1376,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.34794489398155437,
+        "beta": 0.347944539657101,
         "observations": 59,
-        "r_squared": 0.055396059013146974,
+        "r_squared": 0.05539599006473866,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -970,10 +1404,26 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2018-12-01",
+            "ratio": 1.806,
+            "as_stated": "1806:1000"
+          },
+          {
+            "date": "2021-11-01",
+            "ratio": 1.973,
+            "as_stated": "1973:1000"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.388384942147249,
+        "beta": 1.3883850750151598,
         "observations": 59,
-        "r_squared": 0.14088539649094672,
+        "r_squared": 0.14088543213849677,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -993,10 +1443,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2006-08-01",
+            "ratio": 2.0,
+            "as_stated": "2:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.9565917778164975,
+        "beta": 0.9565924134376336,
         "observations": 59,
-        "r_squared": 0.2943024810088754,
+        "r_squared": 0.29430271665393054,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1016,10 +1477,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.2376142996844703,
+        "beta": 1.2376146557303935,
         "observations": 28,
-        "r_squared": 0.11213310867768524,
+        "r_squared": 0.11213315022466955,
         "window": "2024-05..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1039,10 +1505,15 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.375730219194334,
+        "beta": 1.375730760404908,
         "observations": 59,
-        "r_squared": 0.38791198989782905,
+        "r_squared": 0.3879120263273495,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1062,10 +1533,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2026-06-01",
+            "ratio": 10.0,
+            "as_stated": "10:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.4772580928341612,
+        "beta": 1.4772571835960056,
         "observations": 59,
-        "r_squared": 0.2610990585957508,
+        "r_squared": 0.2610988556285811,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1084,6 +1566,22 @@
         "as_of_utc": "2026-08-07T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=5d&interval=1d",
         "confidence": "HIGH"
+      },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2021-11-01",
+            "ratio": 4.0,
+            "as_stated": "4:1"
+          },
+          {
+            "date": "2024-12-01",
+            "ratio": 4.0,
+            "as_stated": "4:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=25y&interval=1mo&events=split"
       },
       "beta": {
         "beta": 1.6071430458567773,
@@ -1108,10 +1606,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2005-10-01",
+            "ratio": 1.1424654404204273,
+            "as_stated": "10000:8753"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.0821103112179564,
+        "beta": 1.082110738272734,
         "observations": 59,
-        "r_squared": 0.41614346279909453,
+        "r_squared": 0.41614339065690925,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1131,10 +1640,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2011-05-01",
+            "ratio": 0.1,
+            "as_stated": "1:10"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 1.1388063104281814,
+        "beta": 1.1388067611682402,
         "observations": 59,
-        "r_squared": 0.3930822200873905,
+        "r_squared": 0.39308236113735084,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1154,10 +1674,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2021-11-01",
+            "ratio": 1.046,
+            "as_stated": "1046:1000"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.7156497712565811,
+        "beta": 0.7156495438630398,
         "observations": 59,
-        "r_squared": 0.1290890311866001,
+        "r_squared": 0.12908886634779249,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1177,10 +1708,26 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2018-04-30",
+            "ratio": 50.0,
+            "as_stated": "50:1"
+          },
+          {
+            "date": "2018-05-31",
+            "ratio": 50.0,
+            "as_stated": "50:1"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.27495211297118305,
+        "beta": 0.27495216949098195,
         "observations": 59,
-        "r_squared": 0.008801039141390809,
+        "r_squared": 0.008801043349196555,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1200,10 +1747,21 @@
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
+      "splits": {
+        "status": "OK",
+        "splits": [
+          {
+            "date": "2003-03-31",
+            "ratio": 0.047619047619047616,
+            "as_stated": "1:21"
+          }
+        ],
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?range=25y&interval=1mo&events=split"
+      },
       "beta": {
-        "beta": 0.7728418182224305,
+        "beta": 0.7728427927906593,
         "observations": 59,
-        "r_squared": 0.03010111561230401,
+        "r_squared": 0.030101196607147516,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
