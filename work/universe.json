@@ -1,0 +1,741 @@
+{
+  "built_at_utc": "2026-08-09T06:30:57.784266+00:00",
+  "us_count": 50,
+  "kr_count": 2,
+  "total": 52,
+  "selection_rule": {
+    "us": "top 50 US-listed companies by market capitalisation, screened 2026-08-09",
+    "kr": "mandated by the brief, not by ranking"
+  },
+  "skipped_from_screen": [
+    {
+      "screen_rank": 7,
+      "screen_name": "SpaceX",
+      "ticker": "SPCX",
+      "screen_market_cap_usd": 1753616089088,
+      "skip_reason": "private company - SEC registrant with no 10-K/20-F ever filed, so no audited annual series exists (screen values private secondaries)"
+    }
+  ],
+  "companies": [
+    {
+      "ticker": "NVDA",
+      "cik": 1045810,
+      "company_name": "NVIDIA CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 1,
+        "screen_market_cap_usd": 5424535306240,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "cik": 320193,
+      "company_name": "Apple Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 2,
+        "screen_market_cap_usd": 4572794322944,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "GOOG",
+      "cik": 1652044,
+      "company_name": "Alphabet Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 3,
+        "screen_market_cap_usd": 4322915254272,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "MSFT",
+      "cik": 789019,
+      "company_name": "MICROSOFT CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 4,
+        "screen_market_cap_usd": 3712698548224,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AMZN",
+      "cik": 1018724,
+      "company_name": "AMAZON COM INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 5,
+        "screen_market_cap_usd": 2960627335168,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AVGO",
+      "cik": 1730168,
+      "company_name": "Broadcom Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 6,
+        "screen_market_cap_usd": 2035102646272,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "META",
+      "cik": 1326801,
+      "company_name": "Meta Platforms, Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 8,
+        "screen_market_cap_usd": 1508378279936,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "cik": 1318605,
+      "company_name": "Tesla, Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 9,
+        "screen_market_cap_usd": 1297742299136,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "BRK-B",
+      "cik": 1067983,
+      "company_name": "BERKSHIRE HATHAWAY INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 10,
+        "screen_market_cap_usd": 1125446320128,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "LLY",
+      "cik": 59478,
+      "company_name": "ELI LILLY & Co",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 11,
+        "screen_market_cap_usd": 1056890945536,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "MU",
+      "cik": 723125,
+      "company_name": "MICRON TECHNOLOGY INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 12,
+        "screen_market_cap_usd": 991121571840,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "JPM",
+      "cik": 19617,
+      "company_name": "JPMORGAN CHASE & CO",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 13,
+        "screen_market_cap_usd": 950354706432,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "WMT",
+      "cik": 104169,
+      "company_name": "Walmart Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 14,
+        "screen_market_cap_usd": 890111131648,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AMD",
+      "cik": 2488,
+      "company_name": "ADVANCED MICRO DEVICES INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 15,
+        "screen_market_cap_usd": 789073100800,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "V",
+      "cik": 1403161,
+      "company_name": "VISA INC.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 16,
+        "screen_market_cap_usd": 676804624384,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "XOM",
+      "cik": 34088,
+      "company_name": "ExxonMobil Holdings Corp",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 17,
+        "screen_market_cap_usd": 634342670336,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      },
+      "cik_override": {
+        "ticker_map_cik": 2115436,
+        "reason": "ticker XOM now resolves to ExxonMobil Holdings Corp (CIK 2115436), a 2026 reorganisation holdco with zero 10-K filings. The operating registrant with the audited annual history is EXXON MOBIL CORP."
+      }
+    },
+    {
+      "ticker": "JNJ",
+      "cik": 200406,
+      "company_name": "JOHNSON & JOHNSON",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 18,
+        "screen_market_cap_usd": 624742039552,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "INTC",
+      "cik": 50863,
+      "company_name": "INTEL CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 19,
+        "screen_market_cap_usd": 512722567168,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "MA",
+      "cik": 1141391,
+      "company_name": "Mastercard Inc",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 20,
+        "screen_market_cap_usd": 493149782016,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "CSCO",
+      "cik": 858877,
+      "company_name": "CISCO SYSTEMS, INC.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 21,
+        "screen_market_cap_usd": 478608392192,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "BAC",
+      "cik": 70858,
+      "company_name": "BANK OF AMERICA CORP /DE/",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 22,
+        "screen_market_cap_usd": 441731907584,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "ABBV",
+      "cik": 1551152,
+      "company_name": "AbbVie Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 23,
+        "screen_market_cap_usd": 434781519872,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AMAT",
+      "cik": 6951,
+      "company_name": "APPLIED MATERIALS INC /DE",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 24,
+        "screen_market_cap_usd": 428055298048,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "ORCL",
+      "cik": 1341439,
+      "company_name": "ORACLE CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 25,
+        "screen_market_cap_usd": 423486849024,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "COST",
+      "cik": 909832,
+      "company_name": "COSTCO WHOLESALE CORP /NEW",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 26,
+        "screen_market_cap_usd": 420338106368,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "PLTR",
+      "cik": 1321655,
+      "company_name": "Palantir Technologies Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 27,
+        "screen_market_cap_usd": 413350068224,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "LRCX",
+      "cik": 707549,
+      "company_name": "LAM RESEARCH CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 28,
+        "screen_market_cap_usd": 389585403904,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "CAT",
+      "cik": 18230,
+      "company_name": "CATERPILLAR INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 29,
+        "screen_market_cap_usd": 387133603840,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "GE",
+      "cik": 40545,
+      "company_name": "GENERAL ELECTRIC CO",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 30,
+        "screen_market_cap_usd": 383981125632,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "KO",
+      "cik": 21344,
+      "company_name": "COCA COLA CO",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 31,
+        "screen_market_cap_usd": 374536896512,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "UNH",
+      "cik": 731766,
+      "company_name": "UNITEDHEALTH GROUP INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 32,
+        "screen_market_cap_usd": 369687396352,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "CVX",
+      "cik": 93410,
+      "company_name": "CHEVRON CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 33,
+        "screen_market_cap_usd": 365956726784,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "HD",
+      "cik": 354950,
+      "company_name": "HOME DEPOT, INC.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 34,
+        "screen_market_cap_usd": 354594619392,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "MS",
+      "cik": 895421,
+      "company_name": "MORGAN STANLEY",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 35,
+        "screen_market_cap_usd": 340070760448,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "PG",
+      "cik": 80424,
+      "company_name": "PROCTER & GAMBLE Co",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 36,
+        "screen_market_cap_usd": 339486441472,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "MRK",
+      "cik": 310158,
+      "company_name": "Merck & Co., Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 37,
+        "screen_market_cap_usd": 317570056192,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "NFLX",
+      "cik": 1065280,
+      "company_name": "NETFLIX INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 38,
+        "screen_market_cap_usd": 308714471424,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "GS",
+      "cik": 886982,
+      "company_name": "GOLDMAN SACHS GROUP INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 39,
+        "screen_market_cap_usd": 302704689152,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "RTX",
+      "cik": 101829,
+      "company_name": "RTX Corp",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 40,
+        "screen_market_cap_usd": 300590497792,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "PANW",
+      "cik": 1327567,
+      "company_name": "Palo Alto Networks Inc",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 41,
+        "screen_market_cap_usd": 296545878016,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "PM",
+      "cik": 1413329,
+      "company_name": "Philip Morris International Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 42,
+        "screen_market_cap_usd": 295466336256,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "DELL",
+      "cik": 1571996,
+      "company_name": "Dell Technologies Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 43,
+        "screen_market_cap_usd": 293200035840,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "WFC",
+      "cik": 72971,
+      "company_name": "WELLS FARGO & COMPANY/MN",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 44,
+        "screen_market_cap_usd": 263843938304,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "GEV",
+      "cik": 1996810,
+      "company_name": "GE Vernova Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 45,
+        "screen_market_cap_usd": 263755481088,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "TXN",
+      "cik": 97476,
+      "company_name": "TEXAS INSTRUMENTS INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 46,
+        "screen_market_cap_usd": 261261885440,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "KLAC",
+      "cik": 319201,
+      "company_name": "KLA CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 47,
+        "screen_market_cap_usd": 258839986176,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "ANET",
+      "cik": 1596532,
+      "company_name": "Arista Networks, Inc.",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 48,
+        "screen_market_cap_usd": 237955268608,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "AXP",
+      "cik": 4962,
+      "company_name": "AMERICAN EXPRESS CO",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 49,
+        "screen_market_cap_usd": 230219874304,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "C",
+      "cik": 831001,
+      "company_name": "CITIGROUP INC",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 50,
+        "screen_market_cap_usd": 226453962752,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "IBM",
+      "cik": 51143,
+      "company_name": "INTERNATIONAL BUSINESS MACHINES CORP",
+      "exchange_country": "US",
+      "analysis_mode": "QUANTITATIVE",
+      "selection": {
+        "criterion": "top 50 US-listed companies by market capitalisation",
+        "screen_rank": 51,
+        "screen_market_cap_usd": 223549652992,
+        "screen_source": "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/",
+        "screen_role": "SELECTION ONLY - this market cap decides set membership and is never reported as an analysis figure. Reported market cap is recomputed as SEC share count x exchange close."
+      }
+    },
+    {
+      "ticker": "005930.KS",
+      "local_code": "005930",
+      "company_name": "Samsung Electronics Co., Ltd.",
+      "exchange_country": "KR",
+      "analysis_mode": "QUALITATIVE_ONLY",
+      "reason": "Not an SEC registrant. Audited financials are filed with DART, whose API requires a key not available in this environment, so no line item can be sourced to a primary filing at the standard applied to the US 50."
+    },
+    {
+      "ticker": "000660.KS",
+      "local_code": "000660",
+      "company_name": "SK hynix Inc.",
+      "exchange_country": "KR",
+      "analysis_mode": "QUALITATIVE_ONLY",
+      "reason": "Not an SEC registrant. Audited financials are filed with DART, whose API requires a key not available in this environment, so no line item can be sourced to a primary filing at the standard applied to the US 50."
+    }
+  ]
+}

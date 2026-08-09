@@ -52,6 +52,14 @@ CONCEPTS = {
         "PaymentsToAcquirePropertyPlantAndEquipment",
         "PaymentsToAcquireProductiveAssets",
     ],
+    # Lets owner earnings be cross-checked as (operating cash flow - capex),
+    # which already embeds D&A and the working-capital swing. Useful where the
+    # current-asset/liability split needed for the direct formula is absent,
+    # as it is for banks.
+    "operating_cash_flow": [
+        "NetCashProvidedByUsedInOperatingActivities",
+        "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+    ],
     "total_assets": ["Assets"],
     "total_equity": [
         "StockholdersEquity",
@@ -83,6 +91,7 @@ CONCEPTS = {
 FLOW_METRICS = {
     "revenue", "operating_income", "net_income", "depreciation_amortization",
     "capex", "interest_expense", "income_tax_expense", "pretax_income",
+    "operating_cash_flow",
 }
 
 
@@ -133,37 +142,63 @@ def load_ticker_map():
     return {v["ticker"].upper(): (v["cik_str"], v["title"]) for v in data.values()}
 
 
+def _fiscal_year(end: str) -> int:
+    """
+    Label a period by the calendar year it mostly covers, from its own end date.
+
+    NOT the `fy` field on the fact: that is the fiscal year of the *filing* the
+    fact appeared in, and a 10-K restates two prior years, so three different
+    fiscal years arrive carrying an identical `fy`. Keying on it collapses them
+    into one bucket and silently drops two real years.
+
+    A period ending in Jan-May is dated to the prior calendar year, so a
+    retailer's year ending 2026-01-31 lines up with a calendar-year filer's
+    2025 rather than being compared against 2026.
+    """
+    d = datetime.fromisoformat(end)
+    return d.year if d.month >= 6 else d.year - 1
+
+
 def _pick_annual(units, is_flow):
     """
     Reduce raw XBRL unit entries to one clean value per fiscal year.
 
-    Keeps only 10-K figures so annual series are audited and internally
+    Keeps only annual-report figures so series are audited and internally
     consistent, takes ~365-day durations for flows (never a summed quarter),
-    and for restated years prefers the most recently filed value.
+    and for restated periods prefers the most recently filed value.
     """
     rows = []
     for u in units:
         if u.get("form") not in ("10-K", "20-F", "40-F"):
             continue
-        fy, end, val = u.get("fy"), u.get("end"), u.get("val")
-        if fy is None or val is None:
+        end, val = u.get("end"), u.get("val")
+        if not end or val is None:
             continue
         if is_flow:
             start = u.get("start")
-            if not start or not end:
+            if not start:
                 continue
             days = (datetime.fromisoformat(end) - datetime.fromisoformat(start)).days
             if not (330 <= days <= 400):      # annual duration only
                 continue
         rows.append({
-            "fiscal_year": fy, "period_end": end, "value": val,
+            "fiscal_year": _fiscal_year(end), "period_end": end, "value": val,
             "form": u.get("form"), "accession": u.get("accn"), "filed": u.get("filed"),
         })
 
-    best = {}
+    # Same period restated across filings -> keep the latest filed value.
+    by_period = {}
     for r in rows:
-        cur = best.get(r["fiscal_year"])
+        cur = by_period.get(r["period_end"])
         if cur is None or (r.get("filed") or "") > (cur.get("filed") or ""):
+            by_period[r["period_end"]] = r
+
+    # A 52/53-week calendar can put two period ends in one fiscal year; keep the
+    # later one so the year is represented once.
+    best = {}
+    for r in by_period.values():
+        cur = best.get(r["fiscal_year"])
+        if cur is None or r["period_end"] > cur["period_end"]:
             best[r["fiscal_year"]] = r
     return [best[k] for k in sorted(best)]
 
@@ -235,6 +270,8 @@ def main():
     ap.add_argument("--tickers", nargs="*", default=[])
     ap.add_argument("--universe")
     ap.add_argument("--probe", action="store_true")
+    ap.add_argument("--refresh", action="store_true",
+                    help="re-pull companies already present in work/raw")
     args = ap.parse_args()
 
     if args.probe:
@@ -247,28 +284,49 @@ def main():
             print(f"ACCESS BLOCKED - {e}")
             return 1
 
-    tickers = list(args.tickers)
+    # (ticker, cik, name) triples. The universe file already carries a verified
+    # CIK per company, including overrides where a ticker now resolves to a
+    # reorganisation holdco with no filing history, so it wins over the ticker
+    # map. Bare --tickers still fall back to the map.
+    targets = []
     if args.universe:
         with open(args.universe) as f:
             uni = json.load(f)
-        tickers += [c["ticker"] for c in uni.get("companies", [])
-                    if c.get("exchange_country") == "US"]
+        targets += [(c["ticker"], c["cik"], c["company_name"])
+                    for c in uni.get("companies", [])
+                    if c.get("exchange_country") == "US"
+                    and c.get("analysis_mode") == "QUANTITATIVE"]
+
+    if args.tickers:
+        tmap = load_ticker_map()
+        for t in args.tickers:
+            t = t.upper()
+            if t not in tmap:
+                print(f"[{t}] not in SEC ticker map - skipping (non-US listing?)")
+                continue
+            cik, name = tmap[t]
+            targets.append((t, cik, name))
 
     os.makedirs(RAW_DIR, exist_ok=True)
-    tmap = load_ticker_map()
+    failures = []
 
-    for t in tickers:
-        t = t.upper()
-        if t not in tmap:
-            print(f"[{t}] not in SEC ticker map - skipping (non-US listing?)")
+    for t, cik, name in targets:
+        out = os.path.join(RAW_DIR, f"{t}.json")
+        if os.path.exists(out) and not args.refresh:
+            print(f"[{t}] cached - skipping (use --refresh to re-pull)")
             continue
-        cik, name = tmap[t]
         print(f"[{t}] CIK {cik} - collecting...")
         rec = collect(t, cik, name)
-        with open(os.path.join(RAW_DIR, f"{t}.json"), "w") as f:
+        with open(out, "w") as f:
             json.dump(rec, f, indent=2)
-        print(f"[{t}] {rec.get('metrics_found', 'FAILED')} -> work/raw/{t}.json")
-        time.sleep(0.15)          # stay within SEC's 10 req/s fair-use limit
+        found = rec.get("metrics_found", "FAILED")
+        print(f"[{t}] {found} -> work/raw/{t}.json")
+        if rec.get("status") == "DATA_UNAVAILABLE":
+            failures.append(t)
+        time.sleep(0.4)          # stay well inside SEC's fair-use rate limit
+
+    if failures:
+        print(f"\n{len(failures)} companies returned no data: {', '.join(failures)}")
     return 0
 
 
