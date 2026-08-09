@@ -1,0 +1,74 @@
+{
+  "recheck_run_at_utc": "2026-08-09T05:41:27Z",
+  "date_verified_by": "system `date -u` command (HARD RULE R1)",
+  "purpose": "Re-run the data-access gate before committing to PHASE 1-7 execution. The prior probe (work/00_environment_probe.json, 2026-08-08) halted the analysis on egress denial; this record establishes whether that condition has changed.",
+  "result": "UNCHANGED - STILL BLOCKED",
+
+  "tests_run": [
+    {
+      "test": "python3 work/collect_sec.py --probe",
+      "target": "https://www.sec.gov/files/company_tickers.json",
+      "result": "ACCESS BLOCKED - EGRESS DENIED at proxy CONNECT",
+      "note": "This is the gate the collector itself defines. It did not open."
+    },
+    {
+      "test": "curl https://www.sec.gov/",
+      "result": "curl (56) CONNECT tunnel failed, response 403"
+    },
+    {
+      "test": "curl https://data.sec.gov/",
+      "result": "curl (56) CONNECT tunnel failed, response 403"
+    },
+    {
+      "test": "WebFetch https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "result": "EGRESS_BLOCKED: Access to data.sec.gov is blocked by the network egress proxy",
+      "note": "WebFetch egresses server-side, on a different path than curl. Both are governed by the same allowlist, so this rules out a client-side or CA-trust cause."
+    },
+    {
+      "test": "agent proxy status endpoint ($HTTPS_PROXY/__agentproxy/status)",
+      "result": "proxy healthy and enabled; recentRelayFailures records {kind: connect_rejected, detail: 'gateway answered 403 to CONNECT (policy denial or upstream failure)', host: 'www.sec.gov:443'}",
+      "note": "Confirms the denial originates at the policy-enforcing egress gateway, not at the local proxy or in the collector code."
+    },
+    {
+      "test": "alternative financial-data hosts (curl, HTTP status; 000 = CONNECT refused)",
+      "results": {
+        "raw.githubusercontent.com": "301 (reachable - developer infrastructure)",
+        "data.sec.gov": "000",
+        "query1.finance.yahoo.com": "000",
+        "stooq.com": "000",
+        "fmpcloud.io": "000",
+        "www.alphavantage.co": "000",
+        "api.nasdaq.com": "000",
+        "dart.fss.or.kr": "000",
+        "opendart.fss.or.kr": "000"
+      },
+      "note": "No substitute primary or vendor source is reachable. DART being denied means the Samsung Electronics / SK Hynix leg is blocked on the same grounds as the US leg, not merely deferred to last."
+    }
+  ],
+
+  "engine_state": {
+    "work/calc.py": "31 self-test assertions pass as of this recheck",
+    "work/collect_sec.py": "correct and ready; it fails closed on the denial rather than degrading",
+    "assessment": "The computation and collection layers are not the blocker. The single missing input is network access to primary filings."
+  },
+
+  "why_work_did_not_proceed_anyway": {
+    "instruction_gate": "The task was conditioned on the probe succeeding ('되면'). It did not succeed, so the condition for proceeding was not met.",
+    "substantive_reason": "PHASE 1-7 spans roughly 3,000-5,700 individual figures, each required to carry a verified primary source and retrieval date. With every filing host denied, ~90% of those figures could only come from model memory while being labelled with source URLs that were never opened. The brief names that exact outcome its worst failure mode ('추측으로 빈칸을 채우는 것은 이 작업의 최대 실패'). Producing a complete-looking 52-company report under these conditions would mean manufacturing precisely what the analysis is meant to guard against.",
+    "not_a_transient_error": "Per /root/.ccr/README.md, 403/407 at the gateway are organization egress-policy denials and are to be reported rather than retried or circumvented. The collector's own retry logic deliberately fails fast on these."
+  },
+
+  "unblock_condition": {
+    "required": ["data.sec.gov", "www.sec.gov"],
+    "also_required_for_the_korean_leg": ["opendart.fss.or.kr"],
+    "where": "the remote environment's network egress allowlist (Claude Code on the web environment settings)",
+    "docs": "https://code.claude.com/docs/en/claude-code-on-the-web",
+    "on_unblock": "python3 work/collect_sec.py --probe should print 'ACCESS OK'. Collection can then run unattended."
+  },
+
+  "second_open_input": {
+    "issue": "The 52-company universe (the specific 50 US tickers) is not present anywhere in this repository or its git history.",
+    "consequence": "Even with access restored, the universe list must be supplied before collection can be scoped. It was not carried over from the prior session's context.",
+    "not_guessed": "A plausible-looking mega-cap list was not invented here, because the wrong 52 companies would produce a report that is entirely well-formed and entirely about the wrong subject."
+  }
+}
