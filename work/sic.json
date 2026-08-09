@@ -2,251 +2,301 @@
   "1045810": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "NVIDIA CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0001045810.json"
   },
   "320193": {
     "sic": "3571",
     "sic_description": "Electronic Computers",
+    "name": "Apple Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0000320193.json"
   },
   "1652044": {
     "sic": "7370",
     "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+    "name": "Alphabet Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001652044.json"
   },
   "789019": {
     "sic": "7372",
     "sic_description": "Services-Prepackaged Software",
+    "name": "MICROSOFT CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000789019.json"
   },
   "1018724": {
     "sic": "5961",
     "sic_description": "Retail-Catalog & Mail-Order Houses",
+    "name": "AMAZON COM INC",
     "source_url": "https://data.sec.gov/submissions/CIK0001018724.json"
   },
   "1730168": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "Broadcom Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001730168.json"
   },
   "1326801": {
     "sic": "7370",
     "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+    "name": "Meta Platforms, Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001326801.json"
   },
   "1318605": {
     "sic": "3711",
     "sic_description": "Motor Vehicles & Passenger Car Bodies",
+    "name": "Tesla, Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001318605.json"
   },
   "1067983": {
     "sic": "6331",
     "sic_description": "Fire, Marine & Casualty Insurance",
+    "name": "BERKSHIRE HATHAWAY INC",
     "source_url": "https://data.sec.gov/submissions/CIK0001067983.json"
   },
   "59478": {
     "sic": "2834",
     "sic_description": "Pharmaceutical Preparations",
+    "name": "ELI LILLY & Co",
     "source_url": "https://data.sec.gov/submissions/CIK0000059478.json"
   },
   "723125": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "MICRON TECHNOLOGY INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000723125.json"
   },
   "19617": {
     "sic": "6021",
     "sic_description": "National Commercial Banks",
+    "name": "JPMORGAN CHASE & CO",
     "source_url": "https://data.sec.gov/submissions/CIK0000019617.json"
   },
   "104169": {
     "sic": "5331",
     "sic_description": "Retail-Variety Stores",
+    "name": "Walmart Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0000104169.json"
   },
   "2488": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "ADVANCED MICRO DEVICES INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000002488.json"
   },
   "1403161": {
     "sic": "7389",
     "sic_description": "Services-Business Services, NEC",
+    "name": "VISA INC.",
     "source_url": "https://data.sec.gov/submissions/CIK0001403161.json"
   },
   "34088": {
     "sic": "2911",
     "sic_description": "Petroleum Refining",
+    "name": "EXXON MOBIL CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000034088.json"
   },
   "200406": {
     "sic": "2834",
     "sic_description": "Pharmaceutical Preparations",
+    "name": "JOHNSON & JOHNSON",
     "source_url": "https://data.sec.gov/submissions/CIK0000200406.json"
   },
   "50863": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "INTEL CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000050863.json"
   },
   "1141391": {
     "sic": "7389",
     "sic_description": "Services-Business Services, NEC",
+    "name": "Mastercard Inc",
     "source_url": "https://data.sec.gov/submissions/CIK0001141391.json"
   },
   "858877": {
     "sic": "3576",
     "sic_description": "Computer Communications Equipment",
+    "name": "CISCO SYSTEMS, INC.",
     "source_url": "https://data.sec.gov/submissions/CIK0000858877.json"
   },
   "70858": {
     "sic": "6021",
     "sic_description": "National Commercial Banks",
+    "name": "BANK OF AMERICA CORP /DE/",
     "source_url": "https://data.sec.gov/submissions/CIK0000070858.json"
   },
   "1551152": {
     "sic": "2834",
     "sic_description": "Pharmaceutical Preparations",
+    "name": "AbbVie Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001551152.json"
   },
   "6951": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "APPLIED MATERIALS INC /DE",
     "source_url": "https://data.sec.gov/submissions/CIK0000006951.json"
   },
   "1341439": {
     "sic": "7372",
     "sic_description": "Services-Prepackaged Software",
+    "name": "ORACLE CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0001341439.json"
   },
   "909832": {
     "sic": "5331",
     "sic_description": "Retail-Variety Stores",
+    "name": "COSTCO WHOLESALE CORP /NEW",
     "source_url": "https://data.sec.gov/submissions/CIK0000909832.json"
   },
   "1321655": {
     "sic": "7372",
     "sic_description": "Services-Prepackaged Software",
+    "name": "Palantir Technologies Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001321655.json"
   },
   "707549": {
     "sic": "3559",
     "sic_description": "Special Industry Machinery, NEC",
+    "name": "LAM RESEARCH CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000707549.json"
   },
   "18230": {
     "sic": "3531",
     "sic_description": "Construction Machinery & Equip",
+    "name": "CATERPILLAR INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000018230.json"
   },
   "40545": {
     "sic": "3600",
     "sic_description": "Electronic & Other Electrical Equipment (No Computer Equip)",
+    "name": "GENERAL ELECTRIC CO",
     "source_url": "https://data.sec.gov/submissions/CIK0000040545.json"
   },
   "21344": {
     "sic": "2080",
     "sic_description": "Beverages",
+    "name": "COCA COLA CO",
     "source_url": "https://data.sec.gov/submissions/CIK0000021344.json"
   },
   "731766": {
     "sic": "6324",
     "sic_description": "Hospital & Medical Service Plans",
+    "name": "UNITEDHEALTH GROUP INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000731766.json"
   },
   "93410": {
     "sic": "2911",
     "sic_description": "Petroleum Refining",
+    "name": "CHEVRON CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000093410.json"
   },
   "354950": {
     "sic": "5211",
     "sic_description": "Retail-Lumber & Other Building Materials Dealers",
+    "name": "HOME DEPOT, INC.",
     "source_url": "https://data.sec.gov/submissions/CIK0000354950.json"
   },
   "895421": {
     "sic": "6211",
     "sic_description": "Security Brokers, Dealers & Flotation Companies",
+    "name": "MORGAN STANLEY",
     "source_url": "https://data.sec.gov/submissions/CIK0000895421.json"
   },
   "80424": {
     "sic": "2840",
     "sic_description": "Soap, Detergents, Cleang Preparations, Perfumes, Cosmetics",
+    "name": "PROCTER & GAMBLE Co",
     "source_url": "https://data.sec.gov/submissions/CIK0000080424.json"
   },
   "310158": {
     "sic": "2834",
     "sic_description": "Pharmaceutical Preparations",
+    "name": "Merck & Co., Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0000310158.json"
   },
   "1065280": {
     "sic": "7841",
     "sic_description": "Services-Video Tape Rental",
+    "name": "NETFLIX INC",
     "source_url": "https://data.sec.gov/submissions/CIK0001065280.json"
   },
   "886982": {
     "sic": "6211",
     "sic_description": "Security Brokers, Dealers & Flotation Companies",
+    "name": "GOLDMAN SACHS GROUP INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000886982.json"
   },
   "101829": {
     "sic": "3724",
     "sic_description": "Aircraft Engines & Engine Parts",
+    "name": "RTX Corp",
     "source_url": "https://data.sec.gov/submissions/CIK0000101829.json"
   },
   "1327567": {
     "sic": "3577",
     "sic_description": "Computer Peripheral Equipment, NEC",
+    "name": "Palo Alto Networks Inc",
     "source_url": "https://data.sec.gov/submissions/CIK0001327567.json"
   },
   "1413329": {
     "sic": "2111",
     "sic_description": "Cigarettes",
+    "name": "Philip Morris International Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001413329.json"
   },
   "1571996": {
     "sic": "3571",
     "sic_description": "Electronic Computers",
+    "name": "Dell Technologies Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001571996.json"
   },
   "72971": {
     "sic": "6021",
     "sic_description": "National Commercial Banks",
+    "name": "WELLS FARGO & COMPANY/MN",
     "source_url": "https://data.sec.gov/submissions/CIK0000072971.json"
   },
   "1996810": {
     "sic": "3600",
     "sic_description": "Electronic & Other Electrical Equipment (No Computer Equip)",
+    "name": "GE Vernova Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001996810.json"
   },
   "97476": {
     "sic": "3674",
     "sic_description": "Semiconductors & Related Devices",
+    "name": "TEXAS INSTRUMENTS INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000097476.json"
   },
   "319201": {
     "sic": "3827",
     "sic_description": "Optical Instruments & Lenses",
+    "name": "KLA CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000319201.json"
   },
   "1596532": {
     "sic": "3576",
     "sic_description": "Computer Communications Equipment",
+    "name": "Arista Networks, Inc.",
     "source_url": "https://data.sec.gov/submissions/CIK0001596532.json"
   },
   "4962": {
     "sic": "6199",
     "sic_description": "Finance Services",
+    "name": "AMERICAN EXPRESS CO",
     "source_url": "https://data.sec.gov/submissions/CIK0000004962.json"
   },
   "831001": {
     "sic": "6021",
     "sic_description": "National Commercial Banks",
+    "name": "CITIGROUP INC",
     "source_url": "https://data.sec.gov/submissions/CIK0000831001.json"
   },
   "51143": {
     "sic": "3570",
     "sic_description": "Computer & office Equipment",
+    "name": "INTERNATIONAL BUSINESS MACHINES CORP",
     "source_url": "https://data.sec.gov/submissions/CIK0000051143.json"
   }
 }

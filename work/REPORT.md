@@ -1,6 +1,6 @@
 # 버핏 기준 52개 기업 분석
 
-생성 2026-08-09 07:24 UTC · 미국 50개사(정량) + 한국 2개사(정성)
+생성 2026-08-09 07:27 UTC · 미국 50개사(정량) + 한국 2개사(정성)
 
 ## 한눈에
 
@@ -16,47 +16,47 @@
 
 | # | 티커 | 기업 | 점수 | ROIC 중앙값 | 두자릿수 유지 | 신규 ROIC | ROIC−WACC | 해자 판정 |
 |---:|---|---|---:|---:|:--:|---:|---:|---|
-| 1 | MA | Mastercard Incorporated | **100** | 105.4% | 12/12 | 88.4% | 88.0% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 1 | MA | Mastercard Inc | **100** | 105.4% | 12/12 | 88.4% | 88.0% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 2 | KLAC | KLA CORP | **100** | 52.4% | 7/7 | 67.9% | 42.1% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 3 | LRCX | LAM RESEARCH CORPORATION | **100** | 47.6% | 12/12 | 145.5% | 66.9% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 3 | LRCX | LAM RESEARCH CORP | **100** | 47.6% | 12/12 | 145.5% | 66.9% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 4 | V | VISA INC. | **100** | 35.8% | 10/10 | 78.7% | 35.9% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 5 | NVDA | NVIDIA CORP | **100** | 34.8% | 12/12 | 79.3% | 87.7% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 6 | ANET | Arista Networks, Inc. | **97** | 38.6% | 12/12 | 30.7% | 24.3% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
+| 6 | ANET | Arista Networks, Inc. | **97** | 38.6% | 12/12 | 30.7% | 24.3% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
 | 7 | AMAT | APPLIED MATERIALS INC /DE | **97** | 37.1% | 12/12 | 46.8% | 27.3% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 8 | PM | Philip Morris Internationa | **95** | 66.2% | 12/12 | 24.8% | 38.0% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
-| 9 | MSFT | MICROSOFT CORPORATION | **95** | 29.3% | 12/12 | 34.1% | 23.8% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
+| 9 | MSFT | MICROSOFT CORP | **95** | 29.3% | 12/12 | 34.1% | 23.8% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
 | 10 | KO | COCA COLA CO | **94** | 28.4% | 12/12 | 27.9% | 17.8% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
 | 11 | META | Meta Platforms, Inc. | **90** | 26.3% | 7/8 | 27.9% | 20.2% | 보통 - ROIC가 기간에 따라 흔들림 |
-| 12 | JNJ | Johnson & Johnson | **90** | 19.5% | 8/8 | 29.4% | 23.1% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
+| 12 | JNJ | JOHNSON & JOHNSON | **90** | 19.5% | 8/8 | 29.4% | 23.1% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
 | 13 | COST | COSTCO WHOLESALE CORP /NEW | **87** | 29.5% | 12/12 | 66.3% | 32.1% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 14 | GOOG | Alphabet Inc. | **87** | 17.1% | 12/12 | 34.6% | 25.4% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 15 | LLY | ELI LILLY AND COMPANY | **86** | 23.7% | 11/12 | 44.9% | 33.6% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
+| 15 | LLY | ELI LILLY & Co | **86** | 23.7% | 11/12 | 44.9% | 33.6% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
 | 16 | NFLX | NETFLIX INC | **85** | 19.0% | 11/12 | 37.3% | 24.7% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 17 | HD | HOME DEPOT, INC. | **84** | 45.2% | 12/12 | 19.9% | 18.1% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 17 | HD | HOME DEPOT, INC. | **84** | 45.2% | 12/12 | 19.9% | 18.1% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 18 | AMZN | AMAZON COM INC | **81** | 23.4% | 10/12 | 20.7% | 13.3% | 보통 - ROIC가 기간에 따라 흔들림 |
 | 19 | AAPL | Apple Inc. | **80** | 40.7% | 12/12 | 해당없음 (자본 거의 불변) | 79.7% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 20 | PLTR | Palantir Technologies Inc. | **80** | 17.2% | 3/3 | 20.0% | 18.9% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 21 | TXN | TEXAS INSTRUMENTS INCORPOR | **79** | 29.5% | 12/12 | 19.5% | 9.7% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
-| 22 | MRK | Merck & Co., Inc. | **76** | 12.9% | 7/12 | 30.3% | 19.6% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
-| 23 | WMT | WALMART INC. | **74** | 16.0% | 12/12 | 16.8% | 12.2% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 21 | TXN | TEXAS INSTRUMENTS INC | **79** | 29.5% | 12/12 | 19.5% | 9.7% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 22 | MRK | Merck & Co., Inc. | **76** | 12.9% | 7/12 | 30.3% | 19.6% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 23 | WMT | Walmart Inc. | **74** | 16.0% | 12/12 | 16.8% | 12.2% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 24 | AVGO | Broadcom Inc. | **73** | 19.2% | 8/9 | 18.9% | 8.2% | 보통 - ROIC가 기간에 따라 흔들림 |
-| 25 | ORCL | Oracle Corporation | **70** | 49.2% | 8/8 | 해당없음 (자본 축소) | 79.7% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
-| 26 | PG | PROCTER & GAMBLE CO | **70** | 21.2% | 9/10 | 해당없음 (자본 축소) | 15.6% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 25 | ORCL | ORACLE CORP | **70** | 49.2% | 8/8 | 해당없음 (자본 축소) | 79.7% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
+| 26 | PG | PROCTER & GAMBLE Co | **70** | 21.2% | 9/10 | 해당없음 (자본 축소) | 15.6% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 27 | CAT | CATERPILLAR INC | **67** | 15.2% | 7/11 | 81.1% | 7.2% | 보통 - ROIC가 기간에 따라 흔들림 |
 | 28 | CSCO | CISCO SYSTEMS, INC. | **58** | 18.6% | 11/12 | 해당없음 (자본 축소) | 8.3% | 강함 - 장기간 두 자릿수 ROIC + 안정적 마진 |
 | 29 | DELL | Dell Technologies Inc. | **55** | 9.5% | 5/11 | 87.3% | 28.8% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
-| 30 | MU | Micron Technology, Inc. | **54** | 17.3% | 8/12 | 13.1% | 1.7% | 보통 - ROIC가 기간에 따라 흔들림 |
+| 30 | MU | MICRON TECHNOLOGY INC | **54** | 17.3% | 8/12 | 13.1% | 1.7% | 보통 - ROIC가 기간에 따라 흔들림 |
 | 31 | ABBV | AbbVie Inc. | **53** | 19.7% | 12/12 | 8.2% | 5.5% | 강함 - 장기간 두 자릿수 ROIC, 마진 변동은 있음 |
-| 32 | PANW | PALO ALTO NETWORKS, INC | **52** | -7.1% | 2/12 | 24.8% | 13.6% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 32 | PANW | Palo Alto Networks Inc | **52** | -7.1% | 2/12 | 24.8% | 13.6% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 | 33 | IBM | INTERNATIONAL BUSINESS MAC | **43** | 14.6% | 9/12 | -10.7% | 8.8% | 보통 - ROIC가 기간에 따라 흔들림 |
-| 34 | XOM | Exxon Mobil Corporation | **42** | 10.1% | 6/12 | -3.9% | 5.2% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 34 | XOM | EXXON MOBIL CORP | **42** | 10.1% | 6/12 | -3.9% | 5.2% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 | 35 | GE | GENERAL ELECTRIC CO | **36** | 3.6% | 3/10 | 해당없음 (자본 축소) | 25.1% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
-| 36 | CVX | Chevron Corp | **35** | 6.5% | 3/11 | 11.3% | 0.1% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 36 | CVX | CHEVRON CORP | **35** | 6.5% | 3/11 | 11.3% | 0.1% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 | 37 | GEV | GE Vernova Inc. | **29** | 8.7% | 1/3 | 해당없음 (자본 축소) | 34.0% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 | 38 | INTC | INTEL CORP | **25** | 12.1% | 6/10 | -14.8% | -12.6% | 보통 - ROIC가 기간에 따라 흔들림 |
-| 39 | RTX | RTX CORPORATION | **25** | 6.8% | 4/12 | 0.8% | 2.2% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 39 | RTX | RTX Corp | **25** | 6.8% | 4/12 | 0.8% | 2.2% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 | 40 | TSLA | Tesla, Inc. | **24** | 5.9% | 5/11 | 5.9% | -7.1% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
-| 41 | AMD | ADVANCED MICRO DEVICES, IN | **23** | 5.6% | 5/12 | 7.2% | -8.8% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
+| 41 | AMD | ADVANCED MICRO DEVICES INC | **23** | 5.6% | 5/12 | 7.2% | -8.8% | 약함 - 두 자릿수 ROIC를 지킨 해가 절반 미만 |
 
 ## 2. 가격 — 원칙 5·6
 
@@ -172,14 +172,14 @@ ROIC와 주주이익은 산출하지 않았습니다. 은행·보험의 대차�
 | 티커 | 기업 | 업종 | ROE 중앙값 | 최근 ROE | PER | PBR |
 |---|---|---|---:|---:|---:|---:|
 | AXP | AMERICAN EXPRESS CO | Finance Services | 30.8% | 34.0% | 21.6x | 6.99x |
-| UNH | UnitedHealth Group Incor | Hospital & Medical Service | 23.5% | 12.2% | 30.6x | 3.69x |
+| UNH | UNITEDHEALTH GROUP INC | Hospital & Medical Service | 23.5% | 12.2% | 30.6x | 3.69x |
 | JPM | JPMORGAN CHASE & CO | National Commercial Banks | 12.8% | 16.1% | 16.9x | 2.66x |
-| WFC | WELLS        FARGO & COM | National Commercial Banks | 11.0% | 11.8% | 12.6x | 1.49x |
+| WFC | WELLS FARGO & COMPANY/MN | National Commercial Banks | 11.0% | 11.8% | 12.6x | 1.49x |
 | MS | MORGAN STANLEY | Security Brokers, Dealers  | 10.9% | 15.6% | 20.4x | 3.08x |
-| GS | The Goldman Sachs Group, | Security Brokers, Dealers  | 10.0% | 13.9% | 18.0x | 2.47x |
+| GS | GOLDMAN SACHS GROUP INC | Security Brokers, Dealers  | 10.0% | 13.9% | 18.0x | 2.47x |
 | BRK-B | BERKSHIRE HATHAWAY INC | Fire, Marine & Casualty In | 9.8% | 9.8% | 16.8x | 1.57x |
-| BAC | BofA Finance LLC | National Commercial Banks | 9.3% | 10.2% | 14.9x | 1.50x |
-| C | Citigroup Inc | National Commercial Banks | 6.7% | 6.8% | 16.5x | 1.11x |
+| BAC | BANK OF AMERICA CORP /DE | National Commercial Banks | 9.3% | 10.2% | 14.9x | 1.50x |
+| C | CITIGROUP INC | National Commercial Banks | 6.7% | 6.8% | 16.5x | 1.11x |
 
 ## 6. 한국 2개사 — 정성 분석
 

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-09T07:21:15.100528+00:00",
+  "generated_at_utc": "2026-08-09T07:25:12.876011+00:00",
   "risk_free_rate": {
     "rate": 0.046900000000000004,
     "as_of": "2026-08-06",
@@ -1621,7 +1621,7 @@
     },
     {
       "ticker": "MSFT",
-      "company_name": "MICROSOFT CORPORATION",
+      "company_name": "MICROSOFT CORP",
       "cik": 789019,
       "sic": "7372",
       "sic_description": "Services-Prepackaged Software",
@@ -4747,7 +4747,7 @@
     },
     {
       "ticker": "LLY",
-      "company_name": "ELI LILLY AND COMPANY",
+      "company_name": "ELI LILLY & Co",
       "cik": 59478,
       "sic": "2834",
       "sic_description": "Pharmaceutical Preparations",
@@ -5279,7 +5279,7 @@
     },
     {
       "ticker": "MU",
-      "company_name": "Micron Technology, Inc.",
+      "company_name": "MICRON TECHNOLOGY INC",
       "cik": 723125,
       "sic": "3674",
       "sic_description": "Semiconductors & Related Devices",
@@ -6341,7 +6341,7 @@
     },
     {
       "ticker": "WMT",
-      "company_name": "WALMART INC.",
+      "company_name": "Walmart Inc.",
       "cik": 104169,
       "sic": "5331",
       "sic_description": "Retail-Variety Stores",
@@ -6873,7 +6873,7 @@
     },
     {
       "ticker": "AMD",
-      "company_name": "ADVANCED MICRO DEVICES, INC",
+      "company_name": "ADVANCED MICRO DEVICES INC",
       "cik": 2488,
       "sic": "3674",
       "sic_description": "Semiconductors & Related Devices",
@@ -7954,7 +7954,7 @@
     },
     {
       "ticker": "XOM",
-      "company_name": "Exxon Mobil Corporation",
+      "company_name": "EXXON MOBIL CORP",
       "cik": 34088,
       "sic": "2911",
       "sic_description": "Petroleum Refining",
@@ -8486,7 +8486,7 @@
     },
     {
       "ticker": "JNJ",
-      "company_name": "Johnson & Johnson",
+      "company_name": "JOHNSON & JOHNSON",
       "cik": 200406,
       "sic": "2834",
       "sic_description": "Pharmaceutical Preparations",
@@ -9549,7 +9549,7 @@
     },
     {
       "ticker": "MA",
-      "company_name": "Mastercard Incorporated",
+      "company_name": "Mastercard Inc",
       "cik": 1141391,
       "sic": "7389",
       "sic_description": "Services-Business Services, NEC",
@@ -10614,7 +10614,7 @@
     },
     {
       "ticker": "BAC",
-      "company_name": "BofA Finance LLC",
+      "company_name": "BANK OF AMERICA CORP /DE/",
       "cik": 70858,
       "sic": "6021",
       "sic_description": "National Commercial Banks",
@@ -12208,7 +12208,7 @@
     },
     {
       "ticker": "ORCL",
-      "company_name": "Oracle Corporation",
+      "company_name": "ORACLE CORP",
       "cik": 1341439,
       "sic": "7372",
       "sic_description": "Services-Prepackaged Software",
@@ -13676,7 +13676,7 @@
     },
     {
       "ticker": "LRCX",
-      "company_name": "LAM RESEARCH CORPORATION",
+      "company_name": "LAM RESEARCH CORP",
       "cik": 707549,
       "sic": "3559",
       "sic_description": "Special Industry Machinery, NEC",
@@ -15803,7 +15803,7 @@
     },
     {
       "ticker": "UNH",
-      "company_name": "UnitedHealth Group Incorporated",
+      "company_name": "UNITEDHEALTH GROUP INC",
       "cik": 731766,
       "sic": "6324",
       "sic_description": "Hospital & Medical Service Plans",
@@ -16333,7 +16333,7 @@
     },
     {
       "ticker": "CVX",
-      "company_name": "Chevron Corp",
+      "company_name": "CHEVRON CORP",
       "cik": 93410,
       "sic": "2911",
       "sic_description": "Petroleum Refining",
@@ -16864,7 +16864,7 @@
     },
     {
       "ticker": "HD",
-      "company_name": "HOME DEPOT,\u00a0INC.",
+      "company_name": "HOME DEPOT, INC.",
       "cik": 354950,
       "sic": "5211",
       "sic_description": "Retail-Lumber & Other Building Materials Dealers",
@@ -17926,7 +17926,7 @@
     },
     {
       "ticker": "PG",
-      "company_name": "PROCTER & GAMBLE CO",
+      "company_name": "PROCTER & GAMBLE Co",
       "cik": 80424,
       "sic": "2840",
       "sic_description": "Soap, Detergents, Cleang Preparations, Perfumes, Cosmetics",
@@ -18458,7 +18458,7 @@
     },
     {
       "ticker": "MRK",
-      "company_name": "Merck\u00a0& Co., Inc.",
+      "company_name": "Merck & Co., Inc.",
       "cik": 310158,
       "sic": "2834",
       "sic_description": "Pharmaceutical Preparations",
@@ -19521,7 +19521,7 @@
     },
     {
       "ticker": "GS",
-      "company_name": "The Goldman Sachs Group, Inc.",
+      "company_name": "GOLDMAN SACHS GROUP INC",
       "cik": 886982,
       "sic": "6211",
       "sic_description": "Security Brokers, Dealers & Flotation Companies",
@@ -20051,7 +20051,7 @@
     },
     {
       "ticker": "RTX",
-      "company_name": "RTX CORPORATION",
+      "company_name": "RTX Corp",
       "cik": 101829,
       "sic": "3724",
       "sic_description": "Aircraft Engines & Engine Parts",
@@ -20582,7 +20582,7 @@
     },
     {
       "ticker": "PANW",
-      "company_name": "PALO ALTO NETWORKS, INC",
+      "company_name": "Palo Alto Networks Inc",
       "cik": 1327567,
       "sic": "3577",
       "sic_description": "Computer Peripheral Equipment, NEC",
@@ -22180,7 +22180,7 @@
     },
     {
       "ticker": "WFC",
-      "company_name": "WELLS        FARGO & COMPANY/MN",
+      "company_name": "WELLS FARGO & COMPANY/MN",
       "cik": 72971,
       "sic": "6021",
       "sic_description": "National Commercial Banks",
@@ -22985,7 +22985,7 @@
     },
     {
       "ticker": "TXN",
-      "company_name": "TEXAS INSTRUMENTS INCORPORATED",
+      "company_name": "TEXAS INSTRUMENTS INC",
       "cik": 97476,
       "sic": "3674",
       "sic_description": "Semiconductors & Related Devices",
@@ -24049,7 +24049,7 @@
     },
     {
       "ticker": "ANET",
-      "company_name": "Arista Networks,\u00a0Inc.",
+      "company_name": "Arista Networks, Inc.",
       "cik": 1596532,
       "sic": "3576",
       "sic_description": "Computer Communications Equipment",
@@ -25110,7 +25110,7 @@
     },
     {
       "ticker": "C",
-      "company_name": "Citigroup Inc",
+      "company_name": "CITIGROUP INC",
       "cik": 831001,
       "sic": "6021",
       "sic_description": "National Commercial Banks",
@@ -25640,7 +25640,7 @@
     },
     {
       "ticker": "IBM",
-      "company_name": "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+      "company_name": "INTERNATIONAL BUSINESS MACHINES CORP",
       "cik": 51143,
       "sic": "3570",
       "sic_description": "Computer & office Equipment",

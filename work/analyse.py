@@ -87,7 +87,7 @@ def load_sic(companies):
         with urllib.request.urlopen(req, timeout=60) as r:
             j = json.loads(r.read())
         cache[key] = {"sic": j.get("sic"), "sic_description": j.get("sicDescription"),
-                      "source_url": url}
+                      "name": j.get("name"), "source_url": url}
         dirty = True
         time.sleep(0.3)
     if dirty:
@@ -425,7 +425,11 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
 
     return {
         "ticker": t,
-        "company_name": raw.get("company_name", entry.get("company_name")),
+        # The XBRL entityName can name a financing subsidiary rather than the
+        # registrant - Bank of America's facts come back as "BofA Finance LLC" -
+        # so the filer index name wins, with entityName as the fallback.
+        "company_name": (sic_info.get("name") or raw.get("company_name")
+                         or entry.get("company_name")),
         "cik": entry["cik"],
         "sic": sic_info.get("sic"),
         "sic_description": sic_info.get("sic_description"),
