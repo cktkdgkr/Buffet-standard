@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "created_at_utc": "2026-08-09T05:41:27Z",
+    "status": "PENDING_USER_CONFIRMATION",
+    "selection_rule": "Top 50 US-listed companies by market capitalisation, plus Samsung Electronics and SK Hynix appended last, for 52 total.",
+    "ordering_basis": {
+      "source": "model knowledge, NOT a live market-cap feed",
+      "why_not_sourced": "Every market-data host (query1.finance.yahoo.com, stooq.com, api.nasdaq.com, companiesmarketcap.com) is denied by the egress policy, so the ranking could not be pulled from a citable source. See work/01_access_recheck.json.",
+      "what_this_does_and_does_not_claim": "This file is a SCOPING decision - which companies to analyse - not a reported financial figure. No number in the final analysis derives from it. The rank ordering is indicative and will drift with prices; membership near the 45-55 boundary is the part most likely to be wrong.",
+      "confirm_before_use": "Ranks are not re-verified at collection time. Review the membership list before collection runs."
+    },
+    "ticker_symbol_caveat": "SEC's company_tickers.json uses hyphenated class suffixes (BRK-B, not BRK.B). The 'sec_ticker' field carries the form the collector must use where it differs from common usage.",
+    "korean_leg": "Samsung Electronics and SK Hynix do not file with the SEC and are absent from the SEC ticker map, so collect_sec.py will skip them by design (exchange_country != US). They require DART (opendart.fss.or.kr), which is also currently denied by the egress policy."
+  },
+
+  "companies": [
+    {"rank": 1,  "ticker": "NVDA",  "name": "NVIDIA Corporation",              "exchange_country": "US"},
+    {"rank": 2,  "ticker": "AAPL",  "name": "Apple Inc.",                      "exchange_country": "US"},
+    {"rank": 3,  "ticker": "MSFT",  "name": "Microsoft Corporation",           "exchange_country": "US"},
+    {"rank": 4,  "ticker": "GOOGL", "name": "Alphabet Inc.",                   "exchange_country": "US"},
+    {"rank": 5,  "ticker": "AMZN",  "name": "Amazon.com, Inc.",                "exchange_country": "US"},
+    {"rank": 6,  "ticker": "META",  "name": "Meta Platforms, Inc.",            "exchange_country": "US"},
+    {"rank": 7,  "ticker": "AVGO",  "name": "Broadcom Inc.",                   "exchange_country": "US"},
+    {"rank": 8,  "ticker": "TSLA",  "name": "Tesla, Inc.",                     "exchange_country": "US"},
+    {"rank": 9,  "ticker": "BRK.B", "sec_ticker": "BRK-B",
+                 "name": "Berkshire Hathaway Inc. (Class B)",                  "exchange_country": "US"},
+    {"rank": 10, "ticker": "LLY",   "name": "Eli Lilly and Company",           "exchange_country": "US"},
+    {"rank": 11, "ticker": "JPM",   "name": "JPMorgan Chase & Co.",            "exchange_country": "US"},
+    {"rank": 12, "ticker": "WMT",   "name": "Walmart Inc.",                    "exchange_country": "US"},
+    {"rank": 13, "ticker": "V",     "name": "Visa Inc.",                       "exchange_country": "US"},
+    {"rank": 14, "ticker": "XOM",   "name": "Exxon Mobil Corporation",         "exchange_country": "US"},
+    {"rank": 15, "ticker": "UNH",   "name": "UnitedHealth Group Incorporated", "exchange_country": "US"},
+    {"rank": 16, "ticker": "ORCL",  "name": "Oracle Corporation",              "exchange_country": "US"},
+    {"rank": 17, "ticker": "MA",    "name": "Mastercard Incorporated",         "exchange_country": "US"},
+    {"rank": 18, "ticker": "COST",  "name": "Costco Wholesale Corporation",    "exchange_country": "US"},
+    {"rank": 19, "ticker": "HD",    "name": "The Home Depot, Inc.",            "exchange_country": "US"},
+    {"rank": 20, "ticker": "PG",    "name": "The Procter & Gamble Company",    "exchange_country": "US"},
+    {"rank": 21, "ticker": "JNJ",   "name": "Johnson & Johnson",               "exchange_country": "US"},
+    {"rank": 22, "ticker": "NFLX",  "name": "Netflix, Inc.",                   "exchange_country": "US"},
+    {"rank": 23, "ticker": "ABBV",  "name": "AbbVie Inc.",                     "exchange_country": "US"},
+    {"rank": 24, "ticker": "BAC",   "name": "Bank of America Corporation",     "exchange_country": "US"},
+    {"rank": 25, "ticker": "KO",    "name": "The Coca-Cola Company",           "exchange_country": "US"},
+    {"rank": 26, "ticker": "CRM",   "name": "Salesforce, Inc.",                "exchange_country": "US"},
+    {"rank": 27, "ticker": "CVX",   "name": "Chevron Corporation",             "exchange_country": "US"},
+    {"rank": 28, "ticker": "AMD",   "name": "Advanced Micro Devices, Inc.",    "exchange_country": "US"},
+    {"rank": 29, "ticker": "TMUS",  "name": "T-Mobile US, Inc.",               "exchange_country": "US"},
+    {"rank": 30, "ticker": "PEP",   "name": "PepsiCo, Inc.",                   "exchange_country": "US"},
+    {"rank": 31, "ticker": "LIN",   "name": "Linde plc",                       "exchange_country": "US"},
+    {"rank": 32, "ticker": "WFC",   "name": "Wells Fargo & Company",           "exchange_country": "US"},
+    {"rank": 33, "ticker": "CSCO",  "name": "Cisco Systems, Inc.",             "exchange_country": "US"},
+    {"rank": 34, "ticker": "ACN",   "name": "Accenture plc",                   "exchange_country": "US"},
+    {"rank": 35, "ticker": "ADBE",  "name": "Adobe Inc.",                      "exchange_country": "US"},
+    {"rank": 36, "ticker": "MRK",   "name": "Merck & Co., Inc.",               "exchange_country": "US"},
+    {"rank": 37, "ticker": "ABT",   "name": "Abbott Laboratories",             "exchange_country": "US"},
+    {"rank": 38, "ticker": "MCD",   "name": "McDonald's Corporation",          "exchange_country": "US"},
+    {"rank": 39, "ticker": "NOW",   "name": "ServiceNow, Inc.",                "exchange_country": "US"},
+    {"rank": 40, "ticker": "IBM",   "name": "International Business Machines",  "exchange_country": "US"},
+    {"rank": 41, "ticker": "GE",    "name": "GE Aerospace",                    "exchange_country": "US"},
+    {"rank": 42, "ticker": "QCOM",  "name": "QUALCOMM Incorporated",           "exchange_country": "US"},
+    {"rank": 43, "ticker": "PM",    "name": "Philip Morris International Inc.", "exchange_country": "US"},
+    {"rank": 44, "ticker": "TXN",   "name": "Texas Instruments Incorporated",  "exchange_country": "US"},
+    {"rank": 45, "ticker": "DIS",   "name": "The Walt Disney Company",         "exchange_country": "US"},
+    {"rank": 46, "ticker": "CAT",   "name": "Caterpillar Inc.",                "exchange_country": "US"},
+    {"rank": 47, "ticker": "INTU",  "name": "Intuit Inc.",                     "exchange_country": "US"},
+    {"rank": 48, "ticker": "VZ",    "name": "Verizon Communications Inc.",     "exchange_country": "US"},
+    {"rank": 49, "ticker": "AXP",   "name": "American Express Company",        "exchange_country": "US"},
+    {"rank": 50, "ticker": "AMGN",  "name": "Amgen Inc.",                      "exchange_country": "US"},
+
+    {"rank": 51, "ticker": "005930.KS", "name": "Samsung Electronics Co., Ltd.",
+     "exchange_country": "KR", "dart_corp_name": "삼성전자",
+     "reporting_currency": "KRW", "primary_source": "DART (opendart.fss.or.kr)"},
+    {"rank": 52, "ticker": "000660.KS", "name": "SK hynix Inc.",
+     "exchange_country": "KR", "dart_corp_name": "SK하이닉스",
+     "reporting_currency": "KRW", "primary_source": "DART (opendart.fss.or.kr)"}
+  ],
+
+  "known_sector_caveats": {
+    "banks_and_insurers": {
+      "affected": ["JPM", "BAC", "WFC", "AXP", "BRK.B"],
+      "issue": "Invested capital, ROIC and owner earnings as defined in work/calc.py are not meaningful for financial firms: debt is raw material rather than financing, and CapEx/working-capital adjustments do not carry their usual sense.",
+      "handling": "These must be reported with the ROIC-based principles marked NOT_APPLICABLE rather than computed and presented as if comparable. Do not let the engine emit a number here just because inputs happen to be present."
+    },
+    "UNH": {
+      "issue": "Health insurer; the same financial-sector caveat applies in weaker form (float-like balance sheet)."
+    }
+  }
+}

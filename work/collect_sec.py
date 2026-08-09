@@ -251,7 +251,10 @@ def main():
     if args.universe:
         with open(args.universe) as f:
             uni = json.load(f)
-        tickers += [c["ticker"] for c in uni.get("companies", [])
+        # Share classes are hyphenated in SEC's map (BRK-B) but usually written
+        # with a dot elsewhere, so the universe may carry an explicit override.
+        tickers += [c.get("sec_ticker") or c["ticker"]
+                    for c in uni.get("companies", [])
                     if c.get("exchange_country") == "US"]
 
     os.makedirs(RAW_DIR, exist_ok=True)
