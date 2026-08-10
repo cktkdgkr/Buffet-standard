@@ -157,7 +157,8 @@ def build(analysis, verification):
     borderline = [c for c in valued if c["summary"]["dcf"]["base"]["verdict"] == "BORDERLINE"]
     negoe = [c for c in std if c["summary"]["valuation_status"] == "NEGATIVE_OWNER_EARNINGS"]
 
-    w(f"- **품질과 가격은 별개였습니다.** 42개 비금융 기업 중 {sum(1 for c in std if (c['summary'].get('roic_wacc_spread') or -1) > 0)}개사가 "
+    w(f"- **품질과 가격은 별개였습니다.** 비금융 {len(std)}개 기업 중 "
+      f"{sum(1 for c in std if (c['summary'].get('roic_wacc_spread') or -1) > 0)}개사가 "
       f"ROIC로 자본비용을 넘겼지만, 기준 시나리오(할인율 10%) DCF에서 안전마진 30% 이상인 "
       f"기업은 **{len(investable)}개**였습니다.")
     if borderline:
@@ -166,14 +167,14 @@ def build(analysis, verification):
     w(f"- **주주이익이 음수인 기업이 {len(negoe)}개**({', '.join(c['ticker'] for c in negoe)})입니다. "
       f"이익이 없어서가 아니라 설비투자와 운전자본이 순이익을 넘어서기 때문이며, "
       f"원칙 3 관점에서는 데이터 공백이 아니라 사업에 대한 판정입니다.")
-    w(f"- 금융 9개사는 ROIC·주주이익 프레임을 적용하지 않았습니다. 은행에서 부채는 "
+    w(f"- 금융 {len(fin)}개사는 ROIC·주주이익 프레임을 적용하지 않았습니다. 은행에서 부채는 "
       f"자금조달이 아니라 원재료라 투하자본이 정의되지 않습니다. ROE·레버리지·배수로만 평가했습니다.")
     w(f"- 검증: **{vsum['companies_passed']}/{vsum['companies_checked']}개사**의 모든 인용 수치가 "
       f"해당 제출서류 원문과 대조 확인됐습니다.")
     w("")
 
     # ---------------------------------------------------------------- 순위
-    w("## 1. 품질 순위 — 비금융 42개사")
+    w(f"## 1. 품질 순위 — 비금융 {len(std)}개사")
     w("")
     w("점수는 사업의 질만 봅니다. 가격은 다음 절에서 따로 다룹니다. "
       "자본비용에 못 미치는 사업은 싸다고 투자 대상이 되지 않는다는 것이 원칙 1의 요지이기 때문입니다.")
@@ -272,7 +273,7 @@ def build(analysis, verification):
     w("")
 
     # ---------------------------------------------------------------- 금융
-    w("## 5. 금융 9개사 — 별도 기준")
+    w(f"## 5. 금융 {len(fin)}개사 — 별도 기준")
     w("")
     w("ROIC와 주주이익은 산출하지 않았습니다. 은행·보험의 대차대조표에서 부채는 "
       "자금조달 수단이 아니라 영업 자산이고, 유동자산·유동부채 구분 자체가 존재하지 않아 "
@@ -290,7 +291,7 @@ def build(analysis, verification):
     return L
 
 
-def korea_section():
+def korea_section(n_std):
     """
     The two Korean names, carried as far as the evidence standard allows.
 
@@ -313,12 +314,12 @@ def korea_section():
     w("")
     w("### 프레임워크 관점에서 본 구조적 특징")
     w("")
-    w("**두 회사 모두 원칙 1과 3이 가장 혹독하게 적용되는 업종에 있습니다.** 메모리 반도체는 "
+    w(("**두 회사 모두 원칙 1과 3이 가장 혹독하게 적용되는 업종에 있습니다.** 메모리 반도체는 "
       "설비투자가 매출에 선행하고, 감가상각이 끝나기 전에 다음 세대 투자가 시작됩니다. "
       "이 보고서의 미국 50개사에서도 같은 성질이 그대로 드러났습니다. 마이크론의 정규화 "
-      "주주이익 마진은 42개 비금융 기업 중 최하위권이었고, 인텔은 주주이익이 음수였습니다. "
+      "주주이익 마진은 비금융 {n} 기업 중 최하위권이었고, 인텔은 주주이익이 음수였습니다. "
       "메모리 사이클의 정점에서 순이익이 아무리 커도, 주주이익 기준으로는 그 이익의 상당 부분이 "
-      "다음 세대 공정에 재투입되어 주주에게 남지 않습니다.")
+      "다음 세대 공정에 재투입되어 주주에게 남지 않습니다.").format(n=f"{n_std}개"))
     w("")
     w("**SK하이닉스**는 HBM 비중이 커지면서 제품 믹스가 범용 D램에서 벗어나는 국면에 있습니다. "
       "프레임워크상 이것이 해자에 해당하는지는 한 가지로 판별됩니다 — 사이클 저점에서도 "
@@ -420,7 +421,7 @@ def main():
         verification = json.load(f)
 
     lines = build(analysis, verification)
-    lines += korea_section()
+    lines += korea_section(len([c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]))
     lines += limitations_section(analysis, verification)
 
     path = os.path.join(WORK, "REPORT.md")

@@ -551,7 +551,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 100
     },
     {
       "ticker": "AAPL",
@@ -1083,7 +1084,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 7.7% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 80
     },
     {
       "ticker": "GOOG",
@@ -1617,7 +1619,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 12.2% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 87
     },
     {
       "ticker": "MSFT",
@@ -2149,7 +2152,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 13.5% (FY2016..FY2026), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 95
     },
     {
       "ticker": "AMZN",
@@ -2681,7 +2685,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 17.6% (FY2016..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 81
     },
     {
       "ticker": "AVGO",
@@ -3149,7 +3154,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 23.4% (FY2016..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 73
     },
     {
       "ticker": "META",
@@ -3682,7 +3688,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR -14.9% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 90
     },
     {
       "ticker": "TSLA",
@@ -4213,7 +4220,8 @@
         "valuation_note": "normalised owner earnings are negative (-0.3bn): capital spending plus working capital exceed reported profit, so there is no positive stream to discount. A finding about the business, not a data gap.",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 24
     },
     {
       "ticker": "BRK-B",
@@ -4743,7 +4751,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 10
     },
     {
       "ticker": "LLY",
@@ -5275,7 +5284,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 6.0% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 86
     },
     {
       "ticker": "MU",
@@ -5807,7 +5817,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 1.1% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 54
     },
     {
       "ticker": "JPM",
@@ -6337,7 +6348,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 5
     },
     {
       "ticker": "WMT",
@@ -6869,7 +6881,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR -2.0% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 74
     },
     {
       "ticker": "AMD",
@@ -7400,7 +7413,8 @@
         "valuation_note": "normalised owner earnings are negative (-0.6bn): capital spending plus working capital exceed reported profit, so there is no positive stream to discount. A finding about the business, not a data gap.",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 23
     },
     {
       "ticker": "V",
@@ -7950,7 +7964,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 12.5% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 100
     },
     {
       "ticker": "XOM",
@@ -8482,7 +8497,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 14.8% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "BORDERLINE"
-      }
+      },
+      "_expected_score": 42
     },
     {
       "ticker": "JNJ",
@@ -9014,7 +9030,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 5.4% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 90
     },
     {
       "ticker": "INTC",
@@ -9545,7 +9562,8 @@
         "valuation_note": "normalised owner earnings are negative (-14.8bn): capital spending plus working capital exceed reported profit, so there is no positive stream to discount. A finding about the business, not a data gap.",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 25
     },
     {
       "ticker": "MA",
@@ -10078,7 +10096,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 16.6% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 100
     },
     {
       "ticker": "CSCO",
@@ -10610,7 +10629,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 16.2% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 58
     },
     {
       "ticker": "BAC",
@@ -11140,7 +11160,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 4
     },
     {
       "ticker": "ABBV",
@@ -11672,7 +11693,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR -7.3% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 53
     },
     {
       "ticker": "AMAT",
@@ -12204,7 +12226,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 11.1% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 97
     },
     {
       "ticker": "ORCL",
@@ -12735,7 +12758,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 70
     },
     {
       "ticker": "COST",
@@ -13267,7 +13291,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 11.8% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 87
     },
     {
       "ticker": "PLTR",
@@ -13672,7 +13697,8 @@
         "valuation_note": "normalised owner earnings are negative (-1.3bn): capital spending plus working capital exceed reported profit, so there is no positive stream to discount. A finding about the business, not a data gap.",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 80
     },
     {
       "ticker": "LRCX",
@@ -14204,7 +14230,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 10.5% (FY2016..FY2026), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 100
     },
     {
       "ticker": "CAT",
@@ -14736,7 +14763,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 5.8% (FY2018..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 67
     },
     {
       "ticker": "GE",
@@ -15267,7 +15295,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 36
     },
     {
       "ticker": "KO",
@@ -15799,7 +15828,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR -11.6% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 94
     },
     {
       "ticker": "UNH",
@@ -16329,7 +16359,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 3
     },
     {
       "ticker": "CVX",
@@ -16860,7 +16891,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 35
     },
     {
       "ticker": "HD",
@@ -17392,7 +17424,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 7.1% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 84
     },
     {
       "ticker": "MS",
@@ -17922,7 +17955,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 1
     },
     {
       "ticker": "PG",
@@ -18454,7 +18488,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 3.1% (FY2015..FY2026), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 70
     },
     {
       "ticker": "MRK",
@@ -18986,7 +19021,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 13.5% (FY2021..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 76
     },
     {
       "ticker": "NFLX",
@@ -19517,7 +19553,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 85
     },
     {
       "ticker": "GS",
@@ -20047,7 +20084,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 5
     },
     {
       "ticker": "RTX",
@@ -20578,7 +20616,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 25
     },
     {
       "ticker": "PANW",
@@ -21110,7 +21149,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 42.4% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 52
     },
     {
       "ticker": "PM",
@@ -21642,7 +21682,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 3.6% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 95
     },
     {
       "ticker": "DELL",
@@ -22176,7 +22217,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 11.4% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 55
     },
     {
       "ticker": "WFC",
@@ -22706,7 +22748,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 10
     },
     {
       "ticker": "GEV",
@@ -22981,7 +23024,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 29
     },
     {
       "ticker": "TXN",
@@ -23513,7 +23557,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 0.6% (FY2015..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 79
     },
     {
       "ticker": "KLAC",
@@ -24045,7 +24090,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 16.3% (FY2015..FY2026), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 100
     },
     {
       "ticker": "ANET",
@@ -24576,7 +24622,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 97
     },
     {
       "ticker": "AXP",
@@ -25106,7 +25153,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 5
     },
     {
       "ticker": "C",
@@ -25636,7 +25684,8 @@
         "valuation_note": "owner earnings are not defined for a financial: capex and working capital do not describe how it deploys capital",
         "dcf_growth_basis": "no owner-earnings history; 3% placeholder growth used and the result should be read as indicative only",
         "verdict_base": "DATA_UNAVAILABLE"
-      }
+      },
+      "_expected_score": 5
     },
     {
       "ticker": "IBM",
@@ -26168,7 +26217,8 @@
         "valuation_note": null,
         "dcf_growth_basis": "historical owner-earnings CAGR 0.0% (FY2014..FY2025), scaled per scenario and capped",
         "verdict_base": "OUTSIDE_RANGE"
-      }
+      },
+      "_expected_score": 43
     }
   ]
 }
