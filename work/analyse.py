@@ -400,6 +400,34 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
 
         rows.append({
             "fiscal_year": y,
+            # Raw filing inputs are carried alongside the derived figures so a
+            # reader can rebuild every ratio from the same numbers the engine
+            # used, rather than having to take the result on trust.
+            "raw": {
+                "revenue": rev,
+                "pretax_income": S.get("pretax_income", {}).get(y),
+                "interest_expense": S.get("interest_expense", {}).get(y),
+                "income_tax_expense": S.get("income_tax_expense", {}).get(y),
+                "operating_income_reported": S.get("operating_income", {}).get(y),
+                "net_income": ni,
+                "depreciation_amortization": da,
+                "capex": capex,
+                "operating_cash_flow": ocf,
+                "total_equity": equity,
+                "total_equity_prior": S.get("total_equity", {}).get(prev) if prev else None,
+                "cash": cash,
+                "short_term_debt": S.get("short_term_debt", {}).get(y),
+                "long_term_debt": S.get("long_term_debt", {}).get(y),
+                "current_assets": S.get("current_assets", {}).get(y),
+                "current_liabilities": S.get("current_liabilities", {}).get(y),
+                "current_assets_prior": S.get("current_assets", {}).get(prev) if prev else None,
+                "current_liabilities_prior": S.get("current_liabilities", {}).get(prev) if prev else None,
+                "cash_prior": S.get("cash_and_equivalents", {}).get(prev) if prev else None,
+                "short_term_debt_prior": S.get("short_term_debt", {}).get(prev) if prev else None,
+                "invested_capital_prior": ic_prev,
+                "change_in_working_capital": d_wc,
+                "working_capital_note": wc_note,
+            },
             "period_end": next((r["period_end"] for r in raw["metrics"]["net_income"]["series"]
                                 if r["fiscal_year"] == y), None),
             "accession": accns.get("net_income", {}).get(y),
