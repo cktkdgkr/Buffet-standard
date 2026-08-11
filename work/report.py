@@ -198,20 +198,33 @@ def build(analysis, verification):
     w("")
     w("P/적정가치가 1.0보다 크면 시장이 이 DCF보다 비싸게 매기고 있다는 뜻입니다.")
     w("")
-    w("| 티커 | 정규화 주주이익($B) | 적정가치($B) | 시가총액($B) | P/적정가치 | 안전마진 | 판정 |")
-    w("|---|---:|---:|---:|---:|---:|---|")
-    ranked = sorted(valued, key=lambda c: -(c["summary"]["dcf"]["base"]["margin_of_safety"] or -99))
+    w("적정가치는 하나의 숫자가 아니라 **범위**로 제시합니다. 하한은 설비투자 전액을 주주이익에서 "
+      "차감한 것이고, 상한은 감가상각만큼만(유지 목적) 차감한 것입니다. 버핏의 주주이익 정의는 "
+      "'장기 경쟁지위와 판매량을 유지하는 데 필요한' 지출을 빼라고 하므로 후자가 정의에 더 "
+      "가깝지만, 인플레이션기에는 자산 교체비용이 감가상각을 넘으므로 전자가 안전한 하한입니다.")
+    w("")
+    w("**함축수익률**은 지금 가격에 사서 가정대로 흘러갈 때 얻는 연 수익률입니다. "
+      f"무위험수익률 {pct(rf.get('rate'), 2)}와 직접 비교하시면 됩니다. "
+      "'안전마진 30% 이상인가'는 비싼 시장에서 거의 전부 '아니오'로 답이 끝나버리는 반면, "
+      "함축수익률은 종목 간 비교를 가능하게 합니다.")
+    w("")
+    w("| 티커 | 주주이익 하한 | 주주이익 상한 | 적정가치 하한 | 적정가치 상한 | 시가총액 | "
+      "함축수익률 | 순현금 | 판정(하한 기준) |")
+    w("|---|---:|---:|---:|---:|---:|---:|---:|---|")
+    # Ordered by the return the price implies rather than by margin of safety:
+    # in a market where almost nothing clears a 30% discount, the margin of
+    # safety sorts a column of "no" and says nothing about which no is closest.
+    ranked = sorted(valued,
+                    key=lambda c: -(c["summary"].get("implied_return_maintenance_capex") or -9))
     for c in ranked:
         s = c["summary"]
-        d = s["dcf"]["base"]
-        iv, mc = d["intrinsic_value"], c["market_cap_usd"]
-        ratio = mc / iv if (iv and mc) else None
-        # Past roughly 20x the ratio stops discriminating: it only says the
-        # owner-earnings base is a rounding error against the price.
-        ratio_txt = ">20x" if (ratio and ratio > 20) else num(ratio, 1, "x")
-        mos_txt = "<-1900%" if (ratio and ratio > 20) else pct(d["margin_of_safety"], 0)
-        w(f"| {c['ticker']} | {usd_bn(s['owner_earnings_normalised'])} | {usd_bn(iv)} | {usd_bn(mc)} | "
-          f"{ratio_txt} | {mos_txt} | {d['verdict']} |")
+        d, dm = s["dcf"]["base"], s["dcf_maintenance_capex"]["base"]
+        w(f"| {c['ticker']} | {usd_bn(s['owner_earnings_normalised'])} | "
+          f"{usd_bn(s.get('owner_earnings_normalised_maintenance'))} | "
+          f"{usd_bn(d['intrinsic_value'])} | {usd_bn(dm['intrinsic_value'])} | "
+          f"{usd_bn(c['market_cap_usd'])} | "
+          f"{pct(s.get('implied_return_maintenance_capex'))} | "
+          f"{usd_bn(s.get('net_cash'))} | {d['verdict']} |")
     w("")
     w("### 밸류에이션을 내지 않은 기업")
     w("")
@@ -353,10 +366,156 @@ def korea_section(n_std):
     return L
 
 
+def alphabet_case_section(analysis):
+    """
+    The Alphabet case - a live counter-example used to test the model.
+
+    Berkshire built a large Alphabet position while this report's first run said
+    Alphabet traded above intrinsic value in every scenario. One of the two was
+    wrong, and running that down found three real defects rather than a
+    difference of opinion. This section records the challenge, the corrections,
+    and what remains a genuine judgment difference.
+    """
+    g = next((c for c in analysis["companies"] if c["ticker"] == "GOOG"), None)
+    L = []
+    w = L.append
+    w("## 7. 알파벳 사례 — 모델 맹점 점검")
+    w("")
+    w("이 절은 반례에서 출발합니다. 초판은 알파벳이 낙관 시나리오에서도 적정가치보다 비싸다고 "
+      "판정했는데, 같은 기간 버크셔 해서웨이는 알파벳을 대규모로 매입했습니다. 둘 중 하나는 "
+      "틀렸다는 뜻이므로 원인을 추적했고, 의견 차이가 아니라 **모델의 실제 결함 세 가지**가 "
+      "나왔습니다.")
+    w("")
+    w("### 사실 확인 — 버크셔의 알파벳 보유 (SEC 13F 원문)")
+    w("")
+    w("| 13F 제출일 | 보유 시점 | 보유 주식수 | 평가액 |")
+    w("|---|---|---:|---:|")
+    w("| 2025-11-14 | Q3 2025 | 17,846,142주 (Class A) | $4.34B — 신규 편입 |")
+    w("| 2026-02-17 | Q4 2025 | 17,846,142주 (Class A) | $5.59B — 주식수 동일 |")
+    w("| 2026-05-15 | Q1 2026 | 54,249,798주 (A) + 3,585,215주 (C) | **$16.63B** |")
+    w("")
+    w("출처: EDGAR CIK 0001067983, 접수번호 0001193125-25-282901 · 0001193125-26-054580 · "
+      "0001193125-26-226661. Q1 2026에 3배로 늘렸고 신고 포트폴리오(약 $263B)의 6% 수준입니다. "
+      "시험 매수로 보기 어려운 규모입니다.")
+    w("")
+    w("### 결함 1 — 성장 설비투자를 사업 악화로 계산했습니다 (가장 큼)")
+    w("")
+    w("버핏의 주주이익 정의는 '**장기 경쟁지위와 판매량을 유지하는 데 필요한**' 자본적 지출을 "
+      "빼라고 합니다. 유지 목적 지출이지 자본예산 전체가 아닙니다. 초판은 설비투자 전액을 "
+      "차감했습니다.")
+    w("")
+    if g:
+        y = g["years"][-1]
+        raw = y.get("raw", {})
+        w(f"알파벳 FY{y['fiscal_year']}: 설비투자 ${raw.get('capex',0)/1e9:.1f}B에 감가상각 "
+          f"${raw.get('depreciation_amortization',0)/1e9:.1f}B. 차액 "
+          f"${(y.get('growth_capex') or 0)/1e9:.0f}B, 즉 설비투자의 "
+          f"{(g['summary'].get('growth_capex_share_of_capex') or 0):.0%}가 감가상각을 넘는 "
+          f"**증설 투자**입니다. 이걸 전액 비용으로 치면 AI 데이터센터를 짓는 행위가 "
+          f"수익성 악화로 기록됩니다.")
+    w("")
+    w("이 결함은 알파벳만의 문제가 아니었습니다. **테슬라와 팔란티어는 '주주이익 음수'로 "
+      "분류돼 밸류에이션 자체가 배제돼 있었는데, 성장 투자 때문이었지 사업이 나빠서가 "
+      "아니었습니다.** 유지 설비투자 기준으로는 음수인 기업이 하나도 없습니다.")
+    w("")
+    w("수정: 적정가치를 **범위**로 바꿨습니다. 하한은 설비투자 전액 차감(보수), 상한은 "
+      "감가상각만큼만 차감(정의에 충실). 감가상각은 유지 지출의 근사치일 뿐이고 인플레이션기에는 "
+      "교체비용이 이를 넘으므로, 어느 한쪽을 정답으로 선언하지 않고 둘 다 제시합니다.")
+    w("")
+    w("### 결함 2 — 현금을 십억 단위로 잘못 봤습니다")
+    w("")
+    w("`CashAndCashEquivalentsAtCarryingValue` 태그만 읽고 있었는데, 알파벳은 여기에 $30.7B, "
+      "유동 유가증권에 별도로 $96B를 담고 있었습니다. **$96B가 통째로 빠져 있었습니다.** "
+      "그 결과 투하자본이 과대계상돼 ROIC가 낮게 나왔고, 순현금이 마이너스로 뒤집혀 있었습니다.")
+    w("")
+    if g:
+        sm = g["summary"]
+        w(f"| 항목 | 수정 전 | 수정 후 |")
+        w(f"|---|---:|---:|")
+        w(f"| 유동자산 | $30.7B | $126.8B |")
+        w(f"| 순현금 | −$18B | **+${(sm.get('net_cash') or 0)/1e9:.0f}B** |")
+        w(f"| ROIC (최근) | 35.4% | **{sm.get('roic_latest', 0):.1%}** |")
+    w("")
+    w("수정: 결합 태그를 우선 사용하고, 분리 공시하는 기업은 단기투자자산을 더합니다. "
+      "운전자본 계산에서도 유가증권이 빠지므로 주주이익이 더 정확해집니다.")
+    w("")
+    w("### 결함 3 — 태그 전환으로 생긴 연도 구멍")
+    w("")
+    w("알파벳은 매출 태그를 중간에 바꿔서 어느 한 태그도 10년을 온전히 덮지 못했고, "
+      "**FY2022 매출이 비어 있었습니다.** 수정: 두 태그가 겹치는 모든 연도에서 값이 정확히 "
+      "일치할 때만(알파벳은 8개 연도 일치) 빈 연도를 메웁니다. 값이 하나라도 다르면 서로 다른 "
+      "개념이므로 구멍을 그대로 둡니다.")
+    w("")
+    w("### 남는 것은 판단 차이입니다")
+    w("")
+    w("세 결함을 고쳐도 알파벳이 기준 시나리오에서 싸지지는 않습니다. 달라진 것은 "
+      "**틀린 이유로 배제되던 것이 판단의 문제로 바뀌었다**는 점입니다.")
+    if g:
+        sm = g["summary"]
+        d, dm = sm["dcf"], sm["dcf_maintenance_capex"]
+        w("")
+        w("| 시나리오 | 적정가치 하한(총 설비투자) | 적정가치 상한(유지 설비투자) | 안전마진 범위 |")
+        w("|---|---:|---:|---:|")
+        for k, ko in (("conservative", "보수"), ("base", "기준"), ("optimistic", "낙관")):
+            w(f"| {ko} | {usd_bn(d[k]['intrinsic_value'])} | {usd_bn(dm[k]['intrinsic_value'])} | "
+              f"{pct(d[k]['margin_of_safety'], 0)} ~ {pct(dm[k]['margin_of_safety'], 0)} |")
+        w("")
+        w(f"시가총액 {usd_bn(g['market_cap_usd'])}십억 달러 기준입니다. 낙관 시나리오에 유지 "
+          f"설비투자를 적용하면 안전마진이 "
+          f"{pct(dm['optimistic']['margin_of_safety'], 0)}로 플러스가 되고, 순현금 "
+          f"${(sm.get('net_cash') or 0)/1e9:.0f}B를 더하면 투자가능 기준선인 30%에 닿습니다. "
+          f"다만 이건 낙관 가정과 유지 설비투자 가정을 **동시에** 채택한 결과이므로, "
+          f"기준 시나리오가 여전히 비싸다는 사실을 덮지는 않습니다.")
+    w("")
+    w("### 버크셔가 본 것에 대한 추정")
+    w("")
+    w("함축수익률로 보면 그림이 달라집니다. 지금 가격에 사서 가정대로 흘러갈 때의 연 수익률입니다.")
+    w("")
+    std = [c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]
+    rows = [(c["ticker"], c["summary"].get("implied_return_maintenance_capex"),
+             c["summary"].get("roic_10y_median"), c["summary"].get("net_cash"))
+            for c in std if c["summary"].get("implied_return_maintenance_capex")]
+    rows.sort(key=lambda r: -r[1])
+    w("| 티커 | 함축수익률 | ROIC 중앙값 | 순현금($B) |")
+    w("|---|---:|---:|---:|")
+    for t, ir, roic, nc in rows[:12]:
+        mark = " ←" if t == "GOOG" else ""
+        w(f"| {t}{mark} | {pct(ir)} | {pct(roic)} | {usd_bn(nc)} |")
+    w("")
+    w("알파벳은 함축수익률 자체로는 상위권이되 1위가 아닙니다. 눈에 띄는 건 **조합**입니다. "
+      "위에 있는 종목들은 대부분 품질이 낮거나(머크 13%, 엑슨 10%, 셰브론 7%, 델 10%) "
+      "순부채 상태인데, 알파벳은 ROIC 중앙값 38%에 12년 내내 두 자릿수를 지켰고 목록에서 "
+      "가장 큰 순현금을 들고 있습니다. 품질·재무구조·함축수익률을 함께 놓고 보면 "
+      "메가캡 중에서 가장 나은 조합입니다.")
+    w("")
+    w("그리고 비교 대상이 중요합니다. 버크셔의 대안은 4.7% 단기국채입니다. "
+      "이 프레임워크의 '안전마진 30%' 문턱은 절대 기준이라 비싼 시장에서는 모든 종목에 "
+      "'아니오'를 돌려주고 대화를 끝내버립니다. 실제 자본배분은 언제나 상대적입니다.")
+    w("")
+    w("**단서 두 가지.** 첫째, 13F는 보유만 공시하고 매수 이유를 밝히지 않으므로 위 해석은 "
+      "추정입니다. 둘째, 이 판단이 버핏 본인의 것인지 투자 담당(Todd Combs·Ted Weschler)이나 "
+      "후임 경영진의 것인지는 공시로 알 수 없습니다. 다만 어느 쪽이든 버크셔의 자본이 "
+      "같은 원칙 아래 집행된 것으로 보는 것이 합리적입니다.")
+    w("")
+    w("### 이 사례가 남긴 구조적 한계")
+    w("")
+    w("고치지 않았지만 명시해 둘 것들입니다.")
+    w("")
+    w("- **과거만 봅니다.** 성장률은 과거 주주이익 CAGR에서 나오고 상한이 걸립니다. "
+      "사업이 변곡점에 있다면 과거 시계열에는 그 정보가 없습니다.")
+    w("- **비영업 자산을 값으로 치지 않습니다.** 웨이모 같은 사업, 지분투자, 순현금은 "
+      "이익 흐름에만 근거한 DCF에 들어오지 않습니다. 순현금은 별도 열로 표시만 했습니다.")
+    w("- **할인율이 고정입니다.** 8·10·12%는 대안 수익률과 무관하게 고정돼 있습니다. "
+      "무위험수익률이 4.7%인 국면에서 10%를 요구하는 것은 상당히 높은 문턱입니다.")
+    w("- **절대 기준이라 상대 비교를 못 합니다.** 포지션 규모나 기회비용은 이 프레임워크 "
+      "밖의 문제입니다. 함축수익률 열을 넣은 것이 부분적인 보완입니다.")
+    w("")
+    return L
+
 def limitations_section(analysis, verification):
     L = []
     w = L.append
-    w("## 7. 한계와 데이터 처리 원칙")
+    w("## 8. 한계와 데이터 처리 원칙")
     w("")
     w("보고서에 실린 수치가 어떤 판단을 거쳤는지 밝혀둡니다. 수치를 그대로 쓰기 어려웠던 "
       "지점마다 추정으로 메우지 않고 표시하는 쪽을 택했습니다.")
@@ -422,6 +581,7 @@ def main():
 
     lines = build(analysis, verification)
     lines += korea_section(len([c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]))
+    lines += alphabet_case_section(analysis)
     lines += limitations_section(analysis, verification)
 
     path = os.path.join(WORK, "REPORT.md")

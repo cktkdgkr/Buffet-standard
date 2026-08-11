@@ -274,6 +274,22 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
     # list was widened: Coca-Cola looked debt-free too until the collector
     # learned LongTermDebtAndCapitalLeaseObligations, and reading that as nil
     # would have quietly erased $40bn of borrowings from its invested capital.
+    # "Cash" for invested-capital purposes is the liquid pile, not just the
+    # cash line. Where a filer publishes the combined tag it already includes
+    # short-term investments; where it does not, they are added here.
+    cash_tag = (raw.get("metrics", {}).get("cash_and_equivalents") or {}).get("xbrl_tag")
+    combined = cash_tag == "CashCashEquivalentsAndShortTermInvestments"
+    sti = S.get("short_term_investments", {})
+    if not combined and sti:
+        merged = dict(S.get("cash_and_equivalents", {}))
+        for y, v in merged.items():
+            if sti.get(y) is not None:
+                merged[y] = v + sti[y]
+        S["cash_and_equivalents"] = merged
+    liquidity_note = ("cash tag already includes short-term investments" if combined
+                      else ("cash + short-term investments" if sti else "cash only; no "
+                            "short-term investment tag published"))
+
     equity_years = S.get("total_equity", {})
     latest_bs_year = max(equity_years) if equity_years else None
     debt_years = set(S.get("short_term_debt", {})) | set(S.get("long_term_debt", {}))
@@ -391,10 +407,29 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             y, prev) if prev else (None, "no prior year")
         oe = calc.owner_earnings(ni, da, capex, d_wc)
         oe_method = f"net income + D&A - capex - change in {wc_note}"
+
+        # Buffett's definition subtracts the capex "the business requires to
+        # fully maintain its long-term competitive position and its unit
+        # volume" - maintenance capex, not the whole capital budget. Charging
+        # every dollar of a build-out against owner earnings makes growth
+        # investment read as deterioration: Alphabet spent $91bn against $21bn
+        # of depreciation in FY2025 and its owner earnings duly halved, which
+        # describes the accounting, not the business.
+        #
+        # Depreciation is the standard proxy for the replacement half of that
+        # spend. It is not exact - in an inflationary period replacing an asset
+        # costs more than its historical depreciation, which Buffett himself
+        # warned about - so the two figures are kept as a BAND rather than one
+        # being declared correct. Total capex is the pessimistic bound,
+        # maintenance-only the optimistic one.
+        maint_capex = None if (capex is None or da is None) else min(capex, da)
+        oe_maint = calc.owner_earnings(ni, da, maint_capex, d_wc)
+        growth_capex = None if (capex is None or maint_capex is None) else capex - maint_capex
         if oe is None and ocf is not None and capex is not None:
             oe, oe_method = ocf - capex, "operating cash flow - capex (working-capital swing already embedded)"
         if fin:
-            oe, oe_method = None, "FRAMEWORK_NOT_APPLICABLE (financial sector)"
+            oe, oe_maint = None, None
+            oe_method = "FRAMEWORK_NOT_APPLICABLE (financial sector)"
 
         ebitda = ebit + da if (ebit is not None and da is not None) else None
 
@@ -446,6 +481,9 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             "net_debt_to_ebitda": calc.net_debt_to_ebitda(ibd, cash, ebitda),
             "interest_coverage": calc.interest_coverage(ebit, S.get("interest_expense", {}).get(y)),
             "owner_earnings": oe, "owner_earnings_method": oe_method,
+            "owner_earnings_maintenance_capex": oe_maint,
+            "maintenance_capex": maint_capex, "growth_capex": growth_capex,
+            "owner_earnings_margin_maintenance": calc.owner_earnings_margin(oe_maint, rev),
             "owner_earnings_margin": calc.owner_earnings_margin(oe, rev),
             "operating_margin": calc._safe_div(ebit, rev),
             "shares_outstanding": shares_series.get(y),
@@ -472,6 +510,7 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
         "market_cap_usd": market_cap,
         "market_cap_check": mcap_check,
         "market_cap_method": "SEC-filed share count x latest exchange close",
+        "liquidity_definition": liquidity_note,
         "debt_read_as_nil": debt_read_as_nil,
         "beta": mkt.get("beta"),
         "years": rows,
@@ -587,6 +626,19 @@ def summarise(rec, rf, erp):
         out["owner_earnings_normalisation"] = "DATA_UNAVAILABLE"
     out["owner_earnings_median_level"] = (
         statistics.median(recent_levels) if recent_levels else None)
+
+    # The same normalisation applied to the maintenance-capex figure, giving the
+    # optimistic end of the owner-earnings band.
+    m_margins = [v for _, v in vals("owner_earnings_margin_maintenance")][-5:]
+    out["owner_earnings_normalised_maintenance"] = (
+        statistics.median(m_margins) * latest_rev if (m_margins and latest_rev) else None)
+    growth_capex = [v for _, v in vals("growth_capex")]
+    out["growth_capex_latest"] = growth_capex[-1] if growth_capex else None
+    out["growth_capex_share_of_capex"] = None
+    latest_row = rows[-1] if rows else {}
+    gc, cx = latest_row.get("growth_capex"), (latest_row.get("raw") or {}).get("capex")
+    if gc is not None and cx:
+        out["growth_capex_share_of_capex"] = gc / cx
     if len(oes) >= 4 and oes[0][1] and oes[-1][1] and oes[0][1] > 0 and oes[-1][1] > 0:
         out["owner_earnings_cagr"] = calc.cagr(oes[0][1], oes[-1][1], oes[-1][0] - oes[0][0])
         out["owner_earnings_cagr_window"] = f"FY{oes[0][0]}..FY{oes[-1][0]}"
@@ -670,6 +722,67 @@ def summarise(rec, rf, erp):
             "verdict": calc.verdict_from_margin(calc.margin_of_safety(r.intrinsic_value, mc)),
         }
     out["dcf"] = dcf
+
+    # The same three scenarios run on maintenance-capex owner earnings. Reported
+    # as the upper bound of a band, never on its own: it assumes every dollar of
+    # capex above depreciation buys growth rather than standing still, which is
+    # the most generous reading a Buffett framework permits.
+    base_oe_m = out.get("owner_earnings_normalised_maintenance")
+    dcf_m = {}
+    for name, mult, disc, tg in SCENARIOS:
+        cap = GROWTH_CAP_OPTIMISTIC if name == "optimistic" else GROWTH_CAP
+        g = 0.03 if hist_g is None else max(0.0, min(hist_g * mult, cap))
+        rr = calc.dcf_intrinsic_value(base_oe_m if (base_oe_m or 0) > 0 else None,
+                                      calc.DCFScenario(name, g, disc, tg, years=10))
+        dcf_m[name] = {
+            "intrinsic_value": rr.intrinsic_value,
+            "margin_of_safety": calc.margin_of_safety(rr.intrinsic_value, mc),
+            "verdict": calc.verdict_from_margin(calc.margin_of_safety(rr.intrinsic_value, mc)),
+        }
+    out["dcf_maintenance_capex"] = dcf_m
+    out["intrinsic_value_band_base"] = {
+        "lower_total_capex": dcf["base"]["intrinsic_value"],
+        "upper_maintenance_capex": dcf_m["base"]["intrinsic_value"],
+        "market_cap": mc,
+        "note": "lower bound charges the whole capital budget against owner earnings, "
+                "upper bound charges only depreciation; the truth is between them",
+    }
+    # The discount rate at which today's price equals intrinsic value - i.e. the
+    # annual return the market price implies, if the growth assumptions hold.
+    # This inverts the usual question. Instead of "is this inside a 30% margin of
+    # safety", which returns a verdict of no for almost every mega-cap in an
+    # expensive market and stops the conversation, it asks what return you are
+    # being offered, which can be compared against the risk-free rate and against
+    # the other forty-nine names.
+    def implied_return(base, growth, terminal):
+        if not base or base <= 0 or not mc:
+            return None
+        lo, hi = terminal + 0.0005, 0.60
+        for _ in range(120):
+            mid = (lo + hi) / 2
+            iv = calc.dcf_intrinsic_value(
+                base, calc.DCFScenario("implied", growth, mid, terminal, 10)).intrinsic_value
+            if iv is None:
+                return None
+            lo, hi = (mid, hi) if iv > mc else (lo, mid)
+        return (lo + hi) / 2
+
+    g_base = dcf["base"]["assumptions"]["growth_rate"]
+    out["implied_return_total_capex"] = implied_return(base_oe, g_base, 0.025)
+    out["implied_return_maintenance_capex"] = implied_return(base_oe_m, g_base, 0.025)
+    out["implied_return_note"] = (
+        f"annual return implied by the current price at {g_base:.1%} owner-earnings growth "
+        f"for ten years then 2.5%; compare against the {rf:.2%} risk-free rate")
+
+    # Net cash is reported rather than added to intrinsic value: owner earnings
+    # already include the interest it earns, so adding the principal on top
+    # would double-count part of it. A reader who thinks the pile is
+    # redeployable can add it themselves.
+    lat = rows[-1] if rows else {}
+    if lat.get("cash") is not None and lat.get("interest_bearing_debt") is not None:
+        out["net_cash"] = lat["cash"] - lat["interest_bearing_debt"]
+    else:
+        out["net_cash"] = None
 
     # Separate the three reasons a DCF produced nothing. A bank has no owner
     # earnings by construction, a company spending more on plant than it earns

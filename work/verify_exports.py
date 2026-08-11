@@ -289,6 +289,9 @@ class Evaluator:
             return min(self.num(a) for a in flat if a not in (None, ""))
         if name == "MAX":
             return max(self.num(a) for a in flat if a not in (None, ""))
+        if name == "N":
+            v = args[0]
+            return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else 0.0
         if name == "SUM":
             return sum(self.num(a) for a in flat if isinstance(a, (int, float)))
         if name == "AVERAGE":

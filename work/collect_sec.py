@@ -66,9 +66,23 @@ CONCEPTS = {
         "StockholdersEquity",
         "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
     ],
+    # Cash alone is the wrong measure of a company's liquid position. Alphabet
+    # holds $30.7bn as "cash and equivalents" and another $96bn in current
+    # marketable securities; treating only the first as cash overstates its
+    # invested capital by roughly a hundred billion dollars and understates its
+    # ROIC to match. The combined tag is preferred where a filer publishes it,
+    # and short-term investments are collected separately so the analysis can
+    # add them where it does not.
     "cash_and_equivalents": [
+        "CashCashEquivalentsAndShortTermInvestments",
         "CashAndCashEquivalentsAtCarryingValue",
         "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+    ],
+    "short_term_investments": [
+        "MarketableSecuritiesCurrent",
+        "ShortTermInvestments",
+        "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+        "OtherShortTermInvestments",
     ],
     # Ordered most-inclusive first. Filers split borrowings across several tags
     # (Coca-Cola carries commercial paper separately from the current portion of
@@ -285,6 +299,35 @@ def extract(facts, metric, tags):
     best = max(found, key=score)
     rejected = [{"tag": f["tag"], "latest_fiscal_year": f["latest"], "years": len(f["series"])}
                 for f in found if f is not best]
+
+    # A filer that switches tags mid-history can leave the winner with a hole:
+    # Alphabet reports revenue under Revenues through 2021 and again from 2023,
+    # and under RevenueFromContractWithCustomer for 2022, so neither tag alone
+    # covers the decade. A missing year is filled from another candidate only
+    # when the two agree exactly on every year they share - if they track each
+    # other everywhere they overlap they are the same series, and if they do not
+    # the gap stays a gap rather than being papered over with a different
+    # concept.
+    filled = []
+    by_year = {r["fiscal_year"]: r for r in best["series"]}
+    for alt in found:
+        if alt is best:
+            continue
+        alt_by_year = {r["fiscal_year"]: r for r in alt["series"]}
+        shared = set(by_year) & set(alt_by_year)
+        if len(shared) < 2:
+            continue
+        if any(by_year[y]["value"] != alt_by_year[y]["value"] for y in shared):
+            continue
+        for y in sorted(set(alt_by_year) - set(by_year)):
+            if best["series"][0]["fiscal_year"] <= y <= best["latest"]:
+                row = dict(alt_by_year[y])
+                row["filled_from_tag"] = alt["tag"]
+                by_year[y] = row
+                filled.append({"fiscal_year": y, "from_tag": alt["tag"],
+                               "agreed_on_years": sorted(shared)})
+    if filled:
+        best["series"] = [by_year[y] for y in sorted(by_year)]
     return {
         "metric": metric,
         "xbrl_tag": best["tag"],
@@ -302,6 +345,7 @@ def extract(facts, metric, tags):
             "latest_fiscal_year": best["latest"],
             "years": len(best["series"]),
             "alternatives_rejected": rejected,
+            "gaps_filled": filled,
         },
     }
 

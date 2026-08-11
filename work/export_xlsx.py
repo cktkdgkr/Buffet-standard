@@ -343,7 +343,12 @@ SCORE_COLS = [
     ("배점:ROIC", '=IF({ROIC 중앙값}>={t1},25,IF({ROIC 중앙값}>={t2},20,'
                   'IF({ROIC 중앙값}>={t3},15,IF({ROIC 중앙값}>={t4},10,0))))',
      ["ROIC 25점 기준", "ROIC 20점 기준", "ROIC 15점 기준", "ROIC 10점 기준"]),
-    ("배점:지속성", '=ROUND(20*{두자릿수 년수}/{관측 년수},0)', []),
+    # Palantir's invested capital is ~zero (its cash pile nearly equals its
+    # equity and it carries no debt), so it has no meaningful ROIC in any year
+    # and the observation count is zero. Guard the division rather than emit
+    # #DIV/0! for a company the framework legitimately cannot score.
+    ("배점:지속성",
+     '=IF(N({관측 년수})=0,0,ROUND(20*{두자릿수 년수}/{관측 년수},0))', []),
     ("배점:신규ROIC", '=IF(NOT(ISNUMBER({신규 ROIC})),0,IF({신규 ROIC}>={t1},20,'
                      'IF({신규 ROIC}>={t2},15,IF({신규 ROIC}>={t3},10,IF({신규 ROIC}>0,5,0)))))',
      ["신규ROIC 20점 기준", "신규ROIC 15점 기준", "신규ROIC 10점 기준"]),
@@ -507,10 +512,11 @@ def sheet_valuation(wb, valued, base_row, dcf_col, ref):
         ws, "밸류에이션 요약 — 원칙 5·6",
         "적정가치와 안전마진은 'DCF계산' 시트의 기준 시나리오 행을 그대로 참조합니다(초록 글씨). "
         "셀을 클릭하면 어느 행에서 왔는지 보이고, 그 행에서 10년치 할인 과정을 볼 수 있습니다.")
-    labels = ["티커", "기업", "시가총액", "정규화 주주이익", "최근 순이익", "최근 자기자본",
-              "최근 매출", "PER", "PBR", "PSR", "기준 적정가치", "P/적정가치", "안전마진",
-              "판정", "정규화 방식"]
-    header(ws, r, labels, [9, 26, 14, 15, 14, 14, 14, 9, 9, 9, 14, 12, 12, 12, 50])
+    labels = ["티커", "기업", "시가총액", "정규화 주주이익", "정규화 주주이익(유지capex)",
+              "순현금", "성장capex 비중", "최근 순이익", "최근 자기자본",
+              "최근 매출", "PER", "PBR", "PSR", "기준 적정가치", "기준 적정가치(유지capex)",
+              "P/적정가치", "안전마진", "함축수익률", "판정", "정규화 방식"]
+    header(ws, r, labels, [9, 24, 13, 15, 18, 12, 13, 13, 14, 14, 9, 9, 9, 14, 18, 12, 12, 12, 11, 44])
     col = {n: i for i, n in enumerate(labels, 1)}
     r += 1
     first = r
@@ -523,6 +529,16 @@ def sheet_valuation(wb, valued, base_row, dcf_col, ref):
         put(ws, r, col["기업"], c["company_name"])
         put(ws, r, col["시가총액"], bn(c.get("market_cap_usd")), USD_B, font=BLUE, fill=RAW_FILL)
         put(ws, r, col["정규화 주주이익"], bn(s.get("owner_earnings_normalised")), USD_B,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["정규화 주주이익(유지capex)"],
+            bn(s.get("owner_earnings_normalised_maintenance")), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["순현금"], bn(s.get("net_cash")), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["성장capex 비중"], s.get("growth_capex_share_of_capex"), PCT,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["기준 적정가치(유지capex)"],
+            bn(s["dcf_maintenance_capex"]["base"]["intrinsic_value"]), USD_B,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["함축수익률"], s.get("implied_return_maintenance_capex"), PCT,
             font=BLUE, fill=RAW_FILL)
         put(ws, r, col["최근 순이익"], bn(latest.get("net_income")), USD_B, font=BLUE, fill=RAW_FILL)
         put(ws, r, col["최근 자기자본"], bn(latest.get("total_equity")), USD_B, font=BLUE, fill=RAW_FILL)
