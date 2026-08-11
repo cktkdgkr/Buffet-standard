@@ -94,7 +94,11 @@ def splits(sym: str):
     like 41% annual dilution when it has in fact been buying stock back. That
     inverts the capital-allocation judgment entirely.
     """
-    url = CHART.format(sym=urllib.request.quote(sym), rng="25y", iv="1mo") + "&events=split"
+    # Daily bars, because a monthly series buckets each split to the first of
+    # its month. Palo Alto's 3:1 fell on 14 September 2022 and arrived dated the
+    # 1st, which put it on the wrong side of a 10-K filed on the 6th and left
+    # that year's share count un-split while its neighbours were adjusted.
+    url = CHART.format(sym=urllib.request.quote(sym), rng="25y", iv="1d") + "&events=split"
     try:
         j = json.loads(fetch(url))
     except Exception:                                   # noqa: BLE001

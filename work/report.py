@@ -24,14 +24,15 @@ WORK = os.path.dirname(os.path.abspath(__file__))
 def quality_score(s):
     pts, detail = 0, {}
 
-    roic = s.get("roic_10y_median")
+    roic = s.get("roic_gross_10y_median")
     p = 25 if roic is None else (25 if roic >= 0.30 else 20 if roic >= 0.20
                                  else 15 if roic >= 0.15 else 10 if roic >= 0.10 else 0)
     p = 0 if roic is None else p
     pts += p
     detail["ROIC 중앙값"] = p
 
-    obs, above = s.get("roic_years_observed") or 0, s.get("roic_above_10pct_years") or 0
+    obs = s.get("roic_gross_years_observed") or 0
+    above = s.get("roic_gross_above_10pct_years") or 0
     p = round(20 * above / obs) if obs else 0
     pts += p
     detail["ROIC 지속성"] = p
@@ -108,13 +109,15 @@ def valuation_note_ko(c):
 
 def moat_read(s):
     """A one-line read on durability from the quantitative proxies."""
-    obs = s.get("roic_years_observed") or 0
-    above = s.get("roic_above_10pct_years") or 0
+    obs = s.get("roic_gross_years_observed") or 0
+    above = s.get("roic_gross_above_10pct_years") or 0
     stdev = s.get("operating_margin_stdev")
     if not obs:
         return "판정불가"
     ratio = above / obs
     stable = stdev is not None and stdev < 0.05
+    if obs < 5:
+        return f"판정보류 — 관측 {obs}년뿐 (분사·상장 이력)"
     if ratio >= 0.9 and stable:
         return "강함 - 장기간 두 자릿수 ROIC + 안정적 마진"
     if ratio >= 0.9:
@@ -132,9 +135,14 @@ def build(analysis, verification):
         c["summary"]["_latest_revenue"] = latest_rev
         c["_score"], c["_detail"] = quality_score(c["summary"])
 
-    std = [c for c in companies if c["sector_treatment"] == "STANDARD"]
+    std_all = [c for c in companies if c["sector_treatment"] == "STANDARD"]
     fin = [c for c in companies if c["sector_treatment"] == "FINANCIAL"]
-    std.sort(key=lambda c: (-c["_score"], -(c["summary"].get("roic_10y_median") or -9)))
+    # A company with no measurable ROIC in any year cannot be placed on a scale
+    # where 45 of the 100 points come from return on capital - it would rank on
+    # the points it cannot lose. Listed separately with the reason instead.
+    std = [c for c in std_all if c["summary"].get("quality_scoreable", True)]
+    unscoreable = [c for c in std_all if not c["summary"].get("quality_scoreable", True)]
+    std.sort(key=lambda c: (-c["_score"], -(c["summary"].get("roic_gross_10y_median") or -9)))
     fin.sort(key=lambda c: -(c["summary"].get("roe_10y_median") or -9))
 
     rf = analysis["risk_free_rate"]
@@ -152,13 +160,13 @@ def build(analysis, verification):
     # ---------------------------------------------------------------- 요약
     w("## 한눈에")
     w("")
-    valued = [c for c in std if c["summary"]["valuation_status"] == "VALUED"]
+    valued = [c for c in std_all if c["summary"]["valuation_status"] == "VALUED"]
     investable = [c for c in valued if c["summary"]["dcf"]["base"]["verdict"] == "INVESTABLE_RANGE"]
     borderline = [c for c in valued if c["summary"]["dcf"]["base"]["verdict"] == "BORDERLINE"]
-    negoe = [c for c in std if c["summary"]["valuation_status"] == "NEGATIVE_OWNER_EARNINGS"]
+    negoe = [c for c in std_all if c["summary"]["valuation_status"] == "NEGATIVE_OWNER_EARNINGS"]
 
-    w(f"- **품질과 가격은 별개였습니다.** 비금융 {len(std)}개 기업 중 "
-      f"{sum(1 for c in std if (c['summary'].get('roic_wacc_spread') or -1) > 0)}개사가 "
+    w(f"- **품질과 가격은 별개였습니다.** 비금융 {len(std_all)}개 기업 중 "
+      f"{sum(1 for c in std_all if (c['summary'].get('roic_wacc_spread') or -1) > 0)}개사가 "
       f"ROIC로 자본비용을 넘겼지만, 기준 시나리오(할인율 10%) DCF에서 안전마진 30% 이상인 "
       f"기업은 **{len(investable)}개**였습니다.")
     if borderline:
@@ -174,19 +182,38 @@ def build(analysis, verification):
     w("")
 
     # ---------------------------------------------------------------- 순위
-    w(f"## 1. 품질 순위 — 비금융 {len(std)}개사")
+    w(f"## 1. 품질 순위 — 비금융 {len(std_all)}개사")
     w("")
     w("점수는 사업의 질만 봅니다. 가격은 다음 절에서 따로 다룹니다. "
       "자본비용에 못 미치는 사업은 싸다고 투자 대상이 되지 않는다는 것이 원칙 1의 요지이기 때문입니다.")
     w("")
-    w("| # | 티커 | 기업 | 점수 | ROIC 중앙값 | 두자릿수 유지 | 신규 ROIC | ROIC−WACC | 해자 판정 |")
-    w("|---:|---|---|---:|---:|:--:|---:|---:|---|")
+    w("ROIC은 두 가지로 보여드립니다. **총**은 자기자본＋이자부부채를 분모로 쓴 것이고, "
+      "**순**은 거기서 현금을 뺀 것입니다. 순위는 총 기준입니다 — 현금을 빼는 것이 원칙적으로는 "
+      "맞지만, 보유 현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 잃기 때문입니다. "
+      "아리스타의 순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%로 안정적입니다. "
+      "차감되는 현금은 2절의 순현금 열에서 따로 보실 수 있습니다.")
+    w("")
+    w("| # | 티커 | 기업 | 점수 | ROIC 중앙값(총) | ROIC 중앙값(순) | 두자릿수 유지 | "
+      "신규 ROIC | ROIC−WACC | 해자 판정 |")
+    w("|---:|---|---|---:|---:|---:|:--:|---:|---:|---|")
     for i, c in enumerate(std, 1):
         s = c["summary"]
         w(f"| {i} | {c['ticker']} | {c['company_name'][:26]} | **{c['_score']}** | "
-          f"{pct(s.get('roic_10y_median'))} | {s.get('roic_above_10pct_years')}/{s.get('roic_years_observed')} | "
+          f"{pct(s.get('roic_gross_10y_median'))} | {pct(s.get('roic_10y_median'))} | "
+          f"{s.get('roic_gross_above_10pct_years')}/{s.get('roic_gross_years_observed')} | "
           f"{inc_display(s)} | {pct(s.get('roic_wacc_spread'))} | {moat_read(s)} |")
     w("")
+    if unscoreable:
+        w("**점수를 낼 수 없는 기업**")
+        w("")
+        w("| 티커 | 기업 | 사유 |")
+        w("|---|---|---|")
+        for c in unscoreable:
+            w(f"| {c['ticker']} | {c['company_name'][:26]} | "
+              f"어느 해에도 의미 있는 ROIC가 나오지 않습니다 — 보유 현금이 자기자본과 "
+              f"거의 같고 차입금이 없어 투하자본이 0 이하이므로, 배점의 45점을 차지하는 "
+              f"자본수익률 항목에 측정할 대상 자체가 없습니다. |")
+        w("")
 
     # ---------------------------------------------------------------- 밸류에이션
     w("## 2. 가격 — 원칙 5·6")
@@ -245,7 +272,7 @@ def build(analysis, verification):
     w("")
     w("| 티커 | ROE | ROIC | 차이 | 순부채/EBITDA | 이자보상배율 | 읽는 법 |")
     w("|---|---:|---:|---:|---:|---:|---|")
-    gap = sorted(std, key=lambda c: -(c["summary"].get("roe_roic_spread_latest") or -99))
+    gap = sorted(std_all, key=lambda c: -(c["summary"].get("roe_roic_spread_latest") or -99))
     for c in gap[:12]:
         s = c["summary"]
         sp = s.get("roe_roic_spread_latest")
@@ -548,6 +575,24 @@ def limitations_section(analysis, verification):
       "(코카콜라는 한 해에 166억 달러에서 21억 달러로 움직였습니다). 최근 5년 주주이익 마진의 "
       "중앙값을 최근 매출에 적용해 정규화했습니다. 금액의 중앙값을 쓰면 성장 기업을 "
       "몇 년 전 규모로 평가하게 되어, 보수적인 것이 아니라 낡은 값이 됩니다.")
+    w("")
+    w("**전수조사를 별도로 돌렸습니다.** `audit.py`가 데이터 무결성(태그 노후화, 연도 공백, "
+      "불가능한 부호), 파생지표(범위를 벗어난 비율, 깨진 항등식), 배점 규칙(결측이 점수를 "
+      "얻는지), 산출물 간 정합성을 훑습니다. 이 조사에서 나온 수정은 다음과 같습니다. "
+      "주식수 분할 조정이 기간종료일 기준이어서 이미 소급 수정된 연도에 분할을 한 번 더 "
+      "적용하고 있었고(애플 FY2019가 710억 주로 계산됐습니다), 분할일을 월간 시세로 받아 "
+      "월초로 뭉개진 탓에 팔로알토의 한 해가 잘못된 쪽에 놓였습니다. 순부채/EBITDA와 "
+      "이자보상배율이 분모·분자가 음수일 때도 숫자를 냈고, 자기자본이 0 이하인 해의 ROE가 "
+      "15,000%로 표시됐으며, 오라클은 연결 세전이익 태그가 2017년에 끊겨 실효세율이 조용히 "
+      "법정세율로 대체되고 있었습니다(국내·해외 합산으로 복원). 남은 지적 8건은 팔란티어 "
+      "직상장, RTX-UTC 합병, 델 Class V 거래처럼 실제 기업 이벤트이거나 대체 태그가 없는 "
+      "공백으로, 각각 확인 후 그대로 두었습니다.")
+    w("")
+    w("**ROIC은 총·순 두 기준을 함께 봅니다.** 현금을 빼는 것이 원칙적으로는 맞지만, 보유 "
+      "현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 잃습니다. 아리스타의 "
+      "순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%로 안정적입니다. 순위와 배점은 모든 "
+      "기업에 정의되는 총 기준을 쓰고, 순 기준은 표에 나란히 두었으며, 차감되는 현금은 "
+      "순현금 열에서 따로 보실 수 있습니다.")
     w("")
     w("**DCF는 점 추정이 아닙니다.** 보수·기준·낙관 3개 시나리오의 범위로만 읽어야 하며, "
       "이 보고서는 '투자 가능 구간 안인가'라는 질문에만 답합니다. 목표주가가 아닙니다.")

@@ -38,6 +38,7 @@ CONCEPTS = {
         "RevenueFromContractWithCustomerExcludingAssessedTax",
         "RevenueFromContractWithCustomerIncludingAssessedTax",
         "Revenues",
+        "RevenuesNetOfInterestExpense",
         "SalesRevenueNet",
     ],
     "operating_income": ["OperatingIncomeLoss"],
@@ -123,6 +124,12 @@ CONCEPTS = {
         "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
         "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
     ],
+    # Oracle stops tagging a consolidated pretax total after FY2018 and publishes
+    # only the domestic and foreign halves. Collected separately so the analysis
+    # can add them back rather than silently falling through to a statutory tax
+    # rate for a company that reports its actual one.
+    "pretax_income_domestic": ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesDomestic"],
+    "pretax_income_foreign": ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesForeign"],
     "shares_outstanding": [
         "CommonStockSharesOutstanding",
         "WeightedAverageNumberOfDilutedSharesOutstanding",
@@ -136,6 +143,7 @@ FLOW_METRICS = {
     "revenue", "operating_income", "net_income", "depreciation_amortization",
     "capex", "interest_expense", "income_tax_expense", "pretax_income",
     "operating_cash_flow", "nonoperating_income",
+    "pretax_income_domestic", "pretax_income_foreign",
 }
 
 # Share counts are a cover-page disclosure, so some filers tag them only in the

@@ -115,7 +115,7 @@ def accession_map(raw, metric):
     return {r["fiscal_year"]: r["accession"] for r in node.get("series", [])}
 
 
-def split_adjust_shares(shares, period_end_by_year, split_events):
+def split_adjust_shares(shares, filed_by_year, split_events):
     """
     Restate a share-count series into current, post-split units.
 
@@ -125,7 +125,12 @@ def split_adjust_shares(shares, period_end_by_year, split_events):
     turn a buyback into 41% annual "dilution" and Amazon's 20:1 does the same,
     which reverses the capital-allocation reading for five of the fifty.
 
-    Every count is multiplied by the splits that happened after its period end.
+    The adjustment keys on the FILING date, not the fiscal period. A filing
+    states share counts in the units current when it was filed, so a year whose
+    figure was restated in a later 10-K is already post-split. Keying on the
+    period end instead re-applies a split the filing had already applied:
+    Apple's FY2019 count was restated in the FY2020 report, filed after the 4:1
+    split, and was being multiplied by four a second time to 71bn shares.
     """
     # The quote feed files spin-offs in the same channel as splits, as a price
     # adjustment like "1806:1000" (Dell shedding VMware) or "1281:1000" (GE
@@ -153,13 +158,13 @@ def split_adjust_shares(shares, period_end_by_year, split_events):
     split_events = real
     adjusted, applied = {}, []
     for year, val in shares.items():
-        end = period_end_by_year.get(year)
-        if not end:
+        filed = filed_by_year.get(year)
+        if not filed:
             adjusted[year] = val
             continue
         factor = 1.0
         for ev in split_events:
-            if ev["date"] > end:
+            if ev["date"] > filed:
                 factor *= ev["ratio"]
         adjusted[year] = val * factor
         if factor != 1.0:
@@ -290,6 +295,23 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
                       else ("cash + short-term investments" if sti else "cash only; no "
                             "short-term investment tag published"))
 
+    # Fill a missing consolidated pretax total from the domestic and foreign
+    # halves where a filer publishes only those. Without this the effective tax
+    # rate falls back to the statutory 21% for a company that discloses its real
+    # one, and EBIT loses its preferred construction.
+    pt = dict(S.get("pretax_income", {}))
+    dom, fgn = S.get("pretax_income_domestic", {}), S.get("pretax_income_foreign", {})
+    pretax_filled = []
+    for y in set(dom) & set(fgn):
+        if pt.get(y) is None:
+            pt[y] = dom[y] + fgn[y]
+            pretax_filled.append(y)
+    if pretax_filled:
+        S["pretax_income"] = pt
+    pretax_note = ("consolidated tag used" if not pretax_filled else
+                   f"domestic + foreign summed for FY{sorted(pretax_filled)} "
+                   f"(no consolidated tag published)")
+
     equity_years = S.get("total_equity", {})
     latest_bs_year = max(equity_years) if equity_years else None
     debt_years = set(S.get("short_term_debt", {})) | set(S.get("long_term_debt", {}))
@@ -305,10 +327,10 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
 
     price = (mkt.get("price") or {}).get("price")
     # Share counts must be on one basis before any of them are compared.
-    period_ends = {r["fiscal_year"]: r["period_end"]
+    filed_dates = {r["fiscal_year"]: r.get("filed")
                    for r in raw.get("metrics", {}).get("shares_outstanding", {}).get("series", [])}
     shares_series, split_note = split_adjust_shares(
-        S.get("shares_outstanding", {}), period_ends,
+        S.get("shares_outstanding", {}), filed_dates,
         (mkt.get("splits") or {}).get("splits") or [])
     S["shares_outstanding"] = shares_series
     latest_share_year = max(shares_series) if shares_series else None
@@ -395,8 +417,27 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             roic_v, roic_status = None, "NOT_MEANINGFUL_NEGATIVE_INVESTED_CAPITAL"
         elif rev and ic_avg < 0.10 * rev:
             roic_status = "UNSTABLE_MINIMAL_INVESTED_CAPITAL"
+        # The gross basis degenerates too, just far less often: Oracle's FY2022
+        # gross invested capital was $1.3bn against $42bn of revenue after years
+        # of buybacks, and Palantir's straddles zero across its listing. Same
+        # guard as the net basis.
         roic_gross_v = None if fin else calc.roic(ebit, tax, ic_gross_avg)
-        roe_v = calc.roe(ni, eq_avg)
+        roic_gross_status = "OK"
+        if fin:
+            roic_gross_status = "FRAMEWORK_NOT_APPLICABLE"
+        elif ic_gross_avg is None:
+            roic_gross_status = "DATA_UNAVAILABLE"
+        elif ic_gross_avg <= 0:
+            roic_gross_v, roic_gross_status = None, "NOT_MEANINGFUL_NEGATIVE_INVESTED_CAPITAL"
+        elif rev and ic_gross_avg < 0.10 * rev:
+            roic_gross_v, roic_gross_status = None, "NOT_MEANINGFUL_MINIMAL_INVESTED_CAPITAL"
+        # ROE divided by an equity base at or below zero is not a return. Home
+        # Depot's FY2020 came out at 14,061% and AbbVie's FY2025 at 15,367%,
+        # both purely because buybacks had taken book equity to near nothing.
+        roe_v = calc.roe(ni, eq_avg) if (eq_avg or 0) > 0 else None
+        roe_status = "OK" if (eq_avg or 0) > 0 else "NOT_MEANINGFUL_EQUITY_AT_OR_BELOW_ZERO"
+        if roe_v is not None and abs(roe_v) > 5.0:
+            roe_status = "UNSTABLE_EQUITY_NEAR_ZERO"
 
         # Owner earnings: the direct definition first, the cash-flow route as a
         # fallback where the classified balance sheet needed for the working
@@ -475,11 +516,23 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             "invested_capital": ic, "invested_capital_avg": ic_avg,
             "invested_capital_gross_avg": ic_gross_avg,
             "roic": roic_v, "roic_status": roic_status, "roic_gross": roic_gross_v,
-            "roe": roe_v,
+            "roic_gross_status": roic_gross_status,
+            "roe": roe_v, "roe_status": roe_status,
             "roe_roic_spread": calc.roe_roic_spread(roe_v, roic_v),
             "ebitda": ebitda,
-            "net_debt_to_ebitda": calc.net_debt_to_ebitda(ibd, cash, ebitda),
-            "interest_coverage": calc.interest_coverage(ebit, S.get("interest_expense", {}).get(y)),
+            # A leverage ratio divided by negative EBITDA produces a negative
+            # number that reads like net cash. Intel's FY2024 came out at -124x
+            # on EBITDA of -$0.2bn. There is no leverage reading to give when a
+            # company is not generating EBITDA, so it stays blank.
+            "net_debt_to_ebitda": (calc.net_debt_to_ebitda(ibd, cash, ebitda)
+                                   if (ebitda or 0) > 0 else None),
+            # Coverage is how many times operating profit covers interest. With
+            # EBIT at or below zero it is not covered at all, and a negative
+            # multiple reads like a number rather than that fact.
+            "interest_coverage": (calc.interest_coverage(ebit, S.get("interest_expense", {}).get(y))
+                                  if (ebit or 0) > 0 else None),
+            "interest_coverage_status": ("OK" if (ebit or 0) > 0
+                                         else "NOT_COVERED_EBIT_AT_OR_BELOW_ZERO"),
             "owner_earnings": oe, "owner_earnings_method": oe_method,
             "owner_earnings_maintenance_capex": oe_maint,
             "maintenance_capex": maint_capex, "growth_capex": growth_capex,
@@ -511,6 +564,7 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
         "market_cap_check": mcap_check,
         "market_cap_method": "SEC-filed share count x latest exchange close",
         "liquidity_definition": liquidity_note,
+        "pretax_income_note": pretax_note,
         "debt_read_as_nil": debt_read_as_nil,
         "beta": mkt.get("beta"),
         "years": rows,
@@ -547,20 +601,59 @@ def summarise(rec, rf, erp):
         return v, fy, ("OK" if fy == latest_fy else f"STALE - latest available is FY{fy}, "
                                                     f"company's newest filed year is FY{latest_fy}")
 
+    # Two ROIC series are kept, and the ranking uses the gross one.
+    #
+    # Deducting cash is right in principle - idle cash is not capital at work -
+    # but it stops describing anything once the pile approaches the whole capital
+    # base. Arista's net invested capital is under a fifth of its revenue, so its
+    # net ROIC swings between 96% and 192% while its gross ROIC sits at a steady
+    # 23-32%. Capping or dropping those years only moved the distortion around:
+    # dropping them shrank the consistency denominator too, and Arista scored a
+    # perfect 100 on two surviving years.
+    #
+    # Gross invested capital (equity + interest-bearing debt, cash left in) is
+    # defined for every company here and comparable across all of them, so the
+    # score is built on it. The net figure stays beside it in every table, and
+    # the cash it deducts is visible separately as net cash.
     roics = vals("roic")
+    roics_gross = vals("roic_gross")
+    out["roic_unstable_years"] = sum(
+        1 for r in rows if (r.get("roic_status") or "").startswith(("UNSTABLE", "NOT_MEANINGFUL")))
+    out["roic_basis_for_score"] = "gross invested capital (cash not deducted)"
     out["roic_latest"], out["roic_latest_year"], out["roic_latest_status"] = \
         latest_of(roics, "roic")
+    out["roic_gross_latest"], out["roic_gross_latest_year"], _ = latest_of(roics_gross, "roic_gross")
+    out["roic_gross_10y_median"] = (statistics.median([v for _, v in roics_gross])
+                                    if roics_gross else None)
+    out["roic_gross_years_observed"] = len(roics_gross)
+    out["roic_gross_above_10pct_years"] = sum(1 for _, v in roics_gross if v >= 0.10)
+    out["roic_gross_stdev"] = (statistics.pstdev([v for _, v in roics_gross])
+                               if len(roics_gross) > 1 else None)
     out["roic_10y_median"] = statistics.median([v for _, v in roics]) if roics else None
     out["roic_years_observed"] = len(roics)
     out["roic_above_10pct_years"] = sum(1 for _, v in roics if v >= 0.10)
     # Consistency is the point of principle 1: a high average built out of two
     # good years is not a franchise.
     out["roic_stdev"] = statistics.pstdev([v for _, v in roics]) if len(roics) > 1 else None
+    # Palantir funds itself entirely from a cash pile roughly equal to its
+    # equity and carries no debt, so its invested capital is about zero and no
+    # year yields a meaningful ROIC. Scoring it on a scale where 45 of the 100
+    # points come from ROIC would rank it on the points it cannot lose rather
+    # than on anything measured.
+    out["quality_scoreable"] = len(roics_gross) > 0
+    out["quality_not_scoreable_reason"] = None if roics_gross else (
+        "no year yields a meaningful ROIC - invested capital is at or below zero "
+        "throughout, so the return-on-capital half of the framework has nothing "
+        "to measure")
 
     # Incremental ROIC over the longest clean window available.
     inc = None
-    nop = [(r["fiscal_year"], r["nopat"], r["invested_capital"]) for r in rows
-           if r.get("nopat") is not None and r.get("invested_capital") is not None]
+    # Measured on gross invested capital, matching the basis the score uses.
+    # On the net basis Arista's incremental ROIC came out at 203% because the
+    # denominator - the change in a capital base that is nearly all cash - is
+    # noise rather than capital management actually deployed.
+    nop = [(r["fiscal_year"], r["nopat"], r["invested_capital_gross_avg"]) for r in rows
+           if r.get("nopat") is not None and r.get("invested_capital_gross_avg") is not None]
     inc_status = "DATA_UNAVAILABLE"
     if len(nop) >= 2 and not fin:
         (_, n0, i0), (_, n1, i1) = nop[0], nop[-1]
@@ -569,11 +662,13 @@ def summarise(rec, rf, erp):
         # The ratio needs a denominator worth dividing by. Apple's invested
         # capital is barely larger than it was a decade ago - it returns its
         # cash rather than redeploying it - so the change in capital is a
-        # rounding error and the quotient reads as 4,000%. That says nothing
-        # about the returns on capital management actually put to work.
+        # rounding error and the quotient reads in the hundreds of percent.
+        # That says nothing about the returns on capital management actually
+        # put to work, so a capital base that moved less than a quarter over
+        # the window is treated as not having moved.
         if inc is None:
             inc_status = "NOT_MEANINGFUL_INVESTED_CAPITAL_SHRANK"
-        elif i0 and abs(i1 - i0) < 0.10 * abs(i0):
+        elif i0 and abs(i1 - i0) < 0.25 * abs(i0):
             inc, inc_status = None, "NOT_MEANINGFUL_CAPITAL_BASE_ESSENTIALLY_UNCHANGED"
         else:
             inc_status = "OK"
@@ -582,10 +677,14 @@ def summarise(rec, rf, erp):
     out["incremental_roic"] = inc
     out["incremental_roic_status"] = inc_status
 
-    out["roic_gross_latest"] = latest_of(vals("roic_gross"), "roic_gross")[0]
     out["roic_status_latest"] = rows[-1].get("roic_status") if rows else None
 
-    roes = vals("roe")
+    # Same treatment as ROIC: years where the equity base has collapsed stay
+    # visible with their flag but are kept out of the multi-year aggregates.
+    roes_all = vals("roe")
+    ROE_CAP = 5.0
+    roes = [(fy, max(-ROE_CAP, min(v, ROE_CAP))) for fy, v in roes_all]
+    out["roe_years_capped_as_unstable"] = sum(1 for _, v in roes_all if abs(v) > ROE_CAP)
     out["roe_latest"], out["roe_latest_year"], _ = latest_of(roes, "roe")
     out["roe_10y_median"] = statistics.median([v for _, v in roes]) if roes else None
     spreads = vals("roe_roic_spread")
@@ -692,7 +791,10 @@ def summarise(rec, rf, erp):
     out["cost_of_debt_note"] = kd_note
     out["wacc"] = wacc_v
     out["wacc_note"] = wacc_note
-    out["roic_wacc_spread"] = calc.roic_wacc_spread(out["roic_latest"], wacc_v)
+    # Spread on the gross basis too, so the score's three ROIC-derived
+    # components all describe the same denominator.
+    out["roic_wacc_spread"] = calc.roic_wacc_spread(out["roic_gross_latest"], wacc_v)
+    out["roic_wacc_spread_net_basis"] = calc.roic_wacc_spread(out["roic_latest"], wacc_v)
     r2 = (rec.get("beta") or {}).get("r_squared")
     out["beta_reliability"] = (
         "LOW - the market explains under 10% of this stock's variance, so its CAPM "

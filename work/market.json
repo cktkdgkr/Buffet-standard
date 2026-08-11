@@ -1,8 +1,8 @@
 {
-  "collected_at_utc": "2026-08-09T07:20:11.360899+00:00",
+  "collected_at_utc": "2026-08-11T08:14:52.586186+00:00",
   "risk_free_rate": {
-    "rate": 0.046900000000000004,
-    "as_of": "2026-08-06",
+    "rate": 0.04650000000000001,
+    "as_of": "2026-08-07",
     "series": "DGS10 (10-Year Treasury Constant Maturity Rate)",
     "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
     "confidence": "HIGH"
@@ -20,10 +20,10 @@
       "ticker": "NVDA",
       "yahoo_symbol": "NVDA",
       "price": {
-        "price": 223.96,
+        "price": 217.55,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -31,37 +31,37 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2001-09-01",
+            "date": "2001-09-10",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2006-04-01",
+            "date": "2006-04-07",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2007-09-01",
+            "date": "2007-09-11",
             "ratio": 1.5,
             "as_stated": "3:2"
           },
           {
-            "date": "2021-07-01",
+            "date": "2021-07-20",
             "ratio": 4.0,
             "as_stated": "4:1"
           },
           {
-            "date": "2024-06-01",
+            "date": "2024-06-10",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 2.218521286924047,
+        "beta": 2.221161931027723,
         "observations": 59,
-        "r_squared": 0.47773099231076643,
+        "r_squared": 0.47751042183924325,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -74,10 +74,10 @@
       "ticker": "AAPL",
       "yahoo_symbol": "AAPL",
       "price": {
-        "price": 313.33,
+        "price": 308.26,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -85,27 +85,27 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2005-02-01",
+            "date": "2005-02-28",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2014-06-01",
+            "date": "2014-06-09",
             "ratio": 7.0,
             "as_stated": "7:1"
           },
           {
-            "date": "2020-08-01",
+            "date": "2020-08-31",
             "ratio": 4.0,
             "as_stated": "4:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.0780889860198775,
+        "beta": 1.0795436852592448,
         "observations": 59,
-        "r_squared": 0.4648450836432585,
+        "r_squared": 0.46493347155771164,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -118,10 +118,10 @@
       "ticker": "GOOG",
       "yahoo_symbol": "GOOG",
       "price": {
-        "price": 353.47,
+        "price": 355.84,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -129,27 +129,27 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2014-03-01",
+            "date": "2014-03-27",
             "ratio": 2.002,
             "as_stated": "2002:1000"
           },
           {
-            "date": "2015-04-01",
+            "date": "2015-04-27",
             "ratio": 1.0027455,
             "as_stated": "10027455:10000000"
           },
           {
-            "date": "2022-07-01",
+            "date": "2022-07-18",
             "ratio": 20.0,
             "as_stated": "20:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.212897321324837,
+        "beta": 1.212255218178553,
         "observations": 59,
-        "r_squared": 0.3759595272482854,
+        "r_squared": 0.37578936173381045,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -162,10 +162,10 @@
       "ticker": "MSFT",
       "yahoo_symbol": "MSFT",
       "price": {
-        "price": 499.99,
+        "price": 506.06,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -173,17 +173,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2003-02-01",
+            "date": "2003-02-18",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.0954202666906312,
+        "beta": 1.0942488484555357,
         "observations": 59,
-        "r_squared": 0.3986994717700739,
+        "r_squared": 0.39805449644993723,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -196,10 +196,10 @@
       "ticker": "AMZN",
       "yahoo_symbol": "AMZN",
       "price": {
-        "price": 274.48,
+        "price": 278.09,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -207,17 +207,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2022-06-01",
+            "date": "2022-06-06",
             "ratio": 20.0,
             "as_stated": "20:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.4620741941968687,
+        "beta": 1.4607764939339383,
         "observations": 59,
-        "r_squared": 0.45619653964154405,
+        "r_squared": 0.45557878640358496,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -230,10 +230,10 @@
       "ticker": "AVGO",
       "yahoo_symbol": "AVGO",
       "price": {
-        "price": 427.76,
+        "price": 422.4,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -241,17 +241,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2024-07-01",
+            "date": "2024-07-15",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.472984890414136,
+        "beta": 1.4741977659904841,
         "observations": 59,
-        "r_squared": 0.3084056817624658,
+        "r_squared": 0.30848550696781957,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -264,22 +264,22 @@
       "ticker": "META",
       "yahoo_symbol": "META",
       "price": {
-        "price": 592.1,
+        "price": 594.92,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.2200079596172708,
+        "beta": 1.2195205250795478,
         "observations": 59,
-        "r_squared": 0.21269449511713326,
+        "r_squared": 0.2125796409952909,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -292,10 +292,10 @@
       "ticker": "TSLA",
       "yahoo_symbol": "TSLA",
       "price": {
-        "price": 328.58,
+        "price": 330.88,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -303,22 +303,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2020-08-01",
+            "date": "2020-08-31",
             "ratio": 5.0,
             "as_stated": "5:1"
           },
           {
-            "date": "2022-08-01",
+            "date": "2022-08-25",
             "ratio": 3.0,
             "as_stated": "3:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.8948796790354783,
+        "beta": 1.8941256335338124,
         "observations": 59,
-        "r_squared": 0.2373347723151563,
+        "r_squared": 0.23719738436995916,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -331,10 +331,10 @@
       "ticker": "BRK-B",
       "yahoo_symbol": "BRK-B",
       "price": {
-        "price": 521.8,
+        "price": 529.42,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -342,17 +342,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2010-01-01",
+            "date": "2010-01-21",
             "ratio": 50.0,
             "as_stated": "50:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.6047919896859809,
+        "beta": 0.6034453850389063,
         "observations": 59,
-        "r_squared": 0.2548475557027328,
+        "r_squared": 0.2539553727089609,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -365,22 +365,22 @@
       "ticker": "LLY",
       "yahoo_symbol": "LLY",
       "price": {
-        "price": 1185.71,
+        "price": 1231.94,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:02:30+00:00",
+        "as_of_utc": "2026-08-10T20:03:54+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.45680091315426435,
+        "beta": 0.45332645443672104,
         "observations": 59,
-        "r_squared": 0.05125963797181887,
+        "r_squared": 0.05059463867930296,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -393,22 +393,22 @@
       "ticker": "MU",
       "yahoo_symbol": "MU",
       "price": {
-        "price": 877.57,
+        "price": 861.0,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 2.2316111632371074,
+        "beta": 2.233400504233789,
         "observations": 59,
-        "r_squared": 0.2641357970468804,
+        "r_squared": 0.26428575807521687,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -421,22 +421,22 @@
       "ticker": "JPM",
       "yahoo_symbol": "JPM",
       "price": {
-        "price": 357.52,
+        "price": 359.79,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.0206962124000236,
+        "beta": 1.0200923759239693,
         "observations": 59,
-        "r_squared": 0.4463878570119379,
+        "r_squared": 0.44619860301393993,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -449,10 +449,10 @@
       "ticker": "WMT",
       "yahoo_symbol": "WMT",
       "price": {
-        "price": 111.85,
+        "price": 112.66,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -460,17 +460,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2024-02-01",
+            "date": "2024-02-26",
             "ratio": 3.0,
             "as_stated": "3:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.5867431729848555,
+        "beta": 0.586102220208379,
         "observations": 59,
-        "r_squared": 0.20305947650834452,
+        "r_squared": 0.2028414021588888,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -483,22 +483,22 @@
       "ticker": "AMD",
       "yahoo_symbol": "AMD",
       "price": {
-        "price": 483.36,
+        "price": 469.56,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 2.5046724266795906,
+        "beta": 2.507246627355298,
         "observations": 59,
-        "r_squared": 0.32624051249297775,
+        "r_squared": 0.32648132750114883,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -511,10 +511,10 @@
       "ticker": "V",
       "yahoo_symbol": "V",
       "price": {
-        "price": 362.5,
+        "price": 361.32,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -522,17 +522,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2015-03-01",
+            "date": "2015-03-19",
             "ratio": 4.0,
             "as_stated": "4:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.7648511169377007,
+        "beta": 0.7651221156244348,
         "observations": 59,
-        "r_squared": 0.37897966227077756,
+        "r_squared": 0.37912477371689757,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -545,22 +545,22 @@
       "ticker": "XOM",
       "yahoo_symbol": "XOM",
       "price": {
-        "price": 153.04,
+        "price": 159.79,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:03:01+00:00",
+        "as_of_utc": "2026-08-10T20:04:04+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.21376808420710763,
+        "beta": 0.2098003424265927,
         "observations": 59,
-        "r_squared": 0.015284413146863237,
+        "r_squared": 0.014726483236113435,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -573,22 +573,22 @@
       "ticker": "JNJ",
       "yahoo_symbol": "JNJ",
       "price": {
-        "price": 259.24,
+        "price": 261.81,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.2113471453558554,
+        "beta": 0.21046963997321483,
         "observations": 59,
-        "r_squared": 0.035007630776006715,
+        "r_squared": 0.03475075228963024,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -601,22 +601,22 @@
       "ticker": "INTC",
       "yahoo_symbol": "INTC",
       "price": {
-        "price": 101.65,
+        "price": 97.52,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 2.281160325567547,
+        "beta": 2.284789484867816,
         "observations": 59,
-        "r_squared": 0.25304624319593955,
+        "r_squared": 0.25348517864435105,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -629,10 +629,10 @@
       "ticker": "MA",
       "yahoo_symbol": "MA",
       "price": {
-        "price": 562.95,
+        "price": 563.17,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -640,17 +640,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2014-01-01",
+            "date": "2014-01-22",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.7545068230436852,
+        "beta": 0.7544438053148832,
         "observations": 59,
-        "r_squared": 0.327356742515638,
+        "r_squared": 0.32734977493530437,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -663,22 +663,22 @@
       "ticker": "CSCO",
       "yahoo_symbol": "CSCO",
       "price": {
-        "price": 121.43,
+        "price": 122.57,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.9990454459431002,
+        "beta": 0.998165694887882,
         "observations": 59,
-        "r_squared": 0.3670824068036519,
+        "r_squared": 0.36675562985315846,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -691,10 +691,10 @@
       "ticker": "BAC",
       "yahoo_symbol": "BAC",
       "price": {
-        "price": 63.17,
+        "price": 63.86,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -702,17 +702,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2004-08-01",
+            "date": "2004-08-30",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.2010643209544136,
+        "beta": 1.1999903793588136,
         "observations": 59,
-        "r_squared": 0.4853609303197646,
+        "r_squared": 0.4847244089932195,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -725,22 +725,22 @@
       "ticker": "ABBV",
       "yahoo_symbol": "ABBV",
       "price": {
-        "price": 246.04,
+        "price": 247.97,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:02:52+00:00",
+        "as_of_utc": "2026-08-10T20:04:14+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.2437343121711204,
+        "beta": 0.24308373971837835,
         "observations": 59,
-        "r_squared": 0.02885614028722581,
+        "r_squared": 0.028734128557533302,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -753,10 +753,10 @@
       "ticker": "AMAT",
       "yahoo_symbol": "AMAT",
       "price": {
-        "price": 539.14,
+        "price": 522.12,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -764,17 +764,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2002-04-01",
+            "date": "2002-04-17",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.628440204053399,
+        "beta": 1.6313349958565297,
         "observations": 59,
-        "r_squared": 0.2718160529875833,
+        "r_squared": 0.27209229755670433,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -787,22 +787,22 @@
       "ticker": "ORCL",
       "yahoo_symbol": "ORCL",
       "price": {
-        "price": 147.02,
+        "price": 151.05,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:04:24+00:00",
+        "as_of_utc": "2026-08-10T20:04:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.7549068943078594,
+        "beta": 1.7522834898658954,
         "observations": 59,
-        "r_squared": 0.35603323742406523,
+        "r_squared": 0.355065043026056,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -815,22 +815,22 @@
       "ticker": "COST",
       "yahoo_symbol": "COST",
       "price": {
-        "price": 947.82,
+        "price": 952.75,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.8812333117662756,
+        "beta": 0.8807401870085924,
         "observations": 59,
-        "r_squared": 0.35152624580501285,
+        "r_squared": 0.3513550922035469,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -843,22 +843,22 @@
       "ticker": "PLTR",
       "yahoo_symbol": "PLTR",
       "price": {
-        "price": 172.01,
+        "price": 175.23,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.5442175380201457,
+        "beta": 1.5425648349569208,
         "observations": 59,
-        "r_squared": 0.10744769286718563,
+        "r_squared": 0.10728639365905046,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -871,10 +871,10 @@
       "ticker": "LRCX",
       "yahoo_symbol": "LRCX",
       "price": {
-        "price": 311.35,
+        "price": 306.4,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -882,17 +882,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2024-10-01",
+            "date": "2024-10-03",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.8660392483142025,
+        "beta": 1.8674939056951334,
         "observations": 59,
-        "r_squared": 0.3626296237003534,
+        "r_squared": 0.36276885040003753,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -905,10 +905,10 @@
       "ticker": "CAT",
       "yahoo_symbol": "CAT",
       "price": {
-        "price": 842.19,
+        "price": 837.58,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -916,17 +916,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2005-07-01",
+            "date": "2005-07-14",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.6022302413689002,
+        "beta": 1.6027224344723963,
         "observations": 59,
-        "r_squared": 0.4375998506699978,
+        "r_squared": 0.43767749922754356,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -939,10 +939,10 @@
       "ticker": "GE",
       "yahoo_symbol": "GE",
       "price": {
-        "price": 370.08,
+        "price": 366.7,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -950,32 +950,32 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2019-02-01",
+            "date": "2019-02-26",
             "ratio": 1.04,
             "as_stated": "104:100"
           },
           {
-            "date": "2021-08-01",
+            "date": "2021-08-02",
             "ratio": 0.125,
             "as_stated": "1:8"
           },
           {
-            "date": "2023-01-01",
+            "date": "2023-01-04",
             "ratio": 1.281,
             "as_stated": "1281:1000"
           },
           {
-            "date": "2024-04-01",
+            "date": "2024-04-02",
             "ratio": 1.253,
             "as_stated": "1253:1000"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.3913194534142945,
+        "beta": 1.3921817324474226,
         "observations": 59,
-        "r_squared": 0.4250241949194643,
+        "r_squared": 0.42503930700260173,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -988,10 +988,10 @@
       "ticker": "KO",
       "yahoo_symbol": "KO",
       "price": {
-        "price": 87.05,
+        "price": 86.87,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -999,17 +999,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2012-08-01",
+            "date": "2012-08-13",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.31494342849351076,
+        "beta": 0.315159975362733,
         "observations": 59,
-        "r_squared": 0.09197587658860042,
+        "r_squared": 0.09207304387742304,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1022,10 +1022,10 @@
       "ticker": "UNH",
       "yahoo_symbol": "UNH",
       "price": {
-        "price": 407.08,
+        "price": 408.74,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1033,22 +1033,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2003-06-01",
+            "date": "2003-06-19",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2005-05-01",
+            "date": "2005-05-31",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.6102028160189752,
+        "beta": 0.6098008852122289,
         "observations": 59,
-        "r_squared": 0.0752305158070734,
+        "r_squared": 0.07514485782910857,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1061,10 +1061,10 @@
       "ticker": "CVX",
       "yahoo_symbol": "CVX",
       "price": {
-        "price": 186.56,
+        "price": 194.91,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:03:59+00:00",
+        "as_of_utc": "2026-08-10T20:03:59+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1072,17 +1072,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2004-09-01",
+            "date": "2004-09-13",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.5286131559789455,
+        "beta": 0.5245308696360307,
         "observations": 59,
-        "r_squared": 0.08240464322946046,
+        "r_squared": 0.0810735432853469,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1095,22 +1095,22 @@
       "ticker": "HD",
       "yahoo_symbol": "HD",
       "price": {
-        "price": 355.62,
+        "price": 350.78,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.9896517627418087,
+        "beta": 0.9908236423084681,
         "observations": 59,
-        "r_squared": 0.4086866502749693,
+        "r_squared": 0.4092567917906976,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1123,22 +1123,22 @@
       "ticker": "MS",
       "yahoo_symbol": "MS",
       "price": {
-        "price": 216.33,
+        "price": 215.33,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:03:19+00:00",
+        "as_of_utc": "2026-08-10T20:03:17+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.2128324333582226,
+        "beta": 1.2132218800740107,
         "observations": 59,
-        "r_squared": 0.4886306483264621,
+        "r_squared": 0.48873047330898256,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1151,10 +1151,10 @@
       "ticker": "PG",
       "yahoo_symbol": "PG",
       "price": {
-        "price": 145.79,
+        "price": 146.44,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:03:11+00:00",
+        "as_of_utc": "2026-08-10T20:03:12+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1162,17 +1162,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2004-06-01",
+            "date": "2004-06-21",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.3877724670620839,
+        "beta": 0.38734239442553337,
         "observations": 59,
-        "r_squared": 0.10889820714732425,
+        "r_squared": 0.10867960475999801,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1185,10 +1185,10 @@
       "ticker": "MRK",
       "yahoo_symbol": "MRK",
       "price": {
-        "price": 128.58,
+        "price": 130.92,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:03:15+00:00",
+        "as_of_utc": "2026-08-10T20:03:15+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1196,17 +1196,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2021-06-01",
+            "date": "2021-06-03",
             "ratio": 1.048,
             "as_stated": "1048:1000"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.1905390469533364,
+        "beta": 0.18891462641205362,
         "observations": 59,
-        "r_squared": 0.015206487926142417,
+        "r_squared": 0.014959984313798157,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1219,10 +1219,10 @@
       "ticker": "NFLX",
       "yahoo_symbol": "NFLX",
       "price": {
-        "price": 74.14,
+        "price": 76.29,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1230,27 +1230,27 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2004-02-01",
+            "date": "2004-02-12",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2015-07-01",
+            "date": "2015-07-15",
             "ratio": 7.0,
             "as_stated": "7:1"
           },
           {
-            "date": "2025-11-01",
+            "date": "2025-11-17",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.583875915747081,
+        "beta": 1.5811026343472252,
         "observations": 59,
-        "r_squared": 0.3072943002275727,
+        "r_squared": 0.3062104153021835,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1263,22 +1263,22 @@
       "ticker": "GS",
       "yahoo_symbol": "GS",
       "price": {
-        "price": 1039.61,
+        "price": 1034.51,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.2811824805734782,
+        "beta": 1.281606344231669,
         "observations": 59,
-        "r_squared": 0.5558602407720902,
+        "r_squared": 0.5559120353571985,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1291,10 +1291,10 @@
       "ticker": "RTX",
       "yahoo_symbol": "RTX",
       "price": {
-        "price": 223.03,
+        "price": 224.12,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1302,22 +1302,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2005-06-01",
+            "date": "2005-06-13",
             "ratio": 2.0,
             "as_stated": "2:1"
           },
           {
-            "date": "2020-04-01",
+            "date": "2020-04-03",
             "ratio": 1.589,
             "as_stated": "15890:10000"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.30870659743634815,
+        "beta": 0.30832198448855014,
         "observations": 59,
-        "r_squared": 0.04283104452477066,
+        "r_squared": 0.042755973435738365,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1330,10 +1330,10 @@
       "ticker": "PANW",
       "yahoo_symbol": "PANW",
       "price": {
-        "price": 363.86,
+        "price": 385.04,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1341,22 +1341,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2022-09-01",
+            "date": "2022-09-14",
             "ratio": 3.0,
             "as_stated": "3:1"
           },
           {
-            "date": "2024-12-01",
+            "date": "2024-12-16",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.9240732692927824,
+        "beta": 0.9187754650545462,
         "observations": 59,
-        "r_squared": 0.1209377671259462,
+        "r_squared": 0.11960509198430028,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1369,22 +1369,22 @@
       "ticker": "PM",
       "yahoo_symbol": "PM",
       "price": {
-        "price": 189.57,
+        "price": 186.0,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.347944539657101,
+        "beta": 0.3497267940945985,
         "observations": 59,
-        "r_squared": 0.05539599006473866,
+        "r_squared": 0.05575258655171886,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1397,10 +1397,10 @@
       "ticker": "DELL",
       "yahoo_symbol": "DELL",
       "price": {
-        "price": 453.77,
+        "price": 457.88,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:04:05+00:00",
+        "as_of_utc": "2026-08-10T20:04:26+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1408,22 +1408,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2018-12-01",
+            "date": "2018-12-28",
             "ratio": 1.806,
             "as_stated": "1806:1000"
           },
           {
-            "date": "2021-11-01",
+            "date": "2021-11-02",
             "ratio": 1.973,
             "as_stated": "1973:1000"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.3883850750151598,
+        "beta": 1.3876379860132844,
         "observations": 59,
-        "r_squared": 0.14088543213849677,
+        "r_squared": 0.14081545954229527,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1436,10 +1436,10 @@
       "ticker": "WFC",
       "yahoo_symbol": "WFC",
       "price": {
-        "price": 87.25,
+        "price": 87.52,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:02:54+00:00",
+        "as_of_utc": "2026-08-10T20:04:26+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1447,17 +1447,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2006-08-01",
+            "date": "2006-08-14",
             "ratio": 2.0,
             "as_stated": "2:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.9565924134376336,
+        "beta": 0.9562837492692501,
         "observations": 59,
-        "r_squared": 0.29430271665393054,
+        "r_squared": 0.29421323032297114,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1470,22 +1470,22 @@
       "ticker": "GEV",
       "yahoo_symbol": "GEV",
       "price": {
-        "price": 990.32,
+        "price": 990.85,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:01:31+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.2376146557303935,
+        "beta": 1.2380653266573998,
         "observations": 28,
-        "r_squared": 0.11213315022466955,
+        "r_squared": 0.11229764222624045,
         "window": "2024-05..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1498,22 +1498,22 @@
       "ticker": "TXN",
       "yahoo_symbol": "TXN",
       "price": {
-        "price": 286.08,
+        "price": 280.44,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:00+00:00",
+        "as_of_utc": "2026-08-10T20:00:00+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=5d&interval=1d",
         "confidence": "HIGH"
       },
       "splits": {
         "status": "OK",
         "splits": [],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.375730760404908,
+        "beta": 1.377462233500758,
         "observations": 59,
-        "r_squared": 0.3879120263273495,
+        "r_squared": 0.38833334107710954,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1526,10 +1526,10 @@
       "ticker": "KLAC",
       "yahoo_symbol": "KLAC",
       "price": {
-        "price": 198.11,
+        "price": 192.74,
         "currency": "USD",
         "exchange": "NasdaqGS",
-        "as_of_utc": "2026-08-07T20:00:01+00:00",
+        "as_of_utc": "2026-08-10T20:00:01+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1537,17 +1537,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2026-06-01",
+            "date": "2026-06-12",
             "ratio": 10.0,
             "as_stated": "10:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.4772571835960056,
+        "beta": 1.4797821668365252,
         "observations": 59,
-        "r_squared": 0.2610988556285811,
+        "r_squared": 0.26128970358566833,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1560,10 +1560,10 @@
       "ticker": "ANET",
       "yahoo_symbol": "ANET",
       "price": {
-        "price": 188.67,
+        "price": 191.52,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1571,22 +1571,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2021-11-01",
+            "date": "2021-11-18",
             "ratio": 4.0,
             "as_stated": "4:1"
           },
           {
-            "date": "2024-12-01",
+            "date": "2024-12-04",
             "ratio": 4.0,
             "as_stated": "4:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.6071430458567773,
+        "beta": 1.6057986998178242,
         "observations": 59,
-        "r_squared": 0.36606835551277117,
+        "r_squared": 0.36596770243936333,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1599,10 +1599,10 @@
       "ticker": "AXP",
       "yahoo_symbol": "AXP",
       "price": {
-        "price": 340.91,
+        "price": 338.86,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:03+00:00",
+        "as_of_utc": "2026-08-10T20:00:02+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1610,17 +1610,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2005-10-01",
+            "date": "2005-10-03",
             "ratio": 1.1424654404204273,
             "as_stated": "10000:8753"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.082110738272734,
+        "beta": 1.0826275347142216,
         "observations": 59,
-        "r_squared": 0.41614339065690925,
+        "r_squared": 0.4163062159888787,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1633,10 +1633,10 @@
       "ticker": "C",
       "yahoo_symbol": "C",
       "price": {
-        "price": 135.0,
+        "price": 135.22,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:04:21+00:00",
+        "as_of_utc": "2026-08-10T20:03:08+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1644,17 +1644,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2011-05-01",
+            "date": "2011-05-09",
             "ratio": 0.1,
             "as_stated": "1:10"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 1.1388067611682402,
+        "beta": 1.13862000539499,
         "observations": 59,
-        "r_squared": 0.39308236113735084,
+        "r_squared": 0.3930470750453585,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1667,10 +1667,10 @@
       "ticker": "IBM",
       "yahoo_symbol": "IBM",
       "price": {
-        "price": 237.28,
+        "price": 236.31,
         "currency": "USD",
         "exchange": "NYSE",
-        "as_of_utc": "2026-08-07T20:00:02+00:00",
+        "as_of_utc": "2026-08-10T20:00:03+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1678,17 +1678,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2021-11-01",
+            "date": "2021-11-04",
             "ratio": 1.046,
             "as_stated": "1046:1000"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.7156495438630398,
+        "beta": 0.7160290025009893,
         "observations": 59,
-        "r_squared": 0.12908886634779249,
+        "r_squared": 0.12919929190220508,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1701,10 +1701,10 @@
       "ticker": "005930.KS",
       "yahoo_symbol": "005930.KS",
       "price": {
-        "price": 231000.0,
+        "price": 239500.0,
         "currency": "KRW",
         "exchange": "KSE",
-        "as_of_utc": "2026-08-07T06:30:20+00:00",
+        "as_of_utc": "2026-08-11T06:30:20+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1712,22 +1712,22 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2018-04-30",
+            "date": "2018-05-04",
             "ratio": 50.0,
             "as_stated": "50:1"
           },
           {
-            "date": "2018-05-31",
+            "date": "2018-05-16",
             "ratio": 50.0,
             "as_stated": "50:1"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.27495216949098195,
+        "beta": 0.2716877921892707,
         "observations": 59,
-        "r_squared": 0.008801043349196555,
+        "r_squared": 0.008601631820852624,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",
@@ -1740,10 +1740,10 @@
       "ticker": "000660.KS",
       "yahoo_symbol": "000660.KS",
       "price": {
-        "price": 1422000.0,
+        "price": 1425000.0,
         "currency": "KRW",
         "exchange": "KSE",
-        "as_of_utc": "2026-08-07T06:30:05+00:00",
+        "as_of_utc": "2026-08-11T06:30:08+00:00",
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?range=5d&interval=1d",
         "confidence": "HIGH"
       },
@@ -1751,17 +1751,17 @@
         "status": "OK",
         "splits": [
           {
-            "date": "2003-03-31",
+            "date": "2003-04-14",
             "ratio": 0.047619047619047616,
             "as_stated": "1:21"
           }
         ],
-        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?range=25y&interval=1mo&events=split"
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?range=25y&interval=1d&events=split"
       },
       "beta": {
-        "beta": 0.7728427927906593,
+        "beta": 0.7728761076171532,
         "observations": 59,
-        "r_squared": 0.030101196607147516,
+        "r_squared": 0.030110266791217654,
         "window": "2021-10..2026-08",
         "method": "OLS of monthly total returns on S&P 500 monthly total returns",
         "benchmark": "^GSPC",

@@ -30,6 +30,38 @@ def bn(v, dp=0):
     return "—" if v is None else f"{v / 1e9:,.{dp}f}"
 
 
+def _alphabet_block(analysis):
+    """Numbers for the Word document's Alphabet case section."""
+    g = next((c for c in analysis["companies"] if c["ticker"] == "GOOG"), None)
+    if not g:
+        return None
+    s, y = g["summary"], g["years"][-1]
+    raw = y.get("raw", {})
+    std = [c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]
+    rows = [(c["ticker"], c["summary"].get("implied_return_maintenance_capex"),
+             c["summary"].get("roic_10y_median"), c["summary"].get("net_cash"))
+            for c in std if c["summary"].get("implied_return_maintenance_capex")]
+    rows.sort(key=lambda r: -r[1])
+    return {
+        "capex": bn(raw.get("capex"), 1),
+        "da": bn(raw.get("depreciation_amortization"), 1),
+        "growth_capex": bn(y.get("growth_capex"), 0),
+        "growth_share": pct(s.get("growth_capex_share_of_capex"), 0),
+        "net_cash": bn(s.get("net_cash"), 0),
+        "roic": pct(s.get("roic_latest")),
+        "market_cap": bn(g.get("market_cap_usd"), 0),
+        "band_rows": [[ko, bn(s["dcf"][k]["intrinsic_value"], 0),
+                       bn(s["dcf_maintenance_capex"][k]["intrinsic_value"], 0),
+                       f'{pct(s["dcf"][k]["margin_of_safety"], 0)} ~ '
+                       f'{pct(s["dcf_maintenance_capex"][k]["margin_of_safety"], 0)}']
+                      for k, ko in (("conservative", "보수"), ("base", "기준"),
+                                    ("optimistic", "낙관"))],
+        "optimistic_mos": pct(s["dcf_maintenance_capex"]["optimistic"]["margin_of_safety"], 0),
+        "implied_rows": [[t + (" \u2190" if t == "GOOG" else ""), pct(ir), pct(roic), bn(nc, 0)]
+                         for t, ir, roic, nc in rows[:12]],
+    }
+
+
 def main():
     with open(os.path.join(WORK, "analysis.json")) as f:
         analysis = json.load(f)
@@ -41,17 +73,19 @@ def main():
             (r["revenue"] for r in reversed(c["years"]) if r.get("revenue")), None)
         c["_score"], c["_detail"] = rp.quality_score(c["summary"])
 
-    std = [c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]
+    std_all = [c for c in analysis["companies"] if c["sector_treatment"] == "STANDARD"]
+    std = [c for c in std_all if c["summary"].get("quality_scoreable", True)]
+    unscoreable = [c for c in std_all if not c["summary"].get("quality_scoreable", True)]
     fin = [c for c in analysis["companies"] if c["sector_treatment"] == "FINANCIAL"]
     std.sort(key=lambda c: (-c["_score"], -(c["summary"].get("roic_10y_median") or -9)))
     fin.sort(key=lambda c: -(c["summary"].get("roe_10y_median") or -9))
 
-    valued = [c for c in std if c["summary"]["valuation_status"] == "VALUED"]
-    valued.sort(key=lambda c: -(c["summary"]["dcf"]["base"]["margin_of_safety"] or -99))
-    negoe = [c for c in std if c["summary"]["valuation_status"] == "NEGATIVE_OWNER_EARNINGS"]
+    valued = [c for c in std_all if c["summary"]["valuation_status"] == "VALUED"]
+    valued.sort(key=lambda c: -(c["summary"].get("implied_return_maintenance_capex") or -9))
+    negoe = [c for c in std_all if c["summary"]["valuation_status"] == "NEGATIVE_OWNER_EARNINGS"]
     investable = [c for c in valued if c["summary"]["dcf"]["base"]["verdict"] == "INVESTABLE_RANGE"]
     borderline = [c for c in valued if c["summary"]["dcf"]["base"]["verdict"] == "BORDERLINE"]
-    above_wacc = sum(1 for c in std if (c["summary"].get("roic_wacc_spread") or -1) > 0)
+    above_wacc = sum(1 for c in std_all if (c["summary"].get("roic_wacc_spread") or -1) > 0)
 
     rf, erp = analysis["risk_free_rate"], analysis["equity_risk_premium"]
     vsum = verification["summary"]
@@ -67,20 +101,19 @@ def main():
 
     valuation_rows = []
     for c in valued:
-        s, d = c["summary"], c["summary"]["dcf"]
-        iv, mc = d["base"]["intrinsic_value"], c["market_cap_usd"]
-        ratio = mc / iv if (iv and mc) else None
+        s = c["summary"]
+        d, dm = s["dcf"]["base"], s["dcf_maintenance_capex"]["base"]
         valuation_rows.append([
-            c["ticker"], c["company_name"], bn(s["owner_earnings_normalised"]), bn(mc),
-            bn(d["conservative"]["intrinsic_value"]), bn(iv),
-            bn(d["optimistic"]["intrinsic_value"]),
-            ">20x" if (ratio and ratio > 20) else mult(ratio),
-            "<-1900%" if (ratio and ratio > 20) else pct(d["base"]["margin_of_safety"], 0),
+            c["ticker"], bn(s["owner_earnings_normalised"]),
+            bn(s.get("owner_earnings_normalised_maintenance")),
+            bn(d["intrinsic_value"]), bn(dm["intrinsic_value"]),
+            bn(c["market_cap_usd"]), pct(s.get("implied_return_maintenance_capex")),
+            bn(s.get("net_cash")),
             {"INVESTABLE_RANGE": "투자가능", "BORDERLINE": "경계선",
-             "OUTSIDE_RANGE": "범위밖"}.get(d["base"]["verdict"], d["base"]["verdict"]),
+             "OUTSIDE_RANGE": "범위밖"}.get(d["verdict"], d["verdict"]),
         ])
 
-    gap = sorted(std, key=lambda c: -(c["summary"].get("roe_roic_spread_latest") or -99))[:12]
+    gap = sorted(std_all, key=lambda c: -(c["summary"].get("roe_roic_spread_latest") or -99))[:12]
     roe_rows = []
     for c in gap:
         s = c["summary"]
@@ -93,7 +126,7 @@ def main():
                          pct(sp), mult(s.get("net_debt_to_ebitda_latest")),
                          mult(s.get("interest_coverage_latest")), note])
 
-    bb = sorted([c for c in std if c["summary"].get("share_count_cagr") is not None],
+    bb = sorted([c for c in std_all if c["summary"].get("share_count_cagr") is not None],
                 key=lambda c: c["summary"]["share_count_cagr"])
     capital_rows = []
     for c in bb[:10] + bb[-5:]:
@@ -112,7 +145,12 @@ def main():
 
     payload = {
         "generated": analysis["generated_at_utc"][:16].replace("T", " ") + " UTC",
-        "n_std": len(std),
+        "n_std": len(std_all),
+        "unscoreable_rows": [[c["ticker"], c["company_name"],
+                              "어느 해에도 의미 있는 ROIC가 나오지 않습니다 — 보유 현금이 "
+                              "자기자본과 거의 같고 차입금이 없어 투하자본이 0 이하입니다."]
+                             for c in unscoreable],
+        "alphabet": _alphabet_block(analysis),
         "n_fin": len(fin),
         "headline": [
             f"비금융 {len(std)}개사 중 {above_wacc}개사가 ROIC로 자본비용을 넘겼습니다. "

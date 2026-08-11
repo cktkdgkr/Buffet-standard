@@ -378,7 +378,7 @@ def main():
             ("NOPAT", y.get("nopat")),
             ("투하자본", y.get("invested_capital")),
             ("투하자본(평균)", y.get("invested_capital_avg")),
-            ("ROIC", y.get("roic"), 1.0),
+            ("ROIC(순)", y.get("roic"), 1.0),
             ("ROE", y.get("roe"), 1.0),
             ("EBITDA", y.get("ebitda")),
             ("순부채/EBITDA", y.get("net_debt_to_ebitda"), 1.0),
@@ -398,7 +398,7 @@ def main():
                 continue
             # ROIC is suppressed in the engine when capital is negative; the
             # sheet's guard does the same, so both should be blank together.
-            if name == "ROIC" and y.get("roic_status", "").startswith("NOT_MEANINGFUL"):
+            if name == "ROIC(순)" and y.get("roic_status", "").startswith("NOT_MEANINGFUL"):
                 expected = None
             exp = None if expected is None else expected / scale
             if not close(got if got != "" else None, exp, 1e-5):
@@ -474,7 +474,9 @@ def main():
             checked += 1
 
     # ---- percentages stored as fractions ---------------------------------
-    for sheet, colname, hdr in (("품질순위", "ROIC 중앙값", 4), ("금융9개사", "ROE 중앙값", 4)):
+    for sheet, colname, hdr in (("품질순위", "ROIC 중앙값(총)", 4),
+                                ("품질순위", "ROIC 중앙값(순)", 4),
+                                ("금융9개사", "ROE 중앙값", 4)):
         ws = wb[sheet]
         ci = col_index(ws, hdr)
         for row in range(hdr + 1, ws.max_row + 1):

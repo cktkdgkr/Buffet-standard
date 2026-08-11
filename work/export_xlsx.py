@@ -232,25 +232,40 @@ YEAR_FORMULAS = [
     ("투하자본(평균)", 13, USD_B,
      '=IF({업종구분}="금융","",IF(NOT(ISNUMBER({투하자본})),"",IF(ISNUMBER({투하자본(전기)}),'
      '({투하자본}+{투하자본(전기)})/2,{투하자본})))'),
-    ("ROIC", 10, PCT,
+    ("ROIC(순)", 10, PCT,
      '=IF(AND(ISNUMBER({NOPAT}),ISNUMBER({투하자본(평균)}),{투하자본(평균)}>0),'
      '{NOPAT}/{투하자본(평균)},"")'),
+    ("투하자본(총)", 13, USD_B,
+     '=IF({업종구분}="금융","",IF(AND(ISNUMBER({자기자본}),ISNUMBER({이자부부채})),'
+     '{자기자본}+{이자부부채},""))'),
+    # The basis the ranking uses: cash left in, so the denominator cannot
+    # collapse toward zero for a company that holds its capital in cash.
+    ("ROIC(총)", 10, PCT,
+     '=IF(OR(NOT(ISNUMBER({NOPAT})),NOT(ISNUMBER({투하자본(총)})),{투하자본(총)}<=0),"",'
+     'IF(AND(ISNUMBER({매출}),{투하자본(총)}<0.1*{매출}),"",{NOPAT}/{투하자본(총)}))'),
     ("자기자본(평균)", 13, USD_B,
      '=IF(NOT(ISNUMBER({자기자본})),"",IF(ISNUMBER({자기자본(전기)}),'
      '({자기자본}+{자기자본(전기)})/2,{자기자본}))'),
+    # A return on an equity base at or below zero is not a return - Home Depot's
+    # FY2020 came out at 14,061% purely because buybacks had taken book equity
+    # to almost nothing.
     ("ROE", 10, PCT,
-     '=IF(AND(ISNUMBER({순이익}),ISNUMBER({자기자본(평균)}),{자기자본(평균)}<>0),'
+     '=IF(AND(ISNUMBER({순이익}),ISNUMBER({자기자본(평균)}),{자기자본(평균)}>0),'
      '{순이익}/{자기자본(평균)},"")'),
     ("ROE−ROIC", 11, PCT,
      '=IF(AND(ISNUMBER({ROE}),ISNUMBER({ROIC})),{ROE}-{ROIC},"")'),
     ("EBITDA", 13, USD_B,
      '=IF(AND(ISNUMBER({영업이익(EBIT)}),ISNUMBER({감가상각})),{영업이익(EBIT)}+{감가상각},"")'),
+    # Divided by negative EBITDA the ratio comes out negative and reads like net
+    # cash; Intel's FY2024 showed -124x. Blank instead.
     ("순부채/EBITDA", 12, MULT,
-     '=IF(AND(ISNUMBER({이자부부채}),ISNUMBER({현금}),ISNUMBER({EBITDA}),{EBITDA}<>0),'
+     '=IF(AND(ISNUMBER({이자부부채}),ISNUMBER({현금}),ISNUMBER({EBITDA}),{EBITDA}>0),'
      '({이자부부채}-{현금})/{EBITDA},"")'),
+    # With EBIT at or below zero interest is not covered at all, which a
+    # negative multiple states less clearly than a blank.
     ("이자보상배율", 12, MULT,
-     '=IF(AND(ISNUMBER({영업이익(EBIT)}),ISNUMBER({이자비용}),{이자비용}<>0),'
-     '{영업이익(EBIT)}/{이자비용},"")'),
+     '=IF(AND(ISNUMBER({영업이익(EBIT)}),ISNUMBER({이자비용}),{이자비용}<>0,'
+     '{영업이익(EBIT)}>0),{영업이익(EBIT)}/{이자비용},"")'),
     ("운전자본(영업)", 13, USD_B,
      '=IF(AND(ISNUMBER({유동자산}),ISNUMBER({유동부채})),'
      '{유동자산}-IF(ISNUMBER({현금}),{현금},0)-({유동부채}-IF(ISNUMBER({단기차입금}),{단기차입금},0)),"")'),
@@ -340,8 +355,8 @@ def sheet_yearly(wb, companies, ref):
 # ===========================================================================
 
 SCORE_COLS = [
-    ("배점:ROIC", '=IF({ROIC 중앙값}>={t1},25,IF({ROIC 중앙값}>={t2},20,'
-                  'IF({ROIC 중앙값}>={t3},15,IF({ROIC 중앙값}>={t4},10,0))))',
+    ("배점:ROIC", '=IF({ROIC 중앙값(총)}>={t1},25,IF({ROIC 중앙값(총)}>={t2},20,'
+                  'IF({ROIC 중앙값(총)}>={t3},15,IF({ROIC 중앙값(총)}>={t4},10,0))))',
      ["ROIC 25점 기준", "ROIC 20점 기준", "ROIC 15점 기준", "ROIC 10점 기준"]),
     # Palantir's invested capital is ~zero (its cash pile nearly equals its
     # equity and it carries no debt), so it has no meaningful ROIC in any year
@@ -375,10 +390,10 @@ def sheet_quality(wb, std, ref):
         "수식입니다. 배점 셀을 클릭하면 어떤 조건으로 몇 점이 됐는지 그대로 보입니다. "
         "가격은 여기에 들어가지 않습니다 — 'DCF계산'과 '밸류에이션'에서 따로 다룹니다.")
     labels = ["순위", "티커", "기업", "총점",
-              "ROIC 중앙값", "두자릿수 년수", "관측 년수", "지속성 비율",
+              "ROIC 중앙값(총)", "ROIC 중앙값(순)", "두자릿수 년수", "관측 년수", "지속성 비율",
               "신규 ROIC", "ROIC−WACC", "WACC", "주주이익률", "순부채/EBITDA",
               "이자보상배율", "해자 판정"] + [s[0] for s in SCORE_COLS]
-    widths = [6, 8, 26, 8, 12, 12, 11, 11, 12, 11, 9, 12, 13, 12, 38] + [11] * len(SCORE_COLS)
+    widths = [6, 8, 26, 8, 14, 14, 12, 11, 11, 12, 11, 9, 12, 13, 12, 38] + [11] * len(SCORE_COLS)
     header(ws, r, labels, widths)
     col = {n: i for i, n in enumerate(labels, 1)}
     r += 1
@@ -391,9 +406,13 @@ def sheet_quality(wb, std, ref):
         put(ws, r, col["순위"], i, INT)
         put(ws, r, col["티커"], c["ticker"])
         put(ws, r, col["기업"], c["company_name"])
-        put(ws, r, col["ROIC 중앙값"], s.get("roic_10y_median"), PCT, font=BLUE, fill=RAW_FILL)
-        put(ws, r, col["두자릿수 년수"], s.get("roic_above_10pct_years"), INT, font=BLUE, fill=RAW_FILL)
-        put(ws, r, col["관측 년수"], s.get("roic_years_observed"), INT, font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["ROIC 중앙값(총)"], s.get("roic_gross_10y_median"), PCT,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["ROIC 중앙값(순)"], s.get("roic_10y_median"), PCT, font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["두자릿수 년수"], s.get("roic_gross_above_10pct_years"), INT,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["관측 년수"], s.get("roic_gross_years_observed"), INT,
+            font=BLUE, fill=RAW_FILL)
         put(ws, r, col["지속성 비율"],
             f"={get_column_letter(col['두자릿수 년수'])}{r}/{get_column_letter(col['관측 년수'])}{r}", PCT)
         put(ws, r, col["신규 ROIC"], s.get("incremental_roic"), PCT, font=BLUE, fill=RAW_FILL)
@@ -718,7 +737,11 @@ DEFINITIONS = [
     ("연도별계산", "투하자본(평균)", "(당기 투하자본 + 전기 투하자본) ÷ 2",
      "기말 잔고를 쓰면 연말에 자본을 조달한 회사가 한 해 내내 그 자본으로 벌어들인 것처럼 "
      "보입니다. 전기 값이 없으면 당기 값을 그대로 씁니다.", "같은 행"),
-    ("연도별계산", "ROIC", "NOPAT ÷ 투하자본(평균)", "원칙 1의 핵심 지표.", "같은 행"),
+    ("연도별계산", "ROIC", "NOPAT ÷ 투하자본(평균)",
+     "원칙 1의 핵심 지표. 순위와 배점은 현금을 빼지 않은 '총' 기준을 씁니다 — 현금을 빼는 것이 "
+     "원칙적으로는 맞지만 보유 현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 "
+     "잃기 때문입니다. 아리스타의 순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%입니다.",
+     "같은 행"),
     ("연도별계산", "ROE", "순이익 ÷ 자기자본(평균)", "원칙 2에서 ROIC와 비교합니다.", "같은 행"),
     ("연도별계산", "ROE−ROIC", "ROE − ROIC",
      "차이가 크면 ROE가 사업의 수익성이 아니라 레버리지에서 나온다는 신호입니다. 다만 자사주 "
