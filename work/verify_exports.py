@@ -474,8 +474,7 @@ def main():
             checked += 1
 
     # ---- percentages stored as fractions ---------------------------------
-    for sheet, colname, hdr in (("품질순위", "ROIC 중앙값(총)", 4),
-                                ("품질순위", "ROIC 중앙값(순)", 4),
+    for sheet, colname, hdr in (("품질순위", "자본집약도", 4),
                                 ("금융9개사", "ROE 중앙값", 4)):
         ws = wb[sheet]
         ci = col_index(ws, hdr)

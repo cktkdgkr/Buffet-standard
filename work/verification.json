@@ -1,5 +1,5 @@
 {
-  "verified_at_utc": "2026-08-11T08:22:00.836377+00:00",
+  "verified_at_utc": "2026-08-11T23:55:06.154913+00:00",
   "method": "every figure re-requested from its primary endpoint and compared; no value read from the local collection",
   "macro": {
     "risk_free_rate": {
@@ -84,8 +84,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 217.55,
-        "reverify_price": 217.55,
-        "drift": 0.0,
+        "reverify_price": 217.5,
+        "drift": 0.0002298322224776436,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d"
       },
@@ -162,8 +162,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 308.26,
-        "reverify_price": 308.26,
-        "drift": 0.0,
+        "reverify_price": 304.91,
+        "drift": 0.010867449555569864,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=5d&interval=1d"
       },
@@ -239,8 +239,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 355.84,
-        "reverify_price": 355.84,
-        "drift": 0.0,
+        "reverify_price": 343.0,
+        "drift": 0.036083633093525115,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d"
       },
@@ -316,8 +316,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 506.06,
-        "reverify_price": 506.06,
-        "drift": 0.0,
+        "reverify_price": 503.81,
+        "drift": 0.004446113109117496,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d"
       },
@@ -393,8 +393,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 278.09,
-        "reverify_price": 278.09,
-        "drift": 0.0,
+        "reverify_price": 272.27,
+        "drift": 0.020928476392534767,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?range=5d&interval=1d"
       },
@@ -470,8 +470,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 422.4,
-        "reverify_price": 422.4,
-        "drift": 0.0,
+        "reverify_price": 416.08,
+        "drift": 0.014962121212121197,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?range=5d&interval=1d"
       },
@@ -547,8 +547,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 594.92,
-        "reverify_price": 594.92,
-        "drift": 0.0,
+        "reverify_price": 599.12,
+        "drift": 0.007059772742553698,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?range=5d&interval=1d"
       },
@@ -625,8 +625,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 330.88,
-        "reverify_price": 330.88,
-        "drift": 0.0,
+        "reverify_price": 332.81,
+        "drift": 0.0058329303675048565,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d"
       },
@@ -704,8 +704,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 529.42,
-        "reverify_price": 529.42,
-        "drift": 0.0,
+        "reverify_price": 516.38,
+        "drift": 0.024630727966453787,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?range=5d&interval=1d"
       },
@@ -784,8 +784,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 1231.94,
-        "reverify_price": 1231.94,
-        "drift": 0.0,
+        "reverify_price": 1215.02,
+        "drift": 0.013734435118593496,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LLY?range=5d&interval=1d"
       },
@@ -864,8 +864,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 861.0,
-        "reverify_price": 861.0,
-        "drift": 0.0,
+        "reverify_price": 868.52,
+        "drift": 0.00873403019744481,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MU?range=5d&interval=1d"
       },
@@ -935,8 +935,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 359.79,
-        "reverify_price": 359.79,
-        "drift": 0.0,
+        "reverify_price": 362.04,
+        "drift": 0.006253647961310764,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JPM?range=5d&interval=1d"
       },
@@ -1015,8 +1015,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 112.66,
-        "reverify_price": 112.66,
-        "drift": 0.0,
+        "reverify_price": 113.26,
+        "drift": 0.005325758920646268,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WMT?range=5d&interval=1d"
       },
@@ -1093,8 +1093,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 469.56,
-        "reverify_price": 469.56,
-        "drift": 0.0,
+        "reverify_price": 474.32,
+        "drift": 0.010137149672033373,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMD?range=5d&interval=1d"
       },
@@ -1171,8 +1171,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 361.32,
-        "reverify_price": 361.32,
-        "drift": 0.0,
+        "reverify_price": 362.82,
+        "drift": 0.004151444702756559,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/V?range=5d&interval=1d"
       },
@@ -1248,8 +1248,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 159.79,
-        "reverify_price": 159.79,
-        "drift": 0.0,
+        "reverify_price": 159.8,
+        "drift": 6.258213905763394e-05,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/XOM?range=5d&interval=1d"
       },
@@ -1326,8 +1326,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 261.81,
-        "reverify_price": 261.81,
-        "drift": 0.0,
+        "reverify_price": 259.8,
+        "drift": 0.007677323249684852,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/JNJ?range=5d&interval=1d"
       },
@@ -1404,8 +1404,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 97.52,
-        "reverify_price": 97.52,
-        "drift": 0.0,
+        "reverify_price": 97.71,
+        "drift": 0.0019483182936833239,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=5d&interval=1d"
       },
@@ -1482,8 +1482,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 563.17,
-        "reverify_price": 563.17,
-        "drift": 0.0,
+        "reverify_price": 561.44,
+        "drift": 0.0030718965854003312,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MA?range=5d&interval=1d"
       },
@@ -1560,8 +1560,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 122.57,
-        "reverify_price": 122.57,
-        "drift": 0.0,
+        "reverify_price": 120.43,
+        "drift": 0.017459410948845448,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CSCO?range=5d&interval=1d"
       },
@@ -1631,8 +1631,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 63.86,
-        "reverify_price": 63.86,
-        "drift": 0.0,
+        "reverify_price": 64.0,
+        "drift": 0.0021922956467272246,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BAC?range=5d&interval=1d"
       },
@@ -1709,8 +1709,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 247.97,
-        "reverify_price": 247.97,
-        "drift": 0.0,
+        "reverify_price": 250.09,
+        "drift": 0.008549421300963844,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ABBV?range=5d&interval=1d"
       },
@@ -1786,8 +1786,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 522.12,
-        "reverify_price": 522.12,
-        "drift": 0.0,
+        "reverify_price": 525.61,
+        "drift": 0.006684287137056633,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMAT?range=5d&interval=1d"
       },
@@ -1861,8 +1861,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 151.05,
-        "reverify_price": 151.05,
-        "drift": 0.0,
+        "reverify_price": 145.48,
+        "drift": 0.03687520688513751,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?range=5d&interval=1d"
       },
@@ -1938,8 +1938,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 952.75,
-        "reverify_price": 952.75,
-        "drift": 0.0,
+        "reverify_price": 944.32,
+        "drift": 0.008848071372343164,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/COST?range=5d&interval=1d"
       },
@@ -2015,8 +2015,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 175.23,
-        "reverify_price": 175.23,
-        "drift": 0.0,
+        "reverify_price": 174.94,
+        "drift": 0.0016549677566626267,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?range=5d&interval=1d"
       },
@@ -2093,8 +2093,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 306.4,
-        "reverify_price": 306.4,
-        "drift": 0.0,
+        "reverify_price": 311.41,
+        "drift": 0.016351174934726005,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LRCX?range=5d&interval=1d"
       },
@@ -2172,8 +2172,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 837.58,
-        "reverify_price": 837.58,
-        "drift": 0.0,
+        "reverify_price": 843.37,
+        "drift": 0.006912772511282461,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CAT?range=5d&interval=1d"
       },
@@ -2250,8 +2250,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 366.7,
-        "reverify_price": 366.7,
-        "drift": 0.0,
+        "reverify_price": 368.06,
+        "drift": 0.0037087537496591594,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GE?range=5d&interval=1d"
       },
@@ -2328,8 +2328,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 86.87,
-        "reverify_price": 86.87,
-        "drift": 0.0,
+        "reverify_price": 86.48,
+        "drift": 0.004489467019684592,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KO?range=5d&interval=1d"
       },
@@ -2408,8 +2408,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 408.74,
-        "reverify_price": 408.74,
-        "drift": 0.0,
+        "reverify_price": 402.19,
+        "drift": 0.0160248568772325,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UNH?range=5d&interval=1d"
       },
@@ -2488,8 +2488,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 194.91,
-        "reverify_price": 194.91,
-        "drift": 0.0,
+        "reverify_price": 196.66,
+        "drift": 0.008978502898773793,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CVX?range=5d&interval=1d"
       },
@@ -2565,8 +2565,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 350.78,
-        "reverify_price": 350.78,
-        "drift": 0.0,
+        "reverify_price": 354.48,
+        "drift": 0.01054792177433162,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/HD?range=5d&interval=1d"
       },
@@ -2635,8 +2635,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 215.33,
-        "reverify_price": 215.33,
-        "drift": 0.0,
+        "reverify_price": 215.07,
+        "drift": 0.001207449031718847,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MS?range=5d&interval=1d"
       },
@@ -2714,8 +2714,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 146.44,
-        "reverify_price": 146.44,
-        "drift": 0.0,
+        "reverify_price": 145.21,
+        "drift": 0.00839934444140938,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PG?range=5d&interval=1d"
       },
@@ -2794,8 +2794,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 130.92,
-        "reverify_price": 130.92,
-        "drift": 0.0,
+        "reverify_price": 130.42,
+        "drift": 0.0038191261839291175,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MRK?range=5d&interval=1d"
       },
@@ -2873,8 +2873,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 76.29,
-        "reverify_price": 76.29,
-        "drift": 0.0,
+        "reverify_price": 74.79,
+        "drift": 0.019661816751867872,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NFLX?range=5d&interval=1d"
       },
@@ -2953,8 +2953,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 1034.51,
-        "reverify_price": 1034.51,
-        "drift": 0.0,
+        "reverify_price": 1034.41,
+        "drift": 9.666412117805439e-05,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GS?range=5d&interval=1d"
       },
@@ -3030,8 +3030,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 224.12,
-        "reverify_price": 224.12,
-        "drift": 0.0,
+        "reverify_price": 223.86,
+        "drift": 0.0011600928074245534,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RTX?range=5d&interval=1d"
       },
@@ -3110,8 +3110,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 385.04,
-        "reverify_price": 385.04,
-        "drift": 0.0,
+        "reverify_price": 383.8,
+        "drift": 0.0032204446291294645,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PANW?range=5d&interval=1d"
       },
@@ -3189,8 +3189,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 186.0,
-        "reverify_price": 186.0,
-        "drift": 0.0,
+        "reverify_price": 186.22,
+        "drift": 0.0011827956989247251,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/PM?range=5d&interval=1d"
       },
@@ -3268,8 +3268,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 457.88,
-        "reverify_price": 457.88,
-        "drift": 0.0,
+        "reverify_price": 440.97,
+        "drift": 0.03693107364374938,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DELL?range=5d&interval=1d"
       },
@@ -3340,8 +3340,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 87.52,
-        "reverify_price": 87.52,
-        "drift": 0.0,
+        "reverify_price": 87.45,
+        "drift": 0.0007998171846434321,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/WFC?range=5d&interval=1d"
       },
@@ -3418,8 +3418,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 990.85,
-        "reverify_price": 990.85,
-        "drift": 0.0,
+        "reverify_price": 1011.88,
+        "drift": 0.0212242014432053,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GEV?range=5d&interval=1d"
       },
@@ -3495,8 +3495,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 280.44,
-        "reverify_price": 280.44,
-        "drift": 0.0,
+        "reverify_price": 281.24,
+        "drift": 0.0028526601055484644,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TXN?range=5d&interval=1d"
       },
@@ -3573,8 +3573,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 192.74,
-        "reverify_price": 192.74,
-        "drift": 0.0,
+        "reverify_price": 200.47,
+        "drift": 0.04010584206703326,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KLAC?range=5d&interval=1d"
       },
@@ -3650,8 +3650,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 191.52,
-        "reverify_price": 191.52,
-        "drift": 0.0,
+        "reverify_price": 197.85,
+        "drift": 0.03305137844611521,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ANET?range=5d&interval=1d"
       },
@@ -3729,8 +3729,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 338.86,
-        "reverify_price": 338.86,
-        "drift": 0.0,
+        "reverify_price": 340.81,
+        "drift": 0.005754588915776393,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AXP?range=5d&interval=1d"
       },
@@ -3809,8 +3809,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 135.22,
-        "reverify_price": 135.22,
-        "drift": 0.0,
+        "reverify_price": 135.77,
+        "drift": 0.004067445644135567,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/C?range=5d&interval=1d"
       },
@@ -3888,8 +3888,8 @@
       "price": {
         "result": "PASS",
         "analysis_price": 236.31,
-        "reverify_price": 236.31,
-        "drift": 0.0,
+        "reverify_price": 238.42,
+        "drift": 0.008928949261563138,
         "reason": null,
         "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IBM?range=5d&interval=1d"
       },

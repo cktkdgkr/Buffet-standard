@@ -24,15 +24,23 @@ WORK = os.path.dirname(os.path.abspath(__file__))
 def quality_score(s):
     pts, detail = 0, {}
 
-    roic = s.get("roic_gross_10y_median")
-    p = 25 if roic is None else (25 if roic >= 0.30 else 20 if roic >= 0.20
-                                 else 15 if roic >= 0.15 else 10 if roic >= 0.10 else 0)
-    p = 0 if roic is None else p
+    # A business that needs no net capital and still earns money sits at the top
+    # of this dimension by construction - there is no ratio to compute because
+    # the denominator is nil, which is the condition itself.
+    roic = s.get("roic_10y_median")
+    light = (s.get("capital_light_years") or 0) > 0 and not s.get("roic_years_capped")
+    if roic is None and light:
+        p = 25
+    elif roic is None:
+        p = 0
+    else:
+        p = (25 if roic >= 0.30 else 20 if roic >= 0.20
+             else 15 if roic >= 0.15 else 10 if roic >= 0.10 else 0)
     pts += p
     detail["ROIC 중앙값"] = p
 
-    obs = s.get("roic_gross_years_observed") or 0
-    above = s.get("roic_gross_above_10pct_years") or 0
+    obs = s.get("roic_years_observed") or 0
+    above = s.get("roic_above_10pct_years") or 0
     p = round(20 * above / obs) if obs else 0
     pts += p
     detail["ROIC 지속성"] = p
@@ -95,6 +103,33 @@ def inc_display(s):
     return "데이터없음"
 
 
+def roic_display(s):
+    """ROIC, or the condition where required capital is nil."""
+    v = s.get("roic_10y_median")
+    if v is not None:
+        return pct(v)
+    if (s.get("capital_light_years") or 0) > 0:
+        return "자본 불필요"
+    return "산출불가"
+
+
+def tangible_display(s):
+    """
+    ROIC on net tangible capital, or a note when goodwill has consumed the base.
+
+    Buffett's own phrasing is "net tangible assets", but for a company that grew
+    by acquisition the goodwill it carries can exceed the capital the business
+    employs, leaving a denominator near zero. Visa reads 5,750% on that basis.
+    The number is not wrong so much as beside the point, so it is labelled.
+    """
+    v = s.get("roic_tangible_10y_median")
+    if v is None:
+        return "산출불가"
+    if v > 2.0:
+        return f"{v * 100:,.0f}% (영업권이 자본 초과)"
+    return pct(v)
+
+
 def valuation_note_ko(c):
     """Render the reason in the report's language; the JSON keeps the original."""
     s = c["summary"]
@@ -109,8 +144,8 @@ def valuation_note_ko(c):
 
 def moat_read(s):
     """A one-line read on durability from the quantitative proxies."""
-    obs = s.get("roic_gross_years_observed") or 0
-    above = s.get("roic_gross_above_10pct_years") or 0
+    obs = s.get("roic_years_observed") or 0
+    above = s.get("roic_above_10pct_years") or 0
     stdev = s.get("operating_margin_stdev")
     if not obs:
         return "판정불가"
@@ -142,7 +177,7 @@ def build(analysis, verification):
     # the points it cannot lose. Listed separately with the reason instead.
     std = [c for c in std_all if c["summary"].get("quality_scoreable", True)]
     unscoreable = [c for c in std_all if not c["summary"].get("quality_scoreable", True)]
-    std.sort(key=lambda c: (-c["_score"], -(c["summary"].get("roic_gross_10y_median") or -9)))
+    std.sort(key=lambda c: (-c["_score"], -(c["summary"].get("roic_10y_median") or -9)))
     fin.sort(key=lambda c: -(c["summary"].get("roe_10y_median") or -9))
 
     rf = analysis["risk_free_rate"]
@@ -187,20 +222,34 @@ def build(analysis, verification):
     w("점수는 사업의 질만 봅니다. 가격은 다음 절에서 따로 다룹니다. "
       "자본비용에 못 미치는 사업은 싸다고 투자 대상이 되지 않는다는 것이 원칙 1의 요지이기 때문입니다.")
     w("")
-    w("ROIC은 두 가지로 보여드립니다. **총**은 자기자본＋이자부부채를 분모로 쓴 것이고, "
-      "**순**은 거기서 현금을 뺀 것입니다. 순위는 총 기준입니다 — 현금을 빼는 것이 원칙적으로는 "
-      "맞지만, 보유 현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 잃기 때문입니다. "
-      "아리스타의 순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%로 안정적입니다. "
-      "차감되는 현금은 2절의 순현금 열에서 따로 보실 수 있습니다.")
+    w("**ROIC의 분모는 '사업을 영위하는 데 필요한 자본'입니다.** 버핏이 2007년 주주서한에서 "
+      "쓴 정의를 그대로 따랐습니다 — 시즈캔디를 두고 *\"The capital then required to conduct "
+      "the business was $8 million... Consequently, the company was earning 60% pre-tax on "
+      "invested capital\"*라고 적었고, 왜 그 자본이 적은지도 설명합니다(현금 판매라 매출채권이 "
+      "없고 생산·유통 주기가 짧아 재고가 적다). 즉 운전자본과 고정자산이지, 놀고 있는 현금이 "
+      "아닙니다. 그래서 자기자본＋이자부부채에서 현금을 뺍니다.")
     w("")
-    w("| # | 티커 | 기업 | 점수 | ROIC 중앙값(총) | ROIC 중앙값(순) | 두자릿수 유지 | "
+    w("**자본집약도**(필요자본 ÷ 매출)를 함께 싣습니다. 버핏의 시즈캔디는 매출 $30M에 자본 "
+      "$8M, 즉 27%였습니다. 이 값이 낮으면서 ROIC가 높은 것이 그가 말한 *dream business*이고, "
+      "같은 서한은 그 원형을 이렇게 지목합니다 — *\"It's far better to have an ever-increasing "
+      "stream of earnings with virtually no major capital requirements. Ask Microsoft or "
+      "Google.\"* 따라서 ROIC가 세 자릿수로 나오는 것은 눌러야 할 이상치가 아니라 자본이 거의 "
+      "필요 없다는 **발견**입니다.")
+    w("")
+    w("**유형자산 기준 ROIC**도 병기했습니다. 같은 서한이 대조군을 *\"$82 million pre-tax on "
+      "$400 million of net tangible assets\"*로 표현하므로, 영업권과 무형자산을 뺀 분모가 "
+      "버핏의 표현에 가장 가깝습니다. 다만 인수를 많이 한 기업은 영업권이 자본을 넘어 이 분모가 "
+      "0에 근접하므로(비자·필립모리스) 순위에는 쓰지 않고 참고로만 둡니다.")
+    w("")
+    w("| # | 티커 | 기업 | 점수 | ROIC 중앙값 | 자본집약도 | 유형자산 ROIC | 두자릿수 유지 | "
       "신규 ROIC | ROIC−WACC | 해자 판정 |")
-    w("|---:|---|---|---:|---:|---:|:--:|---:|---:|---|")
+    w("|---:|---|---|---:|---:|---:|---:|:--:|---:|---:|---|")
     for i, c in enumerate(std, 1):
         s = c["summary"]
         w(f"| {i} | {c['ticker']} | {c['company_name'][:26]} | **{c['_score']}** | "
-          f"{pct(s.get('roic_gross_10y_median'))} | {pct(s.get('roic_10y_median'))} | "
-          f"{s.get('roic_gross_above_10pct_years')}/{s.get('roic_gross_years_observed')} | "
+          f"{roic_display(s)} | {pct(s.get('capital_intensity_median'))} | "
+          f"{tangible_display(s)} | "
+          f"{s.get('roic_above_10pct_years')}/{s.get('roic_years_observed')} | "
           f"{inc_display(s)} | {pct(s.get('roic_wacc_spread'))} | {moat_read(s)} |")
     w("")
     if unscoreable:
@@ -588,11 +637,16 @@ def limitations_section(analysis, verification):
       "직상장, RTX-UTC 합병, 델 Class V 거래처럼 실제 기업 이벤트이거나 대체 태그가 없는 "
       "공백으로, 각각 확인 후 그대로 두었습니다.")
     w("")
-    w("**ROIC은 총·순 두 기준을 함께 봅니다.** 현금을 빼는 것이 원칙적으로는 맞지만, 보유 "
-      "현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 잃습니다. 아리스타의 "
-      "순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%로 안정적입니다. 순위와 배점은 모든 "
-      "기업에 정의되는 총 기준을 쓰고, 순 기준은 표에 나란히 두었으며, 차감되는 현금은 "
-      "순현금 열에서 따로 보실 수 있습니다.")
+    w("**ROIC 분모를 한 번 잘못 바꿨다가 되돌렸습니다.** 아리스타처럼 현금이 많은 기업은 "
+      "필요자본이 매출의 5분의 1도 안 되어 ROIC가 96~192%로 요동칩니다. 이걸 이상치로 보고 "
+      "현금을 빼지 않은 '총투하자본'으로 순위를 매긴 판이 있었는데, 방향이 반대였습니다. "
+      "버핏의 분모는 명시적으로 '사업을 영위하는 데 필요한 자본'이고, 자본이 거의 필요 없다는 "
+      "것은 그가 가장 높이 사는 조건입니다 — 2007년 서한이 그 원형으로 마이크로소프트와 "
+      "구글을 지목합니다. 세 자릿수 ROIC는 억눌러야 할 잡음이 아니라 시즈캔디와 같은 성질의 "
+      "발견이었습니다. 게다가 배점은 구간식이라(30% 이상이면 만점) 그 변동성이 점수에 닿지도 "
+      "않았고, 이상치를 제외하려던 규칙이 오히려 아리스타의 관측 연도를 12년에서 2년으로 "
+      "줄여 실제 피해를 냈습니다. 통계적 안정성을 위해 프레임워크의 의미를 희생한 판단이었고, "
+      "지금은 버핏의 정의로 돌아가 있습니다.")
     w("")
     w("**DCF는 점 추정이 아닙니다.** 보수·기준·낙관 3개 시나리오의 범위로만 읽어야 하며, "
       "이 보고서는 '투자 가능 구간 안인가'라는 질문에만 답합니다. 목표주가가 아닙니다.")

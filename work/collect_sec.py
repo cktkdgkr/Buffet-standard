@@ -106,6 +106,15 @@ CONCEPTS = {
         "LongTermDebt",
         "ConvertibleDebtNoncurrent",
     ],
+    # Buffett's stated denominator is "net tangible assets" - the 2007 letter
+    # prices See's on "the capital required to conduct the business" and
+    # contrasts $82m earned "on $400 million of net tangible assets". Goodwill
+    # and acquired intangibles are collected so that basis can be built.
+    "goodwill": ["Goodwill"],
+    "intangible_assets": [
+        "IntangibleAssetsNetExcludingGoodwill",
+        "FiniteLivedIntangibleAssetsNet",
+    ],
     "current_assets": ["AssetsCurrent"],
     "current_liabilities": ["LiabilitiesCurrent"],
     "interest_expense": [

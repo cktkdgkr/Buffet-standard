@@ -355,8 +355,12 @@ def sheet_yearly(wb, companies, ref):
 # ===========================================================================
 
 SCORE_COLS = [
-    ("배점:ROIC", '=IF({ROIC 중앙값(총)}>={t1},25,IF({ROIC 중앙값(총)}>={t2},20,'
-                  'IF({ROIC 중앙값(총)}>={t3},15,IF({ROIC 중앙값(총)}>={t4},10,0))))',
+    # A business needing no net capital while earning money tops this dimension
+    # by construction; there is no ratio because the denominator is nil.
+    ("배점:ROIC", '=IF(AND(NOT(ISNUMBER({ROIC 중앙값})),{자본 불필요 년수}>0),25,'
+                  'IF(NOT(ISNUMBER({ROIC 중앙값})),0,'
+                  'IF({ROIC 중앙값}>={t1},25,IF({ROIC 중앙값}>={t2},20,'
+                  'IF({ROIC 중앙값}>={t3},15,IF({ROIC 중앙값}>={t4},10,0))))))',
      ["ROIC 25점 기준", "ROIC 20점 기준", "ROIC 15점 기준", "ROIC 10점 기준"]),
     # Palantir's invested capital is ~zero (its cash pile nearly equals its
     # equity and it carries no debt), so it has no meaningful ROIC in any year
@@ -390,10 +394,11 @@ def sheet_quality(wb, std, ref):
         "수식입니다. 배점 셀을 클릭하면 어떤 조건으로 몇 점이 됐는지 그대로 보입니다. "
         "가격은 여기에 들어가지 않습니다 — 'DCF계산'과 '밸류에이션'에서 따로 다룹니다.")
     labels = ["순위", "티커", "기업", "총점",
-              "ROIC 중앙값(총)", "ROIC 중앙값(순)", "두자릿수 년수", "관측 년수", "지속성 비율",
+              "ROIC 중앙값", "자본 불필요 년수", "자본집약도", "유형자산 ROIC",
+              "두자릿수 년수", "관측 년수", "지속성 비율",
               "신규 ROIC", "ROIC−WACC", "WACC", "주주이익률", "순부채/EBITDA",
               "이자보상배율", "해자 판정"] + [s[0] for s in SCORE_COLS]
-    widths = [6, 8, 26, 8, 14, 14, 12, 11, 11, 12, 11, 9, 12, 13, 12, 38] + [11] * len(SCORE_COLS)
+    widths = [6, 8, 26, 8, 13, 13, 12, 13, 12, 11, 11, 12, 11, 9, 12, 13, 12, 38] + [11] * len(SCORE_COLS)
     header(ws, r, labels, widths)
     col = {n: i for i, n in enumerate(labels, 1)}
     r += 1
@@ -406,12 +411,16 @@ def sheet_quality(wb, std, ref):
         put(ws, r, col["순위"], i, INT)
         put(ws, r, col["티커"], c["ticker"])
         put(ws, r, col["기업"], c["company_name"])
-        put(ws, r, col["ROIC 중앙값(총)"], s.get("roic_gross_10y_median"), PCT,
+        put(ws, r, col["ROIC 중앙값"], s.get("roic_10y_median"), PCT, font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["자본 불필요 년수"], s.get("capital_light_years") or 0, INT,
             font=BLUE, fill=RAW_FILL)
-        put(ws, r, col["ROIC 중앙값(순)"], s.get("roic_10y_median"), PCT, font=BLUE, fill=RAW_FILL)
-        put(ws, r, col["두자릿수 년수"], s.get("roic_gross_above_10pct_years"), INT,
+        put(ws, r, col["자본집약도"], s.get("capital_intensity_median"), PCT,
             font=BLUE, fill=RAW_FILL)
-        put(ws, r, col["관측 년수"], s.get("roic_gross_years_observed"), INT,
+        put(ws, r, col["유형자산 ROIC"], s.get("roic_tangible_10y_median"), PCT,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["두자릿수 년수"], s.get("roic_above_10pct_years"), INT,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, col["관측 년수"], s.get("roic_years_observed"), INT,
             font=BLUE, fill=RAW_FILL)
         put(ws, r, col["지속성 비율"],
             f"={get_column_letter(col['두자릿수 년수'])}{r}/{get_column_letter(col['관측 년수'])}{r}", PCT)
@@ -738,9 +747,10 @@ DEFINITIONS = [
      "기말 잔고를 쓰면 연말에 자본을 조달한 회사가 한 해 내내 그 자본으로 벌어들인 것처럼 "
      "보입니다. 전기 값이 없으면 당기 값을 그대로 씁니다.", "같은 행"),
     ("연도별계산", "ROIC", "NOPAT ÷ 투하자본(평균)",
-     "원칙 1의 핵심 지표. 순위와 배점은 현금을 빼지 않은 '총' 기준을 씁니다 — 현금을 빼는 것이 "
-     "원칙적으로는 맞지만 보유 현금이 자본 전체에 근접하면 분모가 0에 수렴해 비율이 의미를 "
-     "잃기 때문입니다. 아리스타의 순ROIC는 96~192%를 오가는 반면 총ROIC는 23~32%입니다.",
+     "원칙 1의 핵심 지표. 분모는 버핏이 2007년 주주서한에서 쓴 '사업을 영위하는 데 필요한 자본'"
+     "입니다(시즈캔디: 매출 $30M에 자본 $8M, 세전 ROIC 60%). 세 자릿수 ROIC는 이상치가 아니라 "
+     "자본이 거의 필요 없다는 발견입니다 — 같은 서한이 그 원형으로 마이크로소프트와 구글을 "
+     "지목합니다.",
      "같은 행"),
     ("연도별계산", "ROE", "순이익 ÷ 자기자본(평균)", "원칙 2에서 ROIC와 비교합니다.", "같은 행"),
     ("연도별계산", "ROE−ROIC", "ROE − ROIC",

@@ -129,12 +129,15 @@ def audit_derived(analysis):
             # The score is built on gross invested capital, so an extreme
             # net-of-cash ROIC is a reported detail rather than an input.
             roic = y.get("roic")
-            if roic is not None and (roic > 2.0 or roic < -1.0):
-                flag("LOW", "B1 net ROIC out of range", t,
-                     f"FY{fy} net ROIC {roic:.0%} (score uses the gross basis)")
-            rg = y.get("roic_gross")
-            if rg is not None and (rg > 2.0 or rg < -1.0):
-                flag("HIGH", "B1 gross ROIC out of range", t, f"FY{fy} gross ROIC {rg:.0%}")
+            if roic is not None and roic > 2.0:
+                flag("LOW", "B1 ROIC above 200%", t,
+                     f"FY{fy} ROIC {roic:.0%} - capital-light, see 자본집약도")
+            # A three-digit ROIC on required capital is the framework's own
+            # finding - a business that needs almost no capital - so it is
+            # informational. What would be a defect is a NEGATIVE one slipping
+            # through the invested-capital guard.
+            if roic is not None and roic < -1.0:
+                flag("HIGH", "B1 ROIC deeply negative", t, f"FY{fy} ROIC {roic:.0%}")
             roe = y.get("roe")
             if roe is not None and (roe > 3.0 or roe < -3.0):
                 excluded = (c["summary"].get("roe_years_capped_as_unstable") or 0) > 0
@@ -195,7 +198,7 @@ def audit_scoring(analysis):
                  f"net debt/EBITDA is absent yet scores {detail['순부채/EBITDA']}/5")
 
         # C2 - a company with very few observed years scored on the same scale
-        obs = s.get("roic_gross_years_observed") or 0
+        obs = s.get("roic_years_observed") or 0
         if 0 < obs < 5:
             flag("MED", "C2 thin history scored", t,
                  f"only {obs} observed ROIC years but scored on the full scale "

@@ -406,6 +406,27 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
                                       S.get("long_term_debt", {}), prev)[0], 0.0)
         ic_gross_avg = avg2(ic_gross_prev, ic_gross)
 
+        # Buffett's own denominator, in his words: "net tangible assets". The
+        # 2007 letter prices See's on "the capital required to conduct the
+        # business" - $8m against $30m of sales - and contrasts $82m earned on
+        # "$400 million of net tangible assets". Goodwill and acquired
+        # intangibles are not capital the business needs to operate; they record
+        # what was paid for someone else's earning power.
+        gw = S.get("goodwill", {}).get(y)
+        intang = S.get("intangible_assets", {}).get(y)
+        ic_tang = None
+        if ic is not None:
+            ic_tang = ic - (gw or 0.0) - (intang or 0.0)
+        ic_tang_prev = None
+        if prev is not None and ic_prev is not None:
+            ic_tang_prev = (ic_prev - (S.get("goodwill", {}).get(prev) or 0.0)
+                            - (S.get("intangible_assets", {}).get(prev) or 0.0))
+        ic_tang_avg = avg2(ic_tang_prev, ic_tang)
+        roic_tangible = None if fin else calc.roic(ebit, tax, ic_tang_avg)
+        if ic_tang_avg is not None and ic_tang_avg <= 0:
+            roic_tangible = None
+        capital_intensity = calc._safe_div(ic_avg, rev)
+
         nopat = calc.nopat(ebit, tax)
         roic_v = None if fin else calc.roic(ebit, tax, ic_avg)
         roic_status = "OK"
@@ -414,7 +435,17 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
         elif ic_avg is None:
             roic_status = "DATA_UNAVAILABLE"
         elif ic_avg <= 0:
-            roic_v, roic_status = None, "NOT_MEANINGFUL_NEGATIVE_INVESTED_CAPITAL"
+            # Required capital at or below zero with profits coming out is not a
+            # broken ratio - it is the far end of what Buffett prizes. See's
+            # needed $8m against $30m of sales and he called it the prototype of
+            # a dream business; a company that needs none at all while earning
+            # money is that case taken further. The ratio is undefined, so the
+            # condition is recorded instead of a number. With EBIT also at or
+            # below zero there is nothing to say either way.
+            if (ebit or 0) > 0:
+                roic_v, roic_status = None, "CAPITAL_LIGHT_NO_NET_CAPITAL_REQUIRED"
+            else:
+                roic_v, roic_status = None, "NOT_MEANINGFUL_NEGATIVE_INVESTED_CAPITAL"
         elif rev and ic_avg < 0.10 * rev:
             roic_status = "UNSTABLE_MINIMAL_INVESTED_CAPITAL"
         # The gross basis degenerates too, just far less often: Oracle's FY2022
@@ -515,6 +546,11 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             "total_equity": equity, "cash": cash,
             "invested_capital": ic, "invested_capital_avg": ic_avg,
             "invested_capital_gross_avg": ic_gross_avg,
+            "invested_capital_tangible": ic_tang,
+            "invested_capital_tangible_avg": ic_tang_avg,
+            "roic_tangible": roic_tangible,
+            "goodwill": gw, "intangible_assets": intang,
+            "capital_intensity": capital_intensity,
             "roic": roic_v, "roic_status": roic_status, "roic_gross": roic_gross_v,
             "roic_gross_status": roic_gross_status,
             "roe": roe_v, "roe_status": roe_status,
@@ -601,25 +637,40 @@ def summarise(rec, rf, erp):
         return v, fy, ("OK" if fy == latest_fy else f"STALE - latest available is FY{fy}, "
                                                     f"company's newest filed year is FY{latest_fy}")
 
-    # Two ROIC series are kept, and the ranking uses the gross one.
+    # The ranking uses ROIC on the capital the business actually requires -
+    # equity plus interest-bearing debt, less cash. That is Buffett's own
+    # denominator. The 2007 letter: "The capital then required to conduct the
+    # business was $8 million... Consequently, the company was earning 60%
+    # pre-tax on invested capital", and later "$82 million pre-tax on $400
+    # million of net tangible assets".
     #
-    # Deducting cash is right in principle - idle cash is not capital at work -
-    # but it stops describing anything once the pile approaches the whole capital
-    # base. Arista's net invested capital is under a fifth of its revenue, so its
-    # net ROIC swings between 96% and 192% while its gross ROIC sits at a steady
-    # 23-32%. Capping or dropping those years only moved the distortion around:
-    # dropping them shrank the consistency denominator too, and Arista scored a
-    # perfect 100 on two surviving years.
+    # An earlier build switched the ranking to GROSS invested capital, leaving
+    # cash in, because the net figure explodes when a company's cash approaches
+    # its whole capital base - Arista's net ROIC swings between 96% and 192%.
+    # That was backwards. Needing almost no capital is the condition Buffett
+    # prizes above all others, and the same letter names the archetypes: "It's
+    # far better to have an ever-increasing stream of earnings with virtually no
+    # major capital requirements. Ask Microsoft or Google." A 148% return on
+    # required capital is the See's Candy finding, not an artefact to suppress.
     #
-    # Gross invested capital (equity + interest-bearing debt, cash left in) is
-    # defined for every company here and comparable across all of them, so the
-    # score is built on it. The net figure stays beside it in every table, and
-    # the cash it deducts is visible separately as net cash.
+    # The instability never actually reached the score, which bands ROIC anyway:
+    # 148% and 35% both land in the top band. It only distorted the displayed
+    # median and the sort - and the exclusion rule introduced to fix it did real
+    # damage, shrinking Arista's observation count to two.
     roics = vals("roic")
     roics_gross = vals("roic_gross")
+    roics_tangible = vals("roic_tangible")
+    out["roic_tangible_10y_median"] = (statistics.median([v for _, v in roics_tangible])
+                                       if roics_tangible else None)
+    out["roic_tangible_latest"] = roics_tangible[-1][1] if roics_tangible else None
+    ci = vals("capital_intensity")
+    out["capital_intensity_latest"] = ci[-1][1] if ci else None
+    out["capital_intensity_median"] = (statistics.median([v for _, v in ci]) if ci else None)
+    out["roic_basis"] = ("capital required to run the business "
+                         "(equity + interest-bearing debt - cash), per the 2007 letter")
     out["roic_unstable_years"] = sum(
         1 for r in rows if (r.get("roic_status") or "").startswith(("UNSTABLE", "NOT_MEANINGFUL")))
-    out["roic_basis_for_score"] = "gross invested capital (cash not deducted)"
+
     out["roic_latest"], out["roic_latest_year"], out["roic_latest_status"] = \
         latest_of(roics, "roic")
     out["roic_gross_latest"], out["roic_gross_latest_year"], _ = latest_of(roics_gross, "roic_gross")
@@ -630,8 +681,13 @@ def summarise(rec, rf, erp):
     out["roic_gross_stdev"] = (statistics.pstdev([v for _, v in roics_gross])
                                if len(roics_gross) > 1 else None)
     out["roic_10y_median"] = statistics.median([v for _, v in roics]) if roics else None
-    out["roic_years_observed"] = len(roics)
-    out["roic_above_10pct_years"] = sum(1 for _, v in roics if v >= 0.10)
+    # Capital-light years count as observed and as clearing the bar: the
+    # business earned a return on capital it did not need.
+    capital_light_years = sum(
+        1 for r in rows if r.get("roic_status") == "CAPITAL_LIGHT_NO_NET_CAPITAL_REQUIRED")
+    out["capital_light_years"] = capital_light_years
+    out["roic_years_observed"] = len(roics) + capital_light_years
+    out["roic_above_10pct_years"] = sum(1 for _, v in roics if v >= 0.10) + capital_light_years
     # Consistency is the point of principle 1: a high average built out of two
     # good years is not a franchise.
     out["roic_stdev"] = statistics.pstdev([v for _, v in roics]) if len(roics) > 1 else None
@@ -640,8 +696,8 @@ def summarise(rec, rf, erp):
     # year yields a meaningful ROIC. Scoring it on a scale where 45 of the 100
     # points come from ROIC would rank it on the points it cannot lose rather
     # than on anything measured.
-    out["quality_scoreable"] = len(roics_gross) > 0
-    out["quality_not_scoreable_reason"] = None if roics_gross else (
+    out["quality_scoreable"] = len(roics) > 0 or len(roics_gross) > 0
+    out["quality_not_scoreable_reason"] = None if (roics or roics_gross) else (
         "no year yields a meaningful ROIC - invested capital is at or below zero "
         "throughout, so the return-on-capital half of the framework has nothing "
         "to measure")
@@ -652,8 +708,8 @@ def summarise(rec, rf, erp):
     # On the net basis Arista's incremental ROIC came out at 203% because the
     # denominator - the change in a capital base that is nearly all cash - is
     # noise rather than capital management actually deployed.
-    nop = [(r["fiscal_year"], r["nopat"], r["invested_capital_gross_avg"]) for r in rows
-           if r.get("nopat") is not None and r.get("invested_capital_gross_avg") is not None]
+    nop = [(r["fiscal_year"], r["nopat"], r["invested_capital"]) for r in rows
+           if r.get("nopat") is not None and r.get("invested_capital") is not None]
     inc_status = "DATA_UNAVAILABLE"
     if len(nop) >= 2 and not fin:
         (_, n0, i0), (_, n1, i1) = nop[0], nop[-1]
@@ -793,8 +849,8 @@ def summarise(rec, rf, erp):
     out["wacc_note"] = wacc_note
     # Spread on the gross basis too, so the score's three ROIC-derived
     # components all describe the same denominator.
-    out["roic_wacc_spread"] = calc.roic_wacc_spread(out["roic_gross_latest"], wacc_v)
-    out["roic_wacc_spread_net_basis"] = calc.roic_wacc_spread(out["roic_latest"], wacc_v)
+    out["roic_wacc_spread"] = calc.roic_wacc_spread(out["roic_latest"], wacc_v)
+    out["roic_wacc_spread_gross_basis"] = calc.roic_wacc_spread(out["roic_gross_latest"], wacc_v)
     r2 = (rec.get("beta") or {}).get("r_squared")
     out["beta_reliability"] = (
         "LOW - the market explains under 10% of this stock's variance, so its CAPM "
