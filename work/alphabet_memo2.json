@@ -1,0 +1,1071 @@
+{
+ "generated_at_utc": "2026-08-29T06:53:18.929542+00:00",
+ "filings_read": {
+  "2025": "0001652044-26-000018",
+  "2024": "0001652044-25-000014",
+  "2023": "0001652044-24-000022"
+ },
+ "corrections": [
+  {
+   "id": 1,
+   "what": "기술 인프라 시계열의 기준 불일치",
+   "was": "FY2022 $66.3B → FY2025 $203.7B (3배), 인프라 $1당 매출 $4.27 → $1.98",
+   "now": "FY2023 $112.5B → FY2025 $203.7B (1.8배), 인프라 $1당 매출 $2.73 → $1.98",
+   "why": "FY2024 10-K까지의 'technology equipment'는 서버·네트워크 장비만이고, FY2025 10-K의 'technical infrastructure'는 데이터센터 토지·건물·리스홀드까지 포함합니다. 서로 다른 선을 이어 붙여 증가폭이 과장됐습니다. 새 기준으로 소급된 가장 이른 해가 FY2023이라 FY2022는 뺐습니다."
+  },
+  {
+   "id": 2,
+   "what": "건설 중인 자산의 위치",
+   "was": "'FY2025 기술 인프라 $203.7B 중 $78.6B가 건설 중'",
+   "now": "'건설 중인 자산 $78.6B는 기술 인프라와 별개 항목'",
+   "why": "FY2025 유형자산 주석: 기술 인프라 203,679 + 사무공간 48,348 + 기타 14,463 = 사용 중인 유형자산 266,490, 감가상각누계액 (98,485), 여기에 미사용 자산 78,592를 더해 순액 246,597. 미사용 자산은 사용 중 자산 바깥에 있습니다. 따라서 인프라 $1당 매출은 이미 가동 자산 기준이었고, 놀고 있는 자본이 실제로 섞여 있던 곳은 투하자본입니다."
+  }
+ ],
+ "segments": {
+  "detail_2025": {
+   "구글 서비스": {
+    "revenue": 342721000000.0,
+    "operating_income": 139404000000.0
+   },
+   "구글 클라우드": {
+    "revenue": 58705000000.0,
+    "operating_income": 13910000000.0
+   },
+   "기타 베팅": {
+    "revenue": 1537000000.0,
+    "operating_income": -7515000000.0
+   },
+   "Alphabet 전사 활동": {
+    "revenue": null,
+    "operating_income": -16760000000.0
+   }
+  },
+  "services_revenue_lines": {
+   "Google 검색 및 기타": 224532000000.0,
+   "YouTube 광고": 40367000000.0,
+   "Google 네트워크": 29792000000.0,
+   "구독·플랫폼·기기": 48030000000.0
+  },
+  "total_revenue_2025": 402836000000
+ },
+ "roic_ex_construction": [
+  {
+   "fiscal_year": 2022,
+   "invested_capital_reported": 157694000000,
+   "assets_not_yet_in_service": 27657000000.0,
+   "invested_capital_ex_construction": 130037000000.0,
+   "invested_capital_ex_construction_avg": 130037000000.0,
+   "nopat": 62926542507.85105,
+   "roic_reported": 0.44140391770378123,
+   "roic_ex_construction": 0.48391259801326586,
+   "construction_share_of_capital": 0.17538397148908647,
+   "roic_ex_construction_note": "전기 값이 없어 기말 잔고 기준 (비교 불가)"
+  },
+  {
+   "fiscal_year": 2023,
+   "invested_capital_reported": 185463000000,
+   "assets_not_yet_in_service": 35229000000.0,
+   "invested_capital_ex_construction": 150234000000.0,
+   "invested_capital_ex_construction_avg": 140135500000.0,
+   "nopat": 72569057888.16687,
+   "roic_reported": 0.42294959967692264,
+   "roic_ex_construction": 0.5178492094306358,
+   "construction_share_of_capital": 0.18995163455783634
+  },
+  {
+   "fiscal_year": 2024,
+   "invested_capital_reported": 243727000000,
+   "assets_not_yet_in_service": 50597000000.0,
+   "invested_capital_ex_construction": 193130000000.0,
+   "invested_capital_ex_construction_avg": 171682000000.0,
+   "nopat": 93913633685.26479,
+   "roic_reported": 0.4376319750472508,
+   "roic_ex_construction": 0.5470208506731328,
+   "construction_share_of_capital": 0.20759702453975146
+  },
+  {
+   "fiscal_year": 2025,
+   "invested_capital_reported": 337507000000,
+   "assets_not_yet_in_service": 78592000000.0,
+   "invested_capital_ex_construction": 258915000000.0,
+   "invested_capital_ex_construction_avg": 226022500000.0,
+   "nopat": 107382195799.17645,
+   "roic_reported": 0.3694972964388747,
+   "roic_ex_construction": 0.4750951599914896,
+   "construction_share_of_capital": 0.2328603554889232
+  }
+ ],
+ "infrastructure_corrected": [
+  {
+   "fiscal_year": 2023,
+   "technical_infrastructure": 112504000000.0,
+   "source_note": "FY2024 10-K, new categories",
+   "revenue": 307394000000,
+   "operating_income": 84293000000,
+   "revenue_per_dollar": 2.73229396288132,
+   "operating_income_per_dollar": 0.7492444713076868,
+   "assets_not_yet_in_service": 35229000000.0
+  },
+  {
+   "fiscal_year": 2024,
+   "technical_infrastructure": 141852000000.0,
+   "source_note": "FY2025 10-K, includes finance-lease right-of-use assets",
+   "revenue": 350018000000,
+   "operating_income": 112390000000,
+   "revenue_per_dollar": 2.4674872402222032,
+   "operating_income_per_dollar": 0.7923046555564955,
+   "assets_not_yet_in_service": 50597000000.0
+  },
+  {
+   "fiscal_year": 2025,
+   "technical_infrastructure": 203679000000.0,
+   "source_note": "FY2025 10-K, includes finance-lease right-of-use assets",
+   "revenue": 402836000000,
+   "operating_income": 129039000000,
+   "revenue_per_dollar": 1.9777983984603225,
+   "operating_income_per_dollar": 0.6335410130646753,
+   "assets_not_yet_in_service": 78592000000.0
+  }
+ ],
+ "incremental_roic_by_year": {
+  "annual": [
+   {
+    "fiscal_year": 2015,
+    "nopat": 16114006091.37056,
+    "delta_nopat": 3096130200.530998,
+    "invested_capital": 52490000000,
+    "delta_invested_capital": 11025000000,
+    "incremental_roic": 0.2808281361025849,
+    "status": "OK",
+    "capex": 9950000000,
+    "revenue_growth": 0.13617975485219921
+   },
+   {
+    "fiscal_year": 2016,
+    "nopat": 19118441825.72614,
+    "delta_nopat": 3004435734.3555794,
+    "invested_capital": 56703000000,
+    "delta_invested_capital": 4213000000,
+    "incremental_roic": 0.7131345203787276,
+    "status": "OK",
+    "capex": 10212000000,
+    "revenue_growth": 0.2038032244729227
+   },
+   {
+    "fiscal_year": 2017,
+    "nopat": 15706800000.0,
+    "delta_nopat": -3411641825.726139,
+    "invested_capital": 54657000000,
+    "delta_invested_capital": -2046000000,
+    "incremental_roic": null,
+    "status": "투하자본이 줄어 산출 불가 (자사주 매입·자산 감소)",
+    "capex": 13184000000,
+    "revenue_growth": 0.22801090038993266
+   },
+   {
+    "fiscal_year": 2018,
+    "nopat": 24231021797.038353,
+    "delta_nopat": 8524221797.038353,
+    "invested_capital": 72550000000,
+    "delta_invested_capital": 17893000000,
+    "incremental_roic": 0.4763998098160372,
+    "status": "OK",
+    "capex": 25139000000,
+    "revenue_growth": 0.23421586757475982
+   },
+   {
+    "fiscal_year": 2019,
+    "nopat": 29668018498.42271,
+    "delta_nopat": 5436996701.384357,
+    "invested_capital": 86452000000,
+    "delta_invested_capital": 13902000000,
+    "incremental_roic": 0.3910945692263241,
+    "status": "OK",
+    "capex": 23548000000,
+    "revenue_growth": 0.1830008989979462
+   },
+   {
+    "fiscal_year": 2020,
+    "nopat": 34525378644.8151,
+    "delta_nopat": 4857360146.392391,
+    "invested_capital": 101169000000,
+    "delta_invested_capital": 14717000000,
+    "incremental_roic": 0.3300509714202889,
+    "status": "OK",
+    "capex": 22281000000,
+    "revenue_growth": 0.12770532012826136
+   },
+   {
+    "fiscal_year": 2021,
+    "nopat": 65960517138.007805,
+    "delta_nopat": 31435138493.192703,
+    "invested_capital": 127426000000,
+    "delta_invested_capital": 26257000000,
+    "incremental_roic": 1.1972098295004268,
+    "status": "OK",
+    "capex": 24640000000,
+    "revenue_growth": 0.4115007642704915
+   },
+   {
+    "fiscal_year": 2022,
+    "nopat": 62926542507.85105,
+    "delta_nopat": -3033974630.1567535,
+    "invested_capital": 157694000000,
+    "delta_invested_capital": 30268000000,
+    "incremental_roic": -0.10023703680972491,
+    "status": "OK",
+    "capex": 31485000000,
+    "revenue_growth": 0.0978081564371577
+   },
+   {
+    "fiscal_year": 2023,
+    "nopat": 72569057888.16687,
+    "delta_nopat": 9642515380.315819,
+    "invested_capital": 185463000000,
+    "delta_invested_capital": 27769000000,
+    "incremental_roic": 0.3472402816203615,
+    "status": "OK",
+    "capex": 32251000000,
+    "revenue_growth": 0.08682770227269514
+   },
+   {
+    "fiscal_year": 2024,
+    "nopat": 93913633685.26479,
+    "delta_nopat": 21344575797.097916,
+    "invested_capital": 243727000000,
+    "delta_invested_capital": 58264000000,
+    "incremental_roic": 0.3663424378192008,
+    "status": "OK",
+    "capex": 52535000000,
+    "revenue_growth": 0.13866243322901553
+   },
+   {
+    "fiscal_year": 2025,
+    "nopat": 107382195799.17645,
+    "delta_nopat": 13468562113.911667,
+    "invested_capital": 337507000000,
+    "delta_invested_capital": 93780000000,
+    "incremental_roic": 0.14361870456293097,
+    "status": "OK",
+    "capex": 91447000000,
+    "revenue_growth": 0.15090081081544376
+   }
+  ],
+  "rolling_3y": [
+   {
+    "window": "FY2014→FY2017",
+    "delta_nopat": 2688924109.1604385,
+    "delta_invested_capital": 13192000000,
+    "incremental_roic": 0.20382990518196167
+   },
+   {
+    "window": "FY2015→FY2018",
+    "delta_nopat": 8117015705.667793,
+    "delta_invested_capital": 20060000000,
+    "incremental_roic": 0.40463687465941145
+   },
+   {
+    "window": "FY2016→FY2019",
+    "delta_nopat": 10549576672.696571,
+    "delta_invested_capital": 29749000000,
+    "incremental_roic": 0.35461953923481704
+   },
+   {
+    "window": "FY2017→FY2020",
+    "delta_nopat": 18818578644.8151,
+    "delta_invested_capital": 46512000000,
+    "incremental_roic": 0.4045962040938919
+   },
+   {
+    "window": "FY2018→FY2021",
+    "delta_nopat": 41729495340.96945,
+    "delta_invested_capital": 54876000000,
+    "incremental_roic": 0.760432526805333
+   },
+   {
+    "window": "FY2019→FY2022",
+    "delta_nopat": 33258524009.42834,
+    "delta_invested_capital": 71242000000,
+    "incremental_roic": 0.4668387188656739
+   },
+   {
+    "window": "FY2020→FY2023",
+    "delta_nopat": 38043679243.35177,
+    "delta_invested_capital": 84294000000,
+    "incremental_roic": 0.4513213187575838
+   },
+   {
+    "window": "FY2021→FY2024",
+    "delta_nopat": 27953116547.25698,
+    "delta_invested_capital": 116301000000,
+    "incremental_roic": 0.2403514720187873
+   },
+   {
+    "window": "FY2022→FY2025",
+    "delta_nopat": 44455653291.3254,
+    "delta_invested_capital": 179813000000,
+    "incremental_roic": 0.2472326989223549
+   }
+  ]
+ },
+ "backlog": {
+  "backlog": 242800000000.0,
+  "backlog_prior": 93200000000.0,
+  "backlog_growth": 1.6051502145922747,
+  "cloud_revenue_2025": 58705000000.0,
+  "cloud_operating_margin_2025": 0.23694744910995658,
+  "cloud_nopat_2025": 11575464344.628712,
+  "near_term_implied_annual_revenue": 60700000000.0,
+  "near_term_vs_current_cloud_revenue": 1.0339834767055618,
+  "reading": "계약잔고 중 24개월 내 인식분만 연 환산해도 $60.7B으로, 현재 클라우드 연매출 $58.7B을 이미 넘습니다. 신규 계약을 한 건도 더 따내지 못한다고 가정해도 향후 2년 클라우드 매출은 지금 수준 이상이 계약으로 확보돼 있다는 뜻입니다.",
+  "scenarios": [
+   {
+    "scenario": "보수",
+    "years_to_deliver": 4.0,
+    "implied_annual_revenue": 60700000000.0,
+    "assumed_operating_margin": 0.23694744910995658,
+    "backlog_operating_income": 14382710160.974363,
+    "backlog_nopat": 11968838867.540462,
+    "uplift_over_current_cloud_nopat": 393374522.9117508,
+    "company_nopat_adjusted": 107775570322.08821,
+    "roic_ex_construction_with_backlog": 0.4768355819535144,
+    "note": "잔고 전체를 4년에 걸쳐 인식하고 마진은 현재 수준 유지"
+   },
+   {
+    "scenario": "중립",
+    "years_to_deliver": 3.0,
+    "implied_annual_revenue": 80933333333.33333,
+    "assumed_operating_margin": 0.3,
+    "backlog_operating_income": 24279999999.999996,
+    "backlog_nopat": 20205052069.560394,
+    "uplift_over_current_cloud_nopat": 8629587724.931683,
+    "company_nopat_adjusted": 116011783524.10814,
+    "roic_ex_construction_with_backlog": 0.5132753753458533,
+    "note": "3년에 걸쳐 인식하고, 규모 확대로 마진이 30%까지 개선"
+   },
+   {
+    "scenario": "낙관",
+    "years_to_deliver": 2.5,
+    "implied_annual_revenue": 97120000000.0,
+    "assumed_operating_margin": 0.35,
+    "backlog_operating_income": 33991999999.999996,
+    "backlog_nopat": 28287072897.384556,
+    "uplift_over_current_cloud_nopat": 16711608552.755844,
+    "company_nopat_adjusted": 124093804351.9323,
+    "roic_ex_construction_with_backlog": 0.5490329695137975,
+    "note": "2.5년에 걸쳐 인식하고 마진 35% — 현재 구글 서비스 마진(40.7%)에 근접"
+   }
+  ]
+ },
+ "depreciation": {
+  "policy": {
+   "servers_and_network_equipment_years": 6,
+   "buildings_years": [
+    7,
+    40
+   ],
+   "corporate_and_other_years": [
+    2,
+    25
+   ],
+   "servers_share_of_technical_infrastructure": 0.6,
+   "source": "FY2025 10-K, Property and Equipment 회계정책 주석"
+  },
+  "servers_gross_2025": 122207400000.0,
+  "reported_depreciation_2025": 21136000000,
+  "service_life_change_2023": -3900000000.0,
+  "scenarios": [
+   {
+    "scenario": "보수 (4년)",
+    "useful_life_years": 4,
+    "annual_server_depreciation": 30551850000.0,
+    "delta_vs_reported": 10183950000.0,
+    "adjusted_operating_income": 118855050000.0,
+    "adjusted_nopat": 98907433030.48619,
+    "adjusted_roic": 0.3403360196770533,
+    "adjusted_operating_margin": 0.29504575062804717,
+    "note": "AI 가속기 세대교체 주기에 맞춤. 상각을 앞당김"
+   },
+   {
+    "scenario": "중립 (6년, 보고 기준)",
+    "useful_life_years": 6,
+    "annual_server_depreciation": 20367900000.0,
+    "delta_vs_reported": 0.0,
+    "adjusted_operating_income": 129039000000.0,
+    "adjusted_nopat": 107382195799.17645,
+    "adjusted_roic": 0.3694972964388747,
+    "adjusted_operating_margin": 0.32032638592380025,
+    "note": "알파벳이 실제로 적용 중인 내용연수"
+   },
+   {
+    "scenario": "낙관 (8년)",
+    "useful_life_years": 8,
+    "annual_server_depreciation": 15275925000.0,
+    "delta_vs_reported": -5091975000.0,
+    "adjusted_operating_income": 134130975000.0,
+    "adjusted_nopat": 111619577183.52158,
+    "adjusted_roic": 0.3840779348197854,
+    "adjusted_operating_margin": 0.3329667035716768,
+    "note": "구형 가속기를 추론용으로 오래 쓴다고 가정"
+   }
+  ]
+ },
+ "leases": {
+  "what_they_are": "FY2025 10-K 유동성 항목의 원문: '2025년 12월 31일 기준, 우리는 아직 개시되지 않은, 주로 데이터센터와 관련된 리스를 체결했으며 단기 58억 달러, 장기 527억 달러의 향후 리스료가 있다. 이 리스들은 2026년에서 2031년 사이에 개시되며 해지불능 계약기간은 주로 1년에서 25년이다.' 즉 제3자 데이터센터 운영사로부터 빌려 쓰기로 이미 서명한 전산 설비 임차 계약입니다.",
+  "short_term": 5800000000.0,
+  "long_term": 52700000000.0,
+  "total_undiscounted": 58500000000.0,
+  "commence_between": [
+   2026,
+   2031
+  ],
+  "term_range_years": [
+   1,
+   25
+  ],
+  "power_purchase_agreement_2026": 9900000000.0,
+  "why_not_on_balance_sheet": "ASC 842는 리스 자산과 부채를 '개시일(commencement date)'에 인식하도록 합니다. 서명일이 아닙니다. 개시 전에는 사용할 자산을 넘겨받지도 않았고 지급 의무도 시작되지 않았으므로 자산도 부채도 없습니다. 회계상의 누락이 아니라 정의상 아직 자본이 아닌 것이고, 그래서 10-K는 이를 주석의 약정사항으로 공시합니다.",
+  "present_value_estimates": {
+   "10": 45102038632.266716,
+   "15": 41554357723.486145,
+   "20": 38384216589.00833
+  },
+  "already_commenced": {
+   "operating_lease_right_of_use_asset": 15221000000.0,
+   "operating_lease_liability": 15954000000.0,
+   "finance_lease_right_of_use_asset": 4797000000.0,
+   "finance_lease_liability": 2500000000.0
+  },
+  "scenarios": [
+   {
+    "basis": "보고 기준 (현행)",
+    "added_capital": 0.0,
+    "invested_capital_avg": 290617000000.0,
+    "roic": 0.3694972964388747,
+    "note": "이미 개시된 금융리스는 유형자산에 포함돼 투하자본에 들어가 있습니다"
+   },
+   {
+    "basis": "개시된 운용리스 부채를 자본으로 가산",
+    "added_capital": 15266000000.0,
+    "invested_capital_avg": 305883000000.0,
+    "roic": 0.351056435954847,
+    "note": "이 모델은 운용리스 부채를 이자부부채로 보지 않아 자산·부채가 상계돼 투하자본에서 사실상 빠져 있습니다. 이 조정만이 오늘 시점에 정당합니다"
+   },
+   {
+    "basis": "미개시 임차약정까지 자본화 (평균 10년 계약 가정)",
+    "added_capital": 60368038632.266716,
+    "invested_capital_avg": 350985038632.2667,
+    "roic": 0.30594522267281793,
+    "note": "참고용. 아직 이익을 내지 않는 자본을 분모에만 넣는 계산입니다"
+   },
+   {
+    "basis": "미개시 임차약정까지 자본화 (평균 15년 계약 가정)",
+    "added_capital": 56820357723.486145,
+    "invested_capital_avg": 347437357723.48615,
+    "roic": 0.30906922762358324,
+    "note": "참고용. 아직 이익을 내지 않는 자본을 분모에만 넣는 계산입니다"
+   },
+   {
+    "basis": "미개시 임차약정까지 자본화 (평균 20년 계약 가정)",
+    "added_capital": 53650216589.00833,
+    "invested_capital_avg": 344267216589.0083,
+    "roic": 0.311915252527141,
+    "note": "참고용. 아직 이익을 내지 않는 자본을 분모에만 넣는 계산입니다"
+   }
+  ]
+ },
+ "cash": {
+  "cash_flow": {
+   "operating": 164713000000.0,
+   "capex": -91447000000.0,
+   "purchases_of_marketable_securities": -103773000000.0,
+   "maturities_and_sales_of_marketable_securities": 83240000000.0,
+   "purchases_of_non_marketable": -5716000000.0,
+   "maturities_and_sales_of_non_marketable": 1367000000.0,
+   "acquisitions_and_intangibles": -1592000000.0,
+   "other_investing": -2370000000.0,
+   "investing_total": -120291000000.0,
+   "stock_award_net_payments": -14167000000.0,
+   "buybacks": -45709000000.0,
+   "dividends": -10049000000.0,
+   "debt_issued": 64564000000.0,
+   "debt_repaid": -32427000000.0,
+   "other_financing": 400000000.0,
+   "financing_total": -37388000000.0,
+   "fx": 208000000.0,
+   "net_change_in_cash": 7242000000.0,
+   "cash_end_of_period": 30708000000.0
+  },
+  "net_purchases_of_marketable_securities": -20533000000.0,
+  "net_debt_raised": 32137000000.0,
+  "cash_and_equivalents_only": 30708000000.0,
+  "cash_and_short_term_securities": 126843000000.0,
+  "short_term_securities": 96135000000.0,
+  "interest_income": 4337000000.0,
+  "interest_expense_net_of_capitalised": 736000000.0,
+  "interest_capitalised": 447000000.0,
+  "yield_on_liquidity": 0.03898426966292135,
+  "cost_of_debt": 0.03732744340143567,
+  "average_liquidity": 111250000000.0,
+  "average_debt": 31692500000.0,
+  "pending_acquisitions": {
+   "Wiz": {
+    "price": 32000000000.0,
+    "expected_close": "2026",
+    "note": "all-cash; joins the Google Cloud segment on closing"
+   },
+   "Intersect": {
+    "price": 4800000000.0,
+    "expected_close": "2026 상반기",
+    "note": "데이터센터·에너지 인프라. 현금 대가에 부채 인수가 추가됩니다"
+   }
+  },
+  "committed_to_acquisitions": 36800000000.0,
+  "net_cash": 77758000000,
+  "net_cash_after_commitments": 40958000000.0,
+  "capex_guidance": "FY2025 10-K: '2026년에는 2025년 대비 기술 인프라 투자를 상당히 늘릴 것으로 예상한다'"
+ },
+ "dcf": {
+  "starting_nopat": 107382195799.17645,
+  "current_reinvestment_rate": 0.6102408272834234,
+  "implied_growth_at_current_price": 0.2899999999999999,
+  "implied_growth_reachable": false,
+  "implied_incremental_roic_at_current_price": {
+   "10%": {
+    "value": null,
+    "ceiling_at_free_growth": 2247933300886.342,
+    "note": "이 할인율에서는 신규 자본이 아무리 높은 수익률을 내도 — 성장에 자본이 전혀 들지 않는다고 가정해도 — 현재 시가총액에 닿지 않습니다"
+   },
+   "8%": {
+    "value": null,
+    "ceiling_at_free_growth": 3094650197380.632,
+    "note": "이 할인율에서는 신규 자본이 아무리 높은 수익률을 내도 — 성장에 자본이 전혀 들지 않는다고 가정해도 — 현재 시가총액에 닿지 않습니다"
+   }
+  },
+  "free_growth_ceiling_at_neutral_path": 2247933300886.342,
+  "implied_discount_rate_at_current_price": 0.057793331860038405,
+  "implied_note": "첫 번째는 할인율 10%·재투자율 경로를 중립과 동일하게 두고 현재 주가를 정당화하는 첫해 성장률을, 두 번째는 중립 성장 경로가 맞다고 볼 때 현재 주가가 주는 연 수익률을 역산한 값입니다.",
+  "bridge_to_optimistic": [
+   {
+    "step": "중립 시나리오",
+    "why": "출발점",
+    "assumptions": {
+     "growth": 0.11,
+     "fade_to": 0.04,
+     "inc_roic": 0.2,
+     "disc": 0.1,
+     "tg": 0.025
+    },
+    "equity_value": 1716598739885.752,
+    "value_per_share": 141.9028469774119,
+    "margin_of_safety": -1.5076311545507084
+   },
+   {
+    "step": "+ 건설 중인 자본이 가동에 들어가 신규 ROIC 25%",
+    "why": "미사용 자산 $79B이 분모에만 들어가 있는 상태가 해소되면 측정되는 신규 수익률이 올라갑니다",
+    "assumptions": {
+     "growth": 0.11,
+     "fade_to": 0.04,
+     "inc_roic": 0.25,
+     "disc": 0.1,
+     "tg": 0.025
+    },
+    "equity_value": 1822865652107.1235,
+    "value_per_share": 150.6874144091199,
+    "margin_of_safety": -1.361444725794325
+   },
+   {
+    "step": "+ 계약잔고가 인식되며 성장률 13%",
+    "why": "잔고 $243B의 24개월 인식분만으로도 현재 클라우드 매출을 넘습니다",
+    "assumptions": {
+     "growth": 0.13,
+     "fade_to": 0.04,
+     "inc_roic": 0.25,
+     "disc": 0.1,
+     "tg": 0.025
+    },
+    "equity_value": 1927820858106.9429,
+    "value_per_share": 159.3635494839169,
+    "margin_of_safety": -1.2328819931054034
+   },
+   {
+    "step": "+ 계약 확보로 현금흐름의 확실성이 높아져 할인율 8%",
+    "why": "계약으로 확보된 매출은 광고 매출보다 예측 가능성이 높습니다",
+    "assumptions": {
+     "growth": 0.13,
+     "fade_to": 0.04,
+     "inc_roic": 0.25,
+     "disc": 0.08,
+     "tg": 0.025
+    },
+    "equity_value": 2740657090099.9556,
+    "value_per_share": 226.55675705546463,
+    "margin_of_safety": -0.5706439508793144
+   },
+   {
+    "step": "+ 신규 ROIC가 전체 기간 실측치 수준(30%)까지 회복",
+    "why": "= 낙관 시나리오에 준하는 가정",
+    "assumptions": {
+     "growth": 0.13,
+     "fade_to": 0.04,
+     "inc_roic": 0.3,
+     "disc": 0.08,
+     "tg": 0.025
+    },
+    "equity_value": 2842734745585.3267,
+    "value_per_share": 234.99501906136453,
+    "margin_of_safety": -0.5142448611094989
+   }
+  ],
+  "reinvestment_definition": "(설비투자 − 감가상각 + 운전자본증감) ÷ NOPAT",
+  "net_cash": 77758000000,
+  "shares_outstanding": 12097000000.0,
+  "market_cap": 4304596479999.9995,
+  "price": 355.84,
+  "risk_free_rate": 0.04650000000000001,
+  "wacc": 0.09957343826435333,
+  "scenarios": [
+   {
+    "scenario": "보수",
+    "story": "검색 점유율이 생성형 AI에 잠식되기 시작하고, 데이터센터 투자는 해자를 지키는 비용으로 계속 나갑니다. 신규 자본의 수익률이 12%까지 내려가 자본비용을 겨우 넘습니다.",
+    "assumptions": {
+     "growth": 0.08,
+     "fade_to": 0.03,
+     "incremental_roic": 0.12,
+     "discount": 0.12,
+     "terminal_growth": 0.02
+    },
+    "first_year_reinvestment_rate": 0.6666666666666667,
+    "terminal_reinvestment_rate": 0.16666666666666669,
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.08,
+      "nopat": 115972771463.11058,
+      "reinvestment_rate": 0.6666666666666667,
+      "free_cash_flow": 38657590487.70352,
+      "present_value": 34515705792.59243
+     },
+     {
+      "year": 2,
+      "growth": 0.07444444444444445,
+      "nopat": 124606300005.36438,
+      "reinvestment_rate": 0.6203703703703705,
+      "free_cash_flow": 47304243520.554985,
+      "present_value": 37710653316.76896
+     },
+     {
+      "year": 3,
+      "growth": 0.06888888888888889,
+      "nopat": 133190289561.28949,
+      "reinvestment_rate": 0.5740740740740741,
+      "free_cash_flow": 56729197405.73441,
+      "present_value": 40378722187.70955
+     },
+     {
+      "year": 4,
+      "growth": 0.06333333333333332,
+      "nopat": 141625674566.8378,
+      "reinvestment_rate": 0.5277777777777777,
+      "free_cash_flow": 66878790767.673416,
+      "present_value": 42502680594.71056
+     },
+     {
+      "year": 5,
+      "growth": 0.057777777777777775,
+      "nopat": 149808491319.5884,
+      "reinvestment_rate": 0.48148148148148145,
+      "free_cash_flow": 77678476980.52733,
+      "present_value": 44076853950.070206
+     },
+     {
+      "year": 6,
+      "growth": 0.052222222222222225,
+      "nopat": 157631823644.0558,
+      "reinvestment_rate": 0.43518518518518523,
+      "free_cash_flow": 89032789280.4389,
+      "present_value": 45106781854.692894
+     },
+     {
+      "year": 7,
+      "growth": 0.04666666666666666,
+      "nopat": 164987975414.11172,
+      "reinvestment_rate": 0.38888888888888884,
+      "free_cash_flow": 100825984975.29051,
+      "present_value": 45608555189.14206
+     },
+     {
+      "year": 8,
+      "growth": 0.04111111111111111,
+      "nopat": 171770814403.35855,
+      "reinvestment_rate": 0.3425925925925926,
+      "free_cash_flow": 112923405765.1709,
+      "present_value": 45607869634.86131
+     },
+     {
+      "year": 9,
+      "growth": 0.035555555555555556,
+      "nopat": 177878221137.7002,
+      "reinvestment_rate": 0.2962962962962963,
+      "free_cash_flow": 125173563022.82607,
+      "present_value": 45138841688.69462
+     },
+     {
+      "year": 10,
+      "growth": 0.03,
+      "nopat": 183214567771.8312,
+      "reinvestment_rate": 0.25,
+      "free_cash_flow": 137410925828.87341,
+      "present_value": 44242640532.046425
+     }
+    ],
+    "pv_of_forecast": 424889304741.28906,
+    "terminal_value": 1557323826060.5654,
+    "pv_of_terminal": 501416592696.5262,
+    "terminal_share_of_value": 0.5413077840521763,
+    "enterprise_value": 926305897437.8152,
+    "equity_value": 1004063897437.8152,
+    "value_per_share": 83.00106616829092,
+    "upside_vs_market": -0.7667461045180674,
+    "margin_of_safety": -3.2871738451950434
+   },
+   {
+    "scenario": "중립",
+    "story": "클라우드가 계약잔고대로 인도되고 검색은 완만히 성장합니다. 신규 자본이 최근 4년의 실측치(19.7%)와 같은 수익률을 냅니다.",
+    "assumptions": {
+     "growth": 0.11,
+     "fade_to": 0.04,
+     "incremental_roic": 0.2,
+     "discount": 0.1,
+     "terminal_growth": 0.025
+    },
+    "first_year_reinvestment_rate": 0.5499999999999999,
+    "terminal_reinvestment_rate": 0.125,
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.11,
+      "nopat": 119194237337.08588,
+      "reinvestment_rate": 0.5499999999999999,
+      "free_cash_flow": 53637406801.68865,
+      "present_value": 48761278910.626045
+     },
+     {
+      "year": 2,
+      "growth": 0.10222222222222223,
+      "nopat": 131378537153.76576,
+      "reinvestment_rate": 0.5111111111111111,
+      "free_cash_flow": 64229507052.952156,
+      "present_value": 53082237233.84475
+     },
+     {
+      "year": 3,
+      "growth": 0.09444444444444444,
+      "nopat": 143786510107.177,
+      "reinvestment_rate": 0.4722222222222222,
+      "free_cash_flow": 75887324778.78786,
+      "present_value": 57015270307.12835
+     },
+     {
+      "year": 4,
+      "growth": 0.08666666666666667,
+      "nopat": 156248007649.799,
+      "reinvestment_rate": 0.43333333333333335,
+      "free_cash_flow": 88540537668.21944,
+      "present_value": 60474378572.65174
+     },
+     {
+      "year": 5,
+      "growth": 0.07888888888888888,
+      "nopat": 168574239364.39426,
+      "reinvestment_rate": 0.3944444444444444,
+      "free_cash_flow": 102081067170.66098,
+      "present_value": 63384311286.897285
+     },
+     {
+      "year": 6,
+      "growth": 0.07111111111111111,
+      "nopat": 180561740830.30673,
+      "reinvestment_rate": 0.3555555555555555,
+      "free_cash_flow": 116362010757.30879,
+      "present_value": 65683321521.13799
+     },
+     {
+      "year": 7,
+      "growth": 0.06333333333333332,
+      "nopat": 191997317749.55948,
+      "reinvestment_rate": 0.3166666666666666,
+      "free_cash_flow": 131198167128.86565,
+      "present_value": 67325404559.16642
+     },
+     {
+      "year": 8,
+      "growth": 0.05555555555555555,
+      "nopat": 202663835402.31277,
+      "reinvestment_rate": 0.27777777777777773,
+      "free_cash_flow": 146368325568.33704,
+      "present_value": 68281904106.5702
+     },
+     {
+      "year": 9,
+      "growth": 0.04777777777777777,
+      "nopat": 212346663093.7566,
+      "reinvestment_rate": 0.23888888888888885,
+      "free_cash_flow": 161619404688.02588,
+      "present_value": 68542404610.97054
+     },
+     {
+      "year": 10,
+      "growth": 0.039999999999999994,
+      "nopat": 220840529617.50687,
+      "reinvestment_rate": 0.19999999999999996,
+      "free_cash_flow": 176672423694.0055,
+      "present_value": 68114867382.47476
+     }
+    ],
+    "pv_of_forecast": 620665378491.4681,
+    "terminal_value": 2640884666676.019,
+    "pv_of_terminal": 1018175361394.2839,
+    "terminal_share_of_value": 0.6212777950987866,
+    "enterprise_value": 1638840739885.752,
+    "equity_value": 1716598739885.752,
+    "value_per_share": 141.9028469774119,
+    "upside_vs_market": -0.6012172690607803,
+    "margin_of_safety": -1.5076311545507084
+   },
+   {
+    "scenario": "낙관",
+    "story": "AI 인프라가 완공되며 수익을 내기 시작하고, 계약잔고가 마진 개선과 함께 인식됩니다. 신규 자본의 수익률이 전체 기간 실측치(31.9%)에 가까운 30%로 회복됩니다.",
+    "assumptions": {
+     "growth": 0.15,
+     "fade_to": 0.05,
+     "incremental_roic": 0.3,
+     "discount": 0.08,
+     "terminal_growth": 0.03
+    },
+    "first_year_reinvestment_rate": 0.5,
+    "terminal_reinvestment_rate": 0.1,
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.15,
+      "nopat": 123489525169.05292,
+      "reinvestment_rate": 0.5,
+      "free_cash_flow": 61744762584.52646,
+      "present_value": 57171076467.15412
+     },
+     {
+      "year": 2,
+      "growth": 0.1388888888888889,
+      "nopat": 140640848109.19916,
+      "reinvestment_rate": 0.462962962962963,
+      "free_cash_flow": 75529344354.94028,
+      "present_value": 64754238987.43165
+     },
+     {
+      "year": 3,
+      "growth": 0.12777777777777777,
+      "nopat": 158611623145.3746,
+      "reinvestment_rate": 0.42592592592592593,
+      "free_cash_flow": 91054820694.5669,
+      "present_value": 72282252367.65775
+     },
+     {
+      "year": 4,
+      "growth": 0.11666666666666667,
+      "nopat": 177116312512.335,
+      "reinvestment_rate": 0.3888888888888889,
+      "free_cash_flow": 108237746535.31584,
+      "present_value": 79557974902.87302
+     },
+     {
+      "year": 5,
+      "growth": 0.10555555555555556,
+      "nopat": 195811923277.5259,
+      "reinvestment_rate": 0.35185185185185186,
+      "free_cash_flow": 126915135457.65569,
+      "present_value": 86376308641.74312
+     },
+     {
+      "year": 6,
+      "growth": 0.09444444444444444,
+      "nopat": 214305271587.07004,
+      "reinvestment_rate": 0.3148148148148148,
+      "free_cash_flow": 146838797198.54797,
+      "present_value": 92533350042.57283
+     },
+     {
+      "year": 7,
+      "growth": 0.08333333333333333,
+      "nopat": 232164044219.32587,
+      "reinvestment_rate": 0.2777777777777778,
+      "free_cash_flow": 167674031936.17978,
+      "present_value": 97836187169.63718
+     },
+     {
+      "year": 8,
+      "growth": 0.07222222222222222,
+      "nopat": 248931447412.94385,
+      "reinvestment_rate": 0.24074074074074073,
+      "free_cash_flow": 189003506369.087,
+      "present_value": 102112713552.9887
+     },
+     {
+      "year": 9,
+      "growth": 0.061111111111111116,
+      "nopat": 264143924754.84598,
+      "reinvestment_rate": 0.20370370370370372,
+      "free_cash_flow": 210336828971.45142,
+      "present_value": 105220781442.6749
+     },
+     {
+      "year": 10,
+      "growth": 0.05,
+      "nopat": 277351120992.5883,
+      "reinvestment_rate": 0.16666666666666669,
+      "free_cash_flow": 231125934160.49023,
+      "present_value": 107056027630.62852
+     }
+    ],
+    "pv_of_forecast": 864900911205.3618,
+    "terminal_value": 5142089783202.587,
+    "pv_of_terminal": 2381782502726.2236,
+    "terminal_share_of_value": 0.7336047895849487,
+    "enterprise_value": 3246683413931.5854,
+    "equity_value": 3324441413931.5854,
+    "value_per_share": 274.8153603316182,
+    "upside_vs_market": -0.22769963935583903,
+    "margin_of_safety": -0.2948330092270307
+   }
+  ]
+ },
+ "growth": {
+  "reinvestment_rate": 0.6102408272834234,
+  "identity": "지속가능 성장률 g = 재투자율 × 신규 ROIC",
+  "incremental_roic_full_period": 0.3187531495812651,
+  "roic_median": 0.37133761249927477,
+  "implied_growth_at_full_period_incremental": 0.19451618569966803,
+  "revenue_cagr_since_2014": 0.1787349477996374,
+  "revenue_cagr_3y": 0.12511745609215974,
+  "revenue_growth_latest": 0.15090081081544376,
+  "owner_earnings_cagr": 0.17636532553467688,
+  "targets": [
+   {
+    "growth_target": 0.08,
+    "required_incremental_roic": 0.1310957845218776,
+    "vs_full_period_incremental": 0.4112768287751621
+   },
+   {
+    "growth_target": 0.1,
+    "required_incremental_roic": 0.163869730652347,
+    "vs_full_period_incremental": 0.5140960359689526
+   },
+   {
+    "growth_target": 0.12,
+    "required_incremental_roic": 0.19664367678281638,
+    "vs_full_period_incremental": 0.616915243162743
+   },
+   {
+    "growth_target": 0.15,
+    "required_incremental_roic": 0.24580459597852047,
+    "vs_full_period_incremental": 0.7711440539534289
+   },
+   {
+    "growth_target": 0.18,
+    "required_incremental_roic": 0.2949655151742246,
+    "vs_full_period_incremental": 0.9253728647441147
+   }
+  ],
+  "base_effect": {
+   "revenue_2014": 66001000000,
+   "revenue_2025": 402836000000,
+   "revenue_if_15pct_for_10y": 1629696296021.6304
+  }
+ },
+ "capital_intensity_series": [
+  {
+   "fiscal_year": 2014,
+   "invested_capital": 41465000000,
+   "revenue": 66001000000,
+   "capital_intensity": 0.6282480568476235,
+   "capex_to_revenue": 0.16687625945061438
+  },
+  {
+   "fiscal_year": 2015,
+   "invested_capital": 52490000000,
+   "revenue": 74989000000,
+   "capital_intensity": 0.6264585472535972,
+   "capex_to_revenue": 0.13268612729867046
+  },
+  {
+   "fiscal_year": 2016,
+   "invested_capital": 56703000000,
+   "revenue": 90272000000,
+   "capital_intensity": 0.6047999379652605,
+   "capex_to_revenue": 0.11312477844735909
+  },
+  {
+   "fiscal_year": 2017,
+   "invested_capital": 54657000000,
+   "revenue": 110855000000,
+   "capital_intensity": 0.5022777502142438,
+   "capex_to_revenue": 0.11893013395877497
+  },
+  {
+   "fiscal_year": 2018,
+   "invested_capital": 72550000000,
+   "revenue": 136819000000,
+   "capital_intensity": 0.4648732997609981,
+   "capex_to_revenue": 0.18373910056351822
+  },
+  {
+   "fiscal_year": 2019,
+   "invested_capital": 86452000000,
+   "revenue": 161857000000,
+   "capital_intensity": 0.49118048647880536,
+   "capex_to_revenue": 0.1454864479138993
+  },
+  {
+   "fiscal_year": 2020,
+   "invested_capital": 101169000000,
+   "revenue": 182527000000,
+   "capital_intensity": 0.5139540999413785,
+   "capex_to_revenue": 0.12206961161910293
+  },
+  {
+   "fiscal_year": 2021,
+   "invested_capital": 127426000000,
+   "revenue": 257637000000,
+   "capital_intensity": 0.4436377538940447,
+   "capex_to_revenue": 0.09563843702573777
+  },
+  {
+   "fiscal_year": 2022,
+   "invested_capital": 157694000000,
+   "revenue": 282836000000,
+   "capital_intensity": 0.5040376755434245,
+   "capex_to_revenue": 0.11131892686928113
+  },
+  {
+   "fiscal_year": 2023,
+   "invested_capital": 185463000000,
+   "revenue": 307394000000,
+   "capital_intensity": 0.5581712720482508,
+   "capex_to_revenue": 0.10491746748472644
+  },
+  {
+   "fiscal_year": 2024,
+   "invested_capital": 243727000000,
+   "revenue": 350018000000,
+   "capital_intensity": 0.6130970407236199,
+   "capex_to_revenue": 0.15009228096840735
+  },
+  {
+   "fiscal_year": 2025,
+   "invested_capital": 337507000000,
+   "revenue": 402836000000,
+   "capital_intensity": 0.7214275784686572,
+   "capex_to_revenue": 0.22700801318650765
+  }
+ ]
+}

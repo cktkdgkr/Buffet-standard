@@ -21,7 +21,11 @@ const {
 } = require("docx");
 
 const WORK = __dirname;
-const payload = JSON.parse(fs.readFileSync(path.join(WORK, "_memo_payload.json"), "utf8"));
+// Payload and output are arguments so the second round of replies can reuse
+// this renderer rather than forking it.
+const PAYLOAD = process.argv[2] || "_memo_payload.json";
+const OUT = process.argv[3] || "알파벳_심층분석_및_메모회신.docx";
+const payload = JSON.parse(fs.readFileSync(path.join(WORK, PAYLOAD), "utf8"));
 
 const FONT = "Malgun Gothic";
 const NAVY = "1F3864";
@@ -104,13 +108,14 @@ const children = [];
 
 children.push(new Paragraph({
   spacing: { after: 80 },
-  children: [text("알파벳 심층분석 및 메모 회신", { bold: true, size: 36, color: NAVY })],
+  children: [text(payload.title || "알파벳 심층분석 및 메모 회신",
+    { bold: true, size: 36, color: NAVY })],
 }));
 children.push(new Paragraph({
   spacing: { after: 320 },
   border: { bottom: { style: BorderStyle.SINGLE, size: 8, color: NAVY, space: 8 } },
   children: [text(
-    `메모 5건 회신 · 버핏 기준 정립 · 알파벳 가치와 주가 평가 · 생성 ${payload.generated}`,
+    `${payload.subtitle || "메모 5건 회신 · 버핏 기준 정립 · 알파벳 가치와 주가 평가"} · 생성 ${payload.generated}`,
     { size: 18, color: GREY })],
 }));
 
@@ -184,8 +189,28 @@ const RENDER = {
   memo: (b) => {
     children.push(new Paragraph({
       heading: HeadingLevel.HEADING_2,
-      spacing: { before: 400, after: 60 },
-      children: [text(`메모 ${b.n} — "${b.anchor}"`, { bold: true, size: 23, color: NAVY })],
+      spacing: { before: 440, after: 60 },
+      children: [text(b.location ? `메모 ${b.n} — ${b.location}` : `메모 ${b.n} — "${b.anchor}"`,
+        { bold: true, size: 23, color: NAVY })],
+    }));
+    // The passage the memo was attached to, so the question is never read
+    // apart from the sentence that prompted it.
+    if (b.anchor_text) {
+      children.push(new Paragraph({
+        spacing: { before: 40, after: 20 },
+        children: [text("원문 (기존 문서에서 메모가 달린 문장)", { size: 15, bold: true, color: GREY })],
+      }));
+      children.push(new Paragraph({
+        spacing: { after: 140 },
+        indent: { left: 200, right: 120 },
+        shading: { type: ShadingType.CLEAR, fill: "F2F4F8", color: "auto" },
+        border: { left: { style: BorderStyle.SINGLE, size: 12, color: "9AA5B1", space: 10 } },
+        children: [text(`"${b.anchor_text}"`, { size: 16, color: "3A3A3A" })],
+      }));
+    }
+    children.push(new Paragraph({
+      spacing: { before: 40, after: 20 },
+      children: [text("남기신 메모", { size: 15, bold: true, color: "8A5A16" })],
     }));
     children.push(new Paragraph({
       spacing: { after: 200 },
@@ -193,6 +218,10 @@ const RENDER = {
       shading: { type: ShadingType.CLEAR, fill: "FFF4E5", color: "auto" },
       border: { left: { style: BorderStyle.SINGLE, size: 18, color: "C88A2E", space: 10 } },
       children: [text(b.question, { size: 18, italics: true })],
+    }));
+    children.push(new Paragraph({
+      spacing: { after: 60 },
+      children: [text("검토 결과", { size: 15, bold: true, color: NAVY })],
     }));
   },
 };
@@ -230,7 +259,7 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then((buf) => {
-  const out = path.join(WORK, "알파벳_심층분석_및_메모회신.docx");
+  const out = path.join(WORK, OUT);
   fs.writeFileSync(out, buf);
   console.log("docx ->", out);
 });
