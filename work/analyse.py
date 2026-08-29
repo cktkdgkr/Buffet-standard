@@ -188,15 +188,26 @@ def avg2(prev, cur):
 # ---------------------------------------------------------------------------
 
 def build_ebit(pretax, interest, reported_oi, year):
-    """EBIT with its construction recorded, so mixed methods stay visible."""
-    p, i = pretax.get(year), interest.get(year)
-    if p is not None and i is not None:
-        return p + i, "pretax_income + interest_expense"
+    """Operating earnings, with the construction recorded so mixed methods stay visible.
+
+    The reported operating income line comes first on purpose.  Invested capital
+    here is the capital the business requires — equity plus interest-bearing debt
+    *less* cash — so whatever the cash and the investment portfolio earn has to be
+    kept out of the numerator too, or the ratio compares a return against capital
+    that did not produce it.  Pretax income + interest expense pulls exactly that
+    in: interest income, and the mark-to-market swings on equity stakes.  Buffett
+    makes the same exclusion when he tells shareholders to read Berkshire's
+    operating earnings and ignore the investment gains the accounting rules push
+    through the income statement.
+    """
     oi = reported_oi.get(year)
     if oi is not None:
-        return oi, "reported OperatingIncomeLoss (no interest expense tagged)"
+        return oi, "reported operating income (non-operating income excluded)"
+    p, i = pretax.get(year), interest.get(year)
+    if p is not None and i is not None:
+        return p + i, "pretax_income + interest_expense (no operating income tagged)"
     if p is not None:
-        return p, "pretax_income only (no interest expense tagged)"
+        return p, "pretax_income only (no operating income or interest expense tagged)"
     return None, "DATA_UNAVAILABLE"
 
 
@@ -372,6 +383,13 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
                                        S.get("operating_income", {}), y)
         tax, tax_note = effective_tax(S.get("income_tax_expense", {}),
                                       S.get("pretax_income", {}), y)
+        # What the reported operating line leaves out: interest income, investment
+        # marks, everything the cash pile rather than the business earned.  Kept
+        # visible so the size of the exclusion can be read off the record.
+        _p, _i = S.get("pretax_income", {}).get(y), S.get("interest_expense", {}).get(y)
+        non_operating = (_p + _i - ebit
+                         if ebit is not None and _p is not None and _i is not None
+                         and ebit_method.startswith("reported operating income") else None)
         ibd, ibd_note = interest_bearing_debt(S.get("short_term_debt", {}),
                                               S.get("long_term_debt", {}), y)
         equity = S.get("total_equity", {}).get(y)
@@ -477,8 +495,30 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             S.get("current_assets", {}), S.get("current_liabilities", {}),
             S.get("cash_and_equivalents", {}), S.get("short_term_debt", {}),
             y, prev) if prev else (None, "no prior year")
-        oe = calc.owner_earnings(ni, da, capex, d_wc)
+        # Owner earnings starts from "reported earnings", but reported earnings
+        # now carry the mark-to-market on investment portfolios that ASU 2016-01
+        # pushes through the income statement. Buffett treats that line as noise
+        # to be read past, and the numbers justify him: it is $24.6bn of
+        # Alphabet's FY2025 pretax income and $39.1bn of Berkshire's. It is not
+        # cash, it does not recur, and the business did not earn it, so it comes
+        # out at the effective tax rate before the owner-earnings arithmetic.
+        inv_gain = S.get("investment_gains", {}).get(y)
+        inv_gain_after_tax = (inv_gain * (1 - tax)
+                              if (inv_gain is not None and tax is not None) else None)
+        ni_operating = ni - inv_gain_after_tax if (ni is not None and inv_gain_after_tax) else ni
+        oe = calc.owner_earnings(ni_operating, da, capex, d_wc)
         oe_method = f"net income + D&A - capex - change in {wc_note}"
+        if inv_gain_after_tax:
+            oe_method = ("net income less after-tax investment gains + D&A - capex "
+                         f"- change in {wc_note}")
+        # Where investment gains are not tagged, other income can still be
+        # carrying them. Say so rather than let the figure read as clean.
+        oi_reported = S.get("operating_income", {}).get(y)
+        other_income = (S.get("pretax_income", {}).get(y) - oi_reported
+                        if (oi_reported is not None
+                            and S.get("pretax_income", {}).get(y) is not None) else None)
+        oe_noise_flag = bool(inv_gain is None and other_income is not None and oi_reported
+                             and abs(other_income) > 0.10 * abs(oi_reported))
 
         # Buffett's definition subtracts the capex "the business requires to
         # fully maintain its long-term competitive position and its unit
@@ -495,10 +535,23 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
         # being declared correct. Total capex is the pessimistic bound,
         # maintenance-only the optimistic one.
         maint_capex = None if (capex is None or da is None) else min(capex, da)
-        oe_maint = calc.owner_earnings(ni, da, maint_capex, d_wc)
+        oe_maint = calc.owner_earnings(ni_operating, da, maint_capex, d_wc)
         growth_capex = None if (capex is None or maint_capex is None) else capex - maint_capex
         if oe is None and ocf is not None and capex is not None:
-            oe, oe_method = ocf - capex, "operating cash flow - capex (working-capital swing already embedded)"
+            # The cash-flow route is not interchangeable with the definition
+            # above: operating cash flow adds stock compensation back as a
+            # non-cash charge, where net income has already borne it. Left
+            # alone the two paths would grade the same company differently
+            # depending on which one its balance sheet allowed. Buffett is not
+            # neutral on which is right - "If options aren't a form of
+            # compensation, what are they? If compensation isn't an expense,
+            # what is it?" (1992 letter) - so the add-back is reversed.
+            sbc = S.get("share_based_compensation", {}).get(y)
+            oe = ocf - capex - (sbc or 0)
+            oe_method = ("operating cash flow - capex - stock compensation "
+                         "(working-capital swing already embedded)" if sbc else
+                         "operating cash flow - capex (working-capital swing already "
+                         "embedded; stock compensation NOT TAGGED, so still added back)")
         if fin:
             oe, oe_maint = None, None
             oe_method = "FRAMEWORK_NOT_APPLICABLE (financial sector)"
@@ -531,6 +584,8 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
                 "current_liabilities_prior": S.get("current_liabilities", {}).get(prev) if prev else None,
                 "cash_prior": S.get("cash_and_equivalents", {}).get(prev) if prev else None,
                 "short_term_debt_prior": S.get("short_term_debt", {}).get(prev) if prev else None,
+                "investment_gains": inv_gain,
+                "share_based_compensation": S.get("share_based_compensation", {}).get(y),
                 "invested_capital_prior": ic_prev,
                 "change_in_working_capital": d_wc,
                 "working_capital_note": wc_note,
@@ -540,6 +595,7 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             "accession": accns.get("net_income", {}).get(y),
             "revenue": rev, "net_income": ni,
             "ebit": ebit, "ebit_method": ebit_method,
+            "non_operating_income": non_operating,
             "tax_rate": tax, "tax_note": tax_note,
             "nopat": nopat,
             "interest_bearing_debt": ibd, "debt_note": ibd_note,
@@ -551,6 +607,11 @@ def analyse_company(entry, raw, mkt, sic_info, cover):
             "roic_tangible": roic_tangible,
             "goodwill": gw, "intangible_assets": intang,
             "capital_intensity": capital_intensity,
+            "investment_gains": inv_gain,
+            "investment_gains_after_tax": inv_gain_after_tax,
+            "net_income_operating": ni_operating,
+            "other_income_net": other_income,
+            "owner_earnings_noise_flag": oe_noise_flag,
             "roic": roic_v, "roic_status": roic_status, "roic_gross": roic_gross_v,
             "roic_gross_status": roic_gross_status,
             "roe": roe_v, "roe_status": roe_status,

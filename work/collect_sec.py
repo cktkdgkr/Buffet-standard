@@ -128,6 +128,28 @@ CONCEPTS = {
     # Needed to turn pretax income into EBIT for the filers that publish no
     # operating-income subtotal at all (see EBIT handling in analyse.py).
     "nonoperating_income": ["NonoperatingIncomeExpense", "OtherNonoperatingIncomeExpense"],
+    # Operating cash flow adds stock compensation back as a non-cash charge.
+    # Buffett does not: "If options aren't a form of compensation, what are they?
+    # If compensation isn't an expense, what is it?" (1992 letter). Collected so
+    # owner earnings can charge it rather than inherit the add-back.
+    "share_based_compensation": [
+        "ShareBasedCompensation",
+        "AllocatedShareBasedCompensationExpense",
+        "ShareBasedCompensationArrangementByShareBasedPaymentAwardCompensationCost",
+    ],
+    # Mark-to-market on investment portfolios runs through net income under
+    # ASU 2016-01 and can swamp the operating result: Alphabet's FY2025 net
+    # income carries $24.6bn of it. Buffett spends a paragraph of nearly every
+    # recent letter telling shareholders to ignore exactly this line. Collected
+    # so owner earnings can start from the business rather than the portfolio.
+    "investment_gains": [
+        "DebtAndEquitySecuritiesGainLoss",
+        "EquitySecuritiesFvNiGainLoss",
+        "GainLossOnInvestments",
+        "MarketableSecuritiesGainLoss",
+        "GainLossOnSaleOfInvestments",
+        "RealizedInvestmentGainsLosses",
+    ],
     "income_tax_expense": ["IncomeTaxExpenseBenefit"],
     "pretax_income": [
         "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
@@ -151,8 +173,8 @@ CONCEPTS = {
 FLOW_METRICS = {
     "revenue", "operating_income", "net_income", "depreciation_amortization",
     "capex", "interest_expense", "income_tax_expense", "pretax_income",
-    "operating_cash_flow", "nonoperating_income",
-    "pretax_income_domestic", "pretax_income_foreign",
+    "operating_cash_flow", "nonoperating_income", "share_based_compensation",
+    "investment_gains", "pretax_income_domestic", "pretax_income_foreign",
 }
 
 # Share counts are a cover-page disclosure, so some filers tag them only in the
