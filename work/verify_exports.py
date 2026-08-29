@@ -473,6 +473,72 @@ def main():
                 fails.append(f"밸류에이션 {t} {name}: sheet={got!r} engine={expected!r}")
             checked += 1
 
+    # ---- 알파벳심층 -------------------------------------------------------
+    # Built from alphabet.json, whose segment and property figures come from the
+    # 10-K's inline XBRL rather than companyfacts (which drops any fact carrying
+    # a dimension). Same rule as everywhere else: the sheet has to reproduce the
+    # engine, not merely look plausible.
+    apath = os.path.join(WORK, "alphabet.json")
+    if "알파벳심층" in wb.sheetnames and os.path.exists(apath):
+        with open(apath) as f:
+            A = json.load(f)
+        ws = wb["알파벳심층"]
+        cells = {}
+        for row in range(1, ws.max_row + 1):
+            for col in range(1, ws.max_column + 1):
+                c = ws.cell(row=row, column=col)
+                if isinstance(c.value, str) and c.value.startswith("="):
+                    cells[c.coordinate] = c.value
+
+        # Segment margins.
+        seg_expected = {}
+        for yr in A["segment"]["by_year"]:
+            for name, s in yr["segments"].items():
+                if s["revenue"]:
+                    seg_expected[(yr["fiscal_year"], name)] = s["operating_margin"]
+
+        for row in range(1, ws.max_row + 1):
+            fy_cell = ws.cell(row=row, column=1).value
+            name = ws.cell(row=row, column=2).value
+            key = None
+            if isinstance(fy_cell, str) and fy_cell.startswith("FY") and name:
+                try:
+                    key = (int(fy_cell[2:]), name)
+                except ValueError:
+                    key = None
+            if key in seg_expected and f"E{row}" in cells:
+                got = ev.value("알파벳심층", f"E{row}")
+                if not close(got if got != "" else None, seg_expected[key], 1e-9):
+                    fails.append(f"알파벳심층 {fy_cell} {name} 영업이익률: "
+                                 f"sheet={got!r} engine={seg_expected[key]!r}")
+                checked += 1
+
+        # Incremental ROIC rows.
+        inc_expected = {label: v["incremental_roic"]
+                        for label, v in A["capex_era_incremental_roic"].items()}
+        for row in range(1, ws.max_row + 1):
+            label = ws.cell(row=row, column=1).value
+            if label in inc_expected and f"H{row}" in cells:
+                got = ev.value("알파벳심층", f"H{row}")
+                if not close(got if got != "" else None, inc_expected[label], 1e-6):
+                    fails.append(f"알파벳심층 신규 ROIC {label}: "
+                                 f"sheet={got!r} engine={inc_expected[label]!r}")
+                checked += 1
+
+        # Cloud ROIC band.
+        band_expected = {round(b["infrastructure_share"], 6): b["roic"]
+                         for b in A["cloud_roic_band"]["bands"]}
+        for row in range(1, ws.max_row + 1):
+            share = ws.cell(row=row, column=1).value
+            if (isinstance(share, float) and round(share, 6) in band_expected
+                    and f"C{row}" in cells and f"B{row}" in cells):
+                got = ev.value("알파벳심층", f"C{row}")
+                exp = band_expected[round(share, 6)]
+                if not close(got if got != "" else None, exp, 1e-6):
+                    fails.append(f"알파벳심층 클라우드 ROIC (배분율 {share}): "
+                                 f"sheet={got!r} engine={exp!r}")
+                checked += 1
+
     # ---- percentages stored as fractions ---------------------------------
     for sheet, colname, hdr in (("품질순위", "자본집약도", 4),
                                 ("금융9개사", "ROE 중앙값", 4)):

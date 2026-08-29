@@ -1,0 +1,378 @@
+{
+ "generated_at_utc": "2026-08-29T06:53:18.929542+00:00",
+ "company": "Alphabet Inc.",
+ "cik": 1652044,
+ "filings_read": {
+  "2025": "0001652044-26-000018",
+  "2024": "0001652044-25-000014",
+  "2023": "0001652044-24-000022"
+ },
+ "segment": {
+  "by_year": [
+   {
+    "fiscal_year": 2023,
+    "segments": {
+     "구글 서비스": {
+      "revenue": 272543000000.0,
+      "operating_income": 95858000000.0,
+      "operating_margin": 0.351716976770638
+     },
+     "구글 클라우드": {
+      "revenue": 33088000000.0,
+      "operating_income": 1716000000.0,
+      "operating_margin": 0.05186170212765957
+     },
+     "기타 베팅": {
+      "revenue": 1527000000.0,
+      "operating_income": -4095000000.0,
+      "operating_margin": -2.681728880157171
+     },
+     "전사 공통비용": {
+      "revenue": null,
+      "operating_income": -9186000000.0,
+      "operating_margin": null
+     }
+    }
+   },
+   {
+    "fiscal_year": 2024,
+    "segments": {
+     "구글 서비스": {
+      "revenue": 304930000000.0,
+      "operating_income": 121263000000.0,
+      "operating_margin": 0.3976748762010953
+     },
+     "구글 클라우드": {
+      "revenue": 43229000000.0,
+      "operating_income": 6112000000.0,
+      "operating_margin": 0.14138656920123066
+     },
+     "기타 베팅": {
+      "revenue": 1648000000.0,
+      "operating_income": -4444000000.0,
+      "operating_margin": -2.6966019417475726
+     },
+     "전사 공통비용": {
+      "revenue": null,
+      "operating_income": -10541000000.0,
+      "operating_margin": null
+     }
+    }
+   },
+   {
+    "fiscal_year": 2025,
+    "segments": {
+     "구글 서비스": {
+      "revenue": 342721000000.0,
+      "operating_income": 139404000000.0,
+      "operating_margin": 0.406756516233321
+     },
+     "구글 클라우드": {
+      "revenue": 58705000000.0,
+      "operating_income": 13910000000.0,
+      "operating_margin": 0.23694744910995658
+     },
+     "기타 베팅": {
+      "revenue": 1537000000.0,
+      "operating_income": -7515000000.0,
+      "operating_margin": -4.88939492517892
+     },
+     "전사 공통비용": {
+      "revenue": null,
+      "operating_income": -16760000000.0,
+      "operating_margin": null
+     }
+    }
+   }
+  ],
+  "cloud_operating_income_growth": {
+   "2023": 1716000000.0,
+   "2024": 6112000000.0,
+   "2025": 13910000000.0,
+   "margin_2023": 0.05186170212765957,
+   "margin_2025": 0.23694744910995658
+  },
+  "segment_assets_disclosed": false,
+  "segment_capex_disclosed": false,
+  "absent_from_segment_note": [
+   "자산 (us-gaap:Assets)",
+   "설비투자",
+   "감가상각",
+   "유형자산"
+  ],
+  "why": "Alphabet's chief operating decision maker is not given assets by segment, so ASC 280 does not require the disclosure and Alphabet does not make it. Enumerating every dimensioned fact in the FY2025 10-K confirms it: the segment axis appears on revenue, operating income, costs, labour and goodwill, and on nothing else. A directly computed Google Cloud ROIC is therefore not derivable from the filings, and any figure presented as one is an allocation the analyst chose, not a number Alphabet reported.",
+  "source_accession": "0001652044-26-000018"
+ },
+ "cloud_roic_band": {
+  "cloud_operating_income_2025": 13910000000.0,
+  "effective_tax_rate": 0.16783146336242177,
+  "cloud_nopat_2025": 11575464344.628712,
+  "technical_infrastructure_gross_2025": 203679000000.0,
+  "technical_infrastructure_net_estimate": 145549841379.73004,
+  "net_estimate_method": "gross technical infrastructure scaled by the consolidated ratio of net to gross PP&E (1 - 98,485/345,082); Alphabet does not publish accumulated depreciation by category",
+  "bands": [
+   {
+    "infrastructure_share": 0.14568335058057438,
+    "basis": "매출 비중과 동일하게 배분 — 하한. 클라우드가 매출 대비 연산 자원을 많이 쓰므로 과소배분입니다",
+    "allocated_capital": 21204188568.670204,
+    "roic": 0.5459046125316859
+   },
+   {
+    "infrastructure_share": 0.25,
+    "basis": "기술 인프라의 4분의 1을 배분",
+    "allocated_capital": 36387460344.93251,
+    "roic": 0.31811685220402486
+   },
+   {
+    "infrastructure_share": 0.4,
+    "basis": "기술 인프라의 5분의 2를 배분 — 상한. 이 수준이면 클라우드가 검색보다 인프라를 더 많이 쓴다는 뜻이 됩니다",
+    "allocated_capital": 58219936551.89202,
+    "roic": 0.19882303262751555
+   }
+  ],
+  "caveat": "Every row is an allocation. The one figure here that is Alphabet's own is the $13.9bn operating income; the capital denominators are constructed."
+ },
+ "infrastructure": [
+  {
+   "fiscal_year": 2022,
+   "technical_infrastructure_gross": 66267000000.0,
+   "under_construction": 27657000000.0,
+   "revenue_per_dollar_of_infrastructure": 4.268127423906319,
+   "operating_income_per_dollar_of_infrastructure": 1.129400757541461,
+   "capex": 31485000000.0,
+   "depreciation": 13475000000.0,
+   "capex_to_depreciation": 2.336549165120594,
+   "infrastructure_added": null
+  },
+  {
+   "fiscal_year": 2023,
+   "technical_infrastructure_gross": 80594000000.0,
+   "under_construction": 35229000000.0,
+   "revenue_per_dollar_of_infrastructure": 3.814105268382262,
+   "operating_income_per_dollar_of_infrastructure": 1.0458967168771869,
+   "capex": 32251000000.0,
+   "depreciation": 11946000000.0,
+   "capex_to_depreciation": 2.6997321279089235,
+   "infrastructure_added": 14327000000.0
+  },
+  {
+   "fiscal_year": 2024,
+   "technical_infrastructure_gross": 141852000000.0,
+   "under_construction": 50597000000.0,
+   "revenue_per_dollar_of_infrastructure": 2.4674872402222032,
+   "operating_income_per_dollar_of_infrastructure": 0.7923046555564955,
+   "capex": 52535000000.0,
+   "depreciation": 15311000000.0,
+   "capex_to_depreciation": 3.431193259747894,
+   "infrastructure_added": 61258000000.0
+  },
+  {
+   "fiscal_year": 2025,
+   "technical_infrastructure_gross": 203679000000.0,
+   "under_construction": 78592000000.0,
+   "revenue_per_dollar_of_infrastructure": 1.9777983984603225,
+   "operating_income_per_dollar_of_infrastructure": 0.6335410130646753,
+   "capex": 91447000000.0,
+   "depreciation": 21136000000.0,
+   "capex_to_depreciation": 4.326599167297502,
+   "infrastructure_added": 61827000000.0
+  }
+ ],
+ "backlog_remaining_performance_obligation": {
+  "2023": 74100000000.0,
+  "2024": 93200000000.0,
+  "2025": 242800000000.0
+ },
+ "backlog_note": "us-gaap:RevenueRemainingPerformanceObligation. 알파벳은 이 중 절반가량이 24개월 내 매출로 인식될 것으로 봅니다. 계약은 체결됐지만 아직 인도되지 않은 매출이며, 설비투자가 수요를 앞질렀는지 따라가고 있는지를 가르는 가장 직접적인 증거입니다.",
+ "capex_era_incremental_roic": {
+  "FY2021→FY2025 (AI 설비투자 구간)": {
+   "nopat_start": 65960517138.007805,
+   "nopat_end": 107382195799.17645,
+   "invested_capital_start": 127426000000,
+   "invested_capital_end": 337507000000,
+   "delta_nopat": 41421678661.16865,
+   "delta_invested_capital": 210081000000,
+   "incremental_roic": 0.19717003756250517,
+   "cumulative_capex": 207718000000.0
+  },
+  "FY2022→FY2025": {
+   "nopat_start": 62926542507.85105,
+   "nopat_end": 107382195799.17645,
+   "invested_capital_start": 157694000000,
+   "invested_capital_end": 337507000000,
+   "delta_nopat": 44455653291.3254,
+   "delta_invested_capital": 179813000000,
+   "incremental_roic": 0.2472326989223549,
+   "cumulative_capex": 176233000000.0
+  },
+  "FY2014→FY2025 (전체 기간)": {
+   "nopat_start": 13017875890.839561,
+   "nopat_end": 107382195799.17645,
+   "invested_capital_start": 41465000000,
+   "invested_capital_end": 337507000000,
+   "delta_nopat": 94364319908.33688,
+   "delta_invested_capital": 296042000000,
+   "incremental_roic": 0.3187531495812651,
+   "cumulative_capex": null
+  }
+ },
+ "roe_trap": {
+  "roe_latest": 0.3570478247421149,
+  "roe_on_operating_earnings": 0.30170098326055095,
+  "roic_latest": 0.3694972964388747,
+  "spread_roe_minus_roic": -0.012449471696759806,
+  "total_equity": 415265000000,
+  "total_equity_average": 370174500000.0,
+  "interest_bearing_debt": 49085000000,
+  "cash_and_short_term_investments": 126843000000,
+  "net_cash": 77758000000,
+  "invested_capital": 337507000000,
+  "identity": "자기자본 − 순현금 = 자기자본 + 이자부부채 − 현금 = 투하자본. $415B − $78B = $338B. 알파벳에서 ROE와 ROIC를 갈라놓는 것은 부채가 아니라 이 순현금입니다.",
+  "debt_to_equity": 0.1182016302842763,
+  "net_income_operating": 111682010627.98282,
+  "reading": "ROE below ROIC is the opposite of the trap. The trap is a company whose ROE is propped up by borrowed money, so the return on equity flatters a business that earns less on the whole capital it uses. Alphabet's ROE is dragged DOWN instead, by equity that is parked in cash and securities rather than working.",
+  "roe_10y_median": 0.18807990975459427,
+  "roic_10y_median": 0.37133761249927477
+ },
+ "owner_earnings_ladder": [
+  {
+   "step": "① 보고 순이익",
+   "value": 132170000000,
+   "note": "10-K 손익계산서. 주주이익의 출발점이 되는 '보고 이익'"
+  },
+  {
+   "step": "② − 투자평가손익 (세후)",
+   "value": 111682010627.98282,
+   "note": "세전 $24.6B를 실효세율 16.8%로 조정한 $20.5B 차감. 사업이 번 돈이 아니라 보유 지분의 평가이익"
+  },
+  {
+   "step": "③ + 감가상각",
+   "value": 132818010627.98282,
+   "note": "비현금 비용 $21.1B 가산 (버핏 정의의 (b)항)"
+  },
+  {
+   "step": "④ − 운전자본 증감",
+   "value": 137600010627.98282,
+   "note": "영업 운전자본이 흡수한 현금 −$4.8B (현금·단기차입금 제외 기준)"
+  },
+  {
+   "step": "⑤ − 설비투자 전액 = 주주이익 (하한)",
+   "value": 46153010627.98282,
+   "note": "자본예산 $91.4B 전부를 차감. 성장투자까지 비용으로 보므로 가장 보수적인 값"
+  },
+  {
+   "step": "⑤′ − 유지 설비투자만 = 주주이익 (상한)",
+   "value": 116464010627.98282,
+   "note": "버핏 정의의 (c)항은 '경쟁 지위와 판매량을 유지하는 데 필요한' 설비투자입니다. 그 대용치로 감가상각 $21.1B만 차감"
+  },
+  {
+   "step": "[참고] 영업현금흐름 − 설비투자",
+   "value": 73266000000,
+   "note": "흔히 쓰이는 잉여현금흐름. 영업현금흐름 $164.7B에서 설비투자를 뺀 값이며, 평가이익은 이미 제외되어 있으나 주식보상비용이 비현금항목으로 되더해져 있어 주주이익보다 큽니다"
+  }
+ ],
+ "valuation": {
+  "market_cap": 4304596479999.9995,
+  "price": 355.84,
+  "price_as_of": "2026-08-10T20:00:01+00:00",
+  "shares_outstanding": 12097000000.0,
+  "risk_free_rate": {
+   "rate": 0.04650000000000001,
+   "as_of": "2026-08-07",
+   "series": "DGS10 (10-Year Treasury Constant Maturity Rate)",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+   "confidence": "HIGH"
+  },
+  "wacc": 0.09957343826435333,
+  "dcf": {
+   "conservative": {
+    "intrinsic_value": 1133775435268.9321,
+    "assumptions": {
+     "growth_rate": 0.08818266276733844,
+     "discount_rate": 0.12,
+     "terminal_growth": 0.02,
+     "forecast_years": 10,
+     "basis": "owner earnings"
+    },
+    "margin_of_safety": -2.7966923132171644,
+    "verdict": "OUTSIDE_RANGE"
+   },
+   "base": {
+    "intrinsic_value": 1655368522353.4478,
+    "assumptions": {
+     "growth_rate": 0.1,
+     "discount_rate": 0.1,
+     "terminal_growth": 0.025,
+     "forecast_years": 10,
+     "basis": "owner earnings"
+    },
+    "margin_of_safety": -1.600385607115525,
+    "verdict": "OUTSIDE_RANGE"
+   },
+   "optimistic": {
+    "intrinsic_value": 3704181760022.0776,
+    "assumptions": {
+     "growth_rate": 0.15,
+     "discount_rate": 0.08,
+     "terminal_growth": 0.03,
+     "forecast_years": 10,
+     "basis": "owner earnings"
+    },
+    "margin_of_safety": -0.16209105245805847,
+    "verdict": "OUTSIDE_RANGE"
+   }
+  },
+  "dcf_maintenance_capex": {
+   "conservative": {
+    "intrinsic_value": 1644933067592.2793,
+    "margin_of_safety": -1.6168824524275152,
+    "verdict": "OUTSIDE_RANGE"
+   },
+   "base": {
+    "intrinsic_value": 2401684087311.933,
+    "margin_of_safety": -0.7923241873238569,
+    "verdict": "OUTSIDE_RANGE"
+   },
+   "optimistic": {
+    "intrinsic_value": 5374195696864.07,
+    "margin_of_safety": 0.1990249847969249,
+    "verdict": "BORDERLINE"
+   }
+  },
+  "band": {
+   "lower_total_capex": 1655368522353.4478,
+   "upper_maintenance_capex": 2401684087311.933,
+   "market_cap": 4304596479999.9995,
+   "note": "lower bound charges the whole capital budget against owner earnings, upper bound charges only depreciation; the truth is between them"
+  },
+  "implied_return_total_capex": 0.056374960363477236,
+  "implied_return_maintenance_capex": 0.06931232722077263,
+  "per": 32.56863493985019,
+  "per_on_operating_earnings": 38.54332900881217,
+  "price_to_owner_earnings": 61.54245936840075,
+  "net_cash": 77758000000,
+  "verdict_base": "OUTSIDE_RANGE"
+ },
+ "accounting_watch_items": {
+  "service_life_change_2023": -3900000000.0,
+  "service_life_note": "Extending server useful lives cut FY2023 depreciation by $3.9bn. Depreciation is the proxy for maintenance capex in the upper bound of the value band, so a longer assumed life raises that bound directly.",
+  "leases_not_yet_commenced": 58500000000.0,
+  "leases_note": "Data-centre leases signed but not yet started. Off the balance sheet today, capital committed all the same.",
+  "share_based_compensation_2025": 27100000000.0,
+  "buyback_2025": 45709000000.0,
+  "share_count_cagr": -0.01067978693585403,
+  "research_and_development_2025": 61087000000.0
+ },
+ "quality": {
+  "roic_10y_median": 0.37133761249927477,
+  "roic_latest": 0.3694972964388747,
+  "roic_years_observed": 12,
+  "roic_above_10pct_years": 12,
+  "incremental_roic": 0.3187531495812651,
+  "roic_wacc_spread": 0.26992385817452136,
+  "capital_intensity_latest": 0.7214275784686572,
+  "roic_tangible_10y_median": 0.5304522210320955,
+  "operating_margin_latest": 0.32032638592380025,
+  "owner_earnings_cagr": 0.17636532553467688
+ }
+}

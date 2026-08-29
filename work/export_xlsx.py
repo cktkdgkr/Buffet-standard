@@ -642,6 +642,161 @@ def sheet_financials(wb, fin):
     ws.auto_filter.ref = f"A{first-1}:{L(len(labels))}{r-1}"
 
 
+def sheet_alphabet(wb):
+    """알파벳 심층 - 메모 회신에 쓴 수치를 셀 단위로 펼친 시트.
+
+    부문·설비·계약잔고 수치는 companyfacts가 차원(dimension)이 붙은 사실을 버리기
+    때문에 10-K 인라인 XBRL에서 직접 읽은 것이고, alphabet_deep.py가 그 출처를
+    들고 있습니다. 파란 셀이 원천, 검은 셀이 이 시트 안의 수식입니다.
+    """
+    path = os.path.join(WORK, "alphabet.json")
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        A = json.load(f)
+
+    ws = wb.create_sheet("알파벳심층")
+    L = get_column_letter
+    r = title_block(ws, "알파벳 심층 — 부문·설비투자·증분수익률",
+                    "메모 4(AI 데이터센터 ROIC)에 대한 근거 시트입니다. 부문별 자산은 "
+                    "알파벳이 공시하지 않으므로 부문 ROIC는 직접 산출할 수 없고, "
+                    "아래 세 가지 우회 계산으로 대신했습니다. 파란 셀이 10-K 원천, "
+                    "검은 셀이 이 시트 안의 수식입니다.")
+
+    # ---- 1. 부문별 손익 -------------------------------------------------
+    put(ws, r, 1, "1. 부문별 손익 (10-K 부문 주석)", font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    labels = ["연도", "부문", "매출", "영업이익", "영업이익률"]
+    header(ws, r, labels, [10, 26, 14, 14, 12])
+    r += 1
+    for row in A["segment"]["by_year"]:
+        for name, s in row["segments"].items():
+            if s["revenue"] is None and s["operating_income"] is None:
+                continue
+            put(ws, r, 1, f"FY{row['fiscal_year']}")
+            put(ws, r, 2, name)
+            put(ws, r, 3, bn(s["revenue"]), USD_B, font=BLUE, fill=RAW_FILL)
+            put(ws, r, 4, bn(s["operating_income"]), USD_B, font=BLUE, fill=RAW_FILL)
+            put(ws, r, 5, f'=IF(AND(ISNUMBER(C{r}),C{r}<>0),D{r}/C{r},"")', PCT)
+            r += 1
+    r += 1
+    put(ws, r, 1, "부문 주석에 없는 항목: " + ", ".join(A["segment"]["absent_from_segment_note"])
+        + " — 따라서 부문 ROIC의 분모가 존재하지 않습니다.", font=NOTE)
+    r += 2
+
+    # ---- 2. 배분 가정에 따른 클라우드 ROIC 밴드 -------------------------
+    put(ws, r, 1, "2. 구글 클라우드 ROIC — 배분 가정에 따른 밴드",
+        font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    b = A["cloud_roic_band"]
+    for label, value, fmt, src in [
+        ("클라우드 영업이익 FY2025", bn(b["cloud_operating_income_2025"]), USD_B, True),
+        ("실효세율", b["effective_tax_rate"], PCT, True),
+        ("기술인프라 총액 FY2025", bn(b["technical_infrastructure_gross_2025"]), USD_B, True),
+        ("기술인프라 순액(추정)", bn(b["technical_infrastructure_net_estimate"]), USD_B, False),
+    ]:
+        put(ws, r, 1, label)
+        put(ws, r, 2, value, fmt, font=BLUE if src else BLACK,
+            fill=RAW_FILL if src else None)
+        r += 1
+    nopat_row = r
+    put(ws, r, 1, "클라우드 NOPAT")
+    put(ws, r, 2, f"=B{r-4}*(1-B{r-3})", USD_B)
+    ti_row = r - 1
+    r += 2
+    header(ws, r, ["기술인프라 배분율", "배분된 자본", "추정 ROIC", "배분 근거"],
+           [16, 14, 12, 60])
+    r += 1
+    for band in b["bands"]:
+        put(ws, r, 1, band["infrastructure_share"], PCT, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 2, f"=A{r}*B{ti_row}", USD_B)
+        put(ws, r, 3, f'=IF(B{r}<>0,B{nopat_row}/B{r},"")', PCT)
+        put(ws, r, 4, band["basis"])
+        r += 1
+    r += 1
+    put(ws, r, 1, "배분율은 가정입니다. 알파벳이 보고한 값은 클라우드 영업이익뿐이고 "
+                  "분모는 전부 구성한 것이라, 하나의 값이 아니라 밴드로 둡니다.", font=NOTE)
+    r += 2
+
+    # ---- 3. 증분 ROIC ---------------------------------------------------
+    put(ws, r, 1, "3. 증분 ROIC — 부문 정보 없이 전사 숫자로 답하는 방법",
+        font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    header(ws, r, ["측정 구간", "기초 NOPAT", "기말 NOPAT", "기초 투하자본",
+                   "기말 투하자본", "NOPAT 증가", "투하자본 증가", "신규 ROIC"],
+           [30, 13, 13, 14, 14, 13, 14, 12])
+    r += 1
+    for label, v in A["capex_era_incremental_roic"].items():
+        put(ws, r, 1, label)
+        put(ws, r, 2, bn(v["nopat_start"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 3, bn(v["nopat_end"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 4, bn(v["invested_capital_start"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 5, bn(v["invested_capital_end"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 6, f"=C{r}-B{r}", USD_B)
+        put(ws, r, 7, f"=E{r}-D{r}", USD_B)
+        put(ws, r, 8, f'=IF(G{r}<>0,F{r}/G{r},"")', PCT)
+        r += 1
+    r += 2
+
+    # ---- 4. 설비 규모와 회수 --------------------------------------------
+    put(ws, r, 1, "4. 기술 인프라와 회수 속도", font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    header(ws, r, ["연도", "기술인프라(총액)", "건설중인자산", "매출", "영업이익",
+                   "인프라 $1당 매출", "설비투자", "감가상각", "설비투자÷감가상각"],
+           [10, 16, 14, 14, 14, 15, 13, 13, 16])
+    r += 1
+    for row in A["infrastructure"]:
+        put(ws, r, 1, f"FY{row['fiscal_year']}")
+        put(ws, r, 2, bn(row["technical_infrastructure_gross"]), USD_B,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, 3, bn(row["under_construction"]), USD_B, font=BLUE, fill=RAW_FILL)
+        rev = (row["revenue_per_dollar_of_infrastructure"]
+               * row["technical_infrastructure_gross"])
+        oi = (row["operating_income_per_dollar_of_infrastructure"]
+              * row["technical_infrastructure_gross"])
+        put(ws, r, 4, bn(rev), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 5, bn(oi), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 6, f'=IF(B{r}<>0,D{r}/B{r},"")', NUM)
+        put(ws, r, 7, bn(row["capex"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 8, bn(row["depreciation"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 9, f'=IF(H{r}<>0,G{r}/H{r},"")', NUM)
+        r += 1
+    r += 2
+
+    # ---- 5. 계약잔고 -----------------------------------------------------
+    put(ws, r, 1, "5. 미이행 계약잔고 (RPO)", font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    header(ws, r, ["연도", "계약잔고", "전년 대비"], [10, 16, 14])
+    r += 1
+    first_bl = r
+    for fy in sorted(A["backlog_remaining_performance_obligation"]):
+        put(ws, r, 1, f"FY{fy}")
+        put(ws, r, 2, bn(A["backlog_remaining_performance_obligation"][fy]), USD_B,
+            font=BLUE, fill=RAW_FILL)
+        put(ws, r, 3, (f'=IF(B{r-1}<>0,B{r}/B{r-1}-1,"")' if r > first_bl else "-"), PCT)
+        r += 1
+    r += 1
+    put(ws, r, 1, A["backlog_note"], font=NOTE)
+    r += 2
+
+    # ---- 6. 주주이익 사다리 ---------------------------------------------
+    put(ws, r, 1, "6. 주주이익 사다리 (FY2025)", font=Font(name=FONT, bold=True, size=11))
+    r += 1
+    header(ws, r, ["단계", "금액", "설명"], [38, 14, 90])
+    r += 1
+    for step in A["owner_earnings_ladder"]:
+        put(ws, r, 1, step["step"])
+        put(ws, r, 2, bn(step["value"]), USD_B, font=BLUE, fill=RAW_FILL)
+        put(ws, r, 3, step["note"])
+        r += 1
+    r += 1
+    put(ws, r, 1, "각 단계의 셀 단위 계산은 연도별계산 시트의 GOOG FY2025 행에 "
+                  "수식으로 들어 있습니다.", font=NOTE)
+    # header() freezes panes under its own row; this sheet calls it five times,
+    # so the last call would freeze most of the sheet out of view.
+    ws.freeze_panes = None
+
+
 def sheet_excluded(wb, std, fin):
     ws = wb.create_sheet("밸류에이션제외")
     r = title_block(ws, "밸류에이션을 내지 않은 기업과 그 이유",
@@ -826,6 +981,26 @@ DEFINITIONS = [
      "PER은 순이익이 양수일 때만 계산합니다. 적자에서는 의미가 없습니다.", "같은 행"),
     ("밸류에이션", "기준 적정가치 · 안전마진 · 판정", "DCF계산 시트의 기준 시나리오 행 참조",
      "초록 글씨는 다른 시트를 가리킵니다. 클릭하면 해당 행으로 따라갈 수 있습니다.", "DCF계산"),
+    ("알파벳심층", "부문별 매출·영업이익 (파란 셀)", "10-K 부문 주석의 인라인 XBRL",
+     "companyfacts API는 차원(dimension)이 붙은 사실을 버리기 때문에 부문 수치는 거기에 "
+     "없습니다. 10-K 문서의 인라인 XBRL에서 StatementBusinessSegmentsAxis가 붙은 사실을 "
+     "직접 읽었습니다. 같은 축이 붙은 항목은 매출·영업이익·비용·인건비·영업권이 전부이고, "
+     "자산·설비투자·감가상각에는 붙어 있지 않습니다.",
+     "10-K 접수번호 0001652044-26-000018"),
+    ("알파벳심층", "구글 클라우드 ROIC", "클라우드 NOPAT ÷ (기술인프라 순액 × 배분율)",
+     "부문 자산이 공시되지 않으므로 분모는 전부 가정입니다. 그래서 하나의 값이 아니라 "
+     "배분율 3가지에 대한 밴드로 제시합니다. 기술인프라 순액은 총액에 전사 순액/총액 "
+     "비율을 곱해 추정한 것입니다 — 알파벳은 자산 유형별 감가상각누계액을 공시하지 "
+     "않습니다.", "같은 시트의 파란 셀"),
+    ("알파벳심층", "신규 ROIC (구간별)",
+     "(기말 NOPAT − 기초 NOPAT) ÷ (기말 투하자본 − 기초 투하자본)",
+     "부문 정보 없이 전사 숫자만으로 'AI 설비투자가 얼마를 벌어오는가'에 답하는 방법입니다. "
+     "측정 구간을 설비투자가 급증한 FY2021 이후로 좁히면, 그 기간에 늘어난 자본의 대부분이 "
+     "데이터센터이므로 사실상 그 투자의 수익률이 됩니다.", "연도별계산 시트의 GOOG 행"),
+    ("알파벳심층", "인프라 $1당 매출", "매출 ÷ 기술인프라 총액",
+     "설비가 매출보다 빨리 늘고 있는지를 보는 지표입니다. 건설 중인 자산은 분모에 들어가 "
+     "있으면서 아직 매출을 만들지 않으므로, 투자 진행 중에는 이 값이 구조적으로 "
+     "낮아집니다.", "같은 행"),
     ("전체", "시가총액", "10-K 표지의 주식수 × 최근 종가",
      "표지 주식수는 결산일보다 최신이고 클래스별로 나뉘어 있어 합산했습니다. 버크셔는 A주를 "
      "B주 1,500배로 환산했습니다. 비자는 클래스 B·C의 전환비율이 이사회 재량이라 클래스 A만 "
@@ -951,6 +1126,7 @@ def main():
     base_row, dcf_col, _, _ = sheet_dcf(wb, valued, ref)
     sheet_valuation(wb, valued, base_row, dcf_col, ref)
     sheet_financials(wb, fin)
+    sheet_alphabet(wb)
     sheet_excluded(wb, std, fin)
     sheet_verification(wb, analysis, verification)
     sheet_universe(wb, universe, analysis)
