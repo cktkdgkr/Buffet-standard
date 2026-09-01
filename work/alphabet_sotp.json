@@ -1,0 +1,1414 @@
+{
+ "generated_note": "FY2025 10-K 및 FY2023 10-K 부문 주석 기준",
+ "filings_read": {
+  "2025": "0001652044-26-000018",
+  "2023": "0001652044-24-000022"
+ },
+ "consolidated": {
+  "revenue_2025": 402836,
+  "operating_income_2025": 129039,
+  "tax_rate_2025": 0.168,
+  "net_cash": 77758,
+  "shares_outstanding": 12097.0,
+  "price": 355.84,
+  "market_cap": 4304596,
+  "risk_free": 0.0465,
+  "cost_of_equity": 0.1006,
+  "wacc": 0.0996,
+  "backlog_2025": 242800
+ },
+ "segment_history": {
+  "services": {
+   "label": "구글 서비스 (기존 사업)",
+   "what": "검색·유튜브 광고, 구독·플랫폼·기기",
+   "rows": [
+    {
+     "fiscal_year": 2021,
+     "revenue": 237529,
+     "operating_income": 88132,
+     "operating_margin": 0.3710367997170872
+    },
+    {
+     "fiscal_year": 2022,
+     "revenue": 253528,
+     "operating_income": 82699,
+     "operating_margin": 0.32619276766274335
+    },
+    {
+     "fiscal_year": 2023,
+     "revenue": 272543,
+     "operating_income": 95858,
+     "operating_margin": 0.351716976770638
+    },
+    {
+     "fiscal_year": 2024,
+     "revenue": 304930,
+     "operating_income": 121263,
+     "operating_margin": 0.3976748762010953
+    },
+    {
+     "fiscal_year": 2025,
+     "revenue": 342721,
+     "operating_income": 139404,
+     "operating_margin": 0.406756516233321
+    }
+   ],
+   "revenue_cagr": 0.09598855499811099,
+   "operating_income_cagr": 0.12146416915343927,
+   "margin_start": 0.3710367997170872,
+   "margin_end": 0.406756516233321,
+   "share_of_revenue_2025": 0.8507705368934256,
+   "share_of_operating_income_2025": 1.0803245530421035
+  },
+  "cloud": {
+   "label": "구글 클라우드 (AI 사업)",
+   "what": "AI 인프라·플랫폼(TPU/GPU, Vertex AI, Gemini Enterprise), Workspace",
+   "rows": [
+    {
+     "fiscal_year": 2021,
+     "revenue": 19206,
+     "operating_income": -2282,
+     "operating_margin": -0.11881703634280955
+    },
+    {
+     "fiscal_year": 2022,
+     "revenue": 26280,
+     "operating_income": -1922,
+     "operating_margin": -0.07313546423135464
+    },
+    {
+     "fiscal_year": 2023,
+     "revenue": 33088,
+     "operating_income": 1716,
+     "operating_margin": 0.05186170212765957
+    },
+    {
+     "fiscal_year": 2024,
+     "revenue": 43229,
+     "operating_income": 6112,
+     "operating_margin": 0.14138656920123066
+    },
+    {
+     "fiscal_year": 2025,
+     "revenue": 58705,
+     "operating_income": 13910,
+     "operating_margin": 0.23694744910995658
+    }
+   ],
+   "revenue_cagr": 0.32223771900253206,
+   "operating_income_cagr": null,
+   "margin_start": -0.11881703634280955,
+   "margin_end": 0.23694744910995658,
+   "share_of_revenue_2025": 0.14572927940899025,
+   "share_of_operating_income_2025": 0.10779686761366719
+  },
+  "other": {
+   "label": "기타 베팅 + 전사 AI 연구",
+   "what": "웨이모·아이소모픽 등, 그리고 중앙 집중화된 프론티어 모델 연구개발",
+   "rows": [
+    {
+     "fiscal_year": 2021,
+     "revenue": 753,
+     "operating_income": -7136,
+     "operating_margin": -9.476759628154051
+    },
+    {
+     "fiscal_year": 2022,
+     "revenue": 1068,
+     "operating_income": -5935,
+     "operating_margin": -5.557116104868914
+    },
+    {
+     "fiscal_year": 2023,
+     "revenue": 1527,
+     "operating_income": -13281,
+     "operating_margin": -8.697445972495089
+    },
+    {
+     "fiscal_year": 2024,
+     "revenue": 1648,
+     "operating_income": -14985,
+     "operating_margin": -9.092839805825243
+    },
+    {
+     "fiscal_year": 2025,
+     "revenue": 1537,
+     "operating_income": -24275,
+     "operating_margin": -15.793754066363045
+    }
+   ],
+   "revenue_cagr": 0.19528019288711018,
+   "operating_income_cagr": null,
+   "margin_start": -9.476759628154051,
+   "margin_end": -15.793754066363045,
+   "share_of_revenue_2025": 0.0038154484703452523,
+   "share_of_operating_income_2025": -0.18812142065577073
+  }
+ },
+ "scenarios": [
+  {
+   "scenario": "보수",
+   "story": "생성형 AI가 검색 질의를 잠식하기 시작하고 광고 단가가 눌립니다. 클라우드는 계속 크지만 경쟁으로 마진 개선이 멈춥니다.",
+   "assumptions": {
+    "discount": 0.12,
+    "terminal_growth": 0.02,
+    "services": {
+     "g0": 0.05,
+     "g10": 0.02,
+     "margin_end": 0.36,
+     "inc_roic": 0.3
+    },
+    "cloud": {
+     "g0": 0.18,
+     "g10": 0.05,
+     "margin_end": 0.24,
+     "inc_roic": 0.12
+    },
+    "other_growth": 0.05
+   },
+   "services": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.05,
+      "revenue": 359857.05,
+      "operating_margin": 0.4020808646099889,
+      "operating_income": 144691.63379999998,
+      "nopat": 120383.43932159997,
+      "reinvestment_rate": 0.16666666666666669,
+      "free_cash_flow": 100319.53276799998,
+      "present_value": 89571.01139999997
+     },
+     {
+      "year": 2,
+      "growth": 0.04666666666666667,
+      "revenue": 376650.37899999996,
+      "operating_margin": 0.39740521298665676,
+      "operating_income": 149682.82408799996,
+      "nopat": 124536.10964121597,
+      "reinvestment_rate": 0.15555555555555556,
+      "free_cash_flow": 105163.82591924904,
+      "present_value": 83835.95816266663
+     },
+     {
+      "year": 3,
+      "growth": 0.043333333333333335,
+      "revenue": 392971.89542333334,
+      "operating_margin": 0.3927295613633247,
+      "operating_income": 154331.68011772,
+      "nopat": 128403.95785794304,
+      "reinvestment_rate": 0.14444444444444446,
+      "free_cash_flow": 109856.71950068459,
+      "present_value": 78193.84303016565
+     },
+     {
+      "year": 4,
+      "growth": 0.04,
+      "revenue": 408690.7712402667,
+      "operating_margin": 0.3880539097399926,
+      "operating_income": 158594.0516544384,
+      "nopat": 131950.25097649274,
+      "reinvestment_rate": 0.13333333333333333,
+      "free_cash_flow": 114356.88417962704,
+      "present_value": 72675.8672862004
+     },
+     {
+      "year": 5,
+      "growth": 0.03666666666666667,
+      "revenue": 423676.09951907647,
+      "operating_margin": 0.3833782581166605,
+      "operating_income": 162428.20503928442,
+      "nopat": 135140.26659268464,
+      "reinvestment_rate": 0.12222222222222223,
+      "free_cash_flow": 118623.12289802318,
+      "present_value": 67309.94564154626
+     },
+     {
+      "year": 6,
+      "growth": 0.03333333333333333,
+      "revenue": 437798.6361697124,
+      "operating_margin": 0.3787026064933284,
+      "operating_income": 165795.48463669443,
+      "nopat": 137941.84321772977,
+      "reinvestment_rate": 0.11111111111111112,
+      "free_cash_flow": 122614.97174909312,
+      "present_value": 62120.56061036854
+     },
+     {
+      "year": 7,
+      "growth": 0.03,
+      "revenue": 450932.5952548038,
+      "operating_margin": 0.37402695486999626,
+      "operating_income": 168660.9454547788,
+      "nopat": 140325.90661837594,
+      "reinvestment_rate": 0.1,
+      "free_cash_flow": 126293.31595653835,
+      "present_value": 57128.68237523448
+     },
+     {
+      "year": 8,
+      "growth": 0.02666666666666667,
+      "revenue": 462957.46446159855,
+      "operating_margin": 0.3693513032466642,
+      "operating_income": 170993.94284666266,
+      "nopat": 142266.9604484233,
+      "reinvestment_rate": 0.08888888888888889,
+      "free_cash_flow": 129621.00840856346,
+      "present_value": 52351.751289991545
+     },
+     {
+      "year": 9,
+      "growth": 0.023333333333333334,
+      "revenue": 473759.8052990359,
+      "operating_margin": 0.3646756516233321,
+      "operating_income": 172768.66571036886,
+      "nopat": 143743.5298710269,
+      "reinvestment_rate": 0.07777777777777778,
+      "free_cash_flow": 132563.47754772482,
+      "present_value": 47803.71895013009
+     },
+     {
+      "year": 10,
+      "growth": 0.02,
+      "revenue": 483235.00140501664,
+      "operating_margin": 0.36,
+      "operating_income": 173964.60050580598,
+      "nopat": 144738.54762083056,
+      "reinvestment_rate": 0.06666666666666667,
+      "free_cash_flow": 135089.3111127752,
+      "present_value": 43495.1427277877
+     }
+    ],
+    "pv_of_forecast": 654486.4814740913,
+    "pv_of_terminal": 443650.4558234346,
+    "value": 1098136.9372975258,
+    "terminal_share": 0.40400285315531037,
+    "final_year_revenue": 483235.00140501664,
+    "final_year_operating_income": 173964.60050580598,
+    "first_year_reinvestment_rate": 0.16666666666666669
+   },
+   "cloud": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.18,
+      "revenue": 69271.9,
+      "operating_margin": 0.2372527041989609,
+      "operating_income": 16434.9456,
+      "nopat": 13673.874739199999,
+      "reinvestment_rate": 1.5,
+      "free_cash_flow": -6836.937369599999,
+      "present_value": -6104.408365714285
+     },
+     {
+      "year": 2,
+      "growth": 0.16555555555555554,
+      "revenue": 80740.24788888887,
+      "operating_margin": 0.23755795928796525,
+      "operating_income": 19180.488520888885,
+      "nopat": 15958.16644937955,
+      "reinvestment_rate": 1.3796296296296295,
+      "free_cash_flow": -6058.192818745939,
+      "present_value": -4829.554224127821
+     },
+     {
+      "year": 3,
+      "growth": 0.1511111111111111,
+      "revenue": 92940.99645876542,
+      "operating_margin": 0.2378632143769696,
+      "operating_income": 22107.244165080494,
+      "nopat": 18393.22714534697,
+      "reinvestment_rate": 1.2592592592592593,
+      "free_cash_flow": -4768.614445089956,
+      "present_value": -3394.205571452739
+     },
+     {
+      "year": 4,
+      "growth": 0.13666666666666666,
+      "revenue": 105642.93264146337,
+      "operating_margin": 0.23816846946597395,
+      "operating_income": 25160.81557711431,
+      "nopat": 20933.798560159106,
+      "reinvestment_rate": 1.1388888888888888,
+      "free_cash_flow": -2907.4720222443193,
+      "present_value": -1847.7510325925182
+     },
+     {
+      "year": 5,
+      "growth": 0.1222222222222222,
+      "revenue": 118554.84663097556,
+      "operating_margin": 0.23847372455497828,
+      "operating_income": 28272.21584013296,
+      "nopat": 23522.483578990625,
+      "reinvestment_rate": 1.0185185185185184,
+      "free_cash_flow": -435.60154775908234,
+      "present_value": -247.1720165910913
+     },
+     {
+      "year": 6,
+      "growth": 0.10777777777777776,
+      "revenue": 131332.42454564737,
+      "operating_margin": 0.23877897964398262,
+      "operating_income": 31359.42232718002,
+      "nopat": 26091.039376213776,
+      "reinvestment_rate": 0.898148148148148,
+      "free_cash_flow": 2657.420677206962,
+      "present_value": 1346.3320171331577
+     },
+     {
+      "year": 7,
+      "growth": 0.09333333333333332,
+      "revenue": 143590.1175032411,
+      "operating_margin": 0.23908423473298696,
+      "operating_income": 34330.133358482075,
+      "nopat": 28562.670954257086,
+      "reinvestment_rate": 0.7777777777777777,
+      "free_cash_flow": 6347.260212057133,
+      "present_value": 2871.1781764631273
+     },
+     {
+      "year": 8,
+      "growth": 0.07888888888888888,
+      "revenue": 154917.78232849677,
+      "operating_margin": 0.23938948982199132,
+      "operating_income": 37085.688875973145,
+      "nopat": 30855.293144809653,
+      "reinvestment_rate": 0.6574074074074074,
+      "free_cash_flow": 10570.794873684788,
+      "present_value": 4269.366755891579
+     },
+     {
+      "year": 9,
+      "growth": 0.06444444444444443,
+      "revenue": 164901.37274522212,
+      "operating_margin": 0.23969474491099566,
+      "operating_income": 39525.992475639025,
+      "nopat": 32885.625739731666,
+      "reinvestment_rate": 0.537037037037037,
+      "free_cash_flow": 15224.826731357254,
+      "present_value": 5490.225147934958
+     },
+     {
+      "year": 10,
+      "growth": 0.04999999999999999,
+      "revenue": 173146.44138248323,
+      "operating_margin": 0.24,
+      "operating_income": 41555.145931795974,
+      "nopat": 34573.88141525425,
+      "reinvestment_rate": 0.4166666666666666,
+      "free_cash_flow": 20168.09749223165,
+      "present_value": 6493.587625450522
+     }
+    ],
+    "pv_of_forecast": 4047.5985123948885,
+    "pv_of_terminal": 94620.84825656473,
+    "value": 98668.44676895962,
+    "terminal_share": 0.9589777822096188,
+    "final_year_revenue": 173146.44138248323,
+    "final_year_operating_income": 41555.145931795974,
+    "first_year_reinvestment_rate": 1.5
+   },
+   "other": {
+    "projection": [
+     {
+      "year": 1,
+      "operating_income": -25488.75,
+      "after_tax": -21206.64,
+      "present_value": -18934.499999999996
+     },
+     {
+      "year": 2,
+      "operating_income": -26763.1875,
+      "after_tax": -22266.971999999998,
+      "present_value": -17751.093749999996
+     },
+     {
+      "year": 3,
+      "operating_income": -28101.346875000003,
+      "after_tax": -23380.320600000003,
+      "present_value": -16641.650390624996
+     },
+     {
+      "year": 4,
+      "operating_income": -29506.414218750004,
+      "after_tax": -24549.33663,
+      "present_value": -15601.547241210932
+     },
+     {
+      "year": 5,
+      "operating_income": -30981.734929687504,
+      "after_tax": -25776.803461500003,
+      "present_value": -14626.45053863525
+     },
+     {
+      "year": 6,
+      "operating_income": -32530.82167617188,
+      "after_tax": -27065.643634575,
+      "present_value": -13712.297379970543
+     },
+     {
+      "year": 7,
+      "operating_income": -34157.362759980475,
+      "after_tax": -28418.925816303752,
+      "present_value": -12855.278793722384
+     },
+     {
+      "year": 8,
+      "operating_income": -35865.2308979795,
+      "after_tax": -29839.87210711894,
+      "present_value": -12051.823869114734
+     },
+     {
+      "year": 9,
+      "operating_income": -37658.49244287847,
+      "after_tax": -31331.865712474886,
+      "present_value": -11298.584877295061
+     },
+     {
+      "year": 10,
+      "operating_income": -39541.4170650224,
+      "after_tax": -32898.458998098635,
+      "present_value": -10592.423322464121
+     }
+    ],
+    "pv_of_forecast": -144065.65016303805,
+    "pv_of_terminal": -108042.71788913404,
+    "value": -252108.3680521721
+   },
+   "enterprise_value": 944697.0160143132,
+   "net_cash": 77758,
+   "equity_value": 1022455.0160143132,
+   "value_per_share": 84.52137025827174,
+   "upside_vs_market": -0.7624736407285809,
+   "margin_of_safety": -3.210059056465855,
+   "implied_company_revenue_cagr": 0.05024516040882987,
+   "cloud_share_of_value": 0.10444454157931275,
+   "services_share_of_value": 1.1624223626010561,
+   "year10_revenue": 657918.4427874999,
+   "year10_cloud_share_of_revenue": 0.2631731079750375
+  },
+  {
+   "scenario": "중립",
+   "story": "검색이 최근 5년 실적(연 9.6%)에 가까운 속도로 계속 크고, 클라우드가 계약잔고대로 인도되며 마진이 소프트웨어 사업 수준으로 올라갑니다.",
+   "assumptions": {
+    "discount": 0.1,
+    "terminal_growth": 0.025,
+    "services": {
+     "g0": 0.09,
+     "g10": 0.035,
+     "margin_end": 0.41,
+     "inc_roic": 0.4
+    },
+    "cloud": {
+     "g0": 0.28,
+     "g10": 0.08,
+     "margin_end": 0.32,
+     "inc_roic": 0.18
+    },
+    "other_growth": 0.03
+   },
+   "services": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.09,
+      "revenue": 373565.89,
+      "operating_margin": 0.4070808646099889,
+      "operating_income": 152071.52549,
+      "nopat": 126523.50920767999,
+      "reinvestment_rate": 0.22499999999999998,
+      "free_cash_flow": 98055.719635952,
+      "present_value": 89141.5633054109
+     },
+     {
+      "year": 2,
+      "growth": 0.08388888888888889,
+      "revenue": 404903.9174388889,
+      "operating_margin": 0.4074052129866568,
+      "operating_income": 164959.96672332223,
+      "nopat": 137246.6923138041,
+      "reinvestment_rate": 0.2097222222222222,
+      "free_cash_flow": 108463.01100910352,
+      "present_value": 89638.85207363925
+     },
+     {
+      "year": 3,
+      "growth": 0.07777777777777778,
+      "revenue": 436396.44435080246,
+      "operating_margin": 0.40772956136332467,
+      "operating_income": 177931.7308356672,
+      "nopat": 148039.2000552751,
+      "reinvestment_rate": 0.19444444444444445,
+      "free_cash_flow": 119253.80004452718,
+      "present_value": 89597.14503721047
+     },
+     {
+      "year": 4,
+      "growth": 0.07166666666666667,
+      "revenue": 467671.52286261,
+      "operating_margin": 0.40805390973999256,
+      "operating_income": 190835.19337814432,
+      "nopat": 158774.88089061607,
+      "reinvestment_rate": 0.17916666666666667,
+      "free_cash_flow": 130327.71473104735,
+      "present_value": 89015.58276828585
+     },
+     {
+      "year": 5,
+      "growth": 0.06555555555555556,
+      "revenue": 498329.9893613811,
+      "operating_margin": 0.4083782581166605,
+      "operating_income": 203507.1330226948,
+      "nopat": 169317.93467488207,
+      "reinvestment_rate": 0.1638888888888889,
+      "free_cash_flow": 141568.60649205418,
+      "present_value": 87902.96644668716
+     },
+     {
+      "year": 6,
+      "growth": 0.059444444444444446,
+      "revenue": 527952.9387289743,
+      "operating_margin": 0.4087026064933284,
+      "operating_income": 215775.74216434432,
+      "nopat": 179525.41748073447,
+      "reinvestment_rate": 0.1486111111111111,
+      "free_cash_flow": 152845.94571623643,
+      "present_value": 86277.55167123026
+     },
+     {
+      "year": 7,
+      "growth": 0.05333333333333334,
+      "revenue": 556110.4287945195,
+      "operating_margin": 0.4090269548699963,
+      "operating_income": 227464.1552612702,
+      "nopat": 189250.1771773768,
+      "reinvestment_rate": 0.13333333333333333,
+      "free_cash_flow": 164016.82022039325,
+      "present_value": 84166.56282248108
+     },
+     {
+      "year": 8,
+      "growth": 0.04722222222222222,
+      "revenue": 582371.1990431496,
+      "operating_margin": 0.4093513032466642,
+      "operating_income": 238394.40930163575,
+      "nopat": 198344.14853896093,
+      "reinvestment_rate": 0.11805555555555555,
+      "free_cash_flow": 174928.51989200027,
+      "present_value": 81605.44553878323
+     },
+     {
+      "year": 9,
+      "growth": 0.04111111111111111,
+      "revenue": 606313.1261149235,
+      "operating_margin": 0.4096756516233321,
+      "operating_income": 248391.72502891082,
+      "nopat": 206661.91522405378,
+      "reinvestment_rate": 0.10277777777777777,
+      "free_cash_flow": 185421.66282602603,
+      "present_value": 78636.8855991835
+     },
+     {
+      "year": 10,
+      "growth": 0.035,
+      "revenue": 627534.0855289458,
+      "operating_margin": 0.41,
+      "operating_income": 257288.97506686774,
+      "nopat": 214064.42725563396,
+      "reinvestment_rate": 0.08750000000000001,
+      "free_cash_flow": 195333.789870766,
+      "present_value": 75309.631883512
+     }
+    ],
+    "pv_of_forecast": 851292.1871464237,
+    "pv_of_terminal": 1057429.7627479422,
+    "value": 1908721.9498943659,
+    "terminal_share": 0.5539988487094537,
+    "final_year_revenue": 627534.0855289458,
+    "final_year_operating_income": 257288.97506686774,
+    "first_year_reinvestment_rate": 0.22499999999999998
+   },
+   "cloud": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.28,
+      "revenue": 75142.40000000001,
+      "operating_margin": 0.24525270419896092,
+      "operating_income": 18428.876800000002,
+      "nopat": 15332.8254976,
+      "reinvestment_rate": 1.5555555555555558,
+      "free_cash_flow": -8518.23638755556,
+      "present_value": -7743.851261414145
+     },
+     {
+      "year": 2,
+      "growth": 0.25777777777777783,
+      "revenue": 94512.4408888889,
+      "operating_margin": 0.25355795928796526,
+      "operating_income": 23964.381639111114,
+      "nopat": 19938.365523740445,
+      "reinvestment_rate": 1.4320987654320991,
+      "free_cash_flow": -8615.343127542175,
+      "present_value": -7120.118287224937
+     },
+     {
+      "year": 3,
+      "growth": 0.23555555555555557,
+      "revenue": 116775.37140938273,
+      "operating_margin": 0.2618632143769696,
+      "operating_income": 30579.174117325434,
+      "nopat": 25441.87286561476,
+      "reinvestment_rate": 1.308641975308642,
+      "free_cash_flow": -7852.429896794681,
+      "present_value": -5899.64680450389
+     },
+     {
+      "year": 4,
+      "growth": 0.21333333333333335,
+      "revenue": 141687.4506433844,
+      "operating_margin": 0.27016846946597395,
+      "operating_income": 38279.48168285889,
+      "nopat": 31848.528760138593,
+      "reinvestment_rate": 1.1851851851851853,
+      "free_cash_flow": -5897.875696321967,
+      "present_value": -4028.328458658538
+     },
+     {
+      "year": 5,
+      "growth": 0.19111111111111112,
+      "revenue": 168765.49676634232,
+      "operating_margin": 0.2784737245549783,
+      "operating_income": 46996.756460894496,
+      "nopat": 39101.301375464216,
+      "reinvestment_rate": 1.0617283950617284,
+      "free_cash_flow": -2413.660578732361,
+      "present_value": -1498.6933199622233
+     },
+     {
+      "year": 6,
+      "growth": 0.16888888888888892,
+      "revenue": 197268.11399799123,
+      "operating_margin": 0.28677897964398263,
+      "operating_income": 56572.348448636774,
+      "nopat": 47068.19390926579,
+      "reinvestment_rate": 0.9382716049382718,
+      "free_cash_flow": 2905.444068473189,
+      "present_value": 1640.0474318824965
+     },
+     {
+      "year": 7,
+      "growth": 0.14666666666666667,
+      "revenue": 226200.7707176966,
+      "operating_margin": 0.29508423473298695,
+      "operating_income": 66748.28132324334,
+      "nopat": 55534.57006093846,
+      "reinvestment_rate": 0.8148148148148149,
+      "free_cash_flow": 10284.179640914526,
+      "present_value": 5277.41027207824
+     },
+     {
+      "year": 8,
+      "growth": 0.12444444444444447,
+      "revenue": 254350.1999625655,
+      "operating_margin": 0.3033894898219913,
+      "operating_income": 77167.17740276422,
+      "nopat": 64203.09159909983,
+      "reinvestment_rate": 0.6913580246913582,
+      "free_cash_flow": 19815.769012067838,
+      "present_value": 9244.202488660978
+     },
+     {
+      "year": 9,
+      "growth": 0.10222222222222224,
+      "revenue": 280350.4426254055,
+      "operating_margin": 0.3116947449109957,
+      "operating_income": 87383.7596998105,
+      "nopat": 72703.28807024233,
+      "reinvestment_rate": 0.5679012345679013,
+      "free_cash_flow": 31415.00101800594,
+      "present_value": 13323.027112905498
+     },
+     {
+      "year": 10,
+      "growth": 0.08000000000000002,
+      "revenue": 302778.47803543793,
+      "operating_margin": 0.32,
+      "operating_income": 96889.11297134015,
+      "nopat": 80611.741992155,
+      "reinvestment_rate": 0.44444444444444453,
+      "free_cash_flow": 44784.30110675277,
+      "present_value": 17266.286763500066
+     }
+    ],
+    "pv_of_forecast": 20460.33593726355,
+    "pv_of_terminal": 365757.5079401431,
+    "value": 386217.8438774067,
+    "terminal_share": 0.9470238460971833,
+    "final_year_revenue": 302778.47803543793,
+    "final_year_operating_income": 96889.11297134015,
+    "first_year_reinvestment_rate": 1.5555555555555558
+   },
+   "other": {
+    "projection": [
+     {
+      "year": 1,
+      "operating_income": -25003.25,
+      "after_tax": -20802.703999999998,
+      "present_value": -18911.549090909088
+     },
+     {
+      "year": 2,
+      "operating_income": -25753.3475,
+      "after_tax": -21426.78512,
+      "present_value": -17708.086876033056
+     },
+     {
+      "year": 3,
+      "operating_income": -26525.947925,
+      "after_tax": -22069.5886736,
+      "present_value": -16581.208620285495
+     },
+     {
+      "year": 4,
+      "operating_income": -27321.72636275,
+      "after_tax": -22731.676333807998,
+      "present_value": -15526.040798994598
+     },
+     {
+      "year": 5,
+      "operating_income": -28141.3781536325,
+      "after_tax": -23413.626623822238,
+      "present_value": -14538.02002087676
+     },
+     {
+      "year": 6,
+      "operating_income": -28985.619498241475,
+      "after_tax": -24116.035422536905,
+      "present_value": -13612.87329227551
+     },
+     {
+      "year": 7,
+      "operating_income": -29855.18808318872,
+      "after_tax": -24839.516485213015,
+      "present_value": -12746.599537312522
+     },
+     {
+      "year": 8,
+      "operating_income": -30750.843725684383,
+      "after_tax": -25584.701979769405,
+      "present_value": -11935.452294028995
+     },
+     {
+      "year": 9,
+      "operating_income": -31673.369037454915,
+      "after_tax": -26352.243039162488,
+      "present_value": -11175.923511681696
+     },
+     {
+      "year": 10,
+      "operating_income": -32623.570108578562,
+      "after_tax": -27142.81033033736,
+      "present_value": -10464.728379120132
+     }
+    ],
+    "pv_of_forecast": -143200.48242151784,
+    "pv_of_terminal": -143017.95451464175,
+    "value": -286218.4369361596
+   },
+   "enterprise_value": 2008721.356835613,
+   "net_cash": 77758,
+   "equity_value": 2086479.356835613,
+   "value_per_share": 172.4790738890314,
+   "upside_vs_market": -0.5152903183398365,
+   "margin_of_safety": -1.063090624835329,
+   "implied_company_revenue_cagr": 0.08744690987742865,
+   "cloud_share_of_value": 0.1922704921531899,
+   "services_share_of_value": 0.9502173825150251,
+   "year10_revenue": 931849.5635643837,
+   "year10_cloud_share_of_revenue": 0.3249220581026953
+  },
+  {
+   "scenario": "낙관",
+   "story": "AI가 검색을 잠식하는 대신 확장시키고, 클라우드가 최근 5년 실적(연 32.2%)에 가까운 속도를 유지하며 마진이 구글 서비스 수준에 근접합니다.",
+   "assumptions": {
+    "discount": 0.08,
+    "terminal_growth": 0.03,
+    "services": {
+     "g0": 0.11,
+     "g10": 0.045,
+     "margin_end": 0.44,
+     "inc_roic": 0.5
+    },
+    "cloud": {
+     "g0": 0.34,
+     "g10": 0.1,
+     "margin_end": 0.4,
+     "inc_roic": 0.25
+    },
+    "other_growth": 0.0
+   },
+   "services": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.11,
+      "revenue": 380420.31000000006,
+      "operating_margin": 0.4100808646099889,
+      "operating_income": 156003.08964000002,
+      "nopat": 129794.57058048001,
+      "reinvestment_rate": 0.22,
+      "free_cash_flow": 101239.76505277441,
+      "present_value": 93740.52319701333
+     },
+     {
+      "year": 2,
+      "growth": 0.10277777777777777,
+      "revenue": 419519.0640833334,
+      "operating_margin": 0.4134052129866568,
+      "operating_income": 173431.36803933338,
+      "nopat": 144294.89820872535,
+      "reinvestment_rate": 0.20555555555555555,
+      "free_cash_flow": 114634.28024359848,
+      "present_value": 98280.41859019073
+     },
+     {
+      "year": 3,
+      "growth": 0.09555555555555556,
+      "revenue": 459606.44131796306,
+      "operating_margin": 0.4167295613633247,
+      "operating_income": 191531.59069019338,
+      "nopat": 159354.28345424088,
+      "reinvestment_rate": 0.19111111111111112,
+      "free_cash_flow": 128899.90928298596,
+      "present_value": 102324.9038534093
+     },
+     {
+      "year": 4,
+      "growth": 0.08833333333333333,
+      "revenue": 500205.0103010498,
+      "operating_margin": 0.42005390973999257,
+      "operating_income": 210113.07024848924,
+      "nopat": 174814.07444674303,
+      "reinvestment_rate": 0.17666666666666667,
+      "free_cash_flow": 143930.25462781845,
+      "present_value": 105793.03387204143
+     },
+     {
+      "year": 5,
+      "growth": 0.0811111111111111,
+      "revenue": 540777.1944699128,
+      "operating_margin": 0.4233782581166605,
+      "operating_income": 228953.30662388625,
+      "nopat": 190489.15111107336,
+      "reinvestment_rate": 0.1622222222222222,
+      "free_cash_flow": 159587.57770861033,
+      "present_value": 108612.6238437985
+     },
+     {
+      "year": 6,
+      "growth": 0.07388888888888889,
+      "revenue": 580734.6205057453,
+      "operating_margin": 0.4267026064933284,
+      "operating_income": 247800.97625071544,
+      "nopat": 206170.41224059524,
+      "reinvestment_rate": 0.14777777777777779,
+      "free_cash_flow": 175703.00687615172,
+      "present_value": 110722.69828538409
+     },
+     {
+      "year": 7,
+      "growth": 0.06666666666666667,
+      "revenue": 619450.261872795,
+      "operating_margin": 0.4300269548699963,
+      "operating_income": 266380.3098065798,
+      "nopat": 221628.41775907436,
+      "reinvestment_rate": 0.13333333333333333,
+      "free_cash_flow": 192077.96205786447,
+      "present_value": 112075.64600228847
+     },
+     {
+      "year": 8,
+      "growth": 0.059444444444444446,
+      "revenue": 656273.1385507889,
+      "operating_margin": 0.4333513032466642,
+      "operating_income": 284396.819876763,
+      "nopat": 236618.1541374668,
+      "reinvestment_rate": 0.11888888888888889,
+      "free_cash_flow": 208486.88470112352,
+      "present_value": 112638.97663076803
+     },
+     {
+      "year": 9,
+      "growth": 0.05222222222222222,
+      "revenue": 690545.1802306634,
+      "operating_margin": 0.4366756516233321,
+      "operating_income": 301544.2665525763,
+      "nopat": 250884.82977174345,
+      "reinvestment_rate": 0.10444444444444444,
+      "free_cash_flow": 224681.3031066947,
+      "present_value": 112396.58981287427
+     },
+     {
+      "year": 10,
+      "growth": 0.045,
+      "revenue": 721619.7133410432,
+      "operating_margin": 0.44,
+      "operating_income": 317512.673870059,
+      "nopat": 264170.54465988907,
+      "reinvestment_rate": 0.09,
+      "free_cash_flow": 240395.19564049906,
+      "present_value": 111349.48918752282
+     }
+    ],
+    "pv_of_forecast": 1067934.903275291,
+    "pv_of_terminal": 2369419.240249661,
+    "value": 3437354.143524952,
+    "terminal_share": 0.6893148454642091,
+    "final_year_revenue": 721619.7133410432,
+    "final_year_operating_income": 317512.673870059,
+    "first_year_reinvestment_rate": 0.22
+   },
+   "cloud": {
+    "projection": [
+     {
+      "year": 1,
+      "growth": 0.34,
+      "revenue": 78664.70000000001,
+      "operating_margin": 0.2532527041989609,
+      "operating_income": 19922.048000000003,
+      "nopat": 16575.143936,
+      "reinvestment_rate": 1.36,
+      "free_cash_flow": -5967.051816960002,
+      "present_value": -5525.047978666668
+     },
+     {
+      "year": 2,
+      "growth": 0.31333333333333335,
+      "revenue": 103312.9726666667,
+      "operating_margin": 0.2695579592879653,
+      "operating_income": 27848.83408000001,
+      "nopat": 23170.229954560007,
+      "reinvestment_rate": 1.2533333333333334,
+      "free_cash_flow": -5869.791588488537,
+      "present_value": -5032.400195892093
+     },
+     {
+      "year": 3,
+      "growth": 0.2866666666666667,
+      "revenue": 132929.35816444448,
+      "operating_margin": 0.2858632143769696,
+      "operating_income": 37999.613609955566,
+      "nopat": 31615.67852348303,
+      "reinvestment_rate": 1.1466666666666667,
+      "free_cash_flow": -4636.9661834441795,
+      "present_value": -3680.973256938236
+     },
+     {
+      "year": 4,
+      "growth": 0.26,
+      "revenue": 167490.99128720004,
+      "operating_margin": 0.302168469465974,
+      "operating_income": 50610.49648659202,
+      "nopat": 42107.93307684456,
+      "reinvestment_rate": 1.04,
+      "free_cash_flow": -1684.3173230737839,
+      "present_value": -1238.0235140414395
+     },
+     {
+      "year": 5,
+      "growth": 0.23333333333333334,
+      "revenue": 206572.22258754674,
+      "operating_margin": 0.3184737245549783,
+      "operating_income": 65787.82511705603,
+      "nopat": 54735.47049739061,
+      "reinvestment_rate": 0.9333333333333333,
+      "free_cash_flow": 3649.0313664927066,
+      "present_value": 2483.4694334840506
+     },
+     {
+      "year": 6,
+      "growth": 0.20666666666666667,
+      "revenue": 249263.81525563973,
+      "operating_margin": 0.3347789796439826,
+      "operating_income": 83448.28573344926,
+      "nopat": 69428.97373022977,
+      "reinvestment_rate": 0.8266666666666667,
+      "free_cash_flow": 12034.355446573161,
+      "present_value": 7583.685281545666
+     },
+     {
+      "year": 7,
+      "growth": 0.18,
+      "revenue": 294131.30200165487,
+      "operating_margin": 0.351084234732987,
+      "operating_income": 103264.86307426808,
+      "nopat": 85916.36607779104,
+      "reinvestment_rate": 0.72,
+      "free_cash_flow": 24056.582501781493,
+      "present_value": 14036.784832620615
+     },
+     {
+      "year": 8,
+      "growth": 0.15333333333333335,
+      "revenue": 339231.43497524195,
+      "operating_margin": 0.3673894898219913,
+      "operating_income": 124630.06382713617,
+      "nopat": 103692.21310417728,
+      "reinvestment_rate": 0.6133333333333334,
+      "free_cash_flow": 40094.322400281875,
+      "present_value": 21661.714838062864
+     },
+     {
+      "year": 9,
+      "growth": 0.12666666666666668,
+      "revenue": 382200.75007210596,
+      "operating_margin": 0.38369474491099564,
+      "operating_income": 146648.4193037079,
+      "nopat": 122011.48486068497,
+      "reinvestment_rate": 0.5066666666666667,
+      "free_cash_flow": 60192.33253127125,
+      "present_value": 30111.152178001757
+     },
+     {
+      "year": 10,
+      "growth": 0.1,
+      "revenue": 420420.82507931656,
+      "operating_margin": 0.4,
+      "operating_income": 168168.33003172663,
+      "nopat": 139916.05058639654,
+      "reinvestment_rate": 0.4,
+      "free_cash_flow": 83949.63035183791,
+      "present_value": 38884.92210608767
+     }
+    ],
+    "pv_of_forecast": 99285.28372426418,
+    "pv_of_terminal": 1174843.113231929,
+    "value": 1274128.3969561933,
+    "terminal_share": 0.9220759195372695,
+    "final_year_revenue": 420420.82507931656,
+    "final_year_operating_income": 168168.33003172663,
+    "first_year_reinvestment_rate": 1.36
+   },
+   "other": {
+    "projection": [
+     {
+      "year": 1,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -18700.740740740737
+     },
+     {
+      "year": 2,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -17315.500685871055
+     },
+     {
+      "year": 3,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -16032.87100543616
+     },
+     {
+      "year": 4,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -14845.250930959406
+     },
+     {
+      "year": 5,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -13745.6027138513
+     },
+     {
+      "year": 6,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -12727.409920232685
+     },
+     {
+      "year": 7,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -11784.638815030263
+     },
+     {
+      "year": 8,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -10911.702606509503
+     },
+     {
+      "year": 9,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -10103.42833936065
+     },
+     {
+      "year": 10,
+      "operating_income": -24275.0,
+      "after_tax": -20196.8,
+      "present_value": -9355.026240148749
+     }
+    ],
+    "pv_of_forecast": -135522.17199814052,
+    "pv_of_terminal": -192713.54054706424,
+    "value": -328235.7125452048
+   },
+   "enterprise_value": 4383246.82793594,
+   "net_cash": 77758,
+   "equity_value": 4461004.82793594,
+   "value_per_share": 368.76951541175,
+   "upside_vs_market": 0.03633530950080789,
+   "margin_of_safety": 0.03506134468998286,
+   "implied_company_revenue_cagr": 0.10994138462107705,
+   "cloud_share_of_value": 0.29068141653254265,
+   "services_share_of_value": 0.7842027333750661,
+   "year10_revenue": 1143577.5384203598,
+   "year10_cloud_share_of_revenue": 0.3676364837141257
+  }
+ ],
+ "implied_discount_rate_at_current_price": 0.06475877973418342,
+ "growth_audit": {
+  "windows": [
+   {
+    "window": "3년 (FY2022→FY2025)",
+    "revenue_cagr": 0.12511745609215974,
+    "operating_income_cagr": 0.19910864686764196,
+    "nopat_cagr": 0.19499784154632716
+   },
+   {
+    "window": "5년 (FY2020→FY2025)",
+    "revenue_cagr": 0.1715483907713573,
+    "operating_income_cagr": 0.2563602053699445,
+    "nopat_cagr": 0.2547640753980267
+   },
+   {
+    "window": "10년 (FY2015→FY2025)",
+    "revenue_cagr": 0.1830771631182213,
+    "operating_income_cagr": 0.20887546564103743,
+    "nopat_cagr": 0.20885110807392882
+   },
+   {
+    "window": "11년 (FY2014→FY2025)",
+    "revenue_cagr": 0.1787349477996374,
+    "operating_income_cagr": 0.20562692960664442,
+    "nopat_cagr": 0.21145679219285074
+   }
+  ],
+  "previous_assumptions": {
+   "보수": 0.08,
+   "중립": 0.11,
+   "낙관": 0.15
+  },
+  "verdict": "이전 모형의 낙관 시나리오 성장률 15%는 5년 실적 매출 CAGR 17.2%, NOPAT CAGR 25.5%보다 낮습니다. '낙관'이라는 이름이 실적보다 보수적인 가정에 붙어 있었습니다.",
+  "counterpoints": [
+   "5년 창은 FY2021 한 해의 반등(매출 +41.2%)을 안고 있습니다. 그 해를 제외한 최근 3년 매출 CAGR은 12.5%입니다.",
+   "NOPAT이 매출보다 빨리 자란 것은 영업이익률이 FY2020 22.6%에서 FY2025 32.0%로 9.4%포인트 확대된 결과입니다. 마진 확대는 무한히 이어질 수 없으므로 NOPAT CAGR을 그대로 미래에 옮기면 이중으로 낙관하게 됩니다.",
+   "성장은 공짜가 아닙니다. g = 재투자율 × 신규 ROIC이므로, 성장률을 올리면 재투자율이 따라 올라갑니다. 다만 그 대가가 가치를 깎을지 키울지는 신규 ROIC와 할인율의 차이에 달려 있습니다 — 구글 서비스처럼 신규 ROIC가 할인율을 크게 웃도는 사업에서는 성장이 가치를 키우고(아래 민감도 참조), 클라우드의 보수 시나리오처럼 신규 ROIC가 12%로 할인율에 근접하면 성장해도 남는 것이 거의 없습니다."
+  ]
+ },
+ "cloud_growth_needed_for_company_growth": {
+  "revenue_mix_2025": {
+   "services": 0.8505024034464703,
+   "cloud": 0.14568335058057438,
+   "other": 0.0038142459729553334
+  },
+  "targets": [
+   {
+    "company_growth_target": 0.1,
+    "combinations": [
+     {
+      "services_growth": 0.05,
+      "cloud_growth_needed": 0.39451920620049497
+     },
+     {
+      "services_growth": 0.08,
+      "cloud_growth_needed": 0.21937858785452669
+     },
+     {
+      "services_growth": 0.09,
+      "cloud_growth_needed": 0.1609983817392051
+     },
+     {
+      "services_growth": 0.11,
+      "cloud_growth_needed": 0.044237969508559516
+     }
+    ]
+   },
+   {
+    "company_growth_target": 0.12,
+    "combinations": [
+     {
+      "services_growth": 0.05,
+      "cloud_growth_needed": 0.5318032535559163
+     },
+     {
+      "services_growth": 0.08,
+      "cloud_growth_needed": 0.35666263520994823
+     },
+     {
+      "services_growth": 0.09,
+      "cloud_growth_needed": 0.29828242909462643
+     },
+     {
+      "services_growth": 0.11,
+      "cloud_growth_needed": 0.18152201686398084
+     }
+    ]
+   },
+   {
+    "company_growth_target": 0.15,
+    "combinations": [
+     {
+      "services_growth": 0.05,
+      "cloud_growth_needed": 0.7377293245890464
+     },
+     {
+      "services_growth": 0.08,
+      "cloud_growth_needed": 0.5625887062430781
+     },
+     {
+      "services_growth": 0.09,
+      "cloud_growth_needed": 0.5042085001277563
+     },
+     {
+      "services_growth": 0.11,
+      "cloud_growth_needed": 0.38744808789711094
+     }
+    ]
+   },
+   {
+    "company_growth_target": 0.17,
+    "combinations": [
+     {
+      "services_growth": 0.05,
+      "cloud_growth_needed": 0.8750133719444677
+     },
+     {
+      "services_growth": 0.08,
+      "cloud_growth_needed": 0.6998727535984994
+     },
+     {
+      "services_growth": 0.09,
+      "cloud_growth_needed": 0.6414925474831776
+     },
+     {
+      "services_growth": 0.11,
+      "cloud_growth_needed": 0.5247321352525323
+     }
+    ]
+   },
+   {
+    "company_growth_target": 0.2,
+    "combinations": [
+     {
+      "services_growth": 0.05,
+      "cloud_growth_needed": 1.0809394429775998
+     },
+     {
+      "services_growth": 0.08,
+      "cloud_growth_needed": 0.9057988246316315
+     },
+     {
+      "services_growth": 0.09,
+      "cloud_growth_needed": 0.8474186185163097
+     },
+     {
+      "services_growth": 0.11,
+      "cloud_growth_needed": 0.7306582062856644
+     }
+    ]
+   }
+  ],
+  "cloud_actual_cagr": 0.32223771900253206,
+  "services_actual_cagr": 0.09598855499811099
+ },
+ "growth_value_tradeoff": [
+  {
+   "services_growth": 0.05,
+   "first_year_reinvestment_rate": 0.125,
+   "value_per_share": 152.61552901435564,
+   "implied_company_revenue_cagr": 0.07414000766192164
+  },
+  {
+   "services_growth": 0.08,
+   "first_year_reinvestment_rate": 0.19999999999999998,
+   "value_per_share": 167.2584176542615,
+   "implied_company_revenue_cagr": 0.08405653346510822
+  },
+  {
+   "services_growth": 0.09,
+   "first_year_reinvestment_rate": 0.22499999999999998,
+   "value_per_share": 172.4790738890314,
+   "implied_company_revenue_cagr": 0.08744690987742865
+  },
+  {
+   "services_growth": 0.11,
+   "first_year_reinvestment_rate": 0.27499999999999997,
+   "value_per_share": 186.3159745544177,
+   "implied_company_revenue_cagr": 0.0965088215561889
+  },
+  {
+   "services_growth": 0.13,
+   "first_year_reinvestment_rate": 0.325,
+   "value_per_share": 201.4609459683579,
+   "implied_company_revenue_cagr": 0.10585810891008451
+  },
+  {
+   "services_growth": 0.15,
+   "first_year_reinvestment_rate": 0.37499999999999994,
+   "value_per_share": 218.0301609453954,
+   "implied_company_revenue_cagr": 0.11547507690521419
+  },
+  {
+   "services_growth": 0.17,
+   "first_year_reinvestment_rate": 0.425,
+   "value_per_share": 236.148730276071,
+   "implied_company_revenue_cagr": 0.1253402260072085
+  },
+  {
+   "services_growth": 0.2,
+   "first_year_reinvestment_rate": 0.5,
+   "value_per_share": 266.52886381310253,
+   "implied_company_revenue_cagr": 0.14056180275709407
+  }
+ ],
+ "cost_centre_sensitivity": [
+  {
+   "treatment": "영구히 현 수준 유지 (성장 3%)",
+   "growth": 0.03,
+   "note": "기준 가정",
+   "cost_centre_value": -286218.4369361596,
+   "equity_value": 2086479.356835613,
+   "value_per_share": 172.4790738890314
+  },
+  {
+   "treatment": "성장 0% — 명목 기준 고정",
+   "growth": 0.0,
+   "note": "연구비가 더 늘지 않는 경우",
+   "cost_centre_value": -230519.38259581782,
+   "equity_value": 2142178.411175955,
+   "value_per_share": 177.08344309960776
+  },
+  {
+   "treatment": "연 5%씩 축소",
+   "growth": -0.05,
+   "note": "웨이모 등이 손익분기에 접근하는 경우",
+   "cost_centre_value": -162102.6015195545,
+   "equity_value": 2210595.1922522183,
+   "value_per_share": 182.73912476252113
+  },
+  {
+   "treatment": "연 10%씩 확대",
+   "growth": 0.1,
+   "note": "프론티어 모델 경쟁이 심화되는 경우",
+   "cost_centre_value": -477990.9333333333,
+   "equity_value": 1894706.8604384393,
+   "value_per_share": 156.62617677427787
+  }
+ ],
+ "caveat": "부문별 자본이 공시되지 않으므로 각 부문의 신규 ROIC는 측정치가 아니라 시나리오별 가정입니다. 부문 매출과 영업이익만이 알파벳이 보고한 값입니다."
+}
