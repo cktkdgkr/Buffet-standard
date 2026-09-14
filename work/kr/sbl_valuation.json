@@ -1,0 +1,2600 @@
+{
+  "company": "삼성바이오로직스 (207940.KS)",
+  "basis": "separate (CDMO) statements; see module docstring",
+  "market": {
+    "price": 1408000.0,
+    "price_date": "2026-09-14",
+    "price_source": "네이버 금융 일별시세 (207940), 2026-09-14 종가",
+    "shares_outstanding": 46239518,
+    "shares_issued": 46290951,
+    "shares_note": "분할 후 발행주식 46,290,951주에서 자기주식 51,433주를 차감한 유통주식 46,239,518주 기준. 분할 전 71,174,000주였으므로 분할 전 주가·EPS와는 직접 비교할 수 없습니다.",
+    "market_cap_naver": 65131400000000.0,
+    "market_cap_note": "네이버 공시 시총 65조 1,314억원 (자체 계산 65조 1,052억원과 0.04% 차이)",
+    "fifty_two_week_high": 1987000.0,
+    "fifty_two_week_low": 1228000.0,
+    "trailing_per_naver": 38.87,
+    "pbr_naver": 7.78,
+    "dividend": null,
+    "market_cap_computed": 65105241344000.0
+  },
+  "fx": {
+    "spot": 1358.5,
+    "spot_note": "2026년 9월 평균 (FRED DEXKOUS 월평균)",
+    "annual_average": {
+      "2016": 1159.3,
+      "2017": 1129.0,
+      "2018": 1099.3,
+      "2019": 1165.8,
+      "2020": 1180.6,
+      "2021": 1144.9,
+      "2022": 1291.8,
+      "2023": 1306.8,
+      "2024": 1363.4,
+      "2025": 1421.4
+    },
+    "h1_2026_average": 1482.0,
+    "series": "FRED DEXKOUS (Korea / U.S. Foreign Exchange Rate)",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXKOUS"
+  },
+  "years": [
+    {
+      "fiscal_year": 2016,
+      "revenue": 294622021000,
+      "operating_income": -30422639000,
+      "operating_margin": -0.10325989515902478,
+      "effective_tax_rate": 0.22,
+      "tax_note": "세전이익이 없거나 음수여서 법정세율 22% 적용",
+      "nopat": -23729658420.0,
+      "net_income": -176823410000,
+      "capital": {
+        "top_down": -249257153000,
+        "operating": 1146475054000,
+        "operating_ex_payables": 1284531429000,
+        "construction_in_progress": 232705460000,
+        "top_down_ex_cip": -481962613000,
+        "operating_ex_cip": 913769594000,
+        "operating_ex_payables_ex_cip": 1051825969000
+      },
+      "roic_top_down": null,
+      "roic_operating": -0.020697928260373644,
+      "roic_operating_ex_cip": -0.02596897355286698,
+      "roic_operating_ex_payables_ex_cip": -0.02256044166941461,
+      "depreciation_amortization": 60149889000,
+      "capex": 162992350000,
+      "intangible_capex": 5179126000,
+      "ocf": -62661298000,
+      "ppe": 1090959766000,
+      "inventories": 164219980000,
+      "contract_liabilities": null,
+      "advance_receipts": 60323791000,
+      "trade_payables": 138056375000,
+      "total_equity": 4082379460000,
+      "debt_total": 843057278000,
+      "lease_liabilities": null,
+      "cash_total": 230337601000,
+      "source_document": "sbl_2017.pdf"
+    },
+    {
+      "fiscal_year": 2017,
+      "revenue": 464629334000,
+      "operating_income": 65979402000,
+      "operating_margin": 0.14200438321873152,
+      "effective_tax_rate": 0.22,
+      "tax_note": "세전이익이 없거나 음수여서 법정세율 22% 적용",
+      "nopat": 51463933560.0,
+      "net_income": -96972116000,
+      "capital": {
+        "top_down": -1813959055000,
+        "operating": 1553434467000,
+        "operating_ex_payables": 1711649313000,
+        "construction_in_progress": 308844562000,
+        "top_down_ex_cip": -2122803617000,
+        "operating_ex_cip": 1244589905000,
+        "operating_ex_payables_ex_cip": 1402804751000
+      },
+      "roic_top_down": null,
+      "roic_operating": 0.03312913074433541,
+      "roic_operating_ex_cip": 0.04135011328088829,
+      "roic_operating_ex_payables_ex_cip": 0.03668645513448222,
+      "depreciation_amortization": 69926227000,
+      "capex": 494119453000,
+      "intangible_capex": 10682088000,
+      "ocf": 149816327000,
+      "ppe": 1513332618000,
+      "inventories": 209986717000,
+      "contract_liabilities": null,
+      "advance_receipts": 56486175000,
+      "trade_payables": 158214846000,
+      "total_equity": 3976450893000,
+      "debt_total": 545912148000,
+      "lease_liabilities": null,
+      "cash_total": 1328088091000,
+      "source_document": "sbl_2017.pdf"
+    },
+    {
+      "fiscal_year": 2018,
+      "revenue": 535805801000,
+      "operating_income": 55678745000,
+      "operating_margin": 0.10391590553160136,
+      "effective_tax_rate": 0.26030670643978354,
+      "tax_note": "실효 26.0%",
+      "nopat": 41185194270.349434,
+      "net_income": 224109194000,
+      "capital": {
+        "top_down": 1898740132000,
+        "operating": 1899236627000,
+        "operating_ex_payables": 2069574921000,
+        "construction_in_progress": 57115774000,
+        "top_down_ex_cip": 1841624358000,
+        "operating_ex_cip": 1842120853000,
+        "operating_ex_payables_ex_cip": 2012459147000
+      },
+      "roic_top_down": 0.02169080095598329,
+      "roic_operating": 0.02168513058607385,
+      "roic_operating_ex_cip": 0.022357487676922482,
+      "roic_operating_ex_payables_ex_cip": 0.020465108239213083,
+      "depreciation_amortization": 91450555000,
+      "capex": 347851891000,
+      "intangible_capex": 5811483000,
+      "ocf": 36787308000,
+      "ppe": 1717720988000,
+      "inventories": 302360715000,
+      "contract_liabilities": 101104790000,
+      "advance_receipts": 87695614000,
+      "trade_payables": 170338294000,
+      "total_equity": 4155468451000,
+      "debt_total": 872696107000,
+      "lease_liabilities": null,
+      "cash_total": 567621905000,
+      "source_document": "sbl_2018.pdf"
+    },
+    {
+      "fiscal_year": 2019,
+      "revenue": 701591859755,
+      "operating_income": 91742387198,
+      "operating_margin": 0.13076318649141253,
+      "effective_tax_rate": 0.22,
+      "tax_note": "실효세율 -30.5%가 밴드를 벗어나 법정세율 22% 적용",
+      "nopat": 71559062014.44,
+      "net_income": 202904099088,
+      "capital": {
+        "top_down": 1910327879135,
+        "operating": 2140845764911,
+        "operating_ex_payables": 2241973826165,
+        "construction_in_progress": 36714553000,
+        "top_down_ex_cip": 1873613326135,
+        "operating_ex_cip": 2104131211911,
+        "operating_ex_payables_ex_cip": 2205259273165
+      },
+      "roic_top_down": 0.03745904710705582,
+      "roic_operating": 0.03342560365034745,
+      "roic_operating_ex_cip": 0.034008840137611525,
+      "roic_operating_ex_payables_ex_cip": 0.03244927382698999,
+      "depreciation_amortization": 132543014424,
+      "capex": 171734357701,
+      "intangible_capex": 9461855113,
+      "ocf": 10153614976,
+      "ppe": 1702792524097,
+      "inventories": 452469927424,
+      "contract_liabilities": 145129256480,
+      "advance_receipts": 144706770419,
+      "trade_payables": 101128061254,
+      "total_equity": 4354453745366,
+      "debt_total": 637817124961,
+      "lease_liabilities": 15889284011,
+      "cash_total": 445100653179,
+      "source_document": "sbl_2019.pdf"
+    },
+    {
+      "fiscal_year": 2020,
+      "revenue": 1164776873641,
+      "operating_income": 292786554082,
+      "operating_margin": 0.2513670735638599,
+      "effective_tax_rate": 0.0940530074573535,
+      "tax_note": "실효 9.4%",
+      "nopat": 265249098127.51285,
+      "net_income": 240974799963,
+      "capital": {
+        "top_down": 2420409820513,
+        "operating": 2302860251690,
+        "operating_ex_payables": 2488036957624,
+        "construction_in_progress": 105469602000,
+        "top_down_ex_cip": 2314940218513,
+        "operating_ex_cip": 2197390649690,
+        "operating_ex_payables_ex_cip": 2382567355624
+      },
+      "roic_top_down": 0.10958850682207774,
+      "roic_operating": 0.11518245535431622,
+      "roic_operating_ex_cip": 0.12071094330219947,
+      "roic_operating_ex_payables_ex_cip": 0.11132910786400138,
+      "depreciation_amortization": 143174872791,
+      "capex": 139664805056,
+      "intangible_capex": 8901227656,
+      "ocf": 202090026541,
+      "ppe": 1736567289165,
+      "inventories": 645960096442,
+      "contract_liabilities": 197116872305,
+      "advance_receipts": 159567115745,
+      "trade_payables": 185176705934,
+      "total_equity": 4598783172364,
+      "debt_total": 762358357851,
+      "lease_liabilities": 22546904764,
+      "cash_total": 328850120614,
+      "source_document": "sbl_2020.pdf"
+    },
+    {
+      "fiscal_year": 2021,
+      "revenue": 1568006928039,
+      "operating_income": 537309408072,
+      "operating_margin": 0.3426703023206514,
+      "effective_tax_rate": 0.298767733839178,
+      "tax_note": "실효 29.9%",
+      "nopat": 376778693851.85846,
+      "net_income": 393589467655,
+      "capital": {
+        "top_down": 3125129565409,
+        "operating": 2843241394519,
+        "operating_ex_payables": 3242271488109,
+        "construction_in_progress": 583352269000,
+        "top_down_ex_cip": 2541777296409,
+        "operating_ex_cip": 2259889125519,
+        "operating_ex_payables_ex_cip": 2658919219109
+      },
+      "roic_top_down": 0.12056418332932309,
+      "roic_operating": 0.13251730738662776,
+      "roic_operating_ex_cip": 0.16672441563491683,
+      "roic_operating_ex_payables_ex_cip": 0.14170370094136084,
+      "depreciation_amortization": 161788649867,
+      "capex": 406253514919,
+      "intangible_capex": 14898311036,
+      "ocf": 454596217269,
+      "ppe": 2207063705617,
+      "inventories": 1012870791066,
+      "contract_liabilities": 285621828514,
+      "advance_receipts": 364409200047,
+      "trade_payables": 399030093590,
+      "total_equity": 4991102140680,
+      "debt_total": 1274538996094,
+      "lease_liabilities": 18208298411,
+      "cash_total": 497410383773,
+      "source_document": "sbl_2021.pdf"
+    },
+    {
+      "fiscal_year": 2022,
+      "revenue": 2437286111838,
+      "operating_income": 968050593669,
+      "operating_margin": 0.39718381398356883,
+      "effective_tax_rate": 0.25582121001915265,
+      "tax_note": "실효 25.6%",
+      "nopat": 720402719436.8374,
+      "net_income": 686792936517,
+      "capital": {
+        "top_down": 2731276168197,
+        "operating": 3256977740586,
+        "operating_ex_payables": 4885711871678,
+        "construction_in_progress": 816478388000,
+        "top_down_ex_cip": 1914797780197,
+        "operating_ex_cip": 2440499352586,
+        "operating_ex_payables_ex_cip": 4069233483678
+      },
+      "roic_top_down": 0.2637604823068469,
+      "roic_operating": 0.22118748631890298,
+      "roic_operating_ex_cip": 0.29518660542707575,
+      "roic_operating_ex_payables_ex_cip": 0.1770364670217196,
+      "depreciation_amortization": 180792187140,
+      "capex": 948126930126,
+      "intangible_capex": 12199985471,
+      "ocf": 831098844606,
+      "ppe": 3083545436767,
+      "inventories": 1243171975151,
+      "contract_liabilities": 289682040048,
+      "advance_receipts": 450889828622,
+      "trade_payables": 1628734131092,
+      "total_equity": 7296603218280,
+      "debt_total": 1263088053378,
+      "lease_liabilities": 407224450196,
+      "cash_total": 2926846988143,
+      "source_document": "sblsep_2022.pdf"
+    },
+    {
+      "fiscal_year": 2023,
+      "revenue": 2938755680729,
+      "operating_income": 1204187993041,
+      "operating_margin": 0.40976117917440624,
+      "effective_tax_rate": 0.22730506208521267,
+      "tax_note": "실효 22.7%",
+      "nopat": 930469966520.548,
+      "net_income": 945920325918,
+      "capital": {
+        "top_down": 4246702449031,
+        "operating": 4348704069690,
+        "operating_ex_payables": 5377392135675,
+        "construction_in_progress": 192257667000,
+        "top_down_ex_cip": 4054444782031,
+        "operating_ex_cip": 4156446402690,
+        "operating_ex_payables_ex_cip": 5185134468675
+      },
+      "roic_top_down": 0.21910411141069228,
+      "roic_operating": 0.21396488508055161,
+      "roic_operating_ex_cip": 0.2238618946026489,
+      "roic_operating_ex_payables_ex_cip": 0.17944953446083312,
+      "depreciation_amortization": 254896391815,
+      "capex": 976195716688,
+      "intangible_capex": 25106734680,
+      "ocf": 1418214391979,
+      "ppe": 3542877089587,
+      "inventories": 1678605972283,
+      "contract_liabilities": 353873746413,
+      "advance_receipts": 732055396556,
+      "trade_payables": 1028688065985,
+      "total_equity": 8238633782732,
+      "debt_total": 928187563774,
+      "lease_liabilities": 278203961170,
+      "cash_total": 1880790684551,
+      "source_document": "sblsep_2023.pdf"
+    },
+    {
+      "fiscal_year": 2024,
+      "revenue": 3497145675782,
+      "operating_income": 1321425521850,
+      "operating_margin": 0.3778583005566432,
+      "effective_tax_rate": 0.25058252174911416,
+      "tax_note": "실효 25.1%",
+      "nopat": 990299382281.1877,
+      "net_income": 1050966501040,
+      "capital": {
+        "top_down": 6623079920876,
+        "operating": 5990565383796,
+        "operating_ex_payables": 7117011013531,
+        "construction_in_progress": 1823298445975,
+        "top_down_ex_cip": 4799781474901,
+        "operating_ex_cip": 4167266937821,
+        "operating_ex_payables_ex_cip": 5293712567556
+      },
+      "roic_top_down": 0.14952248713770708,
+      "roic_operating": 0.1653098361900645,
+      "roic_operating_ex_cip": 0.2376376164659613,
+      "roic_operating_ex_payables_ex_cip": 0.18707086371680148,
+      "depreciation_amortization": 299031018048,
+      "capex": 1297126457854,
+      "intangible_capex": 26633162885,
+      "ocf": 1382836126534,
+      "ppe": 5047583098573,
+      "inventories": 1882955514642,
+      "contract_liabilities": 456220369928,
+      "advance_receipts": 1032343022959,
+      "trade_payables": 1126445629735,
+      "total_equity": 9280892761658,
+      "debt_total": 1726161722258,
+      "lease_liabilities": 143840002196,
+      "cash_total": 1199588328642,
+      "source_document": "sblsep_2024.pdf"
+    },
+    {
+      "fiscal_year": 2025,
+      "revenue": 4556971695180,
+      "operating_income": 2068092839427,
+      "operating_margin": 0.453830521180209,
+      "effective_tax_rate": 0.23703468581666667,
+      "tax_note": "실효 23.7%",
+      "nopat": 1577883102993.7231,
+      "net_income": 1586186963312,
+      "capital": {
+        "top_down": 6854203106791,
+        "operating": 7086302128230,
+        "operating_ex_payables": 7572139005065,
+        "construction_in_progress": 430160651929,
+        "top_down_ex_cip": 6424042454862,
+        "operating_ex_cip": 6656141476301,
+        "operating_ex_payables_ex_cip": 7141978353136
+      },
+      "roic_top_down": 0.23020664523792558,
+      "roic_operating": 0.22266664255082264,
+      "roic_operating_ex_cip": 0.23705672552359808,
+      "roic_operating_ex_payables_ex_cip": 0.2209308156613054,
+      "depreciation_amortization": 369314709832,
+      "capex": 1376344214595,
+      "intangible_capex": 11502254035,
+      "ocf": 1953455992724,
+      "ppe": 6028492966965,
+      "inventories": 2128164162722,
+      "contract_liabilities": 539437151497,
+      "advance_receipts": 1201458529835,
+      "trade_payables": 485836876835,
+      "total_equity": 7415448837573,
+      "debt_total": 918724421281,
+      "lease_liabilities": 7397284801,
+      "cash_total": 1441484622864,
+      "source_document": "sblsep_2025.pdf"
+    }
+  ],
+  "incremental_returns": [
+    {
+      "from": 2016,
+      "to": 2019,
+      "years": 3,
+      "delta_nopat": 95288720434.44,
+      "operating": {
+        "delta_capital": 994370710911,
+        "incremental_roic": 0.09582816487740327
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1190361617911,
+        "incremental_roic": 0.08005022927542382
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 1153433304165,
+        "incremental_roic": 0.08261311693563587
+      },
+      "top_down": {
+        "delta_capital": 2159585032135,
+        "incremental_roic": 0.044123625148594435
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2020,
+      "years": 4,
+      "delta_nopat": 288978756547.5128,
+      "operating": {
+        "delta_capital": 1156385197690,
+        "incremental_roic": 0.2498983531826402
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1283621055690,
+        "incremental_roic": 0.22512777837862333
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 1330741386624,
+        "incremental_roic": 0.21715621040436128
+      },
+      "top_down": {
+        "delta_capital": 2669666973513,
+        "incremental_roic": 0.10824524534880367
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2021,
+      "years": 5,
+      "delta_nopat": 400508352271.85846,
+      "operating": {
+        "delta_capital": 1696766340519,
+        "incremental_roic": 0.23604213656746195
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1346119531519,
+        "incremental_roic": 0.29752807450903956
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 1607093250109,
+        "incremental_roic": 0.249212889323438
+      },
+      "top_down": {
+        "delta_capital": 3374386718409,
+        "incremental_roic": 0.11869070906629675
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2022,
+      "years": 6,
+      "delta_nopat": 744132377856.8374,
+      "operating": {
+        "delta_capital": 2110502686586,
+        "incremental_roic": 0.35258537342142116
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1526729758586,
+        "incremental_roic": 0.48740281223444876
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3017407514678,
+        "incremental_roic": 0.24661315193160008
+      },
+      "top_down": {
+        "delta_capital": 2980533321197,
+        "incremental_roic": 0.24966417002108515
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2023,
+      "years": 7,
+      "delta_nopat": 954199624940.548,
+      "operating": {
+        "delta_capital": 3202229015690,
+        "incremental_roic": 0.2979798197646841
+      },
+      "operating_ex_cip": {
+        "delta_capital": 3242676808690,
+        "incremental_roic": 0.2942629442389704
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 4133308499675,
+        "incremental_roic": 0.23085613498619234
+      },
+      "top_down": {
+        "delta_capital": 4495959602031,
+        "incremental_roic": 0.21223491966197802
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2024,
+      "years": 8,
+      "delta_nopat": 1014029040701.1877,
+      "operating": {
+        "delta_capital": 4844090329796,
+        "incremental_roic": 0.20933322288890754
+      },
+      "operating_ex_cip": {
+        "delta_capital": 3253497343821,
+        "incremental_roic": 0.31167354189700464
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 4241886598556,
+        "incremental_roic": 0.23905142609101762
+      },
+      "top_down": {
+        "delta_capital": 6872337073876,
+        "incremental_roic": 0.14755228531438652
+      }
+    },
+    {
+      "from": 2016,
+      "to": 2025,
+      "years": 9,
+      "delta_nopat": 1601612761413.7231,
+      "operating": {
+        "delta_capital": 5939827074230,
+        "incremental_roic": 0.26963962778686545
+      },
+      "operating_ex_cip": {
+        "delta_capital": 5742371882301,
+        "incremental_roic": 0.27891136175805253
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 6090152384136,
+        "incremental_roic": 0.2629840208244545
+      },
+      "top_down": {
+        "delta_capital": 7103460259791,
+        "incremental_roic": 0.22546937729484057
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2020,
+      "years": 3,
+      "delta_nopat": 213785164567.51285,
+      "operating": {
+        "delta_capital": 749425784690,
+        "incremental_roic": 0.28526529102003756
+      },
+      "operating_ex_cip": {
+        "delta_capital": 952800744690,
+        "incremental_roic": 0.2243755221214371
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 979762604624,
+        "incremental_roic": 0.21820098415529587
+      },
+      "top_down": {
+        "delta_capital": 4234368875513,
+        "incremental_roic": 0.05048808236897227
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2021,
+      "years": 4,
+      "delta_nopat": 325314760291.85846,
+      "operating": {
+        "delta_capital": 1289806927519,
+        "incremental_roic": 0.2522197340943234
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1015299220519,
+        "incremental_roic": 0.32041269580170095
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 1256114468109,
+        "incremental_roic": 0.2589849639910597
+      },
+      "top_down": {
+        "delta_capital": 4939088620409,
+        "incremental_roic": 0.06586534182594188
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2022,
+      "years": 5,
+      "delta_nopat": 668938785876.8374,
+      "operating": {
+        "delta_capital": 1703543273586,
+        "incremental_roic": 0.392674959450079
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1195909447586,
+        "incremental_roic": 0.5593557164609094
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2666428732678,
+        "incremental_roic": 0.2508744290363972
+      },
+      "top_down": {
+        "delta_capital": 4545235223197,
+        "incremental_roic": 0.1471736341527168
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2023,
+      "years": 6,
+      "delta_nopat": 879006032960.548,
+      "operating": {
+        "delta_capital": 2795269602690,
+        "incremental_roic": 0.314461986820393
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2911856497690,
+        "incremental_roic": 0.3018713434737841
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3782329717675,
+        "incremental_roic": 0.23239804527165162
+      },
+      "top_down": {
+        "delta_capital": 6060661504031,
+        "incremental_roic": 0.1450346686373943
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2024,
+      "years": 7,
+      "delta_nopat": 938835448721.1877,
+      "operating": {
+        "delta_capital": 4437130916796,
+        "incremental_roic": 0.21158615022319643
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2922677032821,
+        "incremental_roic": 0.32122449322257596
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3890907816556,
+        "incremental_roic": 0.2412895635117331
+      },
+      "top_down": {
+        "delta_capital": 8437038975876,
+        "incremental_roic": 0.11127546659504561
+      }
+    },
+    {
+      "from": 2017,
+      "to": 2025,
+      "years": 8,
+      "delta_nopat": 1526419169433.7231,
+      "operating": {
+        "delta_capital": 5532867661230,
+        "incremental_roic": 0.2758821036204557
+      },
+      "operating_ex_cip": {
+        "delta_capital": 5411551571301,
+        "incremental_roic": 0.28206682488784895
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 5739173602136,
+        "incremental_roic": 0.2659649760142509
+      },
+      "top_down": {
+        "delta_capital": 8668162161791,
+        "incremental_roic": 0.1760949023499045
+      }
+    },
+    {
+      "from": 2018,
+      "to": 2021,
+      "years": 3,
+      "delta_nopat": 335593499581.50903,
+      "operating": {
+        "delta_capital": 944004767519,
+        "incremental_roic": 0.35549979314564695
+      },
+      "operating_ex_cip": {
+        "delta_capital": 417768272519,
+        "incremental_roic": 0.8033005894822861
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 646460072109,
+        "incremental_roic": 0.5191248679700738
+      },
+      "top_down": {
+        "delta_capital": 1226389433409,
+        "incremental_roic": 0.27364350216933814
+      }
+    },
+    {
+      "from": 2018,
+      "to": 2022,
+      "years": 4,
+      "delta_nopat": 679217525166.4879,
+      "operating": {
+        "delta_capital": 1357741113586,
+        "incremental_roic": 0.5002555482558612
+      },
+      "operating_ex_cip": {
+        "delta_capital": 598378499586,
+        "incremental_roic": 1.1350968085190527
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2056774336678,
+        "incremental_roic": 0.3302343446503355
+      },
+      "top_down": {
+        "delta_capital": 832536036197,
+        "incremental_roic": 0.8158415919977873
+      }
+    },
+    {
+      "from": 2018,
+      "to": 2023,
+      "years": 5,
+      "delta_nopat": 889284772250.1985,
+      "operating": {
+        "delta_capital": 2449467442690,
+        "incremental_roic": 0.36305229322566046
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2314325549690,
+        "incremental_roic": 0.3842522381388032
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3172675321675,
+        "incremental_roic": 0.28029491898361175
+      },
+      "top_down": {
+        "delta_capital": 2347962317031,
+        "incremental_roic": 0.3787474636197312
+      }
+    },
+    {
+      "from": 2018,
+      "to": 2024,
+      "years": 6,
+      "delta_nopat": 949114188010.8383,
+      "operating": {
+        "delta_capital": 4091328756796,
+        "incremental_roic": 0.23198189254146084
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2325146084821,
+        "incremental_roic": 0.40819550831960105
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3281253420556,
+        "incremental_roic": 0.2892535462408793
+      },
+      "top_down": {
+        "delta_capital": 4724339788876,
+        "incremental_roic": 0.2008987986523824
+      }
+    },
+    {
+      "from": 2018,
+      "to": 2025,
+      "years": 7,
+      "delta_nopat": 1536697908723.3738,
+      "operating": {
+        "delta_capital": 5187065501230,
+        "incremental_roic": 0.2962557361882126
+      },
+      "operating_ex_cip": {
+        "delta_capital": 4814020623301,
+        "incremental_roic": 0.3192129882629484
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 5129519206136,
+        "incremental_roic": 0.29957932643768154
+      },
+      "top_down": {
+        "delta_capital": 4955462974791,
+        "incremental_roic": 0.3101017839383988
+      }
+    },
+    {
+      "from": 2019,
+      "to": 2022,
+      "years": 3,
+      "delta_nopat": 648843657422.3975,
+      "operating": {
+        "delta_capital": 1116131975675,
+        "incremental_roic": 0.5813323796498152
+      },
+      "operating_ex_cip": {
+        "delta_capital": 336368140675,
+        "incremental_roic": 1.9289688260021995
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 1863974210513,
+        "incremental_roic": 0.348096907008077
+      },
+      "top_down": {
+        "delta_capital": 820948289062,
+        "incremental_roic": 0.7903587425265896
+      }
+    },
+    {
+      "from": 2019,
+      "to": 2023,
+      "years": 4,
+      "delta_nopat": 858910904506.1079,
+      "operating": {
+        "delta_capital": 2207858304779,
+        "incremental_roic": 0.3890244689375944
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2052315190779,
+        "incremental_roic": 0.41850828194673645
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2979875195510,
+        "incremental_roic": 0.28823720731670005
+      },
+      "top_down": {
+        "delta_capital": 2336374569896,
+        "incremental_roic": 0.3676255150065004
+      }
+    },
+    {
+      "from": 2019,
+      "to": 2024,
+      "years": 5,
+      "delta_nopat": 918740320266.7478,
+      "operating": {
+        "delta_capital": 3849719618885,
+        "incremental_roic": 0.238651229497291
+      },
+      "operating_ex_cip": {
+        "delta_capital": 2063135725910,
+        "incremental_roic": 0.44531259321851613
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3088453294391,
+        "incremental_roic": 0.2974758666207742
+      },
+      "top_down": {
+        "delta_capital": 4712752041741,
+        "incremental_roic": 0.19494773162887302
+      }
+    },
+    {
+      "from": 2019,
+      "to": 2025,
+      "years": 6,
+      "delta_nopat": 1506324040979.2832,
+      "operating": {
+        "delta_capital": 4945456363319,
+        "incremental_roic": 0.3045874698545227
+      },
+      "operating_ex_cip": {
+        "delta_capital": 4552010264390,
+        "incremental_roic": 0.3309140255599008
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 4936719079971,
+        "incremental_roic": 0.30512654590589583
+      },
+      "top_down": {
+        "delta_capital": 4943875227656,
+        "incremental_roic": 0.3046848821250419
+      }
+    },
+    {
+      "from": 2020,
+      "to": 2023,
+      "years": 3,
+      "delta_nopat": 665220868393.0352,
+      "operating": {
+        "delta_capital": 2045843818000,
+        "incremental_roic": 0.3251572102133141
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1959055753000,
+        "incremental_roic": 0.33956198917480995
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2802567113051,
+        "incremental_roic": 0.2373612625707457
+      },
+      "top_down": {
+        "delta_capital": 1826292628518,
+        "incremental_roic": 0.364246593347337
+      }
+    },
+    {
+      "from": 2020,
+      "to": 2024,
+      "years": 4,
+      "delta_nopat": 725050284153.6749,
+      "operating": {
+        "delta_capital": 3687705132106,
+        "incremental_roic": 0.19661286848593781
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1969876288131,
+        "incremental_roic": 0.36806894347745855
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2911145211932,
+        "incremental_roic": 0.24906015721300645
+      },
+      "top_down": {
+        "delta_capital": 4202670100363,
+        "incremental_roic": 0.17252134163256108
+      }
+    },
+    {
+      "from": 2020,
+      "to": 2025,
+      "years": 5,
+      "delta_nopat": 1312634004866.2102,
+      "operating": {
+        "delta_capital": 4783441876540,
+        "incremental_roic": 0.27441203191031055
+      },
+      "operating_ex_cip": {
+        "delta_capital": 4458750826611,
+        "incremental_roic": 0.294395012394966
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 4759410997512,
+        "incremental_roic": 0.27579757359732004
+      },
+      "top_down": {
+        "delta_capital": 4433793286278,
+        "incremental_roic": 0.29605214319049056
+      }
+    },
+    {
+      "from": 2021,
+      "to": 2024,
+      "years": 3,
+      "delta_nopat": 613520688429.3293,
+      "operating": {
+        "delta_capital": 3147323989277,
+        "incremental_roic": 0.19493407431824858
+      },
+      "operating_ex_cip": {
+        "delta_capital": 1907377812302,
+        "incremental_roic": 0.3216566138456208
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 2634793348447,
+        "incremental_roic": 0.23285343755363233
+      },
+      "top_down": {
+        "delta_capital": 3497950355467,
+        "incremental_roic": 0.1753943384217699
+      }
+    },
+    {
+      "from": 2021,
+      "to": 2025,
+      "years": 4,
+      "delta_nopat": 1201104409141.8647,
+      "operating": {
+        "delta_capital": 4243060733711,
+        "incremental_roic": 0.28307499810198883
+      },
+      "operating_ex_cip": {
+        "delta_capital": 4396252350782,
+        "incremental_roic": 0.27321097910319314
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 4483059134027,
+        "incremental_roic": 0.2679207151262687
+      },
+      "top_down": {
+        "delta_capital": 3729073541382,
+        "incremental_roic": 0.32209190722925074
+      }
+    },
+    {
+      "from": 2022,
+      "to": 2025,
+      "years": 3,
+      "delta_nopat": 857480383556.8857,
+      "operating": {
+        "delta_capital": 3829324387644,
+        "incremental_roic": 0.22392471797993913
+      },
+      "operating_ex_cip": {
+        "delta_capital": 4215642123715,
+        "incremental_roic": 0.20340445379202118
+      },
+      "operating_ex_payables_ex_cip": {
+        "delta_capital": 3072744869458,
+        "incremental_roic": 0.2790600651814403
+      },
+      "top_down": {
+        "delta_capital": 4122926938594,
+        "incremental_roic": 0.20797855415048988
+      }
+    }
+  ],
+  "owner_earnings": [
+    {
+      "fiscal_year": 2016,
+      "net_income": -176823410000,
+      "depreciation_amortization": 60149889000,
+      "capex": 162992350000,
+      "working_capital_change": null,
+      "oe_maintenance_equals_da": -176823410000,
+      "oe_maintenance_1_2x_da": -188853387800.0,
+      "oe_all_in_capex": -279665871000,
+      "fcf_from_cash_flow_statement": -225653648000
+    },
+    {
+      "fiscal_year": 2017,
+      "net_income": -96972116000,
+      "depreciation_amortization": 69926227000,
+      "capex": 494119453000,
+      "working_capital_change": 49604353000,
+      "oe_maintenance_equals_da": -146576469000,
+      "oe_maintenance_1_2x_da": -160561714400.0,
+      "oe_all_in_capex": -570769695000,
+      "fcf_from_cash_flow_statement": -344303126000
+    },
+    {
+      "fiscal_year": 2018,
+      "net_income": 224109194000,
+      "depreciation_amortization": 91450555000,
+      "capex": 347851891000,
+      "working_capital_change": -39940231000,
+      "oe_maintenance_equals_da": 264049425000,
+      "oe_maintenance_1_2x_da": 245759314000.0,
+      "oe_all_in_capex": 7648089000,
+      "fcf_from_cash_flow_statement": -311064583000
+    },
+    {
+      "fiscal_year": 2019,
+      "net_income": 202904099088,
+      "depreciation_amortization": 132543014424,
+      "capex": 171734357701,
+      "working_capital_change": 49073589525,
+      "oe_maintenance_equals_da": 153830509563,
+      "oe_maintenance_1_2x_da": 127321906678.20001,
+      "oe_all_in_capex": 114639166286,
+      "fcf_from_cash_flow_statement": -161580742725
+    },
+    {
+      "fiscal_year": 2020,
+      "net_income": 240974799963,
+      "depreciation_amortization": 143174872791,
+      "capex": 139664805056,
+      "working_capital_change": 126642207867,
+      "oe_maintenance_equals_da": 114332592096,
+      "oe_maintenance_1_2x_da": 85697617537.80002,
+      "oe_all_in_capex": 117842659831,
+      "fcf_from_cash_flow_statement": 62425221485
+    },
+    {
+      "fiscal_year": 2021,
+      "net_income": 393589467655,
+      "depreciation_amortization": 161788649867,
+      "capex": 406253514919,
+      "working_capital_change": 73563654113,
+      "oe_maintenance_equals_da": 320025813542,
+      "oe_maintenance_1_2x_da": 287668083568.6,
+      "oe_all_in_capex": 75560948490,
+      "fcf_from_cash_flow_statement": 48342702350
+    },
+    {
+      "fiscal_year": 2022,
+      "net_income": 686792936517,
+      "depreciation_amortization": 180792187140,
+      "capex": 948126930126,
+      "working_capital_change": 139760343976,
+      "oe_maintenance_equals_da": 547032592541,
+      "oe_maintenance_1_2x_da": 510874155113.0,
+      "oe_all_in_capex": -220302150445,
+      "fcf_from_cash_flow_statement": -117028085520
+    },
+    {
+      "fiscal_year": 2023,
+      "net_income": 945920325918,
+      "depreciation_amortization": 254896391815,
+      "capex": 976195716688,
+      "working_capital_change": 90076722833,
+      "oe_maintenance_equals_da": 855843603085,
+      "oe_maintenance_1_2x_da": 804864324722.0,
+      "oe_all_in_capex": 134544278212,
+      "fcf_from_cash_flow_statement": 442018675291
+    },
+    {
+      "fiscal_year": 2024,
+      "net_income": 1050966501040,
+      "depreciation_amortization": 299031018048,
+      "capex": 1297126457854,
+      "working_capital_change": -198284707559,
+      "oe_maintenance_equals_da": 1249251208599,
+      "oe_maintenance_1_2x_da": 1189445004989.4,
+      "oe_all_in_capex": 251155768793,
+      "fcf_from_cash_flow_statement": 85709668680
+    },
+    {
+      "fiscal_year": 2025,
+      "net_income": 1586186963312,
+      "depreciation_amortization": 369314709832,
+      "capex": 1376344214595,
+      "working_capital_change": -7123640365,
+      "oe_maintenance_equals_da": 1593310603677,
+      "oe_maintenance_1_2x_da": 1519447661710.6,
+      "oe_all_in_capex": 586281098914,
+      "fcf_from_cash_flow_statement": 577111778129
+    }
+  ],
+  "cost_of_capital": {
+    "risk_free": {
+      "rate": 0.04181,
+      "as_of": "2026-06",
+      "series": "FRED IRLTLT01KRM156N (Korea 10-year government bond yield)",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IRLTLT01KRM156N"
+    },
+    "grid": [
+      {
+        "beta": 0.9,
+        "erp": 0.055,
+        "cost_of_equity": 0.09131,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.09047356849633166
+      },
+      {
+        "beta": 0.9,
+        "erp": 0.065,
+        "cost_of_equity": 0.10031000000000001,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.09934833336851574
+      },
+      {
+        "beta": 0.9,
+        "erp": 0.075,
+        "cost_of_equity": 0.10931,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.10822309824069982
+      },
+      {
+        "beta": 1.0,
+        "erp": 0.055,
+        "cost_of_equity": 0.09681000000000001,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.09589703591822193
+      },
+      {
+        "beta": 1.0,
+        "erp": 0.065,
+        "cost_of_equity": 0.10681,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.10575788577620424
+      },
+      {
+        "beta": 1.0,
+        "erp": 0.075,
+        "cost_of_equity": 0.11681,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.11561873563418654
+      },
+      {
+        "beta": 1.2,
+        "erp": 0.055,
+        "cost_of_equity": 0.10781,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.10674397076200247
+      },
+      {
+        "beta": 1.2,
+        "erp": 0.065,
+        "cost_of_equity": 0.11981,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.11857699059158124
+      },
+      {
+        "beta": 1.2,
+        "erp": 0.075,
+        "cost_of_equity": 0.13180999999999998,
+        "cost_of_debt_pretax": 0.04,
+        "debt_weight": 0.01391501420176907,
+        "wacc": 0.13041001042116
+      }
+    ],
+    "range": [
+      0.09047356849633166,
+      0.13041001042116
+    ]
+  },
+  "valuation_bases": {
+    "foreign_revenue_share_2025": 0.918393945827809,
+    "h1_2026_effective_tax_rate": 0.2655212267591532,
+    "reported_fy2025": {
+      "label": "FY2025 실적 기준",
+      "revenue": 4556971695180,
+      "operating_income": 2068092839427,
+      "tax_rate": 0.23703468581666667,
+      "note": "감사받은 FY2025 별도 손익계산서. 평균환율 1,421.4원/USD.",
+      "nopat": 1577883102993.7231
+    },
+    "run_rate_2026": {
+      "label": "2026 상반기 연율화",
+      "revenue": 5156060113388,
+      "operating_income": 2334392845930,
+      "tax_rate": 0.2655212267591532,
+      "note": "검토받은 2026 상반기 × 2. 평균환율 1,482원/USD. 상반기 매출은 전년 동기 대비 +28.0%.",
+      "nopat": 1714561993740.8757
+    },
+    "run_rate_fx_normalised": {
+      "label": "2026 상반기 연율화 · 현재 환율로 환산",
+      "revenue": 4761452247349.685,
+      "operating_income": 2010326661578.1348,
+      "tax_rate": 0.2655212267591532,
+      "note": "해외매출 비중 91.8%, 원가 중 외화연동 비중 30% 가정. 1,482원 → 1,358.5원.",
+      "nopat": 1476542260209.2756
+    },
+    "fx_sensitivity_of_run_rate": [
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1200,
+        "revenue": 4255012192555.571,
+        "operating_income": 1594419858179.1816,
+        "operating_margin": 0.3747156966950003,
+        "cost_share_assumed": 0.3,
+        "nopat": 1171067541466.2903
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1250,
+        "revenue": 4414772462206.711,
+        "operating_income": 1725620742532.1636,
+        "operating_margin": 0.3908742199750012,
+        "cost_share_assumed": 0.3,
+        "nopat": 1267431806053.9827
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1300,
+        "revenue": 4574532731857.851,
+        "operating_income": 1856821626885.1455,
+        "operating_margin": 0.4059041077472051,
+        "cost_share_assumed": 0.3,
+        "nopat": 1363796070641.675
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1358.5,
+        "revenue": 4761452247349.685,
+        "operating_income": 2010326661578.1348,
+        "operating_margin": 0.4222087206055928,
+        "cost_share_assumed": 0.3,
+        "nopat": 1476542260209.2756
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1400,
+        "revenue": 4894053271160.131,
+        "operating_income": 2119223395591.1099,
+        "operating_margin": 0.4330200915628264,
+        "cost_share_assumed": 0.3,
+        "nopat": 1556524599817.0603
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1450,
+        "revenue": 5053813540811.2705,
+        "operating_income": 2250424279944.092,
+        "operating_margin": 0.44529230486466254,
+        "cost_share_assumed": 0.3,
+        "nopat": 1652888864404.7527
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1482,
+        "revenue": 5156060113388.0,
+        "operating_income": 2334392845930.0,
+        "operating_margin": 0.45274740685598636,
+        "cost_share_assumed": 0.3,
+        "nopat": 1714561993740.8757
+      },
+      {
+        "rate_from": 1482.0,
+        "rate_to": 1550,
+        "revenue": 5373334080113.55,
+        "operating_income": 2512826048650.055,
+        "operating_margin": 0.46764746267124974,
+        "cost_share_assumed": 0.3,
+        "nopat": 1845617393580.1372
+      }
+    ],
+    "cost_share_sensitivity": [
+      {
+        "cost_share": 0.0,
+        "operating_income": 1939784979891.6846
+      },
+      {
+        "cost_share": 0.15,
+        "operating_income": 1975055820734.9097
+      },
+      {
+        "cost_share": 0.3,
+        "operating_income": 2010326661578.1348
+      },
+      {
+        "cost_share": 0.45,
+        "operating_income": 2045597502421.3594
+      },
+      {
+        "cost_share": 0.6,
+        "operating_income": 2080868343264.5845
+      }
+    ]
+  },
+  "margin_decomposition": {
+    "fy2024_margin": 0.3778583005566432,
+    "fy2025_margin": 0.453830521180209,
+    "fy2025_margin_at_fy2024_rate": 0.43951219395355157,
+    "total_change": 0.07597222062356579,
+    "fx_contribution": 0.014318327226657435,
+    "operating_contribution": 0.061653893396908355,
+    "fx_share_of_change": 0.1884679308981004,
+    "foreign_revenue_share": 0.918393945827809,
+    "note": "환율이 아닌 부분은 5공장 가동에 따른 가동률 상승과 고정비 레버리지입니다. FY2025 중 2조 1,829억원이 건설중자산에서 가동자산으로 이전되었습니다."
+  },
+  "net_cash": {
+    "cash_and_short_term_instruments": 1441484622864,
+    "interest_bearing_debt": 918724421281,
+    "lease_liabilities": 7397284801,
+    "net_cash": 515362916782
+  },
+  "concentration": {
+    "2025": {
+      "top5_revenue": 2386248634868,
+      "top5_share": 0.523647894805224,
+      "largest_share": 0.2127861456468183,
+      "clients": [
+        969660442839,
+        493757336968,
+        478468863363,
+        277382226790,
+        166979764908
+      ]
+    },
+    "2024": {
+      "top5_revenue": 1648726806888,
+      "top5_share": 0.4714492788520532,
+      "largest_share": 0.1394061323970968,
+      "clients": [
+        487523553090,
+        410144688023,
+        358915729494,
+        306012091890,
+        86130744391
+      ]
+    },
+    "largest_client_change": 2.1686997623203625,
+    "geography": {
+      "domestic": {
+        "2025": 371876479018,
+        "2024": 558086309485
+      },
+      "europe": {
+        "2025": 2367746716504,
+        "2024": 2035771049122
+      },
+      "usa": {
+        "2025": 1733921542433,
+        "2024": 822631938995
+      },
+      "other": {
+        "2025": 83426957225,
+        "2024": 80656378180
+      }
+    }
+  },
+  "customer_funding": {
+    "advance_receipts_2025": 1265487264212,
+    "contract_liabilities_2025": 539437151497,
+    "total_customer_funding_2025": 1804924415709,
+    "as_share_of_revenue": 0.39607979518900777,
+    "as_share_of_operating_capital": 0.2527205105454385,
+    "supplier_finance": {
+      "2025": 13816198731,
+      "2024": 540599044293
+    },
+    "related_party_payables_million": [
+      39070,
+      554989
+    ],
+    "note": "선수금과 계약부채는 일이 끝나기 전에 받은 고객 자금입니다. 공급자금융은 반대 방향으로, FY2024 매입채무에 5,406억원이 들어 있었고 거의 전액이 특수관계자에 대한 채무였습니다. FY2025에 138억원으로 청산되었으므로 FY2024 영업현금흐름은 그만큼 부풀려졌고 FY2025는 그만큼 깎였습니다."
+  },
+  "valuation": {
+    "reported_fy2025": {
+      "label": "FY2025 실적 기준",
+      "base_nopat": 1577883102993.7231,
+      "base_operating_capital": 7141978353136,
+      "scenarios": [
+        {
+          "scenario": "보수",
+          "story": "증설을 멈추고 기존 공장의 가동률·가격·믹스 개선만으로 성장. 증분 ROIC은 실측 5년 구간 최저치(24.9%)보다 크게 낮은 15%를 적용.",
+          "assumptions": {
+            "growth": 0.08,
+            "fade_to": 0.025,
+            "incremental_roic": 0.15,
+            "discount": 0.11,
+            "terminal_growth": 0.02
+          },
+          "first_year_reinvestment_rate": 0.5333333333333333,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 5395402507702.654,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.08,
+              "nopat": 1704113751233.2212,
+              "reinvestment_rate": 0.5333333333333333,
+              "free_cash_flow": 795253083908.8365,
+              "present_value": 716444219737.6906
+            },
+            {
+              "year": 2,
+              "growth": 0.07388888888888889,
+              "nopat": 1830028822852.1204,
+              "reinvestment_rate": 0.49259259259259264,
+              "free_cash_flow": 928570180484.2239,
+              "present_value": 753648389322.4768
+            },
+            {
+              "year": 3,
+              "growth": 0.06777777777777778,
+              "nopat": 1954064109734.3196,
+              "reinvestment_rate": 0.4518518518518519,
+              "free_cash_flow": 1071116623113.6268,
+              "present_value": 783191243188.862
+            },
+            {
+              "year": 4,
+              "growth": 0.06166666666666667,
+              "nopat": 2074564729834.6028,
+              "reinvestment_rate": 0.41111111111111115,
+              "free_cash_flow": 1221688118680.377,
+              "present_value": 804763804519.6973
+            },
+            {
+              "year": 5,
+              "growth": 0.05555555555555555,
+              "nopat": 2189818325936.5251,
+              "reinvestment_rate": 0.37037037037037035,
+              "free_cash_flow": 1378774501515.5898,
+              "present_value": 818235559017.7039
+            },
+            {
+              "year": 6,
+              "growth": 0.049444444444444444,
+              "nopat": 2298092676496.7197,
+              "reinvestment_rate": 0.32962962962962966,
+              "free_cash_flow": 1540573238688.5415,
+              "present_value": 823653364388.4591
+            },
+            {
+              "year": 7,
+              "growth": 0.043333333333333335,
+              "nopat": 2397676692478.2446,
+              "reinvestment_rate": 0.2888888888888889,
+              "free_cash_flow": 1705014536873.4182,
+              "present_value": 821234592376.1692
+            },
+            {
+              "year": 8,
+              "growth": 0.037222222222222226,
+              "nopat": 2486923547142.713,
+              "reinvestment_rate": 0.24814814814814817,
+              "free_cash_flow": 1869798074333.2246,
+              "present_value": 811354927180.2024
+            },
+            {
+              "year": 9,
+              "growth": 0.03111111111111111,
+              "nopat": 2564294501942.7085,
+              "reinvestment_rate": 0.2074074074074074,
+              "free_cash_flow": 2032440827465.7024,
+              "present_value": 794531465941.6598
+            },
+            {
+              "year": 10,
+              "growth": 0.025,
+              "nopat": 2628401864491.276,
+              "reinvestment_rate": 0.16666666666666669,
+              "free_cash_flow": 2190334887076.063,
+              "present_value": 771401950546.4141
+            }
+          ],
+          "pv_of_forecast": 7898459516219.335,
+          "pv_of_terminal": 9092257657107.07,
+          "terminal_share_of_value": 0.5351308932021384,
+          "enterprise_value": 16990717173326.406,
+          "equity_value": 17506080090108.406,
+          "value_per_share": 378595.64388427243,
+          "upside_vs_market": -0.7311110483776474,
+          "margin_of_safety": -2.719007396795066,
+          "feasibility": {
+            "cumulative_nopat": 22127979022142.45,
+            "cumulative_reinvestment": 7394414950002.846,
+            "reinvestment_as_share_of_nopat": 0.3341658514138863,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 14536393303138.848,
+            "invested_capital_multiple": 2.035345472134623,
+            "implied_revenue_end": 7590900033925.219,
+            "implied_revenue_end_usd_bn": 5.58770705478485,
+            "average_annual_capex": 1108756204832.2847,
+            "average_annual_capex_vs_fy2025": 0.8055806048187915,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "중립",
+          "story": "증설을 계속하되 10년에 걸쳐 성장률이 GDP 수준으로 수렴. 증분 ROIC 20%는 실측 구간(24.9~29.7%) 하단 아래.",
+          "assumptions": {
+            "growth": 0.15,
+            "fade_to": 0.04,
+            "incremental_roic": 0.2,
+            "discount": 0.1,
+            "terminal_growth": 0.025
+          },
+          "first_year_reinvestment_rate": 0.7499999999999999,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 4490565020330.539,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.15,
+              "nopat": 1814565568442.7815,
+              "reinvestment_rate": 0.7499999999999999,
+              "free_cash_flow": 453641392110.69556,
+              "present_value": 412401265555.17773
+            },
+            {
+              "year": 2,
+              "growth": 0.13777777777777778,
+              "nopat": 2064572380094.898,
+              "reinvestment_rate": 0.6888888888888889,
+              "free_cash_flow": 642311407140.6349,
+              "present_value": 530835873669.9461
+            },
+            {
+              "year": 3,
+              "growth": 0.12555555555555556,
+              "nopat": 2323790912262.3687,
+              "reinvestment_rate": 0.6277777777777778,
+              "free_cash_flow": 864966617342.1039,
+              "present_value": 649862221894.8938
+            },
+            {
+              "year": 4,
+              "growth": 0.11333333333333334,
+              "nopat": 2587153882318.7705,
+              "reinvestment_rate": 0.5666666666666667,
+              "free_cash_flow": 1121100015671.4673,
+              "present_value": 765726395513.6035
+            },
+            {
+              "year": 5,
+              "growth": 0.10111111111111111,
+              "nopat": 2848743885975.4463,
+              "reinvestment_rate": 0.5055555555555555,
+              "free_cash_flow": 1408545588065.6375,
+              "present_value": 874595990130.8511
+            },
+            {
+              "year": 6,
+              "growth": 0.08888888888888889,
+              "nopat": 3101965564728.819,
+              "reinvestment_rate": 0.4444444444444444,
+              "free_cash_flow": 1723314202627.1216,
+              "present_value": 972765940674.4226
+            },
+            {
+              "year": 7,
+              "growth": 0.07666666666666667,
+              "nopat": 3339782924691.362,
+              "reinvestment_rate": 0.38333333333333336,
+              "free_cash_flow": 2059532803559.6733,
+              "present_value": 1056865977909.0931
+            },
+            {
+              "year": 8,
+              "growth": 0.06444444444444444,
+              "nopat": 3555013379838.1387,
+              "reinvestment_rate": 0.3222222222222222,
+              "free_cash_flow": 2409509068556.961,
+              "present_value": 1124053763164.102
+            },
+            {
+              "year": 9,
+              "growth": 0.052222222222222225,
+              "nopat": 3740664078563.019,
+              "reinvestment_rate": 0.2611111111111111,
+              "free_cash_flow": 2763935124716.009,
+              "present_value": 1172178303728.1155
+            },
+            {
+              "year": 10,
+              "growth": 0.04000000000000001,
+              "nopat": 3890290641705.54,
+              "reinvestment_rate": 0.20000000000000004,
+              "free_cash_flow": 3112232513364.4316,
+              "present_value": 1199900360672.061
+            }
+          ],
+          "pv_of_forecast": 8759186092912.266,
+          "pv_of_terminal": 17936010599629.242,
+          "terminal_share_of_value": 0.6718815675420914,
+          "enterprise_value": 26695196692541.508,
+          "equity_value": 27210559609323.508,
+          "value_per_share": 588469.7935070065,
+          "upside_vs_market": -0.5820527034751375,
+          "margin_of_safety": -1.3926461740864802,
+          "feasibility": {
+            "cumulative_nopat": 29266543218621.145,
+            "cumulative_reinvestment": 12707454485466.406,
+            "reinvestment_as_share_of_nopat": 0.43419731502083087,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 19849432838602.41,
+            "invested_capital_multiple": 2.7792625316326593,
+            "implied_revenue_end": 11235271045516.928,
+            "implied_revenue_end_usd_bn": 8.270350419960932,
+            "average_annual_capex": 1640060158378.6406,
+            "average_annual_capex_vs_fy2025": 1.191606097506096,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "낙관",
+          "story": "최근 5년 실적(매출 CAGR 31.4%, 2026 상반기 +28.0%)의 하단에서 출발해 10년간 체감. 증분 ROIC 26%는 FY2020→FY2025 실측치(27.6%)에 근접.",
+          "assumptions": {
+            "growth": 0.25,
+            "fade_to": 0.05,
+            "incremental_roic": 0.26,
+            "discount": 0.09,
+            "terminal_growth": 0.03
+          },
+          "first_year_reinvestment_rate": 0.9615384615384615,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 3531587527660.4673,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.25,
+              "nopat": 1972353878742.1538,
+              "reinvestment_rate": 0.9615384615384615,
+              "free_cash_flow": 75859764567.00609,
+              "present_value": 69596114281.65695
+            },
+            {
+              "year": 2,
+              "growth": 0.22777777777777777,
+              "nopat": 2421612262233.4224,
+              "reinvestment_rate": 0.8760683760683761,
+              "free_cash_flow": 300114340191.3216,
+              "present_value": 252600235831.42963
+            },
+            {
+              "year": 3,
+              "growth": 0.20555555555555555,
+              "nopat": 2919388116136.959,
+              "reinvestment_rate": 0.7905982905982906,
+              "free_cash_flow": 611324861926.1155,
+              "present_value": 472054959329.9574
+            },
+            {
+              "year": 4,
+              "growth": 0.18333333333333332,
+              "nopat": 3454609270762.0684,
+              "reinvestment_rate": 0.7051282051282051,
+              "free_cash_flow": 1018666836250.3538,
+              "present_value": 721649268475.7727
+            },
+            {
+              "year": 5,
+              "growth": 0.1611111111111111,
+              "nopat": 4011185208829.29,
+              "reinvestment_rate": 0.6196581196581196,
+              "free_cash_flow": 1525621724725.6704,
+              "present_value": 991549442517.8275
+            },
+            {
+              "year": 6,
+              "growth": 0.1388888888888889,
+              "nopat": 4568294265611.136,
+              "reinvestment_rate": 0.5341880341880342,
+              "free_cash_flow": 2127966132271.8538,
+              "present_value": 1268836677379.242
+            },
+            {
+              "year": 7,
+              "growth": 0.11666666666666664,
+              "nopat": 5101261929932.435,
+              "reinvestment_rate": 0.4487179487179486,
+              "free_cash_flow": 2812234140860.1885,
+              "present_value": 1538388379568.048
+            },
+            {
+              "year": 8,
+              "growth": 0.09444444444444444,
+              "nopat": 5583047778870.498,
+              "reinvestment_rate": 0.36324786324786323,
+              "free_cash_flow": 3555017602785.0605,
+              "present_value": 1784143458480.9404
+            },
+            {
+              "year": 9,
+              "growth": 0.07222222222222222,
+              "nopat": 5986267896233.367,
+              "reinvestment_rate": 0.27777777777777773,
+              "free_cash_flow": 4323415702835.2104,
+              "present_value": 1990620691982.3232
+            },
+            {
+              "year": 10,
+              "growth": 0.04999999999999999,
+              "nopat": 6285581291045.036,
+              "reinvestment_rate": 0.19230769230769226,
+              "free_cash_flow": 5076815658151.76,
+              "present_value": 2144501798620.5525
+            }
+          ],
+          "pv_of_forecast": 11233941026467.75,
+          "pv_of_terminal": 40320037785175.31,
+          "terminal_share_of_value": 0.7820936174972658,
+          "enterprise_value": 51553978811643.06,
+          "equity_value": 52069341728425.06,
+          "value_per_share": 1126078.8170072418,
+          "upside_vs_market": -0.20022811292099305,
+          "margin_of_safety": -0.2503565280998845,
+          "feasibility": {
+            "cumulative_nopat": 42303601898396.37,
+            "cumulative_reinvestment": 20876565133831.824,
+            "reinvestment_as_share_of_nopat": 0.4934937971469329,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 28018543486967.83,
+            "invested_capital_multiple": 3.9230787467543995,
+            "implied_revenue_end": 18152939198537.785,
+            "implied_revenue_end_usd_bn": 13.362487448316369,
+            "average_annual_capex": 2456971223215.1826,
+            "average_annual_capex_vs_fy2025": 1.7851429876051506,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        }
+      ]
+    },
+    "run_rate_2026": {
+      "label": "2026 상반기 연율화",
+      "base_nopat": 1714561993740.8757,
+      "base_operating_capital": 7141978353136,
+      "scenarios": [
+        {
+          "scenario": "보수",
+          "story": "증설을 멈추고 기존 공장의 가동률·가격·믹스 개선만으로 성장. 증분 ROIC은 실측 5년 구간 최저치(24.9%)보다 크게 낮은 15%를 적용.",
+          "assumptions": {
+            "growth": 0.08,
+            "fade_to": 0.025,
+            "incremental_roic": 0.15,
+            "discount": 0.11,
+            "terminal_growth": 0.02
+          },
+          "first_year_reinvestment_rate": 0.5333333333333333,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 5862761356078.723,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.08,
+              "nopat": 1851726953240.146,
+              "reinvestment_rate": 0.5333333333333333,
+              "free_cash_flow": 864139244845.4015,
+              "present_value": 778503824185.0463
+            },
+            {
+              "year": 2,
+              "growth": 0.07388888888888889,
+              "nopat": 1988549000340.668,
+              "reinvestment_rate": 0.49259259259259264,
+              "free_cash_flow": 1009004492765.4498,
+              "present_value": 818930681572.4777
+            },
+            {
+              "year": 3,
+              "growth": 0.06777777777777778,
+              "nopat": 2123328432585.9797,
+              "reinvestment_rate": 0.4518518518518519,
+              "free_cash_flow": 1163898548232.3147,
+              "present_value": 851032587176.1567
+            },
+            {
+              "year": 4,
+              "growth": 0.06166666666666667,
+              "nopat": 2254267019262.115,
+              "reinvestment_rate": 0.41111111111111115,
+              "free_cash_flow": 1327512800232.1343,
+              "present_value": 874473800086.8707
+            },
+            {
+              "year": 5,
+              "growth": 0.05555555555555555,
+              "nopat": 2379504075887.7886,
+              "reinvestment_rate": 0.37037037037037035,
+              "free_cash_flow": 1498206270003.4224,
+              "present_value": 889112500639.1903
+            },
+            {
+              "year": 6,
+              "growth": 0.049444444444444444,
+              "nopat": 2497157332973.3516,
+              "reinvestment_rate": 0.32962962962962966,
+              "free_cash_flow": 1674020286178.4316,
+              "present_value": 894999605432.0347
+            },
+            {
+              "year": 7,
+              "growth": 0.043333333333333335,
+              "nopat": 2605367484068.864,
+              "reinvestment_rate": 0.2888888888888889,
+              "free_cash_flow": 1852705766448.9695,
+              "present_value": 892371315316.038
+            },
+            {
+              "year": 8,
+              "growth": 0.037222222222222226,
+              "nopat": 2702345051531.4272,
+              "reinvestment_rate": 0.24814814814814817,
+              "free_cash_flow": 2031763131336.5913,
+              "present_value": 881635856888.3824
+            },
+            {
+              "year": 9,
+              "growth": 0.03111111111111111,
+              "nopat": 2786418008690.1826,
+              "reinvestment_rate": 0.2074074074074074,
+              "free_cash_flow": 2208494273554.441,
+              "present_value": 863355119115.0641
+            },
+            {
+              "year": 10,
+              "growth": 0.025,
+              "nopat": 2856078458907.437,
+              "reinvestment_rate": 0.16666666666666669,
+              "free_cash_flow": 2380065382422.864,
+              "present_value": 838222086157.7485
+            }
+          ],
+          "pv_of_forecast": 8582637376569.01,
+          "pv_of_terminal": 9879844322179.334,
+          "terminal_share_of_value": 0.5351308932021384,
+          "enterprise_value": 18462481698748.344,
+          "equity_value": 18977844615530.344,
+          "value_per_share": 410424.79325866554,
+          "upside_vs_market": -0.7085051184242432,
+          "margin_of_safety": -2.4305919698974523,
+          "feasibility": {
+            "cumulative_nopat": 24044741817487.96,
+            "cumulative_reinvestment": 8034931621467.939,
+            "reinvestment_as_share_of_nopat": 0.3341658514138863,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 15176909974603.94,
+            "invested_capital_multiple": 2.1250288399347848,
+            "implied_revenue_end": 8588847925264.861,
+            "implied_revenue_end_usd_bn": 6.322302484552713,
+            "average_annual_capex": 1172807871978.794,
+            "average_annual_capex_vs_fy2025": 0.8521181398825451,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "중립",
+          "story": "증설을 계속하되 10년에 걸쳐 성장률이 GDP 수준으로 수렴. 증분 ROIC 20%는 실측 구간(24.9~29.7%) 하단 아래.",
+          "assumptions": {
+            "growth": 0.15,
+            "fade_to": 0.04,
+            "incremental_roic": 0.2,
+            "discount": 0.1,
+            "terminal_growth": 0.025
+          },
+          "first_year_reinvestment_rate": 0.7499999999999999,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 4879545322256.736,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.15,
+              "nopat": 1971746292802.0068,
+              "reinvestment_rate": 0.7499999999999999,
+              "free_cash_flow": 492936573200.50195,
+              "present_value": 448124157455.0017
+            },
+            {
+              "year": 2,
+              "growth": 0.13777777777777778,
+              "nopat": 2243409115365.839,
+              "reinvestment_rate": 0.6888888888888889,
+              "free_cash_flow": 697949502558.261,
+              "present_value": 576817770709.3065
+            },
+            {
+              "year": 3,
+              "growth": 0.12555555555555556,
+              "nopat": 2525081593183.9946,
+              "reinvestment_rate": 0.6277777777777778,
+              "free_cash_flow": 939891481907.3759,
+              "present_value": 706154381598.3287
+            },
+            {
+              "year": 4,
+              "growth": 0.11333333333333334,
+              "nopat": 2811257507078.1807,
+              "reinvestment_rate": 0.5666666666666667,
+              "free_cash_flow": 1218211586400.545,
+              "present_value": 832054904993.2003
+            },
+            {
+              "year": 5,
+              "growth": 0.10111111111111111,
+              "nopat": 3095506877238.308,
+              "reinvestment_rate": 0.5055555555555555,
+              "free_cash_flow": 1530556178190.0525,
+              "present_value": 950354967178.1311
+            },
+            {
+              "year": 6,
+              "growth": 0.08888888888888889,
+              "nopat": 3370663044103.935,
+              "reinvestment_rate": 0.4444444444444444,
+              "free_cash_flow": 1872590580057.7417,
+              "present_value": 1057028564106.8757
+            },
+            {
+              "year": 7,
+              "growth": 0.07666666666666667,
+              "nopat": 3629080544151.9033,
+              "reinvestment_rate": 0.38333333333333336,
+              "free_cash_flow": 2237933002227.0073,
+              "present_value": 1148413488149.2065
+            },
+            {
+              "year": 8,
+              "growth": 0.06444444444444444,
+              "nopat": 3862954623663.915,
+              "reinvestment_rate": 0.3222222222222222,
+              "free_cash_flow": 2618224800483.3203,
+              "present_value": 1221421192473.6248
+            },
+            {
+              "year": 9,
+              "growth": 0.052222222222222225,
+              "nopat": 4064686698455.2524,
+              "reinvestment_rate": 0.2611111111111111,
+              "free_cash_flow": 3003351838303.048,
+              "present_value": 1273714361758.946
+            },
+            {
+              "year": 10,
+              "growth": 0.04000000000000001,
+              "nopat": 4227274166393.463,
+              "reinvestment_rate": 0.20000000000000004,
+              "free_cash_flow": 3381819333114.77,
+              "present_value": 1303837749945.4526
+            }
+          ],
+          "pv_of_forecast": 9517921538368.074,
+          "pv_of_terminal": 19489658033038.793,
+          "terminal_share_of_value": 0.6718815675420914,
+          "enterprise_value": 29007579571406.867,
+          "equity_value": 29522942488188.867,
+          "value_per_share": 638478.5950448028,
+          "upside_vs_market": -0.546535088746589,
+          "margin_of_safety": -1.2052422914838659,
+          "feasibility": {
+            "cumulative_nopat": 31801660462436.797,
+            "cumulative_reinvestment": 13808195585994.176,
+            "reinvestment_as_share_of_nopat": 0.434197315020831,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 20950173939130.168,
+            "invested_capital_multiple": 2.9333852475107367,
+            "implied_revenue_end": 12712331077712.5,
+            "implied_revenue_end_usd_bn": 9.357623170933014,
+            "average_annual_capex": 1750134268431.4175,
+            "average_annual_capex_vs_fy2025": 1.271581810620251,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "낙관",
+          "story": "최근 5년 실적(매출 CAGR 31.4%, 2026 상반기 +28.0%)의 하단에서 출발해 10년간 체감. 증분 ROIC 26%는 FY2020→FY2025 실측치(27.6%)에 근접.",
+          "assumptions": {
+            "growth": 0.25,
+            "fade_to": 0.05,
+            "incremental_roic": 0.26,
+            "discount": 0.09,
+            "terminal_growth": 0.03
+          },
+          "first_year_reinvestment_rate": 0.9615384615384615,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 3837499584733.1973,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.25,
+              "nopat": 2143202492176.0947,
+              "reinvestment_rate": 0.9615384615384615,
+              "free_cash_flow": 82430865083.69614,
+              "present_value": 75624646865.77626
+            },
+            {
+              "year": 2,
+              "growth": 0.22777777777777777,
+              "nopat": 2631376393171.7607,
+              "reinvestment_rate": 0.8760683760683761,
+              "free_cash_flow": 326110749581.11566,
+              "present_value": 274480893511.58624
+            },
+            {
+              "year": 3,
+              "growth": 0.20555555555555555,
+              "nopat": 3172270429545.956,
+              "reinvestment_rate": 0.7905982905982906,
+              "free_cash_flow": 664278850631.4182,
+              "present_value": 512945154611.53235
+            },
+            {
+              "year": 4,
+              "growth": 0.18333333333333332,
+              "nopat": 3753853341629.3813,
+              "reinvestment_rate": 0.7051282051282051,
+              "free_cash_flow": 1106905472531.741,
+              "present_value": 784159743007.5195
+            },
+            {
+              "year": 5,
+              "growth": 0.1611111111111111,
+              "nopat": 4358640824447.4478,
+              "reinvestment_rate": 0.6196581196581196,
+              "free_cash_flow": 1657773646905.2263,
+              "present_value": 1077439124501.9773
+            },
+            {
+              "year": 6,
+              "growth": 0.1388888888888889,
+              "nopat": 4964007605620.704,
+              "reinvestment_rate": 0.5341880341880342,
+              "free_cash_flow": 2312294141079.73,
+              "present_value": 1378745446460.083
+            },
+            {
+              "year": 7,
+              "growth": 0.11666666666666664,
+              "nopat": 5543141826276.453,
+              "reinvestment_rate": 0.4487179487179486,
+              "free_cash_flow": 3055834596537.019,
+              "present_value": 1671646170882.7112
+            },
+            {
+              "year": 8,
+              "growth": 0.09444444444444444,
+              "nopat": 6066660776535.896,
+              "reinvestment_rate": 0.36324786324786323,
+              "free_cash_flow": 3862959212409.609,
+              "present_value": 1938688968459.6565
+            },
+            {
+              "year": 9,
+              "growth": 0.07222222222222222,
+              "nopat": 6504808499285.711,
+              "reinvestment_rate": 0.27777777777777773,
+              "free_cash_flow": 4697917249484.125,
+              "present_value": 2163051607531.3035
+            },
+            {
+              "year": 10,
+              "growth": 0.04999999999999999,
+              "nopat": 6830048924249.997,
+              "reinvestment_rate": 0.19230769230769226,
+              "free_cash_flow": 5516577977278.844,
+              "present_value": 2330262154685.3433
+            }
+          ],
+          "pv_of_forecast": 12207043910517.488,
+          "pv_of_terminal": 43812627336901.42,
+          "terminal_share_of_value": 0.7820936174972658,
+          "enterprise_value": 56019671247418.91,
+          "equity_value": 56535034164200.91,
+          "value_per_share": 1222656.2172252943,
+          "upside_vs_market": -0.1316362093570353,
+          "margin_of_safety": -0.15159108518282133,
+          "feasibility": {
+            "cumulative_nopat": 45968011112939.41,
+            "cumulative_reinvestment": 22684928351416.88,
+            "reinvestment_as_share_of_nopat": 0.493493797146933,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 29826906704552.87,
+            "invested_capital_multiple": 4.176280748800654,
+            "implied_revenue_end": 20539439786588.605,
+            "implied_revenue_end_usd_bn": 15.119204848427387,
+            "average_annual_capex": 2637807544973.688,
+            "average_annual_capex_vs_fy2025": 1.9165318653589019,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        }
+      ]
+    },
+    "run_rate_fx_normalised": {
+      "label": "2026 상반기 연율화 · 현재 환율로 환산",
+      "base_nopat": 1476542260209.2756,
+      "base_operating_capital": 7141978353136,
+      "scenarios": [
+        {
+          "scenario": "보수",
+          "story": "증설을 멈추고 기존 공장의 가동률·가격·믹스 개선만으로 성장. 증분 ROIC은 실측 5년 구간 최저치(24.9%)보다 크게 낮은 15%를 적용.",
+          "assumptions": {
+            "growth": 0.08,
+            "fade_to": 0.025,
+            "incremental_roic": 0.15,
+            "discount": 0.11,
+            "terminal_growth": 0.02
+          },
+          "first_year_reinvestment_rate": 0.5333333333333333,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 5048878334743.002,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.08,
+              "nopat": 1594665641026.0178,
+              "reinvestment_rate": 0.5333333333333333,
+              "free_cash_flow": 744177299145.475,
+              "present_value": 670429999230.1576
+            },
+            {
+              "year": 2,
+              "growth": 0.07388888888888889,
+              "nopat": 1712493713390.718,
+              "reinvestment_rate": 0.49259259259259264,
+              "free_cash_flow": 868931995313.0679,
+              "present_value": 705244700359.6038
+            },
+            {
+              "year": 3,
+              "growth": 0.06777777777777778,
+              "nopat": 1828562731742.7554,
+              "reinvestment_rate": 0.4518518518518519,
+              "free_cash_flow": 1002323275177.5101,
+              "present_value": 732890140087.136
+            },
+            {
+              "year": 4,
+              "growth": 0.06166666666666667,
+              "nopat": 1941324100200.2253,
+              "reinvestment_rate": 0.41111111111111115,
+              "free_cash_flow": 1143224192340.1326,
+              "present_value": 753077185886.3466
+            },
+            {
+              "year": 5,
+              "growth": 0.05555555555555555,
+              "nopat": 2049175439100.2378,
+              "reinvestment_rate": 0.37037037037037035,
+              "free_cash_flow": 1290221572766.8164,
+              "present_value": 765683705848.2693
+            },
+            {
+              "year": 6,
+              "growth": 0.049444444444444444,
+              "nopat": 2150495780255.7495,
+              "reinvestment_rate": 0.32962962962962966,
+              "free_cash_flow": 1441628652689.9653,
+              "present_value": 770753548203.7211
+            },
+            {
+              "year": 7,
+              "growth": 0.043333333333333335,
+              "nopat": 2243683930733.499,
+              "reinvestment_rate": 0.2888888888888889,
+              "free_cash_flow": 1595508572966.0435,
+              "present_value": 768490123817.4774
+            },
+            {
+              "year": 8,
+              "growth": 0.037222222222222226,
+              "nopat": 2327198832599.6904,
+              "reinvestment_rate": 0.24814814814814817,
+              "free_cash_flow": 1749708751917.545,
+              "present_value": 759244988261.5631
+            },
+            {
+              "year": 9,
+              "growth": 0.03111111111111111,
+              "nopat": 2399600574058.3477,
+              "reinvestment_rate": 0.2074074074074074,
+              "free_cash_flow": 1901905640179.5793,
+              "present_value": 743502027686.9991
+            },
+            {
+              "year": 10,
+              "growth": 0.025,
+              "nopat": 2459590588409.806,
+              "reinvestment_rate": 0.16666666666666669,
+              "free_cash_flow": 2049658823674.8384,
+              "present_value": 721858024481.4099
+            }
+          ],
+          "pv_of_forecast": 7391174443862.684,
+          "pv_of_terminal": 8508299915220.887,
+          "terminal_share_of_value": 0.5351308932021384,
+          "enterprise_value": 15899474359083.57,
+          "equity_value": 16414837275865.57,
+          "value_per_share": 354995.8560525127,
+          "upside_vs_market": -0.7478722613263404,
+          "margin_of_safety": -2.966243481421715,
+          "feasibility": {
+            "cumulative_nopat": 20706791331517.047,
+            "cumulative_reinvestment": 6919502555346.073,
+            "reinvestment_as_share_of_nopat": 0.3341658514138863,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 14061480908482.074,
+            "invested_capital_multiple": 1.9688495558527928,
+            "implied_revenue_end": 7931519097248.276,
+            "implied_revenue_end_usd_bn": 5.838438790760601,
+            "average_annual_capex": 1061264965366.6073,
+            "average_annual_capex_vs_fy2025": 0.7710752543678856,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "중립",
+          "story": "증설을 계속하되 10년에 걸쳐 성장률이 GDP 수준으로 수렴. 증분 ROIC 20%는 실측 구간(24.9~29.7%) 하단 아래.",
+          "assumptions": {
+            "growth": 0.15,
+            "fade_to": 0.04,
+            "incremental_roic": 0.2,
+            "discount": 0.1,
+            "terminal_growth": 0.025
+          },
+          "first_year_reinvestment_rate": 0.7499999999999999,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 4202154780766.381,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.15,
+              "nopat": 1698023599240.6667,
+              "reinvestment_rate": 0.7499999999999999,
+              "free_cash_flow": 424505899810.1669,
+              "present_value": 385914454372.87897
+            },
+            {
+              "year": 2,
+              "growth": 0.13777777777777778,
+              "nopat": 1931973517358.2698,
+              "reinvestment_rate": 0.6888888888888889,
+              "free_cash_flow": 601058427622.5729,
+              "present_value": 496742502167.4155
+            },
+            {
+              "year": 3,
+              "growth": 0.12555555555555556,
+              "nopat": 2174543525648.8083,
+              "reinvestment_rate": 0.6277777777777778,
+              "free_cash_flow": 809413423435.9453,
+              "present_value": 608124285075.8416
+            },
+            {
+              "year": 4,
+              "growth": 0.11333333333333334,
+              "nopat": 2420991791889.0063,
+              "reinvestment_rate": 0.5666666666666667,
+              "free_cash_flow": 1049096443151.9028,
+              "present_value": 716546986648.3864
+            },
+            {
+              "year": 5,
+              "growth": 0.10111111111111111,
+              "nopat": 2665780961957.7837,
+              "reinvestment_rate": 0.5055555555555555,
+              "free_cash_flow": 1318080586745.7932,
+              "present_value": 818424341820.7852
+            },
+            {
+              "year": 6,
+              "growth": 0.08888888888888889,
+              "nopat": 2902739269687.3643,
+              "reinvestment_rate": 0.4444444444444444,
+              "free_cash_flow": 1612632927604.0913,
+              "present_value": 910289246378.8097
+            },
+            {
+              "year": 7,
+              "growth": 0.07666666666666667,
+              "nopat": 3125282613696.729,
+              "reinvestment_rate": 0.38333333333333336,
+              "free_cash_flow": 1927257611779.6497,
+              "present_value": 988987889406.6504
+            },
+            {
+              "year": 8,
+              "growth": 0.06444444444444444,
+              "nopat": 3326689715468.2964,
+              "reinvestment_rate": 0.3222222222222222,
+              "free_cash_flow": 2254756362706.29,
+              "present_value": 1051860483777.338
+            },
+            {
+              "year": 9,
+              "growth": 0.052222222222222225,
+              "nopat": 3500416845053.863,
+              "reinvestment_rate": 0.2611111111111111,
+              "free_cash_flow": 2586419113289.799,
+              "present_value": 1096894186059.2771
+            },
+            {
+              "year": 10,
+              "growth": 0.04000000000000001,
+              "nopat": 3640433518856.0176,
+              "reinvestment_rate": 0.20000000000000004,
+              "free_cash_flow": 2912346815084.814,
+              "present_value": 1122835771047.4185
+            }
+          ],
+          "pv_of_forecast": 8196620146754.801,
+          "pv_of_terminal": 16784055535969.22,
+          "terminal_share_of_value": 0.6718815675420914,
+          "enterprise_value": 24980675682724.023,
+          "equity_value": 25496038599506.023,
+          "value_per_share": 551390.6654369975,
+          "upside_vs_market": -0.6083873114794052,
+          "margin_of_safety": -1.5535434098872674,
+          "feasibility": {
+            "cumulative_nopat": 27386875358856.805,
+            "cumulative_reinvestment": 11891307747625.78,
+            "reinvestment_as_share_of_nopat": 0.4341973150208309,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 19033286100761.78,
+            "invested_capital_multiple": 2.664987929066514,
+            "implied_revenue_end": 11739420419451.68,
+            "implied_revenue_end_usd_bn": 8.64145779863944,
+            "average_annual_capex": 1558445484594.578,
+            "average_annual_capex_vs_fy2025": 1.1323079416242996,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        },
+        {
+          "scenario": "낙관",
+          "story": "최근 5년 실적(매출 CAGR 31.4%, 2026 상반기 +28.0%)의 하단에서 출발해 10년간 체감. 증분 ROIC 26%는 FY2020→FY2025 실측치(27.6%)에 근접.",
+          "assumptions": {
+            "growth": 0.25,
+            "fade_to": 0.05,
+            "incremental_roic": 0.26,
+            "discount": 0.09,
+            "terminal_growth": 0.03
+          },
+          "first_year_reinvestment_rate": 0.9615384615384615,
+          "years_with_negative_fcf": 0,
+          "cumulative_fcf_first_five": 3304768407954.374,
+          "projection": [
+            {
+              "year": 1,
+              "growth": 0.25,
+              "nopat": 1845677825261.5945,
+              "reinvestment_rate": 0.9615384615384615,
+              "free_cash_flow": 70987608663.90764,
+              "present_value": 65126246480.64921
+            },
+            {
+              "year": 2,
+              "growth": 0.22777777777777777,
+              "nopat": 2266082218793.4023,
+              "reinvestment_rate": 0.8760683760683761,
+              "free_cash_flow": 280839249337.64386,
+              "present_value": 236376777491.49384
+            },
+            {
+              "year": 3,
+              "growth": 0.20555555555555555,
+              "nopat": 2731888008212.046,
+              "reinvestment_rate": 0.7905982905982906,
+              "free_cash_flow": 572062018813.6337,
+              "present_value": 441736840498.2696
+            },
+            {
+              "year": 4,
+              "growth": 0.18333333333333332,
+              "nopat": 3232734143050.921,
+              "reinvestment_rate": 0.7051282051282051,
+              "free_cash_flow": 953242119104.7589,
+              "present_value": 675300749423.0238
+            },
+            {
+              "year": 5,
+              "growth": 0.1611111111111111,
+              "nopat": 3753563532764.68,
+              "reinvestment_rate": 0.6196581196581196,
+              "free_cash_flow": 1427637412034.43,
+              "present_value": 927866362334.9191
+            },
+            {
+              "year": 6,
+              "growth": 0.1388888888888889,
+              "nopat": 4274891801204.2188,
+              "reinvestment_rate": 0.5341880341880342,
+              "free_cash_flow": 1991295753552.3926,
+              "present_value": 1187344595996.619
+            },
+            {
+              "year": 7,
+              "growth": 0.11666666666666664,
+              "nopat": 4773629178011.378,
+              "reinvestment_rate": 0.4487179487179486,
+              "free_cash_flow": 2631616085313.965,
+              "present_value": 1439584117947.2515
+            },
+            {
+              "year": 8,
+              "growth": 0.09444444444444444,
+              "nopat": 5224471933712.453,
+              "reinvestment_rate": 0.36324786324786323,
+              "free_cash_flow": 3326693667192.972,
+              "present_value": 1669555374365.0945
+            },
+            {
+              "year": 9,
+              "growth": 0.07222222222222222,
+              "nopat": 5601794906702.797,
+              "reinvestment_rate": 0.27777777777777773,
+              "free_cash_flow": 4045740765952.0205,
+              "present_value": 1862771437365.8672
+            },
+            {
+              "year": 10,
+              "growth": 0.04999999999999999,
+              "nopat": 5881884652037.937,
+              "reinvestment_rate": 0.19230769230769226,
+              "free_cash_flow": 4750752988184.487,
+              "present_value": 2006769403101.1143
+            }
+          ],
+          "pv_of_forecast": 10512431905004.303,
+          "pv_of_terminal": 37730450126559.84,
+          "terminal_share_of_value": 0.7820936174972657,
+          "enterprise_value": 48242882031564.15,
+          "equity_value": 48758244948346.15,
+          "value_per_share": 1054471.306304407,
+          "upside_vs_market": -0.25108571995425627,
+          "margin_of_safety": -0.33526630035538907,
+          "feasibility": {
+            "cumulative_nopat": 39586618199751.43,
+            "cumulative_reinvestment": 19535750531601.215,
+            "reinvestment_as_share_of_nopat": 0.4934937971469329,
+            "external_capital_required": 0.0,
+            "invested_capital_end": 26677728884737.215,
+            "invested_capital_multiple": 3.735341605036255,
+            "implied_revenue_end": 18967498357363.79,
+            "implied_revenue_end_usd_bn": 13.96208933188354,
+            "average_annual_capex": 2322889762992.1216,
+            "average_annual_capex_vs_fy2025": 1.6877244357623504,
+            "note": "증분 ROIC이 성장률보다 낮으면 재투자율이 100%를 넘고, 그 차액은 외부에서 조달해야 합니다. 현금흐름할인은 그 조달의 희석·이자 비용을 기존 주주에게 청구하지 않으므로, 그런 시나리오의 가치는 과대평가입니다."
+          }
+        }
+      ]
+    }
+  },
+  "implied": {
+    "reported_fy2025": {
+      "label": "FY2025 실적 기준",
+      "against_neutral": {
+        "implied_initial_growth": 0.4832724610003307,
+        "implied_incremental_roic": null,
+        "incremental_roic_cannot_reach_price": true,
+        "implied_first_year_reinvestment_rate": 2.4163623050016536,
+        "implied_discount_rate": 0.06104317181566021,
+        "template": {
+          "growth": 0.15,
+          "fade_to": 0.04,
+          "incremental_roic": 0.2,
+          "discount": 0.1,
+          "terminal_growth": 0.025
+        }
+      },
+      "against_optimistic": {
+        "implied_initial_growth": 0.3197466200383988,
+        "implied_incremental_roic": 0.8370629415474962,
+        "incremental_roic_cannot_reach_price": false,
+        "implied_first_year_reinvestment_rate": 1.22979469245538,
+        "implied_discount_rate": 0.08029699699249868,
+        "template": {
+          "growth": 0.25,
+          "fade_to": 0.05,
+          "incremental_roic": 0.26,
+          "discount": 0.09,
+          "terminal_growth": 0.03
+        }
+      }
+    },
+    "run_rate_2026": {
+      "label": "2026 상반기 연율화",
+      "against_neutral": {
+        "implied_initial_growth": 0.4522071012960147,
+        "implied_incremental_roic": null,
+        "incremental_roic_cannot_reach_price": true,
+        "implied_first_year_reinvestment_rate": 2.2610355064800736,
+        "implied_discount_rate": 0.06373483688476844,
+        "template": {
+          "growth": 0.15,
+          "fade_to": 0.04,
+          "incremental_roic": 0.2,
+          "discount": 0.1,
+          "terminal_growth": 0.025
+        }
+      },
+      "against_optimistic": {
+        "implied_initial_growth": 0.2939837308830051,
+        "implied_incremental_roic": 0.4460433015554335,
+        "incremental_roic_cannot_reach_price": false,
+        "implied_first_year_reinvestment_rate": 1.1307066572423272,
+        "implied_discount_rate": 0.08371236415414521,
+        "template": {
+          "growth": 0.25,
+          "fade_to": 0.05,
+          "incremental_roic": 0.26,
+          "discount": 0.09,
+          "terminal_growth": 0.03
+        }
+      }
+    },
+    "run_rate_fx_normalised": {
+      "label": "2026 상반기 연율화 · 현재 환율로 환산",
+      "against_neutral": {
+        "implied_initial_growth": 0.5081207272799004,
+        "implied_incremental_roic": null,
+        "incremental_roic_cannot_reach_price": true,
+        "implied_first_year_reinvestment_rate": 2.540603636399502,
+        "implied_discount_rate": 0.05901281202768771,
+        "template": {
+          "growth": 0.15,
+          "fade_to": 0.04,
+          "incremental_roic": 0.2,
+          "discount": 0.1,
+          "terminal_growth": 0.025
+        }
+      },
+      "against_optimistic": {
+        "implied_initial_growth": 0.3403940906992131,
+        "implied_incremental_roic": null,
+        "incremental_roic_cannot_reach_price": true,
+        "implied_first_year_reinvestment_rate": 1.3092080411508196,
+        "implied_discount_rate": 0.0776973778321629,
+        "template": {
+          "growth": 0.25,
+          "fade_to": 0.05,
+          "incremental_roic": 0.26,
+          "discount": 0.09,
+          "terminal_growth": 0.03
+        }
+      }
+    }
+  }
+}

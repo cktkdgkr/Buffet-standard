@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 work/raw/
 work/_docx_payload.json
+work/kr/txt/

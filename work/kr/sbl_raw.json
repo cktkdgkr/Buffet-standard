@@ -1,0 +1,814 @@
+{
+  "collected_at": "2026-09-14T11:01:49.866920+00:00",
+  "company_name": "Samsung Biologics Co., Ltd.",
+  "ticker": "207940.KS",
+  "currency": "KRW",
+  "basis": "separate (CDMO) statements; see module docstring",
+  "years": [
+    {
+      "fiscal_year": 2016,
+      "source_document": "sbl_2017.pdf",
+      "revenue": 294622021000,
+      "cost_of_revenue": -268088358000,
+      "gross_profit": 26533663000,
+      "sga": -56956302000,
+      "operating_income": -30422639000,
+      "other_income": 1217830000,
+      "other_expenses": -39010000,
+      "finance_income": 14348567000,
+      "finance_costs": -86783081000,
+      "equity_method_income": null,
+      "pretax_income": -230900983000,
+      "income_tax_expense": -54077573000,
+      "net_income": -176823410000,
+      "cash_and_equivalents": 230337601000,
+      "short_term_financial_instruments": null,
+      "inventories": 164219980000,
+      "trade_receivables": 75630820000,
+      "trade_payables": 138056375000,
+      "contract_assets": null,
+      "other_current_liabilities": 60323791000,
+      "current_assets": 1461425176000,
+      "ppe": 1090959766000,
+      "intangibles": 14044654000,
+      "right_of_use": null,
+      "investments_in_subs": 4944356290000,
+      "total_assets": 7533016106000,
+      "total_liabilities": 3450636646000,
+      "total_equity": 4082379460000,
+      "debt_total": 843057278000,
+      "debt_parts": [
+        403694084000,
+        439363194000
+      ],
+      "lease_liabilities": null,
+      "contract_liabilities": null,
+      "contract_assets_total": null,
+      "ocf": -62661298000,
+      "capex": 162992350000,
+      "intangible_capex": 5179126000,
+      "interest_paid": -24361814000,
+      "tax_paid": null,
+      "dividends_paid": null,
+      "depreciation": 55784426000,
+      "amortization": 4365463000,
+      "rou_depreciation": null,
+      "depreciation_amortization": 60149889000
+    },
+    {
+      "fiscal_year": 2017,
+      "source_document": "sbl_2017.pdf",
+      "revenue": 464629334000,
+      "cost_of_revenue": -332829273000,
+      "gross_profit": 131800061000,
+      "sga": -65820659000,
+      "operating_income": 65979402000,
+      "other_income": 889983000,
+      "other_expenses": -136243000,
+      "finance_income": 23219775000,
+      "finance_costs": -76345332000,
+      "equity_method_income": null,
+      "pretax_income": -115994753000,
+      "income_tax_expense": -19022637000,
+      "net_income": -96972116000,
+      "cash_and_equivalents": 358088091000,
+      "short_term_financial_instruments": 970000000000,
+      "inventories": 209986717000,
+      "trade_receivables": 25817150000,
+      "trade_payables": 158214846000,
+      "contract_assets": null,
+      "other_current_liabilities": 56486175000,
+      "current_assets": 620995135000,
+      "ppe": 1513332618000,
+      "intangibles": 18999003000,
+      "right_of_use": null,
+      "investments_in_subs": 5008234005000,
+      "total_assets": 7183091163000,
+      "total_liabilities": 3206640270000,
+      "total_equity": 3976450893000,
+      "debt_total": 545912148000,
+      "debt_parts": [
+        138676578000,
+        407235570000
+      ],
+      "lease_liabilities": null,
+      "contract_liabilities": null,
+      "contract_assets_total": null,
+      "ocf": 149816327000,
+      "capex": 494119453000,
+      "intangible_capex": 10682088000,
+      "interest_paid": -17036196000,
+      "tax_paid": null,
+      "dividends_paid": null,
+      "depreciation": 64188480000,
+      "amortization": 5737747000,
+      "rou_depreciation": null,
+      "depreciation_amortization": 69926227000
+    },
+    {
+      "fiscal_year": 2018,
+      "source_document": "sbl_2018.pdf",
+      "revenue": 535805801000,
+      "cost_of_revenue": -390645859000,
+      "gross_profit": 145159942000,
+      "sga": -89481197000,
+      "operating_income": 55678745000,
+      "other_income": 390399125000,
+      "other_expenses": -8748273000,
+      "finance_income": 19320789000,
+      "finance_costs": -24337217000,
+      "equity_method_income": null,
+      "pretax_income": 302975836000,
+      "income_tax_expense": 78866642000,
+      "net_income": 224109194000,
+      "cash_and_equivalents": 17621905000,
+      "short_term_financial_instruments": 550000000000,
+      "inventories": 302360715000,
+      "trade_receivables": 121733350000,
+      "trade_payables": 170338294000,
+      "contract_assets": 19499176000,
+      "other_current_liabilities": 87695614000,
+      "current_assets": 1577683715000,
+      "ppe": 1717720988000,
+      "intangibles": 19981634000,
+      "right_of_use": null,
+      "investments_in_subs": 2561802521000,
+      "total_assets": 5980408648000,
+      "total_liabilities": 1824940197000,
+      "total_equity": 4155468451000,
+      "debt_total": 872696107000,
+      "debt_parts": [
+        386583355000,
+        486112752000
+      ],
+      "lease_liabilities": null,
+      "contract_liabilities": 101104790000,
+      "contract_assets_total": 96578638000,
+      "ocf": 36787308000,
+      "capex": 347851891000,
+      "intangible_capex": 5811483000,
+      "interest_paid": 23359097000,
+      "tax_paid": null,
+      "dividends_paid": null,
+      "depreciation": 85522362000,
+      "amortization": 5928193000,
+      "rou_depreciation": null,
+      "depreciation_amortization": 91450555000
+    },
+    {
+      "fiscal_year": 2019,
+      "source_document": "sbl_2019.pdf",
+      "revenue": 701591859755,
+      "cost_of_revenue": -509584425113,
+      "gross_profit": 192007434642,
+      "sga": -100265047444,
+      "operating_income": 91742387198,
+      "other_income": 4003486749,
+      "other_expenses": -2108781313,
+      "finance_income": 27540743550,
+      "finance_costs": -38682642614,
+      "equity_method_income": 72940115693,
+      "pretax_income": 155435309263,
+      "income_tax_expense": -47468789825,
+      "net_income": 202904099088,
+      "cash_and_equivalents": 125100653179,
+      "short_term_financial_instruments": 320000000000,
+      "inventories": 452469927424,
+      "trade_receivables": 187118115434,
+      "trade_payables": 101128061254,
+      "contract_assets": 20812351177,
+      "other_current_liabilities": 144706770419,
+      "current_assets": 125100653179,
+      "ppe": 1702792524097,
+      "intangibles": 21827515338,
+      "right_of_use": 16118883277,
+      "investments_in_subs": 2652731622024,
+      "total_assets": 5911626511920,
+      "total_liabilities": 1557172766554,
+      "total_equity": 4354453745366,
+      "debt_total": 637817124961,
+      "debt_parts": [
+        401650000000,
+        236167124961
+      ],
+      "lease_liabilities": 15889284011,
+      "contract_liabilities": 145129256480,
+      "contract_assets_total": 151482887494,
+      "ocf": 10153614976,
+      "capex": 171734357701,
+      "intangible_capex": 9461855113,
+      "interest_paid": -26345466077,
+      "tax_paid": -42104613015,
+      "dividends_paid": null,
+      "depreciation": 121892350206,
+      "amortization": 6292084706,
+      "rou_depreciation": 4358579512,
+      "depreciation_amortization": 132543014424,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2020,
+      "source_document": "sbl_2020.pdf",
+      "revenue": 1164776873641,
+      "cost_of_revenue": -748700763470,
+      "gross_profit": 416076110171,
+      "sga": -123289556089,
+      "operating_income": 292786554082,
+      "other_income": 2568786561,
+      "other_expenses": -3490386092,
+      "finance_income": 32774534985,
+      "finance_costs": -40879632723,
+      "equity_method_income": -17767693975,
+      "pretax_income": 265992162838,
+      "income_tax_expense": 25017362875,
+      "net_income": 240974799963,
+      "cash_and_equivalents": 28850120614,
+      "short_term_financial_instruments": 300000000000,
+      "inventories": 645960096442,
+      "trade_receivables": 217932307826,
+      "trade_payables": 185176705934,
+      "contract_assets": 27864867897,
+      "other_current_liabilities": 159567115745,
+      "current_assets": 28850120614,
+      "ppe": 1736567289165,
+      "intangibles": 23344605855,
+      "right_of_use": 24160224188,
+      "investments_in_subs": 2634428493852,
+      "total_assets": 6424201164962,
+      "total_liabilities": 1825417992598,
+      "total_equity": 4598783172364,
+      "debt_total": 762358357851,
+      "debt_parts": [
+        190907459006,
+        571450898845
+      ],
+      "lease_liabilities": 22546904764,
+      "contract_liabilities": 197116872305,
+      "contract_assets_total": 196756422198,
+      "ocf": 202090026541,
+      "capex": 139664805056,
+      "intangible_capex": 8901227656,
+      "interest_paid": -15629886952,
+      "tax_paid": -38429117800,
+      "dividends_paid": null,
+      "depreciation": 131414806510,
+      "amortization": 6107637985,
+      "rou_depreciation": 5652428296,
+      "depreciation_amortization": 143174872791,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2021,
+      "source_document": "sbl_2021.pdf",
+      "revenue": 1568006928039,
+      "cost_of_revenue": -841555562592,
+      "gross_profit": 726451365447,
+      "sga": -189141957375,
+      "operating_income": 537309408072,
+      "other_income": 414264803,
+      "other_expenses": -8742667978,
+      "finance_income": 47589449930,
+      "finance_costs": -29140999592,
+      "equity_method_income": 13853142056,
+      "pretax_income": 561282597291,
+      "income_tax_expense": 167693129636,
+      "net_income": 393589467655,
+      "cash_and_equivalents": 47410383773,
+      "short_term_financial_instruments": 450000000000,
+      "inventories": 1012870791066,
+      "trade_receivables": 366330684127,
+      "trade_payables": 399030093590,
+      "contract_assets": 63910843988,
+      "other_current_liabilities": 364409200047,
+      "current_assets": 47410383773,
+      "ppe": 2207063705617,
+      "intangibles": 32171618395,
+      "right_of_use": 20623773334,
+      "investments_in_subs": 2661309486003,
+      "total_assets": 7970010786863,
+      "total_liabilities": 2978908646183,
+      "total_equity": 4991102140680,
+      "debt_total": 1274538996094,
+      "debt_parts": [
+        159855000000,
+        1114683996094
+      ],
+      "lease_liabilities": 18208298411,
+      "contract_liabilities": 285621828514,
+      "contract_assets_total": 253241944131,
+      "ocf": 454596217269,
+      "capex": 406253514919,
+      "intangible_capex": 14898311036,
+      "interest_paid": -18593851920,
+      "tax_paid": -42368515551,
+      "dividends_paid": null,
+      "depreciation": 144061397315,
+      "amortization": 6725661312,
+      "rou_depreciation": 11001591240,
+      "depreciation_amortization": 161788649867,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2022,
+      "source_document": "sblsep_2022.pdf",
+      "revenue": 2437286111838,
+      "cost_of_revenue": -1237054032373,
+      "gross_profit": 1200232079465,
+      "sga": -232181485796,
+      "operating_income": 968050593669,
+      "other_income": 5223508259,
+      "other_expenses": -6573709727,
+      "finance_income": 133144781349,
+      "finance_costs": -176958166068,
+      "equity_method_income": null,
+      "pretax_income": 922887007482,
+      "income_tax_expense": 236094070965,
+      "net_income": 686792936517,
+      "cash_and_equivalents": 757945988143,
+      "short_term_financial_instruments": 2168901000000,
+      "inventories": 1243171975151,
+      "trade_receivables": 503997178409,
+      "trade_payables": 1628734131092,
+      "contract_assets": 95823666322,
+      "other_current_liabilities": 450889828622,
+      "current_assets": 757945988143,
+      "ppe": 3083545436767,
+      "intangibles": 39436621913,
+      "right_of_use": 451792929789,
+      "investments_in_subs": 3308792565514,
+      "total_assets": 12165838879527,
+      "total_liabilities": 4869235661247,
+      "total_equity": 7296603218280,
+      "debt_total": 1263088053378,
+      "debt_parts": [
+        517997721221,
+        745090332157
+      ],
+      "lease_liabilities": 407224450196,
+      "contract_liabilities": 289682040048,
+      "contract_assets_total": 304339598319,
+      "ocf": 831098844606,
+      "capex": 948126930126,
+      "intangible_capex": 12199985471,
+      "interest_paid": -12960232777,
+      "tax_paid": -173979225103,
+      "dividends_paid": null,
+      "depreciation": 163440977276,
+      "amortization": 7491092086,
+      "rou_depreciation": 9860117778,
+      "depreciation_amortization": 180792187140,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2023,
+      "source_document": "sblsep_2023.pdf",
+      "revenue": 2938755680729,
+      "cost_of_revenue": -1448384619849,
+      "gross_profit": 1490371060880,
+      "sga": -286183067839,
+      "operating_income": 1204187993041,
+      "other_income": 2453261094,
+      "other_expenses": -7316183337,
+      "finance_income": 174498682070,
+      "finance_costs": -149640340368,
+      "equity_method_income": null,
+      "pretax_income": 1224183412500,
+      "income_tax_expense": 278263086582,
+      "net_income": 945920325918,
+      "cash_and_equivalents": 230790684551,
+      "short_term_financial_instruments": 1650000000000,
+      "inventories": 1678605972283,
+      "trade_receivables": 390232937790,
+      "trade_payables": 1028688065985,
+      "contract_assets": 66670533149,
+      "other_current_liabilities": 732055396556,
+      "current_assets": 230790684551,
+      "ppe": 3542877089587,
+      "intangibles": 53780529889,
+      "right_of_use": 458677499904,
+      "investments_in_subs": 3317532174094,
+      "total_assets": 11831260604556,
+      "total_liabilities": 3592626821824,
+      "total_equity": 8238633782732,
+      "debt_total": 928187563774,
+      "debt_parts": [
+        808405014266,
+        119782549508
+      ],
+      "lease_liabilities": 278203961170,
+      "contract_liabilities": 353873746413,
+      "contract_assets_total": 339147249191,
+      "ocf": 1418214391979,
+      "capex": 976195716688,
+      "intangible_capex": 25106734680,
+      "interest_paid": -21941208478,
+      "tax_paid": -275992165243,
+      "dividends_paid": null,
+      "depreciation": 235737539919,
+      "amortization": 9376740359,
+      "rou_depreciation": 9782111537,
+      "depreciation_amortization": 254896391815,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2024,
+      "source_document": "sblsep_2024.pdf",
+      "revenue": 3497145675782,
+      "cost_of_revenue": -1784146429770,
+      "gross_profit": 1712999246012,
+      "sga": -391573724162,
+      "operating_income": 1321425521850,
+      "other_income": 4327315894,
+      "other_expenses": -5339997629,
+      "finance_income": 227643230942,
+      "finance_costs": -145678182176,
+      "equity_method_income": null,
+      "pretax_income": 1402377888881,
+      "income_tax_expense": 351411387841,
+      "net_income": 1050966501040,
+      "cash_and_equivalents": 299588328642,
+      "short_term_financial_instruments": 900000000000,
+      "inventories": 1882955514642,
+      "trade_receivables": 785792736192,
+      "trade_payables": 1126445629735,
+      "contract_assets": 84626028810,
+      "other_current_liabilities": 1032343022959,
+      "current_assets": 299588328642,
+      "ppe": 5047583098573,
+      "intangibles": 65174295623,
+      "right_of_use": 461455134905,
+      "investments_in_subs": 3328226236594,
+      "total_assets": 13317210924810,
+      "total_liabilities": 4036318163152,
+      "total_equity": 9280892761658,
+      "debt_total": 1726161722258,
+      "debt_parts": [
+        808405014266,
+        917756707992
+      ],
+      "lease_liabilities": 143840002196,
+      "contract_liabilities": 456220369928,
+      "contract_assets_total": 362613626483,
+      "ocf": 1382836126534,
+      "capex": 1297126457854,
+      "intangible_capex": 26633162885,
+      "interest_paid": -25434767469,
+      "tax_paid": -277232249891,
+      "dividends_paid": null,
+      "depreciation": 276080392361,
+      "amortization": 12941109611,
+      "rou_depreciation": 10009516076,
+      "depreciation_amortization": 299031018048,
+      "tax_sign_flipped": true
+    },
+    {
+      "fiscal_year": 2025,
+      "source_document": "sblsep_2025.pdf",
+      "revenue": 4556971695180,
+      "cost_of_revenue": -2039857318690,
+      "gross_profit": 2517114376490,
+      "sga": -449021537063,
+      "operating_income": 2068092839427,
+      "other_income": 6699785075,
+      "other_expenses": -9666769268,
+      "finance_income": 155194114641,
+      "finance_costs": -141343463571,
+      "equity_method_income": null,
+      "pretax_income": 2078976506304,
+      "income_tax_expense": 492789542992,
+      "net_income": 1586186963312,
+      "cash_and_equivalents": 141484622864,
+      "short_term_financial_instruments": 1300000000000,
+      "inventories": 2128164162722,
+      "trade_receivables": 676565488743,
+      "trade_payables": 485836876835,
+      "contract_assets": 103627211536,
+      "other_current_liabilities": 1201458529835,
+      "current_assets": 141484622864,
+      "ppe": 6028492966965,
+      "intangibles": 60193270276,
+      "right_of_use": 8019432076,
+      "investments_in_subs": 45882814000,
+      "total_assets": 11023968735616,
+      "total_liabilities": 3608519898043,
+      "total_equity": 7415448837573,
+      "debt_total": 918724421281,
+      "debt_parts": [
+        319712704765,
+        599011716516
+      ],
+      "lease_liabilities": 7397284801,
+      "contract_liabilities": 539437151497,
+      "contract_assets_total": 411599365615,
+      "ocf": 1953455992724,
+      "capex": 1376344214595,
+      "intangible_capex": 11502254035,
+      "interest_paid": -27842730967,
+      "tax_paid": -448990986863,
+      "dividends_paid": null,
+      "depreciation": 343889782658,
+      "amortization": 15535967175,
+      "rou_depreciation": 9888959999,
+      "depreciation_amortization": 369314709832,
+      "tax_sign_flipped": true
+    }
+  ],
+  "consolidated_reported": {
+    "2020": {
+      "revenue": 1164776873641,
+      "operating_income": 292786554082,
+      "net_income": 240974799963,
+      "source_document": "sbl_2020.pdf"
+    },
+    "2019": {
+      "revenue": 701591859755,
+      "operating_income": 91742387198,
+      "net_income": 202904099088,
+      "source_document": "sbl_2020.pdf"
+    },
+    "2021": {
+      "revenue": 1568006928039,
+      "operating_income": 537309408072,
+      "net_income": 393589467655,
+      "source_document": "sbl_2021.pdf"
+    },
+    "2022": {
+      "revenue": 3001295197683,
+      "operating_income": 983627394377,
+      "net_income": 798056210082,
+      "source_document": "sbl_2022.pdf"
+    },
+    "2023": {
+      "revenue": 3694588767068,
+      "operating_income": 1113680009715,
+      "net_income": 857691298384,
+      "source_document": "sbl_2023.pdf"
+    },
+    "2024": {
+      "revenue": 4547322176421,
+      "operating_income": 1320052380133,
+      "net_income": 1083315885986,
+      "source_document": "sbl_2024.pdf"
+    },
+    "2025": {
+      "revenue": 4556971695180,
+      "operating_income": 2069221266630,
+      "net_income": 1784352060593,
+      "source_document": "sbl_2025.pdf"
+    }
+  },
+  "segment_note_fy2024": {
+    "total_sales": {
+      "2024_cdmo": 3512195434962,
+      "2024_bio": 1537700053729,
+      "2024_total": 5049895488691,
+      "2023_cdmo": 2951741892359,
+      "2023_bio": 1020297642816,
+      "2023_total": 3972039535175
+    },
+    "net_sales": {
+      "2024_cdmo": 3009622122692,
+      "2024_bio": 1537700053729,
+      "2024_total": 4547322176421,
+      "2023_cdmo": 2674291124252,
+      "2023_bio": 1020297642816,
+      "2023_total": 3694588767068
+    },
+    "operating_profit": {
+      "2024_cdmo": 1119358660643,
+      "2024_bio": 200693719490,
+      "2024_total": 1320052380133,
+      "2023_cdmo": 1088218770802,
+      "2023_bio": 25461238913,
+      "2023_total": 1113680009715
+    }
+  },
+  "discontinued_operations": {
+    "revenue": [
+      1144901515139,
+      1050176500639
+    ],
+    "operating_income": [
+      207938107570,
+      -1314000455
+    ],
+    "profit": [
+      170021751137,
+      43014344755
+    ],
+    "years": [
+      2025,
+      2024
+    ],
+    "note": "FY2025 covers ten months to the 1 November 2025 spin-off date",
+    "source_document": "sbl_2025.pdf"
+  },
+  "interim_2026": {
+    "q2_2026": {
+      "revenue": 1320910867803,
+      "operating_income": 586443842141,
+      "pretax_income": 584628919570,
+      "income_tax_expense": -153974737396,
+      "profit_continuing": 430654182174
+    },
+    "h1_2026": {
+      "revenue": 2578030056694,
+      "operating_income": 1167196422965,
+      "pretax_income": 1225222075345,
+      "income_tax_expense": 325322468498,
+      "profit_continuing": 899899606847
+    },
+    "q2_2025": {
+      "revenue": 1014237838575,
+      "operating_income": 477202132370,
+      "pretax_income": 442364792810,
+      "income_tax_expense": -108795861077,
+      "profit_continuing": 333568931733
+    },
+    "h1_2025": {
+      "revenue": 2013782484640,
+      "operating_income": 907441669818,
+      "pretax_income": 881466749169,
+      "income_tax_expense": -216564756784,
+      "profit_continuing": 664901992385
+    },
+    "source_document": "sbl_2026q2.pdf"
+  },
+  "shares": {
+    "issued_2025": 46290951,
+    "outstanding_2025": 46239518,
+    "issued_2024": 71174000,
+    "weighted_average_2025": 67010390,
+    "source_document": "sblsep_2025.pdf"
+  },
+  "concentration": {
+    "customers": {
+      "client_a": {
+        "2025": 969660442839,
+        "2024": 306012091890
+      },
+      "client_b": {
+        "2025": 493757336968,
+        "2024": 86130744391
+      },
+      "client_c": {
+        "2025": 478468863363,
+        "2024": 358915729494
+      },
+      "client_d": {
+        "2025": 277382226790,
+        "2024": 487523553090
+      },
+      "client_e": {
+        "2025": 166979764908,
+        "2024": 410144688023
+      }
+    },
+    "geography": {
+      "domestic": {
+        "2025": 371876479018,
+        "2024": 558086309485
+      },
+      "europe": {
+        "2025": 2367746716504,
+        "2024": 2035771049122
+      },
+      "usa": {
+        "2025": 1733921542433,
+        "2024": 822631938995
+      },
+      "other": {
+        "2025": 83426957225,
+        "2024": 80656378180
+      }
+    },
+    "source_document": "sblsep_2025.pdf"
+  },
+  "float_and_supplier_finance": {
+    "advance_receipts": {
+      "2025_current": 1189846533432,
+      "2025_non_current": 75640730780,
+      "2024_current": 1023811904214,
+      "2024_non_current": 58609112309
+    },
+    "supplier_finance": {
+      "2025": 13816198731,
+      "2024": 540599044293
+    },
+    "related_party_payables_million": [
+      39070,
+      554989
+    ],
+    "source_document": "sblsep_2025.pdf"
+  },
+  "construction_in_progress": {
+    "2018": {
+      "carrying_amount": 57115774000,
+      "figures_on_row": [
+        57115774,
+        57115774
+      ],
+      "source_document": "sbl_2018.pdf"
+    },
+    "2017": {
+      "carrying_amount": 308844562000,
+      "figures_on_row": [
+        308844562,
+        308844562
+      ],
+      "source_document": "sbl_2018.pdf"
+    },
+    "2016": {
+      "carrying_amount": 232705460000,
+      "figures_on_row": [
+        232705460,
+        232705460
+      ],
+      "source_document": "sbl_2017.pdf"
+    },
+    "2020": {
+      "carrying_amount": 105469602000,
+      "figures_on_row": [
+        105469602,
+        105469602,
+        36714553,
+        36714553
+      ],
+      "source_document": "sbl_2020.pdf"
+    },
+    "2019": {
+      "carrying_amount": 36714553000,
+      "figures_on_row": [
+        105469602,
+        105469602,
+        36714553,
+        36714553
+      ],
+      "source_document": "sbl_2020.pdf"
+    },
+    "2022": {
+      "carrying_amount": 816478388000,
+      "figures_on_row": [
+        816478388,
+        816478388
+      ],
+      "source_document": "sblsep_2022.pdf"
+    },
+    "2021": {
+      "carrying_amount": 583352269000,
+      "figures_on_row": [
+        583352269,
+        583352269
+      ],
+      "source_document": "sblsep_2022.pdf"
+    },
+    "2023": {
+      "carrying_amount": 192257667000,
+      "figures_on_row": [
+        192257667,
+        192257667
+      ],
+      "source_document": "sblsep_2023.pdf"
+    },
+    "2025": {
+      "carrying_amount": 430160651929,
+      "figures_on_row": [
+        430160651929,
+        430160651929,
+        1823298445975,
+        1823298445975
+      ],
+      "source_document": "sblsep_2025.pdf"
+    },
+    "2024": {
+      "carrying_amount": 1823298445975,
+      "figures_on_row": [
+        430160651929,
+        430160651929,
+        1823298445975,
+        1823298445975
+      ],
+      "source_document": "sblsep_2025.pdf"
+    }
+  },
+  "equity_transactions": {
+    "capital_increase_2022": {
+      "share_capital": 12522500000,
+      "share_premium": 3175798270570,
+      "total": 3188320770570,
+      "source_document": "sblsep_2022.pdf"
+    },
+    "dividend_line_found": {
+      "2019": false,
+      "2021": false,
+      "2023": false,
+      "2025": false
+    },
+    "treasury_2025": {
+      "amount": 92012513657,
+      "shares": 51433,
+      "note": "\ubd84\ud560\uc5d0 \ub530\ub978 \ub2e8\uc218\uc8fc \ucde8\ub4dd (\uc790\uae30\uc8fc\uc2dd \ub9e4\uc785 \ud504\ub85c\uadf8\ub7a8\uc774 \uc544\ub2d8)",
+      "source_document": "sblsep_2025.pdf"
+    }
+  }
+}
