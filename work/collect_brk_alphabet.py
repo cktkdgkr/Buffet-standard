@@ -356,6 +356,60 @@ def alphabet_results():
     return out
 
 
+def ppe_detail():
+    """
+    Property and equipment split into what is working and what is not.
+
+    Alphabet reports "assets not yet in service" as its own line, added after
+    the in-service subtotal. The earlier round of this work said the split
+    could not be made; that was wrong - the note is in the 10-Q as well as the
+    10-K, and at 30 June 2026 the not-yet-in-service balance is $122.8bn, more
+    than a third of net property and equipment. A return on capital computed
+    without removing it charges the business for plant that is not yet
+    producing anything.
+    """
+    out = {}
+    plan = [("goog_10q_2025q2", ["2024-12-31", "2025-06-30"]),
+            ("goog_10q_2026q2", ["2025-12-31", "2026-06-30"])]
+    for key, periods in plan:
+        cik, folder, fname = DOCS[key]
+        path = os.path.join(CACHE, f"{key}.htm")
+        fetch(f"https://www.sec.gov/Archives/edgar/data/{cik}/{folder}/{fname}",
+              path)
+        L = text_of(path)
+        i = next(j for j, l in enumerate(L) if "not yet in service" in l)
+        # The note prints two columns, prior period then current.
+        window = L[max(0, i - 42): i + 20]
+
+        def row(label, n=2):
+            # Footnote markers sit in their own element ("Technical
+            # infrastructure" then "(1)"), so match the start of the caption.
+            k = next(j for j, l in enumerate(window)
+                     if l.strip().startswith(label))
+            return numbers(window[k + 1: k + 30])[:n]
+
+        vals = {
+            "technical_infrastructure": row("Technical infrastructure"),
+            "office_space": row("Office space"),
+            "corporate_and_other": row("Corporate and other assets"),
+            "in_service": row("Property and equipment, in service"),
+            "accumulated_depreciation": row("Less: accumulated depreciation"),
+            "not_yet_in_service": row("Add: assets not yet in service"),
+        }
+        # "Property and equipment, net" also heads the note itself, so read the
+        # total from after the not-yet-in-service line rather than by caption.
+        k = next(j for j, l in enumerate(window)
+                 if l.strip().startswith("Add: assets not yet in service"))
+        tail = window[k + 1:]
+        t = next(j for j, l in enumerate(tail)
+                 if l.strip().startswith("Property and equipment, net"))
+        vals["net"] = numbers(tail[t + 1: t + 30])[:2]
+        for col, period in enumerate(periods):
+            out[period] = {k: v[col] for k, v in vals.items()}
+            out[period]["source"] = f"Form 10-Q, {key}"
+    return out
+
+
 def berkshire_balance_sheet():
     cik, folder, fname = DOCS["brk_10q_2026q2"]
     path = os.path.join(CACHE, "brk_10q_2026q2.htm")
@@ -386,7 +440,8 @@ def main():
                      ("private_placement", private_placement),
                      ("mandatory_convertible", mandatory_convertible),
                      ("alphabet", alphabet_results),
-                     ("berkshire_balance_sheet", berkshire_balance_sheet)):
+                     ("berkshire_balance_sheet", berkshire_balance_sheet),
+                     ("ppe_detail", ppe_detail)):
         try:
             payload[name] = fn()
             print(f"  {name}  ok")

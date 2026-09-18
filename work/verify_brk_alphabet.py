@@ -189,6 +189,82 @@ def main():
                     s["equity_value"] / an["valuation"]["shares_used"]),
               f"{s['scenario']} 주당가치", f"${s['value_per_share']:,.0f}")
 
+    # ----------------------------------------------- alphabet_capital.json
+    cap_path = os.path.join(HERE, "alphabet_capital.json")
+    if os.path.exists(cap_path):
+        with open(cap_path) as fh:
+            cap = json.load(fh)
+        ppe = cap["ppe_detail"]
+        for period, e in ppe.items():
+            check(close(e["in_service"] + e["accumulated_depreciation"]
+                        + e["not_yet_in_service"], e["net"], 1e-6),
+                  f"유형자산 {period}: 가동중 − 감가상각누계 + 미가동 = 순액",
+                  f"{e['net']:,.0f}")
+            check(0 < e["not_yet_in_service"] < e["net"],
+                  f"유형자산 {period}: 미가동자산이 순액 범위 안",
+                  f"{e['not_yet_in_service']/e['net']:.1%}")
+
+        v = cap["three_views"]
+        for tag, yr in (("2025", "2025-06-30"), ("2026", "2026-06-30")):
+            check(close(v["working"][f"capital_{tag}"],
+                        v["as_reported"][f"capital_{tag}"]
+                        - ppe[yr]["not_yet_in_service"]),
+                  f"가동자본 {tag} = 전체 영업자본 − 미가동자산",
+                  f"{v['working'][f'capital_{tag}']:,.0f}")
+            check(close(v["working"][f"roic_{tag}"],
+                        v[f"nopat_{tag}"] / v["working"][f"capital_{tag}"]),
+                  f"가동자본 ROIC {tag} 재계산",
+                  f"{v['working'][f'roic_{tag}']:.1%}")
+        for key in ("as_reported", "working"):
+            check(close(v[key]["incremental_roic"],
+                        (v["nopat_2026"] - v["nopat_2025"])
+                        / v[key]["delta_capital"]),
+                  f"{key} 증분 ROIC 재계산",
+                  f"{v[key]['incremental_roic']:.1%}")
+        check(v["working"]["incremental_roic"] > v["as_reported"]["incremental_roic"],
+              "미가동자산을 빼면 증분 ROIC이 올라간다",
+              f"{v['as_reported']['incremental_roic']:.1%} → "
+              f"{v['working']['incremental_roic']:.1%}")
+        check(0 < v["share_of_capital_increase_not_working"] < 1,
+              "영업자본 증가분 중 미가동 비중이 0~100% 사이",
+              f"{v['share_of_capital_increase_not_working']:.0%}")
+
+        m = cap["matured"]
+        check(close(m["uplift_operating_income"],
+                    m["uplift_revenue"] * m["incremental_operating_margin"]),
+              "성숙 시 영업이익 증분 = 매출 증분 × 증분 영업이익률",
+              f"{m['uplift_operating_income']:,.0f}")
+        check(close(m["backlog_implied_annual_cloud_revenue"],
+                    m["backlog_cloud"] * m["backlog_recognised_share_24m"] / 2),
+              "잔고 기준 연 매출 = 클라우드 잔고 × 인식비율 ÷ 2년",
+              f"{m['backlog_implied_annual_cloud_revenue']:,.0f}")
+        check(close(m["roic_matured"], m["nopat_matured"] / m["capital"]),
+              "성숙 ROIC 재계산", f"{m['roic_matured']:.1%}")
+        check(m["roic_matured"] > v["as_reported"]["roic_2026"],
+              "성숙 ROIC이 보고 기준 ROIC보다 높다",
+              f"{v['as_reported']['roic_2026']:.1%} → {m['roic_matured']:.1%}")
+        check(m["cloud_margin_matured"] > m["cloud_margin_run_rate"],
+              "성숙 시 클라우드 마진이 현재 런레이트보다 높다",
+              f"{m['cloud_margin_run_rate']:.1%} → "
+              f"{m['cloud_margin_matured']:.1%}")
+
+        rows = cap["discount_rate_sensitivity"]["rows"]
+        vals = [r["equity_value"] for r in rows]
+        terms = [r["terminal_share"] for r in rows]
+        check(all(a > b for a, b in zip(vals, vals[1:])),
+              "할인율이 오르면 가치가 단조 감소")
+        check(all(a > b for a, b in zip(terms, terms[1:])),
+              "할인율이 오르면 터미널 비중이 단조 감소",
+              f"{terms[0]:.0%} → {terms[-1]:.0%}")
+
+        alt = cap["alternatives"]
+        if "error" not in alt:
+            check(alt["counted"] > 30,
+                  "52개 기업 중 DCF 산출 가능한 종목 수", str(alt["counted"]))
+            check(alt["with_positive_optimistic"] > 0,
+                  "낙관 시나리오에서 안전마진 양수인 대안이 존재",
+                  f"{alt['with_positive_optimistic']}개")
+
     # The hypothesis grid must show the sign flip at incremental ROIC =
     # discount rate; that is the whole point of the table.
     h = an["hypothesis_test"]

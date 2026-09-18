@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-18T04:53:54.337405+00:00",
+  "collected_at": "2026-09-18T05:56:15.830587+00:00",
   "question": "버크셔 해서웨이가 알파벳 지분을 이렇게까지 늘린 이유는 무엇인가 - 그들이 제출한 서류로만 답한다",
   "berkshire_13f": {
     "2024-12-31": {
@@ -958,5 +958,47 @@
     "five_largest_note": "The five largest holdings at June 30, 2026 were Alphabet Inc., American Express Company, Apple Inc., Bank of America Corporation and The Coca-Cola Company",
     "five_largest_share_of_equities": 0.66,
     "source": "Berkshire Form 10-Q Q2 2026, accession 0001193125-26-341032"
+  },
+  "ppe_detail": {
+    "2024-12-31": {
+      "technical_infrastructure": 139596.0,
+      "office_space": 43714.0,
+      "corporate_and_other": 16519.0,
+      "in_service": 199829.0,
+      "accumulated_depreciation": -79390.0,
+      "not_yet_in_service": 50597.0,
+      "net": 171036.0,
+      "source": "Form 10-Q, goog_10q_2025q2"
+    },
+    "2025-06-30": {
+      "technical_infrastructure": 167467.0,
+      "office_space": 45493.0,
+      "corporate_and_other": 17920.0,
+      "in_service": 230880.0,
+      "accumulated_depreciation": -89349.0,
+      "not_yet_in_service": 61700.0,
+      "net": 203231.0,
+      "source": "Form 10-Q, goog_10q_2025q2"
+    },
+    "2025-12-31": {
+      "technical_infrastructure": 203679.0,
+      "office_space": 48348.0,
+      "corporate_and_other": 14463.0,
+      "in_service": 266490.0,
+      "accumulated_depreciation": -98485.0,
+      "not_yet_in_service": 78592.0,
+      "net": 246597.0,
+      "source": "Form 10-Q, goog_10q_2026q2"
+    },
+    "2026-06-30": {
+      "technical_infrastructure": 247177.0,
+      "office_space": 50635.0,
+      "corporate_and_other": 6498.0,
+      "in_service": 304310.0,
+      "accumulated_depreciation": -105912.0,
+      "not_yet_in_service": 122814.0,
+      "net": 321212.0,
+      "source": "Form 10-Q, goog_10q_2026q2"
+    }
   }
 }

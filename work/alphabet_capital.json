@@ -1,0 +1,249 @@
+{
+  "generated": "2026-09-18",
+  "correction": "직전 보고서는 '알파벳이 미가동 자산을 별도 공시하지 않아 분리할 수 없다'고 적었습니다. 이는 사실과 다릅니다. 유형자산 주석에 'assets not yet in service'가 별도 줄로 공시되어 있고, 10-K뿐 아니라 10-Q에도 있습니다. 이 파일이 그 정정입니다.",
+  "ppe_detail": {
+    "2024-12-31": {
+      "technical_infrastructure": 139596.0,
+      "office_space": 43714.0,
+      "corporate_and_other": 16519.0,
+      "in_service": 199829.0,
+      "accumulated_depreciation": -79390.0,
+      "not_yet_in_service": 50597.0,
+      "net": 171036.0,
+      "source": "Form 10-Q, goog_10q_2025q2"
+    },
+    "2025-06-30": {
+      "technical_infrastructure": 167467.0,
+      "office_space": 45493.0,
+      "corporate_and_other": 17920.0,
+      "in_service": 230880.0,
+      "accumulated_depreciation": -89349.0,
+      "not_yet_in_service": 61700.0,
+      "net": 203231.0,
+      "source": "Form 10-Q, goog_10q_2025q2"
+    },
+    "2025-12-31": {
+      "technical_infrastructure": 203679.0,
+      "office_space": 48348.0,
+      "corporate_and_other": 14463.0,
+      "in_service": 266490.0,
+      "accumulated_depreciation": -98485.0,
+      "not_yet_in_service": 78592.0,
+      "net": 246597.0,
+      "source": "Form 10-Q, goog_10q_2026q2"
+    },
+    "2026-06-30": {
+      "technical_infrastructure": 247177.0,
+      "office_space": 50635.0,
+      "corporate_and_other": 6498.0,
+      "in_service": 304310.0,
+      "accumulated_depreciation": -105912.0,
+      "not_yet_in_service": 122814.0,
+      "net": 321212.0,
+      "source": "Form 10-Q, goog_10q_2026q2"
+    }
+  },
+  "three_views": {
+    "nopat_2025": 102963.328,
+    "nopat_2026": 133895.424,
+    "not_yet_in_service_2025": 61700.0,
+    "not_yet_in_service_2026": 122814.0,
+    "not_yet_in_service_increase": 61114.0,
+    "as_reported": {
+      "capital_2025": 217559.0,
+      "capital_2026": 339798.0,
+      "roic_2025": 0.47326623122922973,
+      "roic_2026": 0.3940441791888122,
+      "delta_capital": 122239.0,
+      "incremental_roic": 0.2530460491332554
+    },
+    "working": {
+      "capital_2025": 155859.0,
+      "capital_2026": 216984.0,
+      "roic_2025": 0.6606184307611366,
+      "roic_2026": 0.6170751023116912,
+      "delta_capital": 61125.0,
+      "incremental_roic": 0.5060465603271984
+    },
+    "share_of_capital_increase_not_working": 0.49995500617642485
+  },
+  "matured": {
+    "cloud_revenue_run_rate": 99072.0,
+    "cloud_operating_income_run_rate": 35256.0,
+    "cloud_margin_run_rate": 0.3558624031007752,
+    "incremental_operating_margin": 0.5503912859560067,
+    "backlog_cloud": 513900.0,
+    "backlog_recognised_share_24m": 0.5,
+    "backlog_implied_annual_cloud_revenue": 128475.0,
+    "uplift_revenue": 29403.0,
+    "uplift_operating_income": 16183.154980964466,
+    "cloud_revenue_matured": 128475.0,
+    "cloud_operating_income_matured": 51439.154980964464,
+    "cloud_margin_matured": 0.4003826034712159,
+    "company_operating_income_now": 163080.0,
+    "company_operating_income_matured": 179263.15498096446,
+    "nopat_matured": 149146.94494416242,
+    "capital": 339798.0,
+    "roic_matured": 0.4389282601550404,
+    "cross_check": "2분기 클라우드 매출이 전년 대비 81.8% 늘고 있으므로, 수주잔고만으로 계산한 이 매출 수준은 성장 추세보다 오히려 보수적입니다. 즉 이 계산은 상한이 아니라 하한에 가깝습니다.",
+    "why_not_add_backlog_to_income": "수주잔고를 오늘의 영업이익에 그냥 더하면 두 가지가 틀립니다. 첫째, 잔고는 미래 매출의 '잔액'이고 영업이익은 한 해의 '흐름'이라 단위가 다릅니다. 둘째, 그 매출을 내려면 앞으로 원가도 들어가는데 그 원가에는 지금 분모에 들어 있는 바로 그 설비의 감가상각이 포함됩니다. 그래서 잔고는 분자에 더하는 것이 아니라, 이미 지은 자본이 언제 얼마를 벌게 되는지를 가늠하는 데 씁니다."
+  },
+  "discount_rate_sensitivity": {
+    "assumptions": {
+      "growth": 0.2,
+      "fade_to": 0.045,
+      "incremental_roic": 0.3,
+      "terminal_growth": 0.03
+    },
+    "rows": [
+      {
+        "discount_rate": 0.05,
+        "equity_value": 13476834.775489807,
+        "value_per_share": 1089.3375708701603,
+        "vs_market": 2.1363186907844423,
+        "terminal_share": 0.8974754083715892
+      },
+      {
+        "discount_rate": 0.06,
+        "equity_value": 8676574.078293735,
+        "value_per_share": 701.3307120981589,
+        "vs_market": 1.0192056893967087,
+        "terminal_share": 0.8496921400411028
+      },
+      {
+        "discount_rate": 0.07,
+        "equity_value": 6294643.718526589,
+        "value_per_share": 508.7983945832455,
+        "vs_market": 0.4648846761962556,
+        "terminal_share": 0.8041385337849468
+      },
+      {
+        "discount_rate": 0.08,
+        "equity_value": 4878824.627782606,
+        "value_per_share": 394.35721052216127,
+        "vs_market": 0.13539633928011183,
+        "terminal_share": 0.7607452489010571
+      },
+      {
+        "discount_rate": 0.09,
+        "equity_value": 3945141.2696631933,
+        "value_per_share": 318.8872371760846,
+        "vs_market": -0.08188973835809,
+        "terminal_share": 0.719441735864546
+      },
+      {
+        "discount_rate": 0.1,
+        "equity_value": 3286250.2250319817,
+        "value_per_share": 265.6288288047035,
+        "vs_market": -0.23522635878068843,
+        "terminal_share": 0.6801565970114446
+      },
+      {
+        "discount_rate": 0.11,
+        "equity_value": 2798538.241842351,
+        "value_per_share": 226.20688768108744,
+        "vs_market": -0.3487263188291037,
+        "terminal_share": 0.6428179313102634
+      },
+      {
+        "discount_rate": 0.12,
+        "equity_value": 2424488.9543004013,
+        "value_per_share": 195.97234455099607,
+        "vs_market": -0.4357747832004259,
+        "terminal_share": 0.6073536606168295
+      }
+    ]
+  },
+  "alternatives": {
+    "counted": 39,
+    "with_positive_margin": 0,
+    "with_positive_optimistic": 10,
+    "top": [
+      {
+        "ticker": "MRK",
+        "name": "Merck & Co., Inc.",
+        "margin_of_safety": -0.0539319760251947,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.5290064227832392
+      },
+      {
+        "ticker": "V",
+        "name": "VISA INC.",
+        "margin_of_safety": -0.21339728277616607,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.4577426818804649
+      },
+      {
+        "ticker": "MA",
+        "name": "Mastercard Inc",
+        "margin_of_safety": -0.2177647824207647,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.45579088202250795
+      },
+      {
+        "ticker": "HD",
+        "name": "HOME DEPOT, INC.",
+        "margin_of_safety": -0.2313297589325304,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.2869584211152028
+      },
+      {
+        "ticker": "XOM",
+        "name": "EXXON MOBIL CORP",
+        "margin_of_safety": -0.30977962329245046,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.190416828791882
+      },
+      {
+        "ticker": "JNJ",
+        "name": "JOHNSON & JOHNSON",
+        "margin_of_safety": -0.35510925705408736,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.18487929774003886
+      },
+      {
+        "ticker": "CVX",
+        "name": "CHEVRON CORP",
+        "margin_of_safety": -0.3860128302427441,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.04651235280389204
+      },
+      {
+        "ticker": "PG",
+        "name": "PROCTER & GAMBLE Co",
+        "margin_of_safety": -0.5496311209076726,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.005974792052395317
+      },
+      {
+        "ticker": "META",
+        "name": "Meta Platforms, Inc.",
+        "margin_of_safety": -0.5800563879275032,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.28408631047463845
+      },
+      {
+        "ticker": "PM",
+        "name": "Philip Morris International Inc.",
+        "margin_of_safety": -0.8269082955579593,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": -0.16584620426916294
+      },
+      {
+        "ticker": "DELL",
+        "name": "Dell Technologies Inc.",
+        "margin_of_safety": -0.8922374120832259,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": 0.1091632655179182
+      },
+      {
+        "ticker": "RTX",
+        "name": "RTX Corp",
+        "margin_of_safety": -1.3950489014888958,
+        "verdict": "OUTSIDE_RANGE",
+        "optimistic_margin_of_safety": -0.64763953996033
+      }
+    ],
+    "basis": "52개 기업 분석의 기준(중립) 시나리오 안전마진. 주주이익 기준이고 성장률 10%·할인율 10%·영구성장 2.5%로 전 종목에 같은 틀을 적용한 값입니다."
+  }
+}
