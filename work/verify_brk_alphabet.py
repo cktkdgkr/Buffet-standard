@@ -265,6 +265,71 @@ def main():
                   "낙관 시나리오에서 안전마진 양수인 대안이 존재",
                   f"{alt['with_positive_optimistic']}개")
 
+    # ------------------------------------------------- alphabet_fade.json
+    fade_path = os.path.join(HERE, "alphabet_fade.json")
+    if os.path.exists(fade_path):
+        with open(fade_path) as fh:
+            fd = json.load(fh)
+        gr = fd["growth_record"]
+        for w in gr["windows"]:
+            r = gr["revenue_by_year"]
+            check(close(w["revenue_cagr"],
+                        (r[str(w["to"])] / r[str(w["from"])])
+                        ** (1 / w["years"]) - 1),
+                  f"매출 CAGR {w['years']}년 재계산", f"{w['revenue_cagr']:.1%}")
+        check(all(w["revenue_cagr"] > 0.10 for w in gr["windows"]),
+              "모든 관측 구간에서 매출 성장률이 10%를 넘었다",
+              ", ".join(f"{w['years']}년 {w['revenue_cagr']:.1%}"
+                        for w in gr["windows"]))
+
+        st = fd["steady_state"]
+        check(close(st["implied_annual_depreciation_all"],
+                    st["implied_annual_depreciation_in_service"]
+                    + st["implied_annual_depreciation_from_not_yet_in_service"]),
+              "정상상태 감가상각 = 가동분 + 미가동분",
+              f"{st['implied_annual_depreciation_all']:,.0f}")
+        check(0 < st["steady_state_capex_as_share_of_current"] < 1,
+              "정상상태 설비투자가 현재 설비투자보다 작다 (감속은 실재)",
+              f"{st['steady_state_capex_as_share_of_current']:.0%}")
+        check(st["implied_annual_depreciation_all"]
+              > st["reported_depreciation_run_rate"],
+              "아직 계상되지 않은 감가상각이 남아 있다",
+              f"+{st['depreciation_still_to_come']:,.0f}")
+
+        mc2 = fd["matured_corrected"]
+        check(close(mc2["operating_income_matured_after"],
+                    mc2["operating_income_run_rate"] + mc2["backlog_uplift"]
+                    - mc2["depreciation_from_assets_switching_on"]),
+              "보정 성숙 영업이익 = 현재 + 잔고효과 − 신규 감가상각",
+              f"{mc2['operating_income_matured_after']:,.0f}")
+        check(mc2["roic_matured_after"] < mc2["roic_matured_before"],
+              "감가상각을 반영하면 성숙 ROIC이 내려간다",
+              f"{mc2['roic_matured_before']:.1%} → "
+              f"{mc2['roic_matured_after']:.1%}")
+
+        for name, sc in fd["scenarios"].items():
+            p0 = sc["projection"][0]
+            a = sc["assumptions"]
+            check(close(p0["free_cash_flow"],
+                        p0["nopat"] * (1 - p0["growth"] / a["incremental_roic"])),
+                  f"[{name}] 1년차 FCF 항등식")
+            check(a["discount"] > a["terminal_growth"],
+                  f"[{name}] 할인율 > 영구성장률")
+            check(0.5 < sc["terminal_share"] < 0.9,
+                  f"[{name}] 터미널 비중이 50~90%",
+                  f"{sc['terminal_share']:.0%}")
+
+        # Value must rise with a slower fade and with a higher perpetual rate.
+        grid = fd["fade_grid"]["rows"]
+        firsts = [r["cells"][0]["value_per_share"] for r in grid]
+        check(all(a < b for a, b in zip(firsts, firsts[1:])),
+              "감속이 완만할수록 가치가 커진다")
+        for r in grid:
+            vals = [c["value_per_share"] for c in r["cells"]]
+            check(all(a < b for a, b in zip(vals, vals[1:])),
+                  f"영구성장률이 높을수록 가치가 커진다 "
+                  f"(10년차 {r['fade_to']:.1%})")
+
     # The hypothesis grid must show the sign flip at incremental ROIC =
     # discount rate; that is the whole point of the table.
     h = an["hypothesis_test"]

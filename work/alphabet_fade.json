@@ -1,0 +1,821 @@
+{
+  "generated": "2026-09-18",
+  "price": 347.33,
+  "growth_record": {
+    "revenue_by_year": {
+      "2016": 90272.0,
+      "2017": 110855.0,
+      "2018": 136819.0,
+      "2019": 161857.0,
+      "2020": 182527.0,
+      "2021": 257637.0,
+      "2022": 282836.0,
+      "2023": 307394.0,
+      "2024": 350018.0,
+      "2025": 402836.0
+    },
+    "windows": [
+      {
+        "years": 9,
+        "from": 2016,
+        "to": 2025,
+        "revenue_cagr": 0.1807964080950275
+      },
+      {
+        "years": 5,
+        "from": 2020,
+        "to": 2025,
+        "revenue_cagr": 0.1715483907713573,
+        "operating_income_cagr": 0.2563602053699445
+      },
+      {
+        "years": 3,
+        "from": 2022,
+        "to": 2025,
+        "revenue_cagr": 0.12511745609215974,
+        "operating_income_cagr": 0.19910864686764196
+      },
+      {
+        "years": 1,
+        "from": 2024,
+        "to": 2025,
+        "revenue_cagr": 0.1509008108154437,
+        "operating_income_cagr": 0.14813595515615274
+      }
+    ]
+  },
+  "useful_lives": {
+    "servers_and_network": 6.0,
+    "data_centre_and_office_buildings": [
+      7.0,
+      40.0
+    ],
+    "corporate_and_other": [
+      2.0,
+      25.0
+    ],
+    "servers_share_of_technical_infrastructure": 0.6,
+    "source": "FY2025 Form 10-K, Summary of Significant Accounting Policies and Property and Equipment note"
+  },
+  "steady_state": {
+    "gross_technical_infrastructure": 247177.0,
+    "gross_office": 50635.0,
+    "gross_corporate": 6498.0,
+    "not_yet_in_service": 122814.0,
+    "implied_annual_depreciation_in_service": 32336.44,
+    "implied_annual_depreciation_from_not_yet_in_service": 14737.68,
+    "implied_annual_depreciation_all": 47074.119999999995,
+    "reported_depreciation_run_rate": 27172.0,
+    "depreciation_still_to_come": 19902.119999999995,
+    "capex_run_rate": 161196.0,
+    "steady_state_capex_as_share_of_current": 0.29203032333308515,
+    "note": "정상상태 설비투자는 감가상각과 같아집니다. 서버·네트워크 장비가 기술인프라의 60%이고 내용연수가 6년이므로, 성장이 0이어도 매년 그만큼을 갈아끼워야 합니다. '설비투자가 멈춘다'가 아니라 '설비투자가 이 수준으로 내려앉는다'가 맞습니다."
+  },
+  "matured_corrected": {
+    "operating_income_run_rate": 163080.0,
+    "backlog_uplift": 16183.154980964466,
+    "depreciation_from_assets_switching_on": 14737.68,
+    "operating_income_matured_before": 179263.15498096446,
+    "operating_income_matured_after": 164525.47498096447,
+    "nopat_matured_after": 136885.19518416244,
+    "roic_matured_before": 0.4389282601550404,
+    "roic_matured_after": 0.4028428512944821,
+    "revenue_needed_to_offset_depreciation": 26776.73207416659,
+    "backlog_revenue_uplift": 29403.0,
+    "note": "직전 계산은 수주잔고가 가져올 매출은 더했지만, 미가동 자산 1,228억 달러가 가동에 들어갈 때 함께 오는 감가상각은 빼지 않았습니다. 둘 다 넣어야 맞습니다."
+  },
+  "scenarios": {
+    "기존 낙관 (증분ROIC 30%)": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.045,
+        "incremental_roic": 0.3,
+        "discount": 0.09,
+        "terminal_growth": 0.03
+      },
+      "average_growth": 0.12140867271541178,
+      "nopat_multiple_after_10y": 3.145133649328692,
+      "pv_of_forecast": 1071755.6504313308,
+      "pv_of_terminal": 2748326.6192318625,
+      "terminal_share": 0.719441735864546,
+      "equity_value": 3945141.2696631933,
+      "value_per_share": 318.8872371760846,
+      "vs_market": -0.08188973835809,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.6666666666666667,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 53558.16959999998,
+          "present_value": 49135.93541284402
+        },
+        {
+          "year": 2,
+          "growth": 0.1827777777777778,
+          "reinvestment_rate": 0.6092592592592593,
+          "nopat": 190042.23846399997,
+          "free_cash_flow": 74257.24502945183,
+          "present_value": 62500.837496382315
+        },
+        {
+          "year": 3,
+          "growth": 0.16555555555555557,
+          "reinvestment_rate": 0.5518518518518519,
+          "nopat": 221504.78683192888,
+          "free_cash_flow": 99266.96002467923,
+          "present_value": 76652.30664693934
+        },
+        {
+          "year": 4,
+          "growth": 0.14833333333333334,
+          "reinvestment_rate": 0.4944444444444445,
+          "nopat": 254361.33021199834,
+          "free_cash_flow": 128593.78360717694,
+          "present_value": 91099.07829358651
+        },
+        {
+          "year": 5,
+          "growth": 0.13111111111111112,
+          "reinvestment_rate": 0.4370370370370371,
+          "nopat": 287710.9268397937,
+          "free_cash_flow": 161970.59585055048,
+          "present_value": 105269.7739007173
+        },
+        {
+          "year": 6,
+          "growth": 0.11388888888888889,
+          "reinvestment_rate": 0.37962962962962965,
+          "nopat": 320478.0046187702,
+          "free_cash_flow": 198815.05842090375,
+          "present_value": 118546.9234279674
+        },
+        {
+          "year": 7,
+          "growth": 0.09666666666666666,
+          "reinvestment_rate": 0.32222222222222224,
+          "nopat": 351457.54506525135,
+          "free_cash_flow": 238210.11387755926,
+          "present_value": 130309.08975905123
+        },
+        {
+          "year": 8,
+          "growth": 0.07944444444444443,
+          "reinvestment_rate": 0.2648148148148148,
+          "nopat": 379378.8944787685,
+          "free_cash_flow": 278913.7427927243,
+          "present_value": 139977.40244499184
+        },
+        {
+          "year": 9,
+          "growth": 0.06222222222222221,
+          "reinvestment_rate": 0.20740740740740737,
+          "nopat": 402984.6923574474,
+          "free_cash_flow": 319402.6820907176,
+          "present_value": 147061.86768658008
+        },
+        {
+          "year": 10,
+          "growth": 0.044999999999999984,
+          "reinvestment_rate": 0.14999999999999997,
+          "nopat": 421119.0035135325,
+          "free_cash_flow": 357951.1529865027,
+          "present_value": 151202.43536227077
+        }
+      ]
+    },
+    "미가동자산 반영 (증분ROIC 50%)": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.045,
+        "incremental_roic": 0.5,
+        "discount": 0.09,
+        "terminal_growth": 0.03
+      },
+      "average_growth": 0.12140867271541178,
+      "nopat_multiple_after_10y": 3.145133649328692,
+      "pv_of_forecast": 1356161.8500034087,
+      "pv_of_terminal": 2870474.4689755007,
+      "terminal_share": 0.67913921434077,
+      "equity_value": 4351695.318978909,
+      "value_per_share": 351.7491522983551,
+      "vs_market": 0.012723209335085096,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.4,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 96404.70527999998,
+          "present_value": 88444.68374311924
+        },
+        {
+          "year": 2,
+          "growth": 0.1827777777777778,
+          "reinvestment_rate": 0.3655555555555556,
+          "nopat": 190042.23846399997,
+          "free_cash_flow": 120571.24240327107,
+          "present_value": 101482.40249412596
+        },
+        {
+          "year": 3,
+          "growth": 0.16555555555555557,
+          "reinvestment_rate": 0.33111111111111113,
+          "nopat": 221504.78683192888,
+          "free_cash_flow": 148162.0907475791,
+          "present_value": 114408.31884658881
+        },
+        {
+          "year": 4,
+          "growth": 0.14833333333333334,
+          "reinvestment_rate": 0.2966666666666667,
+          "nopat": 254361.33021199834,
+          "free_cash_flow": 178900.8022491055,
+          "present_value": 126737.83859305552
+        },
+        {
+          "year": 5,
+          "growth": 0.13111111111111112,
+          "reinvestment_rate": 0.26222222222222225,
+          "nopat": 287710.9268397937,
+          "free_cash_flow": 212266.72824624777,
+          "present_value": 137958.80895409794
+        },
+        {
+          "year": 6,
+          "growth": 0.11388888888888889,
+          "reinvestment_rate": 0.22777777777777777,
+          "nopat": 320478.0046187702,
+          "free_cash_flow": 247480.23690005034,
+          "present_value": 147564.3793118281
+        },
+        {
+          "year": 7,
+          "growth": 0.09666666666666666,
+          "reinvestment_rate": 0.19333333333333333,
+          "nopat": 351457.54506525135,
+          "free_cash_flow": 283509.0863526361,
+          "present_value": 155089.1789591331
+        },
+        {
+          "year": 8,
+          "growth": 0.07944444444444443,
+          "reinvestment_rate": 0.15888888888888886,
+          "nopat": 379378.8944787685,
+          "free_cash_flow": 319099.803467142,
+          "present_value": 160145.431210366
+        },
+        {
+          "year": 9,
+          "growth": 0.06222222222222221,
+          "reinvestment_rate": 0.12444444444444441,
+          "nopat": 402984.6923574474,
+          "free_cash_flow": 352835.48619740957,
+          "present_value": 162455.2594444277
+        },
+        {
+          "year": 10,
+          "growth": 0.044999999999999984,
+          "reinvestment_rate": 0.08999999999999997,
+          "nopat": 421119.0035135325,
+          "free_cash_flow": 383218.2931973146,
+          "present_value": 161875.54844666633
+        }
+      ]
+    },
+    "완만한 감속 (10년차 8%)": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.08,
+        "incremental_roic": 0.5,
+        "discount": 0.09,
+        "terminal_growth": 0.03
+      },
+      "average_growth": 0.13935626138266377,
+      "nopat_multiple_after_10y": 3.686340380604527,
+      "pv_of_forecast": 1379373.6288985787,
+      "pv_of_terminal": 3364418.5355166974,
+      "terminal_share": 0.7092255349537218,
+      "equity_value": 4868851.164415276,
+      "value_per_share": 393.55105176613876,
+      "vs_market": 0.13307532250637358,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.4,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 96404.70527999998,
+          "present_value": 88444.68374311924
+        },
+        {
+          "year": 2,
+          "growth": 0.18666666666666668,
+          "reinvestment_rate": 0.37333333333333335,
+          "nopat": 190667.08377599998,
+          "free_cash_flow": 119484.70583296,
+          "present_value": 100567.88640094266
+        },
+        {
+          "year": 3,
+          "growth": 0.17333333333333334,
+          "reinvestment_rate": 0.3466666666666667,
+          "nopat": 223716.04496384,
+          "free_cash_flow": 146161.14937637546,
+          "present_value": 112863.22497517463
+        },
+        {
+          "year": 4,
+          "growth": 0.16,
+          "reinvestment_rate": 0.32,
+          "nopat": 259510.61215805437,
+          "free_cash_flow": 176467.21626747696,
+          "present_value": 125013.82493037502
+        },
+        {
+          "year": 5,
+          "growth": 0.14666666666666667,
+          "reinvestment_rate": 0.29333333333333333,
+          "nopat": 297572.16860790236,
+          "free_cash_flow": 210284.33248291767,
+          "present_value": 136670.38772744485
+        },
+        {
+          "year": 6,
+          "growth": 0.13333333333333333,
+          "reinvestment_rate": 0.26666666666666666,
+          "nopat": 337248.4577556227,
+          "free_cash_flow": 247315.53568745666,
+          "present_value": 147466.17336006108
+        },
+        {
+          "year": 7,
+          "growth": 0.12,
+          "reinvestment_rate": 0.24,
+          "nopat": 377718.2726862974,
+          "free_cash_flow": 287065.88724158605,
+          "present_value": 157034.87084747787
+        },
+        {
+          "year": 8,
+          "growth": 0.10666666666666667,
+          "reinvestment_rate": 0.21333333333333335,
+          "nopat": 418008.2217728358,
+          "free_cash_flow": 328833.1344612975,
+          "present_value": 165030.26182522645
+        },
+        {
+          "year": 9,
+          "growth": 0.09333333333333334,
+          "reinvestment_rate": 0.18666666666666668,
+          "nopat": 457022.3224716338,
+          "free_cash_flow": 371711.4889435955,
+          "present_value": 171146.2954749977
+        },
+        {
+          "year": 10,
+          "growth": 0.08,
+          "reinvestment_rate": 0.16,
+          "nopat": 493584.1082693645,
+          "free_cash_flow": 414610.6509462662,
+          "present_value": 175136.0196137591
+        }
+      ]
+    },
+    "완만한 감속 + 영구성장 4%": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.08,
+        "incremental_roic": 0.5,
+        "discount": 0.09,
+        "terminal_growth": 0.04
+      },
+      "average_growth": 0.13935626138266377,
+      "nopat_multiple_after_10y": 3.686340380604527,
+      "pv_of_forecast": 1379373.6288985787,
+      "pv_of_terminal": 3989765.323010589,
+      "terminal_share": 0.7430922087780762,
+      "equity_value": 5494197.951909168,
+      "value_per_share": 444.0980653482131,
+      "vs_market": 0.27860554904043144,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.4,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 96404.70527999998,
+          "present_value": 88444.68374311924
+        },
+        {
+          "year": 2,
+          "growth": 0.18666666666666668,
+          "reinvestment_rate": 0.37333333333333335,
+          "nopat": 190667.08377599998,
+          "free_cash_flow": 119484.70583296,
+          "present_value": 100567.88640094266
+        },
+        {
+          "year": 3,
+          "growth": 0.17333333333333334,
+          "reinvestment_rate": 0.3466666666666667,
+          "nopat": 223716.04496384,
+          "free_cash_flow": 146161.14937637546,
+          "present_value": 112863.22497517463
+        },
+        {
+          "year": 4,
+          "growth": 0.16,
+          "reinvestment_rate": 0.32,
+          "nopat": 259510.61215805437,
+          "free_cash_flow": 176467.21626747696,
+          "present_value": 125013.82493037502
+        },
+        {
+          "year": 5,
+          "growth": 0.14666666666666667,
+          "reinvestment_rate": 0.29333333333333333,
+          "nopat": 297572.16860790236,
+          "free_cash_flow": 210284.33248291767,
+          "present_value": 136670.38772744485
+        },
+        {
+          "year": 6,
+          "growth": 0.13333333333333333,
+          "reinvestment_rate": 0.26666666666666666,
+          "nopat": 337248.4577556227,
+          "free_cash_flow": 247315.53568745666,
+          "present_value": 147466.17336006108
+        },
+        {
+          "year": 7,
+          "growth": 0.12,
+          "reinvestment_rate": 0.24,
+          "nopat": 377718.2726862974,
+          "free_cash_flow": 287065.88724158605,
+          "present_value": 157034.87084747787
+        },
+        {
+          "year": 8,
+          "growth": 0.10666666666666667,
+          "reinvestment_rate": 0.21333333333333335,
+          "nopat": 418008.2217728358,
+          "free_cash_flow": 328833.1344612975,
+          "present_value": 165030.26182522645
+        },
+        {
+          "year": 9,
+          "growth": 0.09333333333333334,
+          "reinvestment_rate": 0.18666666666666668,
+          "nopat": 457022.3224716338,
+          "free_cash_flow": 371711.4889435955,
+          "present_value": 171146.2954749977
+        },
+        {
+          "year": 10,
+          "growth": 0.08,
+          "reinvestment_rate": 0.16,
+          "nopat": 493584.1082693645,
+          "free_cash_flow": 414610.6509462662,
+          "present_value": 175136.0196137591
+        }
+      ]
+    },
+    "위와 같되 할인율 10%": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.08,
+        "incremental_roic": 0.5,
+        "discount": 0.1,
+        "terminal_growth": 0.04
+      },
+      "average_growth": 0.13935626138266377,
+      "nopat_multiple_after_10y": 3.686340380604527,
+      "pv_of_forecast": 1305109.6342260248,
+      "pv_of_terminal": 3034619.422559014,
+      "terminal_share": 0.6992647197212637,
+      "equity_value": 4464788.056785039,
+      "value_per_share": 360.89048038741356,
+      "vs_market": 0.039042064858818885,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.4,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 96404.70527999998,
+          "present_value": 87640.64116363633
+        },
+        {
+          "year": 2,
+          "growth": 0.18666666666666668,
+          "reinvestment_rate": 0.37333333333333335,
+          "nopat": 190667.08377599998,
+          "free_cash_flow": 119484.70583296,
+          "present_value": 98747.6907710413
+        },
+        {
+          "year": 3,
+          "growth": 0.17333333333333334,
+          "reinvestment_rate": 0.3466666666666667,
+          "nopat": 223716.04496384,
+          "free_cash_flow": 146161.14937637546,
+          "present_value": 109813.03484325726
+        },
+        {
+          "year": 4,
+          "growth": 0.16,
+          "reinvestment_rate": 0.32,
+          "nopat": 259510.61215805437,
+          "free_cash_flow": 176467.21626747696,
+          "present_value": 120529.48314150462
+        },
+        {
+          "year": 5,
+          "growth": 0.14666666666666667,
+          "reinvestment_rate": 0.29333333333333333,
+          "nopat": 297572.16860790236,
+          "free_cash_flow": 210284.33248291767,
+          "present_value": 130570.02594390447
+        },
+        {
+          "year": 6,
+          "growth": 0.13333333333333333,
+          "reinvestment_rate": 0.26666666666666666,
+          "nopat": 337248.4577556227,
+          "free_cash_flow": 247315.53568745666,
+          "present_value": 139603.17239285386
+        },
+        {
+          "year": 7,
+          "growth": 0.12,
+          "reinvestment_rate": 0.24,
+          "nopat": 377718.2726862974,
+          "free_cash_flow": 287065.88724158605,
+          "present_value": 147310.19050512047
+        },
+        {
+          "year": 8,
+          "growth": 0.10666666666666667,
+          "reinvestment_rate": 0.21333333333333335,
+          "nopat": 418008.2217728358,
+          "free_cash_flow": 328833.1344612975,
+          "present_value": 153403.0840836948
+        },
+        {
+          "year": 9,
+          "growth": 0.09333333333333334,
+          "reinvestment_rate": 0.18666666666666668,
+          "nopat": 457022.3224716338,
+          "free_cash_flow": 371711.4889435955,
+          "present_value": 157641.957182669
+        },
+        {
+          "year": 10,
+          "growth": 0.08,
+          "reinvestment_rate": 0.16,
+          "nopat": 493584.1082693645,
+          "free_cash_flow": 414610.6509462662,
+          "present_value": 159850.3541983427
+        }
+      ]
+    },
+    "위와 같되 할인율 11%": {
+      "assumptions": {
+        "growth": 0.2,
+        "fade_to": 0.08,
+        "incremental_roic": 0.5,
+        "discount": 0.11,
+        "terminal_growth": 0.04
+      },
+      "average_growth": 0.13935626138266377,
+      "nopat_multiple_after_10y": 3.686340380604527,
+      "pv_of_forecast": 1236250.022490448,
+      "pv_of_terminal": 2376044.1558290124,
+      "terminal_share": 0.6577659621660199,
+      "equity_value": 3737353.1783194607,
+      "value_per_share": 302.0916484157481,
+      "vs_market": -0.13024602419673478,
+      "projection": [
+        {
+          "year": 1,
+          "growth": 0.2,
+          "reinvestment_rate": 0.4,
+          "nopat": 160674.50879999998,
+          "free_cash_flow": 96404.70527999998,
+          "present_value": 86851.08583783782
+        },
+        {
+          "year": 2,
+          "growth": 0.18666666666666668,
+          "reinvestment_rate": 0.37333333333333335,
+          "nopat": 190667.08377599998,
+          "free_cash_flow": 119484.70583296,
+          "present_value": 96976.46768359709
+        },
+        {
+          "year": 3,
+          "growth": 0.17333333333333334,
+          "reinvestment_rate": 0.3466666666666667,
+          "nopat": 223716.04496384,
+          "free_cash_flow": 146161.14937637546,
+          "present_value": 106871.77270504649
+        },
+        {
+          "year": 4,
+          "growth": 0.16,
+          "reinvestment_rate": 0.32,
+          "nopat": 259510.61215805437,
+          "free_cash_flow": 176467.21626747696,
+          "present_value": 116244.42127653152
+        },
+        {
+          "year": 5,
+          "growth": 0.14666666666666667,
+          "reinvestment_rate": 0.29333333333333333,
+          "nopat": 297572.16860790236,
+          "free_cash_flow": 210284.33248291767,
+          "present_value": 124793.51638189498
+        },
+        {
+          "year": 6,
+          "growth": 0.13333333333333333,
+          "reinvestment_rate": 0.26666666666666666,
+          "nopat": 337248.4577556227,
+          "free_cash_flow": 247315.53568745666,
+          "present_value": 132224.98477768918
+        },
+        {
+          "year": 7,
+          "growth": 0.12,
+          "reinvestment_rate": 0.24,
+          "nopat": 377718.2726862974,
+          "free_cash_flow": 287065.88724158605,
+          "present_value": 138267.6990697408
+        },
+        {
+          "year": 8,
+          "growth": 0.10666666666666667,
+          "reinvestment_rate": 0.21333333333333335,
+          "nopat": 418008.2217728358,
+          "free_cash_flow": 328833.1344612975,
+          "present_value": 142689.40990348678
+        },
+        {
+          "year": 9,
+          "growth": 0.09333333333333334,
+          "reinvestment_rate": 0.18666666666666668,
+          "nopat": 457022.3224716338,
+          "free_cash_flow": 371711.4889435955,
+          "present_value": 145311.22885677015
+        },
+        {
+          "year": 10,
+          "growth": 0.08,
+          "reinvestment_rate": 0.16,
+          "nopat": 493584.1082693645,
+          "free_cash_flow": 414610.6509462662,
+          "present_value": 146019.4359978532
+        }
+      ]
+    }
+  },
+  "fade_grid": {
+    "incremental_roic": 0.5,
+    "discount": 0.09,
+    "rows": [
+      {
+        "fade_to": 0.045,
+        "cells": [
+          {
+            "terminal_growth": 0.025,
+            "value_per_share": 335.1290482069872,
+            "vs_market": -0.035127837483122204,
+            "terminal_share": 0.662731818682683,
+            "average_growth": 0.12140867271541178
+          },
+          {
+            "terminal_growth": 0.03,
+            "value_per_share": 351.7491522983551,
+            "vs_market": 0.012723209335085096,
+            "terminal_share": 0.67913921434077,
+            "average_growth": 0.12140867271541178
+          },
+          {
+            "terminal_growth": 0.035,
+            "value_per_share": 371.3649507183639,
+            "vs_market": 0.06919917864383691,
+            "terminal_share": 0.6965615790384909,
+            "average_growth": 0.12140867271541178
+          },
+          {
+            "terminal_growth": 0.04,
+            "value_per_share": 394.87515176560595,
+            "vs_market": 0.13688754719029722,
+            "terminal_share": 0.7151024257159455,
+            "average_growth": 0.12140867271541178
+          }
+        ]
+      },
+      {
+        "fade_to": 0.06,
+        "cells": [
+          {
+            "terminal_growth": 0.025,
+            "value_per_share": 351.24331166117423,
+            "vs_market": 0.011266840356934907,
+            "terminal_share": 0.676189370101385,
+            "average_growth": 0.1291158003610604
+          },
+          {
+            "terminal_growth": 0.03,
+            "value_per_share": 369.0416509771063,
+            "vs_market": 0.06251015166298997,
+            "terminal_share": 0.6922460996102748,
+            "average_growth": 0.1291158003610604
+          },
+          {
+            "terminal_growth": 0.035,
+            "value_per_share": 390.0480558896707,
+            "vs_market": 0.12298982492059621,
+            "terminal_share": 0.7092614486561145,
+            "average_growth": 0.1291158003610604
+          },
+          {
+            "terminal_growth": 0.04,
+            "value_per_share": 415.224946077857,
+            "vs_market": 0.19547676871521896,
+            "terminal_share": 0.7273300653101837,
+            "average_growth": 0.1291158003610604
+          }
+        ]
+      },
+      {
+        "fade_to": 0.08,
+        "cells": [
+          {
+            "terminal_growth": 0.025,
+            "value_per_share": 374.0710017355345,
+            "vs_market": 0.07699018724421869,
+            "terminal_share": 0.6936626620771755,
+            "average_growth": 0.13935626138266377
+          },
+          {
+            "terminal_growth": 0.03,
+            "value_per_share": 393.55105176613876,
+            "vs_market": 0.13307532250637358,
+            "terminal_share": 0.7092255349537218,
+            "average_growth": 0.13935626138266377
+          },
+          {
+            "terminal_growth": 0.035,
+            "value_per_share": 416.5422877121569,
+            "vs_market": 0.19926953534723998,
+            "terminal_share": 0.7256741315338268,
+            "average_growth": 0.13935626138266377
+          },
+          {
+            "terminal_growth": 0.04,
+            "value_per_share": 444.0980653482131,
+            "vs_market": 0.27860554904043144,
+            "terminal_share": 0.7430922087780762,
+            "average_growth": 0.13935626138266377
+          }
+        ]
+      },
+      {
+        "fade_to": 0.1,
+        "cells": [
+          {
+            "terminal_growth": 0.025,
+            "value_per_share": 398.5176743153414,
+            "vs_market": 0.1473747569036403,
+            "terminal_share": 0.7105995842477884,
+            "average_growth": 0.14955694809595466
+          },
+          {
+            "terminal_growth": 0.03,
+            "value_per_share": 419.81374803975666,
+            "vs_market": 0.20868841746971656,
+            "terminal_share": 0.7256423341387472,
+            "average_growth": 0.14955694809595466
+          },
+          {
+            "terminal_growth": 0.035,
+            "value_per_share": 444.9483372709239,
+            "vs_market": 0.28105357231141537,
+            "terminal_share": 0.7415007437916018,
+            "average_growth": 0.14955694809595466
+          },
+          {
+            "terminal_growth": 0.04,
+            "value_per_share": 475.0729966608689,
+            "vs_market": 0.3677856697114239,
+            "terminal_share": 0.7582486959449671,
+            "average_growth": 0.14955694809595466
+          }
+        ]
+      }
+    ]
+  }
+}
