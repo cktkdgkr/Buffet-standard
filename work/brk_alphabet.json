@@ -1,0 +1,962 @@
+{
+  "collected_at": "2026-09-18T04:53:54.337405+00:00",
+  "question": "버크셔 해서웨이가 알파벳 지분을 이렇게까지 늘린 이유는 무엇인가 - 그들이 제출한 서류로만 답한다",
+  "berkshire_13f": {
+    "2024-12-31": {
+      "positions": 35,
+      "total_value": 267175474249,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 75126000000,
+          "shares": 300000000,
+          "weight": 0.28118598913755344
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 44996539653,
+          "shares": 151610700,
+          "weight": 0.1684156817892068
+        },
+        {
+          "issuer": "BANK AMER",
+          "value": 29896266149,
+          "shares": 680233587,
+          "weight": 0.1118974944576594
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 24904000000,
+          "shares": 400000000,
+          "weight": 0.09321214857015721
+        },
+        {
+          "issuer": "CHEVRON",
+          "value": 17179549745,
+          "shares": 118610534,
+          "weight": 0.06430062412461236
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 13053055436,
+          "shares": 264178414,
+          "weight": 0.04885573974441577
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 11677932812,
+          "shares": 24669778,
+          "weight": 0.04370885031579095
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 10000245261,
+          "shares": 325634818,
+          "weight": 0.03742950317243585
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 7469434519,
+          "shares": 27033784,
+          "weight": 0.02795703662544526
+        },
+        {
+          "issuer": "DAVITA",
+          "value": 5398092493,
+          "shares": 36095570,
+          "weight": 0.020204296476588755
+        }
+      ],
+      "alphabet": null,
+      "source": "13F-HR, period 2024-12-31"
+    },
+    "2025-03-31": {
+      "positions": 33,
+      "total_value": 258701144516,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 66639000000,
+          "shares": 300000000,
+          "weight": 0.257590665571557
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 40790858835,
+          "shares": 151610700,
+          "weight": 0.1576756025231933
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 28648000000,
+          "shares": 400000000,
+          "weight": 0.11073781700346592
+        },
+        {
+          "issuer": "BANK AMER",
+          "value": 26355563449,
+          "shares": 631573531,
+          "weight": 0.10187648569668378
+        },
+        {
+          "issuer": "CHEVRON",
+          "value": 19842356232,
+          "shares": 118610534,
+          "weight": 0.07669991669005856
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 13077509034,
+          "shares": 264941431,
+          "weight": 0.050550642357870164
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 11488468917,
+          "shares": 24669778,
+          "weight": 0.0444082647507942
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 9909067512,
+          "shares": 325634818,
+          "weight": 0.03830314523941795
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 8163932430,
+          "shares": 27033784,
+          "weight": 0.031557388140952276
+        },
+        {
+          "issuer": "DAVITA",
+          "value": 5375745012,
+          "shares": 35142479,
+          "weight": 0.020779749629857257
+        }
+      ],
+      "alphabet": null,
+      "source": "13F-HR, period 2025-03-31"
+    },
+    "2025-06-30": {
+      "positions": 37,
+      "total_value": 257521776925,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 57447600000,
+          "shares": 280000000,
+          "weight": 0.22307860984017244
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 48360781086,
+          "shares": 151610700,
+          "weight": 0.1877929768249637
+        },
+        {
+          "issuer": "BANK AMER",
+          "value": 28641252185,
+          "shares": 605267375,
+          "weight": 0.11121875799009187
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 28300000000,
+          "shares": 400000000,
+          "weight": 0.10989361885399704
+        },
+        {
+          "issuer": "CHEVRON",
+          "value": 17478457567,
+          "shares": 122064792,
+          "weight": 0.0678717651598466
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 12374113948,
+          "shares": 24669778,
+          "weight": 0.048050747768814156
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 11130189516,
+          "shares": 264941431,
+          "weight": 0.04322038178247554
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 8407891001,
+          "shares": 325634818,
+          "weight": 0.03264924272190267
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 7832227900,
+          "shares": 27033784,
+          "weight": 0.03041384691237603
+        },
+        {
+          "issuer": "DAVITA",
+          "value": 4814317266,
+          "shares": 33796541,
+          "weight": 0.018694796702191558
+        }
+      ],
+      "alphabet": null,
+      "source": "13F-HR, period 2025-06-30"
+    },
+    "2025-09-30": {
+      "positions": 37,
+      "total_value": 267334501955,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 60656116097,
+          "shares": 238212764,
+          "weight": 0.2268922105206239
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 50359010112,
+          "shares": 151610700,
+          "weight": 0.1883745260852146
+        },
+        {
+          "issuer": "BANK AMER",
+          "value": 29306731919,
+          "shares": 568070012,
+          "weight": 0.10962570003004385
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 26528000000,
+          "shares": 400000000,
+          "weight": 0.09923148641870931
+        },
+        {
+          "issuer": "CHEVRON",
+          "value": 18955441549,
+          "shares": 122064792,
+          "weight": 0.07090533174872707
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 12518482615,
+          "shares": 264941431,
+          "weight": 0.046827037002157006
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 11754655821,
+          "shares": 24669778,
+          "weight": 0.04396984203325407
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 8843709614,
+          "shares": 31332895,
+          "weight": 0.033081063421767566
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 8479530661,
+          "shares": 325634818,
+          "weight": 0.03171880396652785
+        },
+        {
+          "issuer": "ALPHABET",
+          "value": 4338397121,
+          "shares": 17846142,
+          "weight": 0.01622834721771257
+        }
+      ],
+      "alphabet": {
+        "rank": 10,
+        "value": 4338397121,
+        "shares": 17846142,
+        "weight": 0.01622834721771257,
+        "by_class": [
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 6219957,
+            "shares": 25586
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 4332177164,
+            "shares": 17820556
+          }
+        ]
+      },
+      "source": "13F-HR, period 2025-09-30"
+    },
+    "2025-12-31": {
+      "positions": 39,
+      "total_value": 274160086701,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 61961735283,
+          "shares": 227917808,
+          "weight": 0.22600567438022331
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 56088378465,
+          "shares": 151610700,
+          "weight": 0.20458258216911857
+        },
+        {
+          "issuer": "BANK AMERICA",
+          "value": 28451276370,
+          "shares": 517295934,
+          "weight": 0.10377614302781085
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 27964000000,
+          "shares": 400000000,
+          "weight": 0.10199880054202654
+        },
+        {
+          "issuer": "CHEVRON",
+          "value": 19837131131,
+          "shares": 130156362,
+          "weight": 0.07235601421673918
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 12602556092,
+          "shares": 24669778,
+          "weight": 0.045967873163624995
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 10894391643,
+          "shares": 264941431,
+          "weight": 0.039737336583502994
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 10689854998,
+          "shares": 34249183,
+          "weight": 0.03899128836232969
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 7896644337,
+          "shares": 325634818,
+          "weight": 0.028803041434737033
+        },
+        {
+          "issuer": "ALPHABET",
+          "value": 5585842446,
+          "shares": 17846142,
+          "weight": 0.020374382402687012
+        }
+      ],
+      "alphabet": {
+        "rank": 10,
+        "value": 5585842446,
+        "shares": 17846142,
+        "weight": 0.020374382402687012,
+        "by_class": [
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 5585842446,
+            "shares": 17846142
+          }
+        ]
+      },
+      "source": "13F-HR, period 2025-12-31"
+    },
+    "2026-03-31": {
+      "positions": 26,
+      "total_value": 263095703570,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 57843260493,
+          "shares": 227917808,
+          "weight": 0.21985634774005366
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 45859204536,
+          "shares": 151610700,
+          "weight": 0.17430617039247304
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 30420000000,
+          "shares": 400000000,
+          "weight": 0.11562332484804856
+        },
+        {
+          "issuer": "BANK AMERICA",
+          "value": 25039178044,
+          "shares": 513624165,
+          "weight": 0.0951713680772366
+        },
+        {
+          "issuer": "CHEVRON CORPORATION",
+          "value": 17457364606,
+          "shares": 84375856,
+          "weight": 0.06635366662821707
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 17221193015,
+          "shares": 264941431,
+          "weight": 0.06545600244064069
+        },
+        {
+          "issuer": "ALPHABET",
+          "value": 16628526688,
+          "shares": 57835013,
+          "weight": 0.06320333803389444
+        },
+        {
+          "issuer": "CHUBB SWITZ",
+          "value": 11162836215,
+          "shares": 34249183,
+          "weight": 0.04242880466510539
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 10762190653,
+          "shares": 24669778,
+          "weight": 0.040905991648535533
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 7323527057,
+          "shares": 325634818,
+          "weight": 0.027835981194772652
+        }
+      ],
+      "alphabet": {
+        "rank": 7,
+        "value": 16628526688,
+        "shares": 57835013,
+        "weight": 0.06320333803389444,
+        "by_class": [
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL C",
+            "cusip": "02079K107",
+            "value": 1028454775,
+            "shares": 3585215
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 4802252,
+            "shares": 16700
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 1926652000,
+            "shares": 6700000
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 1797250000,
+            "shares": 6250000
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 11871367661,
+            "shares": 41283098
+          }
+        ]
+      },
+      "source": "13F-HR, period 2026-03-31"
+    },
+    "2026-06-30": {
+      "positions": 26,
+      "total_value": 299253556246,
+      "top10": [
+        {
+          "issuer": "APPLE",
+          "value": 65950296923,
+          "shares": 227917808,
+          "weight": 0.22038266729497397
+        },
+        {
+          "issuer": "AMERICAN EXPRESS",
+          "value": 51282319275,
+          "shares": 151610700,
+          "weight": 0.17136745146261054
+        },
+        {
+          "issuer": "ALPHABET",
+          "value": 37764088383,
+          "shares": 105979600,
+          "weight": 0.12619428439458946
+        },
+        {
+          "issuer": "COCA COLA",
+          "value": 32508000000,
+          "shares": 400000000,
+          "weight": 0.10863028799990918
+        },
+        {
+          "issuer": "BANK OF AMER",
+          "value": 27543790975,
+          "shares": 483394015,
+          "weight": 0.09204164963158451
+        },
+        {
+          "issuer": "CHEVRON CORPORATION",
+          "value": 13986141890,
+          "shares": 84375856,
+          "weight": 0.04673676084404744
+        },
+        {
+          "issuer": "OCCIDENTAL PETE",
+          "value": 12868205304,
+          "shares": 264941431,
+          "weight": 0.04300101046559243
+        },
+        {
+          "issuer": "CHUBB",
+          "value": 11670066615,
+          "shares": 34249183,
+          "weight": 0.03899725290284162
+        },
+        {
+          "issuer": "MOODYS",
+          "value": 11173435852,
+          "shares": 24669778,
+          "weight": 0.03733768778612251
+        },
+        {
+          "issuer": "KRAFT HEINZ",
+          "value": 7691494401,
+          "shares": 325634818,
+          "weight": 0.025702265655540756
+        }
+      ],
+      "alphabet": {
+        "rank": 3,
+        "value": 37764088383,
+        "shares": 105979600,
+        "weight": 0.12619428439458946,
+        "by_class": [
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL C",
+            "cusip": "02079K107",
+            "value": 9606489032,
+            "shares": 27188433
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 5968079,
+            "shares": 16700
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 2394379000,
+            "shares": 6700000
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 2233562500,
+            "shares": 6250000
+          },
+          {
+            "issuer": "ALPHABET INC",
+            "class": "CAP STK CL A",
+            "cusip": "02079K305",
+            "value": 23523689772,
+            "shares": 65824467
+          }
+        ]
+      },
+      "source": "13F-HR, period 2026-06-30"
+    }
+  },
+  "private_placement": {
+    "agreement_date": "2026-06-01",
+    "counterparty": "National Indemnity Company (an affiliate of Berkshire Hathaway Inc.)",
+    "class_a_shares": 14212035.0,
+    "class_a_price": 351.81,
+    "class_c_shares": 14359656.0,
+    "class_c_price": 348.2,
+    "total_shares": 28571691.0,
+    "gross_proceeds_bn": 10.0,
+    "public_offering": {
+      "class_a_shares": 25459689.0,
+      "class_a_price": 355.1982,
+      "class_c_shares": 25459689.0,
+      "class_c_price": 351.8018,
+      "overallotment_class_a": 3818953.0,
+      "overallotment_class_c": 3818953.0,
+      "overallotment_exercised": "in full on 2026-06-03"
+    },
+    "atm_programme_bn": 40.0,
+    "registration_rights": true,
+    "source": "Form 8-K filed 2026-06-04, accession 0001193125-26-257724"
+  },
+  "mandatory_convertible": {
+    "coupon": 0.0625,
+    "liquidation_preference_per_share": 1000.0,
+    "depositary_shares_per_series": 192500000,
+    "preferred_shares_per_series": 9625000.0,
+    "gross_proceeds_total": 19250000000.0,
+    "mandatory_conversion_date": "2029-05-15",
+    "series_a_conversion_rate": {
+      "min": 2.252,
+      "max": 2.816
+    },
+    "series_b_conversion_rate": {
+      "min": 2.274,
+      "max": 2.842
+    },
+    "series_a_floor_price": 355.1136363636364,
+    "series_a_cap_price": 444.0497335701599,
+    "series_b_floor_price": 351.8648838845883,
+    "series_b_cap_price": 439.7537379067722,
+    "capped_call_cap_class_a": 532.6704,
+    "capped_call_cap_class_c": 527.7974,
+    "taken_by_berkshire": false,
+    "source": "Form 8-K filed 2026-06-05, accession 0001193125-26-259830"
+  },
+  "alphabet": {
+    "2026q2": {
+      "segments": {
+        "Google Services": {
+          "revenue": [
+            82543.0,
+            94540.0,
+            159807.0,
+            184177.0
+          ],
+          "operating_income": [
+            33063.0,
+            39544.0,
+            65745.0,
+            80133.0
+          ]
+        },
+        "Google Cloud": {
+          "revenue": [
+            13624.0,
+            24768.0,
+            25884.0,
+            44796.0
+          ],
+          "operating_income": [
+            2826.0,
+            8814.0,
+            5003.0,
+            15412.0
+          ]
+        },
+        "Other Bets": {
+          "revenue": [
+            373.0,
+            382.0,
+            823.0,
+            793.0
+          ],
+          "operating_income": [
+            -1246.0,
+            -1799.0,
+            -2472.0,
+            -3899.0
+          ]
+        }
+      },
+      "total_revenues": [
+        96428.0,
+        119796.0,
+        186662.0,
+        229692.0
+      ],
+      "pretax_income": [
+        33933.0,
+        138753.0,
+        75722.0,
+        216165.0
+      ],
+      "income_tax": [
+        5737.0,
+        26560.0,
+        12986.0,
+        41394.0
+      ],
+      "income_from_operations": [
+        31271.0,
+        40770.0,
+        61877.0,
+        80466.0
+      ],
+      "net_income": [
+        28196.0,
+        112193.0,
+        62736.0,
+        174771.0
+      ],
+      "ocf": [
+        63897.0,
+        84859.0
+      ],
+      "capex": [
+        -39643.0,
+        -80598.0
+      ],
+      "depreciation": [
+        9485.0,
+        13586.0
+      ],
+      "buybacks": [
+        -28306.0,
+        0.0
+      ],
+      "dividends": [
+        -4977.0,
+        -5231.0
+      ],
+      "ppe_net": [
+        246597.0,
+        321212.0
+      ],
+      "total_assets": [
+        595281.0,
+        921983.0
+      ],
+      "total_equity": [
+        415265.0,
+        640480.0
+      ],
+      "long_term_debt": [
+        46547.0,
+        98165.0
+      ],
+      "non_marketable_securities": [
+        68687.0,
+        131461.0
+      ],
+      "cash_and_securities": [
+        126843.0,
+        242474.0
+      ],
+      "accounts_receivable": [
+        62886.0,
+        69175.0
+      ],
+      "accounts_payable": [
+        12200.0,
+        20258.0
+      ],
+      "total_current_liabilities": [
+        102745.0,
+        126111.0
+      ],
+      "operating_lease_assets": [
+        15221.0,
+        17694.0
+      ],
+      "goodwill": [
+        33380.0,
+        57828.0
+      ],
+      "source": "Form 10-Q, goog_10q_2026q2"
+    },
+    "2025q2": {
+      "segments": {
+        "Google Services": {
+          "revenue": [
+            73928.0,
+            82543.0,
+            144326.0,
+            159807.0
+          ],
+          "operating_income": [
+            29674.0,
+            33063.0,
+            57571.0,
+            65745.0
+          ]
+        },
+        "Google Cloud": {
+          "revenue": [
+            10347.0,
+            13624.0,
+            19921.0,
+            25884.0
+          ],
+          "operating_income": [
+            1172.0,
+            2826.0,
+            2072.0,
+            5003.0
+          ]
+        },
+        "Other Bets": {
+          "revenue": [
+            365.0,
+            373.0,
+            860.0,
+            823.0
+          ],
+          "operating_income": [
+            -1134.0,
+            -1246.0,
+            -2154.0,
+            -2472.0
+          ]
+        }
+      },
+      "total_revenues": [
+        84742.0,
+        96428.0,
+        165281.0,
+        186662.0
+      ],
+      "pretax_income": [
+        27551.0,
+        33933.0,
+        55866.0,
+        75722.0
+      ],
+      "income_tax": [
+        3932.0,
+        5737.0,
+        8585.0,
+        12986.0
+      ],
+      "income_from_operations": [
+        27425.0,
+        31271.0,
+        52897.0,
+        61877.0
+      ],
+      "net_income": [
+        23619.0,
+        28196.0,
+        47281.0,
+        62736.0
+      ],
+      "ocf": [
+        55488.0,
+        63897.0
+      ],
+      "capex": [
+        -25198.0,
+        -39643.0
+      ],
+      "depreciation": [
+        7121.0,
+        9485.0
+      ],
+      "buybacks": [
+        -81.0,
+        -811.0
+      ],
+      "dividends": [
+        -2466.0,
+        -4977.0
+      ],
+      "ppe_net": [
+        171036.0,
+        203231.0
+      ],
+      "total_assets": [
+        450256.0,
+        502053.0
+      ],
+      "total_equity": [
+        325084.0,
+        362916.0
+      ],
+      "long_term_debt": [
+        10883.0,
+        23607.0
+      ],
+      "non_marketable_securities": [
+        37982.0,
+        52574.0
+      ],
+      "cash_and_securities": [
+        95657.0,
+        95148.0
+      ],
+      "accounts_receivable": [
+        52340.0,
+        55048.0
+      ],
+      "accounts_payable": [
+        7987.0,
+        8347.0
+      ],
+      "total_current_liabilities": [
+        89122.0,
+        87310.0
+      ],
+      "operating_lease_assets": [
+        13588.0,
+        14255.0
+      ],
+      "goodwill": [
+        31885.0,
+        32335.0
+      ],
+      "source": "Form 10-Q, goog_10q_2025q2"
+    },
+    "backlog_2026q2": {
+      "total_bn": 519.5,
+      "cloud_bn": 513.9,
+      "definition_change": "2026년 1분기부터 원계약기간 1년 이하 계약도 수주잔고에 포함하도록 보고 기준을 변경했습니다",
+      "source": "Form 10-Q Q2 2026, Revenue Backlog"
+    }
+  },
+  "berkshire_balance_sheet": {
+    "cash_and_equivalents": [
+      35096.0,
+      47719.0
+    ],
+    "treasury_bills": [
+      324905.0,
+      321434.0
+    ],
+    "equity_securities": [
+      323779.0,
+      297778.0
+    ],
+    "fixed_maturity": [
+      17034.0,
+      17816.0
+    ],
+    "periods": [
+      "2026-06-30",
+      "2025-12-31"
+    ],
+    "five_largest_note": "The five largest holdings at June 30, 2026 were Alphabet Inc., American Express Company, Apple Inc., Bank of America Corporation and The Coca-Cola Company",
+    "five_largest_share_of_equities": 0.66,
+    "source": "Berkshire Form 10-Q Q2 2026, accession 0001193125-26-341032"
+  }
+}
