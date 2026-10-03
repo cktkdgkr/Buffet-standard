@@ -1,0 +1,5262 @@
+{
+ "backup": "analysis.json.pre-roic-correction",
+ "company_years_changed": 319,
+ "changes": [
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2016,
+   "period_end": "2017-01-29",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 8.925391450079294,
+   "roic_after": 1.7860207811932696,
+   "ebit_before": 1934000000,
+   "ebit_after": 1934000000.0,
+   "capital_before": 189500000.0,
+   "capital_after": 947000000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2020,
+   "period_end": "2021-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5189729990356798,
+   "roic_after": 0.5522221509651767,
+   "ebit_before": 4532000000,
+   "ebit_after": 4532000000.0,
+   "capital_before": 8296000000.0,
+   "capital_after": 7796500000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2021,
+   "period_end": "2022-01-30",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6435669950074214,
+   "roic_after": 0.666011520335137,
+   "ebit_before": 10041000000,
+   "ebit_after": 10041000000.0,
+   "capital_before": 14822000000.0,
+   "capital_after": 14322500000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2022,
+   "period_end": "2023-01-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21482948765993898,
+   "roic_after": 0.22226653373213692,
+   "ebit_before": 4224000000,
+   "ebit_after": 4224000000.0,
+   "capital_before": 18679000000.0,
+   "capital_after": 18054000000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2023,
+   "period_end": "2024-01-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.1852501377585358,
+   "roic_after": 1.2490267535093018,
+   "ebit_before": 32972000000,
+   "ebit_after": 32972000000.0,
+   "capital_before": 24480500000.0,
+   "capital_after": 23230500000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2024,
+   "period_end": "2025-01-26",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.9480321220026722,
+   "roic_after": 1.9821923025857473,
+   "ebit_before": 81453000000,
+   "ebit_after": 81453000000.0,
+   "capital_before": 36266500000.0,
+   "capital_after": 35641500000.0
+  },
+  {
+   "ticker": "NVDA",
+   "fiscal_year": 2025,
+   "period_end": "2026-01-25",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.1027114751661626,
+   "roic_after": 1.1082267992123584,
+   "ebit_before": 130387000000,
+   "ebit_after": 130387000000.0,
+   "capital_before": 100367500000.0,
+   "capital_after": 99868000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2016,
+   "period_end": "2016-09-24",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.26226104209169493,
+   "roic_after": 0.30794128231819107,
+   "ebit_before": 60024000000,
+   "ebit_after": 60024000000.0,
+   "capital_before": 170378000000.0,
+   "capital_after": 145104000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2017,
+   "period_end": "2017-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2290225497290739,
+   "roic_after": 0.2859689764349539,
+   "ebit_before": 61344000000,
+   "ebit_after": 61344000000.0,
+   "capital_before": 202076500000.0,
+   "capital_after": 161836000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2018,
+   "period_end": "2018-09-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.32089572660037075,
+   "roic_after": 0.34994339689098714,
+   "ebit_before": 70898000000,
+   "ebit_after": 70898000000.0,
+   "capital_before": 180413000000.0,
+   "capital_after": 165437500000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2019,
+   "period_end": "2019-09-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.45663171467947405,
+   "roic_after": 0.42428440691376496,
+   "ebit_before": 63930000000,
+   "ebit_after": 63930000000.0,
+   "capital_before": 117681500000.0,
+   "capital_after": 126653500000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2020,
+   "period_end": "2020-09-26",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6526209851098613,
+   "roic_after": 0.6138613512558175,
+   "ebit_before": 66288000000,
+   "ebit_after": 66288000000.0,
+   "capital_before": 86917000000.0,
+   "capital_after": 92405000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2021,
+   "period_end": "2021-09-25",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.9398358241343814,
+   "roic_after": 0.8910889504153521,
+   "ebit_before": 108949000000,
+   "ebit_after": 108949000000.0,
+   "capital_before": 100503000000.0,
+   "capital_after": 106001000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2022,
+   "period_end": "2022-09-24",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8641802663613515,
+   "roic_after": 0.8084010314568976,
+   "ebit_before": 119437000000,
+   "ebit_after": 119437000000.0,
+   "capital_before": 115812500000.0,
+   "capital_after": 123803500000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2023,
+   "period_end": "2023-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8936720926120366,
+   "roic_after": 0.8327225534829878,
+   "ebit_before": 114301000000,
+   "ebit_after": 114301000000.0,
+   "capital_before": 109074500000.0,
+   "capital_after": 117058000000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2024,
+   "period_end": "2024-09-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.9635748864253398,
+   "roic_after": 0.8904102137504146,
+   "ebit_before": 123216000000,
+   "ebit_after": 123216000000.0,
+   "capital_before": 97067500000.0,
+   "capital_after": 105043500000.0
+  },
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2025,
+   "period_end": "2025-09-27",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.1332632726149001,
+   "roic_after": 1.0391519881213207,
+   "ebit_before": 133050000000,
+   "ebit_after": 133050000000.0,
+   "capital_before": 99077500000.0,
+   "capital_after": 108050500000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.35017705944018646,
+   "roic_after": 0.35057614947738136,
+   "ebit_before": 23716000000,
+   "ebit_after": 23716000000.0,
+   "capital_before": 54596500000.0,
+   "capital_after": 54561500000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2820905172413793,
+   "roic_after": 0.28246592094378303,
+   "ebit_before": 26178000000,
+   "ebit_after": 26178000000.0,
+   "capital_before": 55680000000.0,
+   "capital_after": 55606000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.38096994343138907,
+   "roic_after": 0.38155484201553164,
+   "ebit_before": 27524000000,
+   "ebit_after": 27524000000.0,
+   "capital_before": 63603500000.0,
+   "capital_after": 63506000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.37317792855967485,
+   "roic_after": 0.37515750837329476,
+   "ebit_before": 34231000000,
+   "ebit_after": 34231000000.0,
+   "capital_before": 79501000000.0,
+   "capital_after": 79081500000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.36803320145202406,
+   "roic_after": 0.370233436402208,
+   "ebit_before": 41224000000,
+   "ebit_after": 41224000000.0,
+   "capital_before": 93810500000.0,
+   "capital_after": 93253000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5770950120344522,
+   "roic_after": 0.5796586503269808,
+   "ebit_before": 78714000000,
+   "ebit_after": 78714000000.0,
+   "capital_before": 114297500000.0,
+   "capital_after": 113792000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.44140391770378123,
+   "roic_after": 0.4433226189938993,
+   "ebit_before": 74842000000,
+   "ebit_after": 74842000000.0,
+   "capital_before": 142560000000.0,
+   "capital_after": 141943000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.42294959967692264,
+   "roic_after": 0.42386487715624777,
+   "ebit_before": 84293000000,
+   "ebit_after": 84293000000.0,
+   "capital_before": 171578500000.0,
+   "capital_after": 171208000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4376319750472508,
+   "roic_after": 0.43788499930183933,
+   "ebit_before": 112390000000,
+   "ebit_after": 112390000000.0,
+   "capital_before": 214595000000.0,
+   "capital_after": 214471000000.0
+  },
+  {
+   "ticker": "GOOG",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3694972964388747,
+   "roic_after": 0.3699173431782217,
+   "ebit_before": 129039000000,
+   "ebit_after": 129039000000.0,
+   "capital_before": 290617000000.0,
+   "capital_after": 290287000000.0
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2016,
+   "period_end": "2016-06-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.721451609031693,
+   "roic_after": 0.9910187856453563,
+   "ebit_before": 26078000000,
+   "ebit_after": 26078000000.0,
+   "capital_before": 12135500000.0,
+   "capital_after": 21080000000.0
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2017,
+   "period_end": "2017-06-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.1709816582469137,
+   "roic_after": 0.7703668388862197,
+   "ebit_before": 29025000000,
+   "ebit_after": 29025000000.0,
+   "capital_before": 21129500000.0,
+   "capital_after": 32117500000.0
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2018,
+   "period_end": "2018-06-30",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.737519722309877,
+   "roic_after": 0.6363190852164443,
+   "ebit_before": 35058000000,
+   "ebit_after": 35058000000.0,
+   "capital_before": 28521000000.0,
+   "capital_after": 33057000000.0
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2024,
+   "period_end": "2024-06-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.47087193306583675,
+   "roic_after": 0.46272339249564204,
+   "ebit_before": 109433000000,
+   "ebit_after": 109433000000.0,
+   "capital_before": 190034500000.0,
+   "capital_after": 193381000000.0
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2025,
+   "period_end": "2025-06-30",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3995537995043912,
+   "roic_after": 0.39457044306990313,
+   "ebit_before": 128528000000,
+   "ebit_after": 128528000000.0,
+   "capital_before": 264968000000.0,
+   "capital_after": 268314500000.0
+  },
+  {
+   "ticker": "AMZN",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.32370652276568057,
+   "roic_after": 0.3229424746521519,
+   "ebit_before": 24879000000,
+   "ebit_after": 24879000000.0,
+   "capital_before": 67205000000.0,
+   "capital_after": 67364000000.0
+  },
+  {
+   "ticker": "AMZN",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0811068035222572,
+   "roic_after": 0.0805940486850051,
+   "ebit_before": 12248000000,
+   "ebit_after": 12248000000.0,
+   "capital_before": 119298500000.0,
+   "capital_after": 120057500000.0
+  },
+  {
+   "ticker": "AMZN",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18206933814332676,
+   "roic_after": 0.18132484668426266,
+   "ebit_before": 36852000000,
+   "ebit_after": 36852000000.0,
+   "capital_before": 164034500000.0,
+   "capital_after": 164708000000.0
+  },
+  {
+   "ticker": "AMZN",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2796573062955548,
+   "roic_after": 0.27946103660443644,
+   "ebit_before": 68593000000,
+   "ebit_after": 68593000000.0,
+   "capital_before": 212155500000.0,
+   "capital_after": 212304500000.0
+  },
+  {
+   "ticker": "AMZN",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21470963177190885,
+   "roic_after": 0.21449257462772275,
+   "ebit_before": 79975000000,
+   "ebit_after": 79975000000.0,
+   "capital_before": 299420000000.0,
+   "capital_after": 299723000000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2016,
+   "period_end": "2016-10-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": -0.01720592150806752,
+   "ebit_before": -409000000,
+   "ebit_after": -409000000.0,
+   "capital_before": null,
+   "capital_after": 18779000000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2017,
+   "period_end": "2017-10-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18616827837011324,
+   "roic_after": 0.09325177503156762,
+   "ebit_before": 2371000000,
+   "ebit_after": 2371000000.0,
+   "capital_before": 12099000000,
+   "capital_after": 24154500000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2018,
+   "period_end": "2018-11-04",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28309250232126276,
+   "roic_after": 0.14037321593001842,
+   "ebit_before": 5135000000,
+   "ebit_after": 5135000000.0,
+   "capital_before": 17232000000.0,
+   "capital_after": 34752000000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2019,
+   "period_end": "2019-11-03",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14529064345663661,
+   "roic_after": 0.07042262615826687,
+   "ebit_before": 3444000000,
+   "ebit_after": 3444000000.0,
+   "capital_before": 22519000000.0,
+   "capital_after": 46459500000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2020,
+   "period_end": "2020-11-01",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.19183519468759433,
+   "roic_after": 0.06889493130019242,
+   "ebit_before": 4014000000,
+   "ebit_after": 4014000000.0,
+   "capital_before": 19878000000.0,
+   "capital_after": 55349500000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2021,
+   "period_end": "2021-10-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.23260569654815624,
+   "roic_after": 0.1468033775633293,
+   "ebit_before": 8519000000,
+   "ebit_after": 8519000000.0,
+   "capital_before": 34793000000.0,
+   "capital_after": 55128500000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2024,
+   "period_end": "2024-11-03",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.09578700635128333,
+   "roic_after": 0.09453965580007306,
+   "ebit_before": 13463000000,
+   "ebit_after": 13463000000.0,
+   "capital_before": 87426500000.0,
+   "capital_after": 88580000000.0
+  },
+  {
+   "ticker": "AVGO",
+   "fiscal_year": 2025,
+   "period_end": "2025-11-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18905044510385757,
+   "roic_after": 0.18593530995234456,
+   "ebit_before": 25484000000,
+   "ebit_after": 25484000000.0,
+   "capital_before": 128060000000.0,
+   "capital_after": 130205500000.0
+  },
+  {
+   "ticker": "META",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.5011614204345335,
+   "ebit_before": 20203000000,
+   "ebit_after": 20203000000.0,
+   "capital_before": null,
+   "capital_after": 31190500000.0
+  },
+  {
+   "ticker": "META",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.5742678243057453,
+   "ebit_before": 24913000000,
+   "ebit_after": 24913000000.0,
+   "capital_before": null,
+   "capital_after": 37824500000.0
+  },
+  {
+   "ticker": "META",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.40061041121327623,
+   "ebit_before": 23986000000,
+   "ebit_after": 23986000000.0,
+   "capital_before": null,
+   "capital_after": 44606000000.0
+  },
+  {
+   "ticker": "META",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.5100436992169578,
+   "ebit_before": 32671000000,
+   "ebit_after": 32671000000.0,
+   "capital_before": null,
+   "capital_after": 56267500000.0
+  },
+  {
+   "ticker": "META",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5063393339552387,
+   "roic_after": 0.5436208597277238,
+   "ebit_before": 46753000000,
+   "ebit_after": 46753000000.0,
+   "capital_before": 76881000000,
+   "capital_after": 71608500000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.06301244511048064,
+   "roic_after": -0.090593159081374,
+   "ebit_before": -667340000,
+   "ebit_after": -667340000.0,
+   "capital_before": 8366579000,
+   "capital_after": 5819408500.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.1366873658701948,
+   "roic_after": -0.12160799522011762,
+   "ebit_before": -1632000000,
+   "ebit_after": -1632000000.0,
+   "capital_before": 9432327500.0,
+   "capital_after": 10601934500.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.027406916893522714,
+   "roic_after": -0.023778899368678445,
+   "ebit_before": -388000000,
+   "ebit_after": -388000000.0,
+   "capital_before": 11184038000.0,
+   "capital_after": 12890420000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.004538528787311103,
+   "roic_after": -0.004309487450070504,
+   "ebit_before": -69000000,
+   "ebit_after": -69000000.0,
+   "capital_before": 12010500000.0,
+   "capital_after": 12648836000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.11815423922640343,
+   "roic_after": 0.1254064443620478,
+   "ebit_before": 1994000000,
+   "ebit_after": 1994000000.0,
+   "capital_before": 12606000000.0,
+   "capital_after": 11877000000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.37585649734636006,
+   "roic_after": 0.3906554911843288,
+   "ebit_before": 6523000000,
+   "ebit_after": 6523000000.0,
+   "capital_before": 15442500000.0,
+   "capital_after": 14857500000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.591167233088199,
+   "roic_after": 0.598123801793593,
+   "ebit_before": 13656000000,
+   "ebit_after": 13656000000.0,
+   "capital_before": 21194000000.0,
+   "capital_after": 20947500000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2691623779098485,
+   "roic_after": 0.27563144498107295,
+   "ebit_before": 8891000000,
+   "ebit_after": 8891000000.0,
+   "capital_before": 31380500000.0,
+   "capital_after": 30644000000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1366115432406782,
+   "roic_after": 0.14155946962200672,
+   "ebit_before": 7076000000,
+   "ebit_after": 7076000000.0,
+   "capital_before": 41212500000.0,
+   "capital_after": 39772000000.0
+  },
+  {
+   "ticker": "TSLA",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07032688297890938,
+   "roic_after": 0.07235699670601066,
+   "ebit_before": 4355000000,
+   "ebit_after": 4355000000.0,
+   "capital_before": 45229500000.0,
+   "capital_after": 43960500000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.15053213571866503,
+   "roic_after": 0.14513322452951496,
+   "ebit_before": 3374000000,
+   "ebit_after": 3261200000.0,
+   "capital_before": 18186150000.0,
+   "capital_after": 18232050000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07795374793895066,
+   "roic_after": 0.06747389693499495,
+   "ebit_before": 2304800000,
+   "ebit_after": 2003300000.0,
+   "capital_before": 17739750000.0,
+   "capital_after": 17814000000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21057626756138964,
+   "roic_after": 0.19472190615331514,
+   "ebit_before": 3680100000,
+   "ebit_after": 3534500000.0,
+   "capital_before": 14961800000.0,
+   "capital_after": 15539850000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3288824280243937,
+   "roic_after": 0.29826975170139297,
+   "ebit_before": 5265900000,
+   "ebit_after": 4974300000.0,
+   "capital_before": 14102000000.0,
+   "capital_after": 14688300000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.36389433980000707,
+   "roic_after": 0.3024599147686603,
+   "ebit_before": 7229900000,
+   "ebit_after": 6058000000.0,
+   "capital_before": 17020600000.0,
+   "capital_after": 17158500000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2755653416734755,
+   "roic_after": 0.2820892223176025,
+   "ebit_before": 6155500000,
+   "ebit_after": 6357100000.0,
+   "capital_before": 20255450000.0,
+   "capital_after": 20435050000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28088237846806996,
+   "roic_after": 0.27866142894589035,
+   "ebit_before": 7138000000,
+   "ebit_after": 7127300000.0,
+   "capital_before": 23315950000.0,
+   "capital_after": 23466550000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1949417435911878,
+   "roic_after": 0.17812752371373713,
+   "ebit_before": 7040000000,
+   "ebit_after": 6457000000.0,
+   "capital_before": 28873050000.0,
+   "capital_after": 28981750000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28988858058659284,
+   "roic_after": 0.2774587046104565,
+   "ebit_before": 13461000000,
+   "ebit_after": 12899000000.0,
+   "capital_before": 38781350000.0,
+   "capital_after": 38827050000.0
+  },
+  {
+   "ticker": "LLY",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.40198149535595656,
+   "roic_after": 0.39709145534371154,
+   "ebit_before": 26626000000,
+   "ebit_after": 26302000000.0,
+   "capital_before": 53131600000.0,
+   "capital_after": 53131400000.0
+  },
+  {
+   "ticker": "MU",
+   "fiscal_year": 2016,
+   "period_end": "2016-09-01",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.00753962392773959,
+   "roic_after": 0.0074773937294008285,
+   "ebit_before": 168000000,
+   "ebit_after": 168000000.0,
+   "capital_before": 17603000000.0,
+   "capital_after": 17749500000.0
+  },
+  {
+   "ticker": "MU",
+   "fiscal_year": 2017,
+   "period_end": "2017-08-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.26235881024096386,
+   "roic_after": 0.2556217901687454,
+   "ebit_before": 5868000000,
+   "ebit_after": 5868000000.0,
+   "capital_before": 21248000000.0,
+   "capital_after": 21808000000.0
+  },
+  {
+   "ticker": "MU",
+   "fiscal_year": 2018,
+   "period_end": "2018-08-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5201117318435754,
+   "roic_after": 0.5071492149392958,
+   "ebit_before": 14994000000,
+   "ebit_after": 14994000000.0,
+   "capital_before": 27387000000.0,
+   "capital_after": 28087000000.0
+  },
+  {
+   "ticker": "MU",
+   "fiscal_year": 2019,
+   "period_end": "2019-08-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.20814487594694203,
+   "roic_after": 0.20256911393441354,
+   "ebit_before": 7376000000,
+   "ebit_after": 7376000000.0,
+   "capital_before": 31952500000.0,
+   "capital_after": 32832000000.0
+  },
+  {
+   "ticker": "MU",
+   "fiscal_year": 2020,
+   "period_end": "2020-09-03",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07635667130435263,
+   "roic_after": 0.07541600807264706,
+   "ebit_before": 3003000000,
+   "ebit_after": 3003000000.0,
+   "capital_before": 35637000000.0,
+   "capital_after": 36081500000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2016,
+   "period_end": "2017-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1437794642841345,
+   "roic_after": 0.13936390910454236,
+   "ebit_before": 22764000000,
+   "ebit_after": 22764000000.0,
+   "capital_before": 110404000000.0,
+   "capital_after": 113902000000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2017,
+   "period_end": "2018-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1326179948439705,
+   "roic_after": 0.1294031301719744,
+   "ebit_before": 20437000000,
+   "ebit_after": 20437000000.0,
+   "capital_before": 107230000000.0,
+   "capital_after": 109894000000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2018,
+   "period_end": "2019-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1250806012865259,
+   "roic_after": 0.12217908820667707,
+   "ebit_before": 21957000000,
+   "ebit_after": 21957000000.0,
+   "capital_before": 109967000000.0,
+   "capital_after": 112578500000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2019,
+   "period_end": "2020-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13938767010788936,
+   "roic_after": 0.13035179575755804,
+   "ebit_before": 20568000000,
+   "ebit_after": 20568000000.0,
+   "capital_before": 111506000000.0,
+   "capital_after": 119235500000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2020,
+   "period_end": "2021-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14038950063338904,
+   "roic_after": 0.12775837210474034,
+   "ebit_before": 22548000000,
+   "ebit_after": 22548000000.0,
+   "capital_before": 107047500000.0,
+   "capital_after": 117631000000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2021,
+   "period_end": "2022-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18565832055867823,
+   "roic_after": 0.1690080629999136,
+   "ebit_before": 25942000000,
+   "ebit_after": 25942000000.0,
+   "capital_before": 104184500000.0,
+   "capital_after": 114448500000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2022,
+   "period_end": "2023-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13106934074264262,
+   "roic_after": 0.11851569303553433,
+   "ebit_before": 20428000000,
+   "ebit_after": 20428000000.0,
+   "capital_before": 103428000000.0,
+   "capital_after": 114383500000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2023,
+   "period_end": "2024-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1879144316191633,
+   "roic_after": 0.17190601379584466,
+   "ebit_before": 27012000000,
+   "ebit_after": 27012000000.0,
+   "capital_before": 107046500000.0,
+   "capital_after": 117015000000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2024,
+   "period_end": "2025-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.19599450329981483,
+   "roic_after": 0.18397155498862403,
+   "ebit_before": 29348000000,
+   "ebit_after": 29348000000.0,
+   "capital_before": 114724500000.0,
+   "capital_after": 122222000000.0
+  },
+  {
+   "ticker": "WMT",
+   "fiscal_year": 2025,
+   "period_end": "2026-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18136052417108453,
+   "roic_after": 0.17491847426882226,
+   "ebit_before": 29825000000,
+   "ebit_after": 29825000000.0,
+   "capital_before": 124277500000.0,
+   "capital_after": 128854500000.0
+  },
+  {
+   "ticker": "AMD",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.3367657142857143,
+   "roic_after": -0.29764646464646466,
+   "ebit_before": -373000000,
+   "ebit_after": -373000000.0,
+   "capital_before": 875000000.0,
+   "capital_after": 990000000.0
+  },
+  {
+   "ticker": "AMD",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14498554913294798,
+   "roic_after": 0.13800550206327372,
+   "ebit_before": 127000000,
+   "ebit_after": 127000000.0,
+   "capital_before": 692000000.0,
+   "capital_after": 727000000.0
+  },
+  {
+   "ticker": "AMD",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4204612365063788,
+   "roic_after": 0.3956140350877193,
+   "ebit_before": 451000000,
+   "ebit_after": 451000000.0,
+   "capital_before": 1019000000.0,
+   "capital_after": 1083000000.0
+  },
+  {
+   "ticker": "AMD",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-28",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.37173307626392454,
+   "roic_after": 0.364931650893796,
+   "ebit_before": 631000000,
+   "ebit_after": 631000000.0,
+   "capital_before": 1556000000.0,
+   "capital_after": 1585000000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2016,
+   "period_end": "2016-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21597258693720314,
+   "roic_after": 0.18472390521081433,
+   "ebit_before": 7883000000,
+   "ebit_after": 7883000000.0,
+   "capital_before": 27293000000,
+   "capital_after": 31910000000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2017,
+   "period_end": "2017-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2806347250038515,
+   "roic_after": 0.18755695127287703,
+   "ebit_before": 12144000000,
+   "ebit_after": 12144000000.0,
+   "capital_before": 25964000000.0,
+   "capital_after": 38849000000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2018,
+   "period_end": "2018-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4429822301219302,
+   "roic_after": 0.2713165954887478,
+   "ebit_before": 12954000000,
+   "ebit_after": 12954000000.0,
+   "capital_before": 23522500000.0,
+   "capital_after": 38405500000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2019,
+   "period_end": "2019-09-30",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3935340070959528,
+   "roic_after": 0.3101702654488514,
+   "ebit_before": 15001000000,
+   "ebit_after": 15001000000.0,
+   "capital_before": 30937500000.0,
+   "capital_after": 39252500000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2021,
+   "period_end": "2021-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.29375736162571464,
+   "roic_after": 0.3011523300782708,
+   "ebit_before": 15804000000,
+   "ebit_after": 15804000000.0,
+   "capital_before": 41233000000.0,
+   "capital_after": 40220500000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2022,
+   "period_end": "2022-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.36757041231067805,
+   "roic_after": 0.3900137221783964,
+   "ebit_before": 18813000000,
+   "ebit_after": 18813000000.0,
+   "capital_before": 42210500000.0,
+   "capital_after": 39781500000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2023,
+   "period_end": "2023-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.40450945773607655,
+   "roic_after": 0.43887193823785586,
+   "ebit_before": 21000000000,
+   "ebit_after": 21000000000.0,
+   "capital_before": 42626000000.0,
+   "capital_after": 39288500000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2024,
+   "period_end": "2024-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.42852136026936893,
+   "roic_after": 0.4645031338011565,
+   "ebit_before": 23595000000,
+   "ebit_after": 23595000000.0,
+   "capital_before": 45454000000.0,
+   "capital_after": 41933000000.0
+  },
+  {
+   "ticker": "V",
+   "fiscal_year": 2025,
+   "period_end": "2025-09-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.42362566380123284,
+   "roic_after": 0.4476140073832313,
+   "ebit_before": 23994000000,
+   "ebit_after": 23994000000.0,
+   "capital_before": 46957000000.0,
+   "capital_after": 44440500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.03881830950723274,
+   "roic_after": 0.03775972718876548,
+   "ebit_before": 8422000000,
+   "ebit_after": 8392000000.0,
+   "capital_before": 206111500000.0,
+   "capital_after": 211135000000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.08452444971692474,
+   "roic_after": 0.08231867151890752,
+   "ebit_before": 19275000000,
+   "ebit_after": 19239000000.0,
+   "capital_before": 216638500000.0,
+   "capital_after": 222028000000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0968299593719771,
+   "roic_after": 0.09409438106512065,
+   "ebit_before": 31719000000,
+   "ebit_after": 31655000000.0,
+   "capital_before": 226697500000.0,
+   "capital_after": 232817500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0665993219241519,
+   "roic_after": 0.06437768857440505,
+   "ebit_before": 20886000000,
+   "ebit_after": 20802000000.0,
+   "capital_before": 231014500000.0,
+   "capital_after": 238025500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.09608428912036884,
+   "roic_after": -0.09333316318392088,
+   "ebit_before": -27725000000,
+   "ebit_after": -27774000000.0,
+   "capital_before": 227953500000.0,
+   "capital_after": 235087500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.11311094366346204,
+   "roic_after": 0.10941009103565895,
+   "ebit_before": 32181000000,
+   "ebit_after": 32148000000.0,
+   "capital_before": 214952500000.0,
+   "capital_after": 221995500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2795990601486925,
+   "roic_after": 0.2686306670767161,
+   "ebit_before": 78551000000,
+   "ebit_after": 78105000000.0,
+   "capital_before": 208040500000.0,
+   "capital_after": 215305500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18012058138835318,
+   "roic_after": 0.16858853915383643,
+   "ebit_before": 53632000000,
+   "ebit_after": 52004000000.0,
+   "capital_before": 210719000000.0,
+   "capital_after": 218299000000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14390980756580954,
+   "roic_after": 0.13979459643668854,
+   "ebit_before": 49869000000,
+   "ebit_after": 49869000000.0,
+   "capital_before": 248611000000.0,
+   "capital_after": 255929500000.0
+  },
+  {
+   "ticker": "XOM",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.10510767239523956,
+   "roic_after": 0.1025832059315822,
+   "ebit_before": 41871000000,
+   "ebit_after": 41871000000.0,
+   "capital_before": 287314000000.0,
+   "capital_after": 294384500000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2016,
+   "period_end": "2017-01-01",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.3054929629492815,
+   "roic_after": 0.30873254898267793,
+   "ebit_before": 19803000000,
+   "ebit_after": 20013000000.0,
+   "capital_before": 54142000000.0,
+   "capital_after": 54142000000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.16055173666838266,
+   "roic_after": 0.16017018441692155,
+   "ebit_before": 17673000000,
+   "ebit_after": 17631000000.0,
+   "capital_before": 66046000000.0,
+   "capital_after": 66046000000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.20813943995428197,
+   "roic_after": 0.22438678220306058,
+   "ebit_before": 17999000000,
+   "ebit_after": 19404000000.0,
+   "capital_before": 73494000000.0,
+   "capital_after": 73494000000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-29",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.2184400442110282,
+   "roic_after": 0.2502706716136624,
+   "ebit_before": 17328000000,
+   "ebit_after": 19853000000.0,
+   "capital_before": 69213500000.0,
+   "capital_after": 69213500000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2020,
+   "period_end": "2021-01-03",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.20840474200812997,
+   "roic_after": 0.24502748232949562,
+   "ebit_before": 16497000000,
+   "ebit_after": 19396000000.0,
+   "capital_before": 70603000000.0,
+   "capital_after": 70603000000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2021,
+   "period_end": "2022-01-02",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.23809587502006313,
+   "roic_after": 0.24462619258501012,
+   "ebit_before": 19178000000,
+   "ebit_after": 19704000000.0,
+   "capital_before": 74764000000.0,
+   "capital_after": 74764000000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2022,
+   "period_end": "2023-01-01",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.19486513062109712,
+   "roic_after": 0.2001647476188901,
+   "ebit_before": 19635000000,
+   "ebit_after": 20169000000.0,
+   "capital_before": 85204500000.0,
+   "capital_after": 85204500000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.1653596515976085,
+   "roic_after": 0.22657843886962953,
+   "ebit_before": 15834000000,
+   "ebit_after": 21696000000.0,
+   "capital_before": 84718500000.0,
+   "capital_after": 84718500000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-29",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.18511414601071052,
+   "roic_after": 0.22691924984835465,
+   "ebit_before": 17442000000,
+   "ebit_after": 21381000000.0,
+   "capital_before": 79423500000.0,
+   "capital_after": 79423500000.0
+  },
+  {
+   "ticker": "JNJ",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-28",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.2860411723968685,
+   "roic_after": 0.2163041435995871,
+   "ebit_before": 33552000000,
+   "ebit_after": 25372000000.0,
+   "capital_before": 96499500000.0,
+   "capital_after": 96499500000.0
+  },
+  {
+   "ticker": "INTC",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.12660292653574962,
+   "roic_after": 0.14106230757488233,
+   "ebit_before": 13133000000,
+   "ebit_after": 13133000000.0,
+   "capital_before": 82724000000,
+   "capital_after": 74244500000.0
+  },
+  {
+   "ticker": "INTC",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.020214700854700854,
+   "roic_after": 0.020044476988582433,
+   "ebit_before": 2334000000,
+   "ebit_after": 2334000000.0,
+   "capital_before": 109687500000.0,
+   "capital_after": 110619000000.0
+  },
+  {
+   "ticker": "INTC",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0007213481494786862,
+   "roic_after": 0.0007034347680695553,
+   "ebit_before": 93000000,
+   "ebit_after": 93000000.0,
+   "capital_before": 122479000000.0,
+   "capital_after": 125598000000.0
+  },
+  {
+   "ticker": "INTC",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.0717832563676612,
+   "roic_after": -0.06905972797161443,
+   "ebit_before": -11678000000,
+   "ebit_after": -11678000000.0,
+   "capital_before": 128520500000.0,
+   "capital_after": 133589000000.0
+  },
+  {
+   "ticker": "INTC",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-27",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.010617771418979946,
+   "roic_after": -0.0098946035529403,
+   "ebit_before": -2214000000,
+   "ebit_after": -2214000000.0,
+   "capital_before": 125111000000.0,
+   "capital_after": 134255000000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.0808129815702656,
+   "roic_after": 1.6175260087394094,
+   "ebit_before": 5761000000,
+   "ebit_after": 5761000000.0,
+   "capital_before": 3832000000.0,
+   "capital_after": 2560500000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.876135684129611,
+   "roic_after": 1.402620888813001,
+   "ebit_before": 6622000000,
+   "ebit_after": 6622000000.0,
+   "capital_before": 4537000000.0,
+   "capital_after": 2834000000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.183777185104817,
+   "roic_after": 1.8186510846244128,
+   "ebit_before": 7282000000,
+   "ebit_after": 7282000000.0,
+   "capital_before": 5003000000.0,
+   "capital_after": 3256500000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.2921076764632036,
+   "roic_after": 1.5898453652715754,
+   "ebit_before": 9664000000,
+   "ebit_after": 9664000000.0,
+   "capital_before": 6239500000.0,
+   "capital_after": 5071000000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8150649852050338,
+   "roic_after": 0.8708840717211626,
+   "ebit_before": 8081000000,
+   "ebit_after": 8081000000.0,
+   "capital_before": 8191000000.0,
+   "capital_after": 7666000000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.7472838198499454,
+   "roic_after": 0.7741062508439217,
+   "ebit_before": 10082000000,
+   "ebit_after": 10082000000.0,
+   "capital_before": 11371000000.0,
+   "capital_after": 10977000000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.7659314809947526,
+   "roic_after": 0.7875487573446671,
+   "ebit_before": 12264000000,
+   "ebit_after": 12264000000.0,
+   "capital_before": 13552500000.0,
+   "capital_after": 13180500000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8412568606957315,
+   "roic_after": 0.8695033949830915,
+   "ebit_before": 14008000000,
+   "ebit_after": 14008000000.0,
+   "capital_before": 13667500000.0,
+   "capital_after": 13223500000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8682990931325263,
+   "roic_after": 0.8932466574996555,
+   "ebit_before": 15582000000,
+   "ebit_after": 15582000000.0,
+   "capital_before": 15145500000.0,
+   "capital_after": 14722500000.0
+  },
+  {
+   "ticker": "MA",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.9386567966380026,
+   "roic_after": 0.9570363793863911,
+   "ebit_before": 18897000000,
+   "ebit_after": 18897000000.0,
+   "capital_before": 16220000000.0,
+   "capital_after": 15908500000.0
+  },
+  {
+   "ticker": "CSCO",
+   "fiscal_year": 2016,
+   "period_end": "2016-07-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.12929527738481514,
+   "roic_after": 0.4117178274499387,
+   "ebit_before": 12660000000,
+   "ebit_after": 12660000000.0,
+   "capital_before": 81386500000.0,
+   "capital_after": 25558500000.0
+  },
+  {
+   "ticker": "CSCO",
+   "fiscal_year": 2017,
+   "period_end": "2017-07-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.10840825192894386,
+   "roic_after": 0.3354027128848637,
+   "ebit_before": 11973000000,
+   "ebit_after": 11973000000.0,
+   "capital_before": 86372000000.0,
+   "capital_after": 27917000000.0
+  },
+  {
+   "ticker": "CSCO",
+   "fiscal_year": 2018,
+   "period_end": "2018-07-28",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13382863252122387,
+   "roic_after": 0.28632795084032797,
+   "ebit_before": 12309000000,
+   "ebit_after": 12309000000.0,
+   "capital_before": 55185500000.0,
+   "capital_after": 25793500000.0
+  },
+  {
+   "ticker": "CSCO",
+   "fiscal_year": 2025,
+   "period_end": "2025-07-26",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18374998589836183,
+   "roic_after": 0.18133864579489703,
+   "ebit_before": 11760000000,
+   "ebit_after": 11760000000.0,
+   "capital_before": 58695500000.0,
+   "capital_after": 59476000000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.23424409981534322,
+   "roic_after": 0.22653177159002114,
+   "ebit_before": 9340000000,
+   "ebit_after": 9340000000.0,
+   "capital_before": 30107000000.0,
+   "capital_after": 31132000000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21261109849636414,
+   "roic_after": 0.19365122731598827,
+   "ebit_before": 9545000000,
+   "ebit_after": 9545000000.0,
+   "capital_before": 30845500000.0,
+   "capital_after": 33865500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24823866543854262,
+   "roic_after": 0.21472936843782645,
+   "ebit_before": 6383000000,
+   "ebit_after": 6383000000.0,
+   "capital_before": 24427500000.0,
+   "capital_after": 28239500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.655182512771791,
+   "roic_after": 0.5723949875336068,
+   "ebit_before": 12983000000,
+   "ebit_after": 12983000000.0,
+   "capital_before": 18536500000.0,
+   "capital_after": 21217500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2224274705349048,
+   "roic_after": 0.1975161473295153,
+   "ebit_before": 11363000000,
+   "ebit_after": 11363000000.0,
+   "capital_before": 48532000000.0,
+   "capital_after": 54653000000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.20974284915956365,
+   "roic_after": 0.1842798606379492,
+   "ebit_before": 17924000000,
+   "ebit_after": 17924000000.0,
+   "capital_before": 75983000000.0,
+   "capital_after": 86482000000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2325527343777748,
+   "roic_after": 0.20730662581556472,
+   "ebit_before": 18117000000,
+   "ebit_after": 18117000000.0,
+   "capital_before": 68471000000.0,
+   "capital_after": 76809500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1701704507309729,
+   "roic_after": 0.15505479964145133,
+   "ebit_before": 12757000000,
+   "ebit_after": 12757000000.0,
+   "capital_before": 58449500000.0,
+   "capital_after": 64147500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.16097006898598026,
+   "roic_after": 0.1423920799875327,
+   "ebit_before": 9137000000,
+   "ebit_after": 9137000000.0,
+   "capital_before": 53924000000.0,
+   "capital_after": 60959500000.0
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.17425134639272355,
+   "roic_after": 0.15606068883352703,
+   "ebit_before": 15075000000,
+   "ebit_after": 15075000000.0,
+   "capital_before": 55511500000.0,
+   "capital_after": 61982000000.0
+  },
+  {
+   "ticker": "AMAT",
+   "fiscal_year": 2023,
+   "period_end": "2023-10-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4532278375413031,
+   "roic_after": 0.45172264728677386,
+   "ebit_before": 7654000000,
+   "ebit_after": 7654000000.0,
+   "capital_before": 15005500000.0,
+   "capital_after": 15055500000.0
+  },
+  {
+   "ticker": "AMAT",
+   "fiscal_year": 2024,
+   "period_end": "2024-10-27",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4522272682696297,
+   "roic_after": 0.4393331257331756,
+   "ebit_before": 7867000000,
+   "ebit_after": 7867000000.0,
+   "capital_before": 15315500000.0,
+   "capital_after": 15765000000.0
+  },
+  {
+   "ticker": "AMAT",
+   "fiscal_year": 2025,
+   "period_end": "2025-10-26",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.36818548293844877,
+   "roic_after": 0.3586974720125282,
+   "ebit_before": 8289000000,
+   "ebit_after": 8289000000.0,
+   "capital_before": 16993500000.0,
+   "capital_after": 17443000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2016,
+   "period_end": "2016-05-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3277437881179701,
+   "roic_after": 0.27157508966406085,
+   "ebit_before": 12604000000,
+   "ebit_after": 12604000000.0,
+   "capital_before": 29916500000.0,
+   "capital_after": 36104000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2017,
+   "period_end": "2017-05-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28628200643043966,
+   "roic_after": 0.25254154032903076,
+   "ebit_before": 12913000000,
+   "ebit_after": 12913000000.0,
+   "capital_before": 36380000000.0,
+   "capital_after": 41240500000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2018,
+   "period_end": "2018-05-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6248007850834151,
+   "roic_after": 0.18254885769336637,
+   "ebit_before": 13264000000,
+   "ebit_after": 13264000000.0,
+   "capital_before": 12737500000.0,
+   "capital_after": 43596000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2019,
+   "period_end": "2019-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.2642313490004201,
+   "ebit_before": 13535000000,
+   "ebit_after": 13535000000.0,
+   "capital_before": -13973000000.0,
+   "capital_after": 40467000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2020,
+   "period_end": "2020-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.26788286969253294,
+   "ebit_before": 13896000000,
+   "ebit_after": 13896000000.0,
+   "capital_before": -20080000000.0,
+   "capital_after": 40980000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2021,
+   "period_end": "2021-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.2831159010600707,
+   "ebit_before": 15213000000,
+   "ebit_after": 15213000000.0,
+   "capital_before": -30839000000.0,
+   "capital_after": 42450000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2022,
+   "period_end": "2022-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.18798545169439845,
+   "ebit_before": 10926000000,
+   "ebit_after": 10926000000.0,
+   "capital_before": -28719500000.0,
+   "capital_after": 45916000000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2023,
+   "period_end": "2023-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.15908258291743246,
+   "ebit_before": 13093000000,
+   "ebit_after": 13093000000.0,
+   "capital_before": -14713000000.0,
+   "capital_after": 65019500000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2024,
+   "period_end": "2024-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 7.61450168264296,
+   "roic_after": 0.1449980573471132,
+   "ebit_before": 15353000000,
+   "ebit_after": 15353000000.0,
+   "capital_before": 1797500000.0,
+   "capital_after": 83648500000.0
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2025,
+   "period_end": "2025-05-31",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.2345069062953258,
+   "roic_after": 0.14874369611409036,
+   "ebit_before": 17678000000,
+   "ebit_after": 17678000000.0,
+   "capital_before": 12583500000.0,
+   "capital_after": 93890500000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2016,
+   "period_end": "2016-08-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21106604382626393,
+   "roic_after": 0.20673123977049152,
+   "ebit_before": 3672000000,
+   "ebit_after": 3672000000.0,
+   "capital_before": 11422000000.0,
+   "capital_after": 11661500000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2017,
+   "period_end": "2017-09-03",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.22858871216446874,
+   "roic_after": 0.22346643143239273,
+   "ebit_before": 4111000000,
+   "ebit_after": 4111000000.0,
+   "capital_before": 12084500000.0,
+   "capital_after": 12361500000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2018,
+   "period_end": "2018-09-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.26971149589687576,
+   "roic_after": 0.2630184911791723,
+   "ebit_before": 4480000000,
+   "ebit_after": 4480000000.0,
+   "capital_before": 11887500000.0,
+   "capital_after": 12190000000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2019,
+   "period_end": "2019-09-01",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2976866184964736,
+   "roic_after": 0.29012248877183505,
+   "ebit_before": 4737000000,
+   "ebit_after": 4737000000.0,
+   "capital_before": 12369500000.0,
+   "capital_after": 12692000000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2020,
+   "period_end": "2020-08-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3260950109632469,
+   "roic_after": 0.3165276153697618,
+   "ebit_before": 5435000000,
+   "ebit_after": 5435000000.0,
+   "capital_before": 12605000000.0,
+   "capital_after": 12986000000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2021,
+   "period_end": "2021-08-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4005253040330522,
+   "roic_after": 0.385742642683171,
+   "ebit_before": 6708000000,
+   "ebit_after": 6708000000.0,
+   "capital_before": 12734000000.0,
+   "capital_after": 13222000000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2022,
+   "period_end": "2022-08-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4050664952512179,
+   "roic_after": 0.39622212942728136,
+   "ebit_before": 7793000000,
+   "ebit_after": 7793000000.0,
+   "capital_before": 14515000000.0,
+   "capital_after": 14839000000.0
+  },
+  {
+   "ticker": "COST",
+   "fiscal_year": 2023,
+   "period_end": "2023-09-03",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.37095888665499555,
+   "roic_after": 0.3698981894541066,
+   "ebit_before": 8114000000,
+   "ebit_after": 8114000000.0,
+   "capital_before": 16216000000.0,
+   "capital_after": 16262500000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": -623440000,
+   "ebit_after": -623440000.0,
+   "capital_before": -3018263000.0,
+   "capital_after": -2867770000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": -576444000,
+   "ebit_after": -576444000.0,
+   "capital_before": -3002401000.0,
+   "capital_after": -2663731000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": -1173679000,
+   "ebit_after": -1173679000.0,
+   "capital_before": -1697079000.0,
+   "capital_after": -290796000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": -411046000,
+   "ebit_after": -411046000.0,
+   "capital_before": -358828000.0,
+   "capital_after": -233797000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": -14.534214791143574,
+   "ebit_before": -161201000,
+   "ebit_after": -161201000.0,
+   "capital_before": -203590500.0,
+   "capital_after": 8762000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": 119966000,
+   "ebit_after": 119966000.0,
+   "capital_before": -157411000.0,
+   "capital_after": -113214000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": null,
+   "ebit_before": 310403000,
+   "ebit_after": 310403000.0,
+   "capital_before": -232901000.0,
+   "capital_after": -135580000.0
+  },
+  {
+   "ticker": "PLTR",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 4.319782903707134,
+   "ebit_before": 1414015000,
+   "ebit_after": 1414015000.0,
+   "capital_before": -32764000.0,
+   "capital_after": 310968000.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2016,
+   "period_end": "2016-06-26",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.23865656423927786,
+   "roic_after": 0.3017667614656166,
+   "ebit_before": 1074256000,
+   "ebit_after": 1074256000.0,
+   "capital_before": 4276200000.0,
+   "capital_after": 3381894000.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2017,
+   "period_end": "2017-06-25",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28983753840748044,
+   "roic_after": 0.520554144382932,
+   "ebit_before": 1902132000,
+   "ebit_after": 1902132000.0,
+   "capital_before": 6150115500.0,
+   "capital_after": 3424301500.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2018,
+   "period_end": "2018-06-24",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4175989916830424,
+   "roic_after": 0.6572223362695518,
+   "ebit_before": 3213299000,
+   "ebit_after": 3213299000.0,
+   "capital_before": 5812136000.0,
+   "capital_after": 3693030500.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2019,
+   "period_end": "2019-06-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4440548083809405,
+   "roic_after": 0.5809730680368415,
+   "ebit_before": 2464732000,
+   "ebit_after": 2464732000.0,
+   "capital_before": 4971677000.0,
+   "capital_after": 3799999000.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2020,
+   "period_end": "2020-06-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.40669319081255334,
+   "roic_after": 0.5890354469388079,
+   "ebit_before": 2673802000,
+   "ebit_after": 2673802000.0,
+   "capital_before": 5749228500.0,
+   "capital_after": 3969493000.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2021,
+   "period_end": "2021-06-27",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6350344846979754,
+   "roic_after": 0.8419560854631192,
+   "ebit_before": 4482023000,
+   "ebit_after": 4482023000.0,
+   "capital_before": 6311330000.0,
+   "capital_after": 4760239000.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2022,
+   "period_end": "2022-06-26",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6680298109417669,
+   "roic_after": 0.7432803819822231,
+   "ebit_before": 5381822000,
+   "ebit_after": 5381822000.0,
+   "capital_before": 7144342000.0,
+   "capital_after": 6421040500.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2023,
+   "period_end": "2023-06-25",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5873631078073136,
+   "roic_after": 0.593982501997783,
+   "ebit_before": 5174860000,
+   "ebit_after": 5174860000.0,
+   "capital_before": 7778652500.0,
+   "capital_after": 7691966500.0
+  },
+  {
+   "ticker": "LRCX",
+   "fiscal_year": 2024,
+   "period_end": "2024-06-30",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4830764057104455,
+   "roic_after": 0.48425258393807624,
+   "ebit_before": 4263913000,
+   "ebit_after": 4263913000.0,
+   "capital_before": 7748720000.0,
+   "capital_after": 7729899500.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.018189407774589095,
+   "roic_after": 0.018169972114357197,
+   "ebit_before": 1162000000,
+   "ebit_after": 1162000000.0,
+   "capital_before": 38330000000.0,
+   "capital_after": 38371000000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07620349408397761,
+   "roic_after": 0.07605513713230069,
+   "ebit_before": 4460000000,
+   "ebit_after": 4460000000.0,
+   "capital_before": 35116500000.0,
+   "capital_after": 35185000000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18230139421174635,
+   "roic_after": 0.1825474184451663,
+   "ebit_before": 8293000000,
+   "ebit_after": 8293000000.0,
+   "capital_before": 35615500000.0,
+   "capital_after": 35567500000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1718135349014443,
+   "roic_after": 0.1722595172099203,
+   "ebit_before": 8290000000,
+   "ebit_after": 8290000000.0,
+   "capital_before": 37466000000.0,
+   "capital_after": 37369000000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.09487501348555909,
+   "roic_after": 0.0948459560975331,
+   "ebit_before": 4553000000,
+   "ebit_after": 4553000000.0,
+   "capital_before": 35905000000.0,
+   "capital_after": 35916000000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14900590795863947,
+   "roic_after": 0.14895879243762533,
+   "ebit_before": 6878000000,
+   "ebit_after": 6878000000.0,
+   "capital_before": 36358000000.0,
+   "capital_after": 36369500000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.15238142962905385,
+   "roic_after": 0.1523468223926795,
+   "ebit_before": 7904000000,
+   "ebit_after": 7904000000.0,
+   "capital_before": 39619500000.0,
+   "capital_after": 39628500000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24830013116388436,
+   "roic_after": 0.24825179906214684,
+   "ebit_before": 12966000000,
+   "ebit_after": 12966000000.0,
+   "capital_before": 41091000000.0,
+   "capital_after": 41099000000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24430761578227422,
+   "roic_after": 0.24426783968741383,
+   "ebit_before": 13072000000,
+   "ebit_after": 13072000000.0,
+   "capital_before": 42987500000.0,
+   "capital_after": 42994500000.0
+  },
+  {
+   "ticker": "CAT",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1845051983300516,
+   "roic_after": 0.1844790977219981,
+   "ebit_before": 11151000000,
+   "ebit_after": 11151000000.0,
+   "capital_before": 45942000000.0,
+   "capital_after": 45948500000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.04249743912758552,
+   "roic_after": 0.01784602688811348,
+   "ebit_before": 7031000000,
+   "ebit_after": 2891000000.0,
+   "capital_before": 157173000000,
+   "capital_after": 153897000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.05938452466141899,
+   "roic_after": -0.08778358875906127,
+   "ebit_before": -11345000000,
+   "ebit_after": -13428000000.0,
+   "capital_before": 150924000000.0,
+   "capital_after": 120844000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.13465387785930957,
+   "roic_after": -0.17032338032338032,
+   "ebit_before": -20987000000,
+   "ebit_after": -23308000000.0,
+   "capital_before": 123128500000.0,
+   "capital_after": 108108000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.00046126648249166077,
+   "roic_after": -0.03162946922517624,
+   "ebit_before": -54000000,
+   "ebit_after": -2533000000.0,
+   "capital_before": 92484500000.0,
+   "capital_after": 63266000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0720757930052867,
+   "roic_after": -0.09216671434701759,
+   "ebit_before": 5970000000,
+   "ebit_after": -5426000000.0,
+   "capital_before": 78688000000.0,
+   "capital_after": 55928000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.06956236036272835,
+   "roic_after": -0.1034091742260563,
+   "ebit_before": -5695000000,
+   "ebit_after": -8391000000.0,
+   "capital_before": 64676500000.0,
+   "capital_after": 64103500000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.028919525488938762,
+   "roic_after": 0.013175845684069331,
+   "ebit_before": 1522000000,
+   "ebit_after": 711000000.0,
+   "capital_before": 46785000000.0,
+   "capital_after": 47970500000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2706023889318553,
+   "roic_after": 0.08737603033627693,
+   "ebit_before": 10441000000,
+   "ebit_after": 3723000000.0,
+   "capital_before": 34911000000.0,
+   "capital_after": 38552500000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24400344492697854,
+   "roic_after": 0.15825181158455556,
+   "ebit_before": 7620000000,
+   "ebit_after": 5356000000.0,
+   "capital_before": 27286500000.0,
+   "capital_after": 29572000000.0
+  },
+  {
+   "ticker": "GE",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3575663026521061,
+   "roic_after": 0.2802452602550844,
+   "ebit_before": 10000000000,
+   "ebit_after": 8513000000.0,
+   "capital_before": 24037500000.0,
+   "capital_after": 26109000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.34673822382678543,
+   "roic_after": 0.13304771202333557,
+   "ebit_before": 8657000000,
+   "ebit_after": 8657000000.0,
+   "capital_before": 20100000000.0,
+   "capital_after": 52383000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2918430708439176,
+   "roic_after": 0.09155754075619091,
+   "ebit_before": 7755000000,
+   "ebit_after": 7755000000.0,
+   "capital_before": 15943500000.0,
+   "capital_after": 50820500000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4290873649098747,
+   "roic_after": 0.14070134460526382,
+   "ebit_before": 9152000000,
+   "ebit_after": 9152000000.0,
+   "capital_before": 16793500000.0,
+   "capital_after": 51214000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4202727657492892,
+   "roic_after": 0.15658794909193594,
+   "ebit_before": 10086000000,
+   "ebit_after": 10086000000.0,
+   "capital_before": 19991500000.0,
+   "capital_after": 53656000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4331212667634699,
+   "roic_after": 0.12867501273207219,
+   "ebit_before": 8997000000,
+   "ebit_after": 8997000000.0,
+   "capital_before": 16551500000.0,
+   "capital_after": 55712500000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6116157455315796,
+   "roic_after": 0.14497570525554268,
+   "ebit_before": 10308000000,
+   "ebit_after": 10308000000.0,
+   "capital_before": 13298500000.0,
+   "capital_after": 56103000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5912272341642667,
+   "roic_after": 0.16082777050600136,
+   "ebit_before": 10909000000,
+   "ebit_after": 10909000000.0,
+   "capital_before": 15112000000.0,
+   "capital_after": 55554000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2708356665170476,
+   "roic_after": 0.16804101010378958,
+   "ebit_before": 11311000000,
+   "ebit_after": 11311000000.0,
+   "capital_before": 34511500000.0,
+   "capital_after": 55623000000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.14939358884031348,
+   "roic_after": 0.142006029626535,
+   "ebit_before": 9992000000,
+   "ebit_after": 9992000000.0,
+   "capital_before": 54428000000.0,
+   "capital_after": 57259500000.0
+  },
+  {
+   "ticker": "KO",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.19246506066168442,
+   "roic_after": 0.18297307807070298,
+   "ebit_before": 13762000000,
+   "ebit_after": 13762000000.0,
+   "capital_before": 58716500000.0,
+   "capital_after": 61762500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.009978786511058095,
+   "roic_after": -0.008065152419243467,
+   "ebit_before": -1959000000,
+   "ebit_after": -1959000000.0,
+   "capital_before": 155090000000.0,
+   "capital_after": 191888500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.05759242586683549,
+   "roic_after": 0.04666735409362755,
+   "ebit_before": 9528000000,
+   "ebit_after": 9528000000.0,
+   "capital_before": 157166500000.0,
+   "capital_after": 193960000000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.08908485389886503,
+   "roic_after": 0.0802571960475368,
+   "ebit_before": 21323000000,
+   "ebit_after": 21323000000.0,
+   "capital_before": 172871500000.0,
+   "capital_after": 191886000000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.020976925051263865,
+   "roic_after": 0.020792038581585116,
+   "ebit_before": 6334000000,
+   "ebit_after": 6334000000.0,
+   "capital_before": 181170500000.0,
+   "capital_after": 182781500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.030237435627241363,
+   "roic_after": -0.029967995148738335,
+   "ebit_before": -6756000000,
+   "ebit_after": -6756000000.0,
+   "capital_before": 176511000000.0,
+   "capital_after": 178098000000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0924889711354868,
+   "roic_after": 0.09139177431859777,
+   "ebit_before": 22351000000,
+   "ebit_after": 22351000000.0,
+   "capital_before": 175212500000.0,
+   "capital_after": 177316000000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2124519399226571,
+   "roic_after": 0.20970839155721002,
+   "ebit_before": 50190000000,
+   "ebit_after": 50190000000.0,
+   "capital_before": 169346000000.0,
+   "capital_after": 171561500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.12633003773372,
+   "roic_after": 0.12471041722214453,
+   "ebit_before": 30053000000,
+   "ebit_after": 30053000000.0,
+   "capital_before": 172171500000.0,
+   "capital_after": 174407500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.10248200445963401,
+   "roic_after": 0.10164668525216307,
+   "ebit_before": 28100000000,
+   "ebit_after": 28100000000.0,
+   "capital_before": 176931500000.0,
+   "capital_after": 178385500000.0
+  },
+  {
+   "ticker": "CVX",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.06517945976852266,
+   "roic_after": 0.06414406658483826,
+   "ebit_before": 20960000000,
+   "ebit_after": 20960000000.0,
+   "capital_before": 203355500000.0,
+   "capital_after": 206638000000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2016,
+   "period_end": "2017-01-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3445278925163506,
+   "roic_after": 0.33732644974013726,
+   "ebit_before": 13427000000,
+   "ebit_after": 13427000000.0,
+   "capital_before": 24826000000.0,
+   "capital_after": 25356000000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2017,
+   "period_end": "2018-01-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.38527548874071216,
+   "roic_after": 0.3678900884274318,
+   "ebit_before": 14681000000,
+   "ebit_after": 14681000000.0,
+   "capital_before": 24007000000.0,
+   "capital_after": 25141500000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2018,
+   "period_end": "2019-02-03",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.49921743782144823,
+   "roic_after": 0.47053121779078266,
+   "ebit_before": 15530000000,
+   "ebit_after": 15530000000.0,
+   "capital_before": 23767500000.0,
+   "capital_after": 25216500000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2019,
+   "period_end": "2020-02-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4893675407571522,
+   "roic_after": 0.4675076117928553,
+   "ebit_before": 15843000000,
+   "ebit_after": 15843000000.0,
+   "capital_before": 24733500000.0,
+   "capital_after": 25890000000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2020,
+   "period_end": "2021-01-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.47843409493243666,
+   "roic_after": 0.4705192432362583,
+   "ebit_before": 18278000000,
+   "ebit_after": 18278000000.0,
+   "capital_before": 28951000000.0,
+   "capital_after": 29438000000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2021,
+   "period_end": "2022-01-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5149158272874801,
+   "roic_after": 0.5071571194704709,
+   "ebit_before": 23040000000,
+   "ebit_after": 23040000000.0,
+   "capital_before": 33827000000.0,
+   "capital_after": 34344500000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2022,
+   "period_end": "2023-01-29",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.47509887569094356,
+   "roic_after": 0.4687983140106293,
+   "ebit_before": 24039000000,
+   "ebit_after": 24039000000.0,
+   "capital_before": 38505000000.0,
+   "capital_after": 39022500000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2024,
+   "period_end": "2025-02-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3303093230841702,
+   "roic_after": 0.3292630240425339,
+   "ebit_before": 21526000000,
+   "ebit_after": 21526000000.0,
+   "capital_before": 49721500000.0,
+   "capital_after": 49879500000.0
+  },
+  {
+   "ticker": "HD",
+   "fiscal_year": 2025,
+   "period_end": "2026-02-01",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2632414802831874,
+   "roic_after": 0.2532200222093292,
+   "ebit_before": 20890000000,
+   "ebit_after": 20890000000.0,
+   "capital_before": 60390000000.0,
+   "capital_after": 62780000000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2016,
+   "period_end": "2016-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": 0.11486471737391597,
+   "ebit_before": 13441000000,
+   "ebit_after": 13441000000.0,
+   "capital_before": null,
+   "capital_after": 78014500000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2017,
+   "period_end": "2017-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.12940424562150935,
+   "roic_after": 0.1314906543244708,
+   "ebit_before": 13766000000,
+   "ebit_after": 13766000000.0,
+   "capital_before": 81801000000,
+   "capital_after": 73235000000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2018,
+   "period_end": "2018-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.12103205407107055,
+   "roic_after": 0.11992158376495549,
+   "ebit_before": 13363000000,
+   "ebit_after": 13363000000.0,
+   "capital_before": 81700500000.0,
+   "capital_after": 72276000000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2019,
+   "period_end": "2019-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0462571827054052,
+   "roic_after": 0.04713141450076233,
+   "ebit_before": 5487000000,
+   "ebit_after": 5487000000.0,
+   "capital_before": 77516000000.0,
+   "capital_after": 69851500000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2020,
+   "period_end": "2020-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.17872278518390483,
+   "roic_after": 0.187234558319661,
+   "ebit_before": 15706000000,
+   "ebit_after": 15706000000.0,
+   "capital_before": 69424500000.0,
+   "capital_after": 66400500000.0
+  },
+  {
+   "ticker": "PG",
+   "fiscal_year": 2021,
+   "period_end": "2021-06-30",
+   "fields": [
+    "roic",
+    "tax_rate",
+    "nopat"
+   ],
+   "roic_before": 0.2124367762818548,
+   "roic_after": 0.20776987040041067,
+   "ebit_before": 17986000000,
+   "ebit_after": 17986000000.0,
+   "capital_before": 66885500000.0,
+   "capital_after": 66885500000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07281293302540416,
+   "roic_after": 0.07545998985636886,
+   "ebit_before": 4659000000,
+   "ebit_after": 4848000000.0,
+   "capital_before": 54125000000.0,
+   "capital_after": 54345000000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07760246734829478,
+   "roic_after": 0.07130929117072304,
+   "ebit_before": 6521000000,
+   "ebit_after": 6021000000.0,
+   "capital_before": 50418500000.0,
+   "capital_after": 50661000000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13289842165688473,
+   "roic_after": 0.126201764293338,
+   "ebit_before": 8701000000,
+   "ebit_after": 8299000000.0,
+   "capital_before": 46599500000.0,
+   "capital_after": 46805000000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13228874153432285,
+   "roic_after": 0.1342803332446368,
+   "ebit_before": 7171000000,
+   "ebit_after": 7300000000.0,
+   "capital_before": 42377000000.0,
+   "capital_after": 42499500000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0995586665345968,
+   "roic_after": 0.08428894261064304,
+   "ebit_before": 5863000000,
+   "ebit_after": 4973000000.0,
+   "capital_before": 45430500000.0,
+   "capital_after": 45515000000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.22019100563038985,
+   "roic_after": 0.19862047284939038,
+   "ebit_before": 13879000000,
+   "ebit_after": 12538000000.0,
+   "capital_before": 56124000000.0,
+   "capital_after": 56207500000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24275014157569505,
+   "roic_after": 0.24997714887887518,
+   "ebit_before": 17406000000,
+   "ebit_after": 17945000000.0,
+   "capital_before": 63340000000.0,
+   "capital_after": 63413500000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0282253377043082,
+   "roic_after": 0.02187171072998576,
+   "ebit_before": 3035000000,
+   "ebit_after": 2355000000.0,
+   "capital_before": 64516500000.0,
+   "capital_after": 64604000000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.26944954097497625,
+   "roic_after": 0.25272105442974097,
+   "ebit_before": 21207000000,
+   "ebit_after": 19912000000.0,
+   "capital_before": 67639000000.0,
+   "capital_after": 67712500000.0
+  },
+  {
+   "ticker": "MRK",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24745421430314887,
+   "roic_after": 0.23404888696865583,
+   "ebit_before": 22424000000,
+   "ebit_after": 21218000000.0,
+   "capital_before": 78557500000.0,
+   "capital_after": 78590000000.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.07393588798924548,
+   "roic_after": 0.0825420545829037,
+   "ebit_before": 379793000,
+   "ebit_after": 379793000.0,
+   "capital_before": 3680996500.0,
+   "capital_after": 3297201000.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1346407153348912,
+   "roic_after": 0.13773885760488316,
+   "ebit_before": 838679000,
+   "ebit_after": 838679000.0,
+   "capital_before": 5917564000.0,
+   "capital_after": 5784461000.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.24453982298271085,
+   "roic_after": 0.2446903707071054,
+   "ebit_before": 6194509000,
+   "ebit_after": 6194509000.0,
+   "capital_before": 22191501000.0,
+   "capital_after": 22177847500.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1770876764120403,
+   "roic_after": 0.17725326209541087,
+   "ebit_before": 5632831000,
+   "ebit_after": 5632831000.0,
+   "capital_before": 27143182000.0,
+   "capital_after": 27117825500.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.21240041946308189,
+   "roic_after": 0.21249354085227112,
+   "ebit_before": 6954003000,
+   "ebit_after": 6954003000.0,
+   "capital_before": 28532856500.0,
+   "capital_after": 28520352500.0
+  },
+  {
+   "ticker": "NFLX",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.31008807163786684,
+   "roic_after": 0.3100965293458065,
+   "ebit_before": 10417614000,
+   "ebit_after": 10417614000.0,
+   "capital_before": 29368160000.0,
+   "capital_after": 29367359000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.15051606037169984,
+   "roic_after": 0.14221698060180962,
+   "ebit_before": 8221000000,
+   "ebit_after": 8221000000.0,
+   "capital_before": 41624500000.0,
+   "capital_after": 44053500000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.11626052906320276,
+   "roic_after": 0.10763749506085239,
+   "ebit_before": 8138000000,
+   "ebit_after": 8138000000.0,
+   "capital_before": 44363000000.0,
+   "capital_after": 47917000000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.02797277588721439,
+   "roic_after": 0.02608045325779037,
+   "ebit_before": 2877000000,
+   "ebit_after": 2877000000.0,
+   "capital_before": 61710000000.0,
+   "capital_after": 66187500000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.05725612563302471,
+   "roic_after": 0.05352406726221755,
+   "ebit_before": 4914000000,
+   "ebit_after": 4914000000.0,
+   "capital_before": 77122500000.0,
+   "capital_after": 82500000000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.017496482671293907,
+   "roic_after": -0.016717001422666324,
+   "ebit_before": -1889000000,
+   "ebit_after": -1889000000.0,
+   "capital_before": 85292000000.0,
+   "capital_after": 89269000000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.04398137542234227,
+   "roic_after": 0.043103540435195944,
+   "ebit_before": 5136000000,
+   "ebit_after": 5136000000.0,
+   "capital_before": 94742500000.0,
+   "capital_after": 96672000000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.04975030118748748,
+   "roic_after": 0.048797840598196876,
+   "ebit_before": 5504000000,
+   "ebit_after": 5504000000.0,
+   "capital_before": 96344500000.0,
+   "capital_after": 98225000000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.03268989255859946,
+   "roic_after": 0.031854238792285716,
+   "ebit_before": 3561000000,
+   "ebit_after": 3561000000.0,
+   "capital_before": 95983500000.0,
+   "capital_after": 98501500000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.05637826312006668,
+   "roic_after": 0.054347516490080044,
+   "ebit_before": 6538000000,
+   "ebit_after": 6538000000.0,
+   "capital_before": 93855500000.0,
+   "capital_after": 97362500000.0
+  },
+  {
+   "ticker": "RTX",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.08171332786274636,
+   "roic_after": 0.07775174574958096,
+   "ebit_before": 9300000000,
+   "ebit_after": 9300000000.0,
+   "capital_before": 92126500000.0,
+   "capital_after": 96820500000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2016,
+   "period_end": "2016-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.1422633085289067,
+   "roic_after": -0.4762100019160759,
+   "ebit_before": -157300000,
+   "ebit_after": -157300000.0,
+   "capital_before": 873500000.0,
+   "capital_after": 260950000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2017,
+   "period_end": "2017-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.21817606396268843,
+   "roic_after": -0.7668735362997658,
+   "ebit_before": -165800000,
+   "ebit_after": -165800000.0,
+   "capital_before": 600350000.0,
+   "capital_after": 170800000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2018,
+   "period_end": "2018-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.21453739900964294,
+   "roic_after": null,
+   "ebit_before": -104200000,
+   "ebit_after": -104200000.0,
+   "capital_before": 383700000.0,
+   "capital_after": -323000000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2019,
+   "period_end": "2019-07-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.1940036314117113,
+   "roic_after": -0.2004643527204503,
+   "ebit_before": -54100000,
+   "ebit_after": -54100000.0,
+   "capital_before": 220300000.0,
+   "capital_after": 213200000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2021,
+   "period_end": "2021-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.16257630100832374,
+   "roic_after": -0.34381252236135956,
+   "ebit_before": -304100000,
+   "ebit_after": -304100000.0,
+   "capital_before": 1477700000.0,
+   "capital_after": 698750000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2022,
+   "period_end": "2022-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.04627450980392157,
+   "roic_after": -0.24618634975654038,
+   "ebit_before": -188800000,
+   "ebit_after": -188800000.0,
+   "capital_before": 3223200000.0,
+   "capital_after": 605850000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2023,
+   "period_end": "2023-07-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.08272239845287337,
+   "roic_after": 0.3753796017673298,
+   "ebit_before": 387300000,
+   "ebit_after": 387300000.0,
+   "capital_before": 3635250000.0,
+   "capital_after": 801100000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2024,
+   "period_end": "2024-07-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.18842405962704098,
+   "roic_after": 0.32982260233992333,
+   "ebit_before": 683900000,
+   "ebit_after": 684000000.0,
+   "capital_before": 3448100000.0,
+   "capital_after": 1970150000.0
+  },
+  {
+   "ticker": "PANW",
+   "fiscal_year": 2025,
+   "period_end": "2025-07-31",
+   "fields": [
+    "roic",
+    "ebit",
+    "tax_rate",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.20840049486463488,
+   "roic_after": 0.23518965981207812,
+   "ebit_before": 1242900000,
+   "ebit_after": 1243000000.0,
+   "capital_before": 4238000000.0,
+   "capital_after": 3755200000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8284007718446293,
+   "roic_after": 0.5714655660687955,
+   "ebit_before": 10903000000,
+   "ebit_after": 10903000000.0,
+   "capital_before": 9490500000.0,
+   "capital_after": 13757500000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.6659893611923132,
+   "roic_after": 0.4696586684690774,
+   "ebit_before": 11581000000,
+   "ebit_after": 11581000000.0,
+   "capital_before": 10433500000.0,
+   "capital_after": 14795000000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.8790895883932808,
+   "roic_after": 0.5829530578354593,
+   "ebit_before": 11377000000,
+   "ebit_after": 11377000000.0,
+   "capital_before": 9976500000.0,
+   "capital_after": 15044500000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.9396167156701485,
+   "roic_after": 0.5573508913541839,
+   "ebit_before": 10531000000,
+   "ebit_after": 10531000000.0,
+   "capital_before": 8604500000.0,
+   "capital_after": 14506000000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.0672077576654535,
+   "roic_after": 0.6477016667490333,
+   "ebit_before": 11668000000,
+   "ebit_after": 11668000000.0,
+   "capital_before": 8560500000.0,
+   "capital_after": 14105000000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 1.0691853118968302,
+   "roic_after": 0.7060784123644922,
+   "ebit_before": 12975000000,
+   "ebit_after": 12975000000.0,
+   "capital_before": 9485500000.0,
+   "capital_after": 14363500000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.510086992168078,
+   "roic_after": 0.4058535999852525,
+   "ebit_before": 12246000000,
+   "ebit_after": 12246000000.0,
+   "capital_before": 19377000000.0,
+   "capital_after": 24353500000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3132118066549231,
+   "roic_after": 0.25995381715676535,
+   "ebit_before": 11556000000,
+   "ebit_after": 11556000000.0,
+   "capital_before": 28637000000.0,
+   "capital_after": 34504000000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.36507173441462915,
+   "roic_after": 0.301064872843008,
+   "ebit_before": 13402000000,
+   "ebit_after": 13402000000.0,
+   "capital_before": 27631500000.0,
+   "capital_after": 33506000000.0
+  },
+  {
+   "ticker": "PM",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4211665233773147,
+   "roic_after": 0.35400460487534474,
+   "ebit_before": 14892000000,
+   "ebit_after": 14892000000.0,
+   "capital_before": 28386500000.0,
+   "capital_after": 33772000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2016,
+   "period_end": "2017-02-03",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.06097135660541867,
+   "roic_after": -0.07635390970963236,
+   "ebit_before": -2390000000,
+   "ebit_after": -3252000000.0,
+   "capital_before": 30967000000.0,
+   "capital_after": 33647000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2017,
+   "period_end": "2018-02-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.037937586960842776,
+   "roic_after": -0.03416032788645679,
+   "ebit_before": -2416000000,
+   "ebit_after": -2416000000.0,
+   "capital_before": 50310000000.0,
+   "capital_after": 55873000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2018,
+   "period_end": "2019-02-01",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.0035278989022807777,
+   "roic_after": -0.0031392905440549256,
+   "ebit_before": -191000000,
+   "ebit_after": -191000000.0,
+   "capital_before": 42770500000.0,
+   "capital_after": 48065000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2019,
+   "period_end": "2020-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.04716477416098915,
+   "roic_after": null,
+   "ebit_before": 2366000000,
+   "ebit_after": 2366000000.0,
+   "capital_before": 39630000000.0,
+   "capital_after": 44406000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2020,
+   "period_end": "2021-01-29",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.09542338462377169,
+   "roic_after": 0.08551345937759539,
+   "ebit_before": 3685000000,
+   "ebit_after": 3685000000.0,
+   "capital_before": 36686500000.0,
+   "capital_after": 40938000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2021,
+   "period_end": "2022-01-28",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1620235768215808,
+   "roic_after": 0.1552952487572618,
+   "ebit_before": 4659000000,
+   "ebit_after": 4659000000.0,
+   "capital_before": 23992500000.0,
+   "capital_after": 25032000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2022,
+   "period_end": "2023-02-03",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.25758911987365063,
+   "roic_after": 0.28463965694244303,
+   "ebit_before": 5771000000,
+   "ebit_after": 5771000000.0,
+   "capital_before": 16825500000.0,
+   "capital_after": 15226500000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2023,
+   "period_end": "2024-02-02",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.26061721480736194,
+   "roic_after": 0.2857015800364847,
+   "ebit_before": 5411000000,
+   "ebit_after": 5411000000.0,
+   "capital_before": 17130000000.0,
+   "capital_after": 15626000000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2024,
+   "period_end": "2025-01-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.315389265809504,
+   "roic_after": 0.34324898603855586,
+   "ebit_before": 6237000000,
+   "ebit_after": 6237000000.0,
+   "capital_before": 17926500000.0,
+   "capital_after": 16471500000.0
+  },
+  {
+   "ticker": "DELL",
+   "fiscal_year": 2025,
+   "period_end": "2026-01-30",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.3604254518922455,
+   "roic_after": 0.39348468112908297,
+   "ebit_before": 8149000000,
+   "ebit_after": 8149000000.0,
+   "capital_before": 18478500000.0,
+   "capital_after": 16926000000.0
+  },
+  {
+   "ticker": "GEV",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": null,
+   "roic_after": -0.23857337526205452,
+   "ebit_before": -2881000000,
+   "ebit_after": -2881000000.0,
+   "capital_before": null,
+   "capital_after": 9540000000.0
+  },
+  {
+   "ticker": "GEV",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": -0.1685942196531792,
+   "roic_after": -0.08830931330991885,
+   "ebit_before": -923000000,
+   "ebit_after": -923000000.0,
+   "capital_before": 4325000000,
+   "capital_after": 8257000000.0
+  },
+  {
+   "ticker": "GEV",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.08680075612239385,
+   "roic_after": 0.06239668023954294,
+   "ebit_before": 471000000,
+   "ebit_after": 471000000.0,
+   "capital_before": 3386500000.0,
+   "capital_after": 4711000000.0
+  },
+  {
+   "ticker": "GEV",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4425574760865917,
+   "roic_after": 0.42208706786171574,
+   "ebit_before": 1388000000,
+   "ebit_after": 1388000000.0,
+   "capital_before": 2979500000.0,
+   "capital_after": 3124000000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2016,
+   "period_end": "2016-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2594855796424375,
+   "roic_after": 0.624720710865556,
+   "ebit_before": 858192000,
+   "ebit_after": 943945000.0,
+   "capital_before": 2714686500.0,
+   "capital_after": 1240250000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2017,
+   "period_end": "2017-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.30908515631883754,
+   "roic_after": 0.8070096707999566,
+   "ebit_before": 1173246000,
+   "ebit_after": 1275900000.0,
+   "capital_before": 2996184000.0,
+   "capital_after": 1247945000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2018,
+   "period_end": "2018-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.40336076017898137,
+   "roic_after": 0.830684903340309,
+   "ebit_before": 1455931000,
+   "ebit_after": 1535195000.0,
+   "capital_before": 2165700500.0,
+   "capital_after": 1108864500.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2019,
+   "period_end": "2019-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4218562158896038,
+   "roic_after": 0.4420926405853845,
+   "ebit_before": 1296231000,
+   "ebit_after": 1301981000.0,
+   "capital_before": 2785349500.0,
+   "capital_after": 2669642500.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2020,
+   "period_end": "2020-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.2777921942228186,
+   "roic_after": 0.2853986733930995,
+   "ebit_before": 1316711000,
+   "ebit_after": 1319389000.0,
+   "capital_before": 4373863000.0,
+   "capital_after": 4265949000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2021,
+   "period_end": "2021-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.4364034325269925,
+   "roic_after": 0.4294669942660146,
+   "ebit_before": 2360454000,
+   "ebit_after": 2331152000.0,
+   "capital_before": 4760166500.0,
+   "capital_after": 4777003500.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2022,
+   "period_end": "2022-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5855162835501388,
+   "roic_after": 0.559783143159296,
+   "ebit_before": 3649576000,
+   "ebit_after": 3493842000.0,
+   "capital_before": 5921436000.0,
+   "capital_after": 5929349500.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2023,
+   "period_end": "2023-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.5468352781784991,
+   "roic_after": 0.4931657137783704,
+   "ebit_before": 4086130000,
+   "ebit_after": 3684470000.0,
+   "capital_before": 6679892500.0,
+   "capital_after": 6678762000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2024,
+   "period_end": "2024-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.4067879899725882,
+   "roic_after": 0.3584589810147777,
+   "ebit_before": 3501285000,
+   "ebit_after": 3085310000.0,
+   "capital_before": 7451979000.0,
+   "capital_after": 7451979000.0
+  },
+  {
+   "ticker": "KLAC",
+   "fiscal_year": 2025,
+   "period_end": "2025-06-30",
+   "fields": [
+    "roic",
+    "ebit",
+    "nopat"
+   ],
+   "roic_before": 0.5237431220283274,
+   "roic_after": 0.48143520333850576,
+   "ebit_before": 4946614000,
+   "ebit_after": 4547027000.0,
+   "capital_before": 8259568000.0,
+   "capital_after": 8259568000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2016,
+   "period_end": "2016-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.28942512253317504,
+   "roic_after": 0.2508761920286902,
+   "ebit_before": 12960000000,
+   "ebit_after": 12960000000.0,
+   "capital_before": 42539500000.0,
+   "capital_after": 49076000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2017,
+   "period_end": "2017-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.16033182839223362,
+   "roic_after": 0.13863194938558873,
+   "ebit_before": 12015000000,
+   "ebit_after": 12015000000.0,
+   "capital_before": 44963000000.0,
+   "capital_after": 52001000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2018,
+   "period_end": "2018-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.19440302681406066,
+   "roic_after": 0.18067919100526572,
+   "ebit_before": 12065000000,
+   "ebit_after": 12065000000.0,
+   "capital_before": 47731000000.0,
+   "capital_after": 51356500000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2019,
+   "period_end": "2019-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.1294597674585402,
+   "roic_after": 0.12188442550381898,
+   "ebit_before": 8550000000,
+   "ebit_after": 8550000000.0,
+   "capital_before": 62741500000.0,
+   "capital_after": 66641000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2020,
+   "period_end": "2020-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.05128169270141385,
+   "roic_after": 0.04647773074095668,
+   "ebit_before": 3860000000,
+   "ebit_after": 3860000000.0,
+   "capital_before": 71507000000.0,
+   "capital_after": 78898000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2021,
+   "period_end": "2021-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0861851518202533,
+   "roic_after": 0.07793964620187305,
+   "ebit_before": 5992000000,
+   "ebit_after": 5992000000.0,
+   "capital_before": 66048500000.0,
+   "capital_after": 73036000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2022,
+   "period_end": "2022-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.0349467284936648,
+   "roic_after": 0.03204288690285747,
+   "ebit_before": 2372000000,
+   "ebit_after": 2372000000.0,
+   "capital_before": 64481000000.0,
+   "capital_after": 70324500000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2023,
+   "period_end": "2023-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.13591201219939192,
+   "roic_after": 0.12509171579150366,
+   "ebit_before": 10297000000,
+   "ebit_after": 10297000000.0,
+   "capital_before": 65509500000.0,
+   "capital_after": 71176000000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2024,
+   "period_end": "2024-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.10619747664594886,
+   "roic_after": 0.0977232096989623,
+   "ebit_before": 7509000000,
+   "ebit_after": 7509000000.0,
+   "capital_before": 67172500000.0,
+   "capital_after": 72997500000.0
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2025,
+   "period_end": "2025-12-31",
+   "fields": [
+    "roic",
+    "invested_capital",
+    "invested_capital_avg"
+   ],
+   "roic_before": 0.15673779380305947,
+   "roic_after": 0.145336992795434,
+   "ebit_before": 12263000000,
+   "ebit_after": 12263000000.0,
+   "capital_before": 74327000000.0,
+   "capital_after": 80157500000.0
+  }
+ ],
+ "untouched": [
+  "BRK-B: 금융업 — 양쪽 모두 ROIC 비산출",
+  "JPM: 금융업 — 양쪽 모두 ROIC 비산출",
+  "BAC: 금융업 — 양쪽 모두 ROIC 비산출",
+  "UNH: 금융업 — 양쪽 모두 ROIC 비산출",
+  "MS: 금융업 — 양쪽 모두 ROIC 비산출",
+  "GS: 금융업 — 양쪽 모두 ROIC 비산출",
+  "WFC: 금융업 — 양쪽 모두 ROIC 비산출",
+  "AXP: 금융업 — 양쪽 모두 ROIC 비산출",
+  "C: 금융업 — 양쪽 모두 ROIC 비산출"
+ ],
+ "net_cash_errors_flagged": [
+  {
+   "ticker": "AAPL",
+   "fiscal_year": 2025,
+   "net_cash_in_study": -35981000000,
+   "net_cash_recomputed": -43960000000.0,
+   "error": 7979000000.0,
+   "market_cap": 4554958575780.0,
+   "error_vs_market_cap": 0.0017517173575247412
+  },
+  {
+   "ticker": "MSFT",
+   "fiscal_year": 2025,
+   "net_cash_in_study": 36549000000,
+   "net_cash_recomputed": 51414000000.0,
+   "error": -14865000000.0,
+   "market_cap": 3757771551175.46,
+   "error_vs_market_cap": -0.003955801942071256
+  },
+  {
+   "ticker": "ABBV",
+   "fiscal_year": 2025,
+   "net_cash_in_study": -56183000000,
+   "net_cash_recomputed": -62239000000.0,
+   "error": 6056000000.0,
+   "market_cap": 438452869905.64,
+   "error_vs_market_cap": 0.013812202897208357
+  },
+  {
+   "ticker": "ORCL",
+   "fiscal_year": 2025,
+   "net_cash_in_study": 24695000000,
+   "net_cash_recomputed": -81365000000.0,
+   "error": 106060000000.0,
+   "market_cap": 435095144550.00006,
+   "error_vs_market_cap": 0.2437627754032816
+  },
+  {
+   "ticker": "IBM",
+   "fiscal_year": 2025,
+   "net_cash_in_study": -47673000000,
+   "net_cash_recomputed": -54097000000.0,
+   "error": 6424000000.0,
+   "market_cap": 221666910009.24,
+   "error_vs_market_cap": 0.028980419313519645
+  }
+ ]
+}

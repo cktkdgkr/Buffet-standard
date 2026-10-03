@@ -1,0 +1,54 @@
+{
+ "tolerance": 0.02,
+ "routes": [
+  {
+   "route": "B  매출총이익 − 영업비용",
+   "tested": 228,
+   "matched": 228,
+   "accuracy": 1.0,
+   "median_error": 0.0
+  },
+  {
+   "route": "D  매출 − 매출원가 − 영업비용",
+   "tested": 241,
+   "matched": 228,
+   "accuracy": 0.946058091286307,
+   "median_error": 0.0
+  },
+  {
+   "route": "C  매출 − 총비용",
+   "tested": 176,
+   "matched": 151,
+   "accuracy": 0.8579545454545454,
+   "median_error": 0.0
+  },
+  {
+   "route": "F  세전이익 − 영업외수익",
+   "tested": 477,
+   "matched": 240,
+   "accuracy": 0.5031446540880503,
+   "median_error": 0.017362901839436135
+  },
+  {
+   "route": "E  매출총이익 − R&D − 판관비",
+   "tested": 341,
+   "matched": 160,
+   "accuracy": 0.46920821114369504,
+   "median_error": 0.035024820739106455
+  },
+  {
+   "route": "G  세전이익 + 이자비용 − 이자·투자수익",
+   "tested": 501,
+   "matched": 211,
+   "accuracy": 0.42115768463073855,
+   "median_error": 0.02869757174392936
+  },
+  {
+   "route": "H  세전이익 + 이자비용 (감사에서 기각된 방식)",
+   "tested": 501,
+   "matched": 164,
+   "accuracy": 0.3273453093812375,
+   "median_error": 0.03694984646878199
+  }
+ ]
+}

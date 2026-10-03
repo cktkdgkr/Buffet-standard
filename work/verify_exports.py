@@ -285,10 +285,17 @@ class Evaluator:
             return not self.truth(args[0])
         if name == "ISNUMBER":
             return isinstance(args[0], (int, float)) and not isinstance(args[0], bool)
+        # Excel's MIN and MAX skip text and blanks inside a range rather than
+        # erroring, which matters here because a company with no figure for a
+        # year shows a dash.
         if name == "MIN":
-            return min(self.num(a) for a in flat if a not in (None, ""))
+            vals = [self.num(a) for a in flat
+                    if isinstance(a, (int, float)) and not isinstance(a, bool)]
+            return min(vals) if vals else 0.0
         if name == "MAX":
-            return max(self.num(a) for a in flat if a not in (None, ""))
+            vals = [self.num(a) for a in flat
+                    if isinstance(a, (int, float)) and not isinstance(a, bool)]
+            return max(vals) if vals else 0.0
         if name == "N":
             v = args[0]
             return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else 0.0
@@ -297,6 +304,37 @@ class Evaluator:
         if name == "AVERAGE":
             vals = [self.num(a) for a in flat if isinstance(a, (int, float))]
             return sum(vals) / len(vals) if vals else 0.0
+        if name == "MEDIAN":
+            vals = sorted(self.num(a) for a in flat
+                          if isinstance(a, (int, float))
+                          and not isinstance(a, bool))
+            if not vals:
+                raise ValueError("#NUM! - MEDIAN of nothing")
+            mid = len(vals) // 2
+            return (vals[mid] if len(vals) % 2
+                    else (vals[mid - 1] + vals[mid]) / 2)
+        if name == "COUNT":
+            return float(sum(1 for a in flat
+                             if isinstance(a, (int, float))
+                             and not isinstance(a, bool)))
+        if name == "COUNTIF":
+            # Only the comparison criteria this workbook uses.
+            crit = args[-1]
+            rng = flat[:-1] if not isinstance(args[0], list) else args[0]
+            if not isinstance(crit, str):
+                raise ValueError("COUNTIF criterion must be text here")
+            for op in (">=", "<=", "<>", ">", "<", "="):
+                if crit.startswith(op):
+                    bound = float(crit[len(op):])
+                    break
+            else:
+                raise ValueError(f"unsupported COUNTIF criterion {crit!r}")
+            tests = {">": lambda v: v > bound, "<": lambda v: v < bound,
+                     ">=": lambda v: v >= bound, "<=": lambda v: v <= bound,
+                     "=": lambda v: v == bound, "<>": lambda v: v != bound}
+            return float(sum(1 for a in rng
+                             if isinstance(a, (int, float))
+                             and not isinstance(a, bool) and tests[op](a)))
         if name == "ROUND":
             n, d = self.num(args[0]), int(self.num(args[1]))
             # Excel rounds half away from zero; Python rounds half to even.
