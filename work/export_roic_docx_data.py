@@ -11,6 +11,8 @@ import json
 import os
 import statistics
 
+import company_names as cn
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "roic", "roic_report.json")
 
@@ -61,6 +63,26 @@ low_years = len(D["low_confidence_years"])
 thin_capital = sum(x["years_capital_too_small"] for x in rank)
 orcl = next(n for n in C["net_cash_errors_flagged"] if n["ticker"] == "ORCL")
 
+def window(comp):
+    return [y for y in comp["years"] if 2016 <= y["fiscal_year"] <= 2025]
+
+
+# Companies with no reported operating-income subtotal in any year of the
+# window, taken from the engine's own record rather than listed by hand - a
+# hand-written list goes stale the moment a company starts or stops filing the
+# line. Keying off the LOW confidence flag instead would have missed KLA, which
+# files no subtotal but whose rebuild passes the pretax reconciliation in six
+# of its ten years and so is not flagged.
+def summ_median(t):
+    return next((x["roic_median"] for x in rank if x["ticker"] == t), None)
+
+
+no_subtotal = sorted(
+    (c["ticker"] for c in D["companies"] if not c["is_financial"]
+     and not any(y["operating_income_route"] == "reported"
+                 for y in window(c))),
+    key=lambda t: -(summ_median(t) or -1))
+
 blocks = []
 add = blocks.append
 
@@ -85,7 +107,8 @@ add({"t": "p",
              f"오류 {C['company_years_changed']}건을 찾아 바로잡은 것**입니다. "
              f"가장 큰 원인은 1차 조사가 공시된 장기차입금을 "
              f"{len(G['old_missed_long_term_debt'])}개 기업-연도에서 누락한 "
-             "것으로, 오라클 10년, 코카콜라 7년, 브로드컴 4년, 비자 3년이 "
+             "것으로, 오라클(ORCL) 10년, 코카콜라(KO) 7년, "
+             "브로드컴(AVGO) 4년, 비자(V) 3년이 "
              "여기에 걸립니다. 오라클 FY2024 ROIC가 761%로 나왔던 이유입니다."})
 add({"t": "p",
      "text": "그리고 이 오류는 ROIC에서 멈추지 않았습니다. 1차 조사는 "
@@ -96,7 +119,30 @@ add({"t": "p",
              f"{pct(orcl['error_vs_market_cap'], 0)}에 해당합니다. "
              "DCF 재계산은 이번 범위가 아니므로 표시만 해두었습니다."})
 
-add({"t": "h2", "text": "1. 왜 별도로 다시 조사했는지"})
+add({"t": "h2", "text": "1. 기업 목록"})
+add({"t": "p",
+     "text": "이후 표에서는 자리 폭 때문에 한글명과 티커만 적습니다. "
+             "영문 정식 명칭과 참고사항은 이 표에서 확인하실 수 있습니다. "
+             "SEC가 돌려주는 이름은 등록명(예: COSTCO WHOLESALE CORP /NEW, "
+             "APPLIED MATERIALS INC /DE)이라 그대로 쓰지 않았고, "
+             "엑셀의 '계산 명세' 시트에는 추적을 위해 등록명을 그대로 "
+             "남겨두었습니다."})
+roster_groups = [
+    ("ROIC 순위 대상 (비금융, 산출 5년 이상)",
+     [x["ticker"] for x in rank]),
+    ("표본 부족 (산출 5년 미만)", [x["ticker"] for x in D["thin_sample"]]),
+    ("금융업 — ROIC 미산출",
+     [c["ticker"] for c in D["companies"] if c["is_financial"]]),
+]
+for group_label, tickers in roster_groups:
+    add({"t": "h3", "text": f"{group_label} — {len(tickers)}곳"})
+    add({"t": "table",
+         "headers": ["티커", "한글명", "영문 정식 명칭", "비고"],
+         "widths": [9, 21, 36, 34],
+         "rows": [[t, cn.korean(t), cn.english(t), cn.note(t) or "—"]
+                  for t in tickers]})
+
+add({"t": "h2", "text": "2. 왜 별도로 다시 조사했는지"})
 add({"t": "p",
      "text": "ROIC가 WACC를 넘는지가 기업가치 성장의 핵심이라는 판단에 "
              "동의합니다. 그렇다면 ROIC 숫자 자체가 맞는지가 결론 전체를 "
@@ -116,7 +162,7 @@ add({"t": "p",
      "text": "정의가 같고 경로만 다르면, 두 결과가 어긋날 때 **어느 한쪽이 "
              "틀렸다**는 뜻이 됩니다. 그 점이 이번 조사의 목적이었습니다."})
 
-add({"t": "h2", "text": "2. 두 조사를 맞춰본 결과"})
+add({"t": "h2", "text": "3. 두 조사를 맞춰본 결과"})
 add({"t": "table",
      "headers": ["구분", "건수", "비중"],
      "rows": [
@@ -139,14 +185,15 @@ add({"t": "p",
              f"{R['cause_tally'].get('투하자본(분모)', 0)}건이 분모 문제였고, "
              f"분자 문제는 {R['cause_tally'].get('영업이익(분자)', 0)}건입니다."})
 
-add({"t": "h2", "text": "3. 어느 쪽이 틀렸는지 — 판단이 필요 없는 검정"})
+add({"t": "h2", "text": "4. 어느 쪽이 틀렸는지 — 판단이 필요 없는 검정"})
 add({"t": "p",
      "text": "분모가 다르다는 것만으로는 어느 쪽이 맞는지 알 수 없습니다. "
              "그래서 판단이 끼어들 여지가 없는 검정을 했습니다. "
              "**10-K에 장기차입금 태그가 있는 기업은 장기차입금이 있었던 "
              "것이고, 그걸 0으로 기록한 조사는 틀린 것**입니다."})
 add({"t": "table",
-     "headers": ["기업", "누락 연수", "공시 장기차입금(최대, 십억$)",
+     "headers": ["기업", "티커", "누락 연수",
+                 "공시 장기차입금(최대, 십억$)",
                  "1차 조사 총차입금", "재산출 총차입금"],
      "rows": []})
 tally = {}
@@ -159,8 +206,8 @@ for m in G["old_missed_long_term_debt"]:
         cur["old"] = m["old_total_debt"]
         cur["new"] = m["new_total_debt"] or 0
 for tk, v in sorted(tally.items(), key=lambda kv: -kv[1]["filed"]):
-    blocks[-1]["rows"].append([tk, f"{v['n']}년", bn(v["filed"]),
-                               bn(v["old"]), bn(v["new"])])
+    blocks[-1]["rows"].append([cn.korean(tk), tk, f"{v['n']}년",
+                               bn(v["filed"]), bn(v["old"]), bn(v["new"])])
 add({"t": "p",
      "text": "오라클은 10년 전부가 여기에 해당합니다. 1차 조사는 오라클의 "
              "투하자본을 12.6십억 달러로 잡았는데, 그 해 공시된 차입금만 "
@@ -172,7 +219,7 @@ add({"t": "p",
              "분모를 과대하게 잡아 **ROIC를 낮게** 보고 있었습니다. "
              "오류가 한쪽으로만 기울지 않았다는 뜻입니다."})
 
-add({"t": "h2", "text": "4. 재조사 쪽에서도 발견된 오류"})
+add({"t": "h2", "text": "5. 재조사 쪽에서도 발견된 오류"})
 add({"t": "p",
      "text": "재조사가 1차 조사보다 낫다는 결론은 검증을 거친 뒤에야 "
              "말할 수 있습니다. 실제로 재조사 과정에서 제 쪽 오류를 여섯 건 "
@@ -208,9 +255,10 @@ add({"t": "p",
              "거대한 매출에 얇은 자본을 쓰는 건 자료 문제가 아니라 사업의 "
              "성격이므로, 제외가 아니라 표시로 바꿨습니다."})
 
-add({"t": "h2", "text": "5. 영업이익 소계를 보고하지 않는 기업"})
+add({"t": "h2", "text": "6. 영업이익 소계를 보고하지 않는 기업"})
 add({"t": "p",
-     "text": "일라이릴리·머크·J&J·IBM·KLA·엑슨·셰브론·GE는 손익계산서에 "
+     "text": f"{cn.joined(no_subtotal)} — 이 "
+             f"{len(no_subtotal)}곳은 손익계산서에 "
              "영업이익 소계가 없습니다. 분자를 만들어야 하는데, 어떻게 "
              "만들지는 주장이 아니라 측정으로 정했습니다. 소계를 보고하는 "
              "기업-연도에서 각 구성 방식을 보고치와 맞춰봤습니다."})
@@ -249,20 +297,21 @@ add({"t": "p",
              "10% 문턱 판정은 97% 정확합니다. 그래서 이 여덟 기업을 "
              "버리지 않고 추정값으로 포함했고, 두 가지 추정 방식을 모두 "
              "계산해 판정이 일치하는지 기업-연도마다 기록했습니다. "
-             f"해당 연도는 {low_years}건이며 표에서 별표(*)로 "
-             "표시했습니다."})
+             f"해당 연도는 {low_years}건(금융업 포함)이며 표에서 "
+             "별표(*)로 표시했습니다."})
 add({"t": "p",
      "text": "다만 경로 선택에는 함정이 하나 더 있었습니다. 경로 C의 "
              "85.8%라는 정확도는 소계를 보고하는 기업에서만 측정된 값이라, "
              "소계를 보고하지 않는 기업에 그대로 적용되지 않습니다. 실제로 "
-             "GE에 적용하자 FY2016 영업이익이 −6.4십억 달러로 나왔습니다 "
+             "제너럴 일렉트릭(GE)에 적용하자 FY2016 영업이익이 "
+             "−6.4십억 달러로 나왔습니다 "
              "(Revenues 태그는 산업부문만, CostsAndExpenses는 그룹 전체를 "
              "담고 있었습니다). 그래서 모든 상향식 구성값은 **세전이익으로 "
              "역검증**을 통과해야만 쓰도록 했고, 경로 선택은 연도별이 아니라 "
              "기업별로 한 번만 하도록 바꿨습니다 — 연도마다 다른 경로를 쓰면 "
              "10년 추세가 사업이 아니라 경로를 측정하게 되기 때문입니다."})
 
-add({"t": "h2", "text": "6. ROIC 연도별 — vs WACC 10%"})
+add({"t": "h2", "text": "7. ROIC 연도별 — vs WACC 10%"})
 add({"t": "note",
      "text": "굵은 음영 없음 = 10% 초과. 괄호는 10% 이하. "
              "* = 영업이익을 세전이익에서 추정한 해. "
@@ -279,54 +328,60 @@ for i, entry in enumerate(rank, 1):
         else:
             s = f"{v * 100:.0f}{flag(comp, fy)}"
             cells.append(s if v > WACC else f"({s})")
-    rows.append([str(i), entry["ticker"]] + cells +
+    rows.append([str(i), cn.korean(entry["ticker"]), entry["ticker"]] +
+                cells +
                 [f"{entry['roic_median'] * 100:.0f}",
                  f"{entry['years_above_wacc']}/{entry['years_usable']}"])
 add({"t": "table",
-     "headers": ["순위", "티커"] + [str(y)[2:] for y in YEARS] +
+     "headers": ["순위", "기업", "티커"] + [str(y)[2:] for y in YEARS] +
                 ["중위", "초과"],
+     # Portrait Letter with 0.75in margins leaves 7in of table. The year
+     # columns are the ones that can shrink; the name column cannot, or the
+     # table stops being readable, which is the whole point of adding it.
+     "widths": [4.5, 15, 7] + [4.9] * len(YEARS) + [6, 6.5],
      "rows": rows})
 
-add({"t": "h2", "text": "7. ROIC − 10% 스프레드 (중위 기준)"})
+add({"t": "h2", "text": "8. ROIC − 10% 스프레드 (중위 기준)"})
 add({"t": "table",
      "headers": ["구간", "기업", "기업 수"],
      "rows": [
-         ["+40%p 이상", ", ".join(x["ticker"] for x in rank
-                               if x["spread_median"] >= 0.40),
+         ["+40%p 이상", cn.joined([x["ticker"] for x in rank
+                                 if x["spread_median"] >= 0.40]),
           str(sum(1 for x in rank if x["spread_median"] >= 0.40))],
-         ["+20~40%p", ", ".join(x["ticker"] for x in rank
-                                if 0.20 <= x["spread_median"] < 0.40),
+         ["+20~40%p", cn.joined([x["ticker"] for x in rank
+                                  if 0.20 <= x["spread_median"] < 0.40]),
           str(sum(1 for x in rank if 0.20 <= x["spread_median"] < 0.40))],
-         ["+10~20%p", ", ".join(x["ticker"] for x in rank
-                                if 0.10 <= x["spread_median"] < 0.20),
+         ["+10~20%p", cn.joined([x["ticker"] for x in rank
+                                  if 0.10 <= x["spread_median"] < 0.20]),
           str(sum(1 for x in rank if 0.10 <= x["spread_median"] < 0.20))],
-         ["0~+10%p", ", ".join(x["ticker"] for x in rank
-                               if 0 <= x["spread_median"] < 0.10),
+         ["0~+10%p", cn.joined([x["ticker"] for x in rank
+                                 if 0 <= x["spread_median"] < 0.10]),
           str(sum(1 for x in rank if 0 <= x["spread_median"] < 0.10))],
-         ["음수 (10% 미달)", ", ".join(x["ticker"] for x in rank
-                                  if x["spread_median"] < 0),
+         ["음수 (10% 미달)", cn.joined([x["ticker"] for x in rank
+                                    if x["spread_median"] < 0]),
           str(sum(1 for x in rank if x["spread_median"] < 0))],
      ]})
 add({"t": "p",
      "text": "스프레드의 크기보다 **꾸준함**이 중요합니다. 중위 ROIC가 "
              "높아도 변동이 크면 어느 해에 자본을 투입했는지에 따라 결과가 "
              "갈리기 때문입니다. 10년 전부 10%를 넘긴 "
-             f"{len(all_above)}곳이 그 조건을 만족합니다: "
-             f"{', '.join(x['ticker'] for x in all_above)}."})
+             f"{len(all_above)}곳이 그 조건을 만족합니다."})
 add({"t": "table",
-     "headers": ["기업", "중위 ROIC", "최소", "최대", "표준편차",
+     "headers": ["기업", "티커", "중위 ROIC", "최소", "최대", "표준편차",
                  "분자 추정 연수"],
-     "rows": [[x["ticker"], pct(x["roic_median"], 0), pct(x["roic_min"], 0),
+     "rows": [[cn.korean(x["ticker"]), x["ticker"],
+               pct(x["roic_median"], 0), pct(x["roic_min"], 0),
                pct(x["roic_max"], 0), pct(x["roic_stdev"], 0),
                str(x["years_estimated_numerator"])]
               for x in all_above]})
 
-add({"t": "h2", "text": "8. 비율로 읽으면 안 되는 기업"})
+add({"t": "h2", "text": "9. 비율로 읽으면 안 되는 기업"})
 add({"t": "p",
      "text": "아리스타·램리서치·마스터카드처럼 현금이 자기자본을 거의 "
              "상계하는 기업은 순투하자본이 0에 가까워, ROIC가 100%를 "
              "넘더라도 그 숫자를 다른 기업과 나란히 놓을 수 없습니다. "
-             "아리스타의 FY2025 자기자본 12.4십억 달러 중 10.7십억 달러가 "
+             "아리스타 네트웍스의 FY2025 자기자본 12.4십억 달러 중 "
+             "10.7십억 달러가 "
              "현금이어서 순투하자본은 1.6십억 달러, 매출 9.0십억 달러의 "
              "18%입니다. ROIC 192%는 산술적으로 맞지만 '이 사업은 자본이 "
              "거의 필요 없다'는 뜻이지 '수익률이 192%'라는 뜻이 아닙니다. "
@@ -338,10 +393,11 @@ add({"t": "p",
              "(현금이 자기자본+차입금을 넘어서) 이 정의로는 ROIC가 성립하지 "
              "않습니다. 금융업 9곳(버크셔·JP모건·BoA·씨티·웰스파고·"
              "골드만·모건스탠리·아멕스·유나이티드헬스)은 ROIC를 산출하지 "
-             "않았습니다 — 은행에게 차입은 자금조달이 아니라 원재료여서 "
+             "않았습니다 (명단은 1장 기업 목록 참조) — 은행에게 차입은 "
+             "자금조달이 아니라 원재료여서 "
              "자기자본+차입금−현금이 아무것도 측정하지 않습니다."})
 
-add({"t": "h2", "text": "9. 1차 조사에 반영한 정정"})
+add({"t": "h2", "text": "10. 1차 조사에 반영한 정정"})
 add({"t": "table",
      "headers": ["항목", "내용"],
      "rows": [
@@ -358,8 +414,9 @@ big = sorted((x for x in C["changes"]
               if None not in (x["roic_before"], x["roic_after"])),
              key=lambda x: -abs(x["roic_after"] - x["roic_before"]))[:12]
 add({"t": "table",
-     "headers": ["기업", "연도", "1차 ROIC", "정정 ROIC", "변화"],
-     "rows": [[x["ticker"], f"FY{x['fiscal_year']}", pct(x["roic_before"], 0),
+     "headers": ["기업", "티커", "연도", "1차 ROIC", "정정 ROIC", "변화"],
+     "rows": [[cn.korean(x["ticker"]), x["ticker"],
+               f"FY{x['fiscal_year']}", pct(x["roic_before"], 0),
                pct(x["roic_after"], 0),
                f"{(x['roic_after'] - x['roic_before']) * 100:+.0f}%p"]
               for x in big]})
@@ -371,8 +428,10 @@ add({"t": "p",
              "있습니다. 순현금은 기업가치에서 주주가치로 넘어가는 과정에 "
              "그대로 더해지므로, 이 오차는 내재가치에 1:1로 반영됩니다."})
 add({"t": "table",
-     "headers": ["기업", "1차 조사 순현금", "재산출", "오차", "시가총액 대비"],
-     "rows": [[n["ticker"], bn(n["net_cash_in_study"]),
+     "headers": ["기업", "티커", "1차 조사 순현금", "재산출", "오차",
+                 "시가총액 대비"],
+     "rows": [[cn.korean(n["ticker"]), n["ticker"],
+               bn(n["net_cash_in_study"]),
                bn(n["net_cash_recomputed"]), bn(n["error"]),
                pct(n["error_vs_market_cap"], 1)]
               for n in sorted(C["net_cash_errors_flagged"],
@@ -385,7 +444,7 @@ add({"t": "p",
              "이번 작업에서 하지 않았습니다** — 필요하시면 오라클만 따로 "
              "다시 돌리겠습니다."})
 
-add({"t": "h2", "text": "10. 검증"})
+add({"t": "h2", "text": "11. 검증"})
 add({"t": "table",
      "headers": ["검증 방식", "건수", "무엇을 잡는지"],
      "rows": [
@@ -417,14 +476,15 @@ add({"t": "p",
              "1,772.984백만 달러였습니다 — 기억으로 쓴 값이어서 틀렸고, "
              "공시 데이터를 다시 확인해 고쳤습니다."})
 
-add({"t": "h2", "text": "11. 남은 한계"})
+add({"t": "h2", "text": "12. 남은 한계"})
 add({"t": "bullets",
      "items": [
          f"**분자 추정 {low_years}개 연도.** 영업이익 소계를 보고하지 않는 "
-         "여덟 기업은 세전이익에서 거꾸로 추정했습니다. 문턱 판정은 97% "
-         "정확하지만 ROIC 수준은 90분위에서 4~5%p 틀릴 수 있습니다. "
-         "릴리·J&J·IBM·KLA·셰브론은 두 추정 방식의 판정이 모두 일치했고, "
-         "머크 FY2020 한 해만 불일치입니다.",
+         f"{len(no_subtotal)}개 기업은 세전이익에서 거꾸로 "
+         "추정했습니다. 문턱 판정은 97% 정확하지만 ROIC 수준은 90분위에서 "
+         "4~5%p 틀릴 수 있습니다. 일라이 릴리(LLY)·존슨앤드존슨(JNJ)·"
+         "IBM·KLA(KLAC)·셰브론(CVX)은 두 추정 방식의 판정이 모두 "
+         "일치했고, 머크(MRK) FY2020 한 해만 불일치입니다.",
          "**자기자본 정의.** 분자가 연결 영업이익이므로 분모도 비지배지분을 "
          "포함했습니다. 1차 조사는 지배주주 지분만 썼고, 96개 기업-연도에서 "
          "차이가 납니다. 대부분 1~5% 수준이지만 정의가 다른 것이지 "
@@ -441,7 +501,7 @@ add({"t": "bullets",
          "순위는 아닙니다.",
      ]})
 
-add({"t": "h2", "text": "12. 재현 방법"})
+add({"t": "h2", "text": "13. 재현 방법"})
 add({"t": "p",
      "text": "`bash work/run_roic.sh` 한 번으로 수집부터 워드·엑셀 작성까지 "
              "전부 다시 돌아갑니다. 순서에 한 곳 의존성이 있습니다: 대조와 "

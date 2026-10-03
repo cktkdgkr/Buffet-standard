@@ -34,6 +34,8 @@ import json
 import os
 import sys
 
+import company_names as cn
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "roic", "roic_raw.json")
 RES = os.path.join(HERE, "roic", "roic.json")
@@ -105,6 +107,25 @@ def run(raw, res, c):
 
     tickers = [x["ticker"] for x in res["companies"]]
     c.ok(len(set(tickers)) == len(tickers), "티커 중복")
+
+    # A ticker with no readable name would print blank in the reports rather
+    # than failing, so it fails here instead.
+    missing, orphan = cn.check(tickers)
+    c.ok(not missing, f"company_names.py에 이름 없는 티커: {missing}")
+    c.ok(not orphan, f"company_names.py에만 있는 티커: {orphan}")
+    edgar = {x["ticker"]: x["company_name"] for x in res["companies"]}
+    for t in tickers:
+        c.ok(bool(cn.korean(t)), f"{t}: 한글명 없음")
+        c.ok(bool(cn.english(t)), f"{t}: 영문명 없음")
+        # A name left as the registrant name means it was never written: the
+        # whole point of the module is not to print COSTCO WHOLESALE CORP /NEW
+        # at a reader. IBM, AMD and RTX are genuinely their own names and are
+        # not caught by this, because the registrant names are INTERNATIONAL
+        # BUSINESS MACHINES CORP, ADVANCED MICRO DEVICES INC and RTX Corp.
+        c.ok(cn.korean(t) != edgar[t] and cn.english(t) != edgar[t],
+             f"{t}: 이름이 SEC 등록명 그대로 ({edgar[t]})")
+        c.ok(cn.label(t).count("(") == cn.label(t).count(")"),
+             f"{t}: 라벨 괄호 불균형 ({cn.label(t)})")
 
     for comp in res["companies"]:
         tk = comp["ticker"]

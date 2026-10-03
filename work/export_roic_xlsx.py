@@ -15,6 +15,7 @@ everything downstream.
 import json
 import os
 
+import company_names as cn
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
@@ -121,6 +122,10 @@ def guide(wb, data, recon, corr, diag):
                     "DCF 결론이 바뀔 수 있지만, 가치평가 재계산은 이번 "
                     "작업 범위가 아니어서 표시만 했습니다."),
         ("", ""),
+        ("기업 이름", "표에는 한글명과 티커만 적었습니다. 영문 정식 "
+                   "명칭과 SEC 등록명은 '기업 목록' 시트에 있고, "
+                   "'계산 명세' 시트 마지막 열에도 등록명이 있습니다."),
+        ("", ""),
         ("수식", "파생 셀은 전부 같은 통합문서 안의 셀을 참조하는 수식입니다. "
                "'계산 명세' 시트의 공시 입력값만 바꾸면 모든 시트가 따라 "
                "바뀝니다. 수식이 아닌 값은 공시에서 가져온 원자료뿐입니다."),
@@ -139,6 +144,56 @@ def guide(wb, data, recon, corr, diag):
     return ws
 
 
+def roster(wb, data):
+    """
+    Ticker to name, in one place.
+
+    The other sheets carry the Korean name and the ticker because a name column
+    wide enough for the English one would crowd out the ten year columns. This
+    is where the full names live.
+    """
+    ws = wb.create_sheet("기업 목록")
+    ws.cell(row=1, column=1, value="기업 목록 — 티커 · 한글명 · 영문 정식 명칭")\
+        .font = Font(bold=True, size=13)
+    ws.cell(row=2, column=1,
+            value="SEC가 반환하는 이름은 등록명(COSTCO WHOLESALE CORP /NEW, "
+                  "APPLIED MATERIALS INC /DE 등)이라 표에 그대로 쓰지 "
+                  "않았습니다. 등록명은 '계산 명세' 시트 마지막 열에 "
+                  "그대로 남겨두었습니다.").font = NOTE
+    header(ws, 3, ["티커", "한글명", "영문 정식 명칭", "SEC 등록명",
+                   "구분", "비고"],
+           [9, 22, 34, 34, 22, 46])
+    ws.freeze_panes = ws.cell(row=4, column=1)
+
+    group_of = {}
+    for x in data["ranking"]:
+        group_of[x["ticker"]] = "ROIC 순위 대상"
+    for x in data["thin_sample"]:
+        group_of[x["ticker"]] = "표본 부족 (산출 5년 미만)"
+    for c in data["companies"]:
+        if c["is_financial"]:
+            group_of[c["ticker"]] = "금융업 — ROIC 미산출"
+
+    r = 4
+    order = ([x["ticker"] for x in data["ranking"]]
+             + [x["ticker"] for x in data["thin_sample"]]
+             + [c["ticker"] for c in data["companies"] if c["is_financial"]])
+    edgar = {c["ticker"]: c["company_name"] for c in data["companies"]}
+    for t in order:
+        ws.cell(row=r, column=1, value=t)
+        ws.cell(row=r, column=2, value=cn.korean(t))
+        ws.cell(row=r, column=3, value=cn.english(t))
+        ws.cell(row=r, column=4, value=edgar[t])
+        ws.cell(row=r, column=5, value=group_of.get(t, ""))
+        cell = ws.cell(row=r, column=6, value=cn.note(t) or "—")
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
+        if group_of.get(t, "").startswith("금융업"):
+            for col in range(1, 7):
+                ws.cell(row=r, column=col).fill = WARN
+        r += 1
+    ws.auto_filter.ref = f"A3:F{r - 1}"
+
+
 def components(wb, data):
     """
     Filed inputs, with everything derived computed here in Excel.
@@ -155,10 +210,10 @@ def components(wb, data):
             "자기자본", "이자부차입금", "현금+단기투자", "투하자본",
             "직전 투하자본", "평균 투하자본", "평균 산정", "ROIC",
             "ROIC−10%", "분모/매출", "대안 추정 ROIC", "문턱 판정 일치",
-            "상태"]
+            "상태", "SEC 등록명"]
     header(ws, 1, cols,
-           [26, 8, 9, 11, 14, 14, 30, 9, 10, 14, 14, 14, 15, 14, 14, 14, 24,
-            9, 10, 10, 18, 13, 34])
+           [20, 8, 9, 11, 14, 14, 30, 9, 10, 14, 14, 14, 15, 14, 14, 14, 24,
+            9, 10, 10, 18, 13, 34, 32])
 
     r = 2
     index = {}
@@ -166,7 +221,7 @@ def components(wb, data):
         for y in comp["years"]:
             if not 2015 <= y["fiscal_year"] <= 2025:
                 continue
-            ws.cell(row=r, column=1, value=comp["company_name"])
+            ws.cell(row=r, column=1, value=cn.korean(comp["ticker"]))
             ws.cell(row=r, column=2, value=comp["ticker"])
             ws.cell(row=r, column=3, value=y["fiscal_year"])
             ws.cell(row=r, column=4, value=y["period_end"])
@@ -230,11 +285,15 @@ def components(wb, data):
             if ag is False:
                 cell.fill = BAD
             ws.cell(row=r, column=23, value=y["roic_status"])
+            # The registrant name the SEC returns, kept beside the readable one
+            # so a row can still be traced to the filer. It sits last because
+            # inserting it earlier would shift every formula's column letters.
+            ws.cell(row=r, column=24, value=comp["company_name"])
 
             fill = (BAD if y["confidence"] == "LOW"
                     else WARN if y.get("capital_too_small") else None)
             if fill:
-                for col in range(1, 24):
+                for col in range(1, 25):
                     ws.cell(row=r, column=col).fill = fill
             if y["fiscal_year"] == 2015:
                 # This row supplies FY2016's opening capital and nothing else.
@@ -246,13 +305,13 @@ def components(wb, data):
                 ws.cell(row=r, column=23,
                         value="FY2016 평균 투하자본의 기초값으로만 사용 "
                               "(보고 기간 밖 — 자체 비율은 계산하지 않음)")
-                for col in range(1, 24):
+                for col in range(1, 25):
                     ws.cell(row=r, column=col).fill = PatternFill(
                         "solid", fgColor="F2F2F2")
             index[(comp["ticker"], y["fiscal_year"])] = r
             r += 1
 
-    ws.auto_filter.ref = f"A1:W{r - 1}"
+    ws.auto_filter.ref = f"A1:X{r - 1}"
     return index
 
 
@@ -261,7 +320,7 @@ def year_grid(wb, data, index, title, formula, note):
     cols = ["순위", "기업", "티커"] + [f"FY{y}" for y in YEARS] + \
         ["중위", "최소", "최대", "10% 초과 연수", "산출 연수", "판정"]
     header(ws, 2, cols,
-           [6, 26, 8] + [9] * len(YEARS) + [9, 9, 9, 13, 11, 24])
+           [6, 20, 8] + [9] * len(YEARS) + [9, 9, 9, 13, 11, 24])
     ws.cell(row=1, column=1, value=note).font = NOTE
 
     by_ticker = {c["ticker"]: c for c in data["companies"]}
@@ -288,7 +347,7 @@ def year_grid(wb, data, index, title, formula, note):
                 ws.cell(row=r, column=1, value=rank)
             else:
                 ws.cell(row=r, column=1, value="—")
-            ws.cell(row=r, column=2, value=comp["company_name"])
+            ws.cell(row=r, column=2, value=cn.korean(comp["ticker"]))
             ws.cell(row=r, column=3, value=comp["ticker"])
 
             refs = []
@@ -350,51 +409,53 @@ def comparison(wb, recon, diag):
             value="1차 조사(analysis.json, 공시 본문 파싱)와 이번 "
                   "재산출(companyfacts API)의 기업-연도별 대조. "
                   "정의는 같고 경로만 다릅니다.").font = NOTE
-    cols = ["기업", "연도", "재산출 ROIC", "1차 조사 ROIC", "차이(%p)",
-            "문턱 판정 바뀜", "재산출 영업이익", "1차 영업이익",
+    cols = ["기업", "티커", "연도", "재산출 ROIC", "1차 조사 ROIC",
+            "차이(%p)", "문턱 판정 바뀜", "재산출 영업이익", "1차 영업이익",
             "재산출 평균자본", "1차 평균자본", "재산출 경로", "원인"]
-    header(ws, 2, cols, [8, 8, 13, 14, 11, 14, 16, 16, 16, 16, 34, 52])
+    header(ws, 2, cols, [20, 8, 8, 13, 14, 11, 14, 16, 16, 16, 16, 34, 52])
     r = 3
     for d in recon["differences"]:
-        ws.cell(row=r, column=1, value=d["ticker"])
-        ws.cell(row=r, column=2, value=f"FY{d['fiscal_year']}")
-        ws.cell(row=r, column=3, value=d["roic_new"]).number_format = PCT
-        ws.cell(row=r, column=4, value=d["roic_old"]).number_format = PCT
-        ws.cell(row=r, column=5,
-                value=f"=C{r}-D{r}").number_format = PCT
-        cell = ws.cell(row=r, column=6,
+        ws.cell(row=r, column=1, value=cn.korean(d["ticker"]))
+        ws.cell(row=r, column=2, value=d["ticker"])
+        ws.cell(row=r, column=3, value=f"FY{d['fiscal_year']}")
+        ws.cell(row=r, column=4, value=d["roic_new"]).number_format = PCT
+        ws.cell(row=r, column=5, value=d["roic_old"]).number_format = PCT
+        ws.cell(row=r, column=6,
+                value=f"=D{r}-E{r}").number_format = PCT
+        cell = ws.cell(row=r, column=7,
                        value="예" if d["hurdle_flips"] else "")
         if d["hurdle_flips"]:
             cell.fill = BAD
-        for col, key in ((7, "oi_new"), (8, "oi_old"),
-                         (9, "cap_new"), (10, "cap_old")):
+        for col, key in ((8, "oi_new"), (9, "oi_old"),
+                         (10, "cap_new"), (11, "cap_old")):
             ws.cell(row=r, column=col, value=d[key]).number_format = NUM
-        ws.cell(row=r, column=11, value=d["route_new"])
-        ws.cell(row=r, column=12, value=", ".join(d["causes"]))
+        ws.cell(row=r, column=12, value=d["route_new"])
+        ws.cell(row=r, column=13, value=", ".join(d["causes"]))
         r += 1
-    ws.auto_filter.ref = f"A2:L{r - 1}"
+    ws.auto_filter.ref = f"A2:M{r - 1}"
 
     ws2 = wb.create_sheet("차입금 누락")
     ws2.cell(row=1, column=1,
              value="1차 조사가 장기차입금을 0으로 기록했으나 10-K에 해당 "
                    "태그가 존재하는 기업-연도. 어느 쪽이 맞는지 판단이 "
                    "필요 없는 유형의 오류입니다.").font = NOTE
-    cols2 = ["기업-연도", "공시된 장기차입금", "1차 조사 총차입금",
+    cols2 = ["기업", "기업-연도", "공시된 장기차입금", "1차 조사 총차입금",
              "재산출 총차입금", "사용 태그", "1차 ROIC", "재산출 ROIC"]
-    header(ws2, 2, cols2, [14, 19, 19, 18, 34, 11, 13])
+    header(ws2, 2, cols2, [20, 14, 19, 19, 18, 34, 11, 13])
     r = 3
     for m in sorted(diag["old_missed_long_term_debt"],
                     key=lambda m: -(m["filed_long_term_debt"] or 0)):
-        ws2.cell(row=r, column=1, value=m["key"])
-        ws2.cell(row=r, column=2,
-                 value=m["filed_long_term_debt"]).number_format = NUM
+        ws2.cell(row=r, column=1, value=cn.korean(m["key"].split()[0]))
+        ws2.cell(row=r, column=2, value=m["key"])
         ws2.cell(row=r, column=3,
-                 value=m["old_total_debt"]).number_format = NUM
+                 value=m["filed_long_term_debt"]).number_format = NUM
         ws2.cell(row=r, column=4,
+                 value=m["old_total_debt"]).number_format = NUM
+        ws2.cell(row=r, column=5,
                  value=m["new_total_debt"]).number_format = NUM
-        ws2.cell(row=r, column=5, value=m["tag"])
-        ws2.cell(row=r, column=6, value=m["roic_old"]).number_format = PCT
-        ws2.cell(row=r, column=7, value=m["roic_new"]).number_format = PCT
+        ws2.cell(row=r, column=6, value=m["tag"])
+        ws2.cell(row=r, column=7, value=m["roic_old"]).number_format = PCT
+        ws2.cell(row=r, column=8, value=m["roic_new"]).number_format = PCT
         r += 1
 
 
@@ -403,52 +464,54 @@ def corrections_sheet(wb, corr):
     ws.cell(row=1, column=1,
             value=f"analysis.json에 반영한 정정 {corr['company_years_changed']}"
                   f"건. 원본은 {corr['backup']}에 보존.").font = NOTE
-    cols = ["기업", "연도", "구 ROIC", "정정 ROIC", "변화(%p)",
+    cols = ["기업", "티커", "연도", "구 ROIC", "정정 ROIC", "변화(%p)",
             "구 영업이익", "정정 영업이익", "구 평균자본", "정정 평균자본",
             "바뀐 항목"]
-    header(ws, 2, cols, [8, 8, 11, 12, 11, 16, 16, 16, 16, 44])
+    header(ws, 2, cols, [20, 8, 8, 11, 12, 11, 16, 16, 16, 16, 44])
     r = 3
     rows = sorted(corr["changes"],
                   key=lambda c: -abs((c["roic_after"] or 0)
                                      - (c["roic_before"] or 0)))
     for c in rows:
-        ws.cell(row=r, column=1, value=c["ticker"])
-        ws.cell(row=r, column=2, value=f"FY{c['fiscal_year']}")
-        ws.cell(row=r, column=3, value=c["roic_before"]).number_format = PCT
-        ws.cell(row=r, column=4, value=c["roic_after"]).number_format = PCT
-        ws.cell(row=r, column=5,
-                value=(f"=D{r}-C{r}" if None not in (c["roic_before"],
+        ws.cell(row=r, column=1, value=cn.korean(c["ticker"]))
+        ws.cell(row=r, column=2, value=c["ticker"])
+        ws.cell(row=r, column=3, value=f"FY{c['fiscal_year']}")
+        ws.cell(row=r, column=4, value=c["roic_before"]).number_format = PCT
+        ws.cell(row=r, column=5, value=c["roic_after"]).number_format = PCT
+        ws.cell(row=r, column=6,
+                value=(f"=E{r}-D{r}" if None not in (c["roic_before"],
                                                      c["roic_after"])
                        else "—")).number_format = PCT
-        for col, key in ((6, "ebit_before"), (7, "ebit_after"),
-                         (8, "capital_before"), (9, "capital_after")):
+        for col, key in ((7, "ebit_before"), (8, "ebit_after"),
+                         (9, "capital_before"), (10, "capital_after")):
             ws.cell(row=r, column=col, value=c[key]).number_format = NUM
-        ws.cell(row=r, column=10, value=", ".join(c["fields"]))
+        ws.cell(row=r, column=11, value=", ".join(c["fields"]))
         r += 1
-    ws.auto_filter.ref = f"A2:J{r - 1}"
+    ws.auto_filter.ref = f"A2:K{r - 1}"
 
     r += 2
     ws.cell(row=r, column=1,
             value="가치평가 쪽으로 번진 입력 오류 — DCF는 재계산하지 않음")\
         .font = SUB
     r += 1
-    header(ws, r, ["기업", "연도", "1차 조사 순현금", "재산출 순현금",
-                   "오차", "시가총액", "시가총액 대비"])
+    header(ws, r, ["기업", "티커", "연도", "1차 조사 순현금",
+                   "재산출 순현금", "오차", "시가총액", "시가총액 대비"])
     r += 1
     for n in sorted(corr["net_cash_errors_flagged"],
                     key=lambda n: -abs(n["error"])):
-        ws.cell(row=r, column=1, value=n["ticker"])
-        ws.cell(row=r, column=2, value=f"FY{n['fiscal_year']}")
-        ws.cell(row=r, column=3,
-                value=n["net_cash_in_study"]).number_format = NUM
+        ws.cell(row=r, column=1, value=cn.korean(n["ticker"]))
+        ws.cell(row=r, column=2, value=n["ticker"])
+        ws.cell(row=r, column=3, value=f"FY{n['fiscal_year']}")
         ws.cell(row=r, column=4,
+                value=n["net_cash_in_study"]).number_format = NUM
+        ws.cell(row=r, column=5,
                 value=n["net_cash_recomputed"]).number_format = NUM
-        ws.cell(row=r, column=5, value=f"=C{r}-D{r}").number_format = NUM
-        ws.cell(row=r, column=6, value=n["market_cap"]).number_format = NUM
-        cell = ws.cell(row=r, column=7, value=f"=IF(F{r}=0,\"\",E{r}/F{r})")
+        ws.cell(row=r, column=6, value=f"=D{r}-E{r}").number_format = NUM
+        ws.cell(row=r, column=7, value=n["market_cap"]).number_format = NUM
+        cell = ws.cell(row=r, column=8, value=f"=IF(G{r}=0,\"\",F{r}/G{r})")
         cell.number_format = PCT
         if abs(n["error_vs_market_cap"] or 0) > 0.05:
-            for col in range(1, 8):
+            for col in range(1, 9):
                 ws.cell(row=r, column=col).fill = BAD
         r += 1
 
@@ -480,21 +543,22 @@ def routes_sheet(wb, routes, data):
     r += 2
     ws.cell(row=r, column=1, value="회사별 최종 선택 경로").font = SUB
     r += 1
-    header(ws, r, ["기업", "선택 경로", "역검증 통과", "중위 역검증 오차",
-                   "우선순위"], [10, 46, 13, 17, 60])
+    header(ws, r, ["기업", "티커", "선택 경로", "역검증 통과",
+                   "중위 역검증 오차", "우선순위"], [20, 10, 46, 13, 17, 60])
     r += 1
     for comp in data["companies"]:
         ch = comp.get("chosen_route")
         if not ch:
             continue
-        ws.cell(row=r, column=1, value=comp["ticker"])
-        ws.cell(row=r, column=2, value=ch["route"])
-        cell = ws.cell(row=r, column=3,
+        ws.cell(row=r, column=1, value=cn.korean(comp["ticker"]))
+        ws.cell(row=r, column=2, value=comp["ticker"])
+        ws.cell(row=r, column=3, value=ch["route"])
+        cell = ws.cell(row=r, column=4,
                        value="통과" if ch["reconciles"] else "미통과")
         cell.fill = GOOD if ch["reconciles"] else BAD
-        ws.cell(row=r, column=4,
+        ws.cell(row=r, column=5,
                 value=ch["median_tie_out_error"]).number_format = PCT
-        ws.cell(row=r, column=5, value=" → ".join(ch["preference"]))
+        ws.cell(row=r, column=6, value=" → ".join(ch["preference"]))
         r += 1
 
 
@@ -508,6 +572,7 @@ def main():
     wb = Workbook()
     wb.remove(wb.active)
     guide(wb, data, recon, corr, diag)
+    roster(wb, data)
     index = components(wb, data)
     year_grid(wb, data, index, "ROIC 연도별", "R",
               "셀은 '계산 명세' 시트의 ROIC를 참조합니다. 초록 = 10% 초과, "
