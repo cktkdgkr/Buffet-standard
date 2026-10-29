@@ -36,6 +36,9 @@ sys.path.insert(0, HERE)
 from verify_exports import Evaluator, close                    # noqa: E402
 from analyse_roic import window_of                             # noqa: E402
 
+# The workbook to fill in. Defaults to the fifty-company one; any workbook
+# built by this project can be passed instead, since the only requirement is
+# that its formulas are ones the evaluator understands.
 XLSX = os.path.join(HERE, "미국50개사_ROIC_WACC비교.xlsx")
 ROIC = os.path.join(HERE, "roic", "roic.json")
 
@@ -137,6 +140,16 @@ def sheet_paths(zf):
 
 
 def main():
+    global XLSX
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    verify_against_engine = True
+    if args:
+        XLSX = args[0] if os.path.isabs(args[0]) \
+            else os.path.join(HERE, args[0])
+        # The spot-check below is written against the fifty-company sheets, so
+        # it only runs for that workbook. Everything else - evaluating every
+        # formula and reading the result back - applies to any of them.
+        verify_against_engine = os.path.basename(XLSX).startswith("미국50개사")
     wb = load_workbook(XLSX, data_only=False)
     values, failures = compute(wb)
     if failures:
@@ -174,6 +187,13 @@ def main():
 
     # Now read it the way a viewer that does not recalculate reads it.
     check = load_workbook(XLSX, data_only=True)
+    if not verify_against_engine:
+        blank = sum(1 for ws in check.worksheets for row in ws.iter_rows()
+                    for c in row if c.value is None
+                    and isinstance(wb[ws.title][c.coordinate].value, str)
+                    and str(wb[ws.title][c.coordinate].value).startswith("="))
+        print(f"재계산 없이 비어 있는 수식 셀 {blank}개")
+        return 1 if blank else 0
     data = json.load(open(ROIC))
     by = {c["ticker"]: {y["fiscal_year"]: y for y in c["years"]}
           for c in data["companies"]}
