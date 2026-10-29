@@ -92,7 +92,10 @@ def spacex(raw):
                              ("depreciation_amortisation",
                               "DepreciationDepletionAndAmortization")):
             r = find_row(q["segments"], element=element, context=context)
-            out[key] = {"9m_2026": val(r, i26), "9m_2025": val(r, i25)}
+            # All four columns the note carries: the quarter and the nine
+            # months, this year and last.
+            out[key] = {"q3_2026": val(r, 0), "q3_2025": val(r, 1),
+                        "9m_2026": val(r, i26), "9m_2025": val(r, i25)}
         return out
 
     segments = {
@@ -142,6 +145,39 @@ def spacex(raw):
         }
 
     sheets = {"2026-09-30": balance(b26), "2025-12-31": balance(b25)}
+
+    # The June balance sheet comes from the previous quarter's 10-Q, whose own
+    # two columns are June 2026 and December 2025.
+    prev = co["filings"].get("10-Q_2026-06-30")
+    if prev:
+        bs_prev, ppe_prev = prev["balance_sheet"], prev["ppe_schedule"]
+
+        def prev_val(element, *labels):
+            r = find_row(bs_prev, *labels, element=element)
+            return val(r, 0)
+
+        def prev_ppe(context=None):
+            r = find_row(ppe_prev, element="PropertyPlantAndEquipmentGross",
+                         context=context)
+            return val(r, 0)
+
+        debt_cur = prev_val("LongTermDebtAndCapitalLeaseObligationsCurrent")
+        debt_nc = prev_val("LongTermDebtAndCapitalLeaseObligations")
+        cash = prev_val("CashAndCashEquivalentsAtCarryingValue")
+        sec = prev_val("MarketableSecuritiesCurrent")
+        sheets["2026-06-30"] = {
+            "equity": prev_val("StockholdersEquity"),
+            "redeemable_preferred": prev_val(
+                "TemporaryEquityCarryingAmountAttributableToParent") or 0,
+            "cash_and_securities": (cash or 0) + (sec or 0),
+            "debt": (debt_cur or 0) + (debt_nc or 0),
+            "goodwill": prev_val("Goodwill"),
+            "intangibles": prev_val("IntangibleAssetsNetExcludingGoodwill"),
+            "construction_in_progress": prev_ppe("Construction-in-progress"),
+            "ppe_gross": prev_ppe(),
+            "ppe_net": prev_val("PropertyPlantAndEquipmentNet"),
+            "total_assets": prev_val("Assets"),
+        }
 
     # Annual history, which exists only in the prospectus.
     def pro_row(table, *needles, exact=False):
@@ -386,6 +422,82 @@ def capital_stack(b):
             "in_service": operating - (b.get("construction_in_progress") or 0)}
 
 
+# Capital that is committed but not yet on any balance sheet.
+#
+# Read by hand from the filing, because a dollar figure in 8-K prose is not
+# tagged and a regex over prose is a worse source than a person reading it.
+# The sentence is quoted so the figure can be checked against it without
+# opening the filing.
+DISCLOSED_COMMITMENTS = [
+    {
+        "company": "SPCX",
+        "what": "GPU 금융리스 (아폴로 관리 법인)",
+        "amount": 40_000e6,
+        "agreed": "2026-10-24",
+        "expected_start": "2027 H1",
+        "term_years": "5 ~ 5.25",
+        "status": "구속력 있는 약정 (commitment letter) · 연내 종결 예정",
+        "on_balance_sheet": False,
+        "quote": "The Company expects aggregate principal payments under the "
+                 "lease schedules over their respective terms to total "
+                 "approximately $40 billion.",
+        "form": "8-K",
+        "filed": "2026-10-26",
+        "accession": "0001104659-26-118614",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/"
+                      "000110465926118614/tm2628247d1_8k.htm",
+        "note": "리스가 개시되면 자산과 부채로 동시에 올라오므로 투하자본이 "
+                "그만큼 커집니다. GPU가 가동되기까지 분자는 따라오지 "
+                "않으므로, 현재 건설중자산 22%가 만드는 효과가 한 번 더 "
+                "반복되는 구조입니다.",
+    },
+]
+
+
+def spacex_quarterly(s):
+    """
+    The third quarter on its own, against the quarter before it.
+
+    The nine-month figure annualised was the first thing computed here, and on
+    its own it misleads: SpaceX lost $2,086m from operations in the first half
+    of 2026 and made $2,791m in the third quarter, so blending them
+    understates where the business now is. Annualising one quarter overstates
+    it by the same kind of reasoning. Both are reported, and neither is called
+    the answer.
+
+    The denominator for the quarterly view is the June and September balance
+    sheets, which is why the collector now takes two 10-Qs.
+    """
+    c = s["consolidated_9m"]
+    nine = {k: c[k]["9m_2026"] for k in ("revenue", "operating_income",
+                                         "capex")}
+    q3 = {k: c[k]["q3_2026"] for k in ("revenue", "operating_income",
+                                       "capex")}
+    first_half = {k: (nine[k] - q3[k]) if None not in (nine[k], q3[k])
+                  else None for k in nine}
+
+    jun = s["balance_sheets"].get("2026-06-30")
+    sep = s["balance_sheets"]["2026-09-30"]
+    nopat_q3 = q3["operating_income"] * (1 - TAX_DEFAULT)
+    views = (roic_views(nopat_q3 * 4.0, capital_stack(jun),
+                        capital_stack(sep)) if jun else None)
+
+    return {
+        "first_half_2026": first_half,
+        "q3_2026": q3,
+        "nine_months_2026": nine,
+        "nopat_q3": nopat_q3,
+        "nopat_first_half": (first_half["operating_income"]
+                             * (1 - TAX_DEFAULT)
+                             if first_half["operating_income"] is not None
+                             else None),
+        "q3_run_rate_views": views,
+        "run_rate_note": ("분자는 3분기 NOPAT × 4. 분모는 6월말·9월말 "
+                          "투하자본의 평균. 한 분기를 연율화한 값이므로 "
+                          "9개월 연율화와 반대 방향으로 거칩니다."),
+    }
+
+
 def spacex_ratios(s, price):
     sep, dec = s["balance_sheets"]["2026-09-30"], \
         s["balance_sheets"]["2025-12-31"]
@@ -519,6 +631,9 @@ def main():
            "prices": {t: prices[t] for t in ("SPCX", "TSLA") if t in prices},
            "SPCX": spacex(raw), "TSLA": tesla(raw, roic)}
 
+    out["SPCX"]["quarterly"] = spacex_quarterly(out["SPCX"])
+    out["SPCX"]["disclosed_commitments"] = [
+        c for c in DISCLOSED_COMMITMENTS if c["company"] == "SPCX"]
     out["SPCX"]["ratios"] = spacex_ratios(
         out["SPCX"], out["prices"].get("SPCX", {}).get("price"))
     out["TSLA"]["ratios"] = tesla_ratios(

@@ -1,5 +1,5 @@
 {
- "fetched_utc": "2026-10-29T12:30:17.353280+00:00",
+ "fetched_utc": "2026-10-29T13:14:13.314729+00:00",
  "prices": {
   "TSLA": {
    "ticker": "TSLA",
@@ -11,7 +11,7 @@
    "fifty_two_week_high": 498.83,
    "fifty_two_week_low": 297.38,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T12:30:17.352235+00:00"
+   "fetched_utc": "2026-10-29T13:14:13.313920+00:00"
   },
   "SPCX": {
    "ticker": "SPCX",
@@ -23,7 +23,7 @@
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T12:30:16.963160+00:00"
+   "fetched_utc": "2026-10-29T13:14:12.900855+00:00"
   }
  }
 }

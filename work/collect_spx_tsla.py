@@ -513,8 +513,14 @@ def main():
                   "확인 가능 **")
 
         pulls = {}
-        targets = ([quarterly[0]] if quarterly else []) + \
-                  ([annual[0]] if annual else [])
+        # The two most recent quarters, not just the latest. A nine-month
+        # cumulative figure blends quarters that can differ enormously -
+        # SpaceX lost $2,086m from operations in the first half of 2026 and
+        # made $2,791m in the third quarter - and the prior quarter's balance
+        # sheet is what the latest quarter's return has to be measured
+        # against. With only the latest 10-Q the quarterly view cannot be
+        # computed at all.
+        targets = quarterly[:2] + ([annual[0]] if annual else [])
         if not annual:
             # A 424B4 prospectus is filed without XBRL renderings, so the
             # annual statements have to come from the S-1 (or its amendment),

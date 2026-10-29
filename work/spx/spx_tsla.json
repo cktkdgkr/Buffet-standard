@@ -12,7 +12,7 @@
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T12:30:16.963160+00:00"
+   "fetched_utc": "2026-10-29T13:14:12.900855+00:00"
   },
   "TSLA": {
    "ticker": "TSLA",
@@ -24,61 +24,85 @@
    "fifty_two_week_high": 498.83,
    "fifty_two_week_low": 297.38,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T12:30:17.352235+00:00"
+   "fetched_utc": "2026-10-29T13:14:13.313920+00:00"
   }
  },
  "SPCX": {
   "segments_9m": {
    "Space": {
     "revenue": {
+     "q3_2026": 1767000000.0,
+     "q3_2025": 1666000000.0,
      "9m_2026": 3348000000.0,
      "9m_2025": 3277000000.0
     },
     "operating_income": {
+     "q3_2026": -7000000.0,
+     "q3_2025": 259000000.0,
      "9m_2026": -1211000000.0,
      "9m_2025": -181000000.0
     },
     "capex": {
+     "q3_2026": 1606000000.0,
+     "q3_2025": 1113000000.0,
      "9m_2026": 3832000000.0,
      "9m_2025": 2818000000.0
     },
     "depreciation_amortisation": {
+     "q3_2026": 185000000.0,
+     "q3_2025": 264000000.0,
      "9m_2026": 509000000.0,
      "9m_2025": 572000000.0
     }
    },
    "Connectivity": {
     "revenue": {
+     "q3_2026": 5248000000.0,
+     "q3_2025": 3097000000.0,
      "9m_2026": 12796000000.0,
      "9m_2025": 8159000000.0
     },
     "operating_income": {
+     "q3_2026": 2367000000.0,
+     "q3_2025": 1190000000.0,
      "9m_2026": 5211000000.0,
      "9m_2025": 3147000000.0
     },
     "capex": {
+     "q3_2026": 1543000000.0,
+     "q3_2025": 1007000000.0,
      "9m_2026": 4242000000.0,
      "9m_2025": 2951000000.0
     },
     "depreciation_amortisation": {
+     "q3_2026": 986000000.0,
+     "q3_2025": 628000000.0,
      "9m_2026": 2574000000.0,
      "9m_2025": 1706000000.0
     }
    },
    "SI": {
     "revenue": {
+     "q3_2026": 7560000000.0,
+     "q3_2025": 813000000.0,
      "9m_2026": 10939000000.0,
      "9m_2025": 2278000000.0
     },
     "operating_income": {
+     "q3_2026": 431000000.0,
+     "q3_2025": -1722000000.0,
      "9m_2026": -3295000000.0,
      "9m_2025": -4182000000.0
     },
     "capex": {
+     "q3_2026": 16444000000.0,
+     "q3_2025": 4760000000.0,
      "9m_2026": 39995000000.0,
      "9m_2025": 8077000000.0
     },
     "depreciation_amortisation": {
+     "q3_2026": 2473000000.0,
+     "q3_2025": 922000000.0,
      "9m_2026": 5851000000.0,
      "9m_2025": 2506000000.0
     }
@@ -86,18 +110,26 @@
   },
   "consolidated_9m": {
    "revenue": {
+    "q3_2026": 14575000000.0,
+    "q3_2025": 5576000000.0,
     "9m_2026": 27083000000.0,
     "9m_2025": 13714000000.0
    },
    "operating_income": {
+    "q3_2026": 2791000000.0,
+    "q3_2025": -273000000.0,
     "9m_2026": 705000000.0,
     "9m_2025": -1216000000.0
    },
    "capex": {
+    "q3_2026": 19593000000.0,
+    "q3_2025": 6880000000.0,
     "9m_2026": 48069000000.0,
     "9m_2025": 13846000000.0
    },
    "depreciation_amortisation": {
+    "q3_2026": 3644000000.0,
+    "q3_2025": 1814000000.0,
     "9m_2026": 8934000000.0,
     "9m_2025": 4784000000.0
    }
@@ -126,6 +158,18 @@
     "ppe_gross": 55303000000.0,
     "ppe_net": 42602000000.0,
     "total_assets": 92079000000.0
+   },
+   "2026-06-30": {
+    "equity": 127224000000.0,
+    "redeemable_preferred": 0,
+    "cash_and_securities": 100009000000.0,
+    "debt": 39364000000.0,
+    "goodwill": 11645000000.0,
+    "intangibles": 1318000000.0,
+    "construction_in_progress": 12554000000.0,
+    "ppe_gross": 83071000000.0,
+    "ppe_net": 65736000000.0,
+    "total_assets": 192770000000.0
    }
   },
   "annual_from_prospectus": {
@@ -261,6 +305,67 @@
   },
   "prospectus_source": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
   "quarterly_source": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/R2.htm",
+  "quarterly": {
+   "first_half_2026": {
+    "revenue": 12508000000.0,
+    "operating_income": -2086000000.0,
+    "capex": 28476000000.0
+   },
+   "q3_2026": {
+    "revenue": 14575000000.0,
+    "operating_income": 2791000000.0,
+    "capex": 19593000000.0
+   },
+   "nine_months_2026": {
+    "revenue": 27083000000.0,
+    "operating_income": 705000000.0,
+    "capex": 48069000000.0
+   },
+   "nopat_q3": 2204890000.0,
+   "nopat_first_half": -1647940000.0,
+   "q3_run_rate_views": {
+    "reported": {
+     "opening": 66579000000.0,
+     "closing": 125757000000.0,
+     "average": 96168000000.0,
+     "roic": 0.09170992429914317,
+     "spread_vs_wacc": -0.008290075700856839
+    },
+    "operating": {
+     "opening": 53616000000.0,
+     "closing": 70980000000.0,
+     "average": 62298000000.0,
+     "roic": 0.14157051590741276,
+     "spread_vs_wacc": 0.04157051590741276
+    },
+    "in_service": {
+     "opening": 41062000000.0,
+     "closing": 47235000000.0,
+     "average": 44148500000.0,
+     "roic": 0.1997703206224447,
+     "spread_vs_wacc": 0.0997703206224447
+    }
+   },
+   "run_rate_note": "분자는 3분기 NOPAT × 4. 분모는 6월말·9월말 투하자본의 평균. 한 분기를 연율화한 값이므로 9개월 연율화와 반대 방향으로 거칩니다."
+  },
+  "disclosed_commitments": [
+   {
+    "company": "SPCX",
+    "what": "GPU 금융리스 (아폴로 관리 법인)",
+    "amount": 40000000000.0,
+    "agreed": "2026-10-24",
+    "expected_start": "2027 H1",
+    "term_years": "5 ~ 5.25",
+    "status": "구속력 있는 약정 (commitment letter) · 연내 종결 예정",
+    "on_balance_sheet": false,
+    "quote": "The Company expects aggregate principal payments under the lease schedules over their respective terms to total approximately $40 billion.",
+    "form": "8-K",
+    "filed": "2026-10-26",
+    "accession": "0001104659-26-118614",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000110465926118614/tm2628247d1_8k.htm",
+    "note": "리스가 개시되면 자산과 부채로 동시에 올라오므로 투하자본이 그만큼 커집니다. GPU가 가동되기까지 분자는 따라오지 않으므로, 현재 건설중자산 22%가 만드는 효과가 한 번 더 반복되는 구조입니다."
+   }
+  ],
   "ratios": {
    "operating_income_9m_2026": 705000000.0,
    "operating_income_annualised": 940000000.0,

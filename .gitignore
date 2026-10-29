@@ -8,3 +8,9 @@ work/spx/cache/
 work/spx/*.htm
 work/spx/*.xml
 work/*.formulas-only
+
+# SEC 캐시는 추적하지 않습니다. 만료가 있는 재수신 가능한 파생물이고,
+# roic/cache 만 232MB가 커밋돼 있었습니다. 과거 커밋의 블롭은 그대로
+# 남지만(히스토리 재작성은 파괴적이라 하지 않았습니다) 더 늘지는 않습니다.
+work/roic/cache/
+work/spx/jun2026_balance.json

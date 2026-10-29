@@ -77,6 +77,22 @@ ANCHORS = [
     ("SPCX FY2023 영업이익",
      ["SPCX", "annual_from_prospectus", "FY2023", "operating_income"],
      -3_505 * MM),
+    ("SPCX 3분기 매출", ["SPCX", "quarterly", "q3_2026", "revenue"],
+     14_575 * MM),
+    ("SPCX 3분기 영업이익",
+     ["SPCX", "quarterly", "q3_2026", "operating_income"], 2_791 * MM),
+    ("SPCX 3분기 capex", ["SPCX", "quarterly", "q3_2026", "capex"],
+     19_593 * MM),
+    ("SPCX 자기자본 2026-06-30",
+     ["SPCX", "balance_sheets", "2026-06-30", "equity"], 127_224 * MM),
+    ("SPCX 건설중자산 2026-06-30",
+     ["SPCX", "balance_sheets", "2026-06-30", "construction_in_progress"],
+     12_554 * MM),
+    ("SPCX SI 3분기 매출",
+     ["SPCX", "segments_9m", "SI", "revenue", "q3_2026"], 7_560 * MM),
+    ("SPCX 스타링크 3분기 영업이익",
+     ["SPCX", "segments_9m", "Connectivity", "operating_income", "q3_2026"],
+     2_367 * MM),
     ("TSLA 건설중자산 2026-09-30",
      ["TSLA", "ppe", "2026-09-30", "construction_in_progress"], 11_211 * MM),
     ("TSLA PP&E 총액 2025-12-31", ["TSLA", "ppe", "2025-12-31", "gross"],
@@ -204,6 +220,53 @@ def run(d, c):
                 seg["operating_income_9m"] - seg["capex_9m"],
                 f"SPCX {name} 영업이익−capex")
 
+    # --- the quarterly view ------------------------------------------------
+    q = s["quarterly"]
+    for k in ("revenue", "operating_income", "capex"):
+        c.close(q["first_half_2026"][k] + q["q3_2026"][k],
+                q["nine_months_2026"][k],
+                f"SPCX 1~2분기 + 3분기 = 9개월 ({k})")
+    c.close(q["nopat_q3"], q["q3_2026"]["operating_income"] * 0.79,
+            "SPCX 3분기 NOPAT")
+    c.close(q["nopat_first_half"],
+            q["first_half_2026"]["operating_income"] * 0.79,
+            "SPCX 1~2분기 NOPAT")
+    # The first half lost money and the third quarter made it. If that ever
+    # stops being true the quarterly view's whole point has gone, so it is
+    # asserted rather than assumed.
+    c.ok(q["first_half_2026"]["operating_income"] < 0
+         < q["q3_2026"]["operating_income"],
+         "SPCX 분기 부호가 바뀌지 않음 — 분기 쪼개기의 전제 확인 필요")
+    rr = q["q3_run_rate_views"]
+    c.ok(rr is not None, "SPCX 3분기 기준 ROIC 없음 (6월 재무상태표 누락)")
+    if rr:
+        jun = s["balance_sheets"]["2026-06-30"]
+        base = ((jun["equity"] or 0) + (jun["redeemable_preferred"] or 0)
+                + (jun["debt"] or 0) - (jun["cash_and_securities"] or 0))
+        c.close(rr["reported"]["opening"], base, "SPCX 6월말 보고 투하자본")
+        for name, v in rr.items():
+            c.close(v["average"], (v["opening"] + v["closing"]) / 2,
+                    f"SPCX 3분기 {name} 평균")
+            c.close(v["roic"], q["nopat_q3"] * 4 / v["average"],
+                    f"SPCX 3분기 {name} ROIC")
+        c.ok(rr["reported"]["roic"] <= rr["operating"]["roic"]
+             <= rr["in_service"]["roic"],
+             "SPCX 3분기 세 관점의 순서가 정의와 맞지 않음")
+
+    # --- commitments not yet on the balance sheet --------------------------
+    for com in s["disclosed_commitments"]:
+        c.ok(com["amount"] > 0, f"{com['what']}: 금액 없음")
+        c.ok(com["on_balance_sheet"] is False,
+             f"{com['what']}: 재무상태표 반영 여부 표기 확인")
+        c.ok(com["accession"] and com["source_url"],
+             f"{com['what']}: 출처 없음")
+        # The quoted sentence has to contain the number the figure claims, or
+        # the quote is decoration rather than evidence.
+        billions = com["amount"] / 1e9
+        c.ok(f"${billions:,.0f} billion" in com["quote"]
+             or f"${billions:,.0f}bn" in com["quote"],
+             f"{com['what']}: 인용문에 금액 {billions:,.0f}십억이 없음")
+
     # --- Tesla -------------------------------------------------------------
     tr = t["ratios"]
     years = {y["fiscal_year"]: y for y in t["annual_roic"]}
@@ -287,6 +350,22 @@ MUTATIONS = [
                         "operating_income", "9m_2026"], 5_500 * MM)),
     ("테슬라 NOPAT 항등식",
      lambda d: _set_year(d, 2025, "nopat", 9.9e9)),
+    ("3분기 합계 불일치",
+     lambda d: _set(d, ["SPCX", "quarterly", "q3_2026", "revenue"],
+                    1.0e10)),
+    ("3분기 ROIC 식",
+     lambda d: _set(d, ["SPCX", "quarterly", "q3_run_rate_views",
+                        "in_service", "roic"], 0.40)),
+    # _set walks list indices as happily as dict keys, so the commitment is
+    # reached directly. An earlier version wrapped this in an `or` whose left
+    # side returned the dict - truthy - so the mutation never ran and the
+    # check it was meant to exercise went unexercised.
+    ("약정 인용문과 금액 불일치",
+     lambda d: _set(d, ["SPCX", "disclosed_commitments", 0, "amount"],
+                    25_000e6)),
+    ("약정 출처 누락",
+     lambda d: _set(d, ["SPCX", "disclosed_commitments", 0, "accession"],
+                    "")),
     ("테슬라 증분 ROIC",
      lambda d: _set(d, ["TSLA", "ratios", "incremental", "FY2022→FY2025",
                         "incremental_roic"], 0.30)),
