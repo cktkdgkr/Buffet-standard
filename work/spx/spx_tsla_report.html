@@ -1,0 +1,331 @@
+<title>스페이스X 테슬라 자본수익률</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  /* neutrals pulled slightly toward the petrol accent, so greys read chosen */
+  --ground:#f7f8f8; --panel:#ffffff; --panel-2:#eef1f2;
+  --ink:#16201f; --ink-2:#4a5755; --ink-3:#77827f;
+  --rule:#d7dddc; --rule-2:#c2cac8;
+  --accent:#0f6b6f;          /* petrol: structure, links, emphasis */
+  --accent-soft:#e2eeee;
+  --over:#2f6b45;            /* semantic: clears the hurdle */
+  --over-soft:#e6efe8;
+  --under:#99452f;           /* semantic: falls short */
+  --under-soft:#f6e8e4;
+  --display:"Noto Serif KR",Georgia,"Times New Roman",serif;
+  --body:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#101716; --panel:#182220; --panel-2:#1f2b29;
+  --ink:#e8eceb; --ink-2:#a9b5b2; --ink-3:#7f8b88;
+  --rule:#2b3836; --rule-2:#3a4947;
+  --accent:#5fb8ba; --accent-soft:#17302f;
+  --over:#7fc08f; --over-soft:#15271c;
+  --under:#e09a84; --under-soft:#2b1a15;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#101716; --panel:#182220; --panel-2:#1f2b29;
+  --ink:#e8eceb; --ink-2:#a9b5b2; --ink-3:#7f8b88;
+  --rule:#2b3836; --rule-2:#3a4947;
+  --accent:#5fb8ba; --accent-soft:#17302f;
+  --over:#7fc08f; --over-soft:#15271c;
+  --under:#e09a84; --under-soft:#2b1a15;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.72;margin:0;-webkit-text-size-adjust:100%;
+  /* Korean has no hyphenation, so the default break-anywhere splits a
+     compound noun across lines - the headline broke as "자/본비용". keep-all
+     breaks at spaces instead. */
+  word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:52rem;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(1.85rem,5.2vw,2.6rem);line-height:1.22;font-weight:700;
+  letter-spacing:-.015em}
+h2{font-size:clamp(1.3rem,3.4vw,1.6rem);line-height:1.3;font-weight:700;
+  margin-block:2.6rem .25rem;letter-spacing:-.01em}
+h3{font-size:1.06rem;line-height:1.4;font-weight:700;color:var(--ink);
+  margin-block:2rem .2rem}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-underline-offset:.18em}
+strong{font-weight:700}
+.eyebrow{font-family:var(--body);font-size:.69rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 .5rem}
+.lede{font-size:1.06rem;color:var(--ink-2);margin-block:.9rem 0}
+.meta{font-family:var(--mono);font-size:.76rem;line-height:1.85;
+  color:var(--ink-3);border-top:1px solid var(--rule);
+  margin-block:1.4rem 0;padding-block:.9rem 0}
+.meta b{color:var(--ink-2);font-weight:500}
+header.page{padding-block:2.6rem 0}
+
+/* the two readings that disagree: the page's central device */
+.readings{display:grid;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-block:1.4rem 0}
+@media(min-width:560px){.readings{grid-template-columns:1fr 1fr}}
+.reading{background:var(--panel);padding:1.15rem 1.15rem 1.25rem;min-width:0}
+.reading .when{font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.reading .big{font-family:var(--display);font-size:2.35rem;font-weight:700;
+  line-height:1.05;margin-block:.45rem .1rem;
+  font-variant-numeric:tabular-nums}
+.reading .vs{font-size:.82rem;color:var(--ink-2)}
+.reading .say{font-size:.9rem;color:var(--ink-2);margin-block:.7rem 0}
+.reading[data-state="under"] .big{color:var(--under)}
+.reading[data-state="over"] .big{color:var(--over)}
+
+.verdict{display:grid;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-block:1.3rem}
+@media(min-width:560px){.verdict{grid-template-columns:1fr 1fr}}
+.vcard{background:var(--panel);padding:1.1rem 1.15rem;min-width:0}
+.vcard h4{font-family:var(--display);font-size:1.05rem;margin:0 0 .15rem}
+.vcard .tkr{font-family:var(--mono);font-size:.74rem;color:var(--ink-3)}
+.vcard dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem .9rem;
+  margin:.75rem 0 0;font-size:.9rem}
+.vcard dt{color:var(--ink-3)}
+.vcard dd{margin:0;font-variant-numeric:tabular-nums;text-align:right}
+
+.legend{font-size:.78rem;color:var(--ink-3);margin-block:1.3rem .2rem}
+.legend .sw{font-family:var(--body);font-size:.68rem;font-weight:700;
+  letter-spacing:.06em;padding:.1rem .34rem;margin-right:.25rem}
+.legend .sw.over{color:var(--over);background:var(--over-soft)}
+.legend .sw.under{color:var(--under);background:var(--under-soft)}
+.legend .sw.flag{color:var(--ink);background:var(--panel-2)}
+figure.tw{margin:1.1rem 0 1.3rem}
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:.5rem .7rem;border-bottom:1px solid var(--rule);
+  white-space:nowrap}
+thead th{background:var(--panel-2);font-weight:700;font-size:.76rem;
+  letter-spacing:.03em;color:var(--ink-2);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums}
+th.r{font-family:var(--body)}
+td.l{font-weight:500}
+/* Two different judgements, so two different marks. over/under is strictly
+   the 10% hurdle; pos/neg is only the sign of a profit; flag draws the eye to
+   a figure worth noticing. Using one pair for all three made a 3% operating
+   margin and a 22% construction-in-progress share look like hurdle verdicts. */
+td[data-state="over"]{color:var(--over);background:var(--over-soft);
+  font-weight:700}
+td[data-state="under"]{color:var(--under);background:var(--under-soft);
+  font-weight:700}
+td[data-state="pos"]{color:var(--over)}
+td[data-state="neg"]{color:var(--under)}
+td[data-state="flag"]{color:var(--ink);background:var(--panel-2);
+  font-weight:500}
+td[data-state="na"]{color:var(--ink-3)}
+figcaption{font-size:.78rem;color:var(--ink-3);margin-top:.45rem;
+  white-space:normal}
+
+blockquote{margin:1.1rem 0;padding:.85rem 1rem;background:var(--accent-soft);
+  border-left:3px solid var(--accent);font-size:.9rem;color:var(--ink-2)}
+blockquote p{margin:0}
+blockquote cite{display:block;font-family:var(--mono);font-size:.74rem;
+  font-style:normal;color:var(--ink-3);margin-top:.5rem}
+.callout{border:1px solid var(--rule-2);background:var(--panel);
+  padding:1rem 1.1rem;margin:1.2rem 0}
+.callout .k{font-family:var(--body);font-size:.7rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--under);
+  margin:0 0 .4rem}
+.callout p:last-child{margin-bottom:0}
+ul{margin:0 0 1rem;padding-left:1.15rem}
+li{margin-bottom:.55rem}
+.formula{font-family:var(--mono);font-size:.82rem;background:var(--panel-2);
+  border:1px solid var(--rule);padding:.7rem .85rem;margin:1rem 0;
+  overflow-x:auto;white-space:nowrap;color:var(--ink-2)}
+footer.page{border-top:1px solid var(--rule);margin-block:3rem 0;
+  padding-block:1.3rem 2.6rem;font-size:.82rem;color:var(--ink-3)}
+footer.page p{margin:0 0 .5rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;
+  transition:none!important}}
+</style>
+<div class="wrap">
+<header class="page">
+<p class="eyebrow">SEC 공시 기반 자본수익률 분석</p>
+<h1>스페이스X와 테슬라는 자본비용을 넘기고 있는가</h1>
+<p class="lede">같은 공시가 두 가지 답을 지지합니다. 어느 기간을 재느냐에 따라 스페이스X는 문턱에 크게 미달하기도 하고, 넘기기도 합니다. 둘 다 보여드립니다.</p>
+<p class="meta"><b>자료</b> SPCX 10-Q 2026-09-30·2026-06-30 기말, 424B4 2026-06-12, 8-K 2026-10-26 · TSLA 10-K FY2025, 10-Q 2026-09-30 기말<br><b>주가</b> SPCX $141.71 · TSLA $401.47 (2026-10-29 종가) · <b>자본비용</b> 10% 고정<br><b>작성</b> 2026-10-29 · <b>검증</b> 153건 통과, 변이 15/15 탐지</p>
+</header>
+<h2>스페이스X: 기간이 판정을 바꿉니다</h2>
+<p>스페이스X는 2026년 1~9월에 영업이익 705백만 달러를 냈습니다. 그 안에서 1~2분기는 -2,086백만 달러 적자, 3분기는 2,791백만 달러 흑자입니다. 두 기간을 평균하면 현재를 과소평가하고, 좋은 한 분기를 네 배 하면 같은 논리로 과대평가합니다. 그래서 둘 다 계산했고 어느 쪽도 정답이라 부르지 않습니다.</p>
+<p class="legend"><span class="sw over">초과</span> 자본비용 10%를 넘김 &nbsp;<span class="sw under">미달</span> 넘지 못함 &nbsp;<span class="sw flag">주목</span> 눈여겨볼 수치. 흑자·적자는 색으로만 구분합니다.</p>
+<div class="readings">
+<div class="reading" data-state="under"><p class="when">9개월 누계를 연율화</p><p class="big">2.2%</p><p class="vs">가동자본 기준 ROIC · 문턱까지 7.8% 부족</p><p class="say">세 관점 모두 미달 — 보고 0.9%, 영업 1.5%, 가동 2.2%</p></div>
+<div class="reading" data-state="over"><p class="when">3분기 속도를 연율화</p><p class="big">20.0%</p><p class="vs">가동자본 기준 ROIC · 문턱 10.0% 초과</p><p class="say">세 관점 중 둘이 초과 — 보고 9.2%, 영업 14.2%, 가동 20.0%</p></div>
+</div>
+<div class="callout"><p class="k">먼저 정정</p><p>이 분석을 시작할 때 저는 스페이스X를 비상장 회사라고 단정했습니다. 틀렸습니다. EDGAR에 조회하면 CIK 1181412, 나스닥 SPCX, 2026년 6월 상장(424B4 6월 12일, Class A 6억 3,890만주 × $135.00)이고 10-Q가 두 건 제출돼 있습니다. 기억이 아니라 조회가 먼저였어야 했습니다.</p></div>
+<h3>NOPAT은 마이너스가 아닙니다</h3>
+<p>어느 기간으로 봐도 세후영업이익은 양수입니다. 마이너스인 것은 9개월 누계 <strong>순이익</strong>이고, 그것도 1~2분기 적자와 이자비용 1,968백만 달러 때문입니다 — 3분기 순이익은 +4,404백만 달러입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="r">1~2분기</th><th class="r">3분기</th><th class="r">9개월 누계</th></tr></thead><tbody>
+<tr><td class="l">매출</td><td class="r">12,508</td><td class="r">14,575</td><td class="r">27,083</td></tr>
+<tr><td class="l">영업이익</td><td class="r" data-state="neg">-2,086</td><td class="r" data-state="pos">2,791</td><td class="r" data-state="pos">705</td></tr>
+<tr><td class="l">NOPAT (×0.79)</td><td class="r" data-state="neg">-1,648</td><td class="r" data-state="pos">2,205</td><td class="r" data-state="pos">557</td></tr>
+<tr><td class="l">capex</td><td class="r">28,476</td><td class="r">19,593</td><td class="r">48,069</td></tr>
+</tbody></table></div>
+<figcaption>단위 백만 달러. 10-Q 2026-09-30 기말.</figcaption>
+</figure>
+<h2>세 개의 분모</h2>
+<p>자본을 쏟아붓는 회사는 사업이 나빠지지 않아도 ROIC가 떨어집니다. 돈을 쓰는 순간 분모가 커지지만 분자는 그 자산이 가동될 때까지 기다립니다. 알파벳 분석에서 세운 구분을 그대로 적용했습니다.</p>
+<p class="formula">보고 = 자기자본 + 상환전환우선주 + 차입금 − 현금·유가증권 &nbsp;│&nbsp; 영업 = 보고 − 영업권 − 무형자산 &nbsp;│&nbsp; 가동 = 영업 − 건설중자산</p>
+<p>영업권을 떼는 이유는 Cursor 인수입니다. 2026년 8월 14일 지분가치 600억 달러 기준으로 주식 42,474백만 달러를 주고 사들여, 영업권이 11,809에서 48,423백만 달러로 늘었습니다. 지금 투하자본의 39%입니다. 영업권을 포함한 수익률은 '인수 대금을 치른 주주에게 얼마인가'를, 제외한 수익률은 '영업자산이 얼마를 버는가'를 답합니다. 둘은 다른 질문입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">분모</th><th class="r">6월말</th><th class="r">9월말</th><th class="r">평균</th><th class="r">ROIC</th><th class="r">문턱 대비</th></tr></thead><tbody>
+<tr><td class="l">보고</td><td class="r">66.6</td><td class="r">125.8</td><td class="r">96.2</td><td class="r" data-state="under">9.2%</td><td class="r" data-state="under">-0.8%p</td></tr>
+<tr><td class="l">영업</td><td class="r">53.6</td><td class="r">71.0</td><td class="r">62.3</td><td class="r" data-state="over">14.2%</td><td class="r" data-state="over">+4.2%p</td></tr>
+<tr><td class="l">가동</td><td class="r">41.1</td><td class="r">47.2</td><td class="r">44.1</td><td class="r" data-state="over">20.0%</td><td class="r" data-state="over">+10.0%p</td></tr>
+</tbody></table></div>
+<figcaption>3분기 속도 기준. 단위 십억 달러. 분자는 3분기 NOPAT 2,205백만 달러 × 4.</figcaption>
+</figure>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">분모</th><th class="r">기초 2025-12</th><th class="r">기말 2026-09</th><th class="r">평균</th><th class="r">ROIC</th><th class="r">문턱 대비</th></tr></thead><tbody>
+<tr><td class="l">보고</td><td class="r">39.5</td><td class="r">125.8</td><td class="r">82.6</td><td class="r" data-state="under">0.9%</td><td class="r" data-state="under">-9.1%p</td></tr>
+<tr><td class="l">영업</td><td class="r">26.1</td><td class="r">71.0</td><td class="r">48.5</td><td class="r" data-state="under">1.5%</td><td class="r" data-state="under">-8.5%p</td></tr>
+<tr><td class="l">가동</td><td class="r">21.5</td><td class="r">47.2</td><td class="r">34.4</td><td class="r" data-state="under">2.2%</td><td class="r" data-state="under">-7.8%p</td></tr>
+</tbody></table></div>
+<figcaption>9개월 누계 연율 기준. 단위 십억 달러. 분자는 940백만 달러에 법정세율 21%를 적용한 NOPAT 743백만 달러.</figcaption>
+</figure>
+<h2>연결 수치가 가리는 것</h2>
+<p>스페이스X는 발사체 회사가 아닙니다. 10-Q 주석 1은 세 사업부를 설명합니다 — Space(발사체), Connectivity(스타링크), 그리고 Super Intelligence(SI 인프라, Grok, Cursor, X). 경제성이 전혀 다르고, 공시는 사업부별 매출·영업이익·capex를 모두 제공합니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">사업부</th><th class="r">매출</th><th class="r">영업이익</th><th class="r">마진</th><th class="r">capex</th><th class="r">capex/매출</th><th class="r">영업이익−capex</th></tr></thead><tbody>
+<tr><td class="l">스타링크</td><td class="r">12,796</td><td class="r" data-state="pos">5,211</td><td class="r" data-state="pos">41%</td><td class="r">4,242</td><td class="r">0.3×</td><td class="r" data-state="pos">969</td></tr>
+<tr><td class="l">슈퍼인텔리전스</td><td class="r">10,939</td><td class="r" data-state="neg">-3,295</td><td class="r" data-state="neg">-30%</td><td class="r">39,995</td><td class="r">3.7×</td><td class="r" data-state="neg">-43,290</td></tr>
+<tr><td class="l">발사체</td><td class="r">3,348</td><td class="r" data-state="neg">-1,211</td><td class="r" data-state="neg">-36%</td><td class="r">3,832</td><td class="r">1.1×</td><td class="r" data-state="neg">-5,043</td></tr>
+<tr><td class="l">합계</td><td class="r">27,083</td><td class="r" data-state="pos">705</td><td class="r">3%</td><td class="r">48,069</td><td class="r">1.8×</td><td class="r" data-state="neg">-47,364</td></tr>
+</tbody></table></div>
+<figcaption>2026년 1~9월, 단위 백만 달러. 사업부별 투하자본은 공시되지 않으므로 사업부 ROIC는 계산하지 않았습니다 — 분모를 발명하면 그 가정이 결론이 됩니다. 대신 자기 영업이익으로 자기 capex를 대는지를 봅니다.</figcaption>
+</figure>
+<p><strong>스타링크만 양수입니다.</strong> 9개월 영업이익률 41%로 자기 capex를 대고도 969백만 달러가 남습니다. SI는 자기 매출의 3.7배를 쓰고 있고, 그룹 capex의 83%가 거기로 갑니다. 발사체는 적자입니다.</p>
+<h3>3분기 급증은 인수 때문이 아닙니다</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">매출 항목</th><th class="r">3Q2025</th><th class="r">3Q2026</th><th class="r">증가</th></tr></thead><tbody>
+<tr><td class="l">SI 인프라·솔루션</td><td class="r">359</td><td class="r" data-state="over">7,022</td><td class="r">19배</td></tr>
+<tr><td class="l">스타링크 소비자</td><td class="r">1,986</td><td class="r" data-state="over">3,121</td><td class="r">+57%</td></tr>
+<tr><td class="l">스타링크 기업·정부</td><td class="r">1,111</td><td class="r" data-state="over">2,127</td><td class="r">+91%</td></tr>
+<tr><td class="l">X 광고</td><td class="r">454</td><td class="r">538</td><td class="r">+18%</td></tr>
+<tr><td class="l">발사체</td><td class="r">1,666</td><td class="r">1,767</td><td class="r">+6%</td></tr>
+</tbody></table></div>
+<figcaption>단위 백만 달러. 10-Q 매출 분해.</figcaption>
+</figure>
+<p>Cursor 기여분은 약 539백만 달러입니다 — 10-Q 프로포마 매출 15,114백만 달러와 보고 매출 14,575백만 달러의 차이. SI의 7,022백만 달러 중 대부분은 자체 증가이고, 스타링크 영업이익도 1,190에서 2,367백만 달러(마진 45%)로 좋아졌습니다. 반대로 발사체는 영업이익이 +259에서 −7백만 달러로 돌아섰습니다.</p>
+<h2>아직 돈을 벌지 않는 자본</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="r">2025-12-31</th><th class="r">2026-09-30</th><th class="r">증가</th></tr></thead><tbody>
+<tr><td class="l">PP&amp;E 총액</td><td class="r">55,303</td><td class="r">110,005</td><td class="r">+99%</td></tr>
+<tr><td class="l">건설중자산</td><td class="r">4,604</td><td class="r" data-state="flag">23,745</td><td class="r">+416%</td></tr>
+<tr><td class="l">PP&amp;E 중 건설중 비중</td><td class="r">8%</td><td class="r" data-state="flag">22%</td><td class="r"></td></tr>
+<tr><td class="l">영업권</td><td class="r">11,809</td><td class="r">48,423</td><td class="r">+310%</td></tr>
+<tr><td class="l">계약잔고 (RPO)</td><td class="r">—</td><td class="r" data-state="flag">62,959</td><td class="r"></td></tr>
+<tr><td class="l">선수금</td><td class="r">12,116</td><td class="r">17,520</td><td class="r"></td></tr>
+</tbody></table></div>
+<figcaption>단위 백만 달러.</figcaption>
+</figure>
+<p>계약잔고 63.0십억 달러는 연율 매출의 1.7배이고, 공시에 따르면 67%가 1년 내, 27%가 그 다음, 6%가 이후에 인식됩니다. 이건 앞으로의 매출을 뒷받침하지만 수익성을 뒷받침하지는 않습니다 — SI의 적자는 매출이 없어서가 아니라 매출보다 비용이 커서 납니다.</p>
+<h3>어느 재무상태표에도 아직 없는 400억 달러</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="l">내용</th></tr></thead><tbody>
+<tr><td class="l">약정</td><td class="l">GPU 금융리스 (아폴로 관리 법인)</td></tr>
+<tr><td class="l">금액</td><td class="l">약 40십억 달러</td></tr>
+<tr><td class="l">체결</td><td class="l">2026-10-24</td></tr>
+<tr><td class="l">개시 예정</td><td class="l">2027 H1</td></tr>
+<tr><td class="l">기간</td><td class="l">5 ~ 5.25년</td></tr>
+<tr><td class="l">상태</td><td class="l">구속력 있는 약정 (commitment letter) · 연내 종결 예정</td></tr>
+<tr><td class="l">출처</td><td class="l">8-K 2026-10-26 (0001104659-26-118614)</td></tr>
+</tbody></table></div>
+</figure>
+<blockquote><p>The Company expects aggregate principal payments under the lease schedules over their respective terms to total approximately $40 billion.</p><cite>8-K, 2026-10-26</cite></blockquote>
+<p>리스가 개시되면 자산과 부채로 동시에 올라오므로 투하자본이 그만큼 커집니다. GPU가 가동되기까지 분자는 따라오지 않으므로, 현재 건설중자산 22%가 만드는 효과가 한 번 더 반복되는 구조입니다.</p>
+<h2>연간 이력 — 있는 만큼만</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">매출</th><th class="r">영업이익</th><th class="r">순이익</th><th class="r">영업이익률</th></tr></thead><tbody>
+<tr><td class="l">FY2023</td><td class="r">10,387</td><td class="r" data-state="neg">-3,505</td><td class="r" data-state="neg">-4,628</td><td class="r">-33.7%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">14,015</td><td class="r" data-state="pos">466</td><td class="r" data-state="pos">791</td><td class="r">3.3%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">18,674</td><td class="r" data-state="neg">-2,589</td><td class="r" data-state="neg">-4,937</td><td class="r">-13.9%</td></tr>
+</tbody></table></div>
+<figcaption>등록신고서 424B4 요약재무, 단위 백만 달러. FY2022 이전은 공개 공시에 없습니다.</figcaption>
+</figure>
+<div class="callout"><p class="k">판정 불가</p><p>버핏 기준의 핵심인 10년 일관성 검정을 스페이스X에는 적용할 수 없습니다. 10-K가 아직 없고, 감사된 연간 수치는 등록신고서의 3개 회계연도뿐입니다. 그 3년 중 영업이익 흑자는 FY2024 한 해이고 마진은 3.3%였습니다. 자료를 더 찾아 해결되는 문제가 아니라, 회사가 아직 그만큼의 공개 이력을 갖고 있지 않다는 사실입니다. <strong>판정 불가는 통과가 아닙니다.</strong></p></div>
+<h2>테슬라: 10년이 있는 쪽</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">매출</th><th class="r">영업이익</th><th class="r">영업이익률</th><th class="r">ROIC</th><th class="r">문턱 대비</th></tr></thead><tbody>
+<tr><td class="l">FY2016</td><td class="r">7,000</td><td class="r">-667</td><td class="r">-9.5%</td><td class="r" data-state="under">-9.1%</td><td class="r" data-state="under">-19.1%p</td></tr>
+<tr><td class="l">FY2017</td><td class="r">11,759</td><td class="r">-1,632</td><td class="r">-13.9%</td><td class="r" data-state="under">-12.2%</td><td class="r" data-state="under">-22.2%p</td></tr>
+<tr><td class="l">FY2018</td><td class="r">21,461</td><td class="r">-388</td><td class="r">-1.8%</td><td class="r" data-state="under">-2.4%</td><td class="r" data-state="under">-12.4%p</td></tr>
+<tr><td class="l">FY2019</td><td class="r">24,578</td><td class="r">-69</td><td class="r">-0.3%</td><td class="r" data-state="under">-0.4%</td><td class="r" data-state="under">-10.4%p</td></tr>
+<tr><td class="l">FY2020</td><td class="r">31,536</td><td class="r">1,994</td><td class="r">6.3%</td><td class="r" data-state="over">12.5%</td><td class="r" data-state="over">+2.5%p</td></tr>
+<tr><td class="l">FY2021</td><td class="r">53,823</td><td class="r">6,523</td><td class="r">12.1%</td><td class="r" data-state="over">39.1%</td><td class="r" data-state="over">+29.1%p</td></tr>
+<tr><td class="l">FY2022</td><td class="r">81,462</td><td class="r">13,656</td><td class="r">16.8%</td><td class="r" data-state="over">59.8%</td><td class="r" data-state="over">+49.8%p</td></tr>
+<tr><td class="l">FY2023</td><td class="r">96,773</td><td class="r">8,891</td><td class="r">9.2%</td><td class="r" data-state="over">27.6%</td><td class="r" data-state="over">+17.6%p</td></tr>
+<tr><td class="l">FY2024</td><td class="r">97,690</td><td class="r">7,076</td><td class="r">7.2%</td><td class="r" data-state="over">14.2%</td><td class="r" data-state="over">+4.2%p</td></tr>
+<tr><td class="l">FY2025</td><td class="r">94,827</td><td class="r">4,355</td><td class="r">4.6%</td><td class="r" data-state="under">7.2%</td><td class="r" data-state="under">-2.8%p</td></tr>
+</tbody></table></div>
+<figcaption>단위 백만 달러. 10-K 기준.</figcaption>
+</figure>
+<p>ROIC가 FY2022 59.8%에서 FY2025 7.2%로 내려왔습니다. 10년 중위 9.9%, 문턱을 넘긴 해는 5/10년입니다. 꾸준히 자본비용을 넘긴 회사라고 하기 어렵습니다.</p>
+<h3>최근에 넣은 돈이 버는 것</h3>
+<p>10년 평균은 과거에 넣은 자본이 번 것을 말합니다. 판단에 필요한 것은 최근에 넣은 자본이 버는 것이고, 그건 영업이익 증가분을 투하자본 증가분으로 나눈 값입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">구간</th><th class="r">ΔNOPAT</th><th class="r">Δ투하자본</th><th class="r">증분 ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2020→FY2025</td><td class="r">1.7</td><td class="r">33.2</td><td class="r" data-state="under">5.1%</td></tr>
+<tr><td class="l">FY2022→FY2025</td><td class="r">-9.3</td><td class="r">21.0</td><td class="r" data-state="under">-44.5%</td></tr>
+<tr><td class="l">FY2023→FY2025</td><td class="r">-5.3</td><td class="r">8.4</td><td class="r" data-state="under">-62.9%</td></tr>
+</tbody></table></div>
+<figcaption>단위 십억 달러.</figcaption>
+</figure>
+<p>FY2022에서 FY2025 사이에 투하자본이 21.0십억 달러 늘었는데 NOPAT은 -9.3십억 달러 줄었습니다. 증분 ROIC -44.5%는 최근 3년에 추가로 넣은 자본이 수익을 전혀 늘리지 못했다는 뜻입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">보고 ROIC</th><th class="r">가동자본 ROIC</th><th class="r">투하자본 중 건설중</th></tr></thead><tbody>
+<tr><td class="l">FY2025</td><td class="r">7.2%</td><td class="r" data-state="under">8.8%</td><td class="r">19%</td></tr>
+</tbody></table></div>
+<figcaption>건설중자산을 분모에서 뺀 경우.</figcaption>
+</figure>
+<p>건설중자산을 빼면 FY2025가 7.2%에서 8.8%로 올라가지만 문턱을 넘지는 못합니다. 알파벳의 38%와 달리 테슬라의 미사용 자본 비중은 19%로, 차이를 설명할 크기가 아닙니다. 다만 테슬라도 같은 AI 설비 투자를 하고 있습니다 — PP&E의 AI·SI 인프라 항목이 2024년 12월 5,152에서 2026년 9월 10,956백만 달러로 늘었고, FY2025 10-K의 'AI infrastructure'가 3분기 10-Q에서 'SI infrastructure'로 바뀌었습니다.</p>
+<h2>가격</h2>
+<div class="verdict">
+<div class="vcard"><h4>스페이스X</h4><p class="tkr">SPCX · 나스닥</p><dl><dt>주가</dt><dd>$141.71</dd><dt>발행주식수</dt><dd>13.579십억주</dd><dt>시가총액</dt><dd>1,924십억 달러</dd><dt>연율 NOPAT</dt><dd>0.7십억 달러</dd><dt>시총 / NOPAT</dt><dd>2,591배</dd><dt>10% 수익에 필요한 NOPAT</dt><dd>192십억 달러</dd><dt>현재의 몇 배</dt><dd>259배</dd></dl></div>
+<div class="vcard"><h4>테슬라</h4><p class="tkr">TSLA · 나스닥</p><dl><dt>주가</dt><dd>$401.47</dd><dt>발행주식수</dt><dd>3.953십억주</dd><dt>시가총액</dt><dd>1,587십억 달러</dd><dt>연율 NOPAT</dt><dd>3.2십억 달러</dd><dt>시총 / NOPAT</dt><dd>499배</dd><dt>10% 수익에 필요한 NOPAT</dt><dd>159십억 달러</dd><dt>현재의 몇 배</dt><dd>50배</dd></dl></div>
+</div>
+<p><strong>DCF는 돌리지 않았습니다.</strong> 알파벳에서는 성장률이 떨어지는 시나리오로 현재가치를 쌓았지만, 그 계산은 출발점이 되는 정상 수익력이 있어야 성립합니다. 스페이스X는 3년 중 2년이 영업적자이고 분기마다 자본구조가 바뀌어, 어떤 숫자를 기준 수익력으로 잡아도 그 선택이 결과를 전부 결정합니다. 테슬라는 기준 수익력은 있지만 증분 ROIC가 음수여서 성장을 가정하는 모형이 가치를 늘리는 게 아니라 줄입니다. 두 경우 모두 모형이 정확도가 아니라 가정을 숨깁니다.</p>
+<h2>버핏 기준 판정</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기준</th><th class="l">스페이스X</th><th class="l">테슬라</th></tr></thead><tbody>
+<tr><td class="l">이해할 수 있는 사업</td><td class="l">✗ 세 사업부의 경제성이 전혀 다르고, 그중 하나는 2개월 전 인수한 AI 사업</td><td class="l">△ 자동차·에너지는 명확, AI·로보틱스 비중이 커지는 중</td></tr>
+<tr><td class="l">10년 일관된 수익력</td><td class="l">판정 불가 — 감사된 연간 수치 3년, 그중 흑자 1년</td><td class="l">✗ 문턱 초과 5/10년, 중위 9.9%</td></tr>
+<tr><td class="l">ROIC &gt; 자본비용 10%</td><td class="l">△ 9개월 연율 2.2% 미달 / 3분기 속도 20.0% 초과</td><td class="l">✗ FY2025 7.2%, 가동 기준 8.8%</td></tr>
+<tr><td class="l">증분 ROIC</td><td class="l">산출 불가 (자본구조 급변) · SI capex는 자기 매출의 3.7배</td><td class="l">✗ FY2022→25 -44.5%</td></tr>
+<tr><td class="l">낮은 부채</td><td class="l">△ 차입금 39십억 달러에 현금·유가증권 90십억 달러로 순현금. 단 400억 달러 리스 약정이 대기 중</td><td class="l">△ 순현금이지만 FY2025 영업이익이 축소</td></tr>
+<tr><td class="l">가격 매력</td><td class="l">✗ 시총/NOPAT 2,591배</td><td class="l">✗ 시총/NOPAT 499배</td></tr>
+</tbody></table></div>
+</figure>
+<p><strong>스페이스X 안에서 자기 숫자로 기준을 통과하는 사업은 스타링크 하나입니다.</strong> 9개월 영업이익률 41%, 자기 capex를 자기 영업이익으로 대고, 매출이 57% 늘었습니다. 문제는 그것만 따로 살 수 없다는 것입니다 — SPCX를 사면 스타링크가 버는 돈을 SI에 넣는 결정을 함께 사게 됩니다. 지금 그 비율은 그룹 capex의 83%입니다.</p>
+<h2>이 분석의 한계</h2>
+<ul><li><strong>기간을 어떻게 잡느냐가 판정을 바꿉니다.</strong> 9개월 연율로는 세 관점 모두 미달하고, 3분기 속도로는 둘이 넘습니다. 둘 다 추정이고 방향만 반대입니다. 1~2분기 적자가 일시적인지 3분기 흑자가 지속적인지는 다음 분기들이 답할 문제입니다.</li><li><strong>스페이스X는 10년 검정을 할 수 없습니다.</strong> 가장 중요한 한계이고 자료를 더 찾아 해결되지 않습니다. 첫 10-K가 나오는 2027년 초에 FY2026이 확정되면 4년이 됩니다.</li><li><strong>사업부 ROIC는 계산하지 않았습니다.</strong> 사업부별 투하자본이 공시되지 않습니다. 사업부 capex를 누적해 분모를 만들 수는 있지만 그건 측정이 아니라 추정이고 결과를 좌우합니다.</li><li><strong>Cursor 인수는 1.5개월분만 손익에 들어 있습니다.</strong> 8월 14일 종료인데 영업권 48,423백만 달러는 전액 반영돼 있어, 분자와 분모의 기간이 어긋나 있습니다. 다음 분기부터 올라갈 여지가 있습니다.</li><li><strong>자본비용 10%는 지시에 따른 고정값입니다.</strong> 두 회사의 실제 자본비용은 다르고, 특히 스페이스X는 상장 4개월째여서 시장 기반 추정이 의미를 갖기 어렵습니다.</li></ul>
+<footer class="page">
+<p>검증: 항등식(투하자본·NOPAT·ROIC·평균·PP&amp;E 순액), 합계 검정(사업부 합이 연결과 일치, 분기 합이 누계와 일치), 범위 검정(주식수·시가총액 — 배율 오류 탐지용), 공시 앵커 27건. 153건 전부 통과하고, 값을 고의로 훼손한 변이 15건을 전부 탐지합니다.</p>
+<p>재현: <code>bash work/run_spx_tsla.sh</code> — 날짜·신선도 확인 → 주가 → 공시 수집 → 산출 → 검증 → 보고서.</p>
+<p>이 페이지의 모든 수치는 SEC 공시에서 직접 추출한 값이며, 같은 데이터로 마크다운·워드·엑셀 보고서가 함께 생성됩니다. 투자 판단은 읽는 분의 몫입니다.</p>
+</footer>
+</div>

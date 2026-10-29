@@ -4,27 +4,27 @@
  "prices": {
   "SPCX": {
    "ticker": "SPCX",
-   "price": 145.22999572753906,
+   "price": 141.7122039794922,
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-10-28T13:30:00+00:00",
-   "regular_market_price": 145.23,
+   "as_of_utc": "2026-10-29T13:30:00+00:00",
+   "regular_market_price": 141.712,
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T13:14:12.900855+00:00"
+   "fetched_utc": "2026-10-29T13:38:32.633150+00:00"
   },
   "TSLA": {
    "ticker": "TSLA",
-   "price": 404.2200012207031,
+   "price": 401.4700012207031,
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-10-28T13:30:00+00:00",
-   "regular_market_price": 404.22,
+   "as_of_utc": "2026-10-29T13:30:00+00:00",
+   "regular_market_price": 401.47,
    "fifty_two_week_high": 498.83,
    "fifty_two_week_low": 297.38,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T13:14:13.313920+00:00"
+   "fetched_utc": "2026-10-29T13:38:33.031621+00:00"
   }
  },
  "SPCX": {
@@ -424,8 +424,8 @@
     }
    },
    "shares_outstanding": 13579000000.0,
-   "price": 145.22999572753906,
-   "market_cap": 1972078111984.253,
+   "price": 141.7122039794922,
+   "market_cap": 1924310017837.5244,
    "capital_not_in_service_share": 0.21585382482614426,
    "goodwill_share_of_capital": 0.38505212433502706,
    "backlog_to_revenue_annualised": 1.743501458479489
@@ -871,15 +871,15 @@
     }
    },
    "shares_outstanding": 3952757946,
-   "price": 404.2200012207031,
-   "market_cap": 1597783821757.264,
+   "price": 401.4700012207031,
+   "market_cap": 1586913737405.764,
    "latest_fiscal_year": 2025,
    "roic_latest": 0.07235699670601066,
    "roic_peak": 0.598123801793593,
    "roic_median_10y": 0.09888172053402922,
    "years_above_wacc": 5,
    "years_usable": 10,
-   "price_to_nopat": 502.3135154061979
+   "price_to_nopat": 498.89616306540455
   }
  }
 }

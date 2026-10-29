@@ -27,6 +27,12 @@ python3 export_spx_tsla_xlsx.py
 echo; echo "== 엑셀에 계산값 심기"
 python3 embed_xlsx_values.py 스페이스X_테슬라_기업분석.xlsx
 
+echo; echo "== HTML 작성"
+python3 export_spx_tsla_html.py
+
+echo; echo "== HTML 수치 검증"
+python3 export_spx_tsla_html.py --verify --mutate
+
 echo; echo "== 마크다운 수치 검증"
 python3 export_spx_tsla_xlsx.py --verify-md --mutate
 
