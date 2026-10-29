@@ -23,6 +23,8 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
+import sec_cache
+
 UA = "Buffett52Analysis research cktkdgkr@gmail.com"
 WORK = os.path.dirname(os.path.abspath(__file__))
 CHART = "https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range={rng}&interval={iv}"
@@ -36,7 +38,7 @@ def fetch(url: str, retries: int = 5) -> bytes:
     delay = 2
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            req = urllib.request.Request(url, headers={"User-Agent": sec_cache.ua_for(url)})
             with urllib.request.urlopen(req, timeout=60) as r:
                 return r.read()
         except urllib.error.HTTPError as e:

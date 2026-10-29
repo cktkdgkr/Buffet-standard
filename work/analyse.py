@@ -41,6 +41,8 @@ from datetime import datetime, timezone
 
 import calc
 
+import sec_cache
+
 UA = "Buffett52Analysis research cktkdgkr@gmail.com"
 WORK = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(WORK, "raw")
@@ -83,7 +85,7 @@ def load_sic(companies):
         if key in cache:
             continue
         url = f"https://data.sec.gov/submissions/CIK{c['cik']:010d}.json"
-        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        req = urllib.request.Request(url, headers={"User-Agent": sec_cache.ua_for(url)})
         with urllib.request.urlopen(req, timeout=60) as r:
             j = json.loads(r.read())
         cache[key] = {"sic": j.get("sic"), "sic_description": j.get("sicDescription"),

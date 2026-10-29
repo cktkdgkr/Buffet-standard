@@ -25,6 +25,8 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
+import sec_cache
+
 UA = "Buffett52Analysis research cktkdgkr@gmail.com"
 RAW_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "raw")
 TICKER_URL = "https://www.sec.gov/files/company_tickers.json"
@@ -188,7 +190,7 @@ def fetch(url: str, retries: int = 4):
     last = None
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA,
+            req = urllib.request.Request(url, headers={"User-Agent": sec_cache.ua_for(url),
                                                        "Accept-Encoding": "gzip, deflate"})
             with urllib.request.urlopen(req, timeout=60) as r:
                 data = r.read()

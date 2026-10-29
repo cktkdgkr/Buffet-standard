@@ -4,3 +4,6 @@ work/raw/
 work/_docx_payload.json
 work/kr/txt/
 미국50개사_ROIC_WACC비교.xlsx.formulas-only
+work/spx/cache/
+work/spx/*.htm
+work/spx/*.xml

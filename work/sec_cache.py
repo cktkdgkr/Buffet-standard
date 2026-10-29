@@ -120,7 +120,7 @@ def fetch(url, path, max_age_days=DEFAULT_MAX_AGE_DAYS, refresh=False,
     throttle()
     try:
         subprocess.run(["curl", "-sS", "--fail", "--compressed",
-                        "-A", UA, url, "-o", tmp], check=True)
+                        "-A", ua_for(url), url, "-o", tmp], check=True)
         if os.path.getsize(tmp) < min_bytes:
             raise OSError(f"응답이 너무 작음 ({os.path.getsize(tmp)} bytes)")
         os.replace(tmp, path)
@@ -170,3 +170,35 @@ def describe(before, from_network, path=None):
     certain = path is None or has_fetch_record(path)
     return (f"캐시 {before:.1f}일 경과" if certain
             else f"캐시 (기록 없음, mtime 기준 {before:.1f}일)")
+
+
+# --- who we tell each host we are ------------------------------------------
+#
+# The SEC asks automated callers to identify themselves with contact details,
+# and declining would be rude to a service that gives this data away. No other
+# host asked, and none of them has any business receiving the account holder's
+# email address - but several were getting it, because the collectors each
+# defined one User-Agent string with the address in it and used it for every
+# request they made. collect_market.py sent it to FRED, to NYU and to Yahoo;
+# build_universe.py to companiesmarketcap.com.
+#
+# So the address goes to the SEC and nowhere else. ua_for() decides from the
+# URL rather than leaving it to each call site to remember.
+UA_SEC = UA
+UA_WEB = "Mozilla/5.0 (compatible; portfolio-research/1.0)"
+SEC_DOMAIN = "sec.gov"
+
+
+def ua_for(url):
+    """
+    The User-Agent for this URL: contact details for the SEC, neutral
+    otherwise.
+
+    Matched on the registered domain and its subdomains only. A substring or
+    suffix test would hand the address to sec.gov.evil.com, which is exactly
+    the kind of host it must not reach.
+    """
+    from urllib.parse import urlparse
+    host = (urlparse(url).hostname or "").lower().rstrip(".")
+    is_sec = host == SEC_DOMAIN or host.endswith("." + SEC_DOMAIN)
+    return UA_SEC if is_sec else UA_WEB

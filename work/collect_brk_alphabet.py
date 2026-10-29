@@ -43,6 +43,8 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
+import sec_cache
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "brk", "docs")
 OUT = os.path.join(HERE, "brk_alphabet.json")
@@ -76,7 +78,7 @@ def fetch(url, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if os.path.exists(path) and os.path.getsize(path) > 1000:
         return path
-    subprocess.run(["curl", "-sS", "-A", UA, url, "-o", path], check=True)
+    subprocess.run(["curl", "-sS", "-A", sec_cache.ua_for(url), url, "-o", path], check=True)
     return path
 
 

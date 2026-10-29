@@ -26,6 +26,8 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
+import sec_cache
+
 UA = "Buffett52Analysis research cktkdgkr@gmail.com"
 WORK = os.path.dirname(os.path.abspath(__file__))
 SCREEN_URL = "https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/"
@@ -86,7 +88,7 @@ def fetch_bytes(url: str, retries: int = 5) -> bytes:
     delay = 3
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            req = urllib.request.Request(url, headers={"User-Agent": sec_cache.ua_for(url)})
             with urllib.request.urlopen(req, timeout=90) as r:
                 return r.read()
         except urllib.error.HTTPError as e:

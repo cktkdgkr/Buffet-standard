@@ -39,6 +39,8 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
+import sec_cache
+
 UA = "Buffett52Analysis research cktkdgkr@gmail.com"
 WORK = os.path.dirname(os.path.abspath(__file__))
 CONCEPT = "https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/{taxonomy}/{tag}.json"
@@ -57,7 +59,7 @@ def fetch(url: str, retries: int = 5):
     delay = 3
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA,
+            req = urllib.request.Request(url, headers={"User-Agent": sec_cache.ua_for(url),
                                                        "Accept-Encoding": "gzip"})
             with urllib.request.urlopen(req, timeout=90) as r:
                 data = r.read()

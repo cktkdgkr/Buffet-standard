@@ -1,0 +1,29 @@
+{
+ "fetched_utc": "2026-10-29T12:08:04.501573+00:00",
+ "prices": {
+  "TSLA": {
+   "ticker": "TSLA",
+   "price": 404.2200012207031,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-10-28T13:30:00+00:00",
+   "regular_market_price": 404.22,
+   "fifty_two_week_high": 498.83,
+   "fifty_two_week_low": 297.38,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
+   "fetched_utc": "2026-10-29T12:08:04.117221+00:00"
+  },
+  "SPCX": {
+   "ticker": "SPCX",
+   "price": 145.22999572753906,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-10-28T13:30:00+00:00",
+   "regular_market_price": 145.23,
+   "fifty_two_week_high": 225.64,
+   "fifty_two_week_low": 104.83,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
+   "fetched_utc": "2026-10-29T12:08:04.501353+00:00"
+  }
+ }
+}

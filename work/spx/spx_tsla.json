@@ -1,0 +1,780 @@
+{
+ "generated": "2026-10-29",
+ "wacc": 0.1,
+ "prices": {
+  "SPCX": {
+   "ticker": "SPCX",
+   "price": 145.22999572753906,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-10-28T13:30:00+00:00",
+   "regular_market_price": 145.23,
+   "fifty_two_week_high": 225.64,
+   "fifty_two_week_low": 104.83,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
+   "fetched_utc": "2026-10-29T12:08:04.501353+00:00"
+  },
+  "TSLA": {
+   "ticker": "TSLA",
+   "price": 404.2200012207031,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-10-28T13:30:00+00:00",
+   "regular_market_price": 404.22,
+   "fifty_two_week_high": 498.83,
+   "fifty_two_week_low": 297.38,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
+   "fetched_utc": "2026-10-29T12:08:04.117221+00:00"
+  }
+ },
+ "SPCX": {
+  "segments_9m": {
+   "Space": {
+    "revenue": {
+     "9m_2026": 3348000000.0,
+     "9m_2025": 3277000000.0
+    },
+    "operating_income": {
+     "9m_2026": -1211000000.0,
+     "9m_2025": -181000000.0
+    },
+    "capex": {
+     "9m_2026": 3832000000.0,
+     "9m_2025": 2818000000.0
+    },
+    "depreciation_amortisation": {
+     "9m_2026": 509000000.0,
+     "9m_2025": 572000000.0
+    }
+   },
+   "Connectivity": {
+    "revenue": {
+     "9m_2026": 12796000000.0,
+     "9m_2025": 8159000000.0
+    },
+    "operating_income": {
+     "9m_2026": 5211000000.0,
+     "9m_2025": 3147000000.0
+    },
+    "capex": {
+     "9m_2026": 4242000000.0,
+     "9m_2025": 2951000000.0
+    },
+    "depreciation_amortisation": {
+     "9m_2026": 2574000000.0,
+     "9m_2025": 1706000000.0
+    }
+   },
+   "SI": {
+    "revenue": {
+     "9m_2026": 10939000000.0,
+     "9m_2025": 2278000000.0
+    },
+    "operating_income": {
+     "9m_2026": -3295000000.0,
+     "9m_2025": -4182000000.0
+    },
+    "capex": {
+     "9m_2026": 39995000000.0,
+     "9m_2025": 8077000000.0
+    },
+    "depreciation_amortisation": {
+     "9m_2026": 5851000000.0,
+     "9m_2025": 2506000000.0
+    }
+   }
+  },
+  "consolidated_9m": {
+   "revenue": {
+    "9m_2026": 27083000000.0,
+    "9m_2025": 13714000000.0
+   },
+   "operating_income": {
+    "9m_2026": 705000000.0,
+    "9m_2025": -1216000000.0
+   },
+   "capex": {
+    "9m_2026": 48069000000.0,
+    "9m_2025": 13846000000.0
+   },
+   "depreciation_amortisation": {
+    "9m_2026": 8934000000.0,
+    "9m_2025": 4784000000.0
+   }
+  },
+  "balance_sheets": {
+   "2026-09-30": {
+    "equity": 176768000000.0,
+    "redeemable_preferred": 0.0,
+    "cash_and_securities": 89855000000.0,
+    "debt": 38844000000.0,
+    "goodwill": 48423000000.0,
+    "intangibles": 6354000000.0,
+    "construction_in_progress": 23745000000.0,
+    "ppe_gross": 110005000000.0,
+    "ppe_net": 89483000000.0,
+    "total_assets": 254045000000.0
+   },
+   "2025-12-31": {
+    "equity": 2573000000.0,
+    "redeemable_preferred": 38752000000.0,
+    "cash_and_securities": 24747000000.0,
+    "debt": 22896000000.0,
+    "goodwill": 11809000000.0,
+    "intangibles": 1548000000.0,
+    "construction_in_progress": 4604000000.0,
+    "ppe_gross": 55303000000.0,
+    "ppe_net": 42602000000.0,
+    "total_assets": 92079000000.0
+   }
+  },
+  "annual_from_prospectus": {
+   "FY2025": {
+    "revenue": 18674000000.0,
+    "costs": 21263000000.0,
+    "operating_income": -2589000000.0,
+    "net_income": -4937000000.0
+   },
+   "FY2024": {
+    "revenue": 14015000000.0,
+    "costs": 13549000000.0,
+    "operating_income": 466000000.0,
+    "net_income": 791000000.0
+   },
+   "FY2023": {
+    "revenue": 10387000000.0,
+    "costs": 13892000000.0,
+    "operating_income": -3505000000.0,
+    "net_income": -4628000000.0
+   }
+  },
+  "balance_from_prospectus": {
+   "2026-03-31": {
+    "cash": 15852000000.0,
+    "ppe_net": 53879000000.0,
+    "total_assets": 102094000000.0,
+    "total_liabilities": 60512000000.0,
+    "preferred": 7049000000.0,
+    "equity": 34533000000.0
+   },
+   "2025-12-31": {
+    "cash": 24747000000.0,
+    "ppe_net": 42602000000.0,
+    "total_assets": 92079000000.0,
+    "total_liabilities": 50754000000.0,
+    "preferred": 38752000000.0,
+    "equity": 2573000000.0
+   },
+   "2024-12-31": {
+    "cash": 11385000000.0,
+    "ppe_net": 21147000000.0,
+    "total_assets": 57062000000.0,
+    "total_liabilities": 31258000000.0,
+    "preferred": 20941000000.0,
+    "equity": 4863000000.0
+   }
+  },
+  "segment_revenue_annual": {
+   "Space": {
+    "FY2025": 4086000000.0,
+    "FY2024": 3796000000.0,
+    "FY2023": 3557000000.0
+   },
+   "Connectivity": {
+    "FY2025": 11387000000.0,
+    "FY2024": 7599000000.0,
+    "FY2023": 3869000000.0
+   },
+   "AI": {
+    "FY2025": 1357000000.0,
+    "FY2024": 892000000.0,
+    "FY2023": 638000000.0
+   },
+   "Total revenues": {
+    "FY2025": 18674000000.0,
+    "FY2024": 14015000000.0,
+    "FY2023": 10387000000.0
+   }
+  },
+  "backlog": {
+   "remaining_performance_obligation": 62959000000.0,
+   "deferred_revenue": 17520000000.0,
+   "deferred_revenue_prior": 12116000000.0
+  },
+  "shares_outstanding": 13579000000.0,
+  "meta": {
+   "entity": "SPACE EXPLORATION TECHNOLOGIES CORP",
+   "cik": "0001181412",
+   "tickers": [
+    "SPCX"
+   ],
+   "exchanges": [
+    "Nasdaq"
+   ],
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "fiscal_year_end": "1231",
+   "filings": [
+    {
+     "form": "10-Q",
+     "filed": "2026-10-22",
+     "period_end": "2026-09-30",
+     "accession": "0001628280-26-066880",
+     "primary_document": "spcx-20260930.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2026-08-04",
+     "period_end": "2026-06-30",
+     "accession": "0001628280-26-052535",
+     "primary_document": "spcx-20260630.htm"
+    },
+    {
+     "form": "424B4",
+     "filed": "2026-06-12",
+     "period_end": "",
+     "accession": "0001628280-26-042639",
+     "primary_document": "spaceexplorationtechnologi.htm"
+    },
+    {
+     "form": "S-1/A",
+     "filed": "2026-06-03",
+     "period_end": "",
+     "accession": "0001628280-26-040364",
+     "primary_document": "spaceexplorationtechnologib.htm"
+    },
+    {
+     "form": "S-1/A",
+     "filed": "2026-06-01",
+     "period_end": "",
+     "accession": "0001628280-26-039276",
+     "primary_document": "spaceexplorationtechnologi.htm"
+    },
+    {
+     "form": "S-1",
+     "filed": "2026-05-20",
+     "period_end": "",
+     "accession": "0001628280-26-036936",
+     "primary_document": "spaceexplorationtechnologi.htm"
+    }
+   ]
+  },
+  "prospectus_source": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+  "quarterly_source": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/R2.htm",
+  "ratios": {
+   "operating_income_9m_2026": 705000000.0,
+   "operating_income_annualised": 940000000.0,
+   "nopat_annualised": 742600000.0,
+   "tax_note": "세전 적자이므로 법정세율 21% 적용",
+   "views": {
+    "reported": {
+     "opening": 39474000000.0,
+     "closing": 125757000000.0,
+     "average": 82615500000.0,
+     "roic": 0.008988628041953387,
+     "spread_vs_wacc": -0.09101137195804662
+    },
+    "operating": {
+     "opening": 26117000000.0,
+     "closing": 70980000000.0,
+     "average": 48548500000.0,
+     "roic": 0.015296044162023544,
+     "spread_vs_wacc": -0.08470395583797646
+    },
+    "in_service": {
+     "opening": 21513000000.0,
+     "closing": 47235000000.0,
+     "average": 34374000000.0,
+     "roic": 0.021603537557456216,
+     "spread_vs_wacc": -0.0783964624425438
+    }
+   },
+   "segments": {
+    "Space": {
+     "revenue_9m": 3348000000.0,
+     "operating_income_9m": -1211000000.0,
+     "capex_9m": 3832000000.0,
+     "operating_margin": -0.36170848267622463,
+     "capex_to_revenue": 1.1445639187574672,
+     "operating_income_less_capex": -5043000000.0,
+     "revenue_growth_9m": 0.021666158071406816
+    },
+    "Connectivity": {
+     "revenue_9m": 12796000000.0,
+     "operating_income_9m": 5211000000.0,
+     "capex_9m": 4242000000.0,
+     "operating_margin": 0.4072366364488903,
+     "capex_to_revenue": 0.33150984682713347,
+     "operating_income_less_capex": 969000000.0,
+     "revenue_growth_9m": 0.5683294521387425
+    },
+    "SI": {
+     "revenue_9m": 10939000000.0,
+     "operating_income_9m": -3295000000.0,
+     "capex_9m": 39995000000.0,
+     "operating_margin": -0.3012158332571533,
+     "capex_to_revenue": 3.656184294725295,
+     "operating_income_less_capex": -43290000000.0,
+     "revenue_growth_9m": 3.802019315188762
+    }
+   },
+   "shares_outstanding": 13579000000.0,
+   "price": 145.22999572753906,
+   "market_cap": 1972078111984.253,
+   "capital_not_in_service_share": 0.21585382482614426,
+   "goodwill_share_of_capital": 0.38505212433502706,
+   "backlog_to_revenue_annualised": 1.743501458479489
+  }
+ },
+ "TSLA": {
+  "annual_roic": [
+   {
+    "fiscal_year": 2015,
+    "period_end": "2015-12-31",
+    "revenue": 4046025000.0,
+    "operating_income": -716629000.0,
+    "effective_tax_rate": 0.21,
+    "nopat": -566136910.0,
+    "total_equity": 1083704000.0,
+    "interest_bearing_debt": 2649020000.0,
+    "cash_and_short_term_investments": 1213608000.0,
+    "invested_capital": 2519116000.0,
+    "invested_capital_avg": 1977498500.0,
+    "roic": -0.2862894257568337,
+    "operating_margin": -0.17711927138364197,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2016,
+    "period_end": "2016-12-31",
+    "revenue": 7000132000.0,
+    "operating_income": -667340000.0,
+    "effective_tax_rate": 0.21,
+    "nopat": -527198600.0,
+    "total_equity": 5538000000.0,
+    "interest_bearing_debt": 6974701000.0,
+    "cash_and_short_term_investments": 3393000000.0,
+    "invested_capital": 9119701000.0,
+    "invested_capital_avg": 5819408500.0,
+    "roic": -0.090593159081374,
+    "operating_margin": -0.09533248801594027,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2017,
+    "period_end": "2017-12-31",
+    "revenue": 11759000000.0,
+    "operating_income": -1632000000.0,
+    "effective_tax_rate": 0.21,
+    "nopat": -1289280000.0,
+    "total_equity": 5234000000.0,
+    "interest_bearing_debt": 10218168000.0,
+    "cash_and_short_term_investments": 3368000000.0,
+    "invested_capital": 12084168000.0,
+    "invested_capital_avg": 10601934500.0,
+    "roic": -0.12160799522011762,
+    "operating_margin": -0.13878731184624543,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2018,
+    "period_end": "2018-12-31",
+    "revenue": 21461268000.0,
+    "operating_income": -388000000.0,
+    "effective_tax_rate": 0.21,
+    "nopat": -306520000.0,
+    "total_equity": 5757000000.0,
+    "interest_bearing_debt": 11625672000.0,
+    "cash_and_short_term_investments": 3686000000.0,
+    "invested_capital": 13696672000.0,
+    "invested_capital_avg": 12890420000.0,
+    "roic": -0.023778899368678445,
+    "operating_margin": -0.018079080881893837,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2019,
+    "period_end": "2019-12-31",
+    "revenue": 24578000000.0,
+    "operating_income": -69000000.0,
+    "effective_tax_rate": 0.21,
+    "nopat": -54510000.0,
+    "total_equity": 7467000000.0,
+    "interest_bearing_debt": 10402000000.0,
+    "cash_and_short_term_investments": 6268000000.0,
+    "invested_capital": 11601000000.0,
+    "invested_capital_avg": 12648836000.0,
+    "roic": -0.004309487450070504,
+    "operating_margin": -0.002807388721620962,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2020,
+    "period_end": "2020-12-31",
+    "revenue": 31536000000.0,
+    "operating_income": 1994000000.0,
+    "effective_tax_rate": 0.2530329289428076,
+    "nopat": 1489452339.6880417,
+    "total_equity": 23075000000.0,
+    "interest_bearing_debt": 8462000000.0,
+    "cash_and_short_term_investments": 19384000000.0,
+    "invested_capital": 12153000000.0,
+    "invested_capital_avg": 11877000000.0,
+    "roic": 0.1254064443620478,
+    "operating_margin": 0.06322932521562659,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2021,
+    "period_end": "2021-12-31",
+    "revenue": 53823000000.0,
+    "operating_income": 6523000000.0,
+    "effective_tax_rate": 0.11020022071574964,
+    "nopat": 5804163960.271165,
+    "total_equity": 31015000000.0,
+    "interest_bearing_debt": 4254000000.0,
+    "cash_and_short_term_investments": 17707000000.0,
+    "invested_capital": 17562000000.0,
+    "invested_capital_avg": 14857500000.0,
+    "roic": 0.3906554911843288,
+    "operating_margin": 0.12119354179440016,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2022,
+    "period_end": "2022-12-31",
+    "revenue": 81462000000.0,
+    "operating_income": 13656000000.0,
+    "effective_tax_rate": 0.08251330271885705,
+    "nopat": 12529198338.07129,
+    "total_equity": 45489000000.0,
+    "interest_bearing_debt": 1029000000.0,
+    "cash_and_short_term_investments": 22185000000.0,
+    "invested_capital": 24333000000.0,
+    "invested_capital_avg": 20947500000.0,
+    "roic": 0.598123801793593,
+    "operating_margin": 0.16763644398615304,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2023,
+    "period_end": "2023-12-31",
+    "revenue": 96773000000.0,
+    "operating_income": 8891000000.0,
+    "effective_tax_rate": 0.05,
+    "nopat": 8446450000.0,
+    "total_equity": 63367000000.0,
+    "interest_bearing_debt": 2682000000.0,
+    "cash_and_short_term_investments": 29094000000.0,
+    "invested_capital": 36955000000.0,
+    "invested_capital_avg": 30644000000.0,
+    "roic": 0.27563144498107295,
+    "operating_margin": 0.0918747997891974,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2024,
+    "period_end": "2024-12-31",
+    "revenue": 97690000000.0,
+    "operating_income": 7076000000.0,
+    "effective_tax_rate": 0.20433815350389323,
+    "nopat": 5630103225.806451,
+    "total_equity": 73617000000.0,
+    "interest_bearing_debt": 5535000000.0,
+    "cash_and_short_term_investments": 36563000000.0,
+    "invested_capital": 42589000000.0,
+    "invested_capital_avg": 39772000000.0,
+    "roic": 0.14155946962200672,
+    "operating_margin": 0.07243320708363189,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   },
+   {
+    "fiscal_year": 2025,
+    "period_end": "2025-12-31",
+    "revenue": 94827000000.0,
+    "operating_income": 4355000000.0,
+    "effective_tax_rate": 0.2696097006441834,
+    "nopat": 3180849753.6945815,
+    "total_equity": 82807000000.0,
+    "interest_bearing_debt": 6584000000.0,
+    "cash_and_short_term_investments": 44059000000.0,
+    "invested_capital": 45332000000.0,
+    "invested_capital_avg": 43960500000.0,
+    "roic": 0.07235699670601066,
+    "operating_margin": 0.04592573845001951,
+    "confidence": "HIGH",
+    "roic_status": "OK"
+   }
+  ],
+  "summary": {
+   "years_in_window": 10,
+   "years_usable": 10,
+   "roic_median": 0.09888172053402922,
+   "roic_mean": 0.13634441075288192,
+   "roic_min": -0.12160799522011762,
+   "roic_max": 0.598123801793593,
+   "roic_stdev": 0.22730780220805716,
+   "spread_median": -0.0011182794659707826,
+   "years_above_wacc": 5,
+   "years_below_wacc": 5,
+   "every_year_above_wacc": false,
+   "years_estimated_numerator": 0,
+   "years_hurdle_disputed": 0,
+   "years_capital_too_small": 0,
+   "verdict": "절반 이상 초과"
+  },
+  "ppe": {
+   "2025-12-31": {
+    "gross": 60816000000.0,
+    "net": 40643000000.0,
+    "accumulated_depreciation": -20173000000.0,
+    "construction_in_progress": 8786000000.0,
+    "ai_infrastructure": 6816000000.0,
+    "machinery": 20864000000.0,
+    "land_and_buildings": 11837000000.0
+   },
+   "2024-12-31": {
+    "gross": 51424000000.0,
+    "net": 35836000000.0,
+    "accumulated_depreciation": -15588000000.0,
+    "construction_in_progress": 6783000000.0,
+    "ai_infrastructure": 5152000000.0,
+    "machinery": 18339000000.0,
+    "land_and_buildings": 10677000000.0
+   },
+   "2026-09-30": {
+    "gross": 73570000000.0,
+    "net": 50591000000.0,
+    "accumulated_depreciation": -22979000000.0,
+    "construction_in_progress": 11211000000.0,
+    "ai_infrastructure": 10956000000.0,
+    "machinery": 24273000000.0,
+    "land_and_buildings": 13224000000.0
+   }
+  },
+  "balance": {
+   "2025-12-31": {
+    "equity": 82137000000.0,
+    "cash": 16513000000.0,
+    "short_term_investments": 27546000000.0,
+    "debt_current": 1640000000.0,
+    "debt_noncurrent": 6736000000.0,
+    "deferred_revenue_current": null,
+    "deferred_revenue_noncurrent": 3631000000.0,
+    "goodwill": null,
+    "total_assets": 137806000000.0
+   },
+   "2026-09-30": {
+    "equity": 89289000000.0,
+    "cash": 17853000000.0,
+    "short_term_investments": 27594000000.0,
+    "debt_current": 1387000000.0,
+    "debt_noncurrent": 8136000000.0,
+    "deferred_revenue_current": null,
+    "deferred_revenue_noncurrent": 4126000000.0,
+    "goodwill": null,
+    "total_assets": 157517000000.0
+   }
+  },
+  "deferred_revenue_activity": [
+   [
+    "Movement in Deferred Revenue [Roll Forward]",
+    [
+     null,
+     null
+    ]
+   ],
+   [
+    "Deferred revenue — beginning of period",
+    [
+     3599.0,
+     3536.0
+    ]
+   ],
+   [
+    "Additions",
+    [
+     1083.0,
+     1343.0
+    ]
+   ],
+   [
+    "Net changes in liability for pre-existing contracts, including foreign exchange impact",
+    [
+     141.0,
+     -92.0
+    ]
+   ],
+   [
+    "Revenue recognized",
+    [
+     -956.0,
+     -1188.0
+    ]
+   ],
+   [
+    "Deferred revenue — end of period",
+    [
+     3867.0,
+     3599.0
+    ]
+   ]
+  ],
+  "shares_outstanding": 3952757946,
+  "meta": {
+   "entity": "Tesla, Inc.",
+   "cik": "0001318605",
+   "tickers": [
+    "TSLA"
+   ],
+   "exchanges": [
+    "Nasdaq"
+   ],
+   "sic": "3711",
+   "sic_description": "Motor Vehicles & Passenger Car Bodies",
+   "fiscal_year_end": "1231",
+   "filings": [
+    {
+     "form": "10-Q",
+     "filed": "2026-10-22",
+     "period_end": "2026-09-30",
+     "accession": "0001628280-26-066775",
+     "primary_document": "tsla-20260930.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2026-07-23",
+     "period_end": "2026-06-30",
+     "accession": "0001628280-26-049270",
+     "primary_document": "tsla-20260630.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2026-04-23",
+     "period_end": "2026-03-31",
+     "accession": "0001628280-26-026673",
+     "primary_document": "tsla-20260331.htm"
+    },
+    {
+     "form": "10-K",
+     "filed": "2026-01-29",
+     "period_end": "2025-12-31",
+     "accession": "0001628280-26-003952",
+     "primary_document": "tsla-20251231.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2025-10-23",
+     "period_end": "2025-09-30",
+     "accession": "0001628280-25-045968",
+     "primary_document": "tsla-20250930.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2025-07-24",
+     "period_end": "2025-06-30",
+     "accession": "0001628280-25-035806",
+     "primary_document": "tsla-20250630.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2025-04-23",
+     "period_end": "2025-03-31",
+     "accession": "0001628280-25-018911",
+     "primary_document": "tsla-20250331.htm"
+    },
+    {
+     "form": "10-K",
+     "filed": "2025-01-30",
+     "period_end": "2024-12-31",
+     "accession": "0001628280-25-003063",
+     "primary_document": "tsla-20241231.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2024-10-24",
+     "period_end": "2024-09-30",
+     "accession": "0001628280-24-043486",
+     "primary_document": "tsla-20240930.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2024-07-24",
+     "period_end": "2024-06-30",
+     "accession": "0001628280-24-032662",
+     "primary_document": "tsla-20240630.htm"
+    },
+    {
+     "form": "10-Q",
+     "filed": "2024-04-24",
+     "period_end": "2024-03-31",
+     "accession": "0001628280-24-017503",
+     "primary_document": "tsla-20240331.htm"
+    },
+    {
+     "form": "10-K",
+     "filed": "2024-01-29",
+     "period_end": "2023-12-31",
+     "accession": "0001628280-24-002390",
+     "primary_document": "tsla-20231231.htm"
+    }
+   ]
+  },
+  "source": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/R3.htm",
+  "ratios": {
+   "in_service": {
+    "2025": {
+     "invested_capital": 45332000000.0,
+     "construction_in_progress": 8786000000.0,
+     "capital_in_service": 36546000000.0,
+     "cip_share": 0.19381452395658696,
+     "roic_in_service": 0.0879270719176963,
+     "roic_reported": 0.07235699670601066
+    },
+    "2024": {
+     "invested_capital": 42589000000.0,
+     "construction_in_progress": 6783000000.0,
+     "capital_in_service": 35806000000.0,
+     "cip_share": 0.15926647725938622
+    }
+   },
+   "incremental": {
+    "FY2020→FY2025": {
+     "delta_nopat": 1691397414.0065398,
+     "delta_capital": 33179000000.0,
+     "incremental_roic": 0.05097795033022514
+    },
+    "FY2022→FY2025": {
+     "delta_nopat": -9348348584.376707,
+     "delta_capital": 20999000000.0,
+     "incremental_roic": -0.44518065547772306
+    },
+    "FY2023→FY2025": {
+     "delta_nopat": -5265600246.305418,
+     "delta_capital": 8377000000.0,
+     "incremental_roic": -0.628578279372737
+    }
+   },
+   "shares_outstanding": 3952757946,
+   "price": 404.2200012207031,
+   "market_cap": 1597783821757.264,
+   "latest_fiscal_year": 2025,
+   "roic_latest": 0.07235699670601066,
+   "roic_peak": 0.598123801793593,
+   "roic_median_10y": 0.09888172053402922,
+   "years_above_wacc": 5,
+   "years_usable": 10,
+   "price_to_nopat": 502.3135154061979
+  }
+ }
+}
