@@ -25,12 +25,16 @@ import subprocess
 import sys
 
 import company_names as cn
+from analyse_roic import window_of
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MD = os.path.join(HERE, "미국50개사_ROIC_WACC비교.md")
 ROIC = os.path.join(HERE, "roic", "roic.json")
 WACC = 0.10
 MM = 1e6
+# Set from the engine's output in main(); the grid span and each company's
+# window are the engine's to decide, not this file's.
+YEARS = None
 
 
 def parse_tables(text):
@@ -127,8 +131,12 @@ def mutate():
 
 
 def main():
+    global YEARS
     text = open(MD).read()
     data = json.load(open(ROIC))
+    YEARS = data["grid_years"]
+    win_fys = {c["ticker"]: {y["fiscal_year"] for y in window_of(c["years"])}
+               for c in data["companies"]}
     tables = parse_tables(text)
 
     by = {c["ticker"]: {y["fiscal_year"]: y for y in c["years"]}
@@ -211,8 +219,9 @@ def main():
                 for col, fy in enumerate(years, start=1):
                     raw = r[col]
                     y = by[tk].get(fy)
-                    want = None if (y is None or y["roic"] is None) \
-                        else y["roic"] * 100
+                    want = (None if (y is None or y["roic"] is None
+                                     or fy not in win_fys[tk])
+                            else y["roic"] * 100)
                     label = f"연도별 {r[0]} FY{fy}"
                     expect(num(raw), want, label, 0)
 
@@ -245,13 +254,14 @@ def main():
                 continue
             for r in rows:
                 fy = int(r[0].replace("FY", "").replace("◦", "").strip())
+                reference_row = fy not in win_fys[tk]
                 y = by[tk].get(fy)
                 checks += 1
                 if y is None:
                     fails.append(f"계산 명세 {tk} FY{fy}: 엔진에 없는 연도")
                     continue
                 label = f"계산 명세 {tk} FY{fy}"
-                if fy == 2015:
+                if reference_row:
                     expect(num(r[4]),
                            None if y["invested_capital"] is None
                            else y["invested_capital"] / MM,

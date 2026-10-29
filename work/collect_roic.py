@@ -35,12 +35,15 @@ Writes work/roic/roic_raw.json. Nothing in the file is derived - that is
 analyse_roic.py's job.
 """
 
+import argparse
 import json
 import os
 import subprocess
 import sys
 import time
-from datetime import datetime, timezone
+
+import sec_cache
+from datetime import date, datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join(HERE, "roic")
@@ -242,17 +245,21 @@ DURATION = {"revenue", "operating_income", "pretax_income",
             "selling_general_admin", "selling_and_marketing"}
 
 
-def fetch_facts(cik):
-    """companyfacts for one CIK, cached on disk so a rerun costs nothing."""
-    os.makedirs(CACHE, exist_ok=True)
-    path = os.path.join(CACHE, f"CIK{cik:010d}.json")
-    if not (os.path.exists(path) and os.path.getsize(path) > 2000):
-        url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json"
-        subprocess.run(["curl", "-sS", "--compressed", "-A", UA, url,
-                        "-o", path], check=True)
-        time.sleep(0.15)           # stay well inside the SEC's rate limit
-    with open(path) as fh:
-        return json.load(fh)
+def fetch_facts(cik, refresh=False, max_age_days=1.0):
+    """
+    companyfacts for one CIK, through the shared age-aware cache.
+
+    This used to be "if the file exists and is not tiny, use it", which made a
+    rerun free and also made it wrong: a copy taken on 3 October was reused on
+    29 October and four weeks of filings never entered the analysis, with no
+    error and no warning. sec_cache refetches anything older than
+    max_age_days and records when each copy was taken.
+    """
+    facts, from_network, before = sec_cache.companyfacts(
+        cik, CACHE, refresh=refresh, max_age_days=max_age_days)
+    return facts, sec_cache.describe(
+        before, from_network,
+        os.path.join(CACHE, f"CIK{int(cik):010d}.json"))
 
 
 def annual_series(facts, tags, duration):
@@ -326,8 +333,8 @@ def annual_series(facts, tags, duration):
     return sources, values
 
 
-def collect_company(ticker, cik, name):
-    facts = fetch_facts(cik)
+def collect_company(ticker, cik, name, refresh=False, max_age_days=1.0):
+    facts, cache_note = fetch_facts(cik, refresh, max_age_days)
     series, tags_used = {}, {}
     for concept, tags in CONCEPTS.items():
         sources, values = annual_series(facts, tags, concept in DURATION)
@@ -355,6 +362,7 @@ def collect_company(ticker, cik, name):
     return {
         "ticker": ticker, "cik": cik, "company_name": name,
         "entity_name": facts.get("entityName"),
+        "source_note": cache_note,
         "tags_used": tags_used,
         "years": years,
     }
@@ -378,6 +386,15 @@ def fiscal_label(end):
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
+    ap.add_argument("--refresh", action="store_true",
+                    help="캐시를 무시하고 전부 다시 받음")
+    ap.add_argument("--max-age-days", type=float, default=1.0,
+                    help="이보다 오래된 캐시는 다시 받음 (기본 1일)")
+    args = ap.parse_args()
+    print(f"오늘 {date.today().isoformat()} · 캐시 허용 나이 "
+          f"{args.max_age_days}일" + (" · --refresh" if args.refresh else ""))
+
     with open(os.path.join(HERE, "analysis.json")) as fh:
         prior = json.load(fh)
     companies = [{"ticker": c["ticker"], "cik": c["cik"],
@@ -388,14 +405,16 @@ def main():
     out, failures = [], []
     for i, c in enumerate(companies, 1):
         try:
-            rec = collect_company(c["ticker"], c["cik"], c["name"])
+            rec = collect_company(c["ticker"], c["cik"], c["name"],
+                                  args.refresh, args.max_age_days)
             rec["sic"] = c["sic"]
             rec["sic_description"] = c["sic_description"]
             rec["is_financial"] = bool(
                 c["sic"] and 6000 <= int(c["sic"]) <= 6799)
             out.append(rec)
             print(f"  [{i:>2}/{len(companies)}] {c['ticker']:<6} "
-                  f"{len(rec['years']):>2} 개 회계연도")
+                  f"{len(rec['years']):>2} 개 회계연도  "
+                  f"{rec['source_note']}")
         except Exception as exc:                        # noqa: BLE001
             failures.append({"ticker": c["ticker"], "error": str(exc)})
             print(f"  [{i:>2}/{len(companies)}] {c['ticker']:<6} FAILED: {exc}")

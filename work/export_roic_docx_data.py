@@ -17,12 +17,36 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "roic", "roic_report.json")
 
 D = json.load(open(os.path.join(HERE, "roic", "roic.json")))
+
+# The grid span comes from the engine's output, not from a literal. It was
+# written here as range(2016, 2026) and in three other files, so the day Costco
+# and Micron filed their FY2026 10-Ks the engine's window moved and the reports
+# did not. WINDOW is each company's own ten most recent years, for the same
+# reason the engine uses that: fiscal year-ends differ.
+YEARS = D["grid_years"]
+FIRST_FY, LAST_FY = YEARS[0], YEARS[-1]
+WINDOW_YEARS = D["window_years"]
+
+
+def window_of(comp):
+    fys = sorted({y["fiscal_year"] for y in comp["years"]})
+    keep = set(fys[-WINDOW_YEARS:])
+    return [y for y in comp["years"] if y["fiscal_year"] in keep]
+
+
+def in_window(comp, fy):
+    return fy in {y["fiscal_year"] for y in window_of(comp)}
+
 R = json.load(open(os.path.join(HERE, "roic", "reconciliation.json")))
 C = json.load(open(os.path.join(HERE, "roic", "corrections.json")))
 G = json.load(open(os.path.join(HERE, "roic", "capital_diagnosis.json")))
 ROUTES = json.load(open(os.path.join(HERE, "roic", "oi_routes.json")))
 
-YEARS = list(range(2016, 2026))
+# The grid span and each company's window come from the engine's output, not
+# from a literal. They were hardcoded as range(2016, 2026) here and in three
+# other files, which meant the day Costco and Micron filed FY2026 the engine
+# moved and the reports did not.
+
 WACC = D["wacc"]
 BN = 1e9
 
@@ -64,7 +88,7 @@ thin_capital = sum(x["years_capital_too_small"] for x in rank)
 orcl = next(n for n in C["net_cash_errors_flagged"] if n["ticker"] == "ORCL")
 
 def window(comp):
-    return [y for y in comp["years"] if 2016 <= y["fiscal_year"] <= 2025]
+    return window_of(comp)
 
 
 # Companies with no reported operating-income subtotal in any year of the

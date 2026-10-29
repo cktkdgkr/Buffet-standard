@@ -35,6 +35,7 @@ import os
 import sys
 
 import company_names as cn
+from analyse_roic import WINDOW_YEARS, window_of
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "roic", "roic_raw.json")
@@ -103,7 +104,22 @@ def run(raw, res, c):
 
     c.ok(len(res["companies"]) == 50, f"기업 수 50 != {len(res['companies'])}")
     c.ok(res["wacc"] == WACC, "WACC 10% 아님")
-    c.ok(res["window"] == [2016, 2025], "창이 FY2016~FY2025 아님")
+    # The window is derived from the filings, so the check has to derive it
+    # the same way rather than name a year. It used to assert FY2016-FY2025,
+    # which passed happily while Costco's and Micron's FY2026 10-Ks sat
+    # outside it.
+    c.ok(res["window_years"] == WINDOW_YEARS,
+         f"창 길이 {res.get('window_years')} != {WINDOW_YEARS}")
+    latest = max(y["fiscal_year"] for comp in res["companies"]
+                 for y in comp["years"])
+    c.ok(res["latest_fiscal_year_filed"] == latest,
+         f"최신 회계연도 {res.get('latest_fiscal_year_filed')} != {latest}")
+    c.ok(res["window"] == [latest - WINDOW_YEARS, latest],
+         f"표 범위 {res.get('window')} != "
+         f"{[latest - WINDOW_YEARS, latest]}")
+    c.ok(res["grid_years"] ==
+         list(range(latest - WINDOW_YEARS, latest + 1)),
+         "표 연도 목록이 범위와 불일치")
 
     tickers = [x["ticker"] for x in res["companies"]]
     c.ok(len(set(tickers)) == len(tickers), "티커 중복")
@@ -134,6 +150,7 @@ def run(raw, res, c):
         c.ok(len(set(ends)) == len(ends), f"{tk}: 기말일 중복")
         c.ok(ends == sorted(ends), f"{tk}: 기말일 정렬 안 됨")
 
+        win_fys = {y["fiscal_year"] for y in window_of(comp["years"])}
         prev_ic = None
         for i, y in enumerate(comp["years"]):
             fy, tag = y["fiscal_year"], f"{tk} FY{y['fiscal_year']}"
@@ -182,7 +199,7 @@ def run(raw, res, c):
                 c.ok(y["roic_status"] != "OK",
                      f"{tag}: ROIC가 없는데 상태가 OK")
 
-            in_window = 2016 <= fy <= 2025
+            in_window = fy in win_fys
 
             # Tripwire: cash cannot exceed current assets
             ca = src.get("current_assets")
@@ -247,7 +264,7 @@ def run(raw, res, c):
 
         # Summary consistency
         s = comp["summary"]
-        win = [y for y in comp["years"] if 2016 <= y["fiscal_year"] <= 2025]
+        win = window_of(comp["years"])
         usable = [y["roic"] for y in win if y["roic"] is not None]
         c.ok(s["years_usable"] == len(usable),
              f"{tk}: 산출 연도 수 {s['years_usable']} != {len(usable)}")

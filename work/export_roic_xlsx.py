@@ -28,7 +28,13 @@ DIAG = os.path.join(HERE, "roic", "capital_diagnosis.json")
 ROUTES = os.path.join(HERE, "roic", "oi_routes.json")
 OUT = os.path.join(HERE, "미국50개사_ROIC_WACC비교.xlsx")
 
-YEARS = list(range(2016, 2026))
+# The grid span and each company's window come from the engine's output, not
+# from a literal. They were hardcoded as range(2016, 2026) here and in three
+# other files, which meant the day Costco and Micron filed FY2026 the engine
+# moved and the reports did not.
+YEARS = None          # set from the data in main()
+FIRST_FY = LAST_FY = None
+WINDOW_YEARS = None
 
 H = Font(bold=True, color="FFFFFF", size=10)
 HFILL = PatternFill("solid", fgColor="2F4F6F")
@@ -66,7 +72,13 @@ def guide(wb, data, recon, corr, diag):
         ("질문", "ROIC가 자본비용(WACC)보다 높은지, 그게 10년간 꾸준했는지"),
         ("WACC", "전 종목 10% 고정 — 지시사항. 기업별로 다르게 잡으면 ROIC "
                  "비교가 아니라 베타 비교가 되므로 같은 문턱을 적용했습니다."),
-        ("대상", f"{len(data['companies'])}개 미국 상장사, FY2016~FY2025"),
+        ("대상", f"{len(data['companies'])}개 미국 상장사, 기업별 최근 "
+               f"{data['window_years']}개 회계연도 "
+               f"(FY{YEARS[0]}~FY{YEARS[-1]} 범위). 결산월이 달라 같은 창을 "
+               f"강제하지 않았습니다."),
+        ("자료 기준일", f"{data['generated']} — 이 날짜에 SEC에서 받은 "
+                   f"공시 기준입니다. 최신 회계연도는 "
+                   f"FY{data['latest_fiscal_year_filed']}."),
         ("자료 출처", "SEC XBRL companyfacts API. 1차 조사가 공시 본문을 "
                   "읽은 것과 달리 이번 조사는 태그 데이터를 직접 받았습니다 — "
                   "같은 정의, 다른 경로. 두 결과가 어긋나면 한쪽이 틀렸다는 "
@@ -219,7 +231,9 @@ def components(wb, data):
     index = {}
     for comp in data["companies"]:
         for y in comp["years"]:
-            if not 2015 <= y["fiscal_year"] <= 2025:
+            # One year before the window as well: it supplies the opening
+            # capital for the window's first year.
+            if not FIRST_FY - 1 <= y["fiscal_year"] <= LAST_FY:
                 continue
             ws.cell(row=r, column=1, value=cn.korean(comp["ticker"]))
             ws.cell(row=r, column=2, value=comp["ticker"])
@@ -295,7 +309,8 @@ def components(wb, data):
             if fill:
                 for col in range(1, 25):
                     ws.cell(row=r, column=col).fill = fill
-            if y["fiscal_year"] == 2015:
+            if y["fiscal_year"] not in {
+                    x["fiscal_year"] for x in window_of(comp)}:
                 # This row supplies FY2016's opening capital and nothing else.
                 # Its own average would need FY2014, which is not on the sheet,
                 # so leaving a ratio here would show a number computed on a
@@ -303,7 +318,7 @@ def components(wb, data):
                 for col in (15, 16, 17, 18, 19, 20, 21, 22):
                     ws.cell(row=r, column=col).value = "—"
                 ws.cell(row=r, column=23,
-                        value="FY2016 평균 투하자본의 기초값으로만 사용 "
+                        value="다음 해 평균 투하자본의 기초값으로만 사용 "
                               "(보고 기간 밖 — 자체 비율은 계산하지 않음)")
                 for col in range(1, 25):
                     ws.cell(row=r, column=col).fill = PatternFill(
@@ -562,8 +577,23 @@ def routes_sheet(wb, routes, data):
         r += 1
 
 
+def set_window(data):
+    """Pick up the engine's window instead of restating it."""
+    global YEARS, FIRST_FY, LAST_FY, WINDOW_YEARS
+    YEARS = data["grid_years"]
+    FIRST_FY, LAST_FY = YEARS[0], YEARS[-1]
+    WINDOW_YEARS = data["window_years"]
+
+
+def window_of(comp):
+    fys = sorted({y["fiscal_year"] for y in comp["years"]})
+    keep = set(fys[-WINDOW_YEARS:])
+    return [y for y in comp["years"] if y["fiscal_year"] in keep]
+
+
 def main():
     data = json.load(open(ROIC))
+    set_window(data)
     recon = json.load(open(RECON))
     corr = json.load(open(CORR))
     diag = json.load(open(DIAG))

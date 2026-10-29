@@ -8,13 +8,18 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+echo "== 오늘 날짜와 자료 신선도"
+python3 check_freshness.py --quick
+
 if [ -f analysis.json.pre-roic-correction ]; then
   echo "== 1차 조사 원본 복원 (대조를 위해)"
   cp analysis.json.pre-roic-correction analysis.json
 fi
 
-echo "== 수집: SEC companyfacts"
-python3 collect_roic.py
+# The cache refetches anything older than a day on its own; REFRESH=1 forces
+# the lot, for when the question is whether something changed today.
+echo; echo "== 수집: SEC companyfacts"
+python3 collect_roic.py ${REFRESH:+--refresh}
 
 echo; echo "== 분자 구성 경로 검정"
 python3 test_oi_routes.py

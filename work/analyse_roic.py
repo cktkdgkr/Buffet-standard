@@ -60,7 +60,21 @@ RAW = os.path.join(HERE, "roic", "roic_raw.json")
 OUT = os.path.join(HERE, "roic", "roic.json")
 
 WACC = 0.10                  # the user's instruction: one hurdle for everyone
-FIRST_FY, LAST_FY = 2016, 2025
+# "The last ten years" is relative to the day the analysis runs, so the window
+# is derived from the filings rather than written down. It was hardcoded to
+# FY2016-FY2025, and when Costco and Micron filed their FY2026 10-Ks in October
+# 2026 the window silently dropped both new years while the report still said
+# it covered the last ten.
+#
+# Each company contributes its own ten most recent fiscal years, because a
+# single shared window is wrong in both directions: a January-year-end company
+# has filed FY2026 while a December one will not until 2027, so a window ending
+# at FY2026 leaves most of the list with nine years and a blank column, and one
+# ending at FY2025 throws away the newest annual figures that exist.
+#
+# The cross-company grid then spans the union of those years, with blanks where
+# a company has not filed yet.
+WINDOW_YEARS = 10
 
 TAX_FLOOR, TAX_CEIL = 0.05, 0.40
 TAX_DEFAULT = 0.21           # US federal statutory rate post-2017
@@ -578,8 +592,15 @@ def company_years(c, c_is_financial=False):
     return out
 
 
+def window_of(years):
+    """A company's own ten most recent fiscal years."""
+    fys = sorted({y["fiscal_year"] for y in years})
+    keep = set(fys[-WINDOW_YEARS:])
+    return [y for y in years if y["fiscal_year"] in keep]
+
+
 def summarise(ticker, years, is_financial):
-    window = [y for y in years if FIRST_FY <= y["fiscal_year"] <= LAST_FY]
+    window = window_of(years)
     usable = [y for y in window if y["roic"] is not None]
     roics = [y["roic"] for y in usable]
     spreads = [r - WACC for r in roics]
@@ -656,11 +677,26 @@ def main():
             and c["summary"]["years_usable"] < MIN_YEARS]
     scored.sort(key=lambda c: -c["summary"]["roic_median"])
 
+    # The grid's span. Anchored to the newest fiscal year anyone has filed and
+    # ten years back from it, not to the union of every company's own window:
+    # Morgan Stanley's companyfacts stop at FY2014 and Wells Fargo's at FY2019,
+    # so taking the union stretched the grid to twenty columns to accommodate
+    # two companies whose data is missing. Bounding it this way leaves their
+    # columns blank instead, which is what a reader should see.
+    all_fys = [y["fiscal_year"] for c in companies for y in c["years"]]
+    max_fy = max(all_fys) if all_fys else 0
+    min_fy = max_fy - WINDOW_YEARS
+    stale_data = sorted(
+        (c["ticker"], max((y["fiscal_year"] for y in c["years"]), default=None))
+        for c in companies
+        if max((y["fiscal_year"] for y in c["years"]), default=0) < max_fy - 1)
+
     route_counts = {}
     low = []
     for c in companies:
+        win_fys = {y["fiscal_year"] for y in window_of(c["years"])}
         for y in c["years"]:
-            if FIRST_FY <= y["fiscal_year"] <= LAST_FY:
+            if y["fiscal_year"] in win_fys:
                 r = y["operating_income_route"]
                 route_counts[r] = route_counts.get(r, 0) + 1
                 if y["confidence"] == "LOW":
@@ -672,7 +708,15 @@ def main():
         "wacc_note": ("사용자 지정값. 자본비용을 기업별로 다르게 잡으면 "
                       "ROIC 비교가 아니라 베타 비교가 되므로, 전 종목에 "
                       "같은 문턱을 적용했습니다."),
-        "window": [FIRST_FY, LAST_FY],
+        "window_years": WINDOW_YEARS,
+        "window_note": ("기업별로 가장 최근 10개 회계연도. 결산월이 달라 "
+                        "같은 창을 강제하면 한쪽은 9년이 되고 다른 쪽은 "
+                        "최신 연간치를 버리게 됩니다."),
+        "window": [min_fy, max_fy],
+        "grid_years": list(range(min_fy, max_fy + 1)),
+        "latest_fiscal_year_filed": max_fy,
+        "companies_with_stale_data": [
+            {"ticker": t, "latest_fiscal_year": fy} for t, fy in stale_data],
         "source": raw["source"],
         "route_accuracy": ROUTE_ACCURACY,
         "route_counts_in_window": route_counts,
@@ -687,8 +731,14 @@ def main():
     with open(OUT, "w") as fh:
         json.dump(result, fh, indent=1, ensure_ascii=False)
 
-    print(f"독립 재산출: {len(companies)}사, 창 FY{FIRST_FY}~FY{LAST_FY}, "
-          f"WACC {WACC:.0%}\n")
+    if stale_data:
+        print("자료가 최신이 아닌 기업 (companyfacts에 최근 연도가 없음):")
+        for t, fy in stale_data:
+            print(f"    {t:<7}최신 회계연도 FY{fy}")
+        print()
+    print(f"독립 재산출: {len(companies)}사, 기업별 최근 "
+          f"{WINDOW_YEARS}개 회계연도 (FY{min_fy}~FY{max_fy} 범위), "
+          f"WACC {WACC:.0%}, 작성 {date.today().isoformat()}\n")
     print("영업이익 산출 경로별 건수 (창 내)")
     for r, n in sorted(route_counts.items(), key=lambda kv: -kv[1]):
         acc = ROUTE_ACCURACY.get(r)

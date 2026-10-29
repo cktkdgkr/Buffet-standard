@@ -24,12 +24,36 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "미국50개사_ROIC_WACC비교.md")
 
 D = json.load(open(os.path.join(HERE, "roic", "roic.json")))
+
+# The grid span comes from the engine's output, not from a literal. It was
+# written here as range(2016, 2026) and in three other files, so the day Costco
+# and Micron filed their FY2026 10-Ks the engine's window moved and the reports
+# did not. WINDOW is each company's own ten most recent years, for the same
+# reason the engine uses that: fiscal year-ends differ.
+YEARS = D["grid_years"]
+FIRST_FY, LAST_FY = YEARS[0], YEARS[-1]
+WINDOW_YEARS = D["window_years"]
+
+
+def window_of(comp):
+    fys = sorted({y["fiscal_year"] for y in comp["years"]})
+    keep = set(fys[-WINDOW_YEARS:])
+    return [y for y in comp["years"] if y["fiscal_year"] in keep]
+
+
+def in_window(comp, fy):
+    return fy in {y["fiscal_year"] for y in window_of(comp)}
+
 R = json.load(open(os.path.join(HERE, "roic", "reconciliation.json")))
 C = json.load(open(os.path.join(HERE, "roic", "corrections.json")))
 G = json.load(open(os.path.join(HERE, "roic", "capital_diagnosis.json")))
 ROUTES = json.load(open(os.path.join(HERE, "roic", "oi_routes.json")))
 
-YEARS = list(range(2016, 2026))
+# The grid span and each company's window come from the engine's output, not
+# from a literal. They were hardcoded as range(2016, 2026) here and in three
+# other files, which meant the day Costco and Micron filed FY2026 the engine
+# moved and the reports did not.
+
 WACC = D["wacc"]
 MM = 1e6
 BN = 1e9
@@ -69,10 +93,18 @@ def bn(x, nd=1):
 
 
 def cell(comp, fy):
-    """One year of ROIC for the wide grid: value, bracketed if below the
-    hurdle, with the confidence and thin-capital marks."""
+    """
+    One year of ROIC for the wide grid: value, bracketed if below the hurdle,
+    with the confidence and thin-capital marks.
+
+    A year outside this company's own window is blank even where the engine
+    computed it, so the row's median and its count of years above the hurdle
+    describe exactly the cells shown. Microsoft's June year-end means it has
+    filed FY2026, so its ten years are FY2017-FY2026 and its FY2016 column is
+    empty while a December filer's is not.
+    """
     y = next((y for y in comp["years"] if y["fiscal_year"] == fy), None)
-    if y is None or y["roic"] is None:
+    if y is None or y["roic"] is None or not in_window(comp, fy):
         return "—"
     s = f"{y['roic'] * 100:.0f}"
     if y["confidence"] == "LOW":
@@ -90,7 +122,7 @@ financials = [c["ticker"] for c in D["companies"] if c["is_financial"]]
 no_subtotal = [c["ticker"] for c in D["companies"] if not c["is_financial"]
                and not any(y["operating_income_route"] == "reported"
                            for y in c["years"]
-                           if 2016 <= y["fiscal_year"] <= 2025)]
+                           if in_window(c, y["fiscal_year"]))]
 
 # ---------------------------------------------------------------- 머리말
 w("# 미국 50개사 ROIC vs 자본비용 10%")
@@ -255,14 +287,16 @@ for t in order:
         w()
     rows = []
     for y in comp["years"]:
-        if not 2015 <= y["fiscal_year"] <= 2025:
+        # One year before the window too: it supplies the opening capital for
+        # the window's first year, and nothing else.
+        if not FIRST_FY - 1 <= y["fiscal_year"] <= LAST_FY:
             continue
-        if y["fiscal_year"] == 2015:
+        if not in_window(comp, y["fiscal_year"]):
             # FY2015 is on the table only to supply FY2016's opening capital.
             # Its own average needs FY2014, which is not shown, so printing a
             # ratio here would be a figure computed on a different basis from
             # every other row - the workbook blanks the same cells.
-            rows.append(["FY2015 ◦", "—", "—", "—",
+            rows.append([f"FY{y['fiscal_year']} ◦", "—", "—", "—",
                          mm(y["invested_capital"]), "—", "—"])
             continue
         rows.append([f"FY{y['fiscal_year']}", mm(y["operating_income"]),
@@ -271,15 +305,15 @@ for t in order:
                      pct(y["roic"], 1)])
     table(["연도", "영업이익", "세율", "NOPAT", "투하자본", "평균", "ROIC"],
           rows)
-    w("◦ FY2015는 FY2016 평균 투하자본의 기초값으로만 쓰입니다 "
+    w("◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 "
       "(보고 기간 밖).")
     w()
     routes = sorted({y["operating_income_route"] for y in comp["years"]
-                     if 2016 <= y["fiscal_year"] <= 2025})
+                     if in_window(comp, y["fiscal_year"])})
     w(f"분자 산출 경로: {', '.join(routes)}")
     w()
     statuses = sorted({y["roic_status"] for y in comp["years"]
-                       if 2016 <= y["fiscal_year"] <= 2025
+                       if in_window(comp, y["fiscal_year"])
                        and y["roic_status"] != "OK"})
     if statuses:
         w("비고: " + " / ".join(statuses))

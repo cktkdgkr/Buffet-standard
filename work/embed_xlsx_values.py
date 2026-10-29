@@ -34,6 +34,7 @@ from openpyxl import load_workbook
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from verify_exports import Evaluator, close                    # noqa: E402
+from analyse_roic import window_of                             # noqa: E402
 
 XLSX = os.path.join(HERE, "미국50개사_ROIC_WACC비교.xlsx")
 ROIC = os.path.join(HERE, "roic", "roic.json")
@@ -176,13 +177,19 @@ def main():
     data = json.load(open(ROIC))
     by = {c["ticker"]: {y["fiscal_year"]: y for y in c["years"]}
           for c in data["companies"]}
+    # A year outside a company's own window is a reference row with no ratio,
+    # so there is nothing to check against. The bounds were written here as
+    # literals and went stale when the window stopped being FY2016-FY2025.
+    win_fys = {c["ticker"]: {y["fiscal_year"] for y in window_of(c["years"])}
+               for c in data["companies"]}
+    grid_years = data["grid_years"]
 
     ws = check["계산 명세"]
     checks, fails = 0, []
     for r in range(2, ws.max_row + 1):
         tk = ws.cell(row=r, column=2).value
         fy = ws.cell(row=r, column=3).value
-        if not tk or not fy or fy == 2015:
+        if not tk or not fy or fy not in win_fys.get(tk, ()):
             continue
         y = by[tk][fy]
         for col, key, nd in ((10, "nopat", None), (14, "invested_capital",
@@ -204,11 +211,12 @@ def main():
         tk = grid.cell(row=r, column=3).value
         if not tk or tk not in by:
             continue
-        for i, fy in enumerate(range(2016, 2026)):
+        for i, fy in enumerate(grid_years):
             checks += 1
             got = grid.cell(row=r, column=4 + i).value
             y = by[tk].get(fy)
-            want = None if (y is None or y["roic"] is None) else y["roic"]
+            want = (None if (y is None or y["roic"] is None
+                             or fy not in win_fys[tk]) else y["roic"])
             if want is None:
                 if isinstance(got, (int, float)):
                     fails.append(f"{tk} FY{fy} 연도별: 값이 있어야 "

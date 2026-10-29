@@ -21,14 +21,23 @@ from openpyxl import load_workbook
 WORK = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, WORK)
 from verify_exports import Evaluator, close                    # noqa: E402
+from analyse_roic import window_of                             # noqa: E402
 
 XLSX = os.path.join(WORK, "미국50개사_ROIC_WACC비교.xlsx")
 ROIC = os.path.join(WORK, "roic", "roic.json")
-YEARS = list(range(2016, 2026))
+# The grid span and each company's window come from the engine's output, not
+# from a literal. They were hardcoded as range(2016, 2026) here and in three
+# other files, which meant the day Costco and Micron filed FY2026 the engine
+# moved and the reports did not.
+YEARS = None          # set from the data in main()
+FIRST_FY = LAST_FY = None
 
 
 def main():
+    global YEARS, FIRST_FY, LAST_FY
     data = json.load(open(ROIC))
+    YEARS = data["grid_years"]
+    FIRST_FY, LAST_FY = YEARS[0], YEARS[-1]
     wb = load_workbook(XLSX, data_only=False)
     ev = Evaluator(wb)
 
@@ -59,6 +68,9 @@ def main():
             fails.append(f"{label} [{sheet}!{coord}]: {got!r} != {want!r}")
 
     # --- 계산 명세: every derived column, every row -----------------------
+    win_fys = {c["ticker"]: {y["fiscal_year"] for y in window_of(c["years"])}
+               for c in data["companies"]}
+
     ws = wb["계산 명세"]
     rowmap = {}
     for r in range(2, ws.max_row + 1):
@@ -73,7 +85,11 @@ def main():
         expect("계산 명세", f"J{r}", y["nopat"], f"{tag} NOPAT")
         expect("계산 명세", f"N{r}", y["invested_capital"],
                f"{tag} 투하자본")
-        if fy == 2015:
+        # Whether this row is a reference row is the company's own window, not
+        # the grid's first year: Microsoft's June year-end means it has filed
+        # FY2026, so its window is FY2017-FY2026 and FY2016 is its opening
+        # capital - while a December filer's window still starts at FY2016.
+        if fy not in win_fys[tk]:
             # Reference row: it supplies FY2016's opening capital. Its own
             # average would need FY2014, so the ratio cells must be blank.
             for col in "OPQRSTUV":
@@ -105,7 +121,7 @@ def main():
     # Every window year of every company must appear exactly once
     want_rows = {(c["ticker"], y["fiscal_year"])
                  for c in data["companies"] for y in c["years"]
-                 if 2015 <= y["fiscal_year"] <= 2025}
+                 if FIRST_FY - 1 <= y["fiscal_year"] <= LAST_FY}
     checks += 1
     if set(rowmap) != want_rows:
         missing = want_rows - set(rowmap)
@@ -126,12 +142,14 @@ def main():
             for i, fy in enumerate(YEARS):
                 coord = f"{chr(ord('D') + i)}{r}"
                 y = by[tk].get(fy)
-                want = None if (y is None or y["roic"] is None) \
-                    else y["roic"] + offset
+                want = (None if (y is None or y["roic"] is None
+                                 or fy not in win_fys[tk])
+                        else y["roic"] + offset)
                 expect(sheet, coord, want, f"{sheet} {tk} FY{fy}")
 
             roics = [y["roic"] + offset for fy in YEARS
-                     if (y := by[tk].get(fy)) and y["roic"] is not None]
+                     if fy in win_fys[tk]
+                     and (y := by[tk].get(fy)) and y["roic"] is not None]
             med_col = chr(ord('D') + len(YEARS))
             if roics:
                 s = summ[tk]
