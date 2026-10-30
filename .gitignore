@@ -13,4 +13,5 @@ work/*.formulas-only
 # roic/cache 만 232MB가 커밋돼 있었습니다. 과거 커밋의 블롭은 그대로
 # 남지만(히스토리 재작성은 파괴적이라 하지 않았습니다) 더 늘지는 않습니다.
 work/roic/cache/
+work/goog/cache/
 work/spx/jun2026_balance.json

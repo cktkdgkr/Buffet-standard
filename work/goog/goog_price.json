@@ -1,0 +1,2447 @@
+{
+ "generated": "2026-10-30",
+ "wacc": 0.1,
+ "entity": "Alphabet Inc.",
+ "cik": "0001652044",
+ "tickers": [
+  "GOOGL",
+  "GOOG",
+  "GOOGM",
+  "GOOGN"
+ ],
+ "exchanges": [
+  "Nasdaq",
+  "Nasdaq",
+  "Nasdaq",
+  "Nasdaq"
+ ],
+ "filings": {
+  "10-Q": {
+   "form": "10-Q",
+   "filed": "2026-10-29",
+   "period_end": "2026-09-30",
+   "accession": "0001652044-26-000084",
+   "primary_document": "goog-20260930.htm"
+  },
+  "8-K": {
+   "form": "8-K",
+   "filed": "2026-10-28",
+   "period_end": "2026-10-28",
+   "accession": "0001652044-26-000080",
+   "primary_document": "goog-20261028.htm"
+  }
+ },
+ "price_history": {
+  "ticker": "GOOG",
+  "first": {
+   "date": "2026-04-30",
+   "close": 381.94000244140625,
+   "volume": 44570500
+  },
+  "last": {
+   "date": "2026-10-29",
+   "close": 282.32000732421875,
+   "volume": 92627200
+  },
+  "high": {
+   "date": "2026-05-13",
+   "close": 399.0400085449219,
+   "volume": 18160100
+  },
+  "low": {
+   "date": "2026-10-29",
+   "close": 282.32000732421875,
+   "volume": 92627200
+  },
+  "from_high": -0.29250200160709794,
+  "fifty_two_week_high": 404.47,
+  "fifty_two_week_low": 271.41,
+  "big_moves": [
+   {
+    "date": "2026-06-22",
+    "change": -0.050835446334747125,
+    "from": 367.4599914550781,
+    "to": 348.7799987792969,
+    "volume": 32211200
+   },
+   {
+    "date": "2026-06-29",
+    "change": 0.049568245889851426,
+    "from": 334.69000244140625,
+    "to": 351.2799987792969,
+    "volume": 25565700
+   },
+   {
+    "date": "2026-07-16",
+    "change": -0.044299166081459895,
+    "from": 370.2099914550781,
+    "to": 353.80999755859375,
+    "volume": 23603700
+   },
+   {
+    "date": "2026-07-23",
+    "change": -0.06893629046171945,
+    "from": 341.9100036621094,
+    "to": 318.3399963378906,
+    "volume": 46751900
+   },
+   {
+    "date": "2026-07-31",
+    "change": 0.06883841322491824,
+    "from": 333.67999267578125,
+    "to": 356.6499938964844,
+    "volume": 30514500
+   },
+   {
+    "date": "2026-08-03",
+    "change": 0.044357234249134514,
+    "from": 356.6499938964844,
+    "to": 372.4700012207031,
+    "volume": 27165400
+   },
+   {
+    "date": "2026-08-05",
+    "change": -0.040548823693120406,
+    "from": 375.3500061035156,
+    "to": 360.1300048828125,
+    "volume": 29436300
+   },
+   {
+    "date": "2026-10-29",
+    "change": -0.12293021070391508,
+    "from": 321.8900146484375,
+    "to": 282.32000732421875,
+    "volume": 92627200
+   }
+  ],
+  "recent": [
+   {
+    "date": "2026-10-14",
+    "close": 343.6499938964844,
+    "volume": 20106400
+   },
+   {
+    "date": "2026-10-15",
+    "close": 344.9100036621094,
+    "volume": 16425700
+   },
+   {
+    "date": "2026-10-16",
+    "close": 336.9100036621094,
+    "volume": 17040300
+   },
+   {
+    "date": "2026-10-19",
+    "close": 340.1600036621094,
+    "volume": 12720600
+   },
+   {
+    "date": "2026-10-20",
+    "close": 336.3999938964844,
+    "volume": 14790300
+   },
+   {
+    "date": "2026-10-21",
+    "close": 330.95001220703125,
+    "volume": 19298100
+   },
+   {
+    "date": "2026-10-22",
+    "close": 320.760009765625,
+    "volume": 21094100
+   },
+   {
+    "date": "2026-10-23",
+    "close": 317.2799987792969,
+    "volume": 10856500
+   },
+   {
+    "date": "2026-10-26",
+    "close": 314.19000244140625,
+    "volume": 16989400
+   },
+   {
+    "date": "2026-10-27",
+    "close": 316.8299865722656,
+    "volume": 17786400
+   },
+   {
+    "date": "2026-10-28",
+    "close": 321.8900146484375,
+    "volume": 35355900
+   },
+   {
+    "date": "2026-10-29",
+    "close": 282.32000732421875,
+    "volume": 92627200
+   }
+  ],
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=6mo&interval=1d"
+ },
+ "release": {
+  "exhibit_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+  "cash_flow": [
+   {
+    "period": "Q4 2025",
+    "operating_cash_flow": 52402000000.0,
+    "capex": -27851000000.0,
+    "free_cash_flow": 24551000000.0
+   },
+   {
+    "period": "Q1 2026",
+    "operating_cash_flow": 45790000000.0,
+    "capex": -35674000000.0,
+    "free_cash_flow": 10116000000.0
+   },
+   {
+    "period": "Q2 2026",
+    "operating_cash_flow": 39069000000.0,
+    "capex": -44924000000.0,
+    "free_cash_flow": -5855000000.0
+   },
+   {
+    "period": "Q3 2026",
+    "operating_cash_flow": 42290000000.0,
+    "capex": -51355000000.0,
+    "free_cash_flow": -9065000000.0
+   },
+   {
+    "period": "TTM Q3 2026",
+    "operating_cash_flow": 179551000000.0,
+    "capex": -159804000000.0,
+    "free_cash_flow": 19747000000.0
+   }
+  ],
+  "segments": {
+   "revenue": {
+    "search": {
+     "q3_2025": 56567000000.0,
+     "q3_2026": 63350000000.0
+    },
+    "youtube_ads": {
+     "q3_2025": 10261000000.0,
+     "q3_2026": 11207000000.0
+    },
+    "network": {
+     "q3_2025": 7354000000.0,
+     "q3_2026": 7455000000.0
+    },
+    "advertising": {
+     "q3_2025": 74182000000.0,
+     "q3_2026": 82012000000.0
+    },
+    "subscriptions_devices": {
+     "q3_2025": 12870000000.0,
+     "q3_2026": 14290000000.0
+    },
+    "services_total": {
+     "q3_2025": 87052000000.0,
+     "q3_2026": 96302000000.0
+    },
+    "cloud": {
+     "q3_2025": 15157000000.0,
+     "q3_2026": 30709000000.0
+    },
+    "other_bets": {
+     "q3_2025": 344000000.0,
+     "q3_2026": 372000000.0
+    },
+    "hedging": {
+     "q3_2025": -207000000.0,
+     "q3_2026": 194000000.0
+    },
+    "total": {
+     "q3_2025": 102346000000.0,
+     "q3_2026": 127577000000.0
+    }
+   },
+   "operating_income": {
+    "services": {
+     "q3_2025": 33527000000.0,
+     "q3_2026": 39157000000.0
+    },
+    "cloud": {
+     "q3_2025": 3594000000.0,
+     "q3_2026": 11121000000.0
+    },
+    "other_bets": {
+     "q3_2025": -1426000000.0,
+     "q3_2026": -2047000000.0
+    },
+    "alphabet_level": {
+     "q3_2025": -4467000000.0,
+     "q3_2026": -7655000000.0
+    },
+    "total": {
+     "q3_2025": 31228000000.0,
+     "q3_2026": 40576000000.0
+    }
+   },
+   "employees": {
+    "q3_2025": 190167.0,
+    "q3_2026": 204757.0
+   }
+  },
+  "headline": {
+   "revenue_q3_2026": 127577000000.0,
+   "revenue_q3_2025": 102346000000.0,
+   "operating_income_q3_2026": 40576000000.0,
+   "operating_income_q3_2025": 31228000000.0,
+   "other_income_q3_2026": -8221000000.0,
+   "other_income_q3_2025": 12759000000.0,
+   "net_income_q3_2026": 26170000000.0,
+   "net_income_q3_2025": 34979000000.0,
+   "eps_q3_2026": 2.12,
+   "eps_q3_2025": 2.87,
+   "cloud_revenue_q3_2026": 30700000000.0
+  }
+ },
+ "financials": {
+  "balance_sheet": {
+   "title": "CONSOLIDATED BALANCE SHEETS - USD ($)  $ in Millions",
+   "scale": 1000000.0,
+   "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+   ],
+   "rows": [
+    {
+     "label": "Current assets:",
+     "element": "us-gaap:AssetsCurrentAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Cash and cash equivalents",
+     "element": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": [
+      56334.0,
+      30708.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Marketable securities",
+     "element": "us-gaap:MarketableSecuritiesCurrent",
+     "values": [
+      208764.0,
+      96135.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Total cash, cash equivalents, and marketable securities",
+     "element": "us-gaap:CashCashEquivalentsAndShortTermInvestments",
+     "values": [
+      265098.0,
+      126843.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Accounts receivable, net",
+     "element": "us-gaap:AccountsReceivableNetCurrent",
+     "values": [
+      72784.0,
+      62886.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Inventory",
+     "element": "us-gaap:InventoryNet",
+     "values": [
+      13308.0,
+      2439.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Other current assets",
+     "element": "us-gaap:OtherAssetsCurrent",
+     "values": [
+      23475.0,
+      13870.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Total current assets",
+     "element": "us-gaap:AssetsCurrent",
+     "values": [
+      374665.0,
+      206038.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Non-marketable securities",
+     "element": "us-gaap:OtherLongTermInvestments",
+     "values": [
+      135230.0,
+      68687.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Deferred income taxes",
+     "element": "us-gaap:DeferredIncomeTaxAssetsNet",
+     "values": [
+      1458.0,
+      9113.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Property and equipment, net",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
+     "values": [
+      372827.0,
+      246597.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Operating lease assets",
+     "element": "us-gaap:OperatingLeaseRightOfUseAsset",
+     "values": [
+      20273.0,
+      15221.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Goodwill",
+     "element": "us-gaap:Goodwill",
+     "values": [
+      58117.0,
+      33380.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Intangible assets, net",
+     "element": "us-gaap:IntangibleAssetsNetExcludingGoodwill",
+     "values": [
+      8817.0,
+      1283.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Other non-current assets",
+     "element": "us-gaap:OtherAssetsNoncurrent",
+     "values": [
+      31925.0,
+      14962.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Total assets",
+     "element": "us-gaap:Assets",
+     "values": [
+      1003312.0,
+      595281.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current assets:"
+    },
+    {
+     "label": "Current liabilities:",
+     "element": "us-gaap:LiabilitiesCurrentAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Accounts payable",
+     "element": "us-gaap:AccountsPayableCurrent",
+     "values": [
+      21975.0,
+      12200.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Accrued compensation and benefits",
+     "element": "us-gaap:EmployeeRelatedLiabilitiesCurrent",
+     "values": [
+      17729.0,
+      17546.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Accrued expenses and other current liabilities",
+     "element": "us-gaap:AccruedLiabilitiesCurrent",
+     "values": [
+      74317.0,
+      55557.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Accrued revenue share",
+     "element": "goog:AccruedRevenueShare",
+     "values": [
+      11051.0,
+      10864.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Deferred revenue",
+     "element": "us-gaap:ContractWithCustomerLiabilityCurrent",
+     "values": [
+      9429.0,
+      6578.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Total current liabilities",
+     "element": "us-gaap:LiabilitiesCurrent",
+     "values": [
+      134501.0,
+      102745.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Long-term debt",
+     "element": "us-gaap:LongTermDebtNoncurrent",
+     "values": [
+      125102.0,
+      46547.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Income taxes payable, non-current",
+     "element": "us-gaap:AccruedIncomeTaxesNoncurrent",
+     "values": [
+      12219.0,
+      9531.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Deferred income taxes",
+     "element": "us-gaap:DeferredIncomeTaxLiabilitiesNet",
+     "values": [
+      27833.0,
+      919.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Operating lease liabilities",
+     "element": "us-gaap:OperatingLeaseLiabilityNoncurrent",
+     "values": [
+      16815.0,
+      12744.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Other long-term liabilities",
+     "element": "us-gaap:OtherLiabilitiesNoncurrent",
+     "values": [
+      9293.0,
+      7530.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Total liabilities",
+     "element": "us-gaap:Liabilities",
+     "values": [
+      325763.0,
+      180016.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Current liabilities:"
+    },
+    {
+     "label": "Commitments and Contingencies (Note 10)",
+     "element": "us-gaap:CommitmentsAndContingencies",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Stockholders’ equity:",
+     "element": "us-gaap:StockholdersEquityAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Series A and Series B preferred stock and additional paid-in capital, $0.001 par value per share, 100 shares authorized; 6.25% mandatory convertible preferred stock, 0 and 19 shares issued and outstanding allocated equally between each series with a liquidation preference of $1,000 per share",
+     "element": "us-gaap:ConvertiblePreferredStockNonredeemableOrRedeemableIssuerOptionValue",
+     "values": [
+      18023.0,
+      0.0
+     ],
+     "monetary": false,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    },
+    {
+     "label": "Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000); 12,088 (Class A 5,822, Class B 837, Class C 5,429) and 12,294 (Class A 5,888, Class B 828, Class C 5,578) shares issued and outstanding",
+     "element": "us-gaap:CommonStocksIncludingAdditionalPaidInCapital",
+     "values": [
+      147068.0,
+      93126.0
+     ],
+     "monetary": false,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    },
+    {
+     "label": "Accumulated other comprehensive income (loss)",
+     "element": "us-gaap:AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+     "values": [
+      -4326.0,
+      -1916.0
+     ],
+     "monetary": true,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    },
+    {
+     "label": "Retained earnings",
+     "element": "us-gaap:RetainedEarningsAccumulatedDeficit",
+     "values": [
+      516784.0,
+      324055.0
+     ],
+     "monetary": true,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    },
+    {
+     "label": "Total stockholders’ equity",
+     "element": "us-gaap:StockholdersEquity",
+     "values": [
+      677549.0,
+      415265.0
+     ],
+     "monetary": true,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    },
+    {
+     "label": "Total liabilities and stockholders’ equity",
+     "element": "us-gaap:LiabilitiesAndStockholdersEquity",
+     "values": [
+      1003312.0,
+      595281.0
+     ],
+     "monetary": true,
+     "context": "Stockholders’ equity:",
+     "subheading": null
+    }
+   ],
+   "short_name": "CONSOLIDATED BALANCE SHEETS",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/R2.htm"
+  },
+  "operations": {
+   "title": "CONSOLIDATED STATEMENTS OF INCOME - USD ($)  $ in Millions",
+   "scale": 1000000.0,
+   "columns": [
+    "Sep. 30, 2026",
+    "Sep. 30, 2025",
+    "Sep. 30, 2026",
+    "Sep. 30, 2025"
+   ],
+   "rows": [
+    {
+     "label": "Income Statement [Abstract]",
+     "element": "us-gaap:IncomeStatementAbstract",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenues",
+     "element": "us-gaap:Revenues",
+     "values": [
+      127577.0,
+      102346.0,
+      357269.0,
+      289007.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Costs and expenses:",
+     "element": "us-gaap:CostsAndExpensesAbstract",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Cost of revenues",
+     "element": "us-gaap:CostOfRevenue",
+     "values": [
+      51419.0,
+      41369.0,
+      138633.0,
+      116768.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Research and development",
+     "element": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": [
+      20640.0,
+      15151.0,
+      55891.0,
+      42515.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Sales and marketing",
+     "element": "us-gaap:SellingAndMarketingExpense",
+     "values": [
+      8804.0,
+      7205.0,
+      24813.0,
+      20478.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "General and administrative",
+     "element": "us-gaap:GeneralAndAdministrativeExpense",
+     "values": [
+      6138.0,
+      7393.0,
+      16890.0,
+      16141.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Total costs and expenses",
+     "element": "us-gaap:CostsAndExpenses",
+     "values": [
+      87001.0,
+      71118.0,
+      236227.0,
+      195902.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Income from operations",
+     "element": "us-gaap:OperatingIncomeLoss",
+     "values": [
+      40576.0,
+      31228.0,
+      121042.0,
+      93105.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Other income (expense), net",
+     "element": "us-gaap:NonoperatingIncomeExpense",
+     "values": [
+      -8221.0,
+      12759.0,
+      127478.0,
+      26604.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Income before income taxes",
+     "element": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": [
+      32355.0,
+      43987.0,
+      248520.0,
+      119709.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Provision for income taxes",
+     "element": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": [
+      5887.0,
+      9008.0,
+      47281.0,
+      21994.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Net income",
+     "element": "us-gaap:NetIncomeLoss",
+     "values": [
+      26468.0,
+      34979.0,
+      201239.0,
+      97715.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Preferred stock dividends",
+     "element": "us-gaap:PreferredStockDividendsIncomeStatementImpact",
+     "values": [
+      298.0,
+      0.0,
+      384.0,
+      0.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Net income available to common stockholders",
+     "element": "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
+     "values": [
+      26170.0,
+      34979.0,
+      200855.0,
+      97715.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Basic net income per common share (Note 12) (in dollars per share)",
+     "element": "us-gaap:EarningsPerShareBasic",
+     "values": [
+      2.14,
+      2.89,
+      16.51,
+      8.06
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    },
+    {
+     "label": "Diluted net income per common share (Note 12) (in dollars per share)",
+     "element": "us-gaap:EarningsPerShareDiluted",
+     "values": [
+      2.12,
+      2.87,
+      16.33,
+      7.99
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": "Costs and expenses:"
+    }
+   ],
+   "short_name": "CONSOLIDATED STATEMENTS OF INCOME",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/R4.htm"
+  },
+  "cash_flows": {
+   "title": "CONSOLIDATED STATEMENTS OF CASH FLOWS - USD ($)  $ in Millions",
+   "scale": 1000000.0,
+   "columns": [
+    "Sep. 30, 2026",
+    "Sep. 30, 2025"
+   ],
+   "rows": [
+    {
+     "label": "Operating activities",
+     "element": "us-gaap:NetCashProvidedByUsedInOperatingActivitiesAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Net income",
+     "element": "us-gaap:NetIncomeLoss",
+     "values": [
+      201239.0,
+      97715.0
+     ],
+     "monetary": true,
+     "context": "Operating activities",
+     "subheading": null
+    },
+    {
+     "label": "Adjustments:",
+     "element": "us-gaap:AdjustmentsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Depreciation of property and equipment",
+     "element": "us-gaap:Depreciation",
+     "values": [
+      21955.0,
+      15096.0
+     ],
+     "monetary": true,
+     "context": "Adjustments:",
+     "subheading": null
+    },
+    {
+     "label": "Stock-based compensation expense",
+     "element": "us-gaap:ShareBasedCompensation",
+     "values": [
+      23338.0,
+      17882.0
+     ],
+     "monetary": true,
+     "context": "Adjustments:",
+     "subheading": null
+    },
+    {
+     "label": "Deferred income taxes",
+     "element": "us-gaap:DeferredIncomeTaxesAndTaxCredits",
+     "values": [
+      33077.0,
+      7130.0
+     ],
+     "monetary": true,
+     "context": "Adjustments:",
+     "subheading": null
+    },
+    {
+     "label": "Loss (gain) on debt and equity securities, net",
+     "element": "us-gaap:DebtAndEquitySecuritiesGainLoss",
+     "values": [
+      -126755.0,
+      -22266.0
+     ],
+     "monetary": true,
+     "context": "Adjustments:",
+     "subheading": null
+    },
+    {
+     "label": "Other",
+     "element": "us-gaap:OtherNoncashIncomeExpense",
+     "values": [
+      4825.0,
+      843.0
+     ],
+     "monetary": true,
+     "context": "Adjustments:",
+     "subheading": null
+    },
+    {
+     "label": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "element": "us-gaap:IncreaseDecreaseInOperatingCapitalAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Accounts receivable, net",
+     "element": "us-gaap:IncreaseDecreaseInAccountsReceivable",
+     "values": [
+      -10821.0,
+      -3582.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Inventory",
+     "element": "us-gaap:IncreaseDecreaseInInventories",
+     "values": [
+      -10959.0,
+      -1154.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Income taxes, net",
+     "element": "us-gaap:IncreaseDecreaseInIncomeTaxes",
+     "values": [
+      4602.0,
+      -3292.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Other assets",
+     "element": "us-gaap:IncreaseDecreaseInOtherOperatingAssets",
+     "values": [
+      -17757.0,
+      -2906.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Accounts payable",
+     "element": "us-gaap:IncreaseDecreaseInAccountsPayable",
+     "values": [
+      1925.0,
+      -771.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Accrued expenses and other liabilities",
+     "element": "us-gaap:IncreaseDecreaseInAccruedLiabilities",
+     "values": [
+      -860.0,
+      6299.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Deferred revenue",
+     "element": "us-gaap:IncreaseDecreaseInContractWithCustomerLiability",
+     "values": [
+      3340.0,
+      1317.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Net cash provided by operating activities",
+     "element": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": [
+      127149.0,
+      112311.0
+     ],
+     "monetary": true,
+     "context": "Changes in assets and liabilities, net of effects of acquisitions:",
+     "subheading": null
+    },
+    {
+     "label": "Investing activities",
+     "element": "us-gaap:NetCashProvidedByUsedInInvestingActivitiesAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Purchases of property and equipment",
+     "element": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": [
+      -131953.0,
+      -63596.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Purchases of marketable securities",
+     "element": "us-gaap:PaymentsToAcquireMarketableSecurities",
+     "values": [
+      -116467.0,
+      -60834.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Maturities and sales of marketable securities",
+     "element": "us-gaap:ProceedsFromSaleAndMaturityOfMarketableSecurities",
+     "values": [
+      88516.0,
+      61301.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Purchases of non-marketable securities",
+     "element": "us-gaap:PaymentsToAcquireOtherInvestments",
+     "values": [
+      -24160.0,
+      -3312.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Maturities and sales of non-marketable securities",
+     "element": "us-gaap:ProceedsFromSaleAndMaturityOfOtherInvestments",
+     "values": [
+      1875.0,
+      1196.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Acquisitions, net of cash acquired, and purchases of intangible assets",
+     "element": "goog:AcquisitionsNetOfCashAcquiredAndPurchasesOfIntangibleAndOtherAssets",
+     "values": [
+      -34103.0,
+      -1425.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Other investing activities",
+     "element": "us-gaap:PaymentsForProceedsFromOtherInvestingActivities",
+     "values": [
+      -879.0,
+      -1845.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Net cash used in investing activities",
+     "element": "us-gaap:NetCashProvidedByUsedInInvestingActivities",
+     "values": [
+      -217171.0,
+      -68515.0
+     ],
+     "monetary": true,
+     "context": "Investing activities",
+     "subheading": null
+    },
+    {
+     "label": "Financing activities",
+     "element": "us-gaap:NetCashProvidedByUsedInFinancingActivitiesAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Net payments related to stock-based award activities",
+     "element": "goog:NetProceedsPaymentsRelatedToStockBasedAwardActivities",
+     "values": [
+      -17424.0,
+      -9001.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Repurchases of stock",
+     "element": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": [
+      0.0,
+      -39810.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Dividend payments on preferred and common stock",
+     "element": "us-gaap:PaymentsOfOrdinaryDividends",
+     "values": [
+      -8167.0,
+      -7513.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Proceeds from issuance of common stock, net of costs",
+     "element": "us-gaap:ProceedsFromIssuanceOfCommonStock",
+     "values": [
+      42870.0,
+      0.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Proceeds from issuance of mandatory convertible preferred stock, net of costs",
+     "element": "us-gaap:ProceedsFromIssuanceOfConvertiblePreferredStock",
+     "values": [
+      19063.0,
+      0.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Proceeds from issuance of debt, net of costs",
+     "element": "us-gaap:ProceedsFromDebtNetOfIssuanceCosts",
+     "values": [
+      85222.0,
+      38002.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Repayments of debt",
+     "element": "us-gaap:RepaymentsOfDebtAndCapitalLeaseObligations",
+     "values": [
+      -8879.0,
+      -26094.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Proceeds from sale of interest in consolidated entities, net",
+     "element": "us-gaap:ProceedsFromMinorityShareholders",
+     "values": [
+      3758.0,
+      400.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Other financing activities",
+     "element": "us-gaap:ProceedsFromPaymentsForOtherFinancingActivities",
+     "values": [
+      -686.0,
+      -400.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Net cash provided by (used in) financing activities",
+     "element": "us-gaap:NetCashProvidedByUsedInFinancingActivities",
+     "values": [
+      115757.0,
+      -44416.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Effect of exchange rate changes on cash and cash equivalents",
+     "element": "us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": [
+      -109.0,
+      244.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Net increase (decrease) in cash and cash equivalents",
+     "element": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
+     "values": [
+      25626.0,
+      -376.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Cash and cash equivalents at beginning of period",
+     "element": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": [
+      30708.0,
+      23466.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Cash and cash equivalents at end of period",
+     "element": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": [
+      56334.0,
+      23090.0
+     ],
+     "monetary": true,
+     "context": "Financing activities",
+     "subheading": null
+    },
+    {
+     "label": "Supplemental disclosures of non-cash investing activities:",
+     "element": "us-gaap:CashFlowNoncashInvestingAndFinancingActivitiesDisclosureAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property and equipment included in accrued liabilities and accounts payable",
+     "element": "us-gaap:CapitalExpendituresIncurredButNotYetPaid",
+     "values": [
+      35921.0,
+      14574.0
+     ],
+     "monetary": true,
+     "context": "Supplemental disclosures of non-cash investing activities:",
+     "subheading": null
+    }
+   ],
+   "short_name": "CONSOLIDATED STATEMENTS OF CASH FLOWS",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/R9.htm"
+  },
+  "ppe": {
+   "title": "Supplemental Financial Statement Information - Property and Equipment (Details) - USD ($)  $ in Millions",
+   "scale": 1000000.0,
+   "columns": [
+    "Sep. 30, 2026",
+    "Dec. 31, 2025"
+   ],
+   "rows": [
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Less: accumulated depreciation",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAccumulatedDepreciationAndAmortization",
+     "values": [
+      -113543.0,
+      -98485.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property and equipment, net",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
+     "values": [
+      372827.0,
+      246597.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property and equipment, in service",
+     "element": "us-gaap:PropertyPlantAndEquipmentByTypeAxis",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+     "values": [
+      341100.0,
+      266490.0
+     ],
+     "monetary": true,
+     "context": "Property and equipment, in service",
+     "subheading": null
+    },
+    {
+     "label": "Technical infrastructure",
+     "element": "us-gaap:PropertyPlantAndEquipmentByTypeAxis",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+     "values": [
+      282842.0,
+      203679.0
+     ],
+     "monetary": true,
+     "context": "Technical infrastructure",
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross, percentage",
+     "element": "goog:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortizationPercentage",
+     "values": [
+      60.0,
+      60.0
+     ],
+     "monetary": false,
+     "context": "Technical infrastructure",
+     "subheading": null
+    },
+    {
+     "label": "Office space",
+     "element": "us-gaap:PropertyPlantAndEquipmentByTypeAxis",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+     "values": [
+      51101.0,
+      48348.0
+     ],
+     "monetary": true,
+     "context": "Office space",
+     "subheading": null
+    },
+    {
+     "label": "Corporate and other assets",
+     "element": "us-gaap:PropertyPlantAndEquipmentByTypeAxis",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+     "values": [
+      7157.0,
+      14463.0
+     ],
+     "monetary": true,
+     "context": "Corporate and other assets",
+     "subheading": null
+    },
+    {
+     "label": "Assets not yet in service",
+     "element": "us-gaap:PropertyPlantAndEquipmentByTypeAxis",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, Plant, and Equipment, after Accumulated Depreciation, Depletion, and Amortization [Abstract]",
+     "element": "us-gaap:PropertyPlantAndEquipmentNetAbstract",
+     "values": [
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Property, plant and equipment, gross",
+     "element": "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetBeforeAccumulatedDepreciationAndAmortization",
+     "values": [
+      145270.0,
+      78592.0
+     ],
+     "monetary": true,
+     "context": "Assets not yet in service",
+     "subheading": null
+    }
+   ],
+   "short_name": "Supplemental Financial Statement Information - Property and Equipment (Details)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/R65.htm"
+  },
+  "revenue": null,
+  "segments": {
+   "title": "Revenues - Revenue by Segment (Details) - USD ($)  $ in Millions",
+   "scale": 1000000.0,
+   "columns": [
+    "Sep. 30, 2026",
+    "Sep. 30, 2025",
+    "Sep. 30, 2026",
+    "Sep. 30, 2025"
+   ],
+   "rows": [
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Hedging gains (losses)",
+     "element": "us-gaap:RevenueNotFromContractWithCustomer",
+     "values": [
+      194.0,
+      -207.0,
+      120.0,
+      -60.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Total revenues",
+     "element": "us-gaap:Revenues",
+     "values": [
+      127577.0,
+      102346.0,
+      357269.0,
+      289007.0
+     ],
+     "monetary": true,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Google Services",
+     "element": "us-gaap:StatementBusinessSegmentsAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      96302.0,
+      87052.0,
+      280479.0,
+      246859.0
+     ],
+     "monetary": true,
+     "context": "Google Services",
+     "subheading": null
+    },
+    {
+     "label": "Google Cloud",
+     "element": "us-gaap:StatementBusinessSegmentsAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      30709.0,
+      15157.0,
+      75505.0,
+      41041.0
+     ],
+     "monetary": true,
+     "context": "Google Cloud",
+     "subheading": null
+    },
+    {
+     "label": "Other Bets",
+     "element": "us-gaap:StatementBusinessSegmentsAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      372.0,
+      344.0,
+      1165.0,
+      1167.0
+     ],
+     "monetary": true,
+     "context": "Other Bets",
+     "subheading": null
+    },
+    {
+     "label": "Google Search & other | Google Services",
+     "element": "srt:ProductOrServiceAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      63350.0,
+      56567.0,
+      187020.0,
+      161459.0
+     ],
+     "monetary": true,
+     "context": "Google Search & other | Google Services",
+     "subheading": null
+    },
+    {
+     "label": "YouTube ads | Google Services",
+     "element": "srt:ProductOrServiceAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      11207.0,
+      10261.0,
+      32145.0,
+      28984.0
+     ],
+     "monetary": true,
+     "context": "YouTube ads | Google Services",
+     "subheading": null
+    },
+    {
+     "label": "Google Network | Google Services",
+     "element": "srt:ProductOrServiceAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      7455.0,
+      7354.0,
+      21729.0,
+      21964.0
+     ],
+     "monetary": true,
+     "context": "Google Network | Google Services",
+     "subheading": null
+    },
+    {
+     "label": "Google advertising | Google Services",
+     "element": "srt:ProductOrServiceAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      82012.0,
+      74182.0,
+      240894.0,
+      212407.0
+     ],
+     "monetary": true,
+     "context": "Google advertising | Google Services",
+     "subheading": null
+    },
+    {
+     "label": "Google subscriptions, platforms, and devices | Google Services",
+     "element": "srt:ProductOrServiceAxis",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Segment Reporting [Line Items]",
+     "element": "us-gaap:SegmentReportingInformationLineItems",
+     "values": [
+      null,
+      null,
+      null,
+      null
+     ],
+     "monetary": false,
+     "context": null,
+     "subheading": null
+    },
+    {
+     "label": "Revenue from contract with customers",
+     "element": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": [
+      14290.0,
+      12870.0,
+      39585.0,
+      34452.0
+     ],
+     "monetary": true,
+     "context": "Google subscriptions, platforms, and devices | Google Services",
+     "subheading": null
+    }
+   ],
+   "short_name": "Revenues - Revenue by Segment (Details)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/R39.htm"
+  }
+ },
+ "fy2025_from_engine": {
+  "fiscal_year": 2025,
+  "period_end": "2025-12-31",
+  "accession": "0001652044-26-000018",
+  "revenue": 402836000000.0,
+  "operating_income": 129039000000.0,
+  "operating_income_route": "reported",
+  "route_detail": null,
+  "route_accuracy": 1.0,
+  "effective_tax_rate": 0.16783146336242177,
+  "tax_note": "실효 16.8%",
+  "nopat": 107382195799.17645,
+  "total_equity": 415265000000.0,
+  "equity_parent_only": 415265000000.0,
+  "noncontrolling_interest": 0.0,
+  "interest_bearing_debt": 48543000000.0,
+  "debt_note": "LongTermDebtNoncurrent + LongTermDebtCurrent + ShortTermBorrowings",
+  "cash_and_short_term_investments": 126843000000.0,
+  "cash_note": "CashCashEquivalentsAndShortTermInvestments (결합 태그)",
+  "invested_capital": 336965000000.0,
+  "operating_margin": 0.32032638592380025,
+  "confidence": "HIGH",
+  "cash_hole_suspected": false,
+  "roic_status": "OK",
+  "invested_capital_avg": 290287000000.0,
+  "invested_capital_avg_note": "기초·기말 평균",
+  "roic": 0.3699173431782217,
+  "capital_intensity": 0.7206083865394354,
+  "capital_too_small": false,
+  "depreciation": 21136000000
+ },
+ "analysis": {
+  "operating_income_ttm": 156976000000.0,
+  "depreciation_9m_2026": 21955000000.0,
+  "depreciation_9m_2025": 15096000000.0,
+  "share_based_comp_9m_2026": 23338000000.0,
+  "securities_gain_9m_2026": null,
+  "operating_income_9m_2026": 121042000000.0,
+  "operating_income_9m_2025": 93105000000.0,
+  "revenue_9m_2026": 357269000000.0,
+  "revenue_9m_2025": 289007000000.0,
+  "other_income_9m_2026": 127478000000.0,
+  "other_income_9m_2025": 26604000000.0,
+  "pretax_9m_2026": 248520000000.0,
+  "pretax_9m_2025": 119709000000.0,
+  "tax_9m_2026": 47281000000.0,
+  "net_income_9m_2026": 201239000000.0,
+  "net_income_9m_2025": 97715000000.0,
+  "eps_diluted_9m_2026": 16.33,
+  "eps_diluted_9m_2025": 7.99,
+  "preferred_dividends_9m_2026": 384000000.0,
+  "tax_rate_ttm": 0.19025028166747143,
+  "tax_rate_fy2025": 0.16783146336242177,
+  "balance_sheets": {
+   "2026-09-30": {
+    "non_marketable_securities": 135230000000.0,
+    "equity": 677549000000.0,
+    "debt": 125102000000.0,
+    "cash_and_securities": 265098000000.0,
+    "goodwill": 58117000000.0,
+    "intangibles": 8817000000.0,
+    "assets_not_yet_in_service": 145270000000.0,
+    "ppe_net": null,
+    "total_assets": 1003312000000.0,
+    "reported": 537553000000.0,
+    "operating": 470619000000.0,
+    "in_service": 325349000000.0,
+    "in_service_ex_stakes": 190119000000.0
+   },
+   "2025-12-31": {
+    "non_marketable_securities": 68687000000.0,
+    "equity": 415265000000.0,
+    "debt": 46547000000.0,
+    "cash_and_securities": 126843000000.0,
+    "goodwill": 33380000000.0,
+    "intangibles": 1283000000.0,
+    "assets_not_yet_in_service": 78592000000.0,
+    "ppe_net": null,
+    "total_assets": 595281000000.0,
+    "reported": 334969000000.0,
+    "operating": 300306000000.0,
+    "in_service": 221714000000.0,
+    "in_service_ex_stakes": 153027000000.0
+   }
+  },
+  "views": {
+   "reported": {
+    "opening": 334969000000.0,
+    "closing": 537553000000.0,
+    "average": 436261000000.0,
+    "roic_ttm": 0.29136519602936545,
+    "spread_ttm": 0.19136519602936544,
+    "roic_fy2025": 0.299431964368166,
+    "spread_fy2025": 0.199431964368166
+   },
+   "operating": {
+    "opening": 300306000000.0,
+    "closing": 470619000000.0,
+    "average": 385462500000.0,
+    "roic_ttm": 0.3297630036254292,
+    "spread_ttm": 0.2297630036254292,
+    "roic_fy2025": 0.33889285781942596,
+    "spread_fy2025": 0.23889285781942596
+   },
+   "in_service": {
+    "opening": 221714000000.0,
+    "closing": 325349000000.0,
+    "average": 273531500000.0,
+    "roic_ttm": 0.46470432760017405,
+    "spread_ttm": 0.364704327600174,
+    "roic_fy2025": 0.4775701818884497,
+    "spread_fy2025": 0.3775701818884497
+   },
+   "in_service_ex_stakes": {
+    "opening": 153027000000.0,
+    "closing": 190119000000.0,
+    "average": 171573000000.0,
+    "roic_ttm": 0.7408582456736609,
+    "spread_ttm": 0.6408582456736609,
+    "roic_fy2025": 0.7613697272136086,
+    "spread_fy2025": 0.6613697272136086
+   }
+  },
+  "shares_outstanding": 12294000000.0,
+  "price": 282.32000732421875,
+  "market_cap": 3470842170043.9453,
+  "nopat_ttm": 127111271784.96701,
+  "nopat_fy2025": 130630488207.22047,
+  "free_cash_flow_ttm": 19747000000.0,
+  "operating_cash_flow_ttm": 179551000000.0,
+  "capex_ttm": -159804000000.0,
+  "increase_in_assets_not_yet_in_service": 66678000000.0,
+  "free_cash_flow_before_new_construction": 86425000000.0,
+  "nopat_yield": 0.036622602111394086,
+  "nopat_required_for_10pct": 347084217004.39453,
+  "multiple_of_current_nopat": 2.730554199721593,
+  "price_to_nopat": 27.305541997215933,
+  "price_to_fcf_ttm": 175.76554261629337,
+  "depreciation_ttm": 27995000000.0,
+  "owner_earnings_lower": 19747000000.0,
+  "owner_earnings_upper": 151556000000.0,
+  "implied_return_lower": 0.005689397279551313,
+  "implied_return_upper": 0.043665483065765884,
+  "implied_growth_at_10pct": 0.06879936544183368,
+  "implied_growth_note": "영구성장 모형 V = NOPAT×(1−g/증분ROIC)÷(k−g), k=10%, 증분ROIC는 가동자본 기준 46.5% 적용",
+  "growth_sensitivity": [
+   {
+    "growth": 0.03,
+    "value": 1698647525499.5286,
+    "value_per_share": 138.1688242638302,
+    "vs_price": -0.5105949961769591
+   },
+   {
+    "growth": 0.04,
+    "value": 1936166863082.7834,
+    "value_per_share": 157.48876387528742,
+    "vs_price": -0.44216222800523675
+   },
+   {
+    "growth": 0.05,
+    "value": 2268693935699.34,
+    "value_per_share": 184.53667933132746,
+    "vs_price": -0.34635635256482566
+   },
+   {
+    "growth": 0.06,
+    "value": 2767484544624.1743,
+    "value_per_share": 225.10855251538754,
+    "vs_price": -0.2026475394042091
+   },
+   {
+    "growth": 0.07,
+    "value": 3598802226165.5674,
+    "value_per_share": 292.72834115548784,
+    "vs_price": 0.03686714919681933
+   },
+   {
+    "growth": 0.08,
+    "value": 5261437589248.35,
+    "value_per_share": 427.9679184356881,
+    "vs_price": 0.5158965263988748
+   }
+  ],
+  "implied_growth_by_price": [
+   {
+    "price": 200.0,
+    "market_cap": 2458800000000.0,
+    "implied_growth": 0.05434971867989356
+   },
+   {
+    "price": 250.0,
+    "market_cap": 3073500000000.0,
+    "implied_growth": 0.06437169854412039
+   },
+   {
+    "price": 282.32000732421875,
+    "market_cap": 3470842170043.9453,
+    "implied_growth": 0.06879936544183368
+   },
+   {
+    "price": 300.0,
+    "market_cap": 3688200000000.0,
+    "implied_growth": 0.07078541539684835
+   },
+   {
+    "price": 355.84,
+    "market_cap": 4374696959999.9995,
+    "implied_growth": 0.07567566518397259
+   },
+   {
+    "price": 400.0,
+    "market_cap": 4917600000000.0,
+    "implied_growth": 0.07851923980342518
+   }
+  ],
+  "actual_growth_operating_income_9m": 0.3000590730895225,
+  "actual_growth_revenue_9m": 0.23619497105606446,
+  "incremental": {
+   "delta_nopat": 19729075985.790558,
+   "delta_capital_reported": 202584000000.0,
+   "incremental_roic_reported": 0.09738713810464084,
+   "delta_capital_in_service_ex_stakes": 37092000000.0,
+   "incremental_roic_in_service_ex_stakes": 0.5318957183702836,
+   "note": "FY2025 → TTM 2026-09. 보고 기준 분모에는 투자자산 평가이익이 자기자본으로 들어와 있어, 영업이익을 낼 수 없는 자본이 포함됩니다."
+  },
+  "nopat_at_statutory_21": 124011040000.0,
+  "nopat_sensitivity_note": "규칙상 실효세율 19.0% 적용 시 NOPAT 127.1십억, 법정세율 21% 적용 시 124.0십억 (-2.4%)",
+  "segments": {
+   "revenue": {
+    "search": {
+     "q3_2025": 56567000000.0,
+     "q3_2026": 63350000000.0
+    },
+    "youtube_ads": {
+     "q3_2025": 10261000000.0,
+     "q3_2026": 11207000000.0
+    },
+    "network": {
+     "q3_2025": 7354000000.0,
+     "q3_2026": 7455000000.0
+    },
+    "advertising": {
+     "q3_2025": 74182000000.0,
+     "q3_2026": 82012000000.0
+    },
+    "subscriptions_devices": {
+     "q3_2025": 12870000000.0,
+     "q3_2026": 14290000000.0
+    },
+    "services_total": {
+     "q3_2025": 87052000000.0,
+     "q3_2026": 96302000000.0
+    },
+    "cloud": {
+     "q3_2025": 15157000000.0,
+     "q3_2026": 30709000000.0
+    },
+    "other_bets": {
+     "q3_2025": 344000000.0,
+     "q3_2026": 372000000.0
+    },
+    "hedging": {
+     "q3_2025": -207000000.0,
+     "q3_2026": 194000000.0
+    },
+    "total": {
+     "q3_2025": 102346000000.0,
+     "q3_2026": 127577000000.0
+    }
+   },
+   "operating_income": {
+    "services": {
+     "q3_2025": 33527000000.0,
+     "q3_2026": 39157000000.0
+    },
+    "cloud": {
+     "q3_2025": 3594000000.0,
+     "q3_2026": 11121000000.0
+    },
+    "other_bets": {
+     "q3_2025": -1426000000.0,
+     "q3_2026": -2047000000.0
+    },
+    "alphabet_level": {
+     "q3_2025": -4467000000.0,
+     "q3_2026": -7655000000.0
+    },
+    "total": {
+     "q3_2025": 31228000000.0,
+     "q3_2026": 40576000000.0
+    }
+   },
+   "employees": {
+    "q3_2025": 190167.0,
+    "q3_2026": 204757.0
+   }
+  },
+  "financing": {
+   "repurchases": {
+    "nine_months_2026": 0.0,
+    "nine_months_2025": -39810000000.0
+   },
+   "debt_issued": {
+    "nine_months_2026": 85222000000.0,
+    "nine_months_2025": 38002000000.0
+   },
+   "debt_repaid": {
+    "nine_months_2026": -8879000000.0,
+    "nine_months_2025": -26094000000.0
+   },
+   "common_issued": {
+    "nine_months_2026": 42870000000.0,
+    "nine_months_2025": 0.0
+   },
+   "preferred_issued": {
+    "nine_months_2026": 19063000000.0,
+    "nine_months_2025": 0.0
+   },
+   "dividends": {
+    "nine_months_2026": -8167000000.0,
+    "nine_months_2025": -7513000000.0
+   },
+   "sbc_settlement": {
+    "nine_months_2026": -17424000000.0,
+    "nine_months_2025": -9001000000.0
+   },
+   "external_capital_raised_9m_2026": 147155000000.0,
+   "note": "9개월 누적. 자사주 매입은 0, 외부자금 조달은 차입·보통주·우선주 합계."
+  },
+  "ten_year_record": {
+   "source": "roic/roic.json (미국 50개사 조사)",
+   "generated": "2026-10-29",
+   "window": [
+    2016,
+    2026
+   ],
+   "wacc": 0.1,
+   "summary": {
+    "years_in_window": 10,
+    "years_usable": 10,
+    "roic_median": 0.3783561751944132,
+    "roic_mean": 0.4014636346169388,
+    "roic_min": 0.28246592094378303,
+    "roic_max": 0.5796586503269808,
+    "roic_stdev": 0.07827503345250393,
+    "spread_median": 0.2783561751944132,
+    "years_above_wacc": 10,
+    "years_below_wacc": 0,
+    "every_year_above_wacc": true,
+    "years_estimated_numerator": 0,
+    "years_hurdle_disputed": 0,
+    "years_capital_too_small": 0,
+    "verdict": "전 기간 초과 · 매우 높음"
+   },
+   "ticker": "GOOG",
+   "company_name": "Alphabet Inc.",
+   "years": [
+    {
+     "fiscal_year": 2016,
+     "roic": 0.35057614947738136,
+     "operating_income": 23716000000.0,
+     "invested_capital_avg": 54561500000.0
+    },
+    {
+     "fiscal_year": 2017,
+     "roic": 0.28246592094378303,
+     "operating_income": 26178000000.0,
+     "invested_capital_avg": 55606000000.0
+    },
+    {
+     "fiscal_year": 2018,
+     "roic": 0.38155484201553164,
+     "operating_income": 27524000000.0,
+     "invested_capital_avg": 63506000000.0
+    },
+    {
+     "fiscal_year": 2019,
+     "roic": 0.37515750837329476,
+     "operating_income": 34231000000.0,
+     "invested_capital_avg": 79081500000.0
+    },
+    {
+     "fiscal_year": 2020,
+     "roic": 0.370233436402208,
+     "operating_income": 41224000000.0,
+     "invested_capital_avg": 93253000000.0
+    },
+    {
+     "fiscal_year": 2021,
+     "roic": 0.5796586503269808,
+     "operating_income": 78714000000.0,
+     "invested_capital_avg": 113792000000.0
+    },
+    {
+     "fiscal_year": 2022,
+     "roic": 0.4433226189938993,
+     "operating_income": 74842000000.0,
+     "invested_capital_avg": 141943000000.0
+    },
+    {
+     "fiscal_year": 2023,
+     "roic": 0.42386487715624777,
+     "operating_income": 84293000000.0,
+     "invested_capital_avg": 171208000000.0
+    },
+    {
+     "fiscal_year": 2024,
+     "roic": 0.43788499930183933,
+     "operating_income": 112390000000.0,
+     "invested_capital_avg": 214471000000.0
+    },
+    {
+     "fiscal_year": 2025,
+     "roic": 0.3699173431782217,
+     "operating_income": 129039000000.0,
+     "invested_capital_avg": 290287000000.0
+    }
+   ]
+  }
+ }
+}

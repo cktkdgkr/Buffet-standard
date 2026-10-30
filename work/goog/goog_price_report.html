@@ -1,0 +1,400 @@
+<title>알파벳 주가 판정</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#ffffff; --fg:#17191c; --dim:#5b6169; --line:#e2e0da;
+  --ink:#0f1113; --accent:#1a5c4a; --accent-soft:#e8f1ed;
+  --over:#0f6b4f; --over-bg:#e6f2ec;
+  --under:#9a2a1f; --under-bg:#fbeae7;
+  --pos:#1f5d8c; --neg:#8a4b12;
+  --flag:#8a6a12; --flag-bg:#fbf3e0;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --serif:"Noto Serif KR",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Noto Sans KR",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171a; --panel:#1d2024; --fg:#e8e6e1; --dim:#9aa1a9; --line:#2e3238;
+    --ink:#f2f0ec; --accent:#6fc2a5; --accent-soft:#1c2b26;
+    --over:#6fc2a5; --over-bg:#172a23;
+    --under:#e8897c; --under-bg:#2d1b18;
+    --pos:#7fb6dd; --neg:#d9a35f;
+    --flag:#d9bd6a; --flag-bg:#2a2416;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171a; --panel:#1d2024; --fg:#e8e6e1; --dim:#9aa1a9; --line:#2e3238;
+  --ink:#f2f0ec; --accent:#6fc2a5; --accent-soft:#1c2b26;
+  --over:#6fc2a5; --over-bg:#172a23;
+  --under:#e8897c; --under-bg:#2d1b18;
+  --pos:#7fb6dd; --neg:#d9a35f;
+  --flag:#d9bd6a; --flag-bg:#2a2416;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--sans);
+  font-size:16px; line-height:1.72; margin:0;
+  /* 한국어 본문은 음절 단위로 쪼개지 않습니다. 없으면 "자본비용"이
+     "자/본비용"으로 끊깁니다. */
+  word-break:keep-all; overflow-wrap:anywhere;
+}
+.wrap{
+  max-width:860px; margin:0 auto; padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3{font-family:var(--serif); text-wrap:balance; color:var(--ink);
+  line-height:1.32; letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,5.2vw,2.5rem); margin:0 0 .3em; font-weight:700}
+h2{font-size:clamp(1.25rem,3.6vw,1.6rem); margin:2.6em 0 .5em;
+  padding-top:.7em; border-top:1px solid var(--line)}
+h3{font-size:1.06rem; margin:1.9em 0 .4em; font-weight:700}
+p{margin:0 0 1.05em}
+a{color:var(--accent)}
+strong{font-weight:650; color:var(--ink)}
+.lede{font-size:1.06rem; color:var(--fg)}
+.kicker{font-family:var(--sans); font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--dim); font-weight:600;
+  margin:2.4em 0 .2em}
+.meta{font-family:var(--mono); font-size:.76rem; color:var(--dim);
+  line-height:1.95; margin:0 0 1.6em; padding:.85em 1em;
+  background:var(--panel); border:1px solid var(--line); border-radius:9px}
+.meta b{color:var(--fg); font-weight:600}
+
+/* 판정 칩. over/under 는 10% 문턱 판정에만 씁니다. */
+.verdicts{display:flex; flex-wrap:wrap; gap:.6rem; margin:0 0 1.6em}
+.chip{display:flex; flex-direction:column; gap:.1rem; flex:1 1 150px;
+  min-width:0; padding:.7em .9em; border-radius:10px; border:1px solid;
+  background:var(--panel)}
+.chip .lbl{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  font-weight:600; opacity:.85}
+.chip .val{font-family:var(--serif); font-size:1.5rem; font-weight:700;
+  line-height:1.15}
+.chip .sub{font-size:.78rem; color:var(--dim)}
+.chip.over{border-color:var(--over); background:var(--over-bg); color:var(--over)}
+.chip.under{border-color:var(--under); background:var(--under-bg);
+  color:var(--under)}
+.chip.flag{border-color:var(--flag); background:var(--flag-bg); color:var(--flag)}
+.chip.over .sub,.chip.under .sub,.chip.flag .sub{color:inherit; opacity:.8}
+
+.cards{display:grid; gap:.9rem; grid-template-columns:1fr; margin:1.2em 0 1.6em}
+@media (min-width:660px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{min-width:0; padding:1em 1.1em; background:var(--panel);
+  border:1px solid var(--line); border-radius:11px}
+.card.lead{border-color:var(--flag); background:var(--flag-bg)}
+.card h4{margin:.1em 0 .45em; font-family:var(--serif); font-size:1rem;
+  color:var(--ink)}
+.card p{margin:0; font-size:.9rem; color:var(--dim)}
+.card .n{font-family:var(--serif); font-size:1.7rem; font-weight:700;
+  line-height:1.1; color:var(--ink); display:block; margin:.15em 0 .25em}
+.card.lead h4,.card.lead .n{color:var(--flag)}
+
+figure.tw{margin:1.2em 0 1.6em}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line); border-radius:10px; background:var(--panel)}
+table{border-collapse:collapse; width:100%; font-size:.88rem;
+  font-variant-numeric:tabular-nums}
+th,td{padding:.56em .8em; border-bottom:1px solid var(--line);
+  white-space:nowrap}
+th{font-size:.72rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--dim); font-weight:600; text-align:left;
+  background:var(--bg); position:sticky; top:0}
+td.l,th.l{text-align:left; white-space:normal; min-width:11ch}
+td.r,th.r{text-align:right; font-family:var(--mono); font-size:.84rem}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{border-top:2px solid var(--line); font-weight:650; border-bottom:0;
+  background:var(--accent-soft)}
+tr.total td{font-weight:650; background:var(--accent-soft)}
+tr.here td{background:var(--flag-bg); font-weight:650}
+figcaption{font-size:.79rem; color:var(--dim); margin-top:.6em;
+  line-height:1.7}
+td.over,.over-t{color:var(--over); font-weight:650}
+td.under,.under-t{color:var(--under); font-weight:650}
+td.pos{color:var(--pos)}
+td.neg{color:var(--neg)}
+td.flagc{color:var(--flag); font-weight:650}
+
+.legend{display:flex; flex-wrap:wrap; gap:.5rem 1.1rem; font-size:.78rem;
+  color:var(--dim); margin:.4em 0 1.6em; padding:.75em .95em;
+  background:var(--panel); border:1px solid var(--line); border-radius:9px}
+.legend span{display:inline-flex; align-items:center; gap:.4em}
+.legend i{width:.72em; height:.72em; border-radius:3px; display:inline-block}
+.formula{font-family:var(--mono); font-size:.84rem; text-align:center;
+  padding:.9em 1em; background:var(--accent-soft); color:var(--accent);
+  border-radius:9px; margin:1.1em 0 1.4em; overflow-x:auto;
+  white-space:nowrap}
+blockquote{margin:1.3em 0; padding:.2em 0 .2em 1.1em;
+  border-left:3px solid var(--accent); color:var(--dim); font-style:italic}
+blockquote strong{color:var(--accent); font-style:normal}
+ul{margin:0 0 1.2em; padding-left:1.25em}
+li{margin:0 0 .55em}
+.bars{display:grid; gap:.3rem; margin:1.1em 0 1.5em}
+.bar{display:grid; grid-template-columns:4.6em 1fr 3.6em; align-items:center;
+  gap:.6rem; font-size:.8rem}
+.bar .yr{font-family:var(--mono); color:var(--dim)}
+.bar .track{height:.78em; background:var(--line); border-radius:3px;
+  overflow:hidden; min-width:0}
+.bar .fill{height:100%; display:block; background:var(--over)}
+.bar .fill.under{background:var(--under)}
+.bar .pc{font-family:var(--mono); text-align:right; color:var(--fg)}
+.bar.peak .pc,.bar.peak .yr{color:var(--flag); font-weight:650}
+.hr{height:1px; background:var(--line); border:0; margin:2.4em 0}
+footer{margin-top:2.6em; padding-top:1.2em; border-top:1px solid var(--line);
+  font-size:.79rem; color:var(--dim); line-height:1.8}
+</style>
+
+<div class="wrap">
+<h1>알파벳 (GOOG) — 주가 하락 원인과 투자기준 판정</h1>
+<p class="meta"><b>자료 기준일</b> 2026-10-30 · <b>주가</b> $282.32 (2026-10-29 종가) · <b>시가총액</b> 3,471십억 달러 · <b>주식수</b> 12.294십억 주<br><b>10-Q</b> 2026-10-29 제출 (0001652044-26-000084, 기말 2026-09-30) · <b>8-K</b> 2026-10-28 제출 (0001652044-26-000080)<br><b>CIK</b> 0001652044 · <b>티커</b> GOOG/GOOGL/GOOGM/GOOGN (Nasdaq) · <b>자본비용</b> 10%</p>
+<div class="verdicts">
+<div class="chip over"><span class="lbl">사업 — ROIC(보고)</span><span class="val">29.1%</span><span class="sub">문턱 10% · 10년 내내 초과</span></div>
+<div class="chip over"><span class="lbl">사업 — ROIC(가동자본)</span><span class="val">46.5%</span><span class="sub">미가동 설비를 분모에서 제외</span></div>
+<div class="chip under"><span class="lbl">가격 — 요구 영구성장률</span><span class="val">6.9%</span><span class="sub">10%를 받기 위한 조건</span></div>
+<div class="chip under"><span class="lbl">가격 — 주주이익 수익률</span><span class="val">0.6%–4.4%</span><span class="sub">문턱 10% 미달</span></div>
+</div>
+<div class="legend"><span><i style="background:var(--over)"></i>문턱(10%) 초과</span><span><i style="background:var(--under)"></i>문턱 미달</span><span><i style="background:var(--pos)"></i>양(+)</span><span><i style="background:var(--neg)"></i>음(−)</span><span><i style="background:var(--flag)"></i>주목</span></div>
+<p class="lede"><strong>사업은 합격, 가격은 불합격입니다. 다만 8월보다 가까워졌습니다.</strong></p>
+<p>주가가 $282.32까지 빠진 것은 실적이 나빠서가 아닙니다. 3분기 매출은 +24.7% 늘어 127.6십억 달러, 영업이익은 +29.9% 늘어 40.6십억 달러로 둘 다 역대 최고입니다. 빠진 이유는 <strong>돈이 들어오는 속도보다 설비에 나가는 속도가 빨라졌다</strong>는 데 있습니다.</p>
+<p>투자기준으로 보면 수익성은 압도적입니다. 그런데 가격은 영구히 연 6.9% 성장을 요구합니다. 그리고 <strong>ROIC는 이미 내려오고 있습니다</strong> — FY2021 58.0%에서 FY2025 37.0%로. 영업이익이 멈춘 게 아니라 투하자본이 더 빨리 늘었기 때문입니다. 지금 가격을 정당화하는 것은 과거의 46%가 아니라 <strong>이 설비가 가동된 뒤의 ROIC</strong>입니다.</p>
+<h2>1. 왜 빠졌나</h2>
+<p>2026-10-29 하루에 $321.89 → $282.32, <strong>-12.3%</strong>. 6개월 중 가장 큰 하루 변동이고, 6개월 고점 $399.04(2026-05-13) 대비 -29.3%입니다. 하락 전날 8-K 실적 발표, 당일 10-Q가 제출됐습니다.</p>
+<p>세 가지가 동시에 드러났습니다. 앞의 둘은 악재가 아니고, <strong>시장이 반응한 것은 세 번째</strong>입니다.</p>
+<div class="cards">
+<div class="card"><h4>① 영업은 좋았다</h4><span class="n">+30%</span><p>9개월 영업이익 증가율. 클라우드 매출은 분기 +103%, 영업이익률 24% → 36%.</p></div>
+<div class="card"><h4>② EPS 감소는 착시</h4><span class="n">-26%</span><p>분기 희석 EPS. 전부 투자지분 평가손익 탓이고 현금은 오가지 않습니다. 9개월로 보면 순이익은 2.1배입니다.</p></div>
+<div class="card lead"><h4>③ 잉여현금흐름이 마이너스</h4><span class="n">-9.1</span><p>3분기 잉여현금흐름(십억 달러). 두 분기 연속 음수. capex 51.4십억이 영업현금흐름 42.3십억을 넘었습니다.</p></div>
+</div>
+<h3>① 영업 — 사업부별</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">사업부</th><th class="r">Q3′25 매출</th><th class="r">Q3′26 매출</th><th class="r">증감</th><th class="r">Q3′26 영업이익</th><th class="r">영업이익률</th></tr></thead><tbody>
+<tr><td class="l ">구글 서비스</td><td class="r ">87.1</td><td class="r ">96.3</td><td class="r pos">+10.6%</td><td class="r pos">39.2</td><td class="r pos">40.7%</td></tr>
+<tr><td class="l ">구글 클라우드</td><td class="r ">15.2</td><td class="r ">30.7</td><td class="r pos">+102.6%</td><td class="r pos">11.1</td><td class="r pos">36.2%</td></tr>
+<tr><td class="l ">기타 투자 (Other Bets)</td><td class="r ">0.3</td><td class="r ">0.4</td><td class="r pos">+8.1%</td><td class="r neg">-2.0</td><td class="r neg">-550.3%</td></tr>
+<tr><td class="l ">알파벳 공통 (AI 연구개발)</td><td class="r ">—</td><td class="r ">—</td><td class="r ">—</td><td class="r neg">-7.7</td><td class="r ">—</td></tr>
+</tbody>
+<tfoot><tr><td class="l">연결</td><td class="r">102.3</td><td class="r">127.6</td><td class="r">+24.7%</td><td class="r">40.6</td><td class="r">31.8%</td></tr></tfoot>
+</table></div>
+<figcaption>단위 십억 달러. 발표문 Supplemental Information. 직원수 190,167명 → 204,757명. 사업부 합계는 10-Q 손익계산서와 대조해 검증했습니다.</figcaption>
+</figure>
+<h3>② 왜 보고 EPS를 신호로 쓰면 안 되는가</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="r">Q3 2025</th><th class="r">Q3 2026</th><th class="r">9M 2025</th><th class="r">9M 2026</th></tr></thead><tbody>
+<tr><td class="l ">영업이익</td><td class="r ">31.2</td><td class="r ">40.6</td><td class="r ">93.1</td><td class="r ">121.0</td></tr>
+<tr><td class="l ">기타수익 (평가손익)</td><td class="r pos">12.8</td><td class="r neg">-8.2</td><td class="r pos">26.6</td><td class="r flagc">127.5</td></tr>
+<tr><td class="l ">순이익</td><td class="r ">35.0</td><td class="r ">26.2</td><td class="r ">97.7</td><td class="r ">201.2</td></tr>
+<tr><td class="l ">희석 EPS</td><td class="r ">$2.87</td><td class="r ">$2.12</td><td class="r ">$7.99</td><td class="r ">$16.33</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러(EPS는 달러). 영업이익은 네 칸 모두 증가인데 EPS는 분기만 감소합니다. 차이는 전부 기타수익 — 비상장 투자지분을 시가로 다시 평가한 결과(ASU 2016-01)이고 현금이 오가지 않습니다.</figcaption>
+</figure>
+<p>같은 회사가 <strong>분기로는 -26% 감익, 9개월로는 2.1배 증익</strong>으로 보입니다. 9개월 기타수익 127.5십억 달러가 그 차이를 만듭니다. 이 보고서가 순이익이 아니라 영업이익에서 출발하는 이유입니다.</p>
+<h3>③ 시장이 반응한 것 — 현금</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기간</th><th class="r">영업현금흐름</th><th class="r">capex</th><th class="r">잉여현금흐름</th><th class="r">capex÷영업현금</th></tr></thead><tbody>
+<tr><td class="l ">Q4 2025</td><td class="r ">52.4</td><td class="r neg">-27.9</td><td class="r pos">24.6</td><td class="r ">53%</td></tr>
+<tr><td class="l ">Q1 2026</td><td class="r ">45.8</td><td class="r neg">-35.7</td><td class="r pos">10.1</td><td class="r ">78%</td></tr>
+<tr><td class="l ">Q2 2026</td><td class="r ">39.1</td><td class="r neg">-44.9</td><td class="r neg">-5.9</td><td class="r flagc">115%</td></tr>
+<tr><td class="l ">Q3 2026</td><td class="r ">42.3</td><td class="r neg">-51.4</td><td class="r neg">-9.1</td><td class="r flagc">121%</td></tr>
+<tr><td class="l "><b>TTM Q3 2026</b></td><td class="r ">179.6</td><td class="r neg">-159.8</td><td class="r pos">19.7</td><td class="r ">89%</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 회사 자신의 정의(영업현금흐름 − capex)로, 발표문 조정표에서 읽었습니다. 네 분기 합이 TTM과 일치하는지 검증했습니다.</figcaption>
+</figure>
+<p>네 분기 만에 +24.6십억에서 -9.1십억으로 돌아섰습니다. TTM으로는 아직 +19.7십억이지만 시가총액의 0.6%에 불과하고, 주가/잉여현금흐름은 176배입니다.</p>
+<h3>그 차이를 메운 것 — 자사주 매입에서 증자로</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">재무활동 (9개월 누적)</th><th class="r">2025</th><th class="r">2026</th></tr></thead><tbody>
+<tr><td class="l ">자사주 매입</td><td class="r neg">-39.8</td><td class="r flagc">0.0</td></tr>
+<tr><td class="l ">차입 조달</td><td class="r pos">38.0</td><td class="r pos">85.2</td></tr>
+<tr><td class="l ">보통주 발행 (ATM)</td><td class="r pos">0.0</td><td class="r pos">42.9</td></tr>
+<tr><td class="l ">우선주 발행</td><td class="r pos">0.0</td><td class="r pos">19.1</td></tr>
+<tr><td class="l ">배당</td><td class="r neg">-7.5</td><td class="r neg">-8.2</td></tr>
+</tbody>
+<tfoot><tr><td class="l">외부자금 조달 합계 (차입+보통주+우선주)</td><td class="r">—</td><td class="r">147.2</td></tr></tfoot>
+</table></div>
+<figcaption>단위 십억 달러. 10-Q 현금흐름표.</figcaption>
+</figure>
+<p>작년 9개월에 39.8십억 달러어치 자기 주식을 사들였던 회사가, 올해 9개월에는 <strong>한 주도 사지 않고</strong> 147.2십억 달러를 끌어왔습니다. 주식 수를 줄여주던 힘이 사라졌고, ATM 프로그램으로 신주가 나오고 있습니다 (3분기에만 Class A 1,200만주 +$4.3십억, Class C 2,400만주 +$8.1십억, 잔여 한도 $27.6십억). 장기차입금은 47십억 → 125십억.</p>
+<h2>2. 투자기준 — 사업의 질</h2>
+<p>ROIC는 분모를 어디까지 보느냐에 따라 달라집니다. 네 가지를 모두 적습니다. 어느 하나가 정답이 아니라, <strong>네 수치의 간격 자체가 지금 알파벳의 상태</strong>를 말해 줍니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">투하자본 기준</th><th class="r">기초</th><th class="r">기말</th><th class="r">평균</th><th class="r">ROIC (TTM)</th><th class="r">스프레드</th></tr></thead><tbody>
+<tr><td class="l ">보고 기준</td><td class="r ">335</td><td class="r ">538</td><td class="r ">436</td><td class="r over">29.1%</td><td class="r over">+19.1%</td></tr>
+<tr><td class="l ">영업 (−영업권·무형)</td><td class="r ">300</td><td class="r ">471</td><td class="r ">385</td><td class="r over">33.0%</td><td class="r over">+23.0%</td></tr>
+<tr><td class="l ">가동 (−미가동 설비)</td><td class="r ">222</td><td class="r ">325</td><td class="r ">274</td><td class="r over">46.5%</td><td class="r over">+36.5%</td></tr>
+<tr><td class="l ">가동 − 투자지분</td><td class="r ">153</td><td class="r ">190</td><td class="r ">172</td><td class="r over">74.1%</td><td class="r over">+64.1%</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. NOPAT 127.1십억 = TTM 영업이익 157.0십억 × (1 − 19.0%). 분모는 기초·기말 평균. 프로젝트 50개사와 같은 정의입니다.</figcaption>
+</figure>
+<p>보고 기준 29.1%와 가동 기준 46.5%의 차이는 전부 <strong>아직 아무것도 벌지 않는 설비</strong>입니다. 미가동 자산이 작년 말 79십억 달러에서 145십억으로 늘었습니다. 투하자본의 큰 부분이 가동 대기 중이라는 뜻이고, 이것이 좋은 소식인지 나쁜 소식인지는 <strong>가동됐을 때 얼마를 버는지</strong>에 달려 있습니다.</p>
+<h3>10년 기록 — 그리고 추세</h3>
+<div class="bars">
+<div class="bar"><span class="yr">FY2016</span><span class="track"><span class="fill" style="width:60.5%"></span></span><span class="pc">35.1%</span></div>
+<div class="bar"><span class="yr">FY2017</span><span class="track"><span class="fill" style="width:48.7%"></span></span><span class="pc">28.2%</span></div>
+<div class="bar"><span class="yr">FY2018</span><span class="track"><span class="fill" style="width:65.8%"></span></span><span class="pc">38.2%</span></div>
+<div class="bar"><span class="yr">FY2019</span><span class="track"><span class="fill" style="width:64.7%"></span></span><span class="pc">37.5%</span></div>
+<div class="bar"><span class="yr">FY2020</span><span class="track"><span class="fill" style="width:63.9%"></span></span><span class="pc">37.0%</span></div>
+<div class="bar peak"><span class="yr">FY2021</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="pc">58.0%</span></div>
+<div class="bar"><span class="yr">FY2022</span><span class="track"><span class="fill" style="width:76.5%"></span></span><span class="pc">44.3%</span></div>
+<div class="bar"><span class="yr">FY2023</span><span class="track"><span class="fill" style="width:73.1%"></span></span><span class="pc">42.4%</span></div>
+<div class="bar"><span class="yr">FY2024</span><span class="track"><span class="fill" style="width:75.5%"></span></span><span class="pc">43.8%</span></div>
+<div class="bar"><span class="yr">FY2025</span><span class="track"><span class="fill" style="width:63.8%"></span></span><span class="pc">37.0%</span></div>
+<div class="bar"><span class="yr">TTM</span><span class="track"><span class="fill" style="width:50.3%"></span></span><span class="pc">29.1%</span></div>
+</div>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">회계연도</th><th class="r">ROIC</th><th class="r">영업이익</th><th class="r">투하자본 (평균)</th></tr></thead><tbody>
+<tr><td class="l ">FY2016</td><td class="r over">35.1%</td><td class="r ">23.7</td><td class="r ">54.6</td></tr>
+<tr><td class="l ">FY2017</td><td class="r over">28.2%</td><td class="r ">26.2</td><td class="r ">55.6</td></tr>
+<tr><td class="l ">FY2018</td><td class="r over">38.2%</td><td class="r ">27.5</td><td class="r ">63.5</td></tr>
+<tr><td class="l ">FY2019</td><td class="r over">37.5%</td><td class="r ">34.2</td><td class="r ">79.1</td></tr>
+<tr><td class="l ">FY2020</td><td class="r over">37.0%</td><td class="r ">41.2</td><td class="r ">93.3</td></tr>
+<tr><td class="l ">FY2021</td><td class="r over">58.0%</td><td class="r ">78.7</td><td class="r ">113.8</td></tr>
+<tr><td class="l ">FY2022</td><td class="r over">44.3%</td><td class="r ">74.8</td><td class="r ">141.9</td></tr>
+<tr><td class="l ">FY2023</td><td class="r over">42.4%</td><td class="r ">84.3</td><td class="r ">171.2</td></tr>
+<tr><td class="l ">FY2024</td><td class="r over">43.8%</td><td class="r ">112.4</td><td class="r ">214.5</td></tr>
+<tr><td class="l ">FY2025</td><td class="r over">37.0%</td><td class="r ">129.0</td><td class="r ">290.3</td></tr>
+<tr><td class="l "><b>TTM 2026-09</b></td><td class="r over">29.1%</td><td class="r ">157.0</td><td class="r ">436.3</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 50개사 조사(roic/roic.json, 생성 2026-10-29)의 보고 기준 ROIC에 이번 TTM을 이어 붙였습니다. 10년 창 2016–2026, 중위 37.8%, 10/10년 문턱 초과, 판정 “전 기간 초과 · 매우 높음”.</figcaption>
+</figure>
+<p><strong>이 표가 이 보고서에서 가장 중요합니다.</strong> 10년 내내 문턱을 넘었다는 사실은 합격입니다. 그러나 동시에 ROIC가 FY2021 58.0%에서 추세적으로 내려오고 있습니다. 그 사이 영업이익은 78.7십억 → 129.0십억으로 1.64배 늘었지만, 투하자본은 113.8십억 → 290.3십억으로 2.55배 늘었습니다. 자본이 이익보다 빨리 늘면 ROIC는 떨어집니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">증분 수익성 (FY2025 → TTM)</th><th class="r">보고 기준</th><th class="r">가동 − 지분 기준</th></tr></thead><tbody>
+<tr><td class="l ">ΔNOPAT</td><td class="r ">19.7</td><td class="r ">19.7</td></tr>
+<tr><td class="l ">Δ투하자본</td><td class="r ">202.6</td><td class="r ">37.1</td></tr>
+<tr><td class="l ">증분 ROIC</td><td class="r under">9.7%</td><td class="r over">53.2%</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. FY2025 → TTM 2026-09. 보고 기준 분모에는 투자자산 평가이익이 자기자본으로 들어와 있어, 영업이익을 낼 수 없는 자본이 포함됩니다.</figcaption>
+</figure>
+<h3>재무 안전성</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="r">2025-12-31</th><th class="r">2026-09-30</th><th class="r">증감</th></tr></thead><tbody>
+<tr><td class="l ">자기자본</td><td class="r ">415</td><td class="r ">678</td><td class="r pos">262</td></tr>
+<tr><td class="l ">이자부 장기차입금</td><td class="r ">47</td><td class="r ">125</td><td class="r pos">79</td></tr>
+<tr><td class="l ">현금·단기투자</td><td class="r ">127</td><td class="r ">265</td><td class="r pos">138</td></tr>
+<tr><td class="l ">영업권</td><td class="r ">33</td><td class="r ">58</td><td class="r pos">25</td></tr>
+<tr><td class="l ">무형자산</td><td class="r ">1</td><td class="r ">9</td><td class="r pos">8</td></tr>
+<tr><td class="l ">비시장성 투자지분</td><td class="r ">69</td><td class="r ">135</td><td class="r pos">67</td></tr>
+<tr><td class="l ">미가동 설비</td><td class="r ">79</td><td class="r ">145</td><td class="r pos">67</td></tr>
+<tr><td class="l ">총자산</td><td class="r ">595</td><td class="r ">1,003</td><td class="r pos">408</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 순현금 140십억 달러 (현금·단기투자 265 − 차입 125). 차입이 9개월에 79십억 늘었지만 여전히 순현금입니다.</figcaption>
+</figure>
+<h2>3. 투자기준 — 가격</h2>
+<p>사업의 질은 합격입니다. 남은 질문은 <strong>$282.32이 그 사업을 연 10%으로 사는 가격인가</strong>입니다. 세 가지로 봤고 셋 다 같은 방향입니다.</p>
+<h3>(1) 지금 벌고 있는 것으로만</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="r">수치</th></tr></thead><tbody>
+<tr><td class="l ">시가총액</td><td class="r ">3,471십억 달러</td></tr>
+<tr><td class="l ">TTM NOPAT</td><td class="r ">127.1십억 달러</td></tr>
+<tr><td class="l ">NOPAT 수익률</td><td class="r under">3.7%</td></tr>
+<tr><td class="l ">주가 ÷ NOPAT</td><td class="r ">27.3배</td></tr>
+<tr><td class="l ">주가 ÷ 잉여현금흐름</td><td class="r ">176배</td></tr>
+<tr><td class="l ">10% 수익에 필요한 NOPAT</td><td class="r ">347십억 달러</td></tr>
+<tr><td class="l ">현재 NOPAT의 몇 배인가</td><td class="r under">2.73배</td></tr>
+</tbody>
+</table></div>
+<figcaption>성장이 없다고 가정하면 3.7%. 문턱의 3분의 1 수준입니다. 알파벳은 성장하는 회사이므로 이 숫자 하나로 판정하면 안 됩니다.</figcaption>
+</figure>
+<h3>(2) 주주이익으로</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">주주이익 기준</th><th class="r">금액</th><th class="r">함의 수익률</th></tr></thead><tbody>
+<tr><td class="l ">하단 — capex 전액을 비용으로 (= 잉여현금흐름)</td><td class="r ">19.7</td><td class="r under">0.6%</td></tr>
+<tr><td class="l ">상단 — 감가상각 28.0십억만 비용으로</td><td class="r ">151.6</td><td class="r under">4.4%</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 진실은 둘 사이에 있는데 <b>지금은 그 간격이 비정상적으로 넓습니다</b> — 이미 쓴 145십억 달러가 가동 전이라 감가상각에 아직 반영되지 않았기 때문입니다. 어느 쪽을 잡아도 10% 아래입니다.</figcaption>
+</figure>
+<h3>(3) 가격이 요구하는 성장률로</h3>
+<p>가장 쓸모 있는 질문은 “내재가치가 얼마냐”가 아니라 <strong>“이 가격이 맞으려면 무엇이 사실이어야 하나”</strong>입니다. 영구성장 모형에 10% 할인율과 가동 기준 증분 ROIC 46.5%를 넣고 현재 시가총액이 나오는 성장률을 역산하면 <strong>연 6.9%</strong>입니다.</p>
+<div class="formula">기업가치 = NOPAT × (1 − 성장률 ÷ 증분ROIC) ÷ (자본비용 − 성장률)</div>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">영구 성장률</th><th class="r">기업가치</th><th class="r">주당 가치</th><th class="r">현재가 대비</th></tr></thead><tbody>
+<tr><td class="l ">3%</td><td class="r ">1,699십억</td><td class="r "><b>$138</b></td><td class="r neg">-51%</td></tr>
+<tr><td class="l ">4%</td><td class="r ">1,936십억</td><td class="r "><b>$157</b></td><td class="r neg">-44%</td></tr>
+<tr><td class="l ">5%</td><td class="r ">2,269십억</td><td class="r "><b>$185</b></td><td class="r neg">-35%</td></tr>
+<tr><td class="l ">6%</td><td class="r ">2,767십억</td><td class="r "><b>$225</b></td><td class="r neg">-20%</td></tr>
+<tr><td class="l ">7%</td><td class="r ">3,599십억</td><td class="r "><b>$293</b></td><td class="r pos">+4%</td></tr>
+<tr><td class="l ">8%</td><td class="r ">5,261십억</td><td class="r "><b>$428</b></td><td class="r pos">+52%</td></tr>
+</tbody>
+</table></div>
+<figcaption>할인율 10% 고정. 성장률 3%p 차이로 가치가 2.3배 벌어집니다 — 성장률이 할인율에 가까워질수록 분모가 0으로 가기 때문입니다. 이 표는 “적정주가”가 아니라 현재가가 요구하는 가정을 드러내는 장치로 읽어야 합니다.</figcaption>
+</figure>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">주가</th><th class="r">시가총액</th><th class="r">요구 영구성장률</th></tr></thead><tbody>
+<tr><td class="l ">$200.00</td><td class="r ">2,459십억</td><td class="r under">5.4%</td></tr>
+<tr><td class="l ">$250.00</td><td class="r ">3,074십억</td><td class="r under">6.4%</td></tr>
+<tr><td class="l ">$282.32 ← 현재</td><td class="r ">3,471십억</td><td class="r under">6.9%</td></tr>
+<tr><td class="l ">$300.00</td><td class="r ">3,688십억</td><td class="r under">7.1%</td></tr>
+<tr><td class="l ">$355.84 ← 8/10</td><td class="r ">4,375십억</td><td class="r under">7.6%</td></tr>
+<tr><td class="l ">$400.00</td><td class="r ">4,918십억</td><td class="r under">7.9%</td></tr>
+</tbody>
+</table></div>
+<figcaption>같은 모형을 거꾸로 돌린 것. 실제 성장률은 9개월 영업이익 +30.0%, 매출 +23.6%입니다.</figcaption>
+</figure>
+<p>요구 성장률 6.9%는 알파벳의 현재 성장률보다 한참 낮습니다. 그러니 “지금 속도가 유지되면” 현재가는 쌉니다. 문제는 <strong>영구히</strong> 6.9%라는 조건이 명목 세계경제 성장률보다 높다는 데 있습니다. 알파벳이 영구히 세계경제보다 빠르게 성장한다는 가정을 사는 것이고, 그것은 전제이지 안전마진이 아닙니다.</p>
+<blockquote>8월 10일 $355.84 당시와 비교하면, 같은 모형의 요구 성장률이 7.6%에서 6.9%로 내려왔습니다. 가격이 -21% 빠진 만큼 요구 조건이 느슨해진 것은 <strong>분명한 개선</strong>입니다. 다만 아직 넘지 못했습니다.</blockquote>
+<h2>4. 판정과 행동</h2>
+<p><strong>합격선 아래입니다 — 그러나 “비싼 나쁜 회사”가 아니라 “아직 비싼 아주 좋은 회사”입니다.</strong> 둘은 다르게 다뤄야 합니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기준</th><th class="r">수치</th><th class="r">판정</th></tr></thead><tbody>
+<tr><td class="l ">ROIC(보고) vs 자본비용 10%</td><td class="r over">29.1%</td><td class="r over">합격</td></tr>
+<tr><td class="l ">ROIC(가동자본)</td><td class="r over">46.5%</td><td class="r over">합격</td></tr>
+<tr><td class="l ">10년 일관성</td><td class="r ">10/10년 초과 · 중위 37.8%</td><td class="r over">합격</td></tr>
+<tr><td class="l ">증분 ROIC (가동−지분)</td><td class="r over">53.2%</td><td class="r over">합격</td></tr>
+<tr><td class="l ">재무 안전성</td><td class="r ">순현금 140십억 달러</td><td class="r over">합격</td></tr>
+<tr><td class="l ">이익의 질</td><td class="r ">9개월 순이익 201십억 중 127십억이 비현금 평가이익</td><td class="r flagc">주의</td></tr>
+<tr><td class="l ">주주환원</td><td class="r ">자사주 매입 0 · ATM 신주 발행</td><td class="r flagc">주의</td></tr>
+<tr><td class="l ">잉여현금흐름</td><td class="r ">TTM 19.7십억 · 최근 2개 분기 음수</td><td class="r flagc">주의</td></tr>
+<tr><td class="l ">ROIC 추세</td><td class="r ">FY2021 58.0% → TTM 29.1%</td><td class="r flagc">주의</td></tr>
+<tr><td class="l ">가격 — 요구 영구성장률</td><td class="r under">6.9%</td><td class="r under">불합격</td></tr>
+<tr><td class="l ">가격 — 주주이익 수익률</td><td class="r under">0.6%–4.4%</td><td class="r under">불합격</td></tr>
+</tbody>
+</table></div>
+<figcaption>over/under 색은 10% 문턱 판정에만, 주목색은 추가 검토가 필요한 항목에 씁니다.</figcaption>
+</figure>
+<p><strong>핵심 불확실성은 설비가 아니라 설비의 수익성입니다.</strong> 미가동 145십억 달러가 가동된 뒤의 ROIC가 가동 기준 46.5%에 가까우면 현재가는 쌉니다. 보고 기준 29.1% 아래로 수렴하면 비쌉니다. 지금 가진 자료로는 <strong>어느 쪽인지 알 수 없습니다</strong> — 그래서 가격이 아니라 다음 지표를 봐야 합니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">감시 지표</th><th class="r">지금</th><th class="l">판정이 바뀌는 지점</th></tr></thead><tbody>
+<tr><td class="l ">미가동 설비</td><td class="r ">145십억 달러</td><td class="l ">가동으로 넘어가는 속도와, 그때 영업이익이 함께 오르는지</td></tr>
+<tr><td class="l ">분기 잉여현금흐름</td><td class="r ">-9.1십억 달러</td><td class="l ">플러스 복귀 시점. 두 분기 더 음수면 자금조달 압력 심화</td></tr>
+<tr><td class="l ">감가상각</td><td class="r ">9개월 +45%</td><td class="l ">미가동 설비가 가동되며 뛰는 폭 — 영업이익률 하락 압력</td></tr>
+<tr><td class="l ">클라우드 영업이익률</td><td class="r ">36.2%</td><td class="l ">상승 지속 여부. capex를 정당화하는 유일한 직접 증거</td></tr>
+<tr><td class="l ">자사주 매입</td><td class="r ">0</td><td class="l ">재개 여부 — 재개는 capex 정점 통과 신호</td></tr>
+<tr><td class="l ">주식수</td><td class="r ">12.294십억 주</td><td class="l ">ATM 잔여 한도 $27.6십억이 소진되며 늘어나는지</td></tr>
+<tr><td class="l ">보고 기준 ROIC</td><td class="r over">29.1%</td><td class="l ">10% 접근 시 사업 판정 자체가 흔들림</td></tr>
+</tbody>
+</table></div>
+</figure>
+<h2>5. 방법과 한계</h2>
+<ul>
+<li><strong>ROIC 정의는 프로젝트 기준 그대로입니다.</strong> NOPAT = 보고된 영업이익 × (1−실효세율), 투하자본 = 자기자본 + 이자부차입 − 현금·단기투자, 분모는 기초·기말 평균. 50개사와 같은 잣대로 재야 비교가 됩니다.</li>
+<li><strong>세율은 주의가 필요합니다.</strong> 규칙상 실효세율 19.0% 적용 시 NOPAT 127.1십억, 법정세율 21% 적용 시 124.0십억 (-2.4%). TTM 실효세율 19.0%는 127.5십억 달러의 평가이익이 섞인 세전이익에서 나온 값입니다. 법정세율로 바꿔도 판정은 바뀌지 않으므로 규칙상 수치를 본문에 썼습니다.</li>
+<li><strong>사업부별 투하자본은 공시되지 않습니다.</strong> 클라우드 ROIC를 만들지 않았습니다. 분모를 발명하면 그 가정이 결론이 됩니다.</li>
+<li><strong>주가는 2026-10-29 종가 $282.32</strong>이고 2026-10-30에 받았습니다. 질문의 “280불”은 장중 저가이며 판정은 ±$3에 달라지지 않습니다.</li>
+<li><strong>검증.</strong> <code>python3 verify_goog_price.py --mutate</code> — 항등식·앵커·재산출 282건, 변이 검정 35건. 앵커는 8-K 발표문과 10-Q에서 손으로 읽은 수치이며 지우면 안 됩니다. 이 페이지도 <code>--verify --mutate</code>로 표를 되읽어 대조합니다.</li>
+</ul>
+<footer>출처: SEC EDGAR. 10-Q 0001652044-26-000084 (2026-10-29 제출, 기말 2026-09-30) · 8-K 0001652044-26-000080 (2026-10-28 제출) · <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm">실적 발표문</a>. SEC 등록명 Alphabet Inc., CIK 0001652044. 10년 ROIC는 roic/roic.json (생성 2026-10-29). 시세: https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=6mo&amp;interval=1d.<br>자료 기준일 2026-10-30 · 자본비용 10% · 검증 282건 통과, 변이 35건 포착.</footer>
+</div>

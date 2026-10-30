@@ -150,21 +150,44 @@ def parse_report(path):
                      or (element or "").lower().endswith("shares")
                      or "shares" in (element or "").lower()
                      and "value" not in (element or "").lower())
-        monetary = (not is_shares) and any("$" in c for c in raw_cells)
+        # Nor is a percentage. Alphabet's property note puts "Property, plant
+        # and equipment, gross, percentage  60.0" directly beneath the amount
+        # it is a share of, under the same dimension, so the inheritance below
+        # would otherwise hand it the amount row's "$".
+        is_percent = ("percentage" in label.lower()
+                      or "(in %" in label.lower()
+                      or (element or "").lower().endswith(
+                          ("percentage", "percent"))
+                      or any("%" in c for c in raw_cells))
+        # A per-share amount is in dollars already. The income statement is
+        # headed "$ in Millions", so the scale is right for every line above
+        # the per-share block and wrong for the per-share block itself:
+        # Alphabet's $16.33 of nine-month diluted earnings came out as
+        # $16,330,000 per share. Same family of error as the share counts.
+        is_per_share = ("per share" in label.lower()
+                        or "per common share" in label.lower()
+                        or "in dollars per share" in label.lower()
+                        or "pershare" in (element or "").lower())
+        monetary = (not is_shares and not is_percent
+                    and not is_per_share) and any(
+            "$" in c for c in raw_cells)
         if label:
             rows.append({"label": label, "element": element,
-                         "values": values, "monetary": monetary})
+                         "values": values, "monetary": monetary,
+                         "not_money": is_shares or is_percent
+                         or is_per_share})
     # A block's first row shows the "$"; the rows beneath it do not, so
     # monetary-ness is inherited from the nearest row above that had one.
     seen_money = False
     for r in rows:
         if r["monetary"]:
             seen_money = True
-        elif seen_money and any(v is not None for v in r["values"]) \
-                and r["element"] and ":" in r["element"] \
-                and "in shares" not in r["label"].lower() \
-                and "shares" not in (r["element"] or "").lower():
+        elif seen_money and not r["not_money"] \
+                and any(v is not None for v in r["values"]) \
+                and r["element"] and ":" in r["element"]:
             r["monetary"] = True
+    for r in rows:
+        del r["not_money"]
 
     # The dimension a figure belongs to sits on its own row above it, with no
     # values - "Construction in progress", then the amount tagged plainly as
