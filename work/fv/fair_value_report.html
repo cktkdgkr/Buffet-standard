@@ -1,0 +1,389 @@
+<title>적정주가 판정</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+
+<style>
+:root{
+  --bg:#f6f5f2; --panel:#ffffff; --fg:#191b1e; --dim:#5c6269; --line:#e3e1db;
+  --ink:#0e1012; --accent:#1f4e79; --accent-soft:#e9f0f6;
+  --cheap:#0f6b4f; --cheap-bg:#e6f2ec;
+  --rich:#9a2a1f; --rich-bg:#fbeae7;
+  --pos:#1f5d8c; --neg:#8a4b12;
+  --flag:#8a6a12; --flag-bg:#fbf3e0;
+  --price:#17191c;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --serif:"Noto Serif KR",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Noto Sans KR",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161a; --panel:#1c1f24; --fg:#e9e7e2; --dim:#9aa1a9; --line:#2d3137;
+    --ink:#f3f1ed; --accent:#7fb6dd; --accent-soft:#1a2630;
+    --cheap:#6fc2a5; --cheap-bg:#172a23;
+    --rich:#e8897c; --rich-bg:#2d1b18;
+    --pos:#7fb6dd; --neg:#d9a35f;
+    --flag:#d9bd6a; --flag-bg:#2a2416;
+    --price:#f3f1ed;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161a; --panel:#1c1f24; --fg:#e9e7e2; --dim:#9aa1a9; --line:#2d3137;
+  --ink:#f3f1ed; --accent:#7fb6dd; --accent-soft:#1a2630;
+  --cheap:#6fc2a5; --cheap-bg:#172a23;
+  --rich:#e8897c; --rich-bg:#2d1b18;
+  --pos:#7fb6dd; --neg:#d9a35f;
+  --flag:#d9bd6a; --flag-bg:#2a2416;
+  --price:#f3f1ed;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--sans);
+  font-size:16px; line-height:1.72; margin:0;
+  /* 한국어는 음절 단위로 쪼개지 않습니다. 없으면 "자본비용"이 끊깁니다. */
+  word-break:keep-all; overflow-wrap:anywhere;
+}
+.wrap{
+  max-width:880px; margin:0 auto; padding-block:0 76px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3,h4{font-family:var(--serif); text-wrap:balance; color:var(--ink);
+  line-height:1.32; letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,5.2vw,2.5rem); margin:0 0 .3em; font-weight:700}
+h2{font-size:clamp(1.3rem,3.8vw,1.7rem); margin:2.8em 0 .5em;
+  padding-top:.75em; border-top:2px solid var(--line)}
+h3{font-size:1.12rem; margin:2em 0 .4em; font-weight:700}
+h4{font-size:1rem; margin:1.5em 0 .3em; font-weight:700}
+p{margin:0 0 1.05em}
+a{color:var(--accent)}
+strong{font-weight:650; color:var(--ink)}
+.lede{font-size:1.07rem}
+.meta{font-family:var(--mono); font-size:.76rem; color:var(--dim);
+  line-height:1.95; margin:0 0 1.5em; padding:.85em 1em;
+  background:var(--panel); border:1px solid var(--line); border-radius:9px}
+.meta b{color:var(--fg); font-weight:600}
+
+.chips{display:grid; gap:.6rem; grid-template-columns:repeat(2,1fr);
+  margin:0 0 1.5em}
+@media (min-width:660px){.chips{grid-template-columns:repeat(4,1fr)}}
+.chip{min-width:0; padding:.75em .9em; border-radius:10px;
+  border:1px solid var(--line); background:var(--panel)}
+.chip .n{font-family:var(--serif); font-size:1rem; font-weight:700;
+  color:var(--ink); display:block}
+.chip .p{font-family:var(--mono); font-size:1.35rem; font-weight:600;
+  display:block; line-height:1.3}
+.chip .s{font-size:.76rem; color:var(--dim); display:block}
+.chip.cheap{border-color:var(--cheap); background:var(--cheap-bg)}
+.chip.rich{border-color:var(--rich); background:var(--rich-bg)}
+.chip.flag{border-color:var(--flag); background:var(--flag-bg)}
+.chip.cheap .p,.chip.cheap .n{color:var(--cheap)}
+.chip.rich .p,.chip.rich .n{color:var(--rich)}
+.chip.flag .p,.chip.flag .n{color:var(--flag)}
+
+/* 시나리오 값과 현재가를 같은 축에 */
+.scale{margin:1em 0 1.6em; padding:1em 1.1em; background:var(--panel);
+  border:1px solid var(--line); border-radius:11px}
+.scale .hd{display:flex; flex-wrap:wrap; gap:.4rem 1rem; align-items:baseline;
+  margin-bottom:.9em}
+.scale .hd .nm{font-family:var(--serif); font-size:1.08rem; font-weight:700;
+  color:var(--ink)}
+.scale .hd .px{font-family:var(--mono); font-size:1.08rem; font-weight:600;
+  color:var(--price)}
+.scale .hd .vd{font-size:.8rem; padding:.1em .6em; border-radius:99px;
+  border:1px solid}
+.scale .hd .vd.cheap{color:var(--cheap); border-color:var(--cheap);
+  background:var(--cheap-bg)}
+.scale .hd .vd.rich{color:var(--rich); border-color:var(--rich);
+  background:var(--rich-bg)}
+.row{display:grid; grid-template-columns:3.2em 1fr 4.6em; gap:.55rem;
+  align-items:center; font-size:.82rem; margin:.3rem 0}
+.row .lb{font-size:.76rem; color:var(--dim); font-weight:600}
+.row .tr{position:relative; height:1.15em; min-width:0;
+  background:var(--line); border-radius:3px; overflow:visible}
+.row .fl{position:absolute; left:0; top:0; bottom:0; border-radius:3px;
+  background:var(--accent)}
+.row .fl.cheap{background:var(--cheap)}
+.row .fl.rich{background:var(--rich)}
+.row .vv{font-family:var(--mono); text-align:right; font-weight:600}
+.axis{position:relative; height:1.9em; margin-top:.2em;
+  border-top:1px dashed var(--line)}
+.axis .mk{position:absolute; top:0; transform:translateX(-50%);
+  font-family:var(--mono); font-size:.72rem; color:var(--dim)}
+.pline{position:absolute; top:-0.2em; bottom:-0.2em; width:2px;
+  background:var(--price)}
+.pline::after{content:""; position:absolute; left:-3px; top:-4px;
+  width:8px; height:8px; border-radius:50%; background:var(--price)}
+.plab{position:absolute; transform:translateX(-50%);
+  font-family:var(--mono); font-size:.72rem; font-weight:700;
+  color:var(--price); white-space:nowrap}
+
+figure.tw{margin:1.1em 0 1.6em}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--line); border-radius:10px; background:var(--panel)}
+table{border-collapse:collapse; width:100%; font-size:.87rem;
+  font-variant-numeric:tabular-nums}
+th,td{padding:.56em .8em; border-bottom:1px solid var(--line);
+  white-space:nowrap}
+th{font-size:.71rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--dim); font-weight:600; text-align:left;
+  background:var(--bg); position:sticky; top:0}
+td.l,th.l{text-align:left; white-space:normal; min-width:10ch}
+td.r,th.r{text-align:right; font-family:var(--mono); font-size:.84rem}
+td.w,th.w{text-align:left; white-space:normal; min-width:18ch;
+  font-size:.82rem; color:var(--dim)}
+tbody tr:last-child td{border-bottom:0}
+tfoot td{border-top:2px solid var(--line); font-weight:650; border-bottom:0;
+  background:var(--accent-soft)}
+td.cheap{color:var(--cheap); font-weight:650}
+td.rich{color:var(--rich); font-weight:650}
+td.pos{color:var(--pos)}
+td.neg{color:var(--neg)}
+td.flagc{color:var(--flag); font-weight:650}
+figcaption{font-size:.79rem; color:var(--dim); margin-top:.6em;
+  line-height:1.7}
+
+.legend{display:flex; flex-wrap:wrap; gap:.5rem 1.1rem; font-size:.78rem;
+  color:var(--dim); margin:.3em 0 1.5em; padding:.75em .95em;
+  background:var(--panel); border:1px solid var(--line); border-radius:9px}
+.legend span{display:inline-flex; align-items:center; gap:.4em}
+.legend i{width:.72em; height:.72em; border-radius:3px; display:inline-block}
+.formula{font-family:var(--mono); font-size:.82rem; padding:.95em 1.1em;
+  background:var(--accent-soft); color:var(--accent); border-radius:9px;
+  margin:1.1em 0 1.4em; overflow-x:auto; white-space:pre; line-height:1.9}
+blockquote{margin:1.3em 0; padding:.2em 0 .2em 1.1em;
+  border-left:3px solid var(--accent); color:var(--dim)}
+blockquote strong{color:var(--accent)}
+ul{margin:0 0 1.2em; padding-left:1.25em}
+li{margin:0 0 .6em}
+.callout{margin:1.3em 0; padding:1em 1.15em; border-radius:11px;
+  border:1px solid var(--flag); background:var(--flag-bg)}
+.callout p{margin:0}
+.callout strong{color:var(--flag)}
+footer{margin-top:2.8em; padding-top:1.2em; border-top:1px solid var(--line);
+  font-size:.78rem; color:var(--dim); line-height:1.8}
+</style>
+
+<div class="wrap">
+<h1>네 기업 적정주가 판정</h1>
+<p class="meta"><b>자료 기준일</b> 2026-11-06 · <b>50개사 ROIC 조사</b> 2026-11-06 생성 · <b>시세</b> 2026-11-06T04:02:07 UTC 수집<br><b>ROIC 문턱</b> 10% · <b>투영</b> 10년 성장 감쇠 + 터미널 · <b>할인율</b> 보수 11% / 중립 10% / 낙관 9%<br><b>마이크로소프트</b> 자료기준 2026-09-30 · <b>알파벳</b> 자료기준 2026-09-30 · <b>엔비디아</b> 자료기준 2026-07-26</p>
+<div class="chips">
+<div class="chip rich"><span class="n">마이크로소프트</span><span class="p">$535.93</span><span class="s">보수 $190 · 중립 $277 · 낙관 $518</span></div>
+<div class="chip cheap"><span class="n">알파벳</span><span class="p">$281.74</span><span class="s">보수 $122 · 중립 $164 · 낙관 $331</span></div>
+<div class="chip cheap"><span class="n">엔비디아</span><span class="p">$181.60</span><span class="s">보수 $78 · 중립 $126 · 낙관 $244</span></div>
+<div class="chip flag"><span class="n">스페이스X</span><span class="p">$123.62</span><span class="s">기준이익 미성립 — 산출 불가</span></div>
+</div>
+<div class="legend"><span><i style="background:var(--cheap)"></i>평가치 > 현재가</span><span><i style="background:var(--rich)"></i>평가치 < 현재가</span><span><i style="background:var(--pos)"></i>양(+)</span><span><i style="background:var(--neg)"></i>음(−)</span><span><i style="background:var(--flag)"></i>주목</span><span><i style="background:var(--price)"></i>현재가</span></div>
+<p class="lede"><strong>사업의 질은 셋 다 합격, 가격은 낙관 시나리오에서만 설명됩니다.</strong> 그리고 세 기업 모두 ROIC가 같은 모양으로 내려오고 있습니다 — 영업이익이 멈춴 게 아니라 투하자본이 더 빨리 늘어서입니다.</p>
+<div class="scale">
+<div class="hd"><span class="nm">마이크로소프트 (MSFT)</span><span class="px">현재 $535.93</span><span class="vd rich">모든 시나리오에서 비쌈</span></div>
+<div class="row"><span class="lb">보수</span><span class="tr"><span class="fl rich" style="width:31.64%"></span></span><span class="vv">$190</span></div>
+<div class="row"><span class="lb">중립</span><span class="tr"><span class="fl rich" style="width:46.20%"></span></span><span class="vv">$277</span></div>
+<div class="row"><span class="lb">낙관</span><span class="tr"><span class="fl rich" style="width:86.32%"></span></span><span class="vv">$518</span></div>
+<div class="axis">
+<span class="pline" style="left:89.29%"></span>
+<span class="plab" style="left:89.29%; top:.45em">$536</span>
+</div>
+</div>
+<div class="scale">
+<div class="hd"><span class="nm">알파벳 (GOOG)</span><span class="px">현재 $281.74</span><span class="vd cheap">낙관에서만 현재가 위</span></div>
+<div class="row"><span class="lb">보수</span><span class="tr"><span class="fl rich" style="width:33.01%"></span></span><span class="vv">$122</span></div>
+<div class="row"><span class="lb">중립</span><span class="tr"><span class="fl rich" style="width:44.35%"></span></span><span class="vv">$164</span></div>
+<div class="row"><span class="lb">낙관</span><span class="tr"><span class="fl cheap" style="width:89.29%"></span></span><span class="vv">$331</span></div>
+<div class="axis">
+<span class="pline" style="left:76.04%"></span>
+<span class="plab" style="left:76.04%; top:.45em">$282</span>
+</div>
+</div>
+<div class="scale">
+<div class="hd"><span class="nm">엔비디아 (NVDA)</span><span class="px">현재 $181.60</span><span class="vd cheap">낙관에서만 현재가 위</span></div>
+<div class="row"><span class="lb">보수</span><span class="tr"><span class="fl rich" style="width:28.52%"></span></span><span class="vv">$78</span></div>
+<div class="row"><span class="lb">중립</span><span class="tr"><span class="fl rich" style="width:46.06%"></span></span><span class="vv">$126</span></div>
+<div class="row"><span class="lb">낙관</span><span class="tr"><span class="fl cheap" style="width:89.29%"></span></span><span class="vv">$244</span></div>
+<div class="axis">
+<span class="pline" style="left:66.52%"></span>
+<span class="plab" style="left:66.52%; top:.45em">$182</span>
+</div>
+</div>
+<p>막대는 시나리오별 주당 가치, 검은 선이 현재가입니다. <strong>보수·중립 시나리오에서는 세 기업 모두 성장률을 어떻게 잡아도 현재가가 나오지 않습니다</strong> — 뒤에서 그 이유를 산수로 보여드립니다.</p>
+<h2>1부. 우리가 세운 기준</h2>
+<p>순서가 중요합니다 — <strong>자료가 먼저, 사업이 다음, 가격이 마지막</strong>입니다. 가격 판정은 앞의 두 단계를 통과한 기업에만 의미가 있습니다.</p>
+<h3>① 자료 — 기억으로 단정하지 않는다</h3>
+<ul><li><strong>오늘 날짜를 먼저 확인하고 오늘 기준으로 다시 수집한다.</strong> 캐시는 받은 시점을 기록하고 1일이 지나면 다시 받습니다.</li><li><strong>학습 시점 이후에 바뀌는 사실은 전부 조회로 답한다.</strong> 상장 여부·티커·결산월·주가·주식수, 그리고 모든 금액. 스페이스X를 비상장이라고 단정했다가 틀린 적이 있습니다.</li><li><strong>보고서에 자료 기준일을 적는다.</strong> 어느 날짜에 받은 공시인지가 결론의 유효기간을 정합니다.</li><li><strong>티커만 쓰지 않고 한글명을 함께 쓴다.</strong></li></ul>
+<h3>② 사업의 질 — ROIC가 자본비용을 넘는가</h3>
+<div class="formula">NOPAT       = 보고된 영업이익 × (1 − 실효세율)
+투하자본    = 자기자본(비지배지분 포함) + 이자부차입금 − 현금·단기투자
+ROIC        = NOPAT ÷ 투하자본(기초·기말 평균)</div>
+<ul><li><strong>정의는 바꾸지 않는다.</strong> 50개사를 같은 잣대로 재야 비교가 됩니다. 문턱은 10%.</li><li><strong>한 해만 보지 않는다.</strong> 10년 일관성과 <strong>고점 대비 추세</strong>를 함께 봅니다.</li><li><strong>분모를 좁혀 가며 여러 관점으로 본다.</strong> 보고 → 영업권·무형 제외 → 미가동 설비 제외 → 투자지분 제외.</li><li><strong>증분 ROIC을 본다.</strong> 새 자본 1달러가 얼마를 버는지가 미래를 말합니다.</li><li><strong>금융업(SIC 6000–6799)은 산출하지 않는다.</strong> 은행에게 차입은 자금조달이 아니라 원재료입니다.</li><li><strong>사업부 투하자본은 공시되지 않으므로 사업부 ROIC를 만들지 않는다.</strong> 분모를 발명하면 그 가정이 결론이 됩니다.</li></ul>
+<h3>③ 재무 안전성 · ④ 이익의 질</h3>
+<ul><li><strong>순현금인가 순차입인가</strong>, 그리고 <strong>자금조달 구조가 바뀌었는지</strong>. 자사주를 사던 회사가 증자로 돌아섰다면 재무상태표만 봐서는 놓칩니다.</li><li><strong>영업이익에서 출발한다. 분기 순이익을 신호로 쓰지 않는다.</strong> 투자지분 평가손익이 분기 순이익을 수십억 달러 단위로 흔듭니다 — 알파벳은 같은 분기에 영업이익 +30%인데 EPS −26%였습니다.</li><li><strong>실효세율 오염을 확인하고 법정세율 대안을 병기한다.</strong></li><li><strong>추정값은 추정이라고 표시한다.</strong></li></ul>
+<h3>⑤ 가격 — 가치가 아니라 요구 조건으로 본다</h3>
+<div class="formula">잉여현금 = NOPAT × (1 − 성장률 ÷ 증분ROIC)      ← 성장에는 돈이 든다
+성장은 증분ROIC > 할인율 일 때만 가치를 더한다  ← 작으면 매출이 커져도 가치를 깎는다</div>
+<ul><li><strong>단일 적정주가를 내지 않는다.</strong> 세 시나리오로 내고, <strong>현재 가격이 요구하는 조건</strong>을 함께 냅니다. “내재가치가 얼마냐”보다 “이 가격이 맞으려면 무엇이 사실이어야 하나”가 유용합니다.</li><li><strong>안전마진을 본다.</strong> 평가치에서 정확히 거래되는 가격은 합격이 아닙니다.</li><li><strong>주주이익 수익률을 함께 본다.</strong> capex 전액을 비용으로 본 하단과 감가상각만 비용으로 본 상단.</li></ul>
+<h3>⑥ 산출물 — 검증 없는 산출물은 내보내지 않는다</h3>
+<ul><li><strong>항등식·앵커·변이 검정.</strong> 값을 고의로 훼손해 검사가 실제로 실패하는지까지 확인합니다.</li><li><strong>앵커는 공시 원문에서 손으로 읽은 수치만.</strong> 항등식은 검사 대상과 같은 데이터로 계산되므로 내부적으로 일관된 틀린 값은 통과합니다.</li><li><strong>워드·엑셀·마크다운·HTML</strong>을 같은 원본에서 만듭니다.</li></ul>
+<h2>2부. 네 기업에 적용</h2>
+<h3>시나리오를 손으로 고르지 않았습니다</h3>
+<p>네 기업의 10년 영업이익 CAGR이 19.5%에서 67.6%까지 벌어져 있습니다. 하나의 성장률을 네 기업에 똑같이 쓰면 어느 기업에도 맞지 않습니다. 그래서 <strong>각 기업의 자기 기록에서 규칙으로 도출</strong>하고 상한만 명시했습니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">시나리오</th><th class="w">초기 성장률</th><th class="w">증분 ROIC</th><th class="r">할인율</th><th class="r">터미널</th></tr></thead><tbody>
+<tr><td class="l ">보수</td><td class="w ">10년 CAGR ÷ 3 (상한 10%)</td><td class="w ">10년 최저 ROIC (상한 15%)</td><td class="r ">11%</td><td class="r ">2.0%</td></tr>
+<tr><td class="l ">중립</td><td class="w ">10년 CAGR ÷ 2 (상한 15%)</td><td class="w ">10년 중위 ROIC ÷ 2 (상한 25%)</td><td class="r ">10%</td><td class="r ">2.5%</td></tr>
+<tr><td class="l ">낙관</td><td class="w ">10년 CAGR (상한 25%)</td><td class="w ">10년 중위 ROIC (상한 35%)</td><td class="r ">9%</td><td class="r ">3.0%</td></tr>
+</tbody>
+</table></div>
+<figcaption>할인율과 터미널 성장률은 기업의 성질이 아니라 “내가 요구하는 수익률”이므로 네 기업에 똑같이 적용했습니다. 이 규칙을 알파벳에 적용하면 직전 보고서에서 손으로 골랐던 값과 거의 같아집니다 — 규칙으로 바꾼 것이 결론을 움직이지 않았습니다.</figcaption>
+</figure>
+<div class="callout"><p><strong>상한이 이 모형에서 가장 중요한 판단입니다.</strong> 지금의 비범한 수익률과 성장률을 영구히 연장하지 않겠다는 선언입니다. 상한이 없으면 엔비디아의 10년 CAGR 67.6%가 영구 성장률이 되어 어떤 가격도 정당화됩니다.</p></div>
+<h3>한눈에 보기 — 사업의 질</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">TTM 영업이익</th><th class="r">영업이익률</th><th class="r">10년 CAGR</th><th class="r">ROIC 중위</th><th class="r">순현금</th></tr></thead><tbody>
+<tr><td class="l ">마이크로소프트(MSFT)</td><td class="r ">163.2</td><td class="r ">47.1%</td><td class="r ">19.5%</td><td class="r cheap">70.3%</td><td class="r pos">29</td></tr>
+<tr><td class="l ">알파벳(GOOG)</td><td class="r ">157.0</td><td class="r ">33.3%</td><td class="r ">20.9%</td><td class="r cheap">37.8%</td><td class="r pos">139</td></tr>
+<tr><td class="l ">엔비디아(NVDA)</td><td class="r ">197.6</td><td class="r ">65.2%</td><td class="r ">67.6%</td><td class="r cheap">113.2%</td><td class="r pos">38</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 세 기업 모두 10년 내내 ROIC가 문턱 10%을 넘었습니다 — 사업의 질은 전부 합격입니다. 스페이스X는 10-K가 없어 10년 기록이 없습니다.</figcaption>
+</figure>
+<h3>공통 패턴 — ROIC가 모두 내려오고 있습니다</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">ROIC 고점</th><th class="r">최근</th><th class="r">영업이익 배수</th><th class="r">투하자본 배수</th></tr></thead><tbody>
+<tr><td class="l ">마이크로소프트(MSFT)</td><td class="r ">FY2019 117.1%</td><td class="r ">FY2026 35.9%</td><td class="r ">3.61배</td><td class="r flagc">10.59배</td></tr>
+<tr><td class="l ">알파벳(GOOG)</td><td class="r ">FY2021 58.0%</td><td class="r ">FY2025 37.0%</td><td class="r ">1.64배</td><td class="r flagc">2.55배</td></tr>
+<tr><td class="l ">엔비디아(NVDA)</td><td class="r ">FY2024 198.2%</td><td class="r ">FY2025 110.8%</td><td class="r ">1.60배</td><td class="r flagc">2.80배</td></tr>
+</tbody>
+</table></div>
+<figcaption>고점 이후 배수. 투하자본이 영업이익보다 빨리 늘면 ROIC는 떨어집니다.</figcaption>
+</figure>
+<p><strong>세 기업이 같은 모양입니다.</strong> 마이크로소프트가 가장 극단적입니다 — FY2019 이후 영업이익은 3.6배인데 투하자본은 10.6배입니다. <strong>가격 판정보다 이 추세가 더 중요할 수 있습니다</strong>: AI 설비 투자가 과거의 수익률로 돌아오는지가 세 기업 모두의 핵심 질문입니다.</p>
+<h3>마이크로소프트(MSFT) — $535.93</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">시나리오</th><th class="r">성장률</th><th class="r">증분ROIC</th><th class="r">할인율</th><th class="r">주당 가치</th><th class="r">현재가 대비</th><th class="r">정당화 성장률</th></tr></thead><tbody>
+<tr><td class="l ">보수</td><td class="r ">6.5% → 2.5%</td><td class="r ">15.0%</td><td class="r ">11%</td><td class="r rich"><b>$190</b></td><td class="r rich">-65%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">중립</td><td class="r ">9.8% → 3.5%</td><td class="r ">25.0%</td><td class="r ">10%</td><td class="r rich"><b>$277</b></td><td class="r rich">-48%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">낙관</td><td class="r ">19.5% → 4.5%</td><td class="r ">35.0%</td><td class="r ">9%</td><td class="r rich"><b>$518</b></td><td class="r rich">-3%</td><td class="r ">20.5%</td></tr>
+</tbody>
+</table></div>
+<figcaption>TTM 영업이익 163.2십억 × (1 − 19.7%) = NOPAT 131.1십억 · 주가÷NOPAT 30.4배 · TTM 법인세 35.0십억 ÷ TTM 세전이익 177.6십억 = 19.7%. 세전이익 중 영업 외 수익이 8%. 법정세율 21% 적용 시 NOPAT 128.9십억 (-1.6%).</figcaption>
+</figure>
+<p><strong>세 시나리오 모두 현재가보다 낮습니다.</strong> 가장 관대한 낙관 가정에서도 $518(-3%)입니다.</p>
+<p>보수·중립에서는 성장률을 증분 ROIC 직전까지 — 즉 10년간 잉여현금을 거의 전부 재투자하는 지점까지 — 올려도 천장이 주당 $214(보수)와 $431(중립)로 현재가 아래입니다.</p>
+<h3>알파벳(GOOG) — $281.74</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">시나리오</th><th class="r">성장률</th><th class="r">증분ROIC</th><th class="r">할인율</th><th class="r">주당 가치</th><th class="r">현재가 대비</th><th class="r">정당화 성장률</th></tr></thead><tbody>
+<tr><td class="l ">보수</td><td class="r ">7.0% → 2.5%</td><td class="r ">15.0%</td><td class="r ">11%</td><td class="r rich"><b>$122</b></td><td class="r rich">-57%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">중립</td><td class="r ">10.4% → 3.5%</td><td class="r ">18.9%</td><td class="r ">10%</td><td class="r rich"><b>$164</b></td><td class="r rich">-42%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">낙관</td><td class="r ">20.9% → 4.5%</td><td class="r ">35.0%</td><td class="r ">9%</td><td class="r cheap"><b>$331</b></td><td class="r cheap">+17%</td><td class="r ">16.1%</td></tr>
+</tbody>
+</table></div>
+<figcaption>TTM 영업이익 157.0십억 × (1 − 18.1%) = NOPAT 128.6십억 · 주가÷NOPAT 26.9배 · TTM 법인세 51.9십억 ÷ TTM 세전이익 287.6십억 = 18.1%. 세전이익 중 영업 외 수익이 45%. 법정세율 21% 적용 시 NOPAT 124.0십억 (-3.6%).</figcaption>
+</figure>
+<p><strong>낙관 시나리오에서만 현재가보다 높습니다</strong> ($331, +17%). 그 가정은 성장 20.9%로 시작해 10년에 걸쳐 4.5%로 내려가고, 새 자본이 35.0%를 벌고, 요구수익률이 9%라는 것입니다.</p>
+<p>보수·중립에서는 성장률을 증분 ROIC 직전까지 — 즉 10년간 잉여현금을 거의 전부 재투자하는 지점까지 — 올려도 천장이 주당 $136(보수)와 $200(중립)로 현재가 아래입니다.</p>
+<h3>엔비디아(NVDA) — $181.60</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">시나리오</th><th class="r">성장률</th><th class="r">증분ROIC</th><th class="r">할인율</th><th class="r">주당 가치</th><th class="r">현재가 대비</th><th class="r">정당화 성장률</th></tr></thead><tbody>
+<tr><td class="l ">보수</td><td class="r ">10.0% → 2.5%</td><td class="r ">15.0%</td><td class="r ">11%</td><td class="r rich"><b>$78</b></td><td class="r rich">-57%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">중립</td><td class="r ">15.0% → 3.5%</td><td class="r ">25.0%</td><td class="r ">10%</td><td class="r rich"><b>$126</b></td><td class="r rich">-31%</td><td class="r rich">없음</td></tr>
+<tr><td class="l ">낙관</td><td class="r ">25.0% → 4.5%</td><td class="r ">35.0%</td><td class="r ">9%</td><td class="r cheap"><b>$244</b></td><td class="r cheap">+34%</td><td class="r ">16.4%</td></tr>
+</tbody>
+</table></div>
+<figcaption>TTM 영업이익 197.6십억 × (1 − 16.0%) = NOPAT 165.9십억 · 주가÷NOPAT 26.4배 · TTM 법인세 36.9십억 ÷ TTM 세전이익 229.7십억 = 16.0%. 세전이익 중 영업 외 수익이 14%. 법정세율 21% 적용 시 NOPAT 156.1십억 (-5.9%).</figcaption>
+</figure>
+<p><strong>낙관 시나리오에서만 현재가보다 높습니다</strong> ($244, +34%). 그 가정은 성장 25.0%로 시작해 10년에 걸쳐 4.5%로 내려가고, 새 자본이 35.0%를 벌고, 요구수익률이 9%라는 것입니다.</p>
+<p>보수·중립에서는 성장률을 증분 ROIC 직전까지 — 즉 10년간 잉여현금을 거의 전부 재투자하는 지점까지 — 올려도 천장이 주당 $83(보수)와 $168(중립)로 현재가 아래입니다.</p>
+<h3>스페이스X(SPCX) — $123.62 (별도 취급)</h3>
+<div class="callout"><p><strong>기준이익이 성립하지 않습니다. 9개월 연율화 NOPAT 은 +$0.7십억으로 양수이지만, 상반기 −$1.6십억과 3분기 +$2.2십억이 상쇄된 결과입니다 — 흑자 전환 첫 분기에 있는 회사이고, 어느 분기를 기준으로 잡느냐가 가치를 수십 배 바꿉니다. 10-K 가 없어 10년 ROIC 기록도 없습니다. 그래서 적정주가를 한 값으로 내지 않고, 기준이익 후보별 값과 현재 가격이 요구하는 정상상태 이익을 나란히 냅니다.</strong></p></div>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기준이익 후보</th><th class="r">연율화 NOPAT</th><th class="w">내용</th></tr></thead><tbody>
+<tr><td class="l ">9개월 연율화</td><td class="r pos">0.7</td><td class="w ">2026년 9개월 영업이익을 연율화한 뒤 세후. 상반기 적자와 3분기 흑자가 상쇄돼 거의 0 입니다.</td></tr>
+<tr><td class="l ">3분기 연율화</td><td class="r pos">8.8</td><td class="w ">3분기만 네 배. 흑자 전환한 첫 분기이고, 한 분기를 네 배 하는 것은 계절성과 일회성을 무시합니다. 위쪽 경계로 읽으십시오.</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 상반기 -1.6십억 적자에 3분기 2.2십억 흑자입니다.</figcaption>
+</figure>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기준이익</th><th class="r">보수</th><th class="r">중립</th><th class="r">낙관</th></tr></thead><tbody>
+<tr><td class="l ">9개월 연율화</td><td class="r rich">$4 (-96%)</td><td class="r rich">$5 (-96%)</td><td class="r rich">$6 (-95%)</td></tr>
+<tr><td class="l ">3분기 연율화</td><td class="r rich">$11 (-91%)</td><td class="r rich">$15 (-87%)</td><td class="r rich">$27 (-78%)</td></tr>
+</tbody>
+</table></div>
+<figcaption>어느 기준을 잡아도 현재가 $123.62 와는 한 자릿수 대 세 자릿수로 벌어집니다.</figcaption>
+</figure>
+<p>더 정직한 답은 거꾸로 푸는 것입니다 — <strong>현재 가격이 정당화되려면 정상상태 세후영업이익이 얼마여야 하는가.</strong> 기준을 고르지 않아도 되기 때문입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">시나리오</th><th class="r">요구 NOPAT</th><th class="r">3분기 연율화의</th><th class="r">연율화 매출의</th></tr></thead><tbody>
+<tr><td class="l ">보수</td><td class="r rich">146.9십억</td><td class="r ">16.7배</td><td class="r rich">252%</td></tr>
+<tr><td class="l ">중립</td><td class="r rich">90.2십억</td><td class="r ">10.2배</td><td class="r rich">155%</td></tr>
+<tr><td class="l ">낙관</td><td class="r rich">46.3십억</td><td class="r ">5.2배</td><td class="r rich">79%</td></tr>
+</tbody>
+</table></div>
+<figcaption>3분기 매출 연율화 58.3십억 달러 (9개월 연율화 36.1십억 — 가속 중). 시가총액은 그 매출의 29배.</figcaption>
+</figure>
+<p>가장 관대한 낙관 가정에서도 현재 가격은 <strong>지금 연율화 매출의 79%를 세후영업이익으로 벌어야</strong> 설명됩니다. 매출이 몇 배로 커지면서 이익률까지 올라야 한다는 뜻이고, 이것은 가치평가 문제가 아니라 <strong>아직 존재하지 않는 규모의 사업에 대한 베팅</strong>입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">사업부</th><th class="r">Q3′26 매출</th><th class="r">Q3′26 영업이익</th><th class="r">9M′26 매출</th><th class="r">9M′26 영업이익</th></tr></thead><tbody>
+<tr><td class="l ">Space</td><td class="r ">1.8</td><td class="r neg">-0.0</td><td class="r ">3.3</td><td class="r neg">-1.2</td></tr>
+<tr><td class="l ">Connectivity</td><td class="r ">5.2</td><td class="r pos">2.4</td><td class="r ">12.8</td><td class="r pos">5.2</td></tr>
+<tr><td class="l ">SI</td><td class="r ">7.6</td><td class="r pos">0.4</td><td class="r ">10.9</td><td class="r neg">-3.3</td></tr>
+</tbody>
+</table></div>
+<figcaption>단위 십억 달러. 사업부 투하자본은 공시되지 않으므로 사업부 ROIC를 만들지 않았습니다. Connectivity가 스타링크입니다.</figcaption>
+</figure>
+<h2>3부. 판정</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">현재가</th><th class="r">보수</th><th class="r">중립</th><th class="r">낙관</th><th class="w">판정</th></tr></thead><tbody>
+<tr><td class="l ">마이크로소프트(MSFT)</td><td class="r ">$535.93</td><td class="r rich">$190</td><td class="r rich">$277</td><td class="r rich">$518</td><td class="w rich">어느 시나리오에서도 비쌈</td></tr>
+<tr><td class="l ">알파벳(GOOG)</td><td class="r ">$281.74</td><td class="r rich">$122</td><td class="r rich">$164</td><td class="r cheap">$331</td><td class="w cheap">낙관에서만 설명됨</td></tr>
+<tr><td class="l ">엔비디아(NVDA)</td><td class="r ">$181.60</td><td class="r rich">$78</td><td class="r rich">$126</td><td class="r cheap">$244</td><td class="w cheap">낙관에서만 설명됨</td></tr>
+<tr><td class="l ">스페이스X(SPCX)</td><td class="r ">$123.62</td><td class="r ">—</td><td class="r ">—</td><td class="r ">—</td><td class="w flagc">기준이익 미성립 — 산출 불가</td></tr>
+</tbody>
+</table></div>
+</figure>
+<div class="callout"><p><strong>가장 중요한 발견은 순위가 아닙니다.</strong> 보수·중립 시나리오에서는 세 기업 모두 <strong>어떤 성장률로도 현재 가격이 설명되지 않습니다.</strong> 이유는 산수입니다: 증분 ROIC이 할인율보다 조금만 높으면, 성장률을 올려도 재투자가 그만큼 늘어 주주에게 남는 현금이 줄어듭니다. 증분 ROIC 15%에서 성장률 15%면 재투자율이 100%가 되어 잉여현금이 0입니다 — 그래서 가치에 천장이 생깁니다.</p></div>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">보수 천장</th><th class="r">중립 천장</th><th class="r">현재가</th><th class="r">중립 천장의 몇 배</th></tr></thead><tbody>
+<tr><td class="l ">마이크로소프트(MSFT)</td><td class="r rich">$214</td><td class="r rich">$431</td><td class="r ">$535.93</td><td class="r rich">1.24배</td></tr>
+<tr><td class="l ">알파벳(GOOG)</td><td class="r rich">$136</td><td class="r rich">$200</td><td class="r ">$281.74</td><td class="r rich">1.41배</td></tr>
+<tr><td class="l ">엔비디아(NVDA)</td><td class="r rich">$83</td><td class="r rich">$168</td><td class="r ">$181.60</td><td class="r rich">1.08배</td></tr>
+</tbody>
+</table></div>
+<figcaption>천장 = 그 시나리오의 가정 안에서 성장률만 바꿔 얻을 수 있는 최대 주당가치. 성장률을 증분 ROIC 직전까지 올린 지점이고, 10년간 잉여현금을 거의 전부 재투자하는 가정입니다.</figcaption>
+</figure>
+<p><strong>즉 세 기업의 현재 가격은 “지금의 높은 수익률이 계속된다”를 이미 값으로 담고 있습니다.</strong> 수익률이 평범해지는 경우를 가격이 반영하지 않습니다. 그것이 안전마진이 없다는 뜻입니다.</p>
+<h3>상대 순위 (같은 잣대로 비교할 때)</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">순위</th><th class="r">기업</th><th class="r">중립 대비</th><th class="r">낙관 대비</th><th class="r">주가÷NOPAT</th><th class="r">현재가÷중립평가치</th></tr></thead><tbody>
+<tr><td class="l ">1</td><td class="r ">엔비디아(NVDA)</td><td class="r rich">-31%</td><td class="r cheap">+34%</td><td class="r ">26.4배</td><td class="r ">1.44배</td></tr>
+<tr><td class="l ">2</td><td class="r ">알파벳(GOOG)</td><td class="r rich">-42%</td><td class="r cheap">+17%</td><td class="r ">26.9배</td><td class="r ">1.71배</td></tr>
+<tr><td class="l ">3</td><td class="r ">마이크로소프트(MSFT)</td><td class="r rich">-48%</td><td class="r rich">-3%</td><td class="r ">30.4배</td><td class="r ">1.93배</td></tr>
+</tbody>
+</table></div>
+</figure>
+<p>같은 규칙·같은 할인율로 재면 <strong>엔비디아이 가장 덜 비싸고 마이크로소프트이 가장 비쌉니다.</strong> 다만 엔비디아의 상대적 저평가는 <strong>가장 가정 의존적</strong>입니다 — 10년 CAGR 67.6%와 ROIC 중위 113.2%가 둘 다 상한에 걸려 크게 깎인 뒤의 숫자이기 때문입니다. 이미 연 매출 303십억 달러인 기업이 10년간 25%로 성장한다는 가정이 맞는지가 열린 질문입니다.</p>
+<h2>4부. 방법과 한계</h2>
+<ul>
+<li><strong>터미널 가치가 전체의 51%~73%를 차지합니다.</strong> 가치의 대부분이 11년차 이후에서 옵니다. 10년 투영은 모양을 잡아 주지만 결론을 정하지는 못합니다 — 이 모형의 가장 큰 약점이고, 그래서 단일 적정주가로 읽으면 안 됩니다.</li>
+<li><strong>기업마다 자료 기준일이 다릅니다.</strong> 마이크로소프트(MSFT) 2026-09-30 · 알파벳(GOOG) 2026-09-30 · 엔비디아(NVDA) 2026-07-26. 엔비디아는 3분기(10월 말 결산)가 아직 제출되지 않아 7월 분기가 최신입니다 — 분기 영업이익이 전분기 대비 19% 늘고 있는 기업이므로 이 한 분기 차이가 작지 않습니다.</li>
+<li><strong>실효세율에 평가손익이 섞여 있습니다.</strong> 세전이익 중 영업 외 수익 비중이 마이크로소프트(MSFT) 8% · 알파벳(GOOG) 45% · 엔비디아(NVDA) 14%. 법정세율 21%로 바꾸면 NOPAT이 마이크로소프트(MSFT) -1.6% · 알파벳(GOOG) -3.6% · 엔비디아(NVDA) -5.9% 움직이며, 판정은 바뀌지 않습니다.</li>
+<li><strong>상한이 결론을 만듭니다.</strong> 특히 엔비디아는 성장률과 증분 ROIC이 둘 다 상한에 걸립니다. 상한을 올리면 저평가로, 내리면 고평가로 바뀝니다. 엑셀에서 직접 바꿔 보실 수 있게 수식으로 남겼습니다.</li>
+<li><strong>사업부별 투하자본은 공시되지 않습니다.</strong> 사업부 ROIC를 만들지 않았습니다.</li>
+<li><strong>검증.</strong> <code>python3 verify_fair_value.py --mutate</code> — 항등식·앵커·재산출·규칙재현 1,013건, 변이 검정 31건. 앵커는 10-Q 손익계산서에서 손으로 읽은 분기 수치이고(마이크로소프트 2026-09-30 영업이익 $45,915m, 엔비디아 2026-07-26 $63,734m), 알파벳 TTM 영업이익은 별도 파이프라인(282건 검증)의 값과 일치합니다. 이 페이지도 <code>--verify --mutate</code>로 표를 되읽어 대조합니다.</li>
+</ul>
+<footer>출처: SEC EDGAR companyfacts와 10-Q 렌더링 · 50개사 ROIC 조사(roic/roic.json, 생성 2026-11-06, 창 2016–2026) · 시세 2026-11-06 수집.<br>마이크로소프트(MSFT) CIK 0000789019 · 알파벳(GOOG) CIK 0001652044 · 엔비디아(NVDA) CIK 0001045810 · 스페이스X(SPCX) CIK 0001181412<br>자료 기준일 2026-11-06 · 검증 1,013건 통과, 변이 31건 포착.</footer>
+</div>

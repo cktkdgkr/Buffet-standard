@@ -1,0 +1,2993 @@
+{
+ "generated": "2026-11-06",
+ "roic_study_generated": "2026-11-06",
+ "roic_study_window": [
+  2016,
+  2026
+ ],
+ "prices_fetched_utc": "2026-11-06T04:02:07.598648+00:00",
+ "wacc_for_roic_hurdle": 0.1,
+ "market_assumptions": {
+  "보수": {
+   "discount": 0.11,
+   "terminal_growth": 0.02,
+   "fade_to": 0.025
+  },
+  "중립": {
+   "discount": 0.1,
+   "terminal_growth": 0.025,
+   "fade_to": 0.035
+  },
+  "낙관": {
+   "discount": 0.09,
+   "terminal_growth": 0.03,
+   "fade_to": 0.045
+  }
+ },
+ "rule": {
+  "보수": {
+   "growth_divisor": 3.0,
+   "growth_cap": 0.1,
+   "roic_source": "min",
+   "roic_divisor": 1.0,
+   "roic_cap": 0.15
+  },
+  "중립": {
+   "growth_divisor": 2.0,
+   "growth_cap": 0.15,
+   "roic_source": "median",
+   "roic_divisor": 2.0,
+   "roic_cap": 0.25
+  },
+  "낙관": {
+   "growth_divisor": 1.0,
+   "growth_cap": 0.25,
+   "roic_source": "median",
+   "roic_divisor": 1.0,
+   "roic_cap": 0.35
+  }
+ },
+ "projection_years": 10,
+ "cagr_years": 10,
+ "companies": [
+  {
+   "ticker": "MSFT",
+   "korean": "마이크로소프트",
+   "cik": "0000789019",
+   "data_as_of": "2026-09-30",
+   "data_as_of_note": "TTM 은 2025-12-31 직전 분기부터 2026-09-30 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
+   "company_name": "MICROSOFT CORP",
+   "sic": "7372",
+   "price": 535.9299926757812,
+   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "fifty_two_week_high": 559.15,
+   "fifty_two_week_low": 349.2,
+   "shares_outstanding": {
+    "value": 7426194552,
+    "as_of": "2026-10-22",
+    "classes": 1
+   },
+   "market_cap": 3979920391862.2866,
+   "ttm": {
+    "operating_income": {
+     "tag": "OperatingIncomeLoss",
+     "value": 163191000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      38275000000,
+      38398000000,
+      40603000000,
+      45915000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "OperatingIncomeLoss"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "revenue": {
+     "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+     "value": 346445000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      81273000000,
+      82886000000,
+      90007000000,
+      92279000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "Revenues",
+      "SalesRevenueNet",
+      "SalesRevenueGoodsNet"
+     ],
+     "tag_rejected": [],
+     "tie_out": "TTM 매출 ≥ 최신 연간 매출 331.8십억 × 0.95 (총액이 아닌 태그 배제)"
+    },
+    "pretax_income": {
+     "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "value": 177586000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      48246000000,
+      39340000000,
+      44047000000,
+      45953000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "income_tax_expense": {
+     "tag": "IncomeTaxExpenseBenefit",
+     "value": 34955000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      9788000000,
+      7562000000,
+      8281000000,
+      9324000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeTaxExpenseBenefit"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "nonoperating_income": {
+     "tag": "NonoperatingIncomeExpense",
+     "value": 14395000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      9971000000,
+      942000000,
+      3444000000,
+      38000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "NonoperatingIncomeExpense",
+      "OtherNonoperatingIncomeExpense"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "effective_tax_rate": 0.19683420990393388,
+    "nopat": 131069428451.56712,
+    "nopat_at_statutory_21": 128920890000.0,
+    "nonoperating_share_of_pretax": 0.08105931773901096,
+    "tax_note": "TTM 법인세 35.0십억 ÷ TTM 세전이익 177.6십억 = 19.7%. 세전이익 중 영업 외 수익이 8%. 법정세율 21% 적용 시 NOPAT 128.9십억 (-1.6%).",
+    "operating_margin": 0.4710444659325434
+   },
+   "balance_sheet": {
+    "total_equity": {
+     "tag": "StockholdersEquity",
+     "value": 470509000000,
+     "as_of": "2026-09-30"
+    },
+    "debt_parts": [
+     {
+      "concept": "long_term_debt_noncurrent",
+      "tag": "LongTermDebtNoncurrent",
+      "value": 31090000000,
+      "as_of": "2026-09-30"
+     },
+     {
+      "concept": "long_term_debt_current",
+      "tag": "LongTermDebtCurrent",
+      "value": 4391000000,
+      "as_of": "2026-09-30"
+     }
+    ],
+    "debt": 35481000000,
+    "cash_and_short_term": {
+     "tag": "CashCashEquivalentsAndShortTermInvestments",
+     "value": 64509000000,
+     "as_of": "2026-09-30"
+    },
+    "cash_note": "CashCashEquivalentsAndShortTermInvestments (결합 태그)",
+    "net_cash": 29028000000,
+    "invested_capital": 441481000000
+   },
+   "record": {
+    "company_name": "MICROSOFT CORP",
+    "sic": "7372",
+    "window": [
+     2017,
+     2026
+    ],
+    "grid_window": [
+     2016,
+     2026
+    ],
+    "window_years": 10,
+    "summary": {
+     "years_in_window": 10,
+     "years_usable": 10,
+     "roic_median": 0.7033429620513321,
+     "roic_mean": 0.723760832290141,
+     "roic_min": 0.3585793973444575,
+     "roic_max": 1.1713966991344986,
+     "roic_stdev": 0.288802650095388,
+     "spread_median": 0.603342962051332,
+     "years_above_wacc": 10,
+     "years_below_wacc": 0,
+     "every_year_above_wacc": true,
+     "years_estimated_numerator": 0,
+     "years_hurdle_disputed": 0,
+     "years_capital_too_small": 0,
+     "verdict": "전 기간 초과 · 매우 높음"
+    },
+    "years": [
+     {
+      "fiscal_year": 2017,
+      "roic": 0.7703668388862197,
+      "operating_income": 29025000000.0,
+      "revenue": 96571000000.0,
+      "invested_capital_avg": 32117500000.0
+     },
+     {
+      "fiscal_year": 2018,
+      "roic": 0.6363190852164443,
+      "operating_income": 35058000000.0,
+      "revenue": 110360000000.0,
+      "invested_capital_avg": 33057000000.0
+     },
+     {
+      "fiscal_year": 2019,
+      "roic": 1.1713966991344986,
+      "operating_income": 42959000000.0,
+      "revenue": 125843000000.0,
+      "invested_capital_avg": 32939500000.0
+     },
+     {
+      "fiscal_year": 2020,
+      "roic": 1.0307766576407578,
+      "operating_income": 52959000000.0,
+      "revenue": 143015000000.0,
+      "invested_capital_avg": 42896500000.0
+     },
+     {
+      "fiscal_year": 2021,
+      "roic": 1.0486838344580012,
+      "operating_income": 69916000000.0,
+      "revenue": 168088000000.0,
+      "invested_capital_avg": 57452000000.0
+     },
+     {
+      "fiscal_year": 2022,
+      "roic": 0.7989222628997108,
+      "operating_income": 83383000000.0,
+      "revenue": 198270000000.0,
+      "invested_capital_avg": 90683000000.0
+     },
+     {
+      "fiscal_year": 2023,
+      "roic": 0.5652697117557749,
+      "operating_income": 88523000000.0,
+      "revenue": 211915000000.0,
+      "invested_capital_avg": 126882000000.0
+     },
+     {
+      "fiscal_year": 2024,
+      "roic": 0.46272339249564204,
+      "operating_income": 109433000000.0,
+      "revenue": 245122000000.0,
+      "invested_capital_avg": 193381000000.0
+     },
+     {
+      "fiscal_year": 2025,
+      "roic": 0.39457044306990313,
+      "operating_income": 128528000000.0,
+      "revenue": 281724000000.0,
+      "invested_capital_avg": 268314500000.0
+     },
+     {
+      "fiscal_year": 2026,
+      "roic": 0.3585793973444575,
+      "operating_income": 155237000000.0,
+      "revenue": 331839000000.0,
+      "invested_capital_avg": 348951500000.0
+     }
+    ],
+    "cagr_years": 10,
+    "cagr_from": 2016,
+    "cagr_to": 2026,
+    "operating_income_cagr": 0.19528672451950868,
+    "revenue_cagr": 0.13792901043139016,
+    "invested_capital_cagr": 0.32400445463762884,
+    "trend": {
+     "peak_fiscal_year": 2019,
+     "peak_roic": 1.1713966991344986,
+     "last_fiscal_year": 2026,
+     "last_roic": 0.3585793973444575,
+     "operating_income_multiple": 3.613608324216113,
+     "invested_capital_multiple": 10.593709679867636,
+     "note": "고점 이후 투하자본 배수가 영업이익 배수보다 크면 ROIC 은 떨어집니다. 이익이 멈춴 게 아니라 자본이 더 빨리 늘어서입니다."
+    }
+   },
+   "scenario_inputs": [
+    {
+     "name": "보수",
+     "growth": 0.06509557483983623,
+     "growth_uncapped": 0.06509557483983623,
+     "growth_capped": false,
+     "incremental_roic": 0.15,
+     "incremental_roic_uncapped": 0.3585793973444575,
+     "incremental_roic_capped": true,
+     "fade_to": 0.025,
+     "discount": 0.11,
+     "terminal_growth": 0.02,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 35.9% ÷ 1, 상한 15%"
+    },
+    {
+     "name": "중립",
+     "growth": 0.09764336225975434,
+     "growth_uncapped": 0.09764336225975434,
+     "growth_capped": false,
+     "incremental_roic": 0.25,
+     "incremental_roic_uncapped": 0.35167148102566603,
+     "incremental_roic_capped": true,
+     "fade_to": 0.035,
+     "discount": 0.1,
+     "terminal_growth": 0.025,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 70.3% ÷ 2, 상한 25%"
+    },
+    {
+     "name": "낙관",
+     "growth": 0.19528672451950868,
+     "growth_uncapped": 0.19528672451950868,
+     "growth_capped": false,
+     "incremental_roic": 0.35,
+     "incremental_roic_uncapped": 0.7033429620513321,
+     "incremental_roic_capped": true,
+     "fade_to": 0.045,
+     "discount": 0.09,
+     "terminal_growth": 0.03,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 70.3% ÷ 1, 상한 35%"
+    }
+   ],
+   "valuations": [
+    {
+     "scenario": "보수",
+     "assumptions": {
+      "growth": 0.06509557483983623,
+      "fade_to": 0.025,
+      "incremental_roic": 0.15,
+      "discount": 0.11,
+      "terminal_growth": 0.02
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 35.9% ÷ 1, 상한 15%",
+     "growth_capped": false,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.06509557483983623,
+       "nopat": 139601468240.5507,
+       "reinvestment_rate": 0.43397049893224154,
+       "free_cash_flow": 79018549416.52544,
+       "present_value": 71187882357.23012
+      },
+      {
+       "year": 2,
+       "growth": 0.060640510968743316,
+       "nopat": 148066972606.64447,
+       "reinvestment_rate": 0.40427007312495544,
+       "free_cash_flow": 88207926763.56554,
+       "present_value": 71591532151.25844
+      },
+      {
+       "year": 3,
+       "growth": 0.0561854470976504,
+       "nopat": 156386181662.94434,
+       "reinvestment_rate": 0.37456964731766934,
+       "free_cash_flow": 97808664752.0983,
+       "present_value": 71516852683.28831
+      },
+      {
+       "year": 4,
+       "growth": 0.051730383226557486,
+       "nopat": 164476098771.70648,
+       "reinvestment_rate": 0.34486922151038324,
+       "free_cash_flow": 107753354631.24316,
+       "present_value": 70980472263.63046
+      },
+      {
+       "year": 5,
+       "growth": 0.04727531935546457,
+       "nopat": 172251758867.47983,
+       "reinvestment_rate": 0.31516879570309714,
+       "free_cash_flow": 117963379467.47594,
+       "present_value": 70005524207.2493
+      },
+      {
+       "year": 6,
+       "growth": 0.042820255484371655,
+       "nopat": 179627623189.81772,
+       "reinvestment_rate": 0.28546836989581104,
+       "free_cash_flow": 128349618409.56146,
+       "present_value": 68620947298.16528
+      },
+      {
+       "year": 7,
+       "growth": 0.03836519161327874,
+       "nopat": 186519071372.53293,
+       "reinvestment_rate": 0.25576794408852493,
+       "free_cash_flow": 138813471954.27933,
+       "present_value": 66860676311.73324
+      },
+      {
+       "year": 8,
+       "growth": 0.033910127742185825,
+       "nopat": 192843956909.1294,
+       "reinvestment_rate": 0.22606751828123883,
+       "free_cash_flow": 149248202155.14835,
+       "present_value": 64762749439.962234
+      },
+      {
+       "year": 9,
+       "growth": 0.029455063871092917,
+       "nopat": 198524187977.04208,
+       "reinvestment_rate": 0.1963670924739528,
+       "free_cash_flow": 159540570398.23788,
+       "present_value": 62368361018.28387
+      },
+      {
+       "year": 10,
+       "growth": 0.025,
+       "nopat": 203487292676.4681,
+       "reinvestment_rate": 0.16666666666666669,
+       "free_cash_flow": 169572743897.05673,
+       "present_value": 59720888423.74109
+      }
+     ],
+     "pv_of_forecast": 677615886154.5422,
+     "pv_of_terminal": 703910204887.8285,
+     "terminal_share": 0.5095164032383374,
+     "enterprise_value": 1381526091042.3706,
+     "equity_value": 1410554091042.3706,
+     "value_per_share": 189.9430564558108,
+     "upside_vs_market": -0.6455823352832584,
+     "first_year_reinvestment_rate": 0.43397049893224154,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 374832738254.20135,
+     "required_nopat_multiple": 2.859802950866684,
+     "price_to_value": 2.821529792537915,
+     "best_case_in_scenario": {
+      "growth": 0.149925,
+      "value_per_share": 213.73188459692483,
+      "equity_value": 1587214556982.376,
+      "search_upper_bound": 0.15,
+      "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 2.5074873301495804
+    },
+    {
+     "scenario": "중립",
+     "assumptions": {
+      "growth": 0.09764336225975434,
+      "fade_to": 0.035,
+      "incremental_roic": 0.25,
+      "discount": 0.1,
+      "terminal_growth": 0.025
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 70.3% ÷ 2, 상한 25%",
+     "growth_capped": false,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.09764336225975434,
+       "nopat": 143867488135.04245,
+       "reinvestment_rate": 0.39057344903901736,
+       "free_cash_flow": 87676667089.559,
+       "present_value": 79706060990.50818
+      },
+      {
+       "year": 2,
+       "growth": 0.0906829886753372,
+       "nopat": 156913821932.34174,
+       "reinvestment_rate": 0.3627319547013488,
+       "free_cash_flow": 99996164583.16405,
+       "present_value": 82641458333.19342
+      },
+      {
+       "year": 3,
+       "growth": 0.08372261509092005,
+       "nopat": 170051057448.42834,
+       "reinvestment_rate": 0.3348904603636802,
+       "free_cash_flow": 113102580534.19354,
+       "present_value": 84975642775.50226
+      },
+      {
+       "year": 4,
+       "growth": 0.07676224150650289,
+       "nopat": 183104557788.7208,
+       "reinvestment_rate": 0.30704896602601156,
+       "free_cash_flow": 126882492645.04398,
+       "present_value": 86662449726.82463
+      },
+      {
+       "year": 5,
+       "growth": 0.06980186792208574,
+       "nopat": 195885597947.421,
+       "reinvestment_rate": 0.279207471688343,
+       "free_cash_flow": 141192875404.3623,
+       "present_value": 87669667002.60306
+      },
+      {
+       "year": 6,
+       "growth": 0.0628414943376686,
+       "nopat": 208195341641.66464,
+       "reinvestment_rate": 0.2513659773506744,
+       "free_cash_flow": 155862116110.05005,
+       "present_value": 87980101227.13809
+      },
+      {
+       "year": 7,
+       "growth": 0.05588112075325145,
+       "nopat": 219829530668.20694,
+       "reinvestment_rate": 0.2235244830130058,
+       "free_cash_flow": 170692248474.60428,
+       "present_value": 87592113023.7961
+      },
+      {
+       "year": 8,
+       "growth": 0.048920747168834294,
+       "nopat": 230583755558.26978,
+       "reinvestment_rate": 0.19568298867533718,
+       "free_cash_flow": 185462437130.64417,
+       "present_value": 86519595673.12914
+      },
+      {
+       "year": 9,
+       "growth": 0.04196037358441715,
+       "nopat": 240259136083.9927,
+       "reinvestment_rate": 0.1678414943376686,
+       "free_cash_flow": 199933683655.37808,
+       "present_value": 84791399070.6836
+      },
+      {
+       "year": 10,
+       "growth": 0.035,
+       "nopat": 248668205846.93243,
+       "reinvestment_rate": 0.14,
+       "free_cash_flow": 213854657028.36188,
+       "present_value": 82450227930.5389
+      }
+     ],
+     "pv_of_forecast": 850988715753.9175,
+     "pv_of_terminal": 1179230004122.8235,
+     "terminal_share": 0.5808388980840533,
+     "enterprise_value": 2030218719876.741,
+     "equity_value": 2059246719876.741,
+     "value_per_share": 277.2950136785941,
+     "upside_vs_market": -0.48259097742576273,
+     "first_year_reinvestment_rate": 0.39057344903901736,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 25%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 255066709121.11087,
+     "required_nopat_multiple": 1.94604273578078,
+     "price_to_value": 1.9327069230929794,
+     "best_case_in_scenario": {
+      "growth": 0.249875,
+      "value_per_share": 430.8553125927216,
+      "equity_value": 3199615375076.326,
+      "search_upper_bound": 0.25,
+      "note": "성장률 0 ~ 25%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 1.2438746303271988
+    },
+    {
+     "scenario": "낙관",
+     "assumptions": {
+      "growth": 0.19528672451950868,
+      "fade_to": 0.045,
+      "incremental_roic": 0.35,
+      "discount": 0.09,
+      "terminal_growth": 0.03
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 19.5% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 70.3% ÷ 1, 상한 35%",
+     "growth_capped": false,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.19528672451950868,
+       "nopat": 156665547818.51776,
+       "reinvestment_rate": 0.5579620700557392,
+       "free_cash_flow": 69252114451.2812,
+       "present_value": 63534049955.303856
+      },
+      {
+       "year": 2,
+       "growth": 0.1785881995728966,
+       "nopat": 184644165938.52838,
+       "reinvestment_rate": 0.5102519987797046,
+       "free_cash_flow": 90429111205.38283,
+       "present_value": 76112373710.44762
+      },
+      {
+       "year": 3,
+       "growth": 0.16188967462628454,
+       "nopat": 214536149883.95844,
+       "reinvestment_rate": 0.4625419275036701,
+       "free_cash_flow": 115304185597.41602,
+       "present_value": 89035987300.21953
+      },
+      {
+       "year": 4,
+       "growth": 0.14519114967967245,
+       "nopat": 245684900133.4609,
+       "reinvestment_rate": 0.4148318562276356,
+       "free_cash_flow": 143766976963.99603,
+       "present_value": 101848150999.9241
+      },
+      {
+       "year": 5,
+       "growth": 0.1284926247330604,
+       "nopat": 277253597808.88916,
+       "reinvestment_rate": 0.36712178495160114,
+       "free_cash_flow": 175467762097.03647,
+       "present_value": 114042005870.39516
+      },
+      {
+       "year": 6,
+       "growth": 0.11179409978644829,
+       "nopat": 308248914188.4879,
+       "reinvestment_rate": 0.3194117136755666,
+       "free_cash_flow": 209790600268.91034,
+       "present_value": 125091280426.72926
+      },
+      {
+       "year": 7,
+       "growth": 0.09509557483983622,
+       "nopat": 337562021876.99756,
+       "reinvestment_rate": 0.27170164239953204,
+       "free_cash_flow": 245845866121.31058,
+       "present_value": 134486107721.5224
+      },
+      {
+       "year": 8,
+       "growth": 0.07839704989322414,
+       "nopat": 364025888548.1461,
+       "reinvestment_rate": 0.22399157112349757,
+       "free_cash_flow": 282487157842.6196,
+       "present_value": 141770778961.8095
+      },
+      {
+       "year": 9,
+       "growth": 0.06169852494661207,
+       "nopat": 386485748913.94653,
+       "reinvestment_rate": 0.17628149984746308,
+       "free_cash_flow": 318355461425.726,
+       "present_value": 146579698201.1344
+      },
+      {
+       "year": 10,
+       "growth": 0.044999999999999984,
+       "nopat": 403877607615.0741,
+       "reinvestment_rate": 0.12857142857142853,
+       "free_cash_flow": 351950486635.99316,
+       "present_value": 148667689047.24023
+      }
+     ],
+     "pv_of_forecast": 1141168122194.726,
+     "pv_of_terminal": 2677643186337.1787,
+     "terminal_share": 0.7011719014120563,
+     "enterprise_value": 3818811308531.905,
+     "equity_value": 3847839308531.905,
+     "value_per_share": 518.1441560126668,
+     "upside_vs_market": -0.03318686564697304,
+     "first_year_reinvestment_rate": 0.5579620700557392,
+     "implied_growth_at_price": 0.20511897401196938,
+     "implied_growth_note": null,
+     "required_nopat_at_price": 135602721851.71475,
+     "required_nopat_multiple": 1.034586962449621,
+     "price_to_value": 1.0343260393014635,
+     "best_case_in_scenario": {
+      "growth": 0.349825,
+      "value_per_share": 875.6870766417574,
+      "equity_value": 6503022597813.825,
+      "search_upper_bound": 0.35,
+      "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 0.6120108506466284
+    }
+   ],
+   "model": "applied"
+  },
+  {
+   "ticker": "GOOG",
+   "korean": "알파벳",
+   "cik": "0001652044",
+   "data_as_of": "2026-09-30",
+   "data_as_of_note": "TTM 은 2025-12-31 직전 분기부터 2026-09-30 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
+   "company_name": "Alphabet Inc.",
+   "sic": "7370",
+   "price": 281.739990234375,
+   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "fifty_two_week_high": 404.47,
+   "fifty_two_week_low": 271.41,
+   "shares_outstanding": {
+    "value": 12294000000.0,
+    "as_of": "2026-09-30",
+    "classes": 3,
+    "source": "goog_price.json (10-Q 표지, Class A+B+C)"
+   },
+   "market_cap": 3463711439941.4062,
+   "ttm": {
+    "operating_income": {
+     "tag": "OperatingIncomeLoss",
+     "value": 156976000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      35934000000,
+      39696000000,
+      40770000000,
+      40576000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "OperatingIncomeLoss"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "revenue": {
+     "tag": "Revenues",
+     "value": 471098000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      113829000000,
+      109896000000,
+      119796000000,
+      127577000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "Revenues"
+     ],
+     "tag_rejected": [
+      "RevenueFromContractWithCustomerExcludingAssessedTax: TTM 359.7십억 < 기준 382.7십억"
+     ],
+     "tie_out": "TTM 매출 ≥ 최신 연간 매출 402.8십억 × 0.95 (총액이 아닌 태그 배제)"
+    },
+    "pretax_income": {
+     "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "value": 287637000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      39117000000,
+      77412000000,
+      138753000000,
+      32355000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "income_tax_expense": {
+     "tag": "IncomeTaxExpenseBenefit",
+     "value": 51943000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      4662000000,
+      14834000000,
+      26560000000,
+      5887000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeTaxExpenseBenefit"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "nonoperating_income": {
+     "tag": "NonoperatingIncomeExpense",
+     "value": 130661000000,
+     "quarter_ends": [
+      "2025-12-31",
+      "2026-03-31",
+      "2026-06-30",
+      "2026-09-30"
+     ],
+     "quarters": [
+      3183000000,
+      37716000000,
+      97983000000,
+      -8221000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "NonoperatingIncomeExpense",
+      "OtherNonoperatingIncomeExpense"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "effective_tax_rate": 0.18058525154969632,
+    "nopat": 128628449552.73488,
+    "nopat_at_statutory_21": 124011040000.0,
+    "nonoperating_share_of_pretax": 0.4542565803425846,
+    "tax_note": "TTM 법인세 51.9십억 ÷ TTM 세전이익 287.6십억 = 18.1%. 세전이익 중 영업 외 수익이 45%. 법정세율 21% 적용 시 NOPAT 124.0십억 (-3.6%).",
+    "operating_margin": 0.33321304696687315
+   },
+   "balance_sheet": {
+    "total_equity": {
+     "tag": "StockholdersEquity",
+     "value": 677549000000,
+     "as_of": "2026-09-30"
+    },
+    "debt_parts": [
+     {
+      "concept": "long_term_debt_noncurrent",
+      "tag": "LongTermDebtNoncurrent",
+      "value": 125102000000,
+      "as_of": "2026-09-30"
+     },
+     {
+      "concept": "long_term_debt_current",
+      "tag": "LongTermDebtCurrent",
+      "value": 1016000000,
+      "as_of": "2026-09-30"
+     }
+    ],
+    "debt": 126118000000,
+    "cash_and_short_term": {
+     "tag": "CashCashEquivalentsAndShortTermInvestments",
+     "value": 265098000000,
+     "as_of": "2026-09-30"
+    },
+    "cash_note": "CashCashEquivalentsAndShortTermInvestments (결합 태그)",
+    "net_cash": 138980000000,
+    "invested_capital": 538569000000
+   },
+   "record": {
+    "company_name": "Alphabet Inc.",
+    "sic": "7370",
+    "window": [
+     2016,
+     2025
+    ],
+    "grid_window": [
+     2016,
+     2026
+    ],
+    "window_years": 10,
+    "summary": {
+     "years_in_window": 10,
+     "years_usable": 10,
+     "roic_median": 0.3783561751944132,
+     "roic_mean": 0.4014636346169388,
+     "roic_min": 0.28246592094378303,
+     "roic_max": 0.5796586503269808,
+     "roic_stdev": 0.07827503345250393,
+     "spread_median": 0.2783561751944132,
+     "years_above_wacc": 10,
+     "years_below_wacc": 0,
+     "every_year_above_wacc": true,
+     "years_estimated_numerator": 0,
+     "years_hurdle_disputed": 0,
+     "years_capital_too_small": 0,
+     "verdict": "전 기간 초과 · 매우 높음"
+    },
+    "years": [
+     {
+      "fiscal_year": 2016,
+      "roic": 0.35057614947738136,
+      "operating_income": 23716000000.0,
+      "revenue": 90272000000.0,
+      "invested_capital_avg": 54561500000.0
+     },
+     {
+      "fiscal_year": 2017,
+      "roic": 0.28246592094378303,
+      "operating_income": 26178000000.0,
+      "revenue": 110855000000.0,
+      "invested_capital_avg": 55606000000.0
+     },
+     {
+      "fiscal_year": 2018,
+      "roic": 0.38155484201553164,
+      "operating_income": 27524000000.0,
+      "revenue": 136819000000.0,
+      "invested_capital_avg": 63506000000.0
+     },
+     {
+      "fiscal_year": 2019,
+      "roic": 0.37515750837329476,
+      "operating_income": 34231000000.0,
+      "revenue": 161857000000.0,
+      "invested_capital_avg": 79081500000.0
+     },
+     {
+      "fiscal_year": 2020,
+      "roic": 0.370233436402208,
+      "operating_income": 41224000000.0,
+      "revenue": 182527000000.0,
+      "invested_capital_avg": 93253000000.0
+     },
+     {
+      "fiscal_year": 2021,
+      "roic": 0.5796586503269808,
+      "operating_income": 78714000000.0,
+      "revenue": 257637000000.0,
+      "invested_capital_avg": 113792000000.0
+     },
+     {
+      "fiscal_year": 2022,
+      "roic": 0.4433226189938993,
+      "operating_income": 74842000000.0,
+      "revenue": 282836000000.0,
+      "invested_capital_avg": 141943000000.0
+     },
+     {
+      "fiscal_year": 2023,
+      "roic": 0.42386487715624777,
+      "operating_income": 84293000000.0,
+      "revenue": 307394000000.0,
+      "invested_capital_avg": 171208000000.0
+     },
+     {
+      "fiscal_year": 2024,
+      "roic": 0.43788499930183933,
+      "operating_income": 112390000000.0,
+      "revenue": 350018000000.0,
+      "invested_capital_avg": 214471000000.0
+     },
+     {
+      "fiscal_year": 2025,
+      "roic": 0.3699173431782217,
+      "operating_income": 129039000000.0,
+      "revenue": 402836000000.0,
+      "invested_capital_avg": 290287000000.0
+     }
+    ],
+    "cagr_years": 10,
+    "cagr_from": 2015,
+    "cagr_to": 2025,
+    "operating_income_cagr": 0.20887546564103743,
+    "revenue_cagr": 0.1830771631182213,
+    "invested_capital_cagr": 0.1959982081316618,
+    "trend": {
+     "peak_fiscal_year": 2021,
+     "peak_roic": 0.5796586503269808,
+     "last_fiscal_year": 2025,
+     "last_roic": 0.3699173431782217,
+     "operating_income_multiple": 1.6393398887110298,
+     "invested_capital_multiple": 2.551031706974128,
+     "note": "고점 이후 투하자본 배수가 영업이익 배수보다 크면 ROIC 은 떨어집니다. 이익이 멈춴 게 아니라 자본이 더 빨리 늘어서입니다."
+    }
+   },
+   "scenario_inputs": [
+    {
+     "name": "보수",
+     "growth": 0.06962515521367914,
+     "growth_uncapped": 0.06962515521367914,
+     "growth_capped": false,
+     "incremental_roic": 0.15,
+     "incremental_roic_uncapped": 0.28246592094378303,
+     "incremental_roic_capped": true,
+     "fade_to": 0.025,
+     "discount": 0.11,
+     "terminal_growth": 0.02,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 28.2% ÷ 1, 상한 15%"
+    },
+    {
+     "name": "중립",
+     "growth": 0.10443773282051871,
+     "growth_uncapped": 0.10443773282051871,
+     "growth_capped": false,
+     "incremental_roic": 0.1891780875972066,
+     "incremental_roic_uncapped": 0.1891780875972066,
+     "incremental_roic_capped": false,
+     "fade_to": 0.035,
+     "discount": 0.1,
+     "terminal_growth": 0.025,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 37.8% ÷ 2, 상한 25%"
+    },
+    {
+     "name": "낙관",
+     "growth": 0.20887546564103743,
+     "growth_uncapped": 0.20887546564103743,
+     "growth_capped": false,
+     "incremental_roic": 0.35,
+     "incremental_roic_uncapped": 0.3783561751944132,
+     "incremental_roic_capped": true,
+     "fade_to": 0.045,
+     "discount": 0.09,
+     "terminal_growth": 0.03,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 37.8% ÷ 1, 상한 35%"
+    }
+   ],
+   "valuations": [
+    {
+     "scenario": "보수",
+     "assumptions": {
+      "growth": 0.06962515521367914,
+      "fade_to": 0.025,
+      "incremental_roic": 0.15,
+      "discount": 0.11,
+      "terminal_growth": 0.02
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 28.2% ÷ 1, 상한 15%",
+     "growth_capped": false,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.06962515521367914,
+       "nopat": 137584225317.73892,
+       "reinvestment_rate": 0.4641677014245276,
+       "free_cash_flow": 73722071699.72975,
+       "present_value": 66416280810.56734
+      },
+      {
+       "year": 2,
+       "growth": 0.06466680463438146,
+       "nopat": 146481357537.13385,
+       "reinvestment_rate": 0.4311120308958764,
+       "free_cash_flow": 83331482000.91507,
+       "present_value": 67633700187.41584
+      },
+      {
+       "year": 3,
+       "growth": 0.05970845405508377,
+       "nopat": 155227532943.56613,
+       "reinvestment_rate": 0.39805636036722514,
+       "free_cash_flow": 93438226151.26666,
+       "present_value": 68321225645.85524
+      },
+      {
+       "year": 4,
+       "growth": 0.05475010347578609,
+       "nopat": 163726256434.51736,
+       "reinvestment_rate": 0.365000689838574,
+       "free_cash_flow": 103966059891.23126,
+       "present_value": 68485663910.16819
+      },
+      {
+       "year": 5,
+       "growth": 0.049791752896488406,
+       "nopat": 171878473737.57196,
+       "reinvestment_rate": 0.3319450193099227,
+       "free_cash_flow": 114824270453.7936,
+       "present_value": 68142615794.15891
+      },
+      {
+       "year": 6,
+       "growth": 0.044833402317190726,
+       "nopat": 179584370500.31323,
+       "reinvestment_rate": 0.29888934878127155,
+       "free_cash_flow": 125908514950.18001,
+       "present_value": 67315833703.66234
+      },
+      {
+       "year": 7,
+       "growth": 0.03987505173789305,
+       "nopat": 186745306565.33017,
+       "reinvestment_rate": 0.26583367825262033,
+       "free_cash_flow": 137102114824.65526,
+       "present_value": 66036386756.21187
+      },
+      {
+       "year": 8,
+       "growth": 0.03491670115859537,
+       "nopat": 193265836627.44208,
+       "reinvestment_rate": 0.23277800772396912,
+       "free_cash_flow": 148277800216.2,
+       "present_value": 64341666326.59358
+      },
+      {
+       "year": 9,
+       "growth": 0.02995835057929768,
+       "nopat": 199055762316.12827,
+       "reinvestment_rate": 0.19972233719531787,
+       "free_cash_flow": 159299880234.15546,
+       "present_value": 62274269270.90217
+      },
+      {
+       "year": 10,
+       "growth": 0.025,
+       "nopat": 204032156374.03146,
+       "reinvestment_rate": 0.16666666666666669,
+       "free_cash_flow": 170026796978.35953,
+       "present_value": 59880798871.515656
+      }
+     ],
+     "pv_of_forecast": 658848441277.0511,
+     "pv_of_terminal": 705795016032.2646,
+     "terminal_share": 0.5172010405002705,
+     "enterprise_value": 1364643457309.316,
+     "equity_value": 1503623457309.316,
+     "value_per_share": 122.30547074258304,
+     "upside_vs_market": -0.5658924008592494,
+     "first_year_reinvestment_rate": 0.4641677014245276,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 313382259672.5063,
+     "required_nopat_multiple": 2.4363370682162064,
+     "price_to_value": 2.30357635291192,
+     "best_case_in_scenario": {
+      "growth": 0.149925,
+      "value_per_share": 135.68794384971133,
+      "equity_value": 1668147581688.351,
+      "search_upper_bound": 0.15,
+      "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 2.076381896879738
+    },
+    {
+     "scenario": "중립",
+     "assumptions": {
+      "growth": 0.10443773282051871,
+      "fade_to": 0.035,
+      "incremental_roic": 0.1891780875972066,
+      "discount": 0.1,
+      "terminal_growth": 0.025
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 37.8% ÷ 2, 상한 25%",
+     "growth_capped": false,
+     "incremental_roic_capped": false,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.10443773282051871,
+       "nopat": 142062113200.241,
+       "reinvestment_rate": 0.5520604111554663,
+       "free_cash_flow": 63635244577.30155,
+       "present_value": 57850222343.0014
+      },
+      {
+       "year": 2,
+       "growth": 0.09672242917379441,
+       "nopat": 155802705882.53088,
+       "reinvestment_rate": 0.5112771272946445,
+       "free_cash_flow": 76144345994.17809,
+       "present_value": 62929211565.436424
+      },
+      {
+       "year": 3,
+       "growth": 0.08900712552707012,
+       "nopat": 169670256882.4745,
+       "reinvestment_rate": 0.47049384343382267,
+       "free_cash_flow": 89841445605.43507,
+       "present_value": 67499207817.75736
+      },
+      {
+       "year": 4,
+       "growth": 0.08129182188034581,
+       "nopat": 183463061183.35712,
+       "reinvestment_rate": 0.42971055957300075,
+       "free_cash_flow": 104627046501.28105,
+       "present_value": 71461680555.48189
+      },
+      {
+       "year": 5,
+       "growth": 0.0735765182336215,
+       "nopat": 196961634449.7104,
+       "reinvestment_rate": 0.3889272757121789,
+       "free_cash_flow": 120357882543.36649,
+       "present_value": 74732775669.42549
+      },
+      {
+       "year": 6,
+       "growth": 0.06586121458689721,
+       "nopat": 209933766921.58878,
+       "reinvestment_rate": 0.3481439918513571,
+       "free_cash_flow": 136846587281.11447,
+       "present_value": 77246330937.01793
+      },
+      {
+       "year": 7,
+       "growth": 0.05814591094017291,
+       "nopat": 222140557036.3465,
+       "reinvestment_rate": 0.30736070799053516,
+       "free_cash_flow": 153863278152.2432,
+       "present_value": 78956190281.41289
+      },
+      {
+       "year": 8,
+       "growth": 0.0504306072934486,
+       "nopat": 233343240232.1944,
+       "reinvestment_rate": 0.2665774241297133,
+       "free_cash_flow": 171139200313.01514,
+       "present_value": 79837699989.21342
+      },
+      {
+       "year": 9,
+       "growth": 0.0427153036467243,
+       "nopat": 243310567592.6231,
+       "reinvestment_rate": 0.22579414026889144,
+       "free_cash_flow": 188372467164.7108,
+       "present_value": 79888314691.5029
+      },
+      {
+       "year": 10,
+       "growth": 0.035,
+       "nopat": 251826437458.3649,
+       "reinvestment_rate": 0.18501085640806958,
+       "free_cash_flow": 205235812597.99963,
+       "present_value": 79127290297.77563
+      }
+     ],
+     "pv_of_forecast": 729528924148.0254,
+     "pv_of_terminal": 1151546378200.547,
+     "terminal_share": 0.612174524200499,
+     "enterprise_value": 1881075302348.5725,
+     "equity_value": 2020055302348.5725,
+     "value_per_share": 164.31229073926895,
+     "upside_vs_market": -0.4167945750172697,
+     "first_year_reinvestment_rate": 0.5520604111554663,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 19%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 19%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 227346055612.4234,
+     "required_nopat_multiple": 1.7674632354113577,
+     "price_to_value": 1.714661690654904,
+     "best_case_in_scenario": {
+      "growth": 0.18908349855340803,
+      "value_per_share": 199.796470130309,
+      "equity_value": 2456297803782.0186,
+      "search_upper_bound": 0.1891780875972066,
+      "note": "성장률 0 ~ 19%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 1.4101349741095113
+    },
+    {
+     "scenario": "낙관",
+     "assumptions": {
+      "growth": 0.20887546564103743,
+      "fade_to": 0.045,
+      "incremental_roic": 0.35,
+      "discount": 0.09,
+      "terminal_growth": 0.03
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 20.9% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 37.8% ÷ 1, 상한 35%",
+     "growth_capped": false,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.20887546564103743,
+       "nopat": 155495776847.74707,
+       "reinvestment_rate": 0.5967870446886784,
+       "free_cash_flow": 62697911721.20988,
+       "present_value": 57521019927.71548
+      },
+      {
+       "year": 2,
+       "growth": 0.19066708056981105,
+       "nopat": 185143702660.24182,
+       "reinvestment_rate": 0.5447630873423173,
+       "free_cash_flow": 84284247597.06049,
+       "present_value": 70940364949.97095
+      },
+      {
+       "year": 3,
+       "growth": 0.17245869549858467,
+       "nopat": 217073344100.80496,
+       "reinvestment_rate": 0.4927391299959562,
+       "free_cash_flow": 110112813383.26147,
+       "present_value": 85027295437.60136
+      },
+      {
+       "year": 4,
+       "growth": 0.1542503104273583,
+       "nopat": 250556974813.8589,
+       "reinvestment_rate": 0.44071517264959514,
+       "free_cash_flow": 140132714400.2088,
+       "present_value": 99273547776.1068
+      },
+      {
+       "year": 5,
+       "growth": 0.1360419253561319,
+       "nopat": 284643228078.9441,
+       "reinvestment_rate": 0.38869121530323403,
+       "free_cash_flow": 174004905829.1037,
+       "present_value": 113091249668.22238
+      },
+      {
+       "year": 6,
+       "growth": 0.1178335402849055,
+       "nopat": 318183747361.6099,
+       "reinvestment_rate": 0.3366672579568729,
+       "free_cash_flow": 211061697610.93433,
+       "present_value": 125849194241.06119
+      },
+      {
+       "year": 7,
+       "growth": 0.09962515521367914,
+       "nopat": 349882852578.98035,
+       "reinvestment_rate": 0.28464330061051185,
+       "free_cash_flow": 250291042593.87827,
+       "present_value": 136917771476.38875
+      },
+      {
+       "year": 8,
+       "growth": 0.08141677014245274,
+       "nopat": 378369184364.1889,
+       "reinvestment_rate": 0.2326193432641507,
+       "free_cash_flow": 290353193185.9989,
+       "present_value": 145718476855.36575
+      },
+      {
+       "year": 9,
+       "growth": 0.06320838507122636,
+       "nopat": 402285289468.5664,
+       "reinvestment_rate": 0.18059538591778962,
+       "free_cash_flow": 329634422367.941,
+       "present_value": 151772845143.00952
+      },
+      {
+       "year": 10,
+       "growth": 0.044999999999999984,
+       "nopat": 420388127494.65186,
+       "reinvestment_rate": 0.12857142857142853,
+       "free_cash_flow": 366338225388.1966,
+       "present_value": 154745225382.96286
+      }
+     ],
+     "pv_of_forecast": 1140856990858.405,
+     "pv_of_terminal": 2787105261542.325,
+     "terminal_share": 0.7095550014104323,
+     "enterprise_value": 3927962252400.7305,
+     "equity_value": 4066942252400.7305,
+     "value_per_share": 330.80708088504394,
+     "upside_vs_market": 0.17415735199625315,
+     "first_year_reinvestment_rate": 0.5967870446886784,
+     "implied_growth_at_price": 0.1607572854790167,
+     "implied_growth_note": null,
+     "required_nopat_at_price": 108874531581.23308,
+     "required_nopat_multiple": 0.8464265250790952,
+     "price_to_value": 0.8516746058778595,
+     "best_case_in_scenario": {
+      "growth": 0.349825,
+      "value_per_share": 528.0954769809819,
+      "equity_value": 6492405794004.191,
+      "search_upper_bound": 0.35,
+      "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 0.5335019944594626
+    }
+   ],
+   "model": "applied"
+  },
+  {
+   "ticker": "NVDA",
+   "korean": "엔비디아",
+   "cik": "0001045810",
+   "data_as_of": "2026-07-26",
+   "data_as_of_note": "TTM 은 2025-10-26 직전 분기부터 2026-07-26 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
+   "company_name": "NVIDIA CORP",
+   "sic": "3674",
+   "price": 181.60000610351562,
+   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "fifty_two_week_high": 243.37,
+   "fifty_two_week_low": 164.27,
+   "shares_outstanding": {
+    "value": 24100000000,
+    "as_of": "2026-08-21",
+    "classes": 1
+   },
+   "market_cap": 4376560147094.7266,
+   "ttm": {
+    "operating_income": {
+     "tag": "OperatingIncomeLoss",
+     "value": 197579000000,
+     "quarter_ends": [
+      "2025-10-26",
+      "2026-01-25",
+      "2026-04-26",
+      "2026-07-26"
+     ],
+     "quarters": [
+      36010000000,
+      44299000000,
+      53536000000,
+      63734000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "OperatingIncomeLoss"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "revenue": {
+     "tag": "Revenues",
+     "value": 302969000000,
+     "quarter_ends": [
+      "2025-10-26",
+      "2026-01-25",
+      "2026-04-26",
+      "2026-07-26"
+     ],
+     "quarters": [
+      57006000000,
+      68127000000,
+      81615000000,
+      96221000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "Revenues"
+     ],
+     "tag_rejected": [
+      "RevenueFromContractWithCustomerExcludingAssessedTax: TTM 10.9십억 < 기준 205.1십억"
+     ],
+     "tie_out": "TTM 매출 ≥ 최신 연간 매출 215.9십억 × 0.95 (총액이 아닌 태그 배제)"
+    },
+    "pretax_income": {
+     "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "value": 229744000000,
+     "quarter_ends": [
+      "2025-10-26",
+      "2026-01-25",
+      "2026-04-26",
+      "2026-07-26"
+     ],
+     "quarters": [
+      37936000000,
+      50398000000,
+      69903000000,
+      71507000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "income_tax_expense": {
+     "tag": "IncomeTaxExpenseBenefit",
+     "value": 36865000000,
+     "quarter_ends": [
+      "2025-10-26",
+      "2026-01-25",
+      "2026-04-26",
+      "2026-07-26"
+     ],
+     "quarters": [
+      6026000000,
+      7438000000,
+      11582000000,
+      11819000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "IncomeTaxExpenseBenefit"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "nonoperating_income": {
+     "tag": "NonoperatingIncomeExpense",
+     "value": 32165000000,
+     "quarter_ends": [
+      "2025-10-26",
+      "2026-01-25",
+      "2026-04-26",
+      "2026-07-26"
+     ],
+     "quarters": [
+      1926000000,
+      6099000000,
+      16367000000,
+      7773000000
+     ],
+     "span_days": 273,
+     "tag_candidates": [
+      "NonoperatingIncomeExpense",
+      "OtherNonoperatingIncomeExpense"
+     ],
+     "tag_rejected": [],
+     "tie_out": null
+    },
+    "effective_tax_rate": 0.16046120899784108,
+    "nopat": 165875234787.41556,
+    "nopat_at_statutory_21": 156087410000.0,
+    "nonoperating_share_of_pretax": 0.140003656243471,
+    "tax_note": "TTM 법인세 36.9십억 ÷ TTM 세전이익 229.7십억 = 16.0%. 세전이익 중 영업 외 수익이 14%. 법정세율 21% 적용 시 NOPAT 156.1십억 (-5.9%).",
+    "operating_margin": 0.6521426284537362
+   },
+   "balance_sheet": {
+    "total_equity": {
+     "tag": "StockholdersEquity",
+     "value": 228984000000,
+     "as_of": "2026-07-26"
+    },
+    "debt_parts": [
+     {
+      "concept": "long_term_debt_noncurrent",
+      "tag": "LongTermDebtNoncurrent",
+      "value": 32366000000,
+      "as_of": "2026-07-26"
+     },
+     {
+      "concept": "long_term_debt_current",
+      "tag": "LongTermDebtCurrent",
+      "value": 1000000000,
+      "as_of": "2026-07-26"
+     }
+    ],
+    "debt": 33366000000,
+    "cash_and_short_term": {
+     "tag": "CashAndCashEquivalentsAtCarryingValue + MarketableSecuritiesCurrent",
+     "value": 71565000000,
+     "as_of": "2026-07-26"
+    },
+    "cash_note": "현금 + 단기투자 (별도 태그 합산)",
+    "net_cash": 38199000000,
+    "invested_capital": 190785000000
+   },
+   "record": {
+    "company_name": "NVIDIA CORP",
+    "sic": "3674",
+    "window": [
+     2016,
+     2025
+    ],
+    "grid_window": [
+     2016,
+     2026
+    ],
+    "window_years": 10,
+    "summary": {
+     "years_in_window": 10,
+     "years_usable": 10,
+     "roic_median": 1.1317668522916011,
+     "roic_mean": 1.1315880585674818,
+     "roic_min": 0.22226653373213692,
+     "roic_max": 1.9821923025857473,
+     "roic_stdev": 0.5975928261006691,
+     "spread_median": 1.031766852291601,
+     "years_above_wacc": 10,
+     "years_below_wacc": 0,
+     "every_year_above_wacc": true,
+     "years_estimated_numerator": 0,
+     "years_hurdle_disputed": 0,
+     "years_capital_too_small": 0,
+     "verdict": "전 기간 초과 · 매우 높음"
+    },
+    "years": [
+     {
+      "fiscal_year": 2016,
+      "roic": 1.7860207811932696,
+      "operating_income": 1934000000.0,
+      "revenue": 6910000000.0,
+      "invested_capital_avg": 947000000.0
+     },
+     {
+      "fiscal_year": 2017,
+      "roic": 1.8509863429438542,
+      "operating_income": 3210000000.0,
+      "revenue": 9714000000.0,
+      "invested_capital_avg": 1647500000.0
+     },
+     {
+      "fiscal_year": 2018,
+      "roic": 1.155306905370844,
+      "operating_income": 3804000000.0,
+      "revenue": 11716000000.0,
+      "invested_capital_avg": 3128000000.0
+     },
+     {
+      "fiscal_year": 2019,
+      "roic": 0.7436204958269904,
+      "operating_income": 2846000000.0,
+      "revenue": 10918000000.0,
+      "invested_capital_avg": 3603000000.0
+     },
+     {
+      "fiscal_year": 2020,
+      "roic": 0.5522221509651767,
+      "operating_income": 4532000000.0,
+      "revenue": 16675000000.0,
+      "invested_capital_avg": 7796500000.0
+     },
+     {
+      "fiscal_year": 2021,
+      "roic": 0.666011520335137,
+      "operating_income": 10041000000.0,
+      "revenue": 26914000000.0,
+      "invested_capital_avg": 14322500000.0
+     },
+     {
+      "fiscal_year": 2022,
+      "roic": 0.22226653373213692,
+      "operating_income": 4224000000.0,
+      "revenue": 26974000000.0,
+      "invested_capital_avg": 18054000000.0
+     },
+     {
+      "fiscal_year": 2023,
+      "roic": 1.2490267535093018,
+      "operating_income": 32972000000.0,
+      "revenue": 60922000000.0,
+      "invested_capital_avg": 23230500000.0
+     },
+     {
+      "fiscal_year": 2024,
+      "roic": 1.9821923025857473,
+      "operating_income": 81453000000.0,
+      "revenue": 130497000000.0,
+      "invested_capital_avg": 35641500000.0
+     },
+     {
+      "fiscal_year": 2025,
+      "roic": 1.1082267992123584,
+      "operating_income": 130387000000.0,
+      "revenue": 215938000000.0,
+      "invested_capital_avg": 99868000000.0
+     }
+    ],
+    "cagr_years": 10,
+    "cagr_from": 2015,
+    "cagr_to": 2025,
+    "operating_income_cagr": 0.6756810916545413,
+    "revenue_cagr": 0.45696505314008307,
+    "invested_capital_cagr": null,
+    "trend": {
+     "peak_fiscal_year": 2024,
+     "peak_roic": 1.9821923025857473,
+     "last_fiscal_year": 2025,
+     "last_roic": 1.1082267992123584,
+     "operating_income_multiple": 1.6007636305599549,
+     "invested_capital_multiple": 2.802014505562336,
+     "note": "고점 이후 투하자본 배수가 영업이익 배수보다 크면 ROIC 은 떨어집니다. 이익이 멈춴 게 아니라 자본이 더 빨리 늘어서입니다."
+    }
+   },
+   "scenario_inputs": [
+    {
+     "name": "보수",
+     "growth": 0.1,
+     "growth_uncapped": 0.22522703055151375,
+     "growth_capped": true,
+     "incremental_roic": 0.15,
+     "incremental_roic_uncapped": 0.22226653373213692,
+     "incremental_roic_capped": true,
+     "fade_to": 0.025,
+     "discount": 0.11,
+     "terminal_growth": 0.02,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 22.2% ÷ 1, 상한 15%"
+    },
+    {
+     "name": "중립",
+     "growth": 0.15,
+     "growth_uncapped": 0.33784054582727063,
+     "growth_capped": true,
+     "incremental_roic": 0.25,
+     "incremental_roic_uncapped": 0.5658834261458006,
+     "incremental_roic_capped": true,
+     "fade_to": 0.035,
+     "discount": 0.1,
+     "terminal_growth": 0.025,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 113.2% ÷ 2, 상한 25%"
+    },
+    {
+     "name": "낙관",
+     "growth": 0.25,
+     "growth_uncapped": 0.6756810916545413,
+     "growth_capped": true,
+     "incremental_roic": 0.35,
+     "incremental_roic_uncapped": 1.1317668522916011,
+     "incremental_roic_capped": true,
+     "fade_to": 0.045,
+     "discount": 0.09,
+     "terminal_growth": 0.03,
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 113.2% ÷ 1, 상한 35%"
+    }
+   ],
+   "valuations": [
+    {
+     "scenario": "보수",
+     "assumptions": {
+      "growth": 0.1,
+      "fade_to": 0.025,
+      "incremental_roic": 0.15,
+      "discount": 0.11,
+      "terminal_growth": 0.02
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 3, 상한 10% · 증분 ROIC = 10년 최저 22.2% ÷ 1, 상한 15%",
+     "growth_capped": true,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.1,
+       "nopat": 182462758266.15714,
+       "reinvestment_rate": 0.6666666666666667,
+       "free_cash_flow": 60820919422.05237,
+       "present_value": 54793621100.948074
+      },
+      {
+       "year": 2,
+       "growth": 0.09166666666666667,
+       "nopat": 199188511107.22156,
+       "reinvestment_rate": 0.6111111111111112,
+       "free_cash_flow": 77462198763.91948,
+       "present_value": 62870058245.20694
+      },
+      {
+       "year": 3,
+       "growth": 0.08333333333333334,
+       "nopat": 215787553699.49002,
+       "reinvestment_rate": 0.5555555555555557,
+       "free_cash_flow": 95905579421.99553,
+       "present_value": 70125333092.0369
+      },
+      {
+       "year": 4,
+       "growth": 0.075,
+       "nopat": 231971620226.95175,
+       "reinvestment_rate": 0.5,
+       "free_cash_flow": 115985810113.47588,
+       "present_value": 76403445683.04697
+      },
+      {
+       "year": 5,
+       "growth": 0.06666666666666667,
+       "nopat": 247436394908.74854,
+       "reinvestment_rate": 0.4444444444444445,
+       "free_cash_flow": 137464663838.19363,
+       "present_value": 81578587315.89932
+      },
+      {
+       "year": 6,
+       "growth": 0.058333333333333334,
+       "nopat": 261870184611.75888,
+       "reinvestment_rate": 0.3888888888888889,
+       "free_cash_flow": 160031779484.96378,
+       "present_value": 85559524384.61813
+      },
+      {
+       "year": 7,
+       "growth": 0.049999999999999996,
+       "nopat": 274963693842.34686,
+       "reinvestment_rate": 0.3333333333333333,
+       "free_cash_flow": 183309129228.23126,
+       "present_value": 88292383885.84673
+      },
+      {
+       "year": 8,
+       "growth": 0.04166666666666666,
+       "nopat": 286420514419.1113,
+       "reinvestment_rate": 0.27777777777777773,
+       "free_cash_flow": 206859260413.80264,
+       "present_value": 89761714098.16125
+      },
+      {
+       "year": 9,
+       "growth": 0.033333333333333326,
+       "nopat": 295967864899.74835,
+       "reinvestment_rate": 0.22222222222222218,
+       "free_cash_flow": 230197228255.35983,
+       "present_value": 89989798841.7694
+      },
+      {
+       "year": 10,
+       "growth": 0.024999999999999994,
+       "nopat": 303367061522.242,
+       "reinvestment_rate": 0.16666666666666663,
+       "free_cash_flow": 252805884601.86835,
+       "present_value": 89034308699.62703
+      }
+     ],
+     "pv_of_forecast": 788408775347.1609,
+     "pv_of_terminal": 1049417718539.604,
+     "terminal_share": 0.5710102243222218,
+     "enterprise_value": 1837826493886.765,
+     "equity_value": 1876025493886.765,
+     "value_per_share": 77.84338148907739,
+     "upside_vs_market": -0.5713470326388365,
+     "first_year_reinvestment_rate": 0.6666666666666667,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 391563989452.03046,
+     "required_nopat_multiple": 2.3605934300792755,
+     "price_to_value": 2.3328894843680046,
+     "best_case_in_scenario": {
+      "growth": 0.149925,
+      "value_per_share": 83.4093691618266,
+      "equity_value": 2010165796800.021,
+      "search_upper_bound": 0.15,
+      "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 2.1772135184380135
+    },
+    {
+     "scenario": "중립",
+     "assumptions": {
+      "growth": 0.15,
+      "fade_to": 0.035,
+      "incremental_roic": 0.25,
+      "discount": 0.1,
+      "terminal_growth": 0.025
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 2, 상한 15% · 증분 ROIC = 10년 중위 113.2% ÷ 2, 상한 25%",
+     "growth_capped": true,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.15,
+       "nopat": 190756520005.52786,
+       "reinvestment_rate": 0.6,
+       "free_cash_flow": 76302608002.21115,
+       "present_value": 69366007274.73741
+      },
+      {
+       "year": 2,
+       "growth": 0.13722222222222222,
+       "nopat": 216932553584.06418,
+       "reinvestment_rate": 0.5488888888888889,
+       "free_cash_flow": 97860685283.47784,
+       "present_value": 80876599407.83292
+      },
+      {
+       "year": 3,
+       "growth": 0.12444444444444444,
+       "nopat": 243928604696.7477,
+       "reinvestment_rate": 0.49777777777777776,
+       "free_cash_flow": 122506365914.36664,
+       "present_value": 92040845916.12817
+      },
+      {
+       "year": 4,
+       "growth": 0.11166666666666666,
+       "nopat": 271167298887.88452,
+       "reinvestment_rate": 0.44666666666666666,
+       "free_cash_flow": 150045905384.62943,
+       "present_value": 102483372300.13618
+      },
+      {
+       "year": 5,
+       "growth": 0.09888888888888889,
+       "nopat": 297982731777.9086,
+       "reinvestment_rate": 0.39555555555555555,
+       "free_cash_flow": 180114006763.5359,
+       "present_value": 111836627381.1003
+      },
+      {
+       "year": 6,
+       "growth": 0.08611111111111111,
+       "nopat": 323642355903.2285,
+       "reinvestment_rate": 0.34444444444444444,
+       "free_cash_flow": 212165544425.4498,
+       "present_value": 119761918683.8329
+      },
+      {
+       "year": 7,
+       "growth": 0.07333333333333333,
+       "nopat": 347376128669.4653,
+       "reinvestment_rate": 0.29333333333333333,
+       "free_cash_flow": 245479130926.42212,
+       "present_value": 125969608891.11198
+      },
+      {
+       "year": 8,
+       "growth": 0.06055555555555556,
+       "nopat": 368411683127.78284,
+       "reinvestment_rate": 0.24222222222222223,
+       "free_cash_flow": 279174186547.9421,
+       "present_value": 130236818388.66376
+      },
+      {
+       "year": 9,
+       "growth": 0.04777777777777778,
+       "nopat": 386013574654.9991,
+       "reinvestment_rate": 0.19111111111111112,
+       "free_cash_flow": 312242091498.7104,
+       "present_value": 132421127360.24649
+      },
+      {
+       "year": 10,
+       "growth": 0.035,
+       "nopat": 399524049767.924,
+       "reinvestment_rate": 0.14,
+       "free_cash_flow": 343590682800.4147,
+       "present_value": 132469082064.21059
+      }
+     ],
+     "pv_of_forecast": 1097462007668.0005,
+     "pv_of_terminal": 1894615941150.9182,
+     "terminal_share": 0.6332107563904849,
+     "enterprise_value": 2992077948818.919,
+     "equity_value": 3030276948818.919,
+     "value_per_share": 125.73763273107548,
+     "upside_vs_market": -0.3076121778354869,
+     "first_year_reinvestment_rate": 0.6,
+     "implied_growth_at_price": null,
+     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 25%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
+     "required_nopat_at_price": 240510670569.59586,
+     "required_nopat_multiple": 1.4499492397272715,
+     "price_to_value": 1.4442772792765806,
+     "best_case_in_scenario": {
+      "growth": 0.249875,
+      "value_per_share": 168.08064663694327,
+      "equity_value": 4050743583950.3325,
+      "search_upper_bound": 0.25,
+      "note": "성장률 0 ~ 25%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 1.080433766391763
+    },
+    {
+     "scenario": "낙관",
+     "assumptions": {
+      "growth": 0.25,
+      "fade_to": 0.045,
+      "incremental_roic": 0.35,
+      "discount": 0.09,
+      "terminal_growth": 0.03
+     },
+     "rule": "초기 성장 = 10년 영업이익 CAGR 67.6% ÷ 1, 상한 25% · 증분 ROIC = 10년 중위 113.2% ÷ 1, 상한 35%",
+     "growth_capped": true,
+     "incremental_roic_capped": true,
+     "projection": [
+      {
+       "year": 1,
+       "growth": 0.25,
+       "nopat": 207344043484.26944,
+       "reinvestment_rate": 0.7142857142857143,
+       "free_cash_flow": 59241155281.21983,
+       "present_value": 54349683744.23837
+      },
+      {
+       "year": 2,
+       "growth": 0.22722222222222221,
+       "nopat": 254457217809.3062,
+       "reinvestment_rate": 0.6492063492063492,
+       "free_cash_flow": 89261976406.1217,
+       "present_value": 75130019700.46436
+      },
+      {
+       "year": 3,
+       "growth": 0.20444444444444443,
+       "nopat": 306479582339.2088,
+       "reinvestment_rate": 0.5841269841269842,
+       "free_cash_flow": 127456588210.90904,
+       "present_value": 98419871841.40974
+      },
+      {
+       "year": 4,
+       "growth": 0.18166666666666667,
+       "nopat": 362156706464.16504,
+       "reinvestment_rate": 0.5190476190476191,
+       "free_cash_flow": 174180130251.81268,
+       "present_value": 123393595537.00378
+      },
+      {
+       "year": 5,
+       "growth": 0.15888888888888889,
+       "nopat": 419699383157.9157,
+       "reinvestment_rate": 0.45396825396825397,
+       "free_cash_flow": 229169186994.1635,
+       "present_value": 148944247399.9814
+      },
+      {
+       "year": 6,
+       "growth": 0.1361111111111111,
+       "nopat": 476825132532.18756,
+       "reinvestment_rate": 0.3888888888888889,
+       "free_cash_flow": 291393136547.448,
+       "present_value": 173748206600.09714
+      },
+      {
+       "year": 7,
+       "growth": 0.11333333333333334,
+       "nopat": 530865314219.1688,
+       "reinvestment_rate": 0.3238095238095239,
+       "free_cash_flow": 358966069614.8665,
+       "present_value": 196366732816.14215
+      },
+      {
+       "year": 8,
+       "growth": 0.09055555555555556,
+       "nopat": 578938117673.4602,
+       "reinvestment_rate": 0.25873015873015875,
+       "free_cash_flow": 429149366592.8666,
+       "present_value": 215375596035.8868
+      },
+      {
+       "year": 9,
+       "growth": 0.06777777777777777,
+       "nopat": 618177256760.2169,
+       "reinvestment_rate": 0.19365079365079363,
+       "free_cash_flow": 498466740371.73047,
+       "present_value": 229507934432.08432
+      },
+      {
+       "year": 10,
+       "growth": 0.044999999999999984,
+       "nopat": 645995233314.4266,
+       "reinvestment_rate": 0.12857142857142853,
+       "free_cash_flow": 562938703316.8575,
+       "present_value": 237791391900.8866
+      }
+     ],
+     "pv_of_forecast": 1553027280008.1948,
+     "pv_of_terminal": 4282843867242.198,
+     "terminal_share": 0.7338825274201072,
+     "enterprise_value": 5835871147250.393,
+     "equity_value": 5874070147250.393,
+     "value_per_share": 243.73735050831505,
+     "upside_vs_market": 0.3421659819184142,
+     "first_year_reinvestment_rate": 0.7142857142857143,
+     "implied_growth_at_price": 0.1641534836772755,
+     "implied_growth_note": null,
+     "required_nopat_at_price": 123310925774.29437,
+     "required_nopat_multiple": 0.7433956366803562,
+     "price_to_value": 0.745064331440332,
+     "best_case_in_scenario": {
+      "growth": 0.349825,
+      "value_per_share": 341.5509813272682,
+      "equity_value": 8231378649987.163,
+      "search_upper_bound": 0.35,
+      "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
+     },
+     "price_vs_best_case": 0.5316922393190541
+    }
+   ],
+   "model": "applied"
+  },
+  {
+   "ticker": "SPCX",
+   "korean": "스페이스X",
+   "cik": "0001181412",
+   "company_name": "SPACE EXPLORATION TECHNOLOGIES CORP",
+   "price": 123.62000274658203,
+   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "fifty_two_week_high": 225.64,
+   "fifty_two_week_low": 104.83,
+   "shares_outstanding": {
+    "value": 13579000000.0,
+    "as_of": "2026-09-30",
+    "source": "10-Q 표지"
+   },
+   "market_cap": 1678636017295.8374,
+   "balance_sheet": {
+    "balance_sheet_date": "2026-09-30",
+    "cash_and_securities": 89855000000.0,
+    "debt": 38844000000.0,
+    "net_cash": 51011000000.0,
+    "equity": 176768000000.0,
+    "goodwill": 48423000000.0,
+    "construction_in_progress": 23745000000.0
+   },
+   "earnings_bases": [
+    {
+     "key": "nine_months",
+     "name": "9개월 연율화",
+     "nopat": 742600000.0,
+     "note": "2026년 9개월 영업이익을 연율화한 뒤 세후. 상반기 적자와 3분기 흑자가 상쇄돼 거의 0 입니다.",
+     "valuations": [
+      {
+       "scenario": "보수",
+       "assumptions": {
+        "growth": 0.1,
+        "fade_to": 0.025,
+        "incremental_roic": 0.15,
+        "discount": 0.11,
+        "terminal_growth": 0.02
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 10%, 증분 ROIC 15%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.1,
+         "nopat": 816860000.0000001,
+         "reinvestment_rate": 0.6666666666666667,
+         "free_cash_flow": 272286666.6666666,
+         "present_value": 245303303.30330324
+        },
+        {
+         "year": 2,
+         "growth": 0.09166666666666667,
+         "nopat": 891738833.3333336,
+         "reinvestment_rate": 0.6111111111111112,
+         "free_cash_flow": 346787324.07407415,
+         "present_value": 281460371.7831946
+        },
+        {
+         "year": 3,
+         "growth": 0.08333333333333334,
+         "nopat": 966050402.777778,
+         "reinvestment_rate": 0.5555555555555557,
+         "free_cash_flow": 429355734.5679012,
+         "present_value": 313941212.6281878
+        },
+        {
+         "year": 4,
+         "growth": 0.075,
+         "nopat": 1038504182.9861113,
+         "reinvestment_rate": 0.5,
+         "free_cash_flow": 519252091.49305564,
+         "present_value": 342047436.0560493
+        },
+        {
+         "year": 5,
+         "growth": 0.06666666666666667,
+         "nopat": 1107737795.1851854,
+         "reinvestment_rate": 0.4444444444444445,
+         "free_cash_flow": 615409886.2139919,
+         "present_value": 365215814.2740599
+        },
+        {
+         "year": 6,
+         "growth": 0.058333333333333334,
+         "nopat": 1172355833.2376547,
+         "reinvestment_rate": 0.3888888888888889,
+         "free_cash_flow": 716439675.8674557,
+         "present_value": 383037907.31295925
+        },
+        {
+         "year": 7,
+         "growth": 0.049999999999999996,
+         "nopat": 1230973624.8995376,
+         "reinvestment_rate": 0.3333333333333333,
+         "free_cash_flow": 820649083.2663585,
+         "present_value": 395272533.3450686
+        },
+        {
+         "year": 8,
+         "growth": 0.04166666666666666,
+         "nopat": 1282264192.6036851,
+         "reinvestment_rate": 0.27777777777777773,
+         "free_cash_flow": 926079694.6582172,
+         "present_value": 401850517.1957811
+        },
+        {
+         "year": 9,
+         "growth": 0.033333333333333326,
+         "nopat": 1325006332.3571413,
+         "reinvestment_rate": 0.22222222222222218,
+         "free_cash_flow": 1030560480.722221,
+         "present_value": 402871620.38107866
+        },
+        {
+         "year": 10,
+         "growth": 0.024999999999999994,
+         "nopat": 1358131490.6660697,
+         "reinvestment_rate": 0.16666666666666663,
+         "free_cash_flow": 1131776242.2217247,
+         "present_value": 398594025.95618296
+        }
+       ],
+       "pv_of_forecast": 3529594742.2358656,
+       "pv_of_terminal": 4698094919.27021,
+       "terminal_share": 0.5710102243222219,
+       "enterprise_value": 8227689661.506076,
+       "equity_value": 59238689661.50607,
+       "value_per_share": 4.362522252117687,
+       "upside_vs_market": -0.9647102236273142,
+       "first_year_reinvestment_rate": 0.6666666666666667,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다."
+      },
+      {
+       "scenario": "중립",
+       "assumptions": {
+        "growth": 0.15,
+        "fade_to": 0.035,
+        "incremental_roic": 0.25,
+        "discount": 0.1,
+        "terminal_growth": 0.025
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 15%, 증분 ROIC 25%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.15,
+         "nopat": 853989999.9999999,
+         "reinvestment_rate": 0.6,
+         "free_cash_flow": 341596000.0,
+         "present_value": 310541818.1818181
+        },
+        {
+         "year": 2,
+         "growth": 0.13722222222222222,
+         "nopat": 971176405.5555553,
+         "reinvestment_rate": 0.5488888888888889,
+         "free_cash_flow": 438108467.3950617,
+         "present_value": 362073113.5496377
+        },
+        {
+         "year": 3,
+         "growth": 0.12444444444444444,
+         "nopat": 1092033913.8024688,
+         "reinvestment_rate": 0.49777777777777776,
+         "free_cash_flow": 548443698.9319066,
+         "present_value": 412053868.4687501
+        },
+        {
+         "year": 4,
+         "growth": 0.11166666666666666,
+         "nopat": 1213977700.8437443,
+         "reinvestment_rate": 0.44666666666666666,
+         "free_cash_flow": 671734327.8002052,
+         "present_value": 458803584.3181511
+        },
+        {
+         "year": 5,
+         "growth": 0.09888888888888889,
+         "nopat": 1334026606.81607,
+         "reinvestment_rate": 0.39555555555555555,
+         "free_cash_flow": 806344971.2310468,
+         "present_value": 500676786.3788778
+        },
+        {
+         "year": 6,
+         "growth": 0.08611111111111111,
+         "nopat": 1448901120.180787,
+         "reinvestment_rate": 0.34444444444444444,
+         "free_cash_flow": 949835178.7851826,
+         "present_value": 536157196.2722041
+        },
+        {
+         "year": 7,
+         "growth": 0.07333333333333333,
+         "nopat": 1555153868.9940448,
+         "reinvestment_rate": 0.29333333333333333,
+         "free_cash_flow": 1098975400.7557917,
+         "present_value": 563948148.6336786
+        },
+        {
+         "year": 8,
+         "growth": 0.06055555555555556,
+         "nopat": 1649327075.5053506,
+         "reinvestment_rate": 0.24222222222222223,
+         "free_cash_flow": 1249823406.1051657,
+         "present_value": 583051842.9069262
+        },
+        {
+         "year": 9,
+         "growth": 0.04777777777777778,
+         "nopat": 1728128258.001717,
+         "reinvestment_rate": 0.19111111111111112,
+         "free_cash_flow": 1397863746.4725,
+         "present_value": 592830685.6882259
+        },
+        {
+         "year": 10,
+         "growth": 0.035,
+         "nopat": 1788612747.0317771,
+         "reinvestment_rate": 0.14,
+         "free_cash_flow": 1538206962.4473283,
+         "present_value": 593045372.1253506
+        }
+       ],
+       "pv_of_forecast": 4913182416.523621,
+       "pv_of_terminal": 8481927996.676526,
+       "terminal_share": 0.633210756390485,
+       "enterprise_value": 13395110413.200146,
+       "equity_value": 64406110413.20015,
+       "value_per_share": 4.7430672666028535,
+       "upside_vs_market": -0.9616318786505286,
+       "first_year_reinvestment_rate": 0.6,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다."
+      },
+      {
+       "scenario": "낙관",
+       "assumptions": {
+        "growth": 0.25,
+        "fade_to": 0.045,
+        "incremental_roic": 0.35,
+        "discount": 0.09,
+        "terminal_growth": 0.03
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 25%, 증분 ROIC 35%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.25,
+         "nopat": 928250000.0,
+         "reinvestment_rate": 0.7142857142857143,
+         "free_cash_flow": 265214285.7142857,
+         "present_value": 243315858.4534731
+        },
+        {
+         "year": 2,
+         "growth": 0.22722222222222221,
+         "nopat": 1139169027.7777777,
+         "reinvestment_rate": 0.6492063492063492,
+         "free_cash_flow": 399613262.1252204,
+         "present_value": 336346487.77478355
+        },
+        {
+         "year": 3,
+         "growth": 0.20444444444444443,
+         "nopat": 1372065806.7901232,
+         "reinvestment_rate": 0.5841269841269842,
+         "free_cash_flow": 570605145.0460511,
+         "present_value": 440611866.6424081
+        },
+        {
+         "year": 4,
+         "growth": 0.18166666666666667,
+         "nopat": 1621324428.3569956,
+         "reinvestment_rate": 0.5190476190476191,
+         "free_cash_flow": 779779844.114555,
+         "present_value": 552415700.6512395
+        },
+        {
+         "year": 5,
+         "growth": 0.15888888888888889,
+         "nopat": 1878934865.3070514,
+         "reinvestment_rate": 0.45396825396825397,
+         "free_cash_flow": 1025958085.183533,
+         "present_value": 666802360.5873294
+        },
+        {
+         "year": 6,
+         "growth": 0.1361111111111111,
+         "nopat": 2134678777.5294,
+         "reinvestment_rate": 0.3888888888888889,
+         "free_cash_flow": 1304525919.6013002,
+         "present_value": 777846182.9253181
+        },
+        {
+         "year": 7,
+         "growth": 0.11333333333333334,
+         "nopat": 2376609038.982732,
+         "reinvestment_rate": 0.3238095238095239,
+         "free_cash_flow": 1607040397.7883232,
+         "present_value": 879106130.4368395
+        },
+        {
+         "year": 8,
+         "growth": 0.09055555555555556,
+         "nopat": 2591824190.846168,
+         "reinvestment_rate": 0.25873015873015875,
+         "free_cash_flow": 1921241106.5478737,
+         "present_value": 964206126.4975735
+        },
+        {
+         "year": 9,
+         "growth": 0.06777777777777777,
+         "nopat": 2767492274.8924084,
+         "reinvestment_rate": 0.19365079365079363,
+         "free_cash_flow": 2231565199.437053,
+         "present_value": 1027474609.6226536
+        },
+        {
+         "year": 10,
+         "growth": 0.044999999999999984,
+         "nopat": 2892029427.2625666,
+         "reinvestment_rate": 0.12857142857142853,
+         "free_cash_flow": 2520197072.328808,
+         "present_value": 1064558478.8585644
+        }
+       ],
+       "pv_of_forecast": 6952683802.450184,
+       "pv_of_terminal": 19173687138.348793,
+       "terminal_share": 0.7338825274201071,
+       "enterprise_value": 26126370940.798977,
+       "equity_value": 77137370940.79898,
+       "value_per_share": 5.680637082318211,
+       "upside_vs_market": -0.9540475897419014,
+       "first_year_reinvestment_rate": 0.7142857142857143,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 35%까지 올려도 현재 시가총액에 닿지 않습니다."
+      }
+     ]
+    },
+    {
+     "key": "q3_run_rate",
+     "name": "3분기 연율화",
+     "nopat": 8819560000.0,
+     "note": "3분기만 네 배. 흑자 전환한 첫 분기이고, 한 분기를 네 배 하는 것은 계절성과 일회성을 무시합니다. 위쪽 경계로 읽으십시오.",
+     "valuations": [
+      {
+       "scenario": "보수",
+       "assumptions": {
+        "growth": 0.1,
+        "fade_to": 0.025,
+        "incremental_roic": 0.15,
+        "discount": 0.11,
+        "terminal_growth": 0.02
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 10%, 증분 ROIC 15%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.1,
+         "nopat": 9701516000.0,
+         "reinvestment_rate": 0.6666666666666667,
+         "free_cash_flow": 3233838666.666666,
+         "present_value": 2913368168.168167
+        },
+        {
+         "year": 2,
+         "growth": 0.09166666666666667,
+         "nopat": 10590821633.333334,
+         "reinvestment_rate": 0.6111111111111112,
+         "free_cash_flow": 4118652857.4074073,
+         "present_value": 3342791053.816579
+        },
+        {
+         "year": 3,
+         "growth": 0.08333333333333334,
+         "nopat": 11473390102.777779,
+         "reinvestment_rate": 0.5555555555555557,
+         "free_cash_flow": 5099284490.123456,
+         "present_value": 3728552869.9798813
+        },
+        {
+         "year": 4,
+         "growth": 0.075,
+         "nopat": 12333894360.48611,
+         "reinvestment_rate": 0.5,
+         "free_cash_flow": 6166947180.243055,
+         "present_value": 4062359123.542269
+        },
+        {
+         "year": 5,
+         "growth": 0.06666666666666667,
+         "nopat": 13156153984.518518,
+         "reinvestment_rate": 0.4444444444444445,
+         "free_cash_flow": 7308974435.843621,
+         "present_value": 4337520585.697451
+        },
+        {
+         "year": 6,
+         "growth": 0.058333333333333334,
+         "nopat": 13923596300.282099,
+         "reinvestment_rate": 0.3888888888888889,
+         "free_cash_flow": 8508864405.72795,
+         "present_value": 4549186380.044549
+        },
+        {
+         "year": 7,
+         "growth": 0.049999999999999996,
+         "nopat": 14619776115.296204,
+         "reinvestment_rate": 0.3333333333333333,
+         "free_cash_flow": 9746517410.19747,
+         "present_value": 4694492087.515259
+        },
+        {
+         "year": 8,
+         "growth": 0.04166666666666666,
+         "nopat": 15228933453.433546,
+         "reinvestment_rate": 0.27777777777777773,
+         "free_cash_flow": 10998674160.813118,
+         "present_value": 4772616142.52521
+        },
+        {
+         "year": 9,
+         "growth": 0.033333333333333326,
+         "nopat": 15736564568.547997,
+         "reinvestment_rate": 0.22222222222222218,
+         "free_cash_flow": 12239550219.981775,
+         "present_value": 4784743372.270596
+        },
+        {
+         "year": 10,
+         "growth": 0.024999999999999994,
+         "nopat": 16129978682.761696,
+         "reinvestment_rate": 0.16666666666666663,
+         "free_cash_flow": 13441648902.301414,
+         "present_value": 4733940112.526409
+        }
+       ],
+       "pv_of_forecast": 41919569896.086365,
+       "pv_of_terminal": 55797374126.31127,
+       "terminal_share": 0.5710102243222218,
+       "enterprise_value": 97716944022.39764,
+       "equity_value": 148727944022.39764,
+       "value_per_share": 10.952790634243879,
+       "upside_vs_market": -0.911399527658183,
+       "first_year_reinvestment_rate": 0.6666666666666667,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다."
+      },
+      {
+       "scenario": "중립",
+       "assumptions": {
+        "growth": 0.15,
+        "fade_to": 0.035,
+        "incremental_roic": 0.25,
+        "discount": 0.1,
+        "terminal_growth": 0.025
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 15%, 증분 ROIC 25%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.15,
+         "nopat": 10142494000.0,
+         "reinvestment_rate": 0.6,
+         "free_cash_flow": 4056997600.0,
+         "present_value": 3688179636.363636
+        },
+        {
+         "year": 2,
+         "growth": 0.13722222222222222,
+         "nopat": 11534269565.555555,
+         "reinvestment_rate": 0.5488888888888889,
+         "free_cash_flow": 5203237159.57284,
+         "present_value": 4300195999.646975
+        },
+        {
+         "year": 3,
+         "growth": 0.12444444444444444,
+         "nopat": 12969645333.71358,
+         "reinvestment_rate": 0.49777777777777776,
+         "free_cash_flow": 6513644100.931709,
+         "present_value": 4893797220.835242
+        },
+        {
+         "year": 4,
+         "growth": 0.11166666666666666,
+         "nopat": 14417922395.978262,
+         "reinvestment_rate": 0.44666666666666666,
+         "free_cash_flow": 7977917059.107972,
+         "present_value": 5449024697.157277
+        },
+        {
+         "year": 5,
+         "growth": 0.09888888888888889,
+         "nopat": 15843694721.802778,
+         "reinvestment_rate": 0.39555555555555555,
+         "free_cash_flow": 9576633254.067457,
+         "present_value": 5946335790.567866
+        },
+        {
+         "year": 6,
+         "growth": 0.08611111111111111,
+         "nopat": 17208012878.402462,
+         "reinvestment_rate": 0.34444444444444444,
+         "free_cash_flow": 11280808442.50828,
+         "present_value": 6367722275.726478
+        },
+        {
+         "year": 7,
+         "growth": 0.07333333333333333,
+         "nopat": 18469933822.81864,
+         "reinvestment_rate": 0.29333333333333333,
+         "free_cash_flow": 13052086568.125174,
+         "present_value": 6697784182.283393
+        },
+        {
+         "year": 8,
+         "growth": 0.06055555555555556,
+         "nopat": 19588390926.533768,
+         "reinvestment_rate": 0.24222222222222223,
+         "free_cash_flow": 14843647346.551144,
+         "present_value": 6924671036.396729
+        },
+        {
+         "year": 9,
+         "growth": 0.04777777777777778,
+         "nopat": 20524280715.245934,
+         "reinvestment_rate": 0.19111111111111112,
+         "free_cash_flow": 16601862622.998932,
+         "present_value": 7040810398.961017
+        },
+        {
+         "year": 10,
+         "growth": 0.035,
+         "nopat": 21242630540.27954,
+         "reinvestment_rate": 0.14,
+         "free_cash_flow": 18268662264.640404,
+         "present_value": 7043360142.986614
+        }
+       ],
+       "pv_of_forecast": 58351881380.92522,
+       "pv_of_terminal": 100736429952.01785,
+       "terminal_share": 0.6332107563904851,
+       "enterprise_value": 159088311332.94305,
+       "equity_value": 210099311332.94305,
+       "value_per_share": 15.472369933937923,
+       "upside_vs_market": -0.8748392688062312,
+       "first_year_reinvestment_rate": 0.6,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다."
+      },
+      {
+       "scenario": "낙관",
+       "assumptions": {
+        "growth": 0.25,
+        "fade_to": 0.045,
+        "incremental_roic": 0.35,
+        "discount": 0.09,
+        "terminal_growth": 0.03
+       },
+       "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 25%, 증분 ROIC 35%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+       "growth_capped": true,
+       "incremental_roic_capped": true,
+       "projection": [
+        {
+         "year": 1,
+         "growth": 0.25,
+         "nopat": 11024450000.0,
+         "reinvestment_rate": 0.7142857142857143,
+         "free_cash_flow": 3149842857.142857,
+         "present_value": 2889764089.121887
+        },
+        {
+         "year": 2,
+         "growth": 0.22722222222222221,
+         "nopat": 13529450027.777779,
+         "reinvestment_rate": 0.6492063492063492,
+         "free_cash_flow": 4746045168.474427,
+         "present_value": 3994651265.4443455
+        },
+        {
+         "year": 3,
+         "growth": 0.20444444444444443,
+         "nopat": 16295470922.34568,
+         "reinvestment_rate": 0.5841269841269842,
+         "free_cash_flow": 6776846637.546933,
+         "present_value": 5232969020.421112
+        },
+        {
+         "year": 4,
+         "growth": 0.18166666666666667,
+         "nopat": 19255814806.57181,
+         "reinvestment_rate": 0.5190476190476191,
+         "free_cash_flow": 9261129978.398823,
+         "present_value": 6560817959.649404
+        },
+        {
+         "year": 5,
+         "growth": 0.15888888888888889,
+         "nopat": 22315349825.838223,
+         "reinvestment_rate": 0.45396825396825397,
+         "free_cash_flow": 12184889428.711666,
+         "present_value": 7919342078.294625
+        },
+        {
+         "year": 6,
+         "growth": 0.1361111111111111,
+         "nopat": 25352716885.4662,
+         "reinvestment_rate": 0.3888888888888889,
+         "free_cash_flow": 15493326985.56268,
+         "present_value": 9238164666.147078
+        },
+        {
+         "year": 7,
+         "growth": 0.11333333333333334,
+         "nopat": 28226024799.15237,
+         "reinvestment_rate": 0.3238095238095239,
+         "free_cash_flow": 19086169149.90303,
+         "present_value": 10440788127.869022
+        },
+        {
+         "year": 8,
+         "growth": 0.09055555555555556,
+         "nopat": 30782048155.9645,
+         "reinvestment_rate": 0.25873015873015875,
+         "free_cash_flow": 22817803950.532417,
+         "present_value": 11451486378.956293
+        },
+        {
+         "year": 9,
+         "growth": 0.06777777777777777,
+         "nopat": 32868386975.424316,
+         "reinvestment_rate": 0.19365079365079363,
+         "free_cash_flow": 26503397751.611988,
+         "present_value": 12202900576.41203
+        },
+        {
+         "year": 10,
+         "growth": 0.044999999999999984,
+         "nopat": 34347464389.31841,
+         "reinvestment_rate": 0.12857142857142853,
+         "free_cash_flow": 29931361824.97747,
+         "present_value": 12643330699.975552
+        }
+       ],
+       "pv_of_forecast": 82574214862.29135,
+       "pv_of_terminal": 227718131077.1553,
+       "terminal_share": 0.7338825274201071,
+       "enterprise_value": 310292345939.44666,
+       "equity_value": 361303345939.44666,
+       "value_per_share": 26.607507617604142,
+       "upside_vs_market": -0.7847637354276,
+       "first_year_reinvestment_rate": 0.7142857142857143,
+       "implied_growth_at_price": null,
+       "implied_growth_note": "초기 성장률을 증분 ROIC 35%까지 올려도 현재 시가총액에 닿지 않습니다."
+      }
+     ]
+    }
+   ],
+   "nopat_nine_months_annualised": 742600000.0,
+   "nopat_q3_annualised": 8819560000.0,
+   "nopat_first_half": -1647940000.0,
+   "nopat_q3": 2204890000.0,
+   "segments_9m": {
+    "Space": {
+     "revenue": {
+      "q3_2026": 1767000000.0,
+      "q3_2025": 1666000000.0,
+      "9m_2026": 3348000000.0,
+      "9m_2025": 3277000000.0
+     },
+     "operating_income": {
+      "q3_2026": -7000000.0,
+      "q3_2025": 259000000.0,
+      "9m_2026": -1211000000.0,
+      "9m_2025": -181000000.0
+     },
+     "capex": {
+      "q3_2026": 1606000000.0,
+      "q3_2025": 1113000000.0,
+      "9m_2026": 3832000000.0,
+      "9m_2025": 2818000000.0
+     },
+     "depreciation_amortisation": {
+      "q3_2026": 185000000.0,
+      "q3_2025": 264000000.0,
+      "9m_2026": 509000000.0,
+      "9m_2025": 572000000.0
+     }
+    },
+    "Connectivity": {
+     "revenue": {
+      "q3_2026": 5248000000.0,
+      "q3_2025": 3097000000.0,
+      "9m_2026": 12796000000.0,
+      "9m_2025": 8159000000.0
+     },
+     "operating_income": {
+      "q3_2026": 2367000000.0,
+      "q3_2025": 1190000000.0,
+      "9m_2026": 5211000000.0,
+      "9m_2025": 3147000000.0
+     },
+     "capex": {
+      "q3_2026": 1543000000.0,
+      "q3_2025": 1007000000.0,
+      "9m_2026": 4242000000.0,
+      "9m_2025": 2951000000.0
+     },
+     "depreciation_amortisation": {
+      "q3_2026": 986000000.0,
+      "q3_2025": 628000000.0,
+      "9m_2026": 2574000000.0,
+      "9m_2025": 1706000000.0
+     }
+    },
+    "SI": {
+     "revenue": {
+      "q3_2026": 7560000000.0,
+      "q3_2025": 813000000.0,
+      "9m_2026": 10939000000.0,
+      "9m_2025": 2278000000.0
+     },
+     "operating_income": {
+      "q3_2026": 431000000.0,
+      "q3_2025": -1722000000.0,
+      "9m_2026": -3295000000.0,
+      "9m_2025": -4182000000.0
+     },
+     "capex": {
+      "q3_2026": 16444000000.0,
+      "q3_2025": 4760000000.0,
+      "9m_2026": 39995000000.0,
+      "9m_2025": 8077000000.0
+     },
+     "depreciation_amortisation": {
+      "q3_2026": 2473000000.0,
+      "q3_2025": 922000000.0,
+      "9m_2026": 5851000000.0,
+      "9m_2025": 2506000000.0
+     }
+    }
+   },
+   "revenue": {
+    "nine_months_2026": 27083000000.0,
+    "nine_months_annualised": 36110666666.666664,
+    "q3_2026": 14575000000.0,
+    "q3_annualised": 58300000000.0,
+    "market_cap_to_q3_annualised_revenue": 28.79307062257011,
+    "note": "사업부별 공시 매출의 합. 연결 매출과 같습니다."
+   },
+   "quarterly": {
+    "first_half_2026": {
+     "revenue": 12508000000.0,
+     "operating_income": -2086000000.0,
+     "capex": 28476000000.0
+    },
+    "q3_2026": {
+     "revenue": 14575000000.0,
+     "operating_income": 2791000000.0,
+     "capex": 19593000000.0
+    },
+    "nine_months_2026": {
+     "revenue": 27083000000.0,
+     "operating_income": 705000000.0,
+     "capex": 48069000000.0
+    },
+    "nopat_q3": 2204890000.0,
+    "nopat_first_half": -1647940000.0,
+    "q3_run_rate_views": {
+     "reported": {
+      "opening": 66579000000.0,
+      "closing": 125757000000.0,
+      "average": 96168000000.0,
+      "roic": 0.09170992429914317,
+      "spread_vs_wacc": -0.008290075700856839
+     },
+     "operating": {
+      "opening": 53616000000.0,
+      "closing": 70980000000.0,
+      "average": 62298000000.0,
+      "roic": 0.14157051590741276,
+      "spread_vs_wacc": 0.04157051590741276
+     },
+     "in_service": {
+      "opening": 41062000000.0,
+      "closing": 47235000000.0,
+      "average": 44148500000.0,
+      "roic": 0.1997703206224447,
+      "spread_vs_wacc": 0.0997703206224447
+     }
+    },
+    "run_rate_note": "분자는 3분기 NOPAT × 4. 분모는 6월말·9월말 투하자본의 평균. 한 분기를 연율화한 값이므로 9개월 연율화와 반대 방향으로 거칩니다."
+   },
+   "scenario_inputs": [
+    {
+     "name": "보수",
+     "growth": 0.1,
+     "incremental_roic": 0.15,
+     "fade_to": 0.025,
+     "discount": 0.11,
+     "terminal_growth": 0.02,
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 10%, 증분 ROIC 15%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "growth_capped": true,
+     "incremental_roic_capped": true
+    },
+    {
+     "name": "중립",
+     "growth": 0.15,
+     "incremental_roic": 0.25,
+     "fade_to": 0.035,
+     "discount": 0.1,
+     "terminal_growth": 0.025,
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 15%, 증분 ROIC 25%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "growth_capped": true,
+     "incremental_roic_capped": true
+    },
+    {
+     "name": "낙관",
+     "growth": 0.25,
+     "incremental_roic": 0.35,
+     "fade_to": 0.045,
+     "discount": 0.09,
+     "terminal_growth": 0.03,
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 25%, 증분 ROIC 35%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "growth_capped": true,
+     "incremental_roic_capped": true
+    }
+   ],
+   "reverse": [
+    {
+     "scenario": "보수",
+     "assumptions": {
+      "growth": 0.1,
+      "fade_to": 0.025,
+      "incremental_roic": 0.15,
+      "discount": 0.11,
+      "terminal_growth": 0.02
+     },
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 10%, 증분 ROIC 15%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "required_nopat_at_price": 146903248368.5878,
+     "required_nopat_per_share": 10.818414343367538,
+     "vs_q3_annualised": 16.656528031850545,
+     "vs_nine_months_annualised": 197.8228499442335,
+     "as_share_of_q3_annualised_revenue": 2.519781275619002
+    },
+    {
+     "scenario": "중립",
+     "assumptions": {
+      "growth": 0.15,
+      "fade_to": 0.035,
+      "incremental_roic": 0.25,
+      "discount": 0.1,
+      "terminal_growth": 0.025
+     },
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 15%, 증분 ROIC 25%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "required_nopat_at_price": 90232502798.39473,
+     "required_nopat_per_share": 6.645003520023177,
+     "vs_q3_annualised": 10.230952881821171,
+     "vs_nine_months_annualised": 121.50889146026762,
+     "as_share_of_q3_annualised_revenue": 1.5477273207271822
+    },
+    {
+     "scenario": "낙관",
+     "assumptions": {
+      "growth": 0.25,
+      "fade_to": 0.045,
+      "incremental_roic": 0.35,
+      "discount": 0.09,
+      "terminal_growth": 0.03
+     },
+     "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 25%, 증분 ROIC 35%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
+     "required_nopat_at_price": 46262618738.08205,
+     "required_nopat_per_share": 3.406923833719865,
+     "vs_q3_annualised": 5.245456546367625,
+     "vs_nine_months_annualised": 62.29816689749804,
+     "as_share_of_q3_annualised_revenue": 0.7935269080288516
+    }
+   ],
+   "model": "base_not_established",
+   "why_not": "기준이익이 성립하지 않습니다. 9개월 연율화 NOPAT 은 +$0.7십억으로 양수이지만, 상반기 −$1.6십억과 3분기 +$2.2십억이 상쇄된 결과입니다 — 흑자 전환 첫 분기에 있는 회사이고, 어느 분기를 기준으로 잡느냐가 가치를 수십 배 바꿉니다. 10-K 가 없어 10년 ROIC 기록도 없습니다. 그래서 적정주가를 한 값으로 내지 않고, 기준이익 후보별 값과 현재 가격이 요구하는 정상상태 이익을 나란히 냅니다."
+  }
+ ]
+}

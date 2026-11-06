@@ -14,4 +14,5 @@ work/*.formulas-only
 # 남지만(히스토리 재작성은 파괴적이라 하지 않았습니다) 더 늘지는 않습니다.
 work/roic/cache/
 work/goog/cache/
+work/fv/cache/
 work/spx/jun2026_balance.json

@@ -1,5 +1,5 @@
 {
- "fetched_utc": "2026-10-29T13:47:50.352926+00:00",
+ "fetched_utc": "2026-11-06T04:02:07.598648+00:00",
  "prices": {
   "TSLA": {
    "ticker": "TSLA",
@@ -15,15 +15,15 @@
   },
   "SPCX": {
    "ticker": "SPCX",
-   "price": 141.7122039794922,
+   "price": 123.62000274658203,
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-10-29T13:30:00+00:00",
-   "regular_market_price": 141.712,
+   "as_of_utc": "2026-11-05T14:30:00+00:00",
+   "regular_market_price": 123.62,
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T13:38:32.633150+00:00"
+   "fetched_utc": "2026-11-06T04:02:07.597948+00:00"
   },
   "GOOGL": {
    "ticker": "GOOGL",
@@ -39,15 +39,39 @@
   },
   "GOOG": {
    "ticker": "GOOG",
-   "price": 281.659912109375,
+   "price": 281.739990234375,
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-10-29T13:30:00+00:00",
-   "regular_market_price": 281.66,
+   "as_of_utc": "2026-11-05T14:30:00+00:00",
+   "regular_market_price": 281.74,
    "fifty_two_week_high": 404.47,
    "fifty_two_week_low": 271.41,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T13:47:50.136922+00:00"
+   "fetched_utc": "2026-11-06T04:02:07.253411+00:00"
+  },
+  "MSFT": {
+   "ticker": "MSFT",
+   "price": 535.9299926757812,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-11-05T14:30:00+00:00",
+   "regular_market_price": 535.93,
+   "fifty_two_week_high": 559.15,
+   "fifty_two_week_low": 349.2,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d",
+   "fetched_utc": "2026-11-06T04:02:06.929537+00:00"
+  },
+  "NVDA": {
+   "ticker": "NVDA",
+   "price": 181.60000610351562,
+   "currency": "USD",
+   "exchange": "NasdaqGS",
+   "as_of_utc": "2026-11-05T14:30:00+00:00",
+   "regular_market_price": 181.6,
+   "fifty_two_week_high": 243.37,
+   "fifty_two_week_low": 164.27,
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d",
+   "fetched_utc": "2026-11-06T04:02:07.431798+00:00"
   }
  }
 }
