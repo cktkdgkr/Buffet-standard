@@ -203,6 +203,172 @@ def blocks():
               "판단을 재현하므로, 규칙으로 바꾼 것이 결론을 움직이지 "
               "않았습니다."})
 
+    # ------------------------------------------- 풀어 쓴 계산 (세 절)
+    ex = [c for c in APPLIED if c["ticker"] == "GOOG"][0]
+    exv = val(ex, "중립")
+    exa = exv["assumptions"]
+
+    b.append({"t": "h3", "x": "풀어 쓴 계산 ① — 성장률은 어디서 왔나"})
+    b.append({"t": "p", "x":
+              "성장률은 제가 고른 숫자가 아니라 **세 단계를 거쳐 나온 "
+              "값**입니다."})
+    b.append({"t": "bullets", "x": [
+        "**1단계 — 각 기업의 지난 10년을 잰다.** 영업이익이 10년 동안 "
+        "연평균 몇 %로 늘었는지. 이건 가정이 아니라 공시에서 나온 "
+        "*측정값*입니다.",
+        "**2단계 — 시나리오별로 나눈다.** 낙관 = 과거 속도가 그대로 "
+        "이어진다(÷1). 중립 = 절반으로 꺾인다(÷2). 보수 = 3분의 1로 "
+        "꺾인다(÷3).",
+        "**3단계 — 상한을 씌운다.** 과거가 아무리 빨랐어도 낙관 25%, 중립 "
+        "15%, 보수 10%를 넘기지 않습니다. 엔비디아의 67.6%를 그대로 쓰면 "
+        "어떤 가격도 정당화됩니다.",
+    ]})
+    rows = []
+    for c in APPLIED:
+        row = [name(c), pct(c["record"]["operating_income_cagr"])]
+        for s in ORDER:
+            si = [x for x in c["scenario_inputs"] if x["name"] == s][0]
+            row.append(f"{pct(si['growth_uncapped'])}→{pct(si['growth'])}(상한)"
+                       if si["growth_capped"] else pct(si["growth"]))
+        rows.append(row)
+    b.append({"t": "table", "headers":
+              ["기업", "10년 영업이익 CAGR (측정값)", "보수 = ÷3",
+               "중립 = ÷2", "낙관 = ÷1"], "rows": rows})
+    b.append({"t": "note", "x":
+              "엔비디아는 세 시나리오 모두 상한에 걸립니다 — 그래서 엔비디아 "
+              "결론이 가장 가정 의존적입니다."})
+    b.append({"t": "p", "x":
+              f"**성장률은 한 숫자가 아니라 10년에 걸친 경로입니다.** 어떤 "
+              f"기업도 영원히 20%로 성장하지 못합니다. 그래서 1년차에 위 "
+              f"성장률로 시작해 10년에 걸쳐 직선으로 낮춥니다(감쇠 목표: "
+              f"보수 2.5% / 중립 3.5% / 낙관 4.5%). 알파벳 중립은 1년차 "
+              f"{pct(exa['growth'], 2)}에서 10년차 "
+              f"{pct(exa['fade_to'], 2)}까지 내려갑니다."})
+
+    b.append({"t": "h3", "x": "풀어 쓴 계산 ② — 증분 ROIC은 왜 필요한가"})
+    b.append({"t": "p", "x":
+              "**성장에는 돈이 듭니다.** 매출을 늘리려면 설비를 더 지어야 "
+              "하고, 그 돈은 주주에게 못 갑니다. 얼마가 드는지는 \"새로 넣은 "
+              "1달러가 얼마를 버는가\", 즉 증분 ROIC이 정합니다."})
+    rr = exa["growth"] / exa["incremental_roic"]
+    b.append({"t": "formula", "x":
+              "재투자율 = 성장률 ÷ 증분ROIC\n"
+              "주주 몫 현금 = NOPAT × (1 − 재투자율)\n\n"
+              f"예) 성장 {pct(exa['growth'])}, 증분ROIC "
+              f"{pct(exa['incremental_roic'])} → 재투자율 {pct(rr)} "
+              f"→ 주주 몫은 NOPAT의 {pct(1 - rr)}"})
+    b.append({"t": "p", "x":
+              "증분 ROIC이 낮을수록 같은 성장에 더 많은 돈이 들고, 주주 "
+              "몫은 줄어듭니다. 이 값도 성장률과 같은 방식으로 각 기업의 "
+              "**자기 ROIC 기록**에서 뽑았습니다."})
+    rows = []
+    for c in APPLIED:
+        s0 = c["record"]["summary"]
+        row = [name(c), pct(s0["roic_min"]), pct(s0["roic_median"])]
+        for s in ORDER:
+            si = [x for x in c["scenario_inputs"] if x["name"] == s][0]
+            row.append(
+                f"{pct(si['incremental_roic_uncapped'])}→"
+                f"{pct(si['incremental_roic'])}(상한)"
+                if si["incremental_roic_capped"]
+                else pct(si["incremental_roic"]))
+        rows.append(row)
+    b.append({"t": "table", "headers":
+              ["기업", "10년 최저", "10년 중위", "보수 = 최저",
+               "중립 = 중위÷2", "낙관 = 중위"], "rows": rows})
+    b.append({"t": "note", "x":
+              "보수는 세 기업 모두 상한 15%에 걸립니다 — 즉 보수 시나리오는 "
+              "\"지금의 비범한 수익률이 평범해진다면\"을 묻는 스트레스 "
+              "테스트입니다. 예측이 아닙니다."})
+
+    b.append({"t": "h3", "x": "풀어 쓴 계산 ③ — 주당 가치는 어떻게 나왔나"})
+    b.append({"t": "p", "x":
+              f"{name(ex)}의 **중립 시나리오**를 처음부터 끝까지 따라가 "
+              f"보겠습니다. 다른 기업·시나리오도 같은 계산을 숫자만 바꿔 "
+              f"한 것입니다."})
+    b.append({"t": "table", "headers": ["이 시나리오의 가정", "값", "어디서 왔나"],
+              "rows": [
+        ["출발점 — TTM 세후영업이익(NOPAT)", f"{bn(ex['ttm']['nopat'])}십억",
+         f"최근 4개 분기 영업이익 "
+         f"{bn(ex['ttm']['operating_income']['value'])}십억 × (1 − 실효세율 "
+         f"{pct(ex['ttm']['effective_tax_rate'])})"],
+        ["1년차 성장률", pct(exa["growth"]),
+         f"10년 CAGR {pct(ex['record']['operating_income_cagr'])} ÷ 2"],
+        ["10년차 성장률 (감쇠 목표)", pct(exa["fade_to"]),
+         "중립 시나리오의 시장 가정"],
+        ["증분 ROIC", pct(exa["incremental_roic"]),
+         f"10년 중위 ROIC "
+         f"{pct(ex['record']['summary']['roic_median'])} ÷ 2"],
+        ["할인율 (요구수익률)", pct(exa["discount"], 0),
+         "중립 시나리오의 시장 가정 — 내가 요구하는 연 수익률"],
+        ["11년차 이후 영구 성장률", pct(exa["terminal_growth"]),
+         "중립 시나리오의 시장 가정"],
+    ]})
+    b.append({"t": "p", "x":
+              "**1~2단계 — 10년을 한 해씩 투영하고, 각 해의 현금을 오늘 "
+              "값으로 당깁니다.**"})
+    b.append({"t": "table", "headers":
+              ["연차", "성장률", "NOPAT", "재투자율", "주주 몫 현금",
+               "현재가치"],
+              "rows": [[f"{p['year']}년차", pct(p["growth"], 2),
+                        bn(p["nopat"]), pct(p["reinvestment_rate"]),
+                        bn(p["free_cash_flow"]), bn(p["present_value"])]
+                       for p in exv["projection"]]
+              + [["**10년 현재가치 합계**", "", "", "", "",
+                  bn(exv["pv_of_forecast"])]]})
+    b.append({"t": "note", "x":
+              f"단위 십억 달러. NOPAT은 전년 × (1+성장률), 주주 몫 현금은 "
+              f"NOPAT × (1−재투자율), 현재가치는 그 현금 ÷ "
+              f"(1+{pct(exa['discount'], 0)})의 연차 제곱입니다. 재투자율이 "
+              f"{pct(exv['projection'][0]['reinvestment_rate'])}에서 "
+              f"{pct(exv['projection'][-1]['reinvestment_rate'])}로 "
+              f"내려가는 것은 성장률이 낮아지면 성장에 드는 돈도 줄기 "
+              f"때문입니다."})
+    last_nopat = exv["projection"][-1]["nopat"]
+    disc10 = 1 / (1 + exa["discount"]) ** 10
+    term_undisc = exv["pv_of_terminal"] / disc10
+    b.append({"t": "p", "x":
+              "**3~5단계 — 11년차 이후를 한 덩어리로 묶고, 순현금을 더한 뒤 "
+              "주식수로 나눕니다.**"})
+    b.append({"t": "table", "headers": ["단계", "계산", "값"], "rows": [
+        ["① 10년치 현재가치 합계", "위 표의 마지막 줄",
+         f"{bn(exv['pv_of_forecast'])}십억"],
+        ["② 11년차 이후 가치 (터미널)",
+         f"10년차 NOPAT {bn(last_nopat)} × (1+{pct(exa['terminal_growth'])}) "
+         f"× (1 − {pct(exa['terminal_growth'])}÷"
+         f"{pct(exa['incremental_roic'])}) ÷ ({pct(exa['discount'], 0)} − "
+         f"{pct(exa['terminal_growth'])})", f"{bn(term_undisc)}십억"],
+        ["③ 터미널을 현재가치로",
+         f"② ÷ (1+{pct(exa['discount'], 0)})의 10제곱",
+         f"{bn(exv['pv_of_terminal'])}십억"],
+        ["④ 기업가치", "① + ③", f"{bn(exv['enterprise_value'])}십억"],
+        ["⑤ 자기자본가치",
+         f"④ + 순현금 {bn(ex['balance_sheet']['net_cash'])}십억",
+         f"{bn(exv['equity_value'])}십억"],
+        ["⑥ 주당 가치",
+         f"⑤ ÷ 주식수 "
+         f"{ex['shares_outstanding']['value'] / BN:,.3f}십억 주",
+         f"**{usd(exv['value_per_share'], 2)}**"],
+    ]})
+    b.append({"t": "p", "x":
+              f"현재가는 {usd(ex['price'], 2)}입니다. 즉 중립 가정이 맞다면 "
+              f"현재가는 가치의 {exv['price_to_value']:.2f}배 — "
+              f"{sg(exv['upside_vs_market'], 0)}입니다. 그리고 "
+              f"**③이 전체의 {pct(exv['terminal_share'], 0)}를 "
+              f"차지합니다** — 가치의 대부분이 11년차 이후에서 나옵니다. "
+              f"이것이 이 모형의 가장 큰 약점이고, 그래서 주당 가치를 "
+              f"\"정답\"이 아니라 \"이 가정이 맞다면 이 값\"으로 읽어야 "
+              f"합니다."})
+    b.append({"t": "p", "x":
+              f"**왜 \"할인\"하는가.** 내년의 1달러는 오늘의 1달러보다 "
+              f"못합니다. 오늘 1달러를 다른 곳에 넣어 "
+              f"{pct(exa['discount'], 0)}를 벌 수 있다면, 내년의 1달러는 "
+              f"오늘 기준으로 {1 / (1 + exa['discount']):.3f}달러의 "
+              f"값입니다. 10년 뒤의 1달러는 {disc10:.3f}달러입니다. "
+              f"**할인율이 바로 \"내가 요구하는 연 수익률\"**이고, 그래서 "
+              f"할인율을 9%로 두면 같은 사업이 더 비싸 보이고 11%로 두면 더 "
+              f"싸 보입니다 — 시나리오별로 할인율을 다르게 둔 이유입니다."})
+
     b.append({"t": "h3", "x": "한눈에 보기 — 사업의 질"})
     b.append({"t": "table", "headers":
               ["기업", "TTM 영업이익", "영업이익률", "10년 CAGR",

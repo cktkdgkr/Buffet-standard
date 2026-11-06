@@ -191,6 +191,74 @@ def check_md(text, d, c):
         c.eq(f"MD {co['ticker']} 순위 중립 대비", r[2],
              sg(val(co, "중립")["upside_vs_market"], 0))
 
+    # ---- 풀어 쓴 계산 절 -------------------------------------------------
+    ex = [c for c in applied if c["ticker"] == "GOOG"][0]
+    exv = [v for v in ex["valuations"] if v["scenario"] == "중립"][0]
+    exa = exv["assumptions"]
+
+    for co in applied:
+        r = md_row(text, "10년 영업이익 CAGR (측정값)", nm(co))
+        c.eq(f"MD 풀이① {co['ticker']} 10년 CAGR", r[1],
+             pct(co["record"]["operating_income_cagr"]))
+        for i, s in enumerate(ORDER, start=2):
+            si = [x for x in co["scenario_inputs"] if x["name"] == s][0]
+            want = (f"{pct(si['growth_uncapped'])}→{pct(si['growth'])}(상한)"
+                    if si["growth_capped"] else pct(si["growth"]))
+            c.eq(f"MD 풀이① {co['ticker']} {s} 성장률", r[i], want)
+        r = md_row(text, "10년 중위", nm(co))
+        c.eq(f"MD 풀이② {co['ticker']} 10년 최저 ROIC", r[1],
+             pct(co["record"]["summary"]["roic_min"]))
+        c.eq(f"MD 풀이② {co['ticker']} 10년 중위 ROIC", r[2],
+             pct(co["record"]["summary"]["roic_median"]))
+        for i, s in enumerate(ORDER, start=3):
+            si = [x for x in co["scenario_inputs"] if x["name"] == s][0]
+            want = (f"{pct(si['incremental_roic_uncapped'])}→"
+                    f"{pct(si['incremental_roic'])}(상한)"
+                    if si["incremental_roic_capped"]
+                    else pct(si["incremental_roic"]))
+            c.eq(f"MD 풀이② {co['ticker']} {s} 증분ROIC", r[i], want)
+
+    for p_ in exv["projection"]:
+        r = md_row(text, "주주 몫 현금", f"{p_['year']}년차")
+        c.eq(f"MD 풀이③ {p_['year']}년차 성장률", r[1],
+             pct(p_["growth"], 2))
+        c.eq(f"MD 풀이③ {p_['year']}년차 NOPAT", r[2], bn(p_["nopat"]))
+        c.eq(f"MD 풀이③ {p_['year']}년차 재투자율", r[3],
+             pct(p_["reinvestment_rate"]))
+        c.eq(f"MD 풀이③ {p_['year']}년차 주주몫현금", r[4],
+             bn(p_["free_cash_flow"]))
+        c.eq(f"MD 풀이③ {p_['year']}년차 현재가치", r[5],
+             bn(p_["present_value"]))
+    r = md_row(text, "주주 몫 현금", "10년 현재가치 합계")
+    c.eq("MD 풀이③ 10년 현재가치 합계", r[5], bn(exv["pv_of_forecast"]))
+
+    for lab, want in (
+            ("출발점 — TTM 세후영업이익(NOPAT)",
+             f"{bn(ex['ttm']['nopat'])}십억"),
+            ("1년차 성장률", pct(exa["growth"])),
+            ("10년차 성장률 (감쇠 목표)", pct(exa["fade_to"])),
+            ("증분 ROIC", pct(exa["incremental_roic"])),
+            ("할인율 (요구수익률)", pct(exa["discount"], 0)),
+            ("11년차 이후 영구 성장률", pct(exa["terminal_growth"]))):
+        r = md_row(text, "어디서 왔나", lab)
+        c.eq(f"MD 풀이③ 가정 {lab}", r[1], want)
+
+    for lab, want in (
+            ("① 10년치 현재가치 합계", f"{bn(exv['pv_of_forecast'])}십억"),
+            ("③ 터미널을 현재가치로", f"{bn(exv['pv_of_terminal'])}십억"),
+            ("④ 기업가치", f"{bn(exv['enterprise_value'])}십억"),
+            ("⑤ 자기자본가치", f"{bn(exv['equity_value'])}십억"),
+            ("⑥ 주당 가치", usd(exv["value_per_share"], 2))):
+        r = md_row(text, "단계", lab, header_exact=True)
+        # 마크다운의 ⑥ 행은 강조(**)가 붙습니다 — 강조를 벗겨 비교합니다.
+        c.eq(f"MD 풀이③ 단계 {lab}", r[2].strip("*"), want)
+    c.true("MD 풀이③ 터미널 비중 서술",
+           f"{pct(exv['terminal_share'], 0)}를 차지합니다" in text)
+    c.true("MD 풀이① 3단계 설명 있음",
+           "1단계" in text and "2단계" in text and "3단계" in text)
+    c.true("MD 풀이② 재투자율 식 있음", "재투자율 = 성장률 ÷ 증분ROIC" in text)
+    c.true("MD 풀이③ 할인 설명 있음", "내가 요구하는 연 수익률" in text)
+
     # 스페이스X
     for b in sx["earnings_bases"]:
         r = md_row(text, "연율화 NOPAT", b["name"])
@@ -405,6 +473,22 @@ MUTATIONS_MD = [
     ("MD ROIC 정의 제거",
      lambda t: t.replace("NOPAT = 보고된 영업이익 × (1 − 실효세율)", "NOPAT")),
     ("MD 자료 기준일 제거", lambda t: t.replace("2026-11-06", "")),
+    ("MD 풀이① 10년 CAGR 훼손", lambda t: t.replace("| 20.9% |", "| 30.9% |")),
+    ("MD 풀이① 상한 표기 제거",
+     lambda t: t.replace("| 67.6%→25.0%(상한) |", "| 25.0% |")),
+    ("MD 풀이② 10년 최저 ROIC 훼손",
+     lambda t: t.replace("| 22.2% | 113.2% |", "| 32.2% | 113.2% |")),
+    ("MD 풀이③ 5년차 NOPAT 훼손", lambda t: t.replace("| 197.0 |",
+                                                 "| 297.0 |")),
+    ("MD 풀이③ 1년차 재투자율 훼손", lambda t: t.replace("| 55.2% |",
+                                                  "| 45.2% |")),
+    ("MD 풀이③ 10년 합계 훼손", lambda t: t.replace("| 729.5 |", "| 629.5 |")),
+    ("MD 풀이③ 주당가치 훼손", lambda t: t.replace("**$164.31**",
+                                             "**$194.31**")),
+    ("MD 풀이③ 터미널 비중 서술 훼손", lambda t: t.replace("61%를 차지합니다",
+                                                  "41%를 차지합니다")),
+    ("MD 풀이② 재투자율 식 제거",
+     lambda t: t.replace("재투자율 = 성장률 ÷ 증분ROIC", "재투자율 계산")),
 ]
 
 
