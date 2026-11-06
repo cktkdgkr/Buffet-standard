@@ -258,8 +258,10 @@ def build(d):
     ttm = [p for p in rel["cash_flow"] if p["period"].startswith("TTM")][0]
     peak = max(rec["years"], key=lambda y: y["roic"] or 0)
     last = max(rec["years"], key=lambda y: y["fiscal_year"])
-    drop = next((m for m in ph["big_moves"]
-                 if m["date"] == ph["last"]["date"]), None)
+    # The engine decides which move the report is about (the reaction to the
+    # earnings release); re-deriving it here as "the move on the last price
+    # date" made the page go blank once the fall was no longer the last day.
+    drop = ph.get("event_drop")
     h = rel["headline"]
     o = []
     w = o.append

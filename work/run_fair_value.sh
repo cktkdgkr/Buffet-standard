@@ -24,15 +24,9 @@ echo "== 4. 산출값 검증 (항등식·앵커·규칙재현 + 변이) =="
 python3 verify_fair_value.py --mutate
 
 echo
-echo "== 5. 보고서 (마크다운·워드·엑셀·HTML) =="
-python3 export_fair_value.py
-python3 export_fair_value_xlsx.py
+echo "== 5. 보고서 (HTML 전용) =="
 python3 export_fair_value_html.py --verify --mutate
 
 echo
-echo "== 6. 산출물 검증 (마크다운·엑셀 되읽기 + 변이) =="
-python3 verify_fair_value_exports.py --mutate
-
-echo
 echo "== 완료 =="
-ls -la 4개기업_적정주가_판정.* fv/fair_value_report.html
+ls -la fv/fair_value_report.html

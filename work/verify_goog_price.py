@@ -649,9 +649,23 @@ def verify(d, c):
     c.eq("교차확인 분석 주가 = 시세 종가", a["price"], ph["last"]["close"], rel=0)
     c.eq("항등식 고점대비 하락률", ph["from_high"],
          ph["last"]["close"] / ph["high"]["close"] - 1, rel=1e-9)
-    c.true("트립와이어 급락일이 수집일",
-           ph["big_moves"] and ph["big_moves"][-1]["date"] == ph["last"]["date"],
-           str(ph["big_moves"][-1] if ph["big_moves"] else None))
+    # 보고서가 다루는 급락일은 "수집일"이 아니라 "실적 발표에 대한 반응"입니다.
+    # 수집일로 두면 발표 다음 주에 돌리는 것만으로 검사가 실패하고, 페이지의
+    # 급락 카드도 함께 비어 버립니다.
+    ev = ph.get("event_drop")
+    c.true("트립와이어 발표 반응일 존재", bool(ev), str(ev))
+    if ev:
+        c.true("트립와이어 발표 반응일이 big_moves 안",
+               any(m["date"] == ev["date"] and m["change"] == ev["change"]
+                   for m in ph["big_moves"]), str(ev))
+        c.true("트립와이어 발표 반응일 ≥ 발표문 제출일",
+               ev["date"] >= d["filings"]["8-K"]["filed"],
+               f"{ev['date']} vs {d['filings']['8-K']['filed']}")
+        c.true("트립와이어 발표 반응일 ≤ 최종 시세일",
+               ev["date"] <= ph["last"]["date"],
+               f"{ev['date']} vs {ph['last']['date']}")
+        c.eq("항등식 발표 반응 변동률", ev["change"],
+             ev["to"] / ev["from"] - 1, rel=1e-9)
     for mv in ph["big_moves"]:
         c.eq(f"항등식 변동률 {mv['date']}", mv["change"],
              mv["to"] / mv["from"] - 1, rel=1e-9)

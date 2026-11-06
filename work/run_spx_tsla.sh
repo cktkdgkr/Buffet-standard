@@ -18,22 +18,8 @@ python3 analyse_spx_tsla.py
 echo; echo "== 검증 (항등식·합계·앵커·변이)"
 python3 verify_spx_tsla.py --mutate
 
-echo; echo "== 마크다운·워드 작성"
-python3 export_spx_tsla.py
-
-echo; echo "== 엑셀 작성"
-python3 export_spx_tsla_xlsx.py
-
-echo; echo "== 엑셀에 계산값 심기"
-python3 embed_xlsx_values.py 스페이스X_테슬라_기업분석.xlsx
-
-echo; echo "== HTML 작성"
-python3 export_spx_tsla_html.py
-
-echo; echo "== HTML 수치 검증"
+echo; echo "== 보고서 (HTML 전용)"
 python3 export_spx_tsla_html.py --verify --mutate
 
-echo; echo "== 마크다운 수치 검증"
-python3 export_spx_tsla_xlsx.py --verify-md --mutate
-
 echo; echo "완료"
+ls -la spx/spx_tsla_report.html

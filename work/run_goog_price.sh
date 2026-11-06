@@ -16,15 +16,9 @@ echo "== 2. 산출값 검증 (항등식·앵커·재산출 + 변이 검정) =="
 python3 verify_goog_price.py --mutate
 
 echo
-echo "== 3. 보고서 (마크다운·워드·엑셀·HTML) =="
-python3 export_goog_price.py
-python3 export_goog_price_xlsx.py
+echo "== 3. 보고서 (HTML 전용) =="
 python3 export_goog_price_html.py --verify --mutate
 
 echo
-echo "== 4. 산출물 검증 (마크다운·엑셀 되읽기 + 변이 검정) =="
-python3 verify_goog_exports.py --mutate
-
-echo
 echo "== 완료 =="
-ls -la 알파벳_주가하락_투자기준판정.* goog/goog_price_report.html
+ls -la goog/goog_price_report.html

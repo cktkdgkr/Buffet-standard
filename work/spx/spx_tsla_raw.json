@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-29",
+ "generated": "2026-11-06",
  "companies": {
   "SPCX": {
    "meta": {
@@ -943,7 +943,7 @@
          -0.15,
          -0.89
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income (loss) per share of common stock attributable to common shareholders",
         "subheading": null
        },
@@ -956,7 +956,7 @@
          -0.15,
          -0.89
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income (loss) per share of common stock attributable to common shareholders",
         "subheading": null
        },
@@ -3971,7 +3971,7 @@
          67.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2026-10-01",
         "subheading": null
        },
@@ -4019,7 +4019,7 @@
          27.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2027-10-01",
         "subheading": null
        },
@@ -4067,7 +4067,7 @@
          6.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2029-10-01",
         "subheading": null
        },
@@ -4458,7 +4458,7 @@
          null,
          9.5
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "X B-3 Term Loan | Line of Credit",
         "subheading": null
        },
@@ -4536,7 +4536,7 @@
          12.5,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI Fixed Rate Term Loan | Line of Credit",
         "subheading": null
        },
@@ -4679,7 +4679,7 @@
          null,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI 12.5% Secured Senior Notes",
         "subheading": null
        },
@@ -4718,7 +4718,7 @@
          12.5,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI 12.5% Secured Senior Notes | Secured Debt",
         "subheading": null
        },
@@ -4864,7 +4864,7 @@
         "values": [
          141.29
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -8429,7 +8429,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -8462,7 +8462,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -8506,7 +8506,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class A Common Stock",
         "subheading": null
        },
@@ -8550,7 +8550,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class B Common Stock",
         "subheading": null
        },
@@ -8594,7 +8594,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class C Common Stock",
         "subheading": null
        },
@@ -9549,7 +9549,7 @@
          -1.12,
          -0.53
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net loss per share of common stock attributable to common shareholders",
         "subheading": null
        },
@@ -9562,7 +9562,7 @@
          -1.12,
          -0.53
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net loss per share of common stock attributable to common shareholders",
         "subheading": null
        },
@@ -12462,7 +12462,7 @@
          56.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2026-07-01",
         "subheading": null
        },
@@ -12510,7 +12510,7 @@
          34.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2027-07-01",
         "subheading": null
        },
@@ -12558,7 +12558,7 @@
          10.0,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Revenue, Remaining Performance Obligation, Expected Timing of Satisfaction, Start Date [Axis]: 2029-07-01",
         "subheading": null
        },
@@ -12949,7 +12949,7 @@
          null,
          9.5
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "X B-3 Term Loan | Line of Credit",
         "subheading": null
        },
@@ -13027,7 +13027,7 @@
          12.5,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI Fixed Rate Term Loan | Line of Credit",
         "subheading": null
        },
@@ -13170,7 +13170,7 @@
          null,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI 12.5% Secured Senior Notes",
         "subheading": null
        },
@@ -13209,7 +13209,7 @@
          12.5,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "xAI 12.5% Secured Senior Notes | Secured Debt",
         "subheading": null
        },
@@ -16559,7 +16559,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -16592,7 +16592,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -16636,7 +16636,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class A Common Stock",
         "subheading": null
        },
@@ -16680,7 +16680,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class B Common Stock",
         "subheading": null
        },
@@ -16724,7 +16724,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Class C Common Stock",
         "subheading": null
        },
@@ -18291,7 +18291,7 @@
          0.74,
          0.92
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -18304,7 +18304,7 @@
          0.67,
          0.84
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -20442,7 +20442,7 @@
          5.45,
          4.7
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Minimum",
         "subheading": null
        },
@@ -20475,7 +20475,7 @@
          5.75,
          5.75
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Maximum",
         "subheading": null
        },
@@ -20662,7 +20662,7 @@
          3.03,
          2.47
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -20695,7 +20695,7 @@
          5.82,
          6.57
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -20816,7 +20816,7 @@
          2.01,
          2.01
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Minimum",
         "subheading": null
        },
@@ -20849,7 +20849,7 @@
          2.11,
          2.11
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Maximum",
         "subheading": null
        },
@@ -20970,7 +20970,7 @@
          5.08,
          5.08
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -21003,7 +21003,7 @@
          6.35,
          6.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -21124,7 +21124,7 @@
          null,
          5.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Minimum",
         "subheading": null
        },
@@ -21157,7 +21157,7 @@
          null,
          5.81
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Maximum",
         "subheading": null
        }
@@ -21226,7 +21226,7 @@
          2380.0,
          2954.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -21239,7 +21239,7 @@
          2380.0,
          2954.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        }
@@ -21274,7 +21274,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -21318,7 +21318,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -22167,7 +22167,7 @@
          0.49,
          0.49
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -22180,7 +22180,7 @@
          0.45,
          0.45
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -24142,7 +24142,7 @@
          5.45,
          4.7
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Minimum",
         "subheading": null
        },
@@ -24175,7 +24175,7 @@
          5.75,
          5.75
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Maximum",
         "subheading": null
        },
@@ -24362,7 +24362,7 @@
          2.82,
          2.47
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -24395,7 +24395,7 @@
          5.82,
          6.57
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -24527,7 +24527,7 @@
          2.01,
          2.01
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Minimum",
         "subheading": null
        },
@@ -24560,7 +24560,7 @@
          2.11,
          2.11
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Maximum",
         "subheading": null
        },
@@ -24681,7 +24681,7 @@
          5.08,
          5.08
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -24714,7 +24714,7 @@
          6.35,
          6.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -24791,7 +24791,7 @@
          5.25,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt",
         "subheading": null
        },
@@ -24846,7 +24846,7 @@
          null,
          5.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Minimum",
         "subheading": null
        },
@@ -24879,7 +24879,7 @@
          null,
          5.81
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Maximum",
         "subheading": null
        }
@@ -24948,7 +24948,7 @@
          1593.0,
          1581.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -24961,7 +24961,7 @@
          1593.0,
          1581.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        }
@@ -24996,7 +24996,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -25040,7 +25040,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -25898,7 +25898,7 @@
          2.23,
          4.73
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -25910,7 +25910,7 @@
          2.04,
          4.3
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Net income per share of common stock attributable to common stockholders",
         "subheading": null
        },
@@ -27937,7 +27937,7 @@
          4.7,
          4.7
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Minimum",
         "subheading": null
        },
@@ -27970,7 +27970,7 @@
          5.75,
          5.75
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Recourse debt: | Other | Maximum",
         "subheading": null
        },
@@ -28157,7 +28157,7 @@
          2.47,
          3.45
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -28190,7 +28190,7 @@
          6.57,
          6.57
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Automotive Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -28267,7 +28267,7 @@
          null,
          1.92
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility",
         "subheading": null
        },
@@ -28333,7 +28333,7 @@
          2.01,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Minimum",
         "subheading": null
        },
@@ -28366,7 +28366,7 @@
          2.11,
          null
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | China Working Capital Facility | Maximum",
         "subheading": null
        },
@@ -28498,7 +28498,7 @@
          5.08,
          4.8
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Minimum",
         "subheading": null
        },
@@ -28531,7 +28531,7 @@
          6.25,
          6.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Energy Asset-backed Notes | Maximum",
         "subheading": null
        },
@@ -28652,7 +28652,7 @@
          5.25,
          5.25
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Minimum",
         "subheading": null
        },
@@ -28685,7 +28685,7 @@
          5.81,
          5.81
         ],
-        "monetary": true,
+        "monetary": false,
         "context": "Non-recourse debt: | Cash Equity Debt | Maximum",
         "subheading": null
        }
@@ -28749,7 +28749,7 @@
          7130.0,
          14999.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -28761,7 +28761,7 @@
          7130.0,
          14999.0
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        }
@@ -28796,7 +28796,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },
@@ -28840,7 +28840,7 @@
          0.001,
          0.001
         ],
-        "monetary": true,
+        "monetary": false,
         "context": null,
         "subheading": null
        },

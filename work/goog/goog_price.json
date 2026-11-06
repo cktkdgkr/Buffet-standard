@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30",
+ "generated": "2026-11-06",
  "wacc": 0.1,
  "entity": "Alphabet Inc.",
  "cik": "0001652044",
@@ -34,14 +34,14 @@
  "price_history": {
   "ticker": "GOOG",
   "first": {
-   "date": "2026-04-30",
-   "close": 381.94000244140625,
-   "volume": 44570500
+   "date": "2026-05-06",
+   "close": 395.1400146484375,
+   "volume": 23097300
   },
   "last": {
-   "date": "2026-10-29",
-   "close": 282.32000732421875,
-   "volume": 92627200
+   "date": "2026-11-05",
+   "close": 281.739990234375,
+   "volume": 40827900
   },
   "high": {
    "date": "2026-05-13",
@@ -49,11 +49,11 @@
    "volume": 18160100
   },
   "low": {
-   "date": "2026-10-29",
-   "close": 282.32000732421875,
-   "volume": 92627200
+   "date": "2026-11-02",
+   "close": 278.0400085449219,
+   "volume": 29231800
   },
-  "from_high": -0.29250200160709794,
+  "from_high": -0.2939555327754606,
   "fifty_two_week_high": 404.47,
   "fifty_two_week_low": 271.41,
   "big_moves": [
@@ -111,35 +111,10 @@
     "change": -0.12293021070391508,
     "from": 321.8900146484375,
     "to": 282.32000732421875,
-    "volume": 92627200
+    "volume": 93133900
    }
   ],
   "recent": [
-   {
-    "date": "2026-10-14",
-    "close": 343.6499938964844,
-    "volume": 20106400
-   },
-   {
-    "date": "2026-10-15",
-    "close": 344.9100036621094,
-    "volume": 16425700
-   },
-   {
-    "date": "2026-10-16",
-    "close": 336.9100036621094,
-    "volume": 17040300
-   },
-   {
-    "date": "2026-10-19",
-    "close": 340.1600036621094,
-    "volume": 12720600
-   },
-   {
-    "date": "2026-10-20",
-    "close": 336.3999938964844,
-    "volume": 14790300
-   },
    {
     "date": "2026-10-21",
     "close": 330.95001220703125,
@@ -173,10 +148,42 @@
    {
     "date": "2026-10-29",
     "close": 282.32000732421875,
-    "volume": 92627200
+    "volume": 93133900
+   },
+   {
+    "date": "2026-10-30",
+    "close": 278.2200012207031,
+    "volume": 45116500
+   },
+   {
+    "date": "2026-11-02",
+    "close": 278.0400085449219,
+    "volume": 29231800
+   },
+   {
+    "date": "2026-11-03",
+    "close": 278.2699890136719,
+    "volume": 23372300
+   },
+   {
+    "date": "2026-11-04",
+    "close": 287.29998779296875,
+    "volume": 31709200
+   },
+   {
+    "date": "2026-11-05",
+    "close": 281.739990234375,
+    "volume": 40827900
    }
   ],
-  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=6mo&interval=1d"
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=6mo&interval=1d",
+  "event_drop": {
+   "date": "2026-10-29",
+   "change": -0.12293021070391508,
+   "from": 321.8900146484375,
+   "to": 282.32000732421875,
+   "volume": 93133900
+  }
  },
  "release": {
   "exhibit_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
@@ -2148,8 +2155,8 @@
    }
   },
   "shares_outstanding": 12294000000.0,
-  "price": 282.32000732421875,
-  "market_cap": 3470842170043.9453,
+  "price": 281.739990234375,
+  "market_cap": 3463711439941.4062,
   "nopat_ttm": 127111271784.96701,
   "nopat_fy2025": 130630488207.22047,
   "free_cash_flow_ttm": 19747000000.0,
@@ -2157,54 +2164,54 @@
   "capex_ttm": -159804000000.0,
   "increase_in_assets_not_yet_in_service": 66678000000.0,
   "free_cash_flow_before_new_construction": 86425000000.0,
-  "nopat_yield": 0.036622602111394086,
-  "nopat_required_for_10pct": 347084217004.39453,
-  "multiple_of_current_nopat": 2.730554199721593,
-  "price_to_nopat": 27.305541997215933,
-  "price_to_fcf_ttm": 175.76554261629337,
+  "nopat_yield": 0.0366979969287272,
+  "nopat_required_for_10pct": 346371143994.1406,
+  "multiple_of_current_nopat": 2.724944366697027,
+  "price_to_nopat": 27.249443666970272,
+  "price_to_fcf_ttm": 175.40443813953544,
   "depreciation_ttm": 27995000000.0,
   "owner_earnings_lower": 19747000000.0,
   "owner_earnings_upper": 151556000000.0,
-  "implied_return_lower": 0.005689397279551313,
-  "implied_return_upper": 0.043665483065765884,
-  "implied_growth_at_10pct": 0.06879936544183368,
+  "implied_return_lower": 0.005701110020970468,
+  "implied_return_upper": 0.04375537703642073,
+  "implied_growth_at_10pct": 0.06872962539323119,
   "implied_growth_note": "영구성장 모형 V = NOPAT×(1−g/증분ROIC)÷(k−g), k=10%, 증분ROIC는 가동자본 기준 46.5% 적용",
   "growth_sensitivity": [
    {
     "growth": 0.03,
     "value": 1698647525499.5286,
     "value_per_share": 138.1688242638302,
-    "vs_price": -0.5105949961769591
+    "vs_price": -0.5095874598813972
    },
    {
     "growth": 0.04,
     "value": 1936166863082.7834,
     "value_per_share": 157.48876387528742,
-    "vs_price": -0.44216222800523675
+    "vs_price": -0.4410138094195466
    },
    {
     "growth": 0.05,
     "value": 2268693935699.34,
     "value_per_share": 184.53667933132746,
-    "vs_price": -0.34635635256482566
+    "vs_price": -0.3450106987729561
    },
    {
     "growth": 0.06,
     "value": 2767484544624.1743,
     "value_per_share": 225.10855251538754,
-    "vs_price": -0.2026475394042091
+    "vs_price": -0.20100603280307017
    },
    {
     "growth": 0.07,
     "value": 3598802226165.5674,
     "value_per_share": 292.72834115548784,
-    "vs_price": 0.03686714919681933
+    "vs_price": 0.03900174381340693
    },
    {
     "growth": 0.08,
     "value": 5261437589248.35,
     "value_per_share": 427.9679184356881,
-    "vs_price": 0.5158965263988748
+    "vs_price": 0.5190172970463598
    }
   ],
   "implied_growth_by_price": [
@@ -2219,9 +2226,9 @@
     "implied_growth": 0.06437169854412039
    },
    {
-    "price": 282.32000732421875,
-    "market_cap": 3470842170043.9453,
-    "implied_growth": 0.06879936544183368
+    "price": 281.739990234375,
+    "market_cap": 3463711439941.4062,
+    "implied_growth": 0.06872962539323119
    },
    {
     "price": 300.0,
@@ -2355,7 +2362,7 @@
   },
   "ten_year_record": {
    "source": "roic/roic.json (미국 50개사 조사)",
-   "generated": "2026-10-29",
+   "generated": "2026-11-06",
    "window": [
     2016,
     2026

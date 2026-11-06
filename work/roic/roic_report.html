@@ -1,0 +1,1725 @@
+<title>미국 50개사 자본수익률</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  /* neutrals warmed very slightly toward the indigo accent */
+  --ground:#f8f7f5; --panel:#ffffff; --panel-2:#efeeeb;
+  --ink:#1b1a21; --ink-2:#4e4c58; --ink-3:#817e8c;
+  --rule:#dcdad6; --rule-2:#c6c3be;
+  --accent:#3a3f8f;            /* structure, links, emphasis */
+  --accent-soft:#e7e8f5;
+  --over:#2d6a4a;              /* ONLY: ROIC clears the 10% hurdle */
+  --over-soft:#e6efe9;
+  --under:#9c3f2c;             /* ONLY: ROIC at or below the hurdle */
+  --under-soft:#f7e8e3;
+  --flag:#8a6410;              /* attention, no verdict attached */
+  --flag-soft:#f6eeda;
+  --display:"Noto Serif KR",Georgia,"Times New Roman",serif;
+  --body:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#14141a; --panel:#1c1c25; --panel-2:#24242f;
+  --ink:#eceaf0; --ink-2:#aeaaba; --ink-3:#827f8e;
+  --rule:#30303c; --rule-2:#41414f;
+  --accent:#9aa0ec; --accent-soft:#232642;
+  --over:#7fc39a; --over-soft:#15271d;
+  --under:#e39a81; --under-soft:#2b1a15;
+  --flag:#d9b45c; --flag-soft:#2b2412;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#14141a; --panel:#1c1c25; --panel-2:#24242f;
+  --ink:#eceaf0; --ink-2:#aeaaba; --ink-3:#827f8e;
+  --rule:#30303c; --rule-2:#41414f;
+  --accent:#9aa0ec; --accent-soft:#232642;
+  --over:#7fc39a; --over-soft:#15271d;
+  --under:#e39a81; --under-soft:#2b1a15;
+  --flag:#d9b45c; --flag-soft:#2b2412;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.72;margin:0;-webkit-text-size-adjust:100%;
+  /* Korean has no hyphenation, so the default break-anywhere splits a
+     compound noun across lines - "자본비용" broke as "자/본비용". */
+  word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:54rem;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(1.85rem,5.2vw,2.6rem);line-height:1.2;font-weight:700;
+  letter-spacing:-.015em}
+h2{font-size:clamp(1.3rem,3.4vw,1.62rem);line-height:1.3;font-weight:700;
+  margin-block:2.8rem .3rem;letter-spacing:-.01em;
+  padding-block:.55rem 0;border-top:2px solid var(--ink)}
+h3{font-size:1.06rem;line-height:1.4;font-weight:700;margin-block:1.9rem .2rem}
+h4{font-size:.96rem;margin-block:1.3rem .2rem;color:var(--ink-2)}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-underline-offset:.18em}
+ul{margin:0 0 1rem;padding-left:1.15rem}
+li{margin-block:.4rem}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel-2);
+  padding:.08rem .3rem;border-radius:2px}
+.eyebrow{font-family:var(--body);font-size:.69rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 .5rem}
+.lede{font-size:1.07rem;color:var(--ink-2);margin-block:.9rem 0}
+.meta{font-family:var(--mono);font-size:.76rem;line-height:1.85;
+  color:var(--ink-3);border-top:1px solid var(--rule);
+  margin-block:1.4rem 0;padding-block:.9rem 0}
+.meta b{color:var(--ink-2);font-weight:500}
+header.page{padding-block:2.6rem 0}
+footer.page{border-top:1px solid var(--rule);margin-block:3rem 0;
+  padding-block:1.2rem 2.6rem;font-size:.86rem;color:var(--ink-2)}
+
+/* headline figures - the largest numbers on the page, so verified too */
+.stats{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin-block:1.6rem 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--panel);padding:1.05rem 1.1rem 1.15rem;min-width:0}
+.stat .num{display:block;font-family:var(--display);font-size:2.1rem;
+  font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat .lab{display:block;font-size:.88rem;color:var(--ink-2);
+  margin-block:.3rem 0}
+.stat .note{display:block;font-size:.78rem;color:var(--ink-3);
+  margin-block:.3rem 0}
+.stat[data-state="over"] .num{color:var(--over)}
+.stat[data-state="flag"] .num{color:var(--flag)}
+
+/* tables */
+figure.tw{margin:1rem 0 1.4rem}
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:.42rem .6rem;border-bottom:1px solid var(--rule);
+  white-space:nowrap}
+thead th{position:sticky;top:0;background:var(--panel-2);font-weight:700;
+  font-size:.78rem;letter-spacing:.02em;color:var(--ink-2);
+  border-bottom:1px solid var(--rule-2)}
+tbody tr:last-child td{border-bottom:0}
+td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.l,th.l{text-align:left}
+td.r,th.r{text-align:right}
+td.l{font-family:var(--body);white-space:normal;min-width:7rem}
+td[data-state="over"]{color:var(--over);background:var(--over-soft)}
+td[data-state="under"]{color:var(--under);background:var(--under-soft)}
+td[data-state="pos"]{color:var(--over)}
+td[data-state="neg"]{color:var(--under)}
+td[data-state="flag"]{color:var(--flag);background:var(--flag-soft)}
+figcaption{font-size:.78rem;color:var(--ink-3);margin-block:.45rem 0}
+
+/* median-ROIC bar: length is the value, nothing else */
+td.barcell{width:7rem;min-width:7rem;padding-block:.5rem}
+.bar{display:block;height:.5rem;background:var(--accent);opacity:.75}
+
+/* legend */
+.legend{border:1px solid var(--rule);background:var(--panel);
+  padding:1rem 1.1rem;margin-block:1.2rem}
+.legend dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem .9rem;
+  margin:0;font-size:.9rem}
+.legend dt{font-family:var(--mono);color:var(--ink-2)}
+.legend dd{margin:0;color:var(--ink-2)}
+.formula{font-family:var(--mono);font-size:.8rem;line-height:1.9;
+  background:var(--panel-2);border-left:3px solid var(--accent);
+  padding:.8rem .95rem;overflow-x:auto;white-space:pre;margin-block:1rem}
+
+/* spread buckets */
+.bucket{border-left:3px solid var(--rule-2);padding-left:.9rem;
+  margin-block:1rem}
+.bucket .bk{font-family:var(--body);font-size:.82rem;font-weight:700;
+  letter-spacing:.04em;color:var(--accent);display:block}
+.bucket .mem{font-family:var(--mono);font-size:.84rem;color:var(--ink-2)}
+
+/* per-company workings */
+details.co{border:1px solid var(--rule);background:var(--panel);
+  margin-block:.55rem;padding:0 1rem}
+details.co>summary{cursor:pointer;padding-block:.7rem;font-weight:700;
+  font-size:.95rem;list-style-position:inside}
+details.co>summary .tkr{font-family:var(--mono);font-size:.76rem;
+  font-weight:400;color:var(--ink-3);margin-left:.4rem}
+details.co[open]{border-color:var(--rule-2)}
+details.co .en{font-size:.8rem;color:var(--ink-3);margin-block:0 .2rem}
+.callout{border:1px solid var(--rule-2);background:var(--panel-2);
+  padding:.95rem 1.05rem;margin-block:1.2rem;font-size:.93rem}
+.callout b{color:var(--ink)}
+</style>
+<div class="wrap">
+<header class="page">
+<p class="eyebrow">SEC XBRL companyfacts · 자본비용 10% 고정</p>
+<h1>미국 50개사 ROIC 대 자본비용 10%</h1>
+<p class="lede">비금융 39개사의 388개 기업-연도 가운데 312개(80%)가 ROIC 10%를 넘겼습니다. 10년 내내 한 해도 빠짐없이 넘긴 기업은 20곳이고, 전 기간 미달한 기업은 없습니다.</p>
+<p class="meta">자료 기준일 <b>2026-11-06</b> (SEC XBRL companyfacts, 캐시 1일 만료)<br>격자 <b>FY2016~FY2026</b> · 기업별 창 <b>각 사의 최근 10 회계연도</b><br>문턱 <b>10%</b> (지시에 따른 고정값) · 대상 <b>50개사</b></p>
+</header>
+<div class="stats">
+<div class="stat" data-k="above_share" data-state="over"><b class="num">80%</b><span class="lab">ROIC 10% 초과 기업-연도 비중</span><span class="note">312 / 388개 연도</span></div>
+<div class="stat" data-k="all_above"><b class="num">20곳</b><span class="lab">10년 전부 문턱 초과</span><span class="note">비금융 순위 대상 39곳 중</span></div>
+<div class="stat" data-k="corrected" data-state="flag"><b class="num">319건</b><span class="lab">1차 조사에서 정정한 기업-연도</span><span class="note">장기차입금 누락 27건 포함</span></div>
+</div>
+<div class="callout">
+<p>이번 작업의 더 중요한 결과는 순위표가 아니라 <b>1차 조사의 오류 319건을 찾아 바로잡은 것</b>입니다. 가장 큰 원인은 공시된 장기차입금을 27개 기업-연도에서 누락한 것으로, 오라클·코카콜라·브로드컴·비자가 여기 걸립니다. 오라클 FY2024 ROIC가 761%로 나왔던 이유입니다.</p>
+<p>그리고 이 오류는 ROIC에서 멈추지 않았습니다. 1차 조사는 <b>오라클을 순현금 24.7십억 달러 기업으로 보고 있었는데, 실제로는 순차입금 81.4십억 달러</b>입니다. 오차 106.1십억 달러, 시가총액의 24%입니다. 순현금은 기업가치에서 주주가치로 넘어갈 때 그대로 더해지므로 내재가치에 1:1로 반영됩니다. DCF 재계산은 이번 범위가 아니라 표시만 했습니다.</p>
+</div>
+<h2>표 읽는 법</h2>
+<div class="legend"><dl>
+<dt>123</dt><dd>ROIC 10% 초과 (단위 %)</dd>
+<dt>(123)</dt><dd>ROIC 10% 이하</dd>
+<dt>*</dt><dd>영업이익 소계를 보고하지 않아 세전이익에서 추정한 해</dd>
+<dt>†</dt><dd>순투하자본이 매출의 10% 미만 — 분모가 작아 비율이 민감 (문턱 판정은 유효)</dd>
+<dt>—</dt><dd>산출 불가</dd>
+</dl></div>
+<p class="meta" style="border:0;padding:0;margin-block:0 .4rem">색은 한 가지 뜻만 갖습니다 — 초록/빨강은 <b>10% 문턱 판정</b>에만 쓰고, 금액의 부호나 "주목"에는 다른 색을 씁니다.</p>
+<div class="formula">NOPAT      = 영업이익 × (1 − 실효세율)
+투하자본    = 자기자본(비지배지분 포함) + 이자부차입금 − 현금·단기투자자산
+ROIC       = NOPAT ÷ 평균 투하자본 (기초·기말 평균)
+스프레드    = ROIC − 10%</div>
+<p>자기자본이나 투하자본이 0 이하인 해는 평균이 0 근처로 내려가 비율이 폭발하므로 기말값을 단독으로 씁니다. 금융업(SIC 6000~6799)은 ROIC를 산출하지 않습니다 — 은행에게 차입은 자금조달이 아니라 원재료여서 자기자본+차입금−현금이 아무것도 측정하지 않습니다.</p>
+<h2>1. 기업 목록</h2>
+<h3>ROIC 순위 대상 (비금융, 산출 5년 이상) — 39곳</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">티커</th><th class="l">한글명</th><th class="l">영문 정식 명칭</th><th class="l">비고</th></tr></thead><tbody>
+<tr><td class="l">ANET</td><td class="l">아리스타 네트웍스</td><td class="l">Arista Networks</td><td class="l">—</td></tr>
+<tr><td class="l">NVDA</td><td class="l">엔비디아</td><td class="l">NVIDIA</td><td class="l">1월 결산 — 본문의 회계연도 표기 참고</td></tr>
+<tr><td class="l">MA</td><td class="l">마스터카드</td><td class="l">Mastercard</td><td class="l">—</td></tr>
+<tr><td class="l">AAPL</td><td class="l">애플</td><td class="l">Apple</td><td class="l">—</td></tr>
+<tr><td class="l">MSFT</td><td class="l">마이크로소프트</td><td class="l">Microsoft</td><td class="l">—</td></tr>
+<tr><td class="l">LRCX</td><td class="l">램리서치</td><td class="l">Lam Research</td><td class="l">—</td></tr>
+<tr><td class="l">PM</td><td class="l">필립모리스 인터내셔널</td><td class="l">Philip Morris International</td><td class="l">—</td></tr>
+<tr><td class="l">KLAC</td><td class="l">KLA</td><td class="l">KLA</td><td class="l">2019년까지 사명은 KLA-Tencor</td></tr>
+<tr><td class="l">TXN</td><td class="l">텍사스 인스트루먼츠</td><td class="l">Texas Instruments</td><td class="l">—</td></tr>
+<tr><td class="l">META</td><td class="l">메타 플랫폼스</td><td class="l">Meta Platforms</td><td class="l">2021년까지 사명은 Facebook</td></tr>
+<tr><td class="l">HD</td><td class="l">홈디포</td><td class="l">Home Depot</td><td class="l">—</td></tr>
+<tr><td class="l">AMAT</td><td class="l">어플라이드 머티리얼즈</td><td class="l">Applied Materials</td><td class="l">—</td></tr>
+<tr><td class="l">GOOG</td><td class="l">알파벳</td><td class="l">Alphabet</td><td class="l">구글의 모회사</td></tr>
+<tr><td class="l">COST</td><td class="l">코스트코</td><td class="l">Costco Wholesale</td><td class="l">—</td></tr>
+<tr><td class="l">CSCO</td><td class="l">시스코 시스템즈</td><td class="l">Cisco Systems</td><td class="l">—</td></tr>
+<tr><td class="l">V</td><td class="l">비자</td><td class="l">Visa</td><td class="l">9월 결산</td></tr>
+<tr><td class="l">AMZN</td><td class="l">아마존</td><td class="l">Amazon.com</td><td class="l">—</td></tr>
+<tr><td class="l">LLY</td><td class="l">일라이 릴리</td><td class="l">Eli Lilly</td><td class="l">—</td></tr>
+<tr><td class="l">JNJ</td><td class="l">존슨앤드존슨</td><td class="l">Johnson &amp; Johnson</td><td class="l">—</td></tr>
+<tr><td class="l">PG</td><td class="l">프록터앤드갬블</td><td class="l">Procter &amp; Gamble</td><td class="l">P&amp;G · 6월 결산</td></tr>
+<tr><td class="l">ABBV</td><td class="l">애브비</td><td class="l">AbbVie</td><td class="l">2013년 애보트에서 분사</td></tr>
+<tr><td class="l">NFLX</td><td class="l">넷플릭스</td><td class="l">Netflix</td><td class="l">—</td></tr>
+<tr><td class="l">ORCL</td><td class="l">오라클</td><td class="l">Oracle</td><td class="l">5월 결산</td></tr>
+<tr><td class="l">MU</td><td class="l">마이크론 테크놀로지</td><td class="l">Micron Technology</td><td class="l">—</td></tr>
+<tr><td class="l">CAT</td><td class="l">캐터필러</td><td class="l">Caterpillar</td><td class="l">—</td></tr>
+<tr><td class="l">DELL</td><td class="l">델 테크놀로지스</td><td class="l">Dell Technologies</td><td class="l">2018년 재상장</td></tr>
+<tr><td class="l">KO</td><td class="l">코카콜라</td><td class="l">Coca-Cola</td><td class="l">—</td></tr>
+<tr><td class="l">WMT</td><td class="l">월마트</td><td class="l">Walmart</td><td class="l">1월 결산</td></tr>
+<tr><td class="l">INTC</td><td class="l">인텔</td><td class="l">Intel</td><td class="l">—</td></tr>
+<tr><td class="l">MRK</td><td class="l">머크</td><td class="l">Merck &amp; Co.</td><td class="l">—</td></tr>
+<tr><td class="l">IBM</td><td class="l">IBM</td><td class="l">International Business Machines</td><td class="l">—</td></tr>
+<tr><td class="l">AVGO</td><td class="l">브로드컴</td><td class="l">Broadcom</td><td class="l">—</td></tr>
+<tr><td class="l">AMD</td><td class="l">AMD</td><td class="l">Advanced Micro Devices</td><td class="l">—</td></tr>
+<tr><td class="l">TSLA</td><td class="l">테슬라</td><td class="l">Tesla</td><td class="l">—</td></tr>
+<tr><td class="l">XOM</td><td class="l">엑슨모빌</td><td class="l">Exxon Mobil</td><td class="l">—</td></tr>
+<tr><td class="l">CVX</td><td class="l">셰브론</td><td class="l">Chevron</td><td class="l">—</td></tr>
+<tr><td class="l">RTX</td><td class="l">RTX</td><td class="l">RTX</td><td class="l">2023년까지 사명은 Raytheon Technologies. 2020년 레이시온·유나이티드테크놀로지스 합병</td></tr>
+<tr><td class="l">GE</td><td class="l">제너럴 일렉트릭</td><td class="l">General Electric / GE Aerospace</td><td class="l">2024년 GE 에어로스페이스로 사명 변경. FY2023까지는 복합기업 기준이므로 현재의 항공엔진 단일 사업과 직접 비교 불가</td></tr>
+<tr><td class="l">PANW</td><td class="l">팔로알토 네트웍스</td><td class="l">Palo Alto Networks</td><td class="l">7월 결산</td></tr>
+</tbody></table></div>
+</figure>
+<h3>표본 부족 (산출 5년 미만) — 2곳</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">티커</th><th class="l">한글명</th><th class="l">영문 정식 명칭</th><th class="l">비고</th></tr></thead><tbody>
+<tr><td class="l">PLTR</td><td class="l">팔란티어 테크놀로지스</td><td class="l">Palantir Technologies</td><td class="l">2020년 상장</td></tr>
+<tr><td class="l">GEV</td><td class="l">GE 버노바</td><td class="l">GE Vernova</td><td class="l">2024년 4월 GE에서 분사 — 그래서 산출 연도가 4년</td></tr>
+</tbody></table></div>
+</figure>
+<h3>금융업 — ROIC 미산출 — 9곳</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">티커</th><th class="l">한글명</th><th class="l">영문 정식 명칭</th><th class="l">비고</th></tr></thead><tbody>
+<tr><td class="l">BRK-B</td><td class="l">버크셔 해서웨이</td><td class="l">Berkshire Hathaway</td><td class="l">—</td></tr>
+<tr><td class="l">JPM</td><td class="l">JP모건 체이스</td><td class="l">JPMorgan Chase</td><td class="l">—</td></tr>
+<tr><td class="l">BAC</td><td class="l">뱅크오브아메리카</td><td class="l">Bank of America</td><td class="l">—</td></tr>
+<tr><td class="l">UNH</td><td class="l">유나이티드헬스 그룹</td><td class="l">UnitedHealth Group</td><td class="l">—</td></tr>
+<tr><td class="l">MS</td><td class="l">모건스탠리</td><td class="l">Morgan Stanley</td><td class="l">—</td></tr>
+<tr><td class="l">GS</td><td class="l">골드만삭스</td><td class="l">Goldman Sachs Group</td><td class="l">—</td></tr>
+<tr><td class="l">WFC</td><td class="l">웰스파고</td><td class="l">Wells Fargo</td><td class="l">—</td></tr>
+<tr><td class="l">AXP</td><td class="l">아메리칸 익스프레스</td><td class="l">American Express</td><td class="l">—</td></tr>
+<tr><td class="l">C</td><td class="l">씨티그룹</td><td class="l">Citigroup</td><td class="l">—</td></tr>
+</tbody></table></div>
+</figure>
+<p>SEC가 반환하는 이름은 등록명(COSTCO WHOLESALE CORP /NEW, APPLIED MATERIALS INC /DE 등)이라 그대로 쓰지 않았습니다.</p>
+<h2>2. ROIC 요약 순위</h2>
+<p>중위 ROIC 내림차순입니다. 막대 길이는 중위 ROIC에 비례합니다 (최대 165%).</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="r">#</th><th class="l">기업</th><th class="r">중위</th><th class="r">최소</th><th class="r">최대</th><th class="r">초과</th><th class="barcell">분포</th></tr></thead><tbody>
+<tr><td class="r">1</td><td class="l">아리스타 네트웍스</td><td class="r" data-state="over">165%</td><td class="r">96%</td><td class="r">428%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="ANET" style="width:100.0%"></span></td></tr>
+<tr><td class="r">2</td><td class="l">엔비디아</td><td class="r" data-state="over">113%</td><td class="r">22%</td><td class="r">198%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="NVDA" style="width:68.6%"></span></td></tr>
+<tr><td class="r">3</td><td class="l">마스터카드</td><td class="r" data-state="over">93%</td><td class="r">77%</td><td class="r">182%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="MA" style="width:56.1%"></span></td></tr>
+<tr><td class="r">4</td><td class="l">애플</td><td class="r" data-state="over">82%</td><td class="r">29%</td><td class="r">104%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="AAPL" style="width:49.8%"></span></td></tr>
+<tr><td class="r">5</td><td class="l">마이크로소프트</td><td class="r" data-state="over">70%</td><td class="r">36%</td><td class="r">117%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="MSFT" style="width:42.7%"></span></td></tr>
+<tr><td class="r">6</td><td class="l">램리서치</td><td class="r" data-state="over">63%</td><td class="r">48%</td><td class="r">84%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="LRCX" style="width:37.9%"></span></td></tr>
+<tr><td class="r">7</td><td class="l">필립모리스 인터내셔널</td><td class="r" data-state="over">51%</td><td class="r">26%</td><td class="r">71%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="PM" style="width:31.1%"></span></td></tr>
+<tr><td class="r">8</td><td class="l">KLA</td><td class="r" data-state="over">49%</td><td class="r">29%</td><td class="r">83%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="KLAC" style="width:29.6%"></span></td></tr>
+<tr><td class="r">9</td><td class="l">텍사스 인스트루먼츠</td><td class="r" data-state="over">45%</td><td class="r">22%</td><td class="r">75%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="TXN" style="width:27.4%"></span></td></tr>
+<tr><td class="r">10</td><td class="l">메타 플랫폼스</td><td class="r" data-state="over">45%</td><td class="r">27%</td><td class="r">57%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="META" style="width:27.3%"></span></td></tr>
+<tr><td class="r">11</td><td class="l">홈디포</td><td class="r" data-state="over">43%</td><td class="r">25%</td><td class="r">51%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="HD" style="width:26.2%"></span></td></tr>
+<tr><td class="r">12</td><td class="l">어플라이드 머티리얼즈</td><td class="r" data-state="over">42%</td><td class="r">26%</td><td class="r">53%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="AMAT" style="width:25.2%"></span></td></tr>
+<tr><td class="r">13</td><td class="l">알파벳</td><td class="r" data-state="over">38%</td><td class="r">28%</td><td class="r">58%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="GOOG" style="width:22.9%"></span></td></tr>
+<tr><td class="r">14</td><td class="l">코스트코</td><td class="r" data-state="over">38%</td><td class="r">22%</td><td class="r">44%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="COST" style="width:22.9%"></span></td></tr>
+<tr><td class="r">15</td><td class="l">시스코 시스템즈</td><td class="r" data-state="over">36%</td><td class="r">18%</td><td class="r">48%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="CSCO" style="width:22.0%"></span></td></tr>
+<tr><td class="r">16</td><td class="l">비자</td><td class="r" data-state="over">35%</td><td class="r">19%</td><td class="r">53%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="V" style="width:21.2%"></span></td></tr>
+<tr><td class="r">17</td><td class="l">아마존</td><td class="r" data-state="over">30%</td><td class="r">8%</td><td class="r">130%</td><td class="r">9/10</td><td class="barcell"><span class="bar" data-bar="AMZN" style="width:18.3%"></span></td></tr>
+<tr><td class="r">18</td><td class="l">일라이 릴리</td><td class="r" data-state="over">28%</td><td class="r">7%</td><td class="r">40%</td><td class="r">9/10</td><td class="barcell"><span class="bar" data-bar="LLY" style="width:16.9%"></span></td></tr>
+<tr><td class="r">19</td><td class="l">존슨앤드존슨</td><td class="r" data-state="over">23%</td><td class="r">16%</td><td class="r">31%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="JNJ" style="width:13.8%"></span></td></tr>
+<tr><td class="r">20</td><td class="l">프록터앤드갬블</td><td class="r" data-state="over">20%</td><td class="r">5%</td><td class="r">22%</td><td class="r">9/10</td><td class="barcell"><span class="bar" data-bar="PG" style="width:12.2%"></span></td></tr>
+<tr><td class="r">21</td><td class="l">애브비</td><td class="r" data-state="over">20%</td><td class="r">14%</td><td class="r">57%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="ABBV" style="width:11.9%"></span></td></tr>
+<tr><td class="r">22</td><td class="l">넷플릭스</td><td class="r" data-state="over">19%</td><td class="r">8%</td><td class="r">37%</td><td class="r">9/10</td><td class="barcell"><span class="bar" data-bar="NFLX" style="width:11.8%"></span></td></tr>
+<tr><td class="r">23</td><td class="l">오라클</td><td class="r" data-state="over">19%</td><td class="r">13%</td><td class="r">28%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="ORCL" style="width:11.2%"></span></td></tr>
+<tr><td class="r">24</td><td class="l">마이크론 테크놀로지</td><td class="r" data-state="over">18%</td><td class="r">-10%</td><td class="r">107%</td><td class="r">7/10</td><td class="barcell"><span class="bar" data-bar="MU" style="width:10.8%"></span></td></tr>
+<tr><td class="r">25</td><td class="l">캐터필러</td><td class="r" data-state="over">16%</td><td class="r">2%</td><td class="r">25%</td><td class="r">7/10</td><td class="barcell"><span class="bar" data-bar="CAT" style="width:9.8%"></span></td></tr>
+<tr><td class="r">26</td><td class="l">델 테크놀로지스</td><td class="r" data-state="over">16%</td><td class="r">-8%</td><td class="r">39%</td><td class="r">5/9</td><td class="barcell"><span class="bar" data-bar="DELL" style="width:9.4%"></span></td></tr>
+<tr><td class="r">27</td><td class="l">코카콜라</td><td class="r" data-state="over">14%</td><td class="r">9%</td><td class="r">18%</td><td class="r">9/10</td><td class="barcell"><span class="bar" data-bar="KO" style="width:8.7%"></span></td></tr>
+<tr><td class="r">28</td><td class="l">월마트</td><td class="r" data-state="over">13%</td><td class="r">12%</td><td class="r">18%</td><td class="r">10/10</td><td class="barcell"><span class="bar" data-bar="WMT" style="width:8.2%"></span></td></tr>
+<tr><td class="r">29</td><td class="l">인텔</td><td class="r" data-state="over">13%</td><td class="r">-7%</td><td class="r">23%</td><td class="r">6/10</td><td class="barcell"><span class="bar" data-bar="INTC" style="width:8.1%"></span></td></tr>
+<tr><td class="r">30</td><td class="l">머크</td><td class="r" data-state="over">13%</td><td class="r">2%</td><td class="r">25%</td><td class="r">6/10</td><td class="barcell"><span class="bar" data-bar="MRK" style="width:7.9%"></span></td></tr>
+<tr><td class="r">31</td><td class="l">IBM</td><td class="r" data-state="over">12%</td><td class="r">3%</td><td class="r">25%</td><td class="r">6/10</td><td class="barcell"><span class="bar" data-bar="IBM" style="width:7.5%"></span></td></tr>
+<tr><td class="r">32</td><td class="l">브로드컴</td><td class="r" data-state="over">12%</td><td class="r">-2%</td><td class="r">31%</td><td class="r">5/10</td><td class="barcell"><span class="bar" data-bar="AVGO" style="width:7.1%"></span></td></tr>
+<tr><td class="r">33</td><td class="l">AMD</td><td class="r" data-state="over">10%</td><td class="r">-30%</td><td class="r">78%</td><td class="r">5/10</td><td class="barcell"><span class="bar" data-bar="AMD" style="width:6.1%"></span></td></tr>
+<tr><td class="r">34</td><td class="l">테슬라</td><td class="r" data-state="under">10%</td><td class="r">-12%</td><td class="r">60%</td><td class="r">5/10</td><td class="barcell"><span class="bar" data-bar="TSLA" style="width:6.0%"></span></td></tr>
+<tr><td class="r">35</td><td class="l">엑슨모빌</td><td class="r" data-state="under">10%</td><td class="r">-9%</td><td class="r">27%</td><td class="r">5/10</td><td class="barcell"><span class="bar" data-bar="XOM" style="width:6.0%"></span></td></tr>
+<tr><td class="r">36</td><td class="l">셰브론</td><td class="r" data-state="under">7%</td><td class="r">-3%</td><td class="r">21%</td><td class="r">3/10</td><td class="barcell"><span class="bar" data-bar="CVX" style="width:4.4%"></span></td></tr>
+<tr><td class="r">37</td><td class="l">RTX</td><td class="r" data-state="under">5%</td><td class="r">-2%</td><td class="r">14%</td><td class="r">2/10</td><td class="barcell"><span class="bar" data-bar="RTX" style="width:3.1%"></span></td></tr>
+<tr><td class="r">38</td><td class="l">제너럴 일렉트릭</td><td class="r" data-state="under">-1%</td><td class="r">-17%</td><td class="r">28%</td><td class="r">2/10</td><td class="barcell"><span class="bar" data-bar="GE" style="width:0.0%"></span></td></tr>
+<tr><td class="r">39</td><td class="l">팔로알토 네트웍스</td><td class="r" data-state="under">-20%</td><td class="r">-77%</td><td class="r">38%</td><td class="r">3/9</td><td class="barcell"><span class="bar" data-bar="PANW" style="width:0.0%"></span></td></tr>
+</tbody></table></div>
+</figure>
+<h2>3. ROIC 연도별</h2>
+<p>폭을 맞추려고 격자를 둘로 나눴습니다. 단위 %, 괄호는 10% 이하. 빈 칸은 그 기업의 창(최근 10개 회계연도) 밖입니다 — 결산월이 달라 마이크로소프트처럼 FY2026을 이미 제출한 기업은 앞쪽이 비고, 12월 결산 기업은 뒤쪽이 빕니다.</p>
+<h3>FY2016 ~ FY2021</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">&#x27;16</th><th class="r">&#x27;17</th><th class="r">&#x27;18</th><th class="r">&#x27;19</th><th class="r">&#x27;20</th><th class="r">&#x27;21</th></tr></thead><tbody>
+<tr><td class="l">아리스타 네트웍스</td><td class="r" data-state="over">109</td><td class="r" data-state="over">229</td><td class="r" data-state="over">166†</td><td class="r" data-state="over">428†</td><td class="r" data-state="over">195</td><td class="r" data-state="over">164</td></tr>
+<tr><td class="l">엔비디아</td><td class="r" data-state="over">179</td><td class="r" data-state="over">185</td><td class="r" data-state="over">116</td><td class="r" data-state="over">74</td><td class="r" data-state="over">55</td><td class="r" data-state="over">67</td></tr>
+<tr><td class="l">마스터카드</td><td class="r" data-state="over">162</td><td class="r" data-state="over">140</td><td class="r" data-state="over">182</td><td class="r" data-state="over">159</td><td class="r" data-state="over">87</td><td class="r" data-state="over">77</td></tr>
+<tr><td class="l">애플</td><td class="r">—</td><td class="r" data-state="over">29</td><td class="r" data-state="over">35</td><td class="r" data-state="over">42</td><td class="r" data-state="over">61</td><td class="r" data-state="over">89</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">—</td><td class="r" data-state="over">77</td><td class="r" data-state="over">64</td><td class="r" data-state="over">117</td><td class="r" data-state="over">103</td><td class="r" data-state="over">105</td></tr>
+<tr><td class="l">램리서치</td><td class="r">—</td><td class="r" data-state="over">52</td><td class="r" data-state="over">66</td><td class="r" data-state="over">58</td><td class="r" data-state="over">59</td><td class="r" data-state="over">84</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r" data-state="over">57</td><td class="r" data-state="over">47</td><td class="r" data-state="over">58</td><td class="r" data-state="over">56</td><td class="r" data-state="over">65</td><td class="r" data-state="over">71</td></tr>
+<tr><td class="l">KLA</td><td class="r">—</td><td class="r" data-state="over">81</td><td class="r" data-state="over">83</td><td class="r" data-state="over">44</td><td class="r" data-state="over">29*</td><td class="r" data-state="over">43*</td></tr>
+<tr><td class="l">텍사스 인스트루먼츠</td><td class="r" data-state="over">33</td><td class="r" data-state="over">36</td><td class="r" data-state="over">57</td><td class="r" data-state="over">52</td><td class="r" data-state="over">58</td><td class="r" data-state="over">75</td></tr>
+<tr><td class="l">메타 플랫폼스</td><td class="r" data-state="over">36</td><td class="r" data-state="over">50</td><td class="r" data-state="over">57</td><td class="r" data-state="over">40</td><td class="r" data-state="over">51</td><td class="r" data-state="over">54</td></tr>
+<tr><td class="l">홈디포</td><td class="r" data-state="over">34</td><td class="r" data-state="over">37</td><td class="r" data-state="over">47</td><td class="r" data-state="over">47</td><td class="r" data-state="over">47</td><td class="r" data-state="over">51</td></tr>
+<tr><td class="l">어플라이드 머티리얼즈</td><td class="r" data-state="over">26</td><td class="r" data-state="over">50</td><td class="r" data-state="over">39</td><td class="r" data-state="over">31</td><td class="r" data-state="over">38</td><td class="r" data-state="over">53</td></tr>
+<tr><td class="l">알파벳</td><td class="r" data-state="over">35</td><td class="r" data-state="over">28</td><td class="r" data-state="over">38</td><td class="r" data-state="over">38</td><td class="r" data-state="over">37</td><td class="r" data-state="over">58</td></tr>
+<tr><td class="l">코스트코</td><td class="r">—</td><td class="r" data-state="over">22†</td><td class="r" data-state="over">26†</td><td class="r" data-state="over">29†</td><td class="r" data-state="over">32†</td><td class="r" data-state="over">39†</td></tr>
+<tr><td class="l">시스코 시스템즈</td><td class="r">—</td><td class="r" data-state="over">34</td><td class="r" data-state="over">29</td><td class="r" data-state="over">48</td><td class="r" data-state="over">46</td><td class="r" data-state="over">40</td></tr>
+<tr><td class="l">비자</td><td class="r">—</td><td class="r" data-state="over">19</td><td class="r" data-state="over">27</td><td class="r" data-state="over">31</td><td class="r" data-state="over">28</td><td class="r" data-state="over">30</td></tr>
+<tr><td class="l">아마존</td><td class="r" data-state="over">130†</td><td class="r" data-state="over">28†</td><td class="r" data-state="over">46</td><td class="r" data-state="over">41</td><td class="r" data-state="over">55†</td><td class="r" data-state="over">32</td></tr>
+<tr><td class="l">일라이 릴리</td><td class="r" data-state="over">15*</td><td class="r" data-state="under">(7*)</td><td class="r" data-state="over">19*</td><td class="r" data-state="over">30*</td><td class="r" data-state="over">30*</td><td class="r" data-state="over">28*</td></tr>
+<tr><td class="l">존슨앤드존슨</td><td class="r" data-state="over">31*</td><td class="r" data-state="over">16*</td><td class="r" data-state="over">22*</td><td class="r" data-state="over">25*</td><td class="r" data-state="over">25*</td><td class="r" data-state="over">24*</td></tr>
+<tr><td class="l">프록터앤드갬블</td><td class="r">—</td><td class="r" data-state="over">13</td><td class="r" data-state="over">12</td><td class="r" data-state="under">(5)</td><td class="r" data-state="over">19</td><td class="r" data-state="over">21</td></tr>
+<tr><td class="l">애브비</td><td class="r" data-state="over">23</td><td class="r" data-state="over">19</td><td class="r" data-state="over">21</td><td class="r" data-state="over">57</td><td class="r" data-state="over">20</td><td class="r" data-state="over">18</td></tr>
+<tr><td class="l">넷플릭스</td><td class="r" data-state="under">(8)</td><td class="r" data-state="over">14</td><td class="r" data-state="over">16</td><td class="r" data-state="over">16</td><td class="r" data-state="over">22</td><td class="r" data-state="over">24</td></tr>
+<tr><td class="l">오라클</td><td class="r">—</td><td class="r" data-state="over">25</td><td class="r" data-state="over">18</td><td class="r" data-state="over">26</td><td class="r" data-state="over">27</td><td class="r" data-state="over">28</td></tr>
+<tr><td class="l">마이크론 테크놀로지</td><td class="r">—</td><td class="r" data-state="over">26</td><td class="r" data-state="over">51</td><td class="r" data-state="over">20</td><td class="r" data-state="under">(8)</td><td class="r" data-state="over">15</td></tr>
+<tr><td class="l">캐터필러</td><td class="r" data-state="under">(2)</td><td class="r" data-state="under">(8)</td><td class="r" data-state="over">18</td><td class="r" data-state="over">17</td><td class="r" data-state="under">(9)</td><td class="r" data-state="over">15</td></tr>
+<tr><td class="l">델 테크놀로지스</td><td class="r" data-state="under">(-8)</td><td class="r" data-state="under">(-3)</td><td class="r" data-state="under">(-0)</td><td class="r">—</td><td class="r" data-state="under">(9)</td><td class="r" data-state="over">16</td></tr>
+<tr><td class="l">코카콜라</td><td class="r" data-state="over">13</td><td class="r" data-state="under">(9)</td><td class="r" data-state="over">14</td><td class="r" data-state="over">16</td><td class="r" data-state="over">13</td><td class="r" data-state="over">14</td></tr>
+<tr><td class="l">월마트</td><td class="r" data-state="over">14</td><td class="r" data-state="over">13</td><td class="r" data-state="over">12</td><td class="r" data-state="over">13</td><td class="r" data-state="over">13</td><td class="r" data-state="over">17</td></tr>
+<tr><td class="l">인텔</td><td class="r" data-state="over">14</td><td class="r" data-state="over">12</td><td class="r" data-state="over">23</td><td class="r" data-state="over">20</td><td class="r" data-state="over">19</td><td class="r" data-state="over">17</td></tr>
+<tr><td class="l">머크</td><td class="r" data-state="under">(8*)</td><td class="r" data-state="under">(7*)</td><td class="r" data-state="over">13*</td><td class="r" data-state="over">13*</td><td class="r" data-state="under">(8*)</td><td class="r" data-state="over">20*</td></tr>
+<tr><td class="l">IBM</td><td class="r" data-state="over">25*</td><td class="r" data-state="over">14*</td><td class="r" data-state="over">18*</td><td class="r" data-state="over">12*</td><td class="r" data-state="under">(5*)</td><td class="r" data-state="under">(8*)</td></tr>
+<tr><td class="l">브로드컴</td><td class="r" data-state="under">(-2)</td><td class="r" data-state="under">(9)</td><td class="r" data-state="over">14</td><td class="r" data-state="under">(7)</td><td class="r" data-state="under">(7)</td><td class="r" data-state="over">15</td></tr>
+<tr><td class="l">AMD</td><td class="r" data-state="under">(-30)</td><td class="r" data-state="over">14</td><td class="r" data-state="over">40</td><td class="r" data-state="over">36</td><td class="r" data-state="over">46</td><td class="r" data-state="over">78</td></tr>
+<tr><td class="l">테슬라</td><td class="r" data-state="under">(-9)</td><td class="r" data-state="under">(-12)</td><td class="r" data-state="under">(-2)</td><td class="r" data-state="under">(-0)</td><td class="r" data-state="over">13</td><td class="r" data-state="over">39</td></tr>
+<tr><td class="l">엑슨모빌</td><td class="r" data-state="under">(4*)</td><td class="r" data-state="under">(8*)</td><td class="r" data-state="under">(9*)</td><td class="r" data-state="under">(6*)</td><td class="r" data-state="under">(-9*)</td><td class="r" data-state="over">11*</td></tr>
+<tr><td class="l">셰브론</td><td class="r" data-state="under">(-1*)</td><td class="r" data-state="under">(5*)</td><td class="r" data-state="under">(8*)</td><td class="r" data-state="under">(2*)</td><td class="r" data-state="under">(-3*)</td><td class="r" data-state="under">(9*)</td></tr>
+<tr><td class="l">RTX</td><td class="r" data-state="over">14</td><td class="r" data-state="over">11</td><td class="r" data-state="under">(3)</td><td class="r" data-state="under">(5)</td><td class="r" data-state="under">(-2)</td><td class="r" data-state="under">(4)</td></tr>
+<tr><td class="l">제너럴 일렉트릭</td><td class="r" data-state="under">(2*)</td><td class="r" data-state="under">(-9*)</td><td class="r" data-state="under">(-17*)</td><td class="r" data-state="under">(-3*)</td><td class="r" data-state="under">(-9*)</td><td class="r" data-state="under">(-10*)</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">—</td><td class="r" data-state="under">(-77†)</td><td class="r">—</td><td class="r" data-state="under">(-20†)</td><td class="r" data-state="under">(-43†)</td><td class="r" data-state="under">(-34)</td></tr>
+</tbody></table></div>
+</figure>
+<h3>FY2022 ~ FY2026</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">&#x27;22</th><th class="r">&#x27;23</th><th class="r">&#x27;24</th><th class="r">&#x27;25</th><th class="r">&#x27;26</th></tr></thead><tbody>
+<tr><td class="l">아리스타 네트웍스</td><td class="r" data-state="over">107</td><td class="r" data-state="over">96</td><td class="r" data-state="over">132</td><td class="r" data-state="over">192</td><td class="r">—</td></tr>
+<tr><td class="l">엔비디아</td><td class="r" data-state="over">22</td><td class="r" data-state="over">125</td><td class="r" data-state="over">198</td><td class="r" data-state="over">111</td><td class="r">—</td></tr>
+<tr><td class="l">마스터카드</td><td class="r" data-state="over">79</td><td class="r" data-state="over">87</td><td class="r" data-state="over">89</td><td class="r" data-state="over">96</td><td class="r">—</td></tr>
+<tr><td class="l">애플</td><td class="r" data-state="over">81</td><td class="r" data-state="over">83</td><td class="r" data-state="over">89</td><td class="r" data-state="over">104</td><td class="r" data-state="over">104</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r" data-state="over">80</td><td class="r" data-state="over">57</td><td class="r" data-state="over">46</td><td class="r" data-state="over">39</td><td class="r" data-state="over">36</td></tr>
+<tr><td class="l">램리서치</td><td class="r" data-state="over">74</td><td class="r" data-state="over">59</td><td class="r" data-state="over">48</td><td class="r" data-state="over">68</td><td class="r" data-state="over">78</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r" data-state="over">41</td><td class="r" data-state="over">26</td><td class="r" data-state="over">30</td><td class="r" data-state="over">35</td><td class="r">—</td></tr>
+<tr><td class="l">KLA</td><td class="r" data-state="over">56*</td><td class="r" data-state="over">49*</td><td class="r" data-state="over">36</td><td class="r" data-state="over">48</td><td class="r" data-state="over">49</td></tr>
+<tr><td class="l">텍사스 인스트루먼츠</td><td class="r" data-state="over">69</td><td class="r" data-state="over">38</td><td class="r" data-state="over">23</td><td class="r" data-state="over">22</td><td class="r">—</td></tr>
+<tr><td class="l">메타 플랫폼스</td><td class="r" data-state="over">27</td><td class="r" data-state="over">38</td><td class="r" data-state="over">51</td><td class="r" data-state="over">36</td><td class="r">—</td></tr>
+<tr><td class="l">홈디포</td><td class="r" data-state="over">47</td><td class="r" data-state="over">40</td><td class="r" data-state="over">33</td><td class="r" data-state="over">25</td><td class="r">—</td></tr>
+<tr><td class="l">어플라이드 머티리얼즈</td><td class="r" data-state="over">49</td><td class="r" data-state="over">45</td><td class="r" data-state="over">44</td><td class="r" data-state="over">36</td><td class="r">—</td></tr>
+<tr><td class="l">알파벳</td><td class="r" data-state="over">44</td><td class="r" data-state="over">42</td><td class="r" data-state="over">44</td><td class="r" data-state="over">37</td><td class="r">—</td></tr>
+<tr><td class="l">코스트코</td><td class="r" data-state="over">40†</td><td class="r" data-state="over">37†</td><td class="r" data-state="over">41†</td><td class="r" data-state="over">41†</td><td class="r" data-state="over">44†</td></tr>
+<tr><td class="l">시스코 시스템즈</td><td class="r" data-state="over">39</td><td class="r" data-state="over">44</td><td class="r" data-state="over">24</td><td class="r" data-state="over">18</td><td class="r" data-state="over">20</td></tr>
+<tr><td class="l">비자</td><td class="r" data-state="over">39</td><td class="r" data-state="over">44</td><td class="r" data-state="over">46</td><td class="r" data-state="over">45</td><td class="r" data-state="over">53</td></tr>
+<tr><td class="l">아마존</td><td class="r" data-state="under">(8)</td><td class="r" data-state="over">18</td><td class="r" data-state="over">28</td><td class="r" data-state="over">21</td><td class="r">—</td></tr>
+<tr><td class="l">일라이 릴리</td><td class="r" data-state="over">28*</td><td class="r" data-state="over">18*</td><td class="r" data-state="over">28*</td><td class="r" data-state="over">40*</td><td class="r">—</td></tr>
+<tr><td class="l">존슨앤드존슨</td><td class="r" data-state="over">20*</td><td class="r" data-state="over">23*</td><td class="r" data-state="over">23*</td><td class="r" data-state="over">22*</td><td class="r">—</td></tr>
+<tr><td class="l">프록터앤드갬블</td><td class="r" data-state="over">21</td><td class="r" data-state="over">20</td><td class="r" data-state="over">20</td><td class="r" data-state="over">22</td><td class="r" data-state="over">20</td></tr>
+<tr><td class="l">애브비</td><td class="r" data-state="over">21</td><td class="r" data-state="over">16</td><td class="r" data-state="over">14</td><td class="r" data-state="over">16</td><td class="r">—</td></tr>
+<tr><td class="l">넷플릭스</td><td class="r" data-state="over">18</td><td class="r" data-state="over">21</td><td class="r" data-state="over">31</td><td class="r" data-state="over">37</td><td class="r">—</td></tr>
+<tr><td class="l">오라클</td><td class="r" data-state="over">19</td><td class="r" data-state="over">16</td><td class="r" data-state="over">14</td><td class="r" data-state="over">15</td><td class="r" data-state="over">13</td></tr>
+<tr><td class="l">마이크론 테크놀로지</td><td class="r" data-state="over">20</td><td class="r" data-state="under">(-10)</td><td class="r" data-state="under">(2)</td><td class="r" data-state="over">16</td><td class="r" data-state="over">107</td></tr>
+<tr><td class="l">캐터필러</td><td class="r" data-state="over">15</td><td class="r" data-state="over">25</td><td class="r" data-state="over">24</td><td class="r" data-state="over">18</td><td class="r">—</td></tr>
+<tr><td class="l">델 테크놀로지스</td><td class="r" data-state="over">28</td><td class="r" data-state="over">29</td><td class="r" data-state="over">34</td><td class="r" data-state="over">39</td><td class="r">—</td></tr>
+<tr><td class="l">코카콜라</td><td class="r" data-state="over">16</td><td class="r" data-state="over">17</td><td class="r" data-state="over">14</td><td class="r" data-state="over">18</td><td class="r">—</td></tr>
+<tr><td class="l">월마트</td><td class="r" data-state="over">12</td><td class="r" data-state="over">17</td><td class="r" data-state="over">18</td><td class="r" data-state="over">17</td><td class="r">—</td></tr>
+<tr><td class="l">인텔</td><td class="r" data-state="under">(2)</td><td class="r" data-state="under">(0)</td><td class="r" data-state="under">(-7)</td><td class="r" data-state="under">(-1)</td><td class="r">—</td></tr>
+<tr><td class="l">머크</td><td class="r" data-state="over">25*</td><td class="r" data-state="under">(2*)</td><td class="r" data-state="over">25*</td><td class="r" data-state="over">23*</td><td class="r">—</td></tr>
+<tr><td class="l">IBM</td><td class="r" data-state="under">(3*)</td><td class="r" data-state="over">13*</td><td class="r" data-state="under">(10*)</td><td class="r" data-state="over">15*</td><td class="r">—</td></tr>
+<tr><td class="l">브로드컴</td><td class="r" data-state="over">26</td><td class="r" data-state="over">31</td><td class="r" data-state="under">(9)</td><td class="r" data-state="over">19</td><td class="r">—</td></tr>
+<tr><td class="l">AMD</td><td class="r" data-state="under">(4)</td><td class="r" data-state="under">(1)</td><td class="r" data-state="under">(3)</td><td class="r" data-state="under">(6)</td><td class="r">—</td></tr>
+<tr><td class="l">테슬라</td><td class="r" data-state="over">60</td><td class="r" data-state="over">28</td><td class="r" data-state="over">14</td><td class="r" data-state="under">(7)</td><td class="r">—</td></tr>
+<tr><td class="l">엑슨모빌</td><td class="r" data-state="over">27*</td><td class="r" data-state="over">17*</td><td class="r" data-state="over">14*</td><td class="r" data-state="over">10*</td><td class="r">—</td></tr>
+<tr><td class="l">셰브론</td><td class="r" data-state="over">21*</td><td class="r" data-state="over">12*</td><td class="r" data-state="over">10*</td><td class="r" data-state="under">(6*)</td><td class="r">—</td></tr>
+<tr><td class="l">RTX</td><td class="r" data-state="under">(5)</td><td class="r" data-state="under">(3)</td><td class="r" data-state="under">(5)</td><td class="r" data-state="under">(8)</td><td class="r">—</td></tr>
+<tr><td class="l">제너럴 일렉트릭</td><td class="r" data-state="under">(1*)</td><td class="r" data-state="under">(9*)</td><td class="r" data-state="over">16*</td><td class="r" data-state="over">28*</td><td class="r">—</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r" data-state="under">(-25)</td><td class="r" data-state="over">38</td><td class="r" data-state="over">33</td><td class="r" data-state="over">24</td><td class="r" data-state="under">(3)</td></tr>
+</tbody></table></div>
+</figure>
+<h3>표본 부족·금융업</h3>
+<p>팔란티어는 10년 중 대부분 순투하자본이 음수여서(현금이 자기자본+차입금을 넘어서) 이 정의로 ROIC가 성립하지 않습니다. GE 버노바는 2024년 4월 분사라 4년치뿐입니다. 금융업 9곳은 산출하지 않았습니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="l">상태</th></tr></thead><tbody>
+<tr><td class="l">팔란티어 테크놀로지스</td><td class="l">산출 2년 · 절반 이상 초과</td></tr>
+<tr><td class="l">GE 버노바</td><td class="l">산출 4년 · 대부분 미달</td></tr>
+<tr><td class="l">버크셔 해서웨이</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">JP모건 체이스</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">뱅크오브아메리카</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">유나이티드헬스 그룹</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">모건스탠리</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">골드만삭스</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">웰스파고</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">아메리칸 익스프레스</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+<tr><td class="l">씨티그룹</td><td class="l">금융업 — ROIC 정의 부적합</td></tr>
+</tbody></table></div>
+</figure>
+<h2>4. ROIC − 10% 스프레드 (중위 기준)</h2>
+<div class="bucket" data-bk="+40%p 이상"><span class="bk">+40%p 이상 — 7곳</span><span class="mem">아리스타 네트웍스 +155, 엔비디아 +103, 마스터카드 +83, 애플 +72, 마이크로소프트 +60, 램리서치 +53, 필립모리스 인터내셔널 +41</span></div>
+<div class="bucket" data-bk="+20~40%p"><span class="bk">+20~40%p — 10곳</span><span class="mem">KLA +39, 텍사스 인스트루먼츠 +35, 메타 플랫폼스 +35, 홈디포 +33, 어플라이드 머티리얼즈 +32, 알파벳 +28, 코스트코 +28, 시스코 시스템즈 +26, 비자 +25, 아마존 +20</span></div>
+<div class="bucket" data-bk="+10~20%p"><span class="bk">+10~20%p — 3곳</span><span class="mem">일라이 릴리 +18, 존슨앤드존슨 +13, 프록터앤드갬블 +10</span></div>
+<div class="bucket" data-bk="0~+10%p"><span class="bk">0~+10%p — 13곳</span><span class="mem">애브비 +10, 넷플릭스 +9, 오라클 +9, 마이크론 테크놀로지 +8, 캐터필러 +6, 델 테크놀로지스 +6, 코카콜라 +4, 월마트 +3, 인텔 +3, 머크 +3, IBM +2, 브로드컴 +2, AMD +0</span></div>
+<div class="bucket" data-bk="음수 (10% 미달)"><span class="bk">음수 (10% 미달) — 6곳</span><span class="mem">테슬라 -0, 엑슨모빌 -0, 셰브론 -3, RTX -5, 제너럴 일렉트릭 -11, 팔로알토 네트웍스 -30</span></div>
+<p>스프레드의 크기보다 <b>꾸준함</b>이 중요합니다. 중위 ROIC가 높아도 변동이 크면 어느 해에 자본을 투입했는지에 따라 결과가 갈리기 때문입니다. 10년 전부 10%를 넘긴 20곳이 그 조건을 만족합니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">중위</th><th class="r">최소</th><th class="r">최대</th><th class="r">표준편차</th><th class="r">추정 연수</th></tr></thead><tbody>
+<tr><td class="l">아리스타 네트웍스</td><td class="r">165%</td><td class="r">96%</td><td class="r">428%</td><td class="r">97%</td><td class="r">0</td></tr>
+<tr><td class="l">엔비디아</td><td class="r">113%</td><td class="r">22%</td><td class="r">198%</td><td class="r">60%</td><td class="r">0</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">93%</td><td class="r">77%</td><td class="r">182%</td><td class="r">40%</td><td class="r">0</td></tr>
+<tr><td class="l">애플</td><td class="r">82%</td><td class="r">29%</td><td class="r">104%</td><td class="r">28%</td><td class="r">0</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">70%</td><td class="r">36%</td><td class="r">117%</td><td class="r">29%</td><td class="r">0</td></tr>
+<tr><td class="l">램리서치</td><td class="r">63%</td><td class="r">48%</td><td class="r">84%</td><td class="r">11%</td><td class="r">0</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">51%</td><td class="r">26%</td><td class="r">71%</td><td class="r">15%</td><td class="r">0</td></tr>
+<tr><td class="l">KLA</td><td class="r">49%</td><td class="r">29%</td><td class="r">83%</td><td class="r">18%</td><td class="r">4</td></tr>
+<tr><td class="l">텍사스 인스트루먼츠</td><td class="r">45%</td><td class="r">22%</td><td class="r">75%</td><td class="r">19%</td><td class="r">0</td></tr>
+<tr><td class="l">메타 플랫폼스</td><td class="r">45%</td><td class="r">27%</td><td class="r">57%</td><td class="r">10%</td><td class="r">0</td></tr>
+<tr><td class="l">홈디포</td><td class="r">43%</td><td class="r">25%</td><td class="r">51%</td><td class="r">8%</td><td class="r">0</td></tr>
+<tr><td class="l">어플라이드 머티리얼즈</td><td class="r">42%</td><td class="r">26%</td><td class="r">53%</td><td class="r">9%</td><td class="r">0</td></tr>
+<tr><td class="l">알파벳</td><td class="r">38%</td><td class="r">28%</td><td class="r">58%</td><td class="r">8%</td><td class="r">0</td></tr>
+<tr><td class="l">코스트코</td><td class="r">38%</td><td class="r">22%</td><td class="r">44%</td><td class="r">7%</td><td class="r">0</td></tr>
+<tr><td class="l">시스코 시스템즈</td><td class="r">36%</td><td class="r">18%</td><td class="r">48%</td><td class="r">11%</td><td class="r">0</td></tr>
+<tr><td class="l">비자</td><td class="r">35%</td><td class="r">19%</td><td class="r">53%</td><td class="r">11%</td><td class="r">0</td></tr>
+<tr><td class="l">존슨앤드존슨</td><td class="r">23%</td><td class="r">16%</td><td class="r">31%</td><td class="r">4%</td><td class="r">10</td></tr>
+<tr><td class="l">애브비</td><td class="r">20%</td><td class="r">14%</td><td class="r">57%</td><td class="r">13%</td><td class="r">0</td></tr>
+<tr><td class="l">오라클</td><td class="r">19%</td><td class="r">13%</td><td class="r">28%</td><td class="r">6%</td><td class="r">0</td></tr>
+<tr><td class="l">월마트</td><td class="r">13%</td><td class="r">12%</td><td class="r">18%</td><td class="r">3%</td><td class="r">0</td></tr>
+</tbody></table></div>
+</figure>
+<h2>5. 계산 명세 — 기업별 연도별</h2>
+<p>금액 단위는 <b>백만 달러</b>. <code>투하자본</code>은 기말값, <code>평균</code>은 ROIC의 분모로 쓴 기초·기말 평균입니다. 기업 이름을 누르면 펼쳐집니다.</p>
+<details class="co" id="co-ANET">
+<summary>아리스타 네트웍스<span class="tkr">ANET</span></summary>
+<p class="en">Arista Networks</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">101</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">243</td><td class="r">24%</td><td class="r">185</td><td class="r">240</td><td class="r">170</td><td class="r" data-state="over">108.6%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">470</td><td class="r">11%</td><td class="r">419</td><td class="r">126</td><td class="r">183</td><td class="r" data-state="over">228.9%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">273</td><td class="r">5%</td><td class="r">260</td><td class="r">187</td><td class="r">157</td><td class="r" data-state="over">165.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">806</td><td class="r">5%</td><td class="r">765</td><td class="r">170</td><td class="r">179</td><td class="r" data-state="over">428.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">700</td><td class="r">14%</td><td class="r">601</td><td class="r">447</td><td class="r">309</td><td class="r" data-state="over">194.6%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">925</td><td class="r">10%</td><td class="r">835</td><td class="r">570</td><td class="r">509</td><td class="r" data-state="over">164.2%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">1,527</td><td class="r">14%</td><td class="r">1,306</td><td class="r">1,862</td><td class="r">1,216</td><td class="r" data-state="over">107.4%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">2,257</td><td class="r">14%</td><td class="r">1,945</td><td class="r">2,211</td><td class="r">2,037</td><td class="r" data-state="over">95.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">2,945</td><td class="r">13%</td><td class="r">2,572</td><td class="r">1,691</td><td class="r">1,951</td><td class="r" data-state="over">131.8%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">3,856</td><td class="r">17%</td><td class="r">3,186</td><td class="r">1,628</td><td class="r">1,659</td><td class="r" data-state="over">192.0%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 매출의 7.3% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 7.4% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-NVDA">
+<summary>엔비디아<span class="tkr">NVDA</span></summary>
+<p class="en">NVIDIA</p>
+<p class="en">1월 결산 — 본문의 회계연도 표기 참고</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">-568</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">1,934</td><td class="r">13%</td><td class="r">1,691</td><td class="r">947</td><td class="r">947</td><td class="r" data-state="over">178.6%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">3,210</td><td class="r">5%</td><td class="r">3,050</td><td class="r">2,348</td><td class="r">1,648</td><td class="r" data-state="over">185.1%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">3,804</td><td class="r">5%</td><td class="r">3,614</td><td class="r">3,908</td><td class="r">3,128</td><td class="r" data-state="over">115.5%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">2,846</td><td class="r">6%</td><td class="r">2,679</td><td class="r">3,298</td><td class="r">3,603</td><td class="r" data-state="over">74.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,532</td><td class="r">5%</td><td class="r">4,305</td><td class="r">12,295</td><td class="r">7,796</td><td class="r" data-state="over">55.2%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">10,041</td><td class="r">5%</td><td class="r">9,539</td><td class="r">16,350</td><td class="r">14,322</td><td class="r" data-state="over">66.6%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">4,224</td><td class="r">5%</td><td class="r">4,013</td><td class="r">19,758</td><td class="r">18,054</td><td class="r" data-state="over">22.2%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">32,972</td><td class="r">12%</td><td class="r">29,016</td><td class="r">26,703</td><td class="r">23,230</td><td class="r" data-state="over">124.9%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">81,453</td><td class="r">13%</td><td class="r">70,648</td><td class="r">44,580</td><td class="r">35,642</td><td class="r" data-state="over">198.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">130,387</td><td class="r">15%</td><td class="r">110,676</td><td class="r">155,156</td><td class="r">99,868</td><td class="r" data-state="over">110.8%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-MA">
+<summary>마스터카드<span class="tkr">MA</span></summary>
+<p class="en">Mastercard</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">2,592</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">5,761</td><td class="r">28%</td><td class="r">4,142</td><td class="r">2,529</td><td class="r">2,560</td><td class="r" data-state="over">161.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">6,622</td><td class="r">40%</td><td class="r">3,975</td><td class="r">3,139</td><td class="r">2,834</td><td class="r" data-state="over">140.3%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">7,282</td><td class="r">19%</td><td class="r">5,922</td><td class="r">3,374</td><td class="r">3,256</td><td class="r" data-state="over">181.9%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">9,664</td><td class="r">17%</td><td class="r">8,062</td><td class="r">6,768</td><td class="r">5,071</td><td class="r" data-state="over">159.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">8,081</td><td class="r">17%</td><td class="r">6,676</td><td class="r">8,564</td><td class="r">7,666</td><td class="r" data-state="over">87.1%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">10,082</td><td class="r">16%</td><td class="r">8,497</td><td class="r">13,390</td><td class="r">10,977</td><td class="r" data-state="over">77.4%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">12,264</td><td class="r">15%</td><td class="r">10,380</td><td class="r">12,971</td><td class="r">13,180</td><td class="r" data-state="over">78.8%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">14,008</td><td class="r">18%</td><td class="r">11,498</td><td class="r">13,476</td><td class="r">13,224</td><td class="r" data-state="over">87.0%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">15,582</td><td class="r">16%</td><td class="r">13,151</td><td class="r">15,969</td><td class="r">14,722</td><td class="r" data-state="over">89.3%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">18,897</td><td class="r">19%</td><td class="r">15,225</td><td class="r">15,848</td><td class="r">15,908</td><td class="r" data-state="over">95.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-AAPL">
+<summary>애플<span class="tkr">AAPL</span></summary>
+<p class="en">Apple</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">142,082</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">148,126</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">61,344</td><td class="r">25%</td><td class="r">46,280</td><td class="r">175,546</td><td class="r">161,836</td><td class="r" data-state="over">28.6%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">70,898</td><td class="r">18%</td><td class="r">57,894</td><td class="r">155,329</td><td class="r">165,438</td><td class="r" data-state="over">35.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">63,930</td><td class="r">16%</td><td class="r">53,737</td><td class="r">97,978</td><td class="r">126,654</td><td class="r" data-state="over">42.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">66,288</td><td class="r">14%</td><td class="r">56,724</td><td class="r">86,832</td><td class="r">92,405</td><td class="r" data-state="over">61.4%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">108,949</td><td class="r">13%</td><td class="r">94,456</td><td class="r">125,170</td><td class="r">106,001</td><td class="r" data-state="over">89.1%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">119,437</td><td class="r">16%</td><td class="r">100,083</td><td class="r">122,437</td><td class="r">123,804</td><td class="r" data-state="over">80.8%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">114,301</td><td class="r">15%</td><td class="r">97,477</td><td class="r">111,679</td><td class="r">117,058</td><td class="r" data-state="over">83.3%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">123,216</td><td class="r">24%</td><td class="r">93,532</td><td class="r">98,408</td><td class="r">105,044</td><td class="r" data-state="over">89.0%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">133,050</td><td class="r">16%</td><td class="r">112,281</td><td class="r">117,693</td><td class="r">108,050</td><td class="r" data-state="over">103.9%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">158,063</td><td class="r">17%</td><td class="r">131,201</td><td class="r">135,482</td><td class="r">126,588</td><td class="r" data-state="over">103.6%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-MSFT">
+<summary>마이크로소프트<span class="tkr">MSFT</span></summary>
+<p class="en">Microsoft</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">18,849</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">23,311</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">29,025</td><td class="r">15%</td><td class="r">24,742</td><td class="r">40,924</td><td class="r">32,118</td><td class="r" data-state="over">77.0%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">35,058</td><td class="r">40%</td><td class="r">21,035</td><td class="r">25,190</td><td class="r">33,057</td><td class="r" data-state="over">63.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">42,959</td><td class="r">10%</td><td class="r">38,585</td><td class="r">40,689</td><td class="r">32,940</td><td class="r" data-state="over">117.1%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">52,959</td><td class="r">17%</td><td class="r">44,217</td><td class="r">45,104</td><td class="r">42,896</td><td class="r" data-state="over">103.1%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">69,916</td><td class="r">14%</td><td class="r">60,249</td><td class="r">69,800</td><td class="r">57,452</td><td class="r" data-state="over">104.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">83,383</td><td class="r">13%</td><td class="r">72,449</td><td class="r">111,566</td><td class="r">90,683</td><td class="r" data-state="over">79.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">88,523</td><td class="r">19%</td><td class="r">71,723</td><td class="r">142,198</td><td class="r">126,882</td><td class="r" data-state="over">56.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">109,433</td><td class="r">18%</td><td class="r">89,482</td><td class="r">244,564</td><td class="r">193,381</td><td class="r" data-state="over">46.3%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">128,528</td><td class="r">18%</td><td class="r">105,869</td><td class="r">292,065</td><td class="r">268,314</td><td class="r" data-state="over">39.5%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">155,237</td><td class="r">19%</td><td class="r">125,127</td><td class="r">405,838</td><td class="r">348,952</td><td class="r" data-state="over">35.9%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-LRCX">
+<summary>램리서치<span class="tkr">LRCX</span></summary>
+<p class="en">Lam Research</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">3,379</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">3,385</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">1,902</td><td class="r">6%</td><td class="r">1,783</td><td class="r">3,464</td><td class="r">3,424</td><td class="r" data-state="over">52.1%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">3,213</td><td class="r">24%</td><td class="r">2,427</td><td class="r">3,923</td><td class="r">3,693</td><td class="r" data-state="over">65.7%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">2,465</td><td class="r">10%</td><td class="r">2,208</td><td class="r">3,677</td><td class="r">3,800</td><td class="r" data-state="over">58.1%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">2,674</td><td class="r">13%</td><td class="r">2,338</td><td class="r">4,261</td><td class="r">3,969</td><td class="r" data-state="over">58.9%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">4,482</td><td class="r">11%</td><td class="r">4,008</td><td class="r">5,259</td><td class="r">4,760</td><td class="r" data-state="over">84.2%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">5,382</td><td class="r">11%</td><td class="r">4,773</td><td class="r">7,583</td><td class="r">6,421</td><td class="r" data-state="over">74.3%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">5,175</td><td class="r">12%</td><td class="r">4,569</td><td class="r">7,801</td><td class="r">7,692</td><td class="r" data-state="over">59.4%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">4,264</td><td class="r">12%</td><td class="r">3,743</td><td class="r">7,659</td><td class="r">7,730</td><td class="r" data-state="over">48.4%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">5,901</td><td class="r">10%</td><td class="r">5,307</td><td class="r">7,940</td><td class="r">7,800</td><td class="r" data-state="over">68.0%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">8,200</td><td class="r">12%</td><td class="r">7,210</td><td class="r">10,614</td><td class="r">9,277</td><td class="r" data-state="over">77.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-PM">
+<summary>필립모리스 인터내셔널<span class="tkr">PM</span></summary>
+<p class="en">Philip Morris International</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">13,587</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">10,903</td><td class="r">28%</td><td class="r">7,862</td><td class="r">13,928</td><td class="r">13,758</td><td class="r" data-state="over">57.1%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">11,581</td><td class="r">40%</td><td class="r">6,949</td><td class="r">15,662</td><td class="r">14,795</td><td class="r" data-state="over">47.0%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">11,377</td><td class="r">23%</td><td class="r">8,770</td><td class="r">14,427</td><td class="r">15,044</td><td class="r" data-state="over">58.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">10,531</td><td class="r">23%</td><td class="r">8,085</td><td class="r">14,585</td><td class="r">14,506</td><td class="r" data-state="over">55.7%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">11,668</td><td class="r">22%</td><td class="r">9,136</td><td class="r">13,625</td><td class="r">14,105</td><td class="r" data-state="over">64.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">12,975</td><td class="r">22%</td><td class="r">10,142</td><td class="r">15,102</td><td class="r">14,364</td><td class="r" data-state="over">70.6%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">12,246</td><td class="r">19%</td><td class="r">9,884</td><td class="r">33,605</td><td class="r">24,354</td><td class="r" data-state="over">40.6%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">11,556</td><td class="r">22%</td><td class="r">8,969</td><td class="r">35,403</td><td class="r">34,504</td><td class="r" data-state="over">26.0%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">13,402</td><td class="r">25%</td><td class="r">10,087</td><td class="r">31,609</td><td class="r">33,506</td><td class="r" data-state="over">30.1%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">14,892</td><td class="r">20%</td><td class="r">11,955</td><td class="r">35,935</td><td class="r">33,772</td><td class="r" data-state="over">35.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-KLAC">
+<summary>KLA<span class="tkr">KLAC</span></summary>
+<p class="en">KLA</p>
+<p class="en">2019년까지 사명은 KLA-Tencor</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">1,225</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">1,256</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">1,276</td><td class="r">21%</td><td class="r">1,007</td><td class="r">1,240</td><td class="r">1,248</td><td class="r" data-state="over">80.7%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">1,535</td><td class="r">40%</td><td class="r">921</td><td class="r">978</td><td class="r">1,109</td><td class="r" data-state="over">83.1%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">1,302</td><td class="r">9%</td><td class="r">1,180</td><td class="r">4,362</td><td class="r">2,670</td><td class="r" data-state="over">44.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">1,319</td><td class="r">8%</td><td class="r">1,217</td><td class="r">4,170</td><td class="r">4,266</td><td class="r" data-state="over">28.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">2,331</td><td class="r">12%</td><td class="r">2,052</td><td class="r">5,384</td><td class="r">4,777</td><td class="r" data-state="over">42.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">3,494</td><td class="r">5%</td><td class="r">3,319</td><td class="r">6,475</td><td class="r">5,929</td><td class="r" data-state="over">56.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">3,684</td><td class="r">11%</td><td class="r">3,294</td><td class="r">6,883</td><td class="r">6,679</td><td class="r" data-state="over">49.3%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">3,085</td><td class="r">13%</td><td class="r">2,671</td><td class="r">8,021</td><td class="r">7,452</td><td class="r" data-state="over">35.8%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">4,547</td><td class="r">13%</td><td class="r">3,976</td><td class="r">8,498</td><td class="r">8,260</td><td class="r" data-state="over">48.1%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">5,469</td><td class="r">14%</td><td class="r">4,713</td><td class="r">10,587</td><td class="r">9,543</td><td class="r" data-state="over">49.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_less_nonoperating, verified_line_build</p>
+</details>
+<details class="co" id="co-TXN">
+<summary>텍사스 인스트루먼츠<span class="tkr">TXN</span></summary>
+<p class="en">Texas Instruments</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">10,848</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">4,855</td><td class="r">27%</td><td class="r">3,540</td><td class="r">10,592</td><td class="r">10,720</td><td class="r" data-state="over">33.0%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">6,083</td><td class="r">39%</td><td class="r">3,684</td><td class="r">9,945</td><td class="r">10,268</td><td class="r" data-state="over">35.9%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">6,713</td><td class="r">17%</td><td class="r">5,603</td><td class="r">9,829</td><td class="r">9,887</td><td class="r" data-state="over">56.7%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">5,723</td><td class="r">12%</td><td class="r">5,013</td><td class="r">9,323</td><td class="r">9,576</td><td class="r" data-state="over">52.3%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">5,894</td><td class="r">7%</td><td class="r">5,481</td><td class="r">9,417</td><td class="r">9,370</td><td class="r" data-state="over">58.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">8,960</td><td class="r">13%</td><td class="r">7,805</td><td class="r">11,335</td><td class="r">10,376</td><td class="r" data-state="over">75.2%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">10,140</td><td class="r">13%</td><td class="r">8,843</td><td class="r">14,245</td><td class="r">12,790</td><td class="r" data-state="over">69.1%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">7,331</td><td class="r">12%</td><td class="r">6,434</td><td class="r">19,545</td><td class="r">16,895</td><td class="r" data-state="over">38.1%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">5,465</td><td class="r">12%</td><td class="r">4,810</td><td class="r">22,919</td><td class="r">21,232</td><td class="r" data-state="over">22.7%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">6,023</td><td class="r">12%</td><td class="r">5,275</td><td class="r">25,440</td><td class="r">24,180</td><td class="r" data-state="over">21.8%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-META">
+<summary>메타 플랫폼스<span class="tkr">META</span></summary>
+<p class="en">Meta Platforms</p>
+<p class="en">2021년까지 사명은 Facebook</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">25,985</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">12,427</td><td class="r">18%</td><td class="r">10,143</td><td class="r">29,745</td><td class="r">27,865</td><td class="r" data-state="over">36.4%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">20,203</td><td class="r">23%</td><td class="r">15,631</td><td class="r">32,636</td><td class="r">31,190</td><td class="r" data-state="over">50.1%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">24,913</td><td class="r">13%</td><td class="r">21,721</td><td class="r">43,013</td><td class="r">37,824</td><td class="r" data-state="over">57.4%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">23,986</td><td class="r">25%</td><td class="r">17,870</td><td class="r">46,199</td><td class="r">44,606</td><td class="r" data-state="over">40.1%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">32,671</td><td class="r">12%</td><td class="r">28,699</td><td class="r">66,336</td><td class="r">56,268</td><td class="r" data-state="over">51.0%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">46,753</td><td class="r">17%</td><td class="r">38,928</td><td class="r">76,881</td><td class="r">71,608</td><td class="r" data-state="over">54.4%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">28,944</td><td class="r">19%</td><td class="r">23,301</td><td class="r">94,898</td><td class="r">85,890</td><td class="r" data-state="over">27.1%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">46,751</td><td class="r">18%</td><td class="r">38,540</td><td class="r">106,150</td><td class="r">100,524</td><td class="r" data-state="over">38.3%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">69,380</td><td class="r">12%</td><td class="r">61,228</td><td class="r">133,648</td><td class="r">119,899</td><td class="r" data-state="over">51.1%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">83,276</td><td class="r">30%</td><td class="r">58,589</td><td class="r">194,395</td><td class="r">164,022</td><td class="r" data-state="over">35.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-HD">
+<summary>홈디포<span class="tkr">HD</span></summary>
+<p class="en">Home Depot</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">25,316</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">13,427</td><td class="r">36%</td><td class="r">8,553</td><td class="r">25,396</td><td class="r">25,356</td><td class="r" data-state="over">33.7%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">14,681</td><td class="r">37%</td><td class="r">9,249</td><td class="r">24,887</td><td class="r">25,142</td><td class="r" data-state="over">36.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">15,530</td><td class="r">24%</td><td class="r">11,865</td><td class="r">25,546</td><td class="r">25,216</td><td class="r" data-state="over">47.1%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">15,843</td><td class="r">24%</td><td class="r">12,104</td><td class="r">26,234</td><td class="r">25,890</td><td class="r" data-state="over">46.8%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">18,278</td><td class="r">24%</td><td class="r">13,851</td><td class="r">32,642</td><td class="r">29,438</td><td class="r" data-state="over">47.1%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">23,040</td><td class="r">24%</td><td class="r">17,418</td><td class="r">36,047</td><td class="r">34,344</td><td class="r" data-state="over">50.7%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">24,039</td><td class="r">24%</td><td class="r">18,294</td><td class="r">41,998</td><td class="r">39,022</td><td class="r" data-state="over">46.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">21,689</td><td class="r">24%</td><td class="r">16,484</td><td class="r">41,395</td><td class="r">41,696</td><td class="r" data-state="over">39.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">21,526</td><td class="r">24%</td><td class="r">16,423</td><td class="r">58,364</td><td class="r">49,880</td><td class="r" data-state="over">32.9%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">20,890</td><td class="r">24%</td><td class="r">15,897</td><td class="r">67,196</td><td class="r">62,780</td><td class="r" data-state="over">25.3%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-AMAT">
+<summary>어플라이드 머티리얼즈<span class="tkr">AMAT</span></summary>
+<p class="en">Applied Materials</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">7,190</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">2,152</td><td class="r">15%</td><td class="r">1,840</td><td class="r">6,989</td><td class="r">7,090</td><td class="r" data-state="over">26.0%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">3,936</td><td class="r">8%</td><td class="r">3,630</td><td class="r">7,658</td><td class="r">7,324</td><td class="r" data-state="over">49.6%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">4,491</td><td class="r">31%</td><td class="r">3,104</td><td class="r">8,124</td><td class="r">7,891</td><td class="r" data-state="over">39.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">3,350</td><td class="r">17%</td><td class="r">2,773</td><td class="r">9,909</td><td class="r">9,016</td><td class="r" data-state="over">30.8%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,365</td><td class="r">13%</td><td class="r">3,792</td><td class="r">10,288</td><td class="r">10,098</td><td class="r" data-state="over">37.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,889</td><td class="r">13%</td><td class="r">5,991</td><td class="r">12,240</td><td class="r">11,264</td><td class="r" data-state="over">53.2%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">7,788</td><td class="r">14%</td><td class="r">6,687</td><td class="r">15,070</td><td class="r">13,655</td><td class="r" data-state="over">49.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">7,654</td><td class="r">11%</td><td class="r">6,801</td><td class="r">15,041</td><td class="r">15,056</td><td class="r" data-state="over">45.2%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">7,867</td><td class="r">12%</td><td class="r">6,926</td><td class="r">16,489</td><td class="r">15,765</td><td class="r" data-state="over">43.9%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">8,289</td><td class="r">25%</td><td class="r">6,257</td><td class="r">18,397</td><td class="r">17,443</td><td class="r" data-state="over">35.9%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-GOOG">
+<summary>알파벳<span class="tkr">GOOG</span></summary>
+<p class="en">Alphabet</p>
+<p class="en">구글의 모회사</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">52,485</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">23,716</td><td class="r">19%</td><td class="r">19,128</td><td class="r">56,638</td><td class="r">54,562</td><td class="r" data-state="over">35.1%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">26,178</td><td class="r">40%</td><td class="r">15,707</td><td class="r">54,574</td><td class="r">55,606</td><td class="r" data-state="over">28.2%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">27,524</td><td class="r">12%</td><td class="r">24,231</td><td class="r">72,438</td><td class="r">63,506</td><td class="r" data-state="over">38.2%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">34,231</td><td class="r">13%</td><td class="r">29,668</td><td class="r">85,725</td><td class="r">79,082</td><td class="r" data-state="over">37.5%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">41,224</td><td class="r">16%</td><td class="r">34,525</td><td class="r">100,781</td><td class="r">93,253</td><td class="r" data-state="over">37.0%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">78,714</td><td class="r">16%</td><td class="r">65,961</td><td class="r">126,803</td><td class="r">113,792</td><td class="r" data-state="over">58.0%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">74,842</td><td class="r">16%</td><td class="r">62,927</td><td class="r">157,083</td><td class="r">141,943</td><td class="r" data-state="over">44.3%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">84,293</td><td class="r">14%</td><td class="r">72,569</td><td class="r">185,333</td><td class="r">171,208</td><td class="r" data-state="over">42.4%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">112,390</td><td class="r">16%</td><td class="r">93,914</td><td class="r">243,609</td><td class="r">214,471</td><td class="r" data-state="over">43.8%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">129,039</td><td class="r">17%</td><td class="r">107,382</td><td class="r">336,965</td><td class="r">290,287</td><td class="r" data-state="over">37.0%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-COST">
+<summary>코스트코<span class="tkr">COST</span></summary>
+<p class="en">Costco Wholesale</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">10,559</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">12,764</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">4,111</td><td class="r">33%</td><td class="r">2,762</td><td class="r">11,959</td><td class="r">12,362</td><td class="r" data-state="over">22.3%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">4,480</td><td class="r">28%</td><td class="r">3,206</td><td class="r">12,421</td><td class="r">12,190</td><td class="r" data-state="over">26.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">4,737</td><td class="r">22%</td><td class="r">3,682</td><td class="r">12,963</td><td class="r">12,692</td><td class="r" data-state="over">29.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">5,435</td><td class="r">24%</td><td class="r">4,110</td><td class="r">13,009</td><td class="r">12,986</td><td class="r" data-state="over">31.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,708</td><td class="r">24%</td><td class="r">5,100</td><td class="r">13,435</td><td class="r">13,222</td><td class="r" data-state="over">38.6%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">7,793</td><td class="r">25%</td><td class="r">5,880</td><td class="r">16,243</td><td class="r">14,839</td><td class="r" data-state="over">39.6%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">8,114</td><td class="r">26%</td><td class="r">6,015</td><td class="r">16,282</td><td class="r">16,262</td><td class="r" data-state="over">37.0%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">9,285</td><td class="r">24%</td><td class="r">7,023</td><td class="r">18,375</td><td class="r">17,328</td><td class="r" data-state="over">40.5%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">10,383</td><td class="r">25%</td><td class="r">7,773</td><td class="r">19,668</td><td class="r">19,022</td><td class="r" data-state="over">40.9%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">11,685</td><td class="r">25%</td><td class="r">8,800</td><td class="r">20,664</td><td class="r">20,166</td><td class="r" data-state="over">43.6%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 매출의 6.5% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 6.7% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 6.8% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 6.9% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 7.8% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 8.3% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 8.6% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 9.6% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-CSCO">
+<summary>시스코 시스템즈<span class="tkr">CSCO</span></summary>
+<p class="en">Cisco Systems</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">24,645</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">26,472</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">11,973</td><td class="r">22%</td><td class="r">9,363</td><td class="r">29,362</td><td class="r">27,917</td><td class="r" data-state="over">33.5%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">12,309</td><td class="r">40%</td><td class="r">7,385</td><td class="r">22,225</td><td class="r">25,794</td><td class="r" data-state="over">28.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">14,219</td><td class="r">20%</td><td class="r">11,340</td><td class="r">24,824</td><td class="r">23,524</td><td class="r" data-state="over">48.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">13,620</td><td class="r">20%</td><td class="r">10,933</td><td class="r">23,084</td><td class="r">23,954</td><td class="r" data-state="over">45.6%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">12,833</td><td class="r">20%</td><td class="r">10,248</td><td class="r">28,283</td><td class="r">25,684</td><td class="r" data-state="over">39.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">13,969</td><td class="r">18%</td><td class="r">11,398</td><td class="r">30,021</td><td class="r">29,152</td><td class="r" data-state="over">39.1%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">15,031</td><td class="r">18%</td><td class="r">12,377</td><td class="r">26,598</td><td class="r">28,310</td><td class="r" data-state="over">43.7%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">12,181</td><td class="r">16%</td><td class="r">10,275</td><td class="r">58,565</td><td class="r">42,582</td><td class="r" data-state="over">24.1%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">11,760</td><td class="r">8%</td><td class="r">10,785</td><td class="r">60,387</td><td class="r">59,476</td><td class="r" data-state="over">18.1%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">15,368</td><td class="r">17%</td><td class="r">12,736</td><td class="r">65,521</td><td class="r">62,954</td><td class="r" data-state="over">20.2%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-V">
+<summary>비자<span class="tkr">V</span></summary>
+<p class="en">Visa</p>
+<p class="en">9월 결산</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">23,893</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">39,927</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">12,144</td><td class="r">40%</td><td class="r">7,286</td><td class="r">37,771</td><td class="r">38,849</td><td class="r" data-state="over">18.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">12,954</td><td class="r">20%</td><td class="r">10,420</td><td class="r">39,040</td><td class="r">38,406</td><td class="r" data-state="over">27.1%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">15,001</td><td class="r">19%</td><td class="r">12,175</td><td class="r">39,465</td><td class="r">39,252</td><td class="r" data-state="over">31.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">14,081</td><td class="r">21%</td><td class="r">11,095</td><td class="r">40,387</td><td class="r">39,926</td><td class="r" data-state="over">27.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">15,804</td><td class="r">23%</td><td class="r">12,112</td><td class="r">40,054</td><td class="r">40,220</td><td class="r" data-state="over">30.1%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">18,813</td><td class="r">18%</td><td class="r">15,515</td><td class="r">39,509</td><td class="r">39,782</td><td class="r" data-state="over">39.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">21,000</td><td class="r">18%</td><td class="r">17,243</td><td class="r">39,068</td><td class="r">39,288</td><td class="r" data-state="over">43.9%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">23,595</td><td class="r">17%</td><td class="r">19,478</td><td class="r">44,798</td><td class="r">41,933</td><td class="r" data-state="over">46.5%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">23,994</td><td class="r">17%</td><td class="r">19,892</td><td class="r">44,083</td><td class="r">44,440</td><td class="r" data-state="over">44.8%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">28,110</td><td class="r">16%</td><td class="r">23,518</td><td class="r">44,099</td><td class="r">44,091</td><td class="r" data-state="over">53.3%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-AMZN">
+<summary>아마존<span class="tkr">AMZN</span></summary>
+<p class="en">Amazon.com</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">2,041</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">4,186</td><td class="r">37%</td><td class="r">2,653</td><td class="r">2,054</td><td class="r">2,048</td><td class="r" data-state="over">129.6%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">4,106</td><td class="r">20%</td><td class="r">3,276</td><td class="r">21,566</td><td class="r">11,810</td><td class="r" data-state="over">27.7%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">12,421</td><td class="r">11%</td><td class="r">11,101</td><td class="r">27,165</td><td class="r">24,366</td><td class="r" data-state="over">45.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">14,541</td><td class="r">17%</td><td class="r">12,071</td><td class="r">31,758</td><td class="r">29,462</td><td class="r" data-state="over">41.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">22,899</td><td class="r">12%</td><td class="r">20,187</td><td class="r">41,979</td><td class="r">36,868</td><td class="r" data-state="over">54.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">24,879</td><td class="r">13%</td><td class="r">21,755</td><td class="r">92,749</td><td class="r">67,364</td><td class="r" data-state="over">32.3%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">12,248</td><td class="r">21%</td><td class="r">9,676</td><td class="r">147,366</td><td class="r">120,058</td><td class="r" data-state="under">8.1%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">36,852</td><td class="r">19%</td><td class="r">29,866</td><td class="r">182,050</td><td class="r">164,708</td><td class="r" data-state="over">18.1%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">68,593</td><td class="r">14%</td><td class="r">59,331</td><td class="r">242,559</td><td class="r">212,304</td><td class="r" data-state="over">27.9%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">79,975</td><td class="r">20%</td><td class="r">64,288</td><td class="r">356,887</td><td class="r">299,723</td><td class="r" data-state="over">21.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 매출의 1.5% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 6.6% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 9.5% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-LLY">
+<summary>일라이 릴리<span class="tkr">LLY</span></summary>
+<p class="en">Eli Lilly</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">18,117</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">3,261</td><td class="r">19%</td><td class="r">2,646</td><td class="r">18,347</td><td class="r">18,232</td><td class="r" data-state="over">14.5%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">2,003</td><td class="r">40%</td><td class="r">1,202</td><td class="r">17,281</td><td class="r">17,814</td><td class="r" data-state="under">6.7%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">3,534</td><td class="r">14%</td><td class="r">3,026</td><td class="r">13,799</td><td class="r">15,540</td><td class="r" data-state="over">19.5%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">4,974</td><td class="r">12%</td><td class="r">4,381</td><td class="r">15,578</td><td class="r">14,688</td><td class="r" data-state="over">29.8%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">6,058</td><td class="r">14%</td><td class="r">5,190</td><td class="r">18,739</td><td class="r">17,158</td><td class="r" data-state="over">30.2%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,357</td><td class="r">9%</td><td class="r">5,765</td><td class="r">22,131</td><td class="r">20,435</td><td class="r" data-state="over">28.2%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">7,127</td><td class="r">8%</td><td class="r">6,539</td><td class="r">24,802</td><td class="r">23,467</td><td class="r" data-state="over">27.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">6,457</td><td class="r">20%</td><td class="r">5,162</td><td class="r">33,161</td><td class="r">28,982</td><td class="r" data-state="over">17.8%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">12,899</td><td class="r">16%</td><td class="r">10,773</td><td class="r">44,493</td><td class="r">38,827</td><td class="r" data-state="over">27.7%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">26,302</td><td class="r">20%</td><td class="r">21,098</td><td class="r">61,770</td><td class="r">53,131</td><td class="r" data-state="over">39.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_less_nonoperating</p>
+</details>
+<details class="co" id="co-JNJ">
+<summary>존슨앤드존슨<span class="tkr">JNJ</span></summary>
+<p class="en">Johnson &amp; Johnson</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">52,631</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">20,013</td><td class="r">16%</td><td class="r">16,715</td><td class="r">55,653</td><td class="r">54,142</td><td class="r" data-state="over">30.9%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">17,631</td><td class="r">40%</td><td class="r">10,579</td><td class="r">76,439</td><td class="r">66,046</td><td class="r" data-state="over">16.0%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">19,404</td><td class="r">15%</td><td class="r">16,491</td><td class="r">70,549</td><td class="r">73,494</td><td class="r" data-state="over">22.4%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">19,853</td><td class="r">13%</td><td class="r">17,322</td><td class="r">67,878</td><td class="r">69,214</td><td class="r" data-state="over">25.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">19,396</td><td class="r">11%</td><td class="r">17,300</td><td class="r">73,328</td><td class="r">70,603</td><td class="r" data-state="over">24.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">19,704</td><td class="r">7%</td><td class="r">18,289</td><td class="r">76,200</td><td class="r">74,764</td><td class="r" data-state="over">24.5%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">20,169</td><td class="r">15%</td><td class="r">17,055</td><td class="r">94,209</td><td class="r">85,204</td><td class="r" data-state="over">20.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">21,696</td><td class="r">12%</td><td class="r">19,195</td><td class="r">75,228</td><td class="r">84,718</td><td class="r" data-state="over">22.7%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">21,381</td><td class="r">16%</td><td class="r">18,023</td><td class="r">83,619</td><td class="r">79,424</td><td class="r" data-state="over">22.7%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">25,372</td><td class="r">18%</td><td class="r">20,873</td><td class="r">109,380</td><td class="r">96,500</td><td class="r" data-state="over">21.6%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_less_nonoperating</p>
+</details>
+<details class="co" id="co-PG">
+<summary>프록터앤드갬블<span class="tkr">PG</span></summary>
+<p class="en">Procter &amp; Gamble</p>
+<p class="en">P&amp;G · 6월 결산</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">81,792</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">74,237</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">13,766</td><td class="r">30%</td><td class="r">9,630</td><td class="r">72,233</td><td class="r">73,235</td><td class="r" data-state="over">13.1%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">13,363</td><td class="r">35%</td><td class="r">8,667</td><td class="r">72,319</td><td class="r">72,276</td><td class="r" data-state="over">12.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">5,487</td><td class="r">40%</td><td class="r">3,292</td><td class="r">67,384</td><td class="r">69,852</td><td class="r" data-state="under">4.7%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">15,706</td><td class="r">21%</td><td class="r">12,432</td><td class="r">65,417</td><td class="r">66,400</td><td class="r" data-state="over">18.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">17,986</td><td class="r">23%</td><td class="r">13,897</td><td class="r">68,354</td><td class="r">66,886</td><td class="r" data-state="over">20.8%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">17,813</td><td class="r">18%</td><td class="r">14,643</td><td class="r">71,133</td><td class="r">69,744</td><td class="r" data-state="over">21.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">18,134</td><td class="r">20%</td><td class="r">14,562</td><td class="r">73,426</td><td class="r">72,280</td><td class="r" data-state="over">20.1%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">18,545</td><td class="r">20%</td><td class="r">14,802</td><td class="r">73,537</td><td class="r">73,482</td><td class="r" data-state="over">20.1%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">20,451</td><td class="r">20%</td><td class="r">16,291</td><td class="r">77,236</td><td class="r">75,386</td><td class="r" data-state="over">21.6%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">19,748</td><td class="r">21%</td><td class="r">15,646</td><td class="r">78,507</td><td class="r">77,872</td><td class="r" data-state="over">20.1%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-ABBV">
+<summary>애브비<span class="tkr">ABBV</span></summary>
+<p class="en">AbbVie</p>
+<p class="en">2013년 애보트에서 분사</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">27,209</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">9,340</td><td class="r">24%</td><td class="r">7,052</td><td class="r">35,055</td><td class="r">31,132</td><td class="r" data-state="over">22.7%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">9,545</td><td class="r">31%</td><td class="r">6,558</td><td class="r">32,676</td><td class="r">33,866</td><td class="r" data-state="over">19.4%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">6,383</td><td class="r">5%</td><td class="r">6,064</td><td class="r">23,803</td><td class="r">28,240</td><td class="r" data-state="over">21.5%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">12,983</td><td class="r">6%</td><td class="r">12,145</td><td class="r">18,632</td><td class="r">21,218</td><td class="r" data-state="over">57.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">11,363</td><td class="r">5%</td><td class="r">10,795</td><td class="r">90,674</td><td class="r">54,653</td><td class="r" data-state="over">19.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">17,924</td><td class="r">11%</td><td class="r">15,937</td><td class="r">82,290</td><td class="r">86,482</td><td class="r" data-state="over">18.4%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">18,117</td><td class="r">12%</td><td class="r">15,923</td><td class="r">71,329</td><td class="r">76,810</td><td class="r" data-state="over">20.7%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">12,757</td><td class="r">22%</td><td class="r">9,946</td><td class="r">56,966</td><td class="r">64,148</td><td class="r" data-state="over">15.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">9,137</td><td class="r">5%</td><td class="r">8,680</td><td class="r">64,953</td><td class="r">60,960</td><td class="r" data-state="over">14.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">15,075</td><td class="r">36%</td><td class="r">9,673</td><td class="r">59,011</td><td class="r">61,982</td><td class="r" data-state="over">15.6%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-NFLX">
+<summary>넷플릭스<span class="tkr">NFLX</span></summary>
+<p class="en">Netflix</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">2,284</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">380</td><td class="r">28%</td><td class="r">272</td><td class="r">4,310</td><td class="r">3,297</td><td class="r" data-state="under">8.3%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">839</td><td class="r">5%</td><td class="r">797</td><td class="r">7,259</td><td class="r">5,784</td><td class="r" data-state="over">13.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">1,605</td><td class="r">5%</td><td class="r">1,525</td><td class="r">11,804</td><td class="r">9,531</td><td class="r" data-state="over">16.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">2,604</td><td class="r">9%</td><td class="r">2,358</td><td class="r">17,323</td><td class="r">14,564</td><td class="r" data-state="over">16.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,585</td><td class="r">14%</td><td class="r">3,958</td><td class="r">19,169</td><td class="r">18,246</td><td class="r" data-state="over">21.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,195</td><td class="r">12%</td><td class="r">5,427</td><td class="r">25,187</td><td class="r">22,178</td><td class="r" data-state="over">24.5%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">5,633</td><td class="r">15%</td><td class="r">4,807</td><td class="r">29,049</td><td class="r">27,118</td><td class="r" data-state="over">17.7%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">6,954</td><td class="r">13%</td><td class="r">6,060</td><td class="r">27,992</td><td class="r">28,520</td><td class="r" data-state="over">21.2%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">10,418</td><td class="r">13%</td><td class="r">9,107</td><td class="r">30,743</td><td class="r">29,367</td><td class="r" data-state="over">31.0%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">13,327</td><td class="r">14%</td><td class="r">11,503</td><td class="r">32,016</td><td class="r">31,379</td><td class="r" data-state="over">36.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-ORCL">
+<summary>오라클<span class="tkr">ORCL</span></summary>
+<p class="en">Oracle</p>
+<p class="en">5월 결산</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">36,688</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">35,520</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">12,913</td><td class="r">19%</td><td class="r">10,415</td><td class="r">46,961</td><td class="r">41,240</td><td class="r" data-state="over">25.3%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">13,264</td><td class="r">40%</td><td class="r">7,958</td><td class="r">40,231</td><td class="r">43,596</td><td class="r" data-state="over">18.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">13,535</td><td class="r">21%</td><td class="r">10,693</td><td class="r">40,703</td><td class="r">40,467</td><td class="r" data-state="over">26.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">13,896</td><td class="r">21%</td><td class="r">10,978</td><td class="r">41,257</td><td class="r">40,980</td><td class="r" data-state="over">26.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">15,213</td><td class="r">21%</td><td class="r">12,018</td><td class="r">43,643</td><td class="r">42,450</td><td class="r" data-state="over">28.3%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">10,926</td><td class="r">21%</td><td class="r">8,632</td><td class="r">48,189</td><td class="r">45,916</td><td class="r" data-state="over">18.8%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">13,093</td><td class="r">21%</td><td class="r">10,343</td><td class="r">81,850</td><td class="r">65,020</td><td class="r" data-state="over">15.9%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">15,353</td><td class="r">21%</td><td class="r">12,129</td><td class="r">85,447</td><td class="r">83,648</td><td class="r" data-state="over">14.5%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">17,678</td><td class="r">21%</td><td class="r">13,966</td><td class="r">102,334</td><td class="r">93,890</td><td class="r" data-state="over">14.9%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">20,606</td><td class="r">21%</td><td class="r">16,279</td><td class="r">140,703</td><td class="r">121,518</td><td class="r" data-state="over">13.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-MU">
+<summary>마이크론 테크놀로지<span class="tkr">MU</span></summary>
+<p class="en">Micron Technology</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">17,059</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">18,440</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">5,868</td><td class="r">5%</td><td class="r">5,575</td><td class="r">25,176</td><td class="r">21,808</td><td class="r" data-state="over">25.6%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">14,994</td><td class="r">5%</td><td class="r">14,244</td><td class="r">30,998</td><td class="r">28,087</td><td class="r" data-state="over">50.7%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">7,376</td><td class="r">10%</td><td class="r">6,651</td><td class="r">34,666</td><td class="r">32,832</td><td class="r" data-state="over">20.3%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">3,003</td><td class="r">9%</td><td class="r">2,721</td><td class="r">37,497</td><td class="r">36,082</td><td class="r" data-state="under">7.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,283</td><td class="r">6%</td><td class="r">5,885</td><td class="r">42,076</td><td class="r">39,786</td><td class="r" data-state="over">14.8%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">9,702</td><td class="r">9%</td><td class="r">8,802</td><td class="r">47,482</td><td class="r">44,779</td><td class="r" data-state="over">19.7%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">-5,745</td><td class="r">21%</td><td class="r">-4,539</td><td class="r">47,856</td><td class="r">47,669</td><td class="r" data-state="under">-9.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">1,304</td><td class="r">36%</td><td class="r">830</td><td class="r">50,422</td><td class="r">49,139</td><td class="r" data-state="under">1.7%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">9,770</td><td class="r">12%</td><td class="r">8,632</td><td class="r">58,435</td><td class="r">54,428</td><td class="r" data-state="over">15.9%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">99,340</td><td class="r">15%</td><td class="r">84,628</td><td class="r">100,123</td><td class="r">79,279</td><td class="r" data-state="over">106.7%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-CAT">
+<summary>캐터필러<span class="tkr">CAT</span></summary>
+<p class="en">Caterpillar</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">40,561</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">1,162</td><td class="r">40%</td><td class="r">697</td><td class="r">36,181</td><td class="r">38,371</td><td class="r" data-state="under">1.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">4,460</td><td class="r">40%</td><td class="r">2,676</td><td class="r">34,189</td><td class="r">35,185</td><td class="r" data-state="under">7.6%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">8,293</td><td class="r">22%</td><td class="r">6,493</td><td class="r">36,946</td><td class="r">35,568</td><td class="r" data-state="over">18.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">8,290</td><td class="r">22%</td><td class="r">6,437</td><td class="r">37,792</td><td class="r">37,369</td><td class="r" data-state="over">17.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,553</td><td class="r">25%</td><td class="r">3,406</td><td class="r">34,040</td><td class="r">35,916</td><td class="r" data-state="under">9.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,878</td><td class="r">21%</td><td class="r">5,418</td><td class="r">38,699</td><td class="r">36,370</td><td class="r" data-state="over">14.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">7,904</td><td class="r">24%</td><td class="r">6,037</td><td class="r">40,558</td><td class="r">39,628</td><td class="r" data-state="over">15.2%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">12,966</td><td class="r">21%</td><td class="r">10,203</td><td class="r">41,640</td><td class="r">41,099</td><td class="r" data-state="over">24.8%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">13,072</td><td class="r">20%</td><td class="r">10,502</td><td class="r">44,349</td><td class="r">42,994</td><td class="r" data-state="over">24.4%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">11,151</td><td class="r">24%</td><td class="r">8,477</td><td class="r">47,548</td><td class="r">45,948</td><td class="r" data-state="over">18.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-DELL">
+<summary>델 테크놀로지스<span class="tkr">DELL</span></summary>
+<p class="en">Dell Technologies</p>
+<p class="en">2018년 재상장</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">8,775</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">-3,252</td><td class="r">21%</td><td class="r">-2,569</td><td class="r">58,519</td><td class="r">33,647</td><td class="r" data-state="under">-7.6%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">-2,416</td><td class="r">21%</td><td class="r">-1,909</td><td class="r">53,227</td><td class="r">55,873</td><td class="r" data-state="under">-3.4%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">-191</td><td class="r">21%</td><td class="r">-151</td><td class="r">42,903</td><td class="r">48,065</td><td class="r" data-state="under">-0.3%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">2,366</td><td class="r">21%</td><td class="r">1,869</td><td class="r">45,909</td><td class="r">44,406</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">3,685</td><td class="r">5%</td><td class="r">3,501</td><td class="r">35,967</td><td class="r">40,938</td><td class="r" data-state="under">8.6%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">4,659</td><td class="r">17%</td><td class="r">3,887</td><td class="r">14,097</td><td class="r">25,032</td><td class="r" data-state="over">15.5%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">5,771</td><td class="r">25%</td><td class="r">4,334</td><td class="r">16,356</td><td class="r">15,226</td><td class="r" data-state="over">28.5%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">5,411</td><td class="r">17%</td><td class="r">4,464</td><td class="r">14,896</td><td class="r">15,626</td><td class="r" data-state="over">28.6%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">6,237</td><td class="r">9%</td><td class="r">5,654</td><td class="r">18,047</td><td class="r">16,472</td><td class="r" data-state="over">34.3%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">8,149</td><td class="r">18%</td><td class="r">6,660</td><td class="r">15,805</td><td class="r">16,926</td><td class="r" data-state="over">39.3%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 현금성자산 태그 누락 의심 — 투하자본 과대</p>
+</details>
+<details class="co" id="co-KO">
+<summary>코카콜라<span class="tkr">KO</span></summary>
+<p class="en">Coca-Cola</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">54,155</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">8,657</td><td class="r">19%</td><td class="r">6,969</td><td class="r">50,611</td><td class="r">52,383</td><td class="r" data-state="over">13.3%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">7,755</td><td class="r">40%</td><td class="r">4,653</td><td class="r">51,030</td><td class="r">50,820</td><td class="r" data-state="under">9.2%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">9,152</td><td class="r">21%</td><td class="r">7,206</td><td class="r">51,398</td><td class="r">51,214</td><td class="r" data-state="over">14.1%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">10,086</td><td class="r">17%</td><td class="r">8,402</td><td class="r">55,914</td><td class="r">53,656</td><td class="r" data-state="over">15.7%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">8,997</td><td class="r">20%</td><td class="r">7,169</td><td class="r">55,511</td><td class="r">55,712</td><td class="r" data-state="over">12.9%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">10,308</td><td class="r">21%</td><td class="r">8,134</td><td class="r">56,695</td><td class="r">56,103</td><td class="r" data-state="over">14.5%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">10,909</td><td class="r">18%</td><td class="r">8,935</td><td class="r">54,413</td><td class="r">55,554</td><td class="r" data-state="over">16.1%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">11,311</td><td class="r">17%</td><td class="r">9,347</td><td class="r">56,833</td><td class="r">55,623</td><td class="r" data-state="over">16.8%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">9,992</td><td class="r">19%</td><td class="r">8,131</td><td class="r">57,686</td><td class="r">57,260</td><td class="r" data-state="over">14.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">13,762</td><td class="r">18%</td><td class="r">11,301</td><td class="r">65,839</td><td class="r">61,762</td><td class="r" data-state="over">18.3%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-WMT">
+<summary>월마트<span class="tkr">WMT</span></summary>
+<p class="en">Walmart</p>
+<p class="en">1월 결산</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">115,865</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">22,764</td><td class="r">30%</td><td class="r">15,874</td><td class="r">111,939</td><td class="r">113,902</td><td class="r" data-state="over">13.9%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">20,437</td><td class="r">30%</td><td class="r">14,221</td><td class="r">107,849</td><td class="r">109,894</td><td class="r" data-state="over">12.9%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">21,957</td><td class="r">37%</td><td class="r">13,755</td><td class="r">117,308</td><td class="r">112,578</td><td class="r" data-state="over">12.2%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">20,568</td><td class="r">24%</td><td class="r">15,543</td><td class="r">121,163</td><td class="r">119,236</td><td class="r" data-state="over">13.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">22,548</td><td class="r">33%</td><td class="r">15,028</td><td class="r">114,099</td><td class="r">117,631</td><td class="r" data-state="over">12.8%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">25,942</td><td class="r">25%</td><td class="r">19,343</td><td class="r">114,798</td><td class="r">114,448</td><td class="r" data-state="over">16.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">20,428</td><td class="r">34%</td><td class="r">13,556</td><td class="r">113,969</td><td class="r">114,384</td><td class="r" data-state="over">11.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">27,012</td><td class="r">26%</td><td class="r">20,116</td><td class="r">120,061</td><td class="r">117,015</td><td class="r" data-state="over">17.2%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">29,348</td><td class="r">23%</td><td class="r">22,485</td><td class="r">124,383</td><td class="r">122,222</td><td class="r" data-state="over">18.4%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">29,825</td><td class="r">24%</td><td class="r">22,539</td><td class="r">133,326</td><td class="r">128,854</td><td class="r" data-state="over">17.5%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-INTC">
+<summary>인텔<span class="tkr">INTC</span></summary>
+<p class="en">Intel</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">65,765</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">13,133</td><td class="r">20%</td><td class="r">10,473</td><td class="r">82,724</td><td class="r">74,244</td><td class="r" data-state="over">14.1%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">18,050</td><td class="r">40%</td><td class="r">10,830</td><td class="r">91,219</td><td class="r">86,972</td><td class="r" data-state="over">12.5%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">23,316</td><td class="r">10%</td><td class="r">21,052</td><td class="r">95,115</td><td class="r">93,167</td><td class="r" data-state="over">22.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">22,035</td><td class="r">13%</td><td class="r">19,278</td><td class="r">101,229</td><td class="r">98,172</td><td class="r" data-state="over">19.6%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">23,678</td><td class="r">17%</td><td class="r">19,732</td><td class="r">109,282</td><td class="r">105,256</td><td class="r" data-state="over">18.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">19,456</td><td class="r">8%</td><td class="r">17,811</td><td class="r">104,239</td><td class="r">106,760</td><td class="r" data-state="over">16.7%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">2,334</td><td class="r">5%</td><td class="r">2,217</td><td class="r">116,999</td><td class="r">110,619</td><td class="r" data-state="under">2.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">93</td><td class="r">5%</td><td class="r">88</td><td class="r">134,197</td><td class="r">125,598</td><td class="r" data-state="under">0.1%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">-11,678</td><td class="r">21%</td><td class="r">-9,226</td><td class="r">132,981</td><td class="r">133,589</td><td class="r" data-state="under">-6.9%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">-2,214</td><td class="r">40%</td><td class="r">-1,328</td><td class="r">135,529</td><td class="r">134,255</td><td class="r" data-state="under">-1.0%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-MRK">
+<summary>머크<span class="tkr">MRK</span></summary>
+<p class="en">Merck &amp; Co.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">57,855</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">4,848</td><td class="r">15%</td><td class="r">4,101</td><td class="r">50,835</td><td class="r">54,345</td><td class="r" data-state="under">7.5%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">6,021</td><td class="r">40%</td><td class="r">3,613</td><td class="r">50,487</td><td class="r">50,661</td><td class="r" data-state="under">7.1%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">8,299</td><td class="r">29%</td><td class="r">5,907</td><td class="r">43,123</td><td class="r">46,805</td><td class="r" data-state="over">12.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">7,300</td><td class="r">22%</td><td class="r">5,707</td><td class="r">41,876</td><td class="r">42,500</td><td class="r" data-state="over">13.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,973</td><td class="r">23%</td><td class="r">3,836</td><td class="r">49,154</td><td class="r">45,515</td><td class="r" data-state="under">8.4%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">12,538</td><td class="r">11%</td><td class="r">11,164</td><td class="r">63,261</td><td class="r">56,208</td><td class="r" data-state="over">19.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">17,945</td><td class="r">12%</td><td class="r">15,852</td><td class="r">63,566</td><td class="r">63,414</td><td class="r" data-state="over">25.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">2,355</td><td class="r">40%</td><td class="r">1,413</td><td class="r">65,642</td><td class="r">64,604</td><td class="r" data-state="under">2.2%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">19,912</td><td class="r">14%</td><td class="r">17,112</td><td class="r">69,783</td><td class="r">67,712</td><td class="r" data-state="over">25.3%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">21,218</td><td class="r">13%</td><td class="r">18,394</td><td class="r">87,397</td><td class="r">78,590</td><td class="r" data-state="over">23.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_less_nonoperating</p>
+</details>
+<details class="co" id="co-IBM">
+<summary>IBM<span class="tkr">IBM</span></summary>
+<p class="en">International Business Machines</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">46,119</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">12,960</td><td class="r">5%</td><td class="r">12,312</td><td class="r">52,033</td><td class="r">49,076</td><td class="r" data-state="over">25.1%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">12,015</td><td class="r">40%</td><td class="r">7,209</td><td class="r">51,969</td><td class="r">52,001</td><td class="r" data-state="over">13.9%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">12,065</td><td class="r">23%</td><td class="r">9,279</td><td class="r">50,744</td><td class="r">51,356</td><td class="r" data-state="over">18.1%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">8,550</td><td class="r">5%</td><td class="r">8,122</td><td class="r">82,538</td><td class="r">66,641</td><td class="r" data-state="over">12.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">3,860</td><td class="r">5%</td><td class="r">3,667</td><td class="r">75,258</td><td class="r">78,898</td><td class="r" data-state="under">4.6%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">5,992</td><td class="r">5%</td><td class="r">5,692</td><td class="r">70,814</td><td class="r">73,036</td><td class="r" data-state="under">7.8%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">2,372</td><td class="r">5%</td><td class="r">2,253</td><td class="r">69,835</td><td class="r">70,324</td><td class="r" data-state="under">3.2%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">10,297</td><td class="r">14%</td><td class="r">8,904</td><td class="r">72,517</td><td class="r">71,176</td><td class="r" data-state="over">12.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">7,509</td><td class="r">5%</td><td class="r">7,134</td><td class="r">73,478</td><td class="r">72,998</td><td class="r" data-state="under">9.8%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">12,263</td><td class="r">5%</td><td class="r">11,650</td><td class="r">86,837</td><td class="r">80,158</td><td class="r" data-state="over">14.5%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+</details>
+<details class="co" id="co-AVGO">
+<summary>브로드컴<span class="tkr">AVGO</span></summary>
+<p class="en">Broadcom</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2016</td><td class="r">-409</td><td class="r">21%</td><td class="r">-323</td><td class="r">18,779</td><td class="r">18,779</td><td class="r" data-state="under">-1.7%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">2,371</td><td class="r">5%</td><td class="r">2,252</td><td class="r">29,530</td><td class="r">24,154</td><td class="r" data-state="under">9.3%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">5,135</td><td class="r">5%</td><td class="r">4,878</td><td class="r">39,974</td><td class="r">34,752</td><td class="r" data-state="over">14.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">3,444</td><td class="r">5%</td><td class="r">3,272</td><td class="r">52,945</td><td class="r">46,460</td><td class="r" data-state="under">7.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">4,014</td><td class="r">5%</td><td class="r">3,813</td><td class="r">57,754</td><td class="r">55,350</td><td class="r" data-state="under">6.9%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">8,519</td><td class="r">5%</td><td class="r">8,093</td><td class="r">52,503</td><td class="r">55,128</td><td class="r" data-state="over">14.7%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">14,225</td><td class="r">8%</td><td class="r">13,151</td><td class="r">49,771</td><td class="r">51,137</td><td class="r" data-state="over">25.7%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">16,207</td><td class="r">7%</td><td class="r">15,117</td><td class="r">48,983</td><td class="r">49,377</td><td class="r" data-state="over">30.6%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">13,463</td><td class="r">38%</td><td class="r">8,374</td><td class="r">128,177</td><td class="r">88,580</td><td class="r" data-state="under">9.5%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">25,484</td><td class="r">5%</td><td class="r">24,210</td><td class="r">132,234</td><td class="r">130,206</td><td class="r" data-state="over">18.6%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-AMD">
+<summary>AMD<span class="tkr">AMD</span></summary>
+<p class="en">Advanced Micro Devices</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">1,332</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">-373</td><td class="r">21%</td><td class="r">-295</td><td class="r">648</td><td class="r">990</td><td class="r" data-state="under">-29.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">127</td><td class="r">21%</td><td class="r">100</td><td class="r">806</td><td class="r">727</td><td class="r" data-state="over">13.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">451</td><td class="r">5%</td><td class="r">428</td><td class="r">1,360</td><td class="r">1,083</td><td class="r" data-state="over">39.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">631</td><td class="r">8%</td><td class="r">578</td><td class="r">1,810</td><td class="r">1,585</td><td class="r" data-state="over">36.5%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">1,369</td><td class="r">5%</td><td class="r">1,301</td><td class="r">3,877</td><td class="r">2,844</td><td class="r" data-state="over">45.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">3,648</td><td class="r">14%</td><td class="r">3,139</td><td class="r">4,202</td><td class="r">4,040</td><td class="r" data-state="over">77.7%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">1,264</td><td class="r">5%</td><td class="r">1,201</td><td class="r">51,362</td><td class="r">27,782</td><td class="r" data-state="under">4.3%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">401</td><td class="r">5%</td><td class="r">381</td><td class="r">52,587</td><td class="r">51,974</td><td class="r" data-state="under">0.7%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">1,900</td><td class="r">19%</td><td class="r">1,542</td><td class="r">54,157</td><td class="r">53,372</td><td class="r" data-state="under">2.9%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">3,694</td><td class="r">5%</td><td class="r">3,509</td><td class="r">55,669</td><td class="r">54,913</td><td class="r" data-state="under">6.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-TSLA">
+<summary>테슬라<span class="tkr">TSLA</span></summary>
+<p class="en">Tesla</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">2,519</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">-667</td><td class="r">21%</td><td class="r">-527</td><td class="r">9,120</td><td class="r">5,819</td><td class="r" data-state="under">-9.1%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">-1,632</td><td class="r">21%</td><td class="r">-1,289</td><td class="r">12,084</td><td class="r">10,602</td><td class="r" data-state="under">-12.2%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">-388</td><td class="r">21%</td><td class="r">-307</td><td class="r">13,697</td><td class="r">12,890</td><td class="r" data-state="under">-2.4%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">-69</td><td class="r">21%</td><td class="r">-55</td><td class="r">11,601</td><td class="r">12,649</td><td class="r" data-state="under">-0.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">1,994</td><td class="r">25%</td><td class="r">1,489</td><td class="r">12,153</td><td class="r">11,877</td><td class="r" data-state="over">12.5%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">6,523</td><td class="r">11%</td><td class="r">5,804</td><td class="r">17,562</td><td class="r">14,858</td><td class="r" data-state="over">39.1%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">13,656</td><td class="r">8%</td><td class="r">12,529</td><td class="r">24,333</td><td class="r">20,948</td><td class="r" data-state="over">59.8%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">8,891</td><td class="r">5%</td><td class="r">8,446</td><td class="r">36,955</td><td class="r">30,644</td><td class="r" data-state="over">27.6%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">7,076</td><td class="r">20%</td><td class="r">5,630</td><td class="r">42,589</td><td class="r">39,772</td><td class="r" data-state="over">14.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">4,355</td><td class="r">27%</td><td class="r">3,181</td><td class="r">45,332</td><td class="r">43,960</td><td class="r" data-state="under">7.2%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-XOM">
+<summary>엑슨모빌<span class="tkr">XOM</span></summary>
+<p class="en">Exxon Mobil</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">210,567</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">8,392</td><td class="r">5%</td><td class="r">7,972</td><td class="r">211,703</td><td class="r">211,135</td><td class="r" data-state="under">3.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">19,239</td><td class="r">5%</td><td class="r">18,277</td><td class="r">232,353</td><td class="r">222,028</td><td class="r" data-state="under">8.2%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">31,655</td><td class="r">31%</td><td class="r">21,907</td><td class="r">233,282</td><td class="r">232,818</td><td class="r" data-state="under">9.4%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">20,802</td><td class="r">26%</td><td class="r">15,324</td><td class="r">242,769</td><td class="r">238,026</td><td class="r" data-state="under">6.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-27,774</td><td class="r">21%</td><td class="r">-21,941</td><td class="r">227,406</td><td class="r">235,088</td><td class="r" data-state="under">-9.3%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">32,148</td><td class="r">24%</td><td class="r">24,289</td><td class="r">216,585</td><td class="r">221,996</td><td class="r" data-state="over">10.9%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">78,105</td><td class="r">26%</td><td class="r">57,838</td><td class="r">214,026</td><td class="r">215,306</td><td class="r" data-state="over">26.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">52,004</td><td class="r">29%</td><td class="r">36,803</td><td class="r">222,572</td><td class="r">218,299</td><td class="r" data-state="over">16.9%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">49,869</td><td class="r">28%</td><td class="r">35,778</td><td class="r">289,287</td><td class="r">255,930</td><td class="r" data-state="over">14.0%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">41,871</td><td class="r">28%</td><td class="r">30,199</td><td class="r">299,482</td><td class="r">294,384</td><td class="r" data-state="over">10.3%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+</details>
+<details class="co" id="co-CVX">
+<summary>셰브론<span class="tkr">CVX</span></summary>
+<p class="en">Chevron</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">189,023</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">-1,959</td><td class="r">21%</td><td class="r">-1,548</td><td class="r">194,754</td><td class="r">191,888</td><td class="r" data-state="under">-0.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">9,528</td><td class="r">5%</td><td class="r">9,052</td><td class="r">193,166</td><td class="r">193,960</td><td class="r" data-state="under">4.7%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">21,323</td><td class="r">28%</td><td class="r">15,400</td><td class="r">190,606</td><td class="r">191,886</td><td class="r" data-state="under">8.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">6,334</td><td class="r">40%</td><td class="r">3,800</td><td class="r">174,957</td><td class="r">182,782</td><td class="r" data-state="under">2.1%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-6,756</td><td class="r">21%</td><td class="r">-5,337</td><td class="r">181,239</td><td class="r">178,098</td><td class="r" data-state="under">-3.0%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">22,351</td><td class="r">27%</td><td class="r">16,205</td><td class="r">173,393</td><td class="r">177,316</td><td class="r" data-state="under">9.1%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">50,190</td><td class="r">28%</td><td class="r">35,978</td><td class="r">169,730</td><td class="r">171,562</td><td class="r" data-state="over">21.0%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">30,053</td><td class="r">28%</td><td class="r">21,750</td><td class="r">179,085</td><td class="r">174,408</td><td class="r" data-state="over">12.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">28,100</td><td class="r">35%</td><td class="r">18,132</td><td class="r">177,686</td><td class="r">178,386</td><td class="r" data-state="over">10.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">20,960</td><td class="r">37%</td><td class="r">13,255</td><td class="r">235,590</td><td class="r">206,638</td><td class="r" data-state="under">6.4%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+</details>
+<details class="co" id="co-RTX">
+<summary>RTX<span class="tkr">RTX</span></summary>
+<p class="en">RTX</p>
+<p class="en">2023년까지 사명은 Raytheon Technologies. 2020년 레이시온·유나이티드테크놀로지스 합병</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">42,194</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">8,221</td><td class="r">24%</td><td class="r">6,265</td><td class="r">45,913</td><td class="r">44,054</td><td class="r" data-state="over">14.2%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">8,138</td><td class="r">37%</td><td class="r">5,158</td><td class="r">49,921</td><td class="r">47,917</td><td class="r" data-state="over">10.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">2,877</td><td class="r">40%</td><td class="r">1,726</td><td class="r">82,454</td><td class="r">66,188</td><td class="r" data-state="under">2.6%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">4,914</td><td class="r">10%</td><td class="r">4,416</td><td class="r">82,546</td><td class="r">82,500</td><td class="r" data-state="under">5.4%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-1,889</td><td class="r">21%</td><td class="r">-1,492</td><td class="r">95,992</td><td class="r">89,269</td><td class="r" data-state="under">-1.7%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">5,136</td><td class="r">19%</td><td class="r">4,167</td><td class="r">97,352</td><td class="r">96,672</td><td class="r" data-state="under">4.3%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">5,504</td><td class="r">13%</td><td class="r">4,793</td><td class="r">99,098</td><td class="r">98,225</td><td class="r" data-state="under">4.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">3,561</td><td class="r">12%</td><td class="r">3,138</td><td class="r">97,905</td><td class="r">98,502</td><td class="r" data-state="under">3.2%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">6,538</td><td class="r">19%</td><td class="r">5,291</td><td class="r">96,820</td><td class="r">97,362</td><td class="r" data-state="under">5.4%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">9,300</td><td class="r">19%</td><td class="r">7,528</td><td class="r">96,821</td><td class="r">96,820</td><td class="r" data-state="under">7.8%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+</details>
+<details class="co" id="co-GE">
+<summary>제너럴 일렉트릭<span class="tkr">GE</span></summary>
+<p class="en">General Electric / GE Aerospace</p>
+<p class="en">2024년 GE 에어로스페이스로 사명 변경. FY2023까지는 복합기업 기준이므로 현재의 항공엔진 단일 사업과 직접 비교 불가</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">192,201</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">2,891</td><td class="r">5%</td><td class="r">2,746</td><td class="r">115,593</td><td class="r">153,897</td><td class="r" data-state="under">1.8%</td></tr>
+<tr><td class="l">FY2017</td><td class="r">-13,428</td><td class="r">21%</td><td class="r">-10,608</td><td class="r">126,095</td><td class="r">120,844</td><td class="r" data-state="under">-8.8%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">-23,308</td><td class="r">21%</td><td class="r">-18,413</td><td class="r">90,121</td><td class="r">108,108</td><td class="r" data-state="under">-17.0%</td></tr>
+<tr><td class="l">FY2019</td><td class="r">-2,533</td><td class="r">21%</td><td class="r">-2,001</td><td class="r">36,411</td><td class="r">63,266</td><td class="r" data-state="under">-3.2%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-5,426</td><td class="r">5%</td><td class="r">-5,155</td><td class="r">75,445</td><td class="r">55,928</td><td class="r" data-state="under">-9.2%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">-8,391</td><td class="r">21%</td><td class="r">-6,629</td><td class="r">52,762</td><td class="r">64,104</td><td class="r" data-state="under">-10.3%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">711</td><td class="r">11%</td><td class="r">632</td><td class="r">43,179</td><td class="r">47,970</td><td class="r" data-state="under">1.3%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">3,723</td><td class="r">10%</td><td class="r">3,369</td><td class="r">33,926</td><td class="r">38,552</td><td class="r" data-state="under">8.7%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">5,356</td><td class="r">13%</td><td class="r">4,680</td><td class="r">25,218</td><td class="r">29,572</td><td class="r" data-state="over">15.8%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">8,513</td><td class="r">14%</td><td class="r">7,317</td><td class="r">27,000</td><td class="r">26,109</td><td class="r" data-state="over">28.0%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_less_nonoperating</p>
+</details>
+<details class="co" id="co-PANW">
+<summary>팔로알토 네트웍스<span class="tkr">PANW</span></summary>
+<p class="en">Palo Alto Networks</p>
+<p class="en">7월 결산</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">258</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">264</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">-166</td><td class="r">21%</td><td class="r">-131</td><td class="r">78</td><td class="r">171</td><td class="r" data-state="under">-76.7%</td></tr>
+<tr><td class="l">FY2018</td><td class="r">-104</td><td class="r">21%</td><td class="r">-82</td><td class="r">-323</td><td class="r">-323</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">-54</td><td class="r">21%</td><td class="r">-43</td><td class="r">213</td><td class="r">213</td><td class="r" data-state="under">-20.0%</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-179</td><td class="r">21%</td><td class="r">-141</td><td class="r">438</td><td class="r">326</td><td class="r" data-state="under">-43.4%</td></tr>
+<tr><td class="l">FY2021</td><td class="r">-304</td><td class="r">21%</td><td class="r">-240</td><td class="r">959</td><td class="r">699</td><td class="r" data-state="under">-34.4%</td></tr>
+<tr><td class="l">FY2022</td><td class="r">-189</td><td class="r">21%</td><td class="r">-149</td><td class="r">252</td><td class="r">606</td><td class="r" data-state="under">-24.6%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">387</td><td class="r">22%</td><td class="r">301</td><td class="r">1,350</td><td class="r">801</td><td class="r" data-state="over">37.5%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">684</td><td class="r">5%</td><td class="r">650</td><td class="r">2,590</td><td class="r">1,970</td><td class="r" data-state="over">33.0%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">1,243</td><td class="r">29%</td><td class="r">883</td><td class="r">4,920</td><td class="r">3,755</td><td class="r" data-state="over">23.5%</td></tr>
+<tr><td class="l">FY2026</td><td class="r">695</td><td class="r">40%</td><td class="r">417</td><td class="r">24,421</td><td class="r">14,670</td><td class="r" data-state="under">2.8%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 0 이하 — 현금이 자기자본+차입금을 넘어 비율이 성립하지 않음 / 투하자본이 매출의 7.4% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 9.6% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 9.7% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-PLTR">
+<summary>팔란티어 테크놀로지스<span class="tkr">PLTR</span></summary>
+<p class="en">Palantir Technologies</p>
+<p class="en">2020년 상장</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2018</td><td class="r">-623</td><td class="r">21%</td><td class="r">-493</td><td class="r">-2,868</td><td class="r">-2,868</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">-576</td><td class="r">21%</td><td class="r">-455</td><td class="r">-2,664</td><td class="r">-2,664</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">-1,174</td><td class="r">21%</td><td class="r">-927</td><td class="r">-291</td><td class="r">-291</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">-411</td><td class="r">21%</td><td class="r">-325</td><td class="r">-234</td><td class="r">-234</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">-161</td><td class="r">21%</td><td class="r">-127</td><td class="r">9</td><td class="r">9</td><td class="r" data-state="under">-1453.4%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">120</td><td class="r">8%</td><td class="r">110</td><td class="r">-113</td><td class="r">-113</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">310</td><td class="r">5%</td><td class="r">295</td><td class="r">-136</td><td class="r">-136</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">1,414</td><td class="r">5%</td><td class="r">1,343</td><td class="r">311</td><td class="r">311</td><td class="r" data-state="over">432.0%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 0 이하 — 현금이 자기자본+차입금을 넘어 비율이 성립하지 않음 / 투하자본이 매출의 0.5% — 분모가 작아 비율이 민감 (판정은 유효) / 투하자본이 매출의 6.9% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-GEV">
+<summary>GE 버노바<span class="tkr">GEV</span></summary>
+<p class="en">GE Vernova</p>
+<p class="en">2024년 4월 GE에서 분사 — 그래서 산출 연도가 4년</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2022</td><td class="r">-2,881</td><td class="r">21%</td><td class="r">-2,276</td><td class="r">9,540</td><td class="r">9,540</td><td class="r" data-state="under">-23.9%</td></tr>
+<tr><td class="l">FY2023</td><td class="r">-923</td><td class="r">21%</td><td class="r">-729</td><td class="r">6,974</td><td class="r">8,257</td><td class="r" data-state="under">-8.8%</td></tr>
+<tr><td class="l">FY2024</td><td class="r">471</td><td class="r">38%</td><td class="r">294</td><td class="r">2,448</td><td class="r">4,711</td><td class="r" data-state="under">6.2%</td></tr>
+<tr><td class="l">FY2025</td><td class="r">1,388</td><td class="r">5%</td><td class="r">1,319</td><td class="r">3,800</td><td class="r">3,124</td><td class="r" data-state="over">42.2%</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 투하자본이 매출의 8.2% — 분모가 작아 비율이 민감 (판정은 유효)</p>
+</details>
+<details class="co" id="co-BRK-B">
+<summary>버크셔 해서웨이<span class="tkr">BRK-B</span></summary>
+<p class="en">Berkshire Hathaway</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">190,535</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">37,408</td><td class="r">27%</td><td class="r">27,141</td><td class="r">257,380</td><td class="r">223,958</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">28,224</td><td class="r">5%</td><td class="r">26,813</td><td class="r">320,371</td><td class="r">288,876</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">7,854</td><td class="r">5%</td><td class="r">7,461</td><td class="r">321,689</td><td class="r">321,030</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">106,657</td><td class="r">20%</td><td class="r">84,947</td><td class="r">363,931</td><td class="r">342,810</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">59,776</td><td class="r">22%</td><td class="r">46,424</td><td class="r">396,512</td><td class="r">380,222</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">116,033</td><td class="r">19%</td><td class="r">94,341</td><td class="r">421,593</td><td class="r">409,052</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">-26,148</td><td class="r">21%</td><td class="r">-20,657</td><td class="r">445,282</td><td class="r">433,438</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">125,169</td><td class="r">19%</td><td class="r">101,192</td><td class="r">528,866</td><td class="r">487,074</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">115,576</td><td class="r">19%</td><td class="r">93,780</td><td class="r">603,279</td><td class="r">566,072</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">87,528</td><td class="r">18%</td><td class="r">71,395</td><td class="r">667,134</td><td class="r">635,206</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-JPM">
+<summary>JP모건 체이스<span class="tkr">JPM</span></summary>
+<p class="en">JPMorgan Chase</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">-98,548</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">37,050</td><td class="r">28%</td><td class="r">26,533</td><td class="r">-102,521</td><td class="r">-102,521</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">42,392</td><td class="r">32%</td><td class="r">28,861</td><td class="r">-123,809</td><td class="r">-123,809</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">54,557</td><td class="r">20%</td><td class="r">43,462</td><td class="r">46,998</td><td class="r">46,998</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">62,370</td><td class="r">19%</td><td class="r">50,644</td><td class="r">38,619</td><td class="r">42,808</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">36,748</td><td class="r">19%</td><td class="r">29,890</td><td class="r">-203,047</td><td class="r">-203,047</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">57,592</td><td class="r">19%</td><td class="r">46,735</td><td class="r">-393,113</td><td class="r">-393,113</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">60,916</td><td class="r">18%</td><td class="r">49,713</td><td class="r">-230,875</td><td class="r">-230,875</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">124,207</td><td class="r">20%</td><td class="r">99,895</td><td class="r">-251,561</td><td class="r">-251,561</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">144,520</td><td class="r">22%</td><td class="r">112,548</td><td class="r">-71,666</td><td class="r">-71,666</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">140,006</td><td class="r">21%</td><td class="r">110,022</td><td class="r">83,876</td><td class="r">83,876</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합 / 투하자본이 0 이하 — 현금이 자기자본+차입금을 넘어 비율이 성립하지 않음</p>
+</details>
+<details class="co" id="co-BAC">
+<summary>뱅크오브아메리카<span class="tkr">BAC</span></summary>
+<p class="en">Bank of America</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">535,415</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">34,982</td><td class="r">29%</td><td class="r">24,917</td><td class="r">359,224</td><td class="r">447,320</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">41,553</td><td class="r">38%</td><td class="r">25,933</td><td class="r">369,780</td><td class="r">364,502</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">53,191</td><td class="r">19%</td><td class="r">43,291</td><td class="r">337,502</td><td class="r">353,641</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">55,099</td><td class="r">16%</td><td class="r">46,143</td><td class="r">368,310</td><td class="r">352,906</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">27,220</td><td class="r">6%</td><td class="r">25,642</td><td class="r">174,716</td><td class="r">271,513</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">38,714</td><td class="r">6%</td><td class="r">36,437</td><td class="r">225,715</td><td class="r">200,216</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">51,072</td><td class="r">11%</td><td class="r">45,397</td><td class="r">328,876</td><td class="r">277,296</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">105,861</td><td class="r">19%</td><td class="r">85,603</td><td class="r">272,440</td><td class="r">300,658</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">89,283</td><td class="r">19%</td><td class="r">72,487</td><td class="r">311,328</td><td class="r">291,884</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">97,791</td><td class="r">19%</td><td class="r">79,149</td><td class="r">409,614</td><td class="r">360,471</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-UNH">
+<summary>유나이티드헬스 그룹<span class="tkr">UNH</span></summary>
+<p class="en">UnitedHealth Group</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">52,615</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">12,930</td><td class="r">40%</td><td class="r">7,758</td><td class="r">57,672</td><td class="r">55,144</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">15,209</td><td class="r">23%</td><td class="r">11,738</td><td class="r">65,410</td><td class="r">61,541</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">17,344</td><td class="r">22%</td><td class="r">13,469</td><td class="r">75,229</td><td class="r">70,320</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">19,685</td><td class="r">21%</td><td class="r">15,588</td><td class="r">85,665</td><td class="r">80,447</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">22,405</td><td class="r">24%</td><td class="r">17,033</td><td class="r">90,827</td><td class="r">88,246</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">23,970</td><td class="r">21%</td><td class="r">19,051</td><td class="r">95,770</td><td class="r">93,298</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">28,435</td><td class="r">22%</td><td class="r">22,278</td><td class="r">110,295</td><td class="r">103,032</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">32,358</td><td class="r">21%</td><td class="r">25,725</td><td class="r">126,266</td><td class="r">118,280</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">32,287</td><td class="r">24%</td><td class="r">24,519</td><td class="r">145,335</td><td class="r">135,800</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">18,964</td><td class="r">13%</td><td class="r">16,525</td><td class="r">149,650</td><td class="r">147,492</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: reported</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-MS">
+<summary>모건스탠리<span class="tkr">MS</span></summary>
+<p class="en">Morgan Stanley</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-GS">
+<summary>골드만삭스<span class="tkr">GS</span></summary>
+<p class="en">Goldman Sachs Group</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: </p>
+</details>
+<details class="co" id="co-WFC">
+<summary>웰스파고<span class="tkr">WFC</span></summary>
+<p class="en">Wells Fargo</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2016</td><td class="r">38,029</td><td class="r">31%</td><td class="r">26,101</td><td class="r">323,803</td><td class="r">323,803</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">36,729</td><td class="r">18%</td><td class="r">30,132</td><td class="r">319,382</td><td class="r">321,592</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">43,190</td><td class="r">20%</td><td class="r">34,621</td><td class="r">358,610</td><td class="r">338,996</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">44,819</td><td class="r">22%</td><td class="r">34,876</td><td class="r">379,155</td><td class="r">368,882</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-AXP">
+<summary>아메리칸 익스프레스<span class="tkr">AXP</span></summary>
+<p class="en">American Express</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2016</td><td class="r">9,747</td><td class="r">33%</td><td class="r">6,515</td><td class="r">47,600</td><td class="r">47,600</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">9,537</td><td class="r">40%</td><td class="r">5,722</td><td class="r">44,010</td><td class="r">45,805</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">11,065</td><td class="r">15%</td><td class="r">9,429</td><td class="r">55,839</td><td class="r">49,924</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">11,893</td><td class="r">20%</td><td class="r">9,537</td><td class="r">62,679</td><td class="r">59,259</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">6,394</td><td class="r">27%</td><td class="r">4,666</td><td class="r">34,692</td><td class="r">48,686</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">11,972</td><td class="r">25%</td><td class="r">9,027</td><td class="r">41,404</td><td class="r">38,048</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">12,348</td><td class="r">22%</td><td class="r">9,680</td><td class="r">34,955</td><td class="r">38,180</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">17,362</td><td class="r">20%</td><td class="r">13,829</td><td class="r">30,454</td><td class="r">32,704</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">28,438</td><td class="r">21%</td><td class="r">22,338</td><td class="r">40,492</td><td class="r">35,473</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">31,159</td><td class="r">21%</td><td class="r">24,469</td><td class="r">42,698</td><td class="r">41,595</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<details class="co" id="co-C">
+<summary>씨티그룹<span class="tkr">C</span></summary>
+<p class="en">Citigroup</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">연도</th><th class="r">영업이익</th><th class="r">세율</th><th class="r">NOPAT</th><th class="r">투하자본</th><th class="r">평균</th><th class="r">ROIC</th></tr></thead><tbody>
+<tr><td class="l">FY2015 ◦</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">312,349</td><td class="r">—</td><td class="r">—</td></tr>
+<tr><td class="l">FY2016</td><td class="r">33,989</td><td class="r">30%</td><td class="r">23,791</td><td class="r">302,528</td><td class="r">307,438</td><td class="r">—</td></tr>
+<tr><td class="l">FY2017</td><td class="r">39,279</td><td class="r">40%</td><td class="r">23,567</td><td class="r">302,317</td><td class="r">302,422</td><td class="r">—</td></tr>
+<tr><td class="l">FY2018</td><td class="r">47,711</td><td class="r">23%</td><td class="r">36,809</td><td class="r">273,314</td><td class="r">287,816</td><td class="r">—</td></tr>
+<tr><td class="l">FY2019</td><td class="r">52,283</td><td class="r">19%</td><td class="r">42,592</td><td class="r">293,836</td><td class="r">283,575</td><td class="r">—</td></tr>
+<tr><td class="l">FY2020</td><td class="r">26,970</td><td class="r">19%</td><td class="r">21,974</td><td class="r">191,785</td><td class="r">242,810</td><td class="r">—</td></tr>
+<tr><td class="l">FY2021</td><td class="r">35,450</td><td class="r">20%</td><td class="r">28,415</td><td class="r">222,986</td><td class="r">207,386</td><td class="r">—</td></tr>
+<tr><td class="l">FY2022</td><td class="r">44,547</td><td class="r">19%</td><td class="r">35,920</td><td class="r">178,515</td><td class="r">200,750</td><td class="r">—</td></tr>
+<tr><td class="l">FY2023</td><td class="r">91,268</td><td class="r">27%</td><td class="r">66,327</td><td class="r">269,395</td><td class="r">223,955</td><td class="r">—</td></tr>
+<tr><td class="l">FY2024</td><td class="r">71,141</td><td class="r">25%</td><td class="r">53,567</td><td class="r">268,639</td><td class="r">269,017</td><td class="r">—</td></tr>
+<tr><td class="l">FY2025</td><td class="r">79,620</td><td class="r">27%</td><td class="r">58,045</td><td class="r">231,948</td><td class="r">250,294</td><td class="r">—</td></tr>
+</tbody></table></div>
+<figcaption>◦ 표시된 연도는 바로 다음 해 평균 투하자본의 기초값으로만 쓰입니다 (보고 기간 밖).</figcaption>
+</figure>
+<p class="en">분자 산출 경로: pretax_plus_interest_less_investment_income</p>
+<p class="en">비고: 금융업 — ROIC 정의 부적합</p>
+</details>
+<h2>6. 1차 조사와 대조</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">구분</th><th class="r">건수</th><th class="r">비중</th></tr></thead><tbody>
+<tr><td class="l">대조 가능한 기업-연도</td><td class="r">380</td><td class="r">100%</td></tr>
+<tr><td class="l">1%p 이내 일치</td><td class="r">221</td><td class="r">58%</td></tr>
+<tr><td class="l">1%p 초과 불일치</td><td class="r">159</td><td class="r">42%</td></tr>
+<tr><td class="l">5%p 초과 불일치</td><td class="r">74</td><td class="r">19%</td></tr>
+<tr><td class="l">10% 문턱 판정까지 바뀜</td><td class="r">7</td><td class="r">2%</td></tr>
+<tr><td class="l">재조사만 산출 (1차는 공백)</td><td class="r">14</td><td class="r">—</td></tr>
+<tr><td class="l">1차만 산출</td><td class="r">2</td><td class="r">—</td></tr>
+</tbody></table></div>
+</figure>
+<h3>어느 쪽이 틀렸는지 — 판단이 필요 없는 검정</h3>
+<p>분모가 다르다는 것만으로는 어느 쪽이 맞는지 알 수 없습니다. 그래서 판단이 끼어들 여지가 없는 검정을 했습니다. <b>10-K에 장기차입금 태그가 있는 기업은 장기차입금이 있었던 것이고, 그걸 0으로 기록한 조사는 틀린 것</b>입니다. 단위 십억 달러.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">누락</th><th class="r">공시 장기차입금</th><th class="r">1차 차입금</th><th class="r">재산출</th></tr></thead><tbody>
+<tr><td class="l">오라클</td><td class="r">10년</td><td class="r">86.4</td><td class="r">4.1</td><td class="r">90.5</td></tr>
+<tr><td class="l">브로드컴</td><td class="r">4년</td><td class="r">40.2</td><td class="r">0.8</td><td class="r">41.5</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">7년</td><td class="r">40.1</td><td class="r">1.3</td><td class="r">42.8</td></tr>
+<tr><td class="l">셰브론</td><td class="r">2년</td><td class="r">35.2</td><td class="r">19.8</td><td class="r">55.0</td></tr>
+<tr><td class="l">비자</td><td class="r">3년</td><td class="r">16.6</td><td class="r">0.0</td><td class="r">16.6</td></tr>
+<tr><td class="l">GE 버노바</td><td class="r">1년</td><td class="r">0.3</td><td class="r">0.1</td><td class="r">0.4</td></tr>
+</tbody></table></div>
+</figure>
+<p>반대 방향 오류도 있었습니다. 애플 FY2016의 현금을 1차 조사는 20.5십억 달러로 기록했지만, 단기 유가증권 46.7십억 달러를 합한 67.2십억 달러가 차감 대상입니다. 이 경우 1차 조사는 분모를 과대하게 잡아 <b>ROIC를 낮게</b> 보고 있었습니다. 오류가 한쪽으로만 기울지 않았다는 뜻입니다.</p>
+<h3>문턱 판정이 바뀐 기업-연도</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">연도</th><th class="r">재산출</th><th class="r">1차</th><th class="r">차이</th></tr></thead><tbody>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2023</td><td class="r">38%</td><td class="r">8%</td><td class="r" data-state="pos">+29%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2017</td><td class="r">9%</td><td class="r">29%</td><td class="r" data-state="neg">-20%p</td></tr>
+<tr><td class="l">제너럴 일렉트릭</td><td class="r">FY2023</td><td class="r">9%</td><td class="r">27%</td><td class="r" data-state="neg">-18%p</td></tr>
+<tr><td class="l">브로드컴</td><td class="r">FY2020</td><td class="r">7%</td><td class="r">19%</td><td class="r" data-state="neg">-12%p</td></tr>
+<tr><td class="l">브로드컴</td><td class="r">FY2017</td><td class="r">9%</td><td class="r">19%</td><td class="r" data-state="neg">-9%p</td></tr>
+<tr><td class="l">브로드컴</td><td class="r">FY2019</td><td class="r">7%</td><td class="r">15%</td><td class="r" data-state="neg">-7%p</td></tr>
+<tr><td class="l">IBM</td><td class="r">FY2024</td><td class="r">10%</td><td class="r">11%</td><td class="r" data-state="neg">-1%p</td></tr>
+</tbody></table></div>
+</figure>
+<h3>차이가 큰 기업-연도 (상위 30)</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">연도</th><th class="r">재산출</th><th class="r">1차</th><th class="r">차이</th></tr></thead><tbody>
+<tr><td class="l">오라클</td><td class="r">FY2024</td><td class="r">14%</td><td class="r">761%</td><td class="r" data-state="neg">-747%p</td></tr>
+<tr><td class="l">엔비디아</td><td class="r">FY2016</td><td class="r">179%</td><td class="r">893%</td><td class="r" data-state="neg">-714%p</td></tr>
+<tr><td class="l">오라클</td><td class="r">FY2025</td><td class="r">15%</td><td class="r">123%</td><td class="r" data-state="neg">-109%p</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">FY2016</td><td class="r">99%</td><td class="r">172%</td><td class="r" data-state="neg">-73%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2018</td><td class="r">182%</td><td class="r">118%</td><td class="r" data-state="pos">+63%p</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2017</td><td class="r">-77%</td><td class="r">-22%</td><td class="r" data-state="neg">-55%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2016</td><td class="r">162%</td><td class="r">108%</td><td class="r" data-state="pos">+54%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2017</td><td class="r">140%</td><td class="r">88%</td><td class="r" data-state="pos">+53%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2017</td><td class="r">81%</td><td class="r">31%</td><td class="r" data-state="pos">+50%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2021</td><td class="r">14%</td><td class="r">61%</td><td class="r" data-state="neg">-47%p</td></tr>
+<tr><td class="l">오라클</td><td class="r">FY2018</td><td class="r">18%</td><td class="r">62%</td><td class="r" data-state="neg">-44%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2022</td><td class="r">16%</td><td class="r">59%</td><td class="r" data-state="neg">-43%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2018</td><td class="r">83%</td><td class="r">40%</td><td class="r" data-state="pos">+43%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2020</td><td class="r">65%</td><td class="r">107%</td><td class="r" data-state="neg">-42%p</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">FY2017</td><td class="r">77%</td><td class="r">117%</td><td class="r" data-state="neg">-40%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2019</td><td class="r">56%</td><td class="r">94%</td><td class="r" data-state="neg">-38%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2016</td><td class="r">62%</td><td class="r">26%</td><td class="r" data-state="pos">+37%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2021</td><td class="r">71%</td><td class="r">107%</td><td class="r" data-state="neg">-36%p</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2016</td><td class="r">-48%</td><td class="r">-14%</td><td class="r" data-state="neg">-33%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2020</td><td class="r">13%</td><td class="r">43%</td><td class="r" data-state="neg">-30%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2019</td><td class="r">159%</td><td class="r">129%</td><td class="r" data-state="pos">+30%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2018</td><td class="r">58%</td><td class="r">88%</td><td class="r" data-state="neg">-30%p</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2023</td><td class="r">38%</td><td class="r">8%</td><td class="r" data-state="pos">+29%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2018</td><td class="r">14%</td><td class="r">43%</td><td class="r" data-state="neg">-29%p</td></tr>
+<tr><td class="l">시스코 시스템즈</td><td class="r">FY2016</td><td class="r">41%</td><td class="r">13%</td><td class="r" data-state="pos">+28%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2019</td><td class="r">16%</td><td class="r">42%</td><td class="r" data-state="neg">-26%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2016</td><td class="r">57%</td><td class="r">83%</td><td class="r" data-state="neg">-26%p</td></tr>
+<tr><td class="l">램리서치</td><td class="r">FY2018</td><td class="r">66%</td><td class="r">42%</td><td class="r" data-state="pos">+24%p</td></tr>
+<tr><td class="l">램리서치</td><td class="r">FY2017</td><td class="r">52%</td><td class="r">29%</td><td class="r" data-state="pos">+23%p</td></tr>
+<tr><td class="l">시스코 시스템즈</td><td class="r">FY2017</td><td class="r">34%</td><td class="r">11%</td><td class="r" data-state="pos">+23%p</td></tr>
+</tbody></table></div>
+</figure>
+<p>전체 159건은 <code>roic/reconciliation.json</code>의 <code>differences</code>에 있습니다.</p>
+<h2>7. 1차 조사에 반영한 정정</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="l">내용</th></tr></thead><tbody>
+<tr><td class="l">정정한 기업-연도</td><td class="l">319건 (ROIC·영업이익·실효세율·투하자본)</td></tr>
+<tr><td class="l">method_notes.ebit</td><td class="l">분자 우선순위를 실제 구현과 맞게 수정</td></tr>
+<tr><td class="l">원본 보존</td><td class="l">analysis.json.pre-roic-correction</td></tr>
+<tr><td class="l">재계산하지 않은 것</td><td class="l">가격·시가총액·주주이익·DCF·가치평가 판정</td></tr>
+</tbody></table></div>
+</figure>
+<h3>ROIC가 크게 바뀐 기업-연도 (상위 20)</h3>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">연도</th><th class="r">1차</th><th class="r">정정</th><th class="r">변화</th></tr></thead><tbody>
+<tr><td class="l">오라클</td><td class="r">FY2024</td><td class="r">761%</td><td class="r">14%</td><td class="r" data-state="neg">-747%p</td></tr>
+<tr><td class="l">엔비디아</td><td class="r">FY2016</td><td class="r">893%</td><td class="r">179%</td><td class="r" data-state="neg">-714%p</td></tr>
+<tr><td class="l">오라클</td><td class="r">FY2025</td><td class="r">123%</td><td class="r">15%</td><td class="r" data-state="neg">-109%p</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">FY2016</td><td class="r">172%</td><td class="r">99%</td><td class="r" data-state="neg">-73%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2018</td><td class="r">118%</td><td class="r">182%</td><td class="r" data-state="pos">+63%p</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2017</td><td class="r">-22%</td><td class="r">-77%</td><td class="r" data-state="neg">-55%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2016</td><td class="r">108%</td><td class="r">162%</td><td class="r" data-state="pos">+54%p</td></tr>
+<tr><td class="l">마스터카드</td><td class="r">FY2017</td><td class="r">88%</td><td class="r">140%</td><td class="r" data-state="pos">+53%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2017</td><td class="r">31%</td><td class="r">81%</td><td class="r" data-state="pos">+50%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2021</td><td class="r">61%</td><td class="r">14%</td><td class="r" data-state="neg">-47%p</td></tr>
+<tr><td class="l">오라클</td><td class="r">FY2018</td><td class="r">62%</td><td class="r">18%</td><td class="r" data-state="neg">-44%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2022</td><td class="r">59%</td><td class="r">16%</td><td class="r" data-state="neg">-43%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2018</td><td class="r">40%</td><td class="r">83%</td><td class="r" data-state="pos">+43%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2020</td><td class="r">107%</td><td class="r">65%</td><td class="r" data-state="neg">-42%p</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">FY2017</td><td class="r">117%</td><td class="r">77%</td><td class="r" data-state="neg">-40%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2019</td><td class="r">94%</td><td class="r">56%</td><td class="r" data-state="neg">-38%p</td></tr>
+<tr><td class="l">KLA</td><td class="r">FY2016</td><td class="r">26%</td><td class="r">62%</td><td class="r" data-state="pos">+37%p</td></tr>
+<tr><td class="l">필립모리스 인터내셔널</td><td class="r">FY2021</td><td class="r">107%</td><td class="r">71%</td><td class="r" data-state="neg">-36%p</td></tr>
+<tr><td class="l">팔로알토 네트웍스</td><td class="r">FY2016</td><td class="r">-14%</td><td class="r">-48%</td><td class="r" data-state="neg">-33%p</td></tr>
+<tr><td class="l">코카콜라</td><td class="r">FY2020</td><td class="r">43%</td><td class="r">13%</td><td class="r" data-state="neg">-30%p</td></tr>
+</tbody></table></div>
+</figure>
+<h3>가치평가로 번진 입력 오류 — 재계산하지 않았음</h3>
+<p>단위 십억 달러.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="r">1차 순현금</th><th class="r">재산출</th><th class="r">오차</th><th class="r">시총 대비</th></tr></thead><tbody>
+<tr><td class="l">오라클</td><td class="r">24.7</td><td class="r">-81.4</td><td class="r">106.1</td><td class="r" data-state="flag">24.4%</td></tr>
+<tr><td class="l">마이크로소프트</td><td class="r">36.5</td><td class="r">51.4</td><td class="r">-14.9</td><td class="r" data-state="">-0.4%</td></tr>
+<tr><td class="l">애플</td><td class="r">-36.0</td><td class="r">-44.0</td><td class="r">8.0</td><td class="r" data-state="">0.2%</td></tr>
+<tr><td class="l">IBM</td><td class="r">-47.7</td><td class="r">-54.1</td><td class="r">6.4</td><td class="r" data-state="">2.9%</td></tr>
+<tr><td class="l">애브비</td><td class="r">-56.2</td><td class="r">-62.2</td><td class="r">6.1</td><td class="r" data-state="">1.4%</td></tr>
+</tbody></table></div>
+</figure>
+<p>오라클이 결정적입니다. 시가총액의 24%에 해당하는 오차이므로 1차 조사의 오라클 가치평가 결론은 신뢰할 수 없습니다. 다른 네 곳은 1% 안팎이라 결론을 바꾸기 어렵습니다.</p>
+<h2>8. 영업이익 소계를 보고하지 않는 기업</h2>
+<p>일라이 릴리 (LLY), 엑슨모빌 (XOM), 존슨앤드존슨 (JNJ), 제너럴 일렉트릭 (GE), 셰브론 (CVX), 머크 (MRK), KLA (KLAC), IBM — 이 8곳은 손익계산서에 영업이익 소계가 없습니다. 분자를 어떻게 만들지는 주장이 아니라 측정으로 정했습니다. 소계를 보고하는 기업-연도에서 각 구성 방식을 보고치와 맞춰본 결과입니다 (허용 오차 ±2%).</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">구성 경로</th><th class="r">검정</th><th class="r">일치</th><th class="r">정확도</th></tr></thead><tbody>
+<tr><td class="l">B  매출총이익 − 영업비용</td><td class="r">229</td><td class="r">229</td><td class="r">100.0%</td></tr>
+<tr><td class="l">D  매출 − 매출원가 − 영업비용</td><td class="r">242</td><td class="r">229</td><td class="r">94.6%</td></tr>
+<tr><td class="l">C  매출 − 총비용</td><td class="r">177</td><td class="r">152</td><td class="r">85.9%</td></tr>
+<tr><td class="l">F  세전이익 − 영업외수익</td><td class="r">480</td><td class="r">243</td><td class="r">50.6%</td></tr>
+<tr><td class="l">E  매출총이익 − R&amp;D − 판관비</td><td class="r">343</td><td class="r">161</td><td class="r">46.9%</td></tr>
+<tr><td class="l">G  세전이익 + 이자비용 − 이자·투자수익</td><td class="r">504</td><td class="r">213</td><td class="r">42.3%</td></tr>
+<tr><td class="l">H  세전이익 + 이자비용 (감사에서 기각된 방식)</td><td class="r">504</td><td class="r">165</td><td class="r">32.7%</td></tr>
+</tbody></table></div>
+</figure>
+<p>다만 <b>±2% 일치율은 이 문제에 맞는 통계가 아닙니다.</b> 목적이 ROIC를 10% 문턱과 비교하는 것이므로, 중요한 건 분자를 바꿨을 때 문턱 판정이 뒤집히는지입니다. 그걸 따로 측정한 적이 있고 세전이익 기반 경로에서 몇 %에 그쳤습니다 — 다만 <b>그 측정은 이 파이프라인에서 재실행되지 않으므로 수치를 그대로 인용하지 마십시오.</b> 필요하면 다시 측정해야 합니다.</p>
+<p>경로 선택에는 함정이 하나 더 있었습니다. 경로 C의 정확도 85.9%는 소계를 보고하는 기업에서만 측정된 값이라 소계를 보고하지 않는 기업에 그대로 적용되지 않습니다. 실제로 제너럴 일렉트릭에 적용하자 FY2016 영업이익이 −6.4십억 달러로 나왔습니다. 그래서 모든 상향식 구성값은 <b>세전이익으로 역검증</b>을 통과해야만 쓰도록 했고, 경로 선택은 연도별이 아니라 기업별로 한 번만 하도록 했습니다 — 연도마다 다른 경로를 쓰면 10년 추세가 사업이 아니라 경로를 측정하게 되기 때문입니다.</p>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">기업</th><th class="l">선택 경로</th><th class="l">역검증</th></tr></thead><tbody>
+<tr><td class="l">버크셔 해서웨이</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">일라이 릴리</td><td class="l">pretax_less_nonoperating</td><td class="l">미통과</td></tr>
+<tr><td class="l">JP모건 체이스</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">엑슨모빌</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">존슨앤드존슨</td><td class="l">pretax_less_nonoperating</td><td class="l">미통과</td></tr>
+<tr><td class="l">뱅크오브아메리카</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">제너럴 일렉트릭</td><td class="l">pretax_less_nonoperating</td><td class="l">미통과</td></tr>
+<tr><td class="l">셰브론</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">모건스탠리</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">머크</td><td class="l">pretax_less_nonoperating</td><td class="l">미통과</td></tr>
+<tr><td class="l">웰스파고</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">KLA</td><td class="l">verified_line_build</td><td class="l">통과</td></tr>
+<tr><td class="l">아메리칸 익스프레스</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">씨티그룹</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+<tr><td class="l">IBM</td><td class="l">pretax_plus_interest_less_investment_income</td><td class="l">미통과</td></tr>
+</tbody></table></div>
+</figure>
+<h2>9. 검증</h2>
+<figure class="tw ">
+<div class="scroll"><table>
+<thead><tr><th class="l">검증 방식</th><th class="r">건수</th><th class="l">무엇을 잡는지</th></tr></thead><tbody>
+<tr><td class="l">항등식</td><td class="r">—</td><td class="l">투하자본=자기자본+차입금−현금, NOPAT=영업이익×(1−세율), ROIC=NOPAT÷평균자본, 평균 산정 규칙</td></tr>
+<tr><td class="l">트립와이어</td><td class="r">—</td><td class="l">차감 현금 ≤ 유동자산, 차입금 ≤ 총부채·총자산, 실효세율 5~40%</td></tr>
+<tr><td class="l">공시 앵커</td><td class="r">19</td><td class="l">공시 본문에서 손으로 읽은 수치와 대조</td></tr>
+<tr><td class="l">변이 검정</td><td class="r">10</td><td class="l">산출값을 고의로 훼손해 검사가 실제로 실패하는지 확인</td></tr>
+<tr><td class="l">페이지 되읽기</td><td class="r">—</td><td class="l">이 페이지의 표·칩·막대를 파싱해 엔진 값과 대조 (export_roic_html.py --verify --mutate)</td></tr>
+</tbody></table></div>
+<figcaption>총 검사 건수는 실행마다 달라지므로 러너 출력을 보십시오 — 여기 적어두면 낡습니다.</figcaption>
+</figure>
+<p>앵커를 따로 두는 이유가 있습니다. 항등식과 트립와이어는 검사 대상과 같은 데이터로 계산되므로 <b>내부적으로 일관된 틀린 값은 둘 다 통과합니다.</b> 공시 원문에서 직접 읽은 수치만이 산술이 아니라 데이터가 틀렸을 때 실패할 수 있습니다. 실제로 램리서치 현금 과다차감과 오라클 차입금 이중계상은 앵커가 잡았습니다.</p>
+<h2>10. 남은 한계</h2>
+<ul>
+<li><b>분자 추정 137개 연도.</b> 영업이익 소계를 보고하지 않는 8개 기업은 세전이익에서 거꾸로 추정했습니다. 문턱 판정은 대체로 유지되지만 ROIC 수준은 몇 %p 틀릴 수 있습니다.</li>
+<li><b>자기자본 정의.</b> 분자가 연결 영업이익이므로 분모도 비지배지분을 포함했습니다. 1차 조사는 지배주주 지분만 썼고 96개 기업-연도에서 차이가 납니다. 정의가 다른 것이지 오류는 아닙니다.</li>
+<li><b>장기 유가증권은 자본에 남겼습니다.</b> 비유동 투자자산을 빼지 않아 분모가 보수적으로(크게) 잡혔고, ROIC는 그만큼 낮게 나옵니다.</li>
+<li><b>자본비용 10%는 지시에 따른 고정값입니다.</b> 실제 자본비용은 기업마다 다르고 FY2016~FY2026 금리 환경도 크게 달라졌습니다. 같은 문턱을 쓴 것은 ROIC를 서로 비교하기 위한 선택입니다.</li>
+<li><b>ROIC가 높다는 것과 투자 대상이라는 것은 다릅니다.</b> 가격이 빠져 있습니다. ROIC 순위가 곧 매수 순위는 아닙니다.</li>
+</ul>
+<footer class="page">
+<p>자료 기준일 2026-11-06 — 이 날짜에 받은 공시가 결론의 유효기간을 정합니다. 재현: <code>bash work/run_roic.sh</code> (날짜·신선도 → 수집 → 산출 → 검증 → 이 페이지 → 페이지 되읽기).</p>
+<p>보고서는 HTML로만 만듭니다. 투자 판단은 읽는 분의 몫입니다.</p>
+</footer>
+</div>

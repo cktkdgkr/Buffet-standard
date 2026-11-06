@@ -1,17 +1,17 @@
 {
- "fetched_utc": "2026-11-06T04:02:07.598648+00:00",
+ "fetched_utc": "2026-11-06T09:21:06.300959+00:00",
  "prices": {
   "TSLA": {
    "ticker": "TSLA",
-   "price": 403.2099914550781,
+   "price": 343.69000244140625,
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-10-29T13:30:00+00:00",
-   "regular_market_price": 403.21,
+   "as_of_utc": "2026-11-05T14:30:00+00:00",
+   "regular_market_price": 343.69,
    "fifty_two_week_high": 498.83,
    "fifty_two_week_low": 297.38,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=5d&interval=1d",
-   "fetched_utc": "2026-10-29T13:47:50.352218+00:00"
+   "fetched_utc": "2026-11-06T09:20:26.715017+00:00"
   },
   "SPCX": {
    "ticker": "SPCX",
@@ -23,7 +23,7 @@
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T04:02:07.597948+00:00"
+   "fetched_utc": "2026-11-06T09:21:06.300340+00:00"
   },
   "GOOGL": {
    "ticker": "GOOGL",
@@ -47,7 +47,7 @@
    "fifty_two_week_high": 404.47,
    "fifty_two_week_low": 271.41,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T04:02:07.253411+00:00"
+   "fetched_utc": "2026-11-06T09:21:05.770693+00:00"
   },
   "MSFT": {
    "ticker": "MSFT",
@@ -59,7 +59,7 @@
    "fifty_two_week_high": 559.15,
    "fifty_two_week_low": 349.2,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T04:02:06.929537+00:00"
+   "fetched_utc": "2026-11-06T09:21:05.058770+00:00"
   },
   "NVDA": {
    "ticker": "NVDA",
@@ -71,7 +71,7 @@
    "fifty_two_week_high": 243.37,
    "fifty_two_week_low": 164.27,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T04:02:07.431798+00:00"
+   "fetched_utc": "2026-11-06T09:21:05.941055+00:00"
   }
  }
 }

@@ -39,25 +39,8 @@ python3 diagnose_capital.py
 echo; echo "== 1차 조사 정정"
 python3 apply_corrections.py
 
-echo; echo "== 엑셀 작성"
-python3 export_roic_xlsx.py
-
-echo; echo "== 엑셀 수식 검증"
-python3 verify_roic_exports.py
-
-# openpyxl writes formulas with no cached result, so phone and web viewers show
-# every derived cell as blank. This fills the results in and keeps the formulas.
-echo; echo "== 엑셀에 계산값 심기 (재계산 없는 뷰어 대응)"
-python3 embed_xlsx_values.py
-
-echo; echo "== 마크다운 작성 (휴대폰용)"
-python3 export_roic_md.py
-
-echo; echo "== 마크다운 수치 검증"
-python3 verify_roic_md.py --mutate
-
-echo; echo "== 워드 작성"
-python3 export_roic_docx_data.py
-node export_memo_docx.js roic/roic_report.json 미국50개사_ROIC_WACC비교.docx
+echo; echo "== 보고서 (HTML 전용)"
+python3 export_roic_html.py --verify --mutate
 
 echo; echo "완료"
+ls -la roic/roic_report.html

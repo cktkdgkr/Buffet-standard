@@ -9,10 +9,7 @@ echo; echo "== 1. 산출 (기초율·거시·버핏 기준 격자) =="
 python3 analyse_buffett_standard.py --refresh
 echo; echo "== 2. 산출값 검증 =="
 python3 verify_buffett_standard.py --mutate
-echo; echo "== 3. 보고서 =="
-python3 export_buffett_standard.py
+echo; echo "== 3. 보고서 (HTML 전용) =="
 python3 export_buffett_standard_html.py --verify --mutate
-echo; echo "== 4. 산출물 검증 =="
-python3 verify_buffett_standard_exports.py --mutate
 echo; echo "== 완료 =="
-ls -la 성장률_재검증_버핏기준_적정주가.* fv/buffett_standard_report.html
+ls -la fv/buffett_standard_report.html

@@ -16,3 +16,9 @@ work/roic/cache/
 work/goog/cache/
 work/fv/cache/
 work/spx/jun2026_balance.json
+
+# 보고서는 HTML로만 만듭니다. 워드·엑셀 산출물은 요청이 있을 때만
+# 한 번 만들어 전달하고 저장소에는 남기지 않습니다 — 다시 생성되지
+# 않는 보고서 파일은 조용히 낡아 가고 누군가 그 숫자를 읽게 됩니다.
+work/*.docx
+work/*.xlsx

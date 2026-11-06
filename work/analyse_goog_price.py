@@ -105,7 +105,53 @@ def price_history(ticker, rng="6mo"):
     }
 
 
-def release_numbers(acc, refresh):
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+
+
+def _quarter_end_text(period_end):
+    """"2026-09-30" as the release prints it: "September 30, 2026"."""
+    y, m, d = (int(x) for x in period_end.split("-"))
+    return f"{MONTHS[m - 1]} {d}, {y}"
+
+
+def quarter_labels(period_end):
+    """The release's five columns: the four quarters ending at `period_end`,
+    then the trailing twelve months.
+
+    These were written as literals ("Q4 2025" ... "TTM Q3 2026"), which meant
+    the next quarter's release would be read under this quarter's headings.
+    """
+    y, m, _ = (int(x) for x in period_end.split("-"))
+    q = (m - 1) // 3 + 1
+    out = []
+    for back in range(3, -1, -1):
+        qq, yy = q - back, y
+        while qq <= 0:
+            qq, yy = qq + 4, yy - 1
+        out.append(f"Q{qq} {yy}")
+    return out + [f"TTM Q{q} {y}"]
+
+
+def earnings_release(filings, refresh, period_end, limit=8):
+    """The most recent 8-K that IS the quarterly earnings release.
+
+    Picking the newest 8-K pinned the analysis to whatever Alphabet happened
+    to file last, which on 2026-11-05 was not an earnings release at all. The
+    filing index says which is which only by its content, so each candidate is
+    parsed and the first one that carries the reconciliation table wins.
+    """
+    tried = []
+    for f in [x for x in filings if x["form"] == "8-K"][:limit]:
+        rel = release_numbers(f["accession"], refresh, period_end)
+        tried.append(f"{f['filed']} {f['accession']}")
+        if rel and rel.get("cash_flow"):
+            return f, rel
+    raise SystemExit("최근 8-K 중 실적 발표문을 찾지 못했습니다: "
+                     + ", ".join(tried))
+
+
+def release_numbers(acc, refresh, period_end):
     """
     The quarterly free-cash-flow table out of the earnings release.
 
@@ -113,6 +159,12 @@ def release_numbers(acc, refresh):
     XBRL, so the figures are read out of the text. Every one of them is
     checked against the quarterly cash-flow statement in the 10-Q, which is
     tagged - so a misread here fails rather than propagates.
+
+    Returns None when this 8-K is not the earnings release. Alphabet files
+    8-Ks for other things - a notes offering on 2026-11-05 - and taking
+    simply the newest one left the free-cash-flow table empty and crashed the
+    run. `period_end` is the 10-Q's quarter end: the exhibit has to name that
+    date, so an older release cannot be read under this quarter's labels.
     """
     base = (f"https://www.sec.gov/Archives/edgar/data/{CIK}/"
             f"{acc.replace('-', '')}")
@@ -170,6 +222,14 @@ def release_numbers(acc, refresh):
     ocf = grab("Net cash provided by operating activities", 5)
     capex = grab("Less: purchases of property and equipment", 5)
     fcf = grab("Free cash flow", 5)
+    if not (ocf and capex and fcf):
+        # Not the earnings release. Returning None rather than raising lets
+        # the caller walk back to the 8-K that is one.
+        return None
+    if _quarter_end_text(period_end) not in txt:
+        raise SystemExit(
+            f"발표문 {acc} 이 10-Q 분기({period_end})를 언급하지 않습니다 — "
+            "분기 라벨이 어긋난 발표문을 읽을 위험이 있어 멈춥니다.")
 
     # Free cash flow is operating cash flow less capital expenditure, by the
     # company's own definition printed beneath the table. If the three rows do
@@ -269,7 +329,7 @@ def release_numbers(acc, refresh):
     segments = {"revenue": seg_revenue, "operating_income": seg_income,
                 "employees": employees}
 
-    cols = ["Q4 2025", "Q1 2026", "Q2 2026", "Q3 2026", "TTM Q3 2026"]
+    cols = quarter_labels(period_end)
     table = None
     if ocf and capex and fcf:
         table = [{"period": c, "operating_cash_flow": o,
@@ -651,10 +711,10 @@ def main():
 
     sub, filings = latest(("10-Q", "10-K", "8-K"), a.refresh)
     tenq = next(f for f in filings if f["form"] == "10-Q")
-    eightk = next(f for f in filings if f["form"] == "8-K")
     print(f"  최신 10-Q {tenq['filed']} (기말 {tenq['period_end']}) "
           f"{tenq['accession']}")
-    print(f"  최신 8-K  {eightk['filed']} {eightk['accession']}")
+    newest_8k = next(f for f in filings if f["form"] == "8-K")
+    print(f"  최신 8-K  {newest_8k['filed']} {newest_8k['accession']}")
 
     hist = price_history("GOOG")
     print(f"\n  주가 {hist['last']['close']:,.2f} ({hist['last']['date']}) · "
@@ -664,7 +724,22 @@ def main():
         print(f"    {m['date']}  {m['from']:,.2f} → {m['to']:,.2f}  "
               f"{m['change']:+.1%}")
 
-    rel = release_numbers(eightk["accession"], a.refresh)
+    eightk, rel = earnings_release(filings, a.refresh, tenq["period_end"])
+    if eightk["accession"] != newest_8k["accession"]:
+        print(f"  실적 발표문 {eightk['filed']} {eightk['accession']} "
+              "(최신 8-K 는 발표문이 아님)")
+
+    # The move the report is about: the market's reaction to that release,
+    # defined once here so the page and the verifier cannot each guess
+    # differently. It was taken as "the big move on the last price date",
+    # which held only on the day of the fall - a week later the fall was no
+    # longer the newest day and both the page and the tripwire broke.
+    after = [m for m in hist["big_moves"] if m["date"] >= eightk["filed"]]
+    hist["event_drop"] = min(after, key=lambda m: m["change"]) if after else None
+    if hist["event_drop"]:
+        e = hist["event_drop"]
+        print(f"  발표 반응 {e['date']} {e['change']:+.1%} "
+              f"({e['from']:,.2f} → {e['to']:,.2f})")
     if rel and rel["cash_flow"]:
         print(f"\n  잉여현금흐름 (백만 달러)")
         print(f"    {'기간':<14}{'영업CF':>12}{'capex':>12}{'FCF':>12}")
