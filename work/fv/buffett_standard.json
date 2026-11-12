@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-06",
+ "generated": "2026-11-12",
  "question": "10년차 성장률 3.5%가 너무 낮은가. 세 기업은 지난 10년간 10% 넘게 성장해 왔다.",
  "clarification": {
   "note": "3.5%는 \"10년간 성장률\"이 아니라 10년차 한 해의 성장률입니다. 각 시나리오가 실제로 가정한 10년 평균은 아래와 같습니다.",
@@ -82,17 +82,17 @@
   "treasury_30y": {
    "label": "30년 미국 국채 수익률",
    "symbol": "^TYX",
-   "percent": 5.251,
-   "rate": 0.05251,
-   "as_of_utc": "2026-11-05T19:59:54+00:00",
+   "percent": 5.433,
+   "rate": 0.054329999999999996,
+   "as_of_utc": "2026-11-12T19:59:54+00:00",
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETYX?range=5d&interval=1d"
   },
   "treasury_10y": {
    "label": "10년 미국 국채 수익률",
    "symbol": "^TNX",
-   "percent": 4.837,
-   "rate": 0.048369999999999996,
-   "as_of_utc": "2026-11-05T19:59:54+00:00",
+   "percent": 5.103,
+   "rate": 0.05103,
+   "as_of_utc": "2026-11-12T19:59:54+00:00",
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?range=5d&interval=1d"
   },
   "breakeven_inflation_10y": {
@@ -303,14 +303,14 @@
  "discount_options": [
   {
    "key": "bond30",
-   "rate": 0.05251,
-   "label": "30년 국채 5.25%",
+   "rate": 0.054329999999999996,
+   "label": "30년 국채 5.43%",
    "basis": "버핏을 문자 그대로 — 장기 국채 수익률로 할인하고 위험은 안전마진으로 처리. 1996년 \"국채에 큰 프리미엄을 얹는 것은 말이 안 된다\"는 취지의 발언에 해당합니다."
   },
   {
    "key": "bond30_plus3",
-   "rate": 0.08251,
-   "label": "30년 국채 + 3%p = 8.25%",
+   "rate": 0.08432999999999999,
+   "label": "30년 국채 + 3%p = 8.43%",
    "basis": "1994년 발언(국채 7% → 최소 10%)에서 유도한 스프레드. **3%포인트는 인용자의 해석이고 버핏의 규칙이 아닙니다.** 다만 2007년에 국채가 4¾%일 때 \"significantly higher\"를 요구했다는 발언과 방향이 같습니다."
   },
   {
@@ -352,13 +352,13 @@
   0.3,
   0.4
  ],
- "fair_value_generated": "2026-11-06",
+ "fair_value_generated": "2026-11-12",
  "companies": [
   {
    "ticker": "MSFT",
    "korean": "마이크로소프트",
-   "price": 535.9299926757812,
-   "market_cap": 3979920391862.2866,
+   "price": 523.0,
+   "market_cap": 3883899750696.0,
    "data_as_of": "2026-09-30",
    "ttm_nopat": 131069428451.56712,
    "ttm_revenue": 346445000000,
@@ -487,32 +487,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 646.3920354729589,
-       "upside_vs_price": 0.20611282127664632,
-       "terminal_share": 0.7661454778247039,
+       "value_per_share": 608.9711925379678,
+       "upside_vs_price": 0.16438086527336093,
+       "terminal_share": 0.7540174355346959,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 646.3920354729589,
-        "20%": 517.1136283783671,
-        "30%": 452.4744248310712,
-        "40%": 387.83522128377535
+        "0%": 608.9711925379678,
+        "20%": 487.17695403037425,
+        "30%": 426.27983477657745,
+        "40%": 365.38271552278064
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 319.29926095255206,
-       "upside_vs_price": -0.4042146076610479,
-       "terminal_share": 0.5902441627970914,
+       "value_per_share": 309.6859785876527,
+       "upside_vs_price": -0.40786619772915356,
+       "terminal_share": 0.5810657415181969,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 319.29926095255206,
-        "20%": 255.43940876204167,
-        "30%": 223.50948266678643,
-        "40%": 191.57955657153124
+        "0%": 309.6859785876527,
+        "20%": 247.74878287012217,
+        "30%": 216.78018501135688,
+        "40%": 185.8115871525916
        }
       },
       {
@@ -520,7 +520,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 245.68749686530202,
-       "upside_vs_price": -0.5415679282313757,
+       "upside_vs_price": -0.5302342316151013,
        "terminal_share": 0.5080887450012238,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -535,7 +535,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 216.90387458685734,
-       "upside_vs_price": -0.5952757308768936,
+       "upside_vs_price": -0.5852698382660472,
        "terminal_share": 0.4667053091165569,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -558,32 +558,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 804.2971507346085,
-       "upside_vs_price": 0.5007503997283838,
-       "terminal_share": 0.7970339871856412,
+       "value_per_share": 756.0196856478602,
+       "upside_vs_price": 0.4455443320226773,
+       "terminal_share": 0.7861478507069175,
        "nopat_cagr_10y": 0.06613422561306748,
        "buy_price_at_margin": {
-        "0%": 804.2971507346085,
-        "20%": 643.4377205876868,
-        "30%": 563.0080055142259,
-        "40%": 482.5782904407651
+        "0%": 756.0196856478602,
+        "20%": 604.8157485182882,
+        "30%": 529.2137799535021,
+        "40%": 453.61181138871615
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 383.71795651051247,
-       "upside_vs_price": -0.28401477477553994,
-       "terminal_share": 0.6352129963579835,
+       "value_per_share": 371.44282752116953,
+       "upside_vs_price": -0.28978426860197026,
+       "terminal_share": 0.6265234591670482,
        "nopat_cagr_10y": 0.06613422561306748,
        "buy_price_at_margin": {
-        "0%": 383.71795651051247,
-        "20%": 306.97436520841,
-        "30%": 268.6025695573587,
-        "40%": 230.23077390630746
+        "0%": 371.44282752116953,
+        "20%": 297.15426201693566,
+        "30%": 260.00997926481864,
+        "40%": 222.8656965127017
        }
       },
       {
@@ -591,7 +591,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 290.0048285815735,
-       "upside_vs_price": -0.4588755386992939,
+       "upside_vs_price": -0.445497459691064,
        "terminal_share": 0.5564809810870485,
        "nopat_cagr_10y": 0.06613422561306748,
        "buy_price_at_margin": {
@@ -606,7 +606,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 253.59332328914587,
-       "upside_vs_price": -0.5268163253506117,
+       "upside_vs_price": -0.5151179287014419,
        "terminal_share": 0.5159709195898401,
        "nopat_cagr_10y": 0.06613422561306748,
        "buy_price_at_margin": {
@@ -629,32 +629,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 1231.893048498719,
-       "upside_vs_price": 1.2986081490758643,
-       "terminal_share": 0.8437510098314196,
+       "value_per_share": 1153.9681618607253,
+       "upside_vs_price": 1.206440080039628,
+       "terminal_share": 0.8350170612621103,
        "nopat_cagr_10y": 0.11911530952800464,
        "buy_price_at_margin": {
-        "0%": 1231.893048498719,
-        "20%": 985.5144387989753,
-        "30%": 862.3251339491032,
-        "40%": 739.1358290992314
+        "0%": 1153.9681618607253,
+        "20%": 923.1745294885803,
+        "30%": 807.7777133025077,
+        "40%": 692.3808971164352
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 556.1785970447218,
-       "upside_vs_price": 0.03778218171340564,
-       "terminal_share": 0.709517323108654,
+       "value_per_share": 536.6492182492912,
+       "upside_vs_price": 0.026097931643004113,
+       "terminal_share": 0.7020187850100053,
        "nopat_cagr_10y": 0.11911530952800464,
        "buy_price_at_margin": {
-        "0%": 556.1785970447218,
-        "20%": 444.94287763577745,
-        "30%": 389.3250179313052,
-        "40%": 333.70715822683303
+        "0%": 536.6492182492912,
+        "20%": 429.31937459943293,
+        "30%": 375.6544527745038,
+        "40%": 321.98953094957466
        }
       },
       {
@@ -662,7 +662,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 407.7207213709477,
-       "upside_vs_price": -0.23922764737370406,
+       "upside_vs_price": -0.22041927080124724,
        "terminal_share": 0.6403427606793993,
        "nopat_cagr_10y": 0.11911530952800464,
        "buy_price_at_margin": {
@@ -677,7 +677,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 350.566946125414,
-       "upside_vs_price": -0.3458717539298185,
+       "upside_vs_price": -0.3296999118060918,
        "terminal_share": 0.6035940089422749,
        "nopat_cagr_10y": 0.11911530952800464,
        "buy_price_at_margin": {
@@ -700,32 +700,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 1408.4274159224133,
-       "upside_vs_price": 1.6280063351006784,
-       "terminal_share": 0.864807037362221,
+       "value_per_share": 1317.449425354755,
+       "upside_vs_price": 1.5190237578484798,
+       "terminal_share": 0.8570609551843494,
        "nopat_cagr_10y": 0.13704799978730642,
        "buy_price_at_margin": {
-        "0%": 1408.4274159224133,
-        "20%": 1126.7419327379307,
-        "30%": 985.8991911456892,
-        "40%": 845.0564495534479
+        "0%": 1317.449425354755,
+        "20%": 1053.959540283804,
+        "30%": 922.2145977483284,
+        "40%": 790.469655212853
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 621.8182114589639,
-       "upside_vs_price": 0.16026014583427495,
-       "terminal_share": 0.7434111948339484,
+       "value_per_share": 599.220453439084,
+       "upside_vs_price": 0.1457370046636406,
+       "terminal_share": 0.7364777098098078,
        "nopat_cagr_10y": 0.13704799978730642,
        "buy_price_at_margin": {
-        "0%": 621.8182114589639,
-        "20%": 497.45456916717114,
-        "30%": 435.2727480212747,
-        "40%": 373.09092687537833
+        "0%": 599.220453439084,
+        "20%": 479.37636275126727,
+        "30%": 419.4543174073588,
+        "40%": 359.5322720634504
        }
       },
       {
@@ -733,7 +733,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 450.4708711003114,
-       "upside_vs_price": -0.15945948676764876,
+       "upside_vs_price": -0.13867902275275068,
        "terminal_share": 0.6788118513510619,
        "nopat_cagr_10y": 0.13704799978730642,
        "buy_price_at_margin": {
@@ -748,7 +748,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 384.8587272525024,
-       "upside_vs_price": -0.2818861931369302,
+       "upside_vs_price": -0.26413245267207963,
        "terminal_share": 0.6438994354202436,
        "nopat_cagr_10y": 0.13704799978730642,
        "buy_price_at_margin": {
@@ -764,67 +764,67 @@
    "terminal_sensitivity": [
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 383.71795651051247,
-     "upside_vs_price": -0.28401477477553994,
+     "value_per_share": 371.44282752116953,
+     "upside_vs_price": -0.28978426860197026,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 460.06655075957303,
-     "upside_vs_price": -0.14155476079522744,
+     "value_per_share": 441.1158739701192,
+     "upside_vs_price": -0.1565662065580895,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
      "basis": "경제와 같은 속도로 영구히. 이보다 높게 두면 기업이 결국 경제 전체가 됩니다 — 상한입니다.",
      "diverges": false,
-     "value_per_share": 622.5405984674455,
-     "upside_vs_price": 0.16160805884223128,
+     "value_per_share": 584.5523102640955,
+     "upside_vs_price": 0.11769084180515388,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 804.2971507346085,
-     "upside_vs_price": 0.5007503997283838,
+     "value_per_share": 756.0196856478602,
+     "upside_vs_price": 0.4455443320226773,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 1481.4602510407879,
-     "upside_vs_price": 1.7642794232212697,
+     "value_per_share": 1309.646876014835,
+     "upside_vs_price": 1.5041049254585754,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
@@ -832,7 +832,7 @@
      "diverges": true,
      "value_per_share": null,
      "upside_vs_price": null,
-     "why": "터미널 성장률 5.44% ≥ 할인율 5.25% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
+     "why": "터미널 성장률 5.44% ≥ 할인율 5.43% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
     }
    ],
    "terminal_sensitivity_growth_key": "half_of_own"
@@ -840,8 +840,8 @@
   {
    "ticker": "GOOG",
    "korean": "알파벳",
-   "price": 281.739990234375,
-   "market_cap": 3463711439941.4062,
+   "price": 295.3500061035156,
+   "market_cap": 3631032975036.621,
    "data_as_of": "2026-09-30",
    "ttm_nopat": 128628449552.73488,
    "ttm_revenue": 471098000000,
@@ -970,32 +970,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 392.169205013336,
-       "upside_vs_price": 0.39195435013359914,
-       "terminal_share": 0.7661454778247039,
+       "value_per_share": 369.98610132250775,
+       "upside_vs_price": 0.2527038892047062,
+       "terminal_share": 0.754017435534696,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 392.169205013336,
-        "20%": 313.73536401066883,
-        "30%": 274.5184435093352,
-        "40%": 235.3015230080016
+        "0%": 369.98610132250775,
+        "20%": 295.9888810580062,
+        "30%": 258.9902709257554,
+        "40%": 221.99166079350465
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 198.26836354078685,
-       "upside_vs_price": -0.2962718449168307,
-       "terminal_share": 0.5902441627970914,
+       "value_per_share": 192.56960256203917,
+       "upside_vs_price": -0.347995264660511,
+       "terminal_share": 0.5810657415181969,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 198.26836354078685,
-        "20%": 158.6146908326295,
-        "30%": 138.7878544785508,
-        "40%": 118.9610181244721
+        "0%": 192.56960256203917,
+        "20%": 154.05568204963134,
+        "30%": 134.7987217934274,
+        "40%": 115.5417615372235
        }
       },
       {
@@ -1003,7 +1003,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 154.6312547121843,
-       "upside_vs_price": -0.451156172101983,
+       "upside_vs_price": -0.4764474301111461,
        "terminal_share": 0.5080887450012239,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -1018,7 +1018,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 137.56830188908478,
-       "upside_vs_price": -0.5117189371141673,
+       "upside_vs_price": -0.5342194039404583,
        "terminal_share": 0.466705309116557,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -1041,32 +1041,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 499.01373095559217,
-       "upside_vs_price": 0.7711853064964991,
-       "terminal_share": 0.8001491397497841,
+       "value_per_share": 469.49259222973603,
+       "upside_vs_price": 0.5896142966903686,
+       "terminal_share": 0.7893991149954164,
        "nopat_cagr_10y": 0.06948926249831766,
        "buy_price_at_margin": {
-        "0%": 499.01373095559217,
-        "20%": 399.2109847644738,
-        "30%": 349.3096116689145,
-        "40%": 299.4082385733553
+        "0%": 469.49259222973603,
+        "20%": 375.5940737837889,
+        "30%": 328.6448145608152,
+        "40%": 281.6955553378416
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 241.9084179885589,
-       "upside_vs_price": -0.14137706263381655,
-       "terminal_share": 0.6399891370672975,
+       "value_per_share": 234.4090565137044,
+       "upside_vs_price": -0.20633468200590577,
+       "terminal_share": 0.6313656347156804,
        "nopat_cagr_10y": 0.06948926249831766,
        "buy_price_at_margin": {
-        "0%": 241.9084179885589,
-        "20%": 193.52673439084714,
-        "30%": 169.33589259199124,
-        "40%": 145.14505079313534
+        "0%": 234.4090565137044,
+        "20%": 187.52724521096354,
+        "30%": 164.08633955959306,
+        "40%": 140.64543390822263
        }
       },
       {
@@ -1074,7 +1074,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 184.67075572227313,
-       "upside_vs_price": -0.344534811800595,
+       "upside_vs_price": -0.3747392859116825,
        "terminal_share": 0.5617617495344452,
        "nopat_cagr_10y": 0.06948926249831766,
        "buy_price_at_margin": {
@@ -1089,7 +1089,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 162.44436757346807,
-       "upside_vs_price": -0.42342452898385774,
+       "upside_vs_price": -0.4499936881107298,
        "terminal_share": 0.5214257205528056,
        "nopat_cagr_10y": 0.06948926249831766,
        "buy_price_at_margin": {
@@ -1112,32 +1112,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 779.0353215006112,
-       "upside_vs_price": 1.7650860669532364,
-       "terminal_share": 0.8485393700173742,
+       "value_per_share": 730.069303662531,
+       "upside_vs_price": 1.4718784106158203,
+       "terminal_share": 0.8400452534876065,
        "nopat_cagr_10y": 0.12572248511050566,
        "buy_price_at_margin": {
-        "0%": 779.0353215006112,
-        "20%": 623.228257200489,
-        "30%": 545.3247250504278,
-        "40%": 467.4211929003667
+        "0%": 730.069303662531,
+        "20%": 584.0554429300248,
+        "30%": 511.0485125637716,
+        "40%": 438.04158219751855
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 354.6224721956872,
-       "upside_vs_price": 0.2586870323260906,
-       "terminal_share": 0.7176153859860768,
+       "value_per_share": 342.3678088775695,
+       "upside_vs_price": 0.15919350534082888,
+       "terminal_share": 0.7102762955323402,
        "nopat_cagr_10y": 0.12572248511050566,
        "buy_price_at_margin": {
-        "0%": 354.6224721956872,
-        "20%": 283.69797775654973,
-        "30%": 248.235730536981,
-        "40%": 212.7734833174123
+        "0%": 342.3678088775695,
+        "20%": 273.8942471020556,
+        "30%": 239.6574662142986,
+        "40%": 205.42068532654167
        }
       },
       {
@@ -1145,7 +1145,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 261.5044889450211,
-       "upside_vs_price": -0.07182331933965191,
+       "upside_vs_price": -0.114594604567681,
        "terminal_share": 0.649798065033904,
        "nopat_cagr_10y": 0.12572248511050566,
        "buy_price_at_margin": {
@@ -1160,7 +1160,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 225.6883454062529,
-       "upside_vs_price": -0.19894813221755858,
+       "upside_vs_price": -0.23586138228433762,
        "terminal_share": 0.6136607981201646,
        "nopat_cagr_10y": 0.12572248511050566,
        "buy_price_at_margin": {
@@ -1183,32 +1183,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 889.5030954378537,
-       "upside_vs_price": 2.1571772778791196,
-       "terminal_share": 0.8691377631241545,
+       "value_per_share": 832.3621951414664,
+       "upside_vs_price": 1.8182230504161097,
+       "terminal_share": 0.8616208363244713,
        "nopat_cagr_10y": 0.14369805001568747,
        "buy_price_at_margin": {
-        "0%": 889.5030954378537,
-        "20%": 711.602476350283,
-        "30%": 622.6521668064976,
-        "40%": 533.7018572627122
+        "0%": 832.3621951414664,
+        "20%": 665.8897561131731,
+        "30%": 582.6535365990264,
+        "40%": 499.4173170848798
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 395.6481187401985,
-       "upside_vs_price": 0.4043023087033728,
-       "terminal_share": 0.7510502192054728,
+       "value_per_share": 381.4725789498398,
+       "upside_vs_price": 0.2915949587491782,
+       "terminal_share": 0.7442858770902444,
        "nopat_cagr_10y": 0.14369805001568747,
        "buy_price_at_margin": {
-        "0%": 395.6481187401985,
-        "20%": 316.5184949921588,
-        "30%": 276.95368311813894,
-        "40%": 237.38887124411912
+        "0%": 381.4725789498398,
+        "20%": 305.17806315987184,
+        "30%": 267.0308052648878,
+        "40%": 228.88354736990385
        }
       },
       {
@@ -1216,7 +1216,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 288.2025695243786,
-       "upside_vs_price": 0.02293809723152007,
+       "upside_vs_price": -0.024199886343093446,
        "terminal_share": 0.6879329909603948,
        "nopat_cagr_10y": 0.14369805001568747,
        "buy_price_at_margin": {
@@ -1231,7 +1231,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 247.0933984110664,
-       "upside_vs_price": -0.12297363890190616,
+       "upside_vs_price": -0.16338786759847235,
        "terminal_share": 0.6537285402267627,
        "nopat_cagr_10y": 0.14369805001568747,
        "buy_price_at_margin": {
@@ -1247,67 +1247,67 @@
    "terminal_sensitivity": [
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 241.9084179885589,
-     "upside_vs_price": -0.14137706263381655,
+     "value_per_share": 234.4090565137044,
+     "upside_vs_price": -0.20633468200590577,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 288.61254081403484,
-     "upside_vs_price": 0.02439323780036573,
+     "value_per_share": 277.0295991835764,
+     "upside_vs_price": -0.06202947872470399,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
      "basis": "경제와 같은 속도로 영구히. 이보다 높게 두면 기업이 결국 경제 전체가 됩니다 — 상한입니다.",
      "diverges": false,
-     "value_per_share": 388.00150736588574,
-     "upside_vs_price": 0.3771616412817842,
+     "value_per_share": 364.7728379977587,
+     "upside_vs_price": 0.23505275252952407,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 499.01373095559217,
-     "upside_vs_price": 0.7711853064964991,
+     "value_per_share": 469.49259222973603,
+     "upside_vs_price": 0.5896142966903686,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 913.2493684371432,
-     "upside_vs_price": 2.2414616316179523,
+     "value_per_share": 808.1585827792674,
+     "upside_vs_price": 1.7362741360364837,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
@@ -1315,7 +1315,7 @@
      "diverges": true,
      "value_per_share": null,
      "upside_vs_price": null,
-     "why": "터미널 성장률 5.44% ≥ 할인율 5.25% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
+     "why": "터미널 성장률 5.44% ≥ 할인율 5.43% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
     }
    ],
    "terminal_sensitivity_growth_key": "half_of_own"
@@ -1323,8 +1323,8 @@
   {
    "ticker": "NVDA",
    "korean": "엔비디아",
-   "price": 181.60000610351562,
-   "market_cap": 4376560147094.7266,
+   "price": 166.19000244140625,
+   "market_cap": 4005179058837.8906,
    "data_as_of": "2026-07-26",
    "ttm_nopat": 165875234787.41556,
    "ttm_revenue": 302969000000,
@@ -1453,32 +1453,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 252.13315924476376,
-       "upside_vs_price": 0.38839840732738096,
-       "terminal_share": 0.7661454778247039,
+       "value_per_share": 237.54021271315895,
+       "upside_vs_price": 0.42932913667239814,
+       "terminal_share": 0.754017435534696,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 252.13315924476376,
-        "20%": 201.706527395811,
-        "30%": 176.49321147133463,
-        "40%": 151.27989554685826
+        "0%": 237.54021271315895,
+        "20%": 190.03217017052717,
+        "30%": 166.27814889921126,
+        "40%": 142.52412762789535
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 124.57731081711596,
-       "upside_vs_price": -0.31400161547294003,
-       "terminal_share": 0.5902441627970914,
+       "value_per_share": 120.82843440115958,
+       "upside_vs_price": -0.27295004136148227,
+       "terminal_share": 0.581065741518197,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
-        "0%": 124.57731081711596,
-        "20%": 99.66184865369277,
-        "30%": 87.20411757198117,
-        "40%": 74.74638649026957
+        "0%": 120.82843440115958,
+        "20%": 96.66274752092767,
+        "30%": 84.5799040808117,
+        "40%": 72.49706064069575
        }
       },
       {
@@ -1486,7 +1486,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 95.87104839303046,
-       "upside_vs_price": -0.47207574245134076,
+       "upside_vs_price": -0.42312385230975735,
        "terminal_share": 0.5080887450012238,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -1501,7 +1501,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 84.64634504722514,
-       "upside_vs_price": -0.5338857808243958,
+       "upside_vs_price": -0.49066523976333065,
        "terminal_share": 0.466705309116557,
        "nopat_cagr_10y": 0.03884661471822293,
        "buy_price_at_margin": {
@@ -1524,32 +1524,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 571.4252370476743,
-       "upside_vs_price": 2.146614635695279,
-       "terminal_share": 0.8563270131839704,
+       "value_per_share": 534.7660101573024,
+       "upside_vs_price": 2.217798918715615,
+       "terminal_share": 0.8482553114278623,
        "nopat_cagr_10y": 0.14043479853499052,
        "buy_price_at_margin": {
-        "0%": 571.4252370476743,
-        "20%": 457.1401896381394,
-        "30%": 399.997665933372,
-        "40%": 342.85514222860456
+        "0%": 534.7660101573024,
+        "20%": 427.8128081258419,
+        "30%": 374.3362071101117,
+        "40%": 320.85960609438143
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 253.82344492806746,
-       "upside_vs_price": 0.39770614756137745,
-       "terminal_share": 0.7316252099759316,
+       "value_per_share": 244.66216338136266,
+       "upside_vs_price": 0.47218340325630237,
+       "terminal_share": 0.7246125746353763,
        "nopat_cagr_10y": 0.14043479853499052,
        "buy_price_at_margin": {
-        "0%": 253.82344492806746,
-        "20%": 203.05875594245398,
-        "30%": 177.67641144964722,
-        "40%": 152.29406695684048
+        "0%": 244.66216338136266,
+        "20%": 195.72973070509013,
+        "30%": 171.26351436695384,
+        "40%": 146.79729802881758
        }
       },
       {
@@ -1557,7 +1557,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 184.2447478040969,
-       "upside_vs_price": 0.014563555130464811,
+       "upside_vs_price": 0.10863917863564776,
        "terminal_share": 0.6667060969986714,
        "nopat_cagr_10y": 0.14043479853499052,
        "buy_price_at_margin": {
@@ -1572,7 +1572,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 157.51210659844241,
-       "upside_vs_price": -0.13264261396193255,
+       "upside_vs_price": -0.05221671409520201,
        "terminal_share": 0.6319902052905247,
        "nopat_cagr_10y": 0.14043479853499052,
        "buy_price_at_margin": {
@@ -1595,32 +1595,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 593.8959555484457,
-       "upside_vs_price": 2.270352068214762,
-       "terminal_share": 0.8621565788977198,
+       "value_per_share": 555.5765513910462,
+       "upside_vs_price": 2.3430202974268943,
+       "terminal_share": 0.8543607238981727,
        "nopat_cagr_10y": 0.14563105129516707,
        "buy_price_at_margin": {
-        "0%": 593.8959555484457,
-        "20%": 475.1167644387566,
-        "30%": 415.727168883912,
-        "40%": 356.3375733290674
+        "0%": 555.5765513910462,
+        "20%": 444.461241112837,
+        "30%": 388.90358597373233,
+        "40%": 333.3459308346277
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 262.18556480989815,
-       "upside_vs_price": 0.44375306166260353,
-       "terminal_share": 0.7410845251701839,
+       "value_per_share": 252.6336662725232,
+       "upside_vs_price": 0.5201496032325679,
+       "terminal_share": 0.7342353041353721,
        "nopat_cagr_10y": 0.14563105129516707,
        "buy_price_at_margin": {
-        "0%": 262.18556480989815,
-        "20%": 209.74845184791855,
-        "30%": 183.52989536692868,
-        "40%": 157.31133888593888
+        "0%": 252.6336662725232,
+        "20%": 202.10693301801857,
+        "30%": 176.84356639076623,
+        "40%": 151.58019976351392
        }
       },
       {
@@ -1628,7 +1628,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 189.69224088424048,
-       "upside_vs_price": 0.04456076271336751,
+       "upside_vs_price": 0.14141788373293052,
        "terminal_share": 0.677508771286278,
        "nopat_cagr_10y": 0.14563105129516707,
        "buy_price_at_margin": {
@@ -1643,7 +1643,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 161.88201222271488,
-       "upside_vs_price": -0.10857925780884115,
+       "upside_vs_price": -0.025922078075726884,
        "terminal_share": 0.6433535399917472,
        "nopat_cagr_10y": 0.14563105129516707,
        "buy_price_at_margin": {
@@ -1666,32 +1666,32 @@
      "cells": [
       {
        "discount_key": "bond30",
-       "discount": 0.05251,
+       "discount": 0.054329999999999996,
        "diverges": false,
-       "value_per_share": 679.2774567845468,
-       "upside_vs_price": 2.740514504153403,
-       "terminal_share": 0.8814470196102244,
+       "value_per_share": 634.6242894252791,
+       "upside_vs_price": 2.8186670684298782,
+       "terminal_share": 0.874594424710885,
        "nopat_cagr_10y": 0.16373493468033096,
        "buy_price_at_margin": {
-        "0%": 679.2774567845468,
-        "20%": 543.4219654276375,
-        "30%": 475.4942197491827,
-        "40%": 407.566474070728
+        "0%": 634.6242894252791,
+        "20%": 507.6994315402233,
+        "30%": 444.2370025976954,
+        "40%": 380.77457365516744
        }
       },
       {
        "discount_key": "bond30_plus3",
-       "discount": 0.08251,
+       "discount": 0.08432999999999999,
        "diverges": false,
-       "value_per_share": 293.78471367767816,
-       "upside_vs_price": 0.6177571795356385,
-       "terminal_share": 0.7731366527129244,
+       "value_per_share": 282.7463348707908,
+       "upside_vs_price": 0.7013438276497945,
+       "terminal_share": 0.7668855170194873,
        "nopat_cagr_10y": 0.16373493468033096,
        "buy_price_at_margin": {
-        "0%": 293.78471367767816,
-        "20%": 235.02777094214252,
-        "30%": 205.6492995743747,
-        "40%": 176.2708282066069
+        "0%": 282.7463348707908,
+        "20%": 226.19706789663266,
+        "30%": 197.92243440955355,
+        "40%": 169.6478009224745
        }
       },
       {
@@ -1699,7 +1699,7 @@
        "discount": 0.1,
        "diverges": false,
        "value_per_share": 210.20794516883603,
-       "upside_vs_price": 0.15753269880956555,
+       "upside_vs_price": 0.26486516686194306,
        "terminal_share": 0.714580751865207,
        "nopat_cagr_10y": 0.16373493468033096,
        "buy_price_at_margin": {
@@ -1714,7 +1714,7 @@
        "discount": 0.11,
        "diverges": false,
        "value_per_share": 178.3064617916477,
-       "upside_vs_price": -0.01813625661438878,
+       "upside_vs_price": 0.07290726982517115,
        "terminal_share": 0.6826196365524837,
        "nopat_cagr_10y": 0.16373493468033096,
        "buy_price_at_margin": {
@@ -1730,67 +1730,67 @@
    "terminal_sensitivity": [
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 253.82344492806746,
-     "upside_vs_price": 0.39770614756137745,
+     "value_per_share": 244.66216338136266,
+     "upside_vs_price": 0.47218340325630237,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 312.2238986629794,
-     "upside_vs_price": 0.7192945383768632,
+     "value_per_share": 297.9563669712648,
+     "upside_vs_price": 0.7928657716718881,
      "why": null
     },
     {
      "discount_key": "bond30_plus3",
-     "discount": 0.08251,
+     "discount": 0.08432999999999999,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
      "basis": "경제와 같은 속도로 영구히. 이보다 높게 두면 기업이 결국 경제 전체가 됩니다 — 상한입니다.",
      "diverges": false,
-     "value_per_share": 436.5033068120595,
-     "upside_vs_price": 1.4036524897650273,
+     "value_per_share": 407.67355356884366,
+     "upside_vs_price": 1.4530570285813522,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "inflation",
      "label": "기대인플레이션 2.24%",
      "rate": 0.0224,
      "basis": "실질 영구성장 0%. 표준적인 보수 가정입니다.",
      "diverges": false,
-     "value_per_share": 571.4252370476743,
-     "upside_vs_price": 2.146614635695279,
+     "value_per_share": 534.7660101573024,
+     "upside_vs_price": 2.217798918715615,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "half_gdp",
      "label": "인플레 + 실질 1.6% = 3.84%",
      "rate": 0.038400000000000004,
      "basis": "경제의 절반 속도로 영구히 성장.",
      "diverges": false,
-     "value_per_share": 1089.3998336907193,
-     "upside_vs_price": 4.99889756099314,
+     "value_per_share": 958.2457013739315,
+     "upside_vs_price": 4.7659647830607685,
      "why": null
     },
     {
      "discount_key": "bond30",
-     "discount": 0.05251,
+     "discount": 0.054329999999999996,
      "terminal_key": "nominal_gdp",
      "label": "명목 GDP 5.44%",
      "rate": 0.054400000000000004,
@@ -1798,7 +1798,7 @@
      "diverges": true,
      "value_per_share": null,
      "upside_vs_price": null,
-     "why": "터미널 성장률 5.44% ≥ 할인율 5.25% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
+     "why": "터미널 성장률 5.44% ≥ 할인율 5.43% — 영구가치가 무한이 되어 계산할 수 없습니다. 이것 자체가 정보입니다: 국채 수익률만으로 주식을 할인하면서 명목 GDP 속도의 영구성장을 가정하면 어떤 가격도 정당화됩니다."
     }
    ],
    "terminal_sensitivity_growth_key": "half_of_own"

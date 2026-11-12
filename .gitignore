@@ -22,3 +22,6 @@ work/spx/jun2026_balance.json
 # 않는 보고서 파일은 조용히 낡아 가고 누군가 그 숫자를 읽게 됩니다.
 work/*.docx
 work/*.xlsx
+
+# 8-K·10-K·주주서한 원문 캐시 — 재수신 가능한 파생물입니다.
+work/fv/nvda_cache/

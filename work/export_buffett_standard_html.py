@@ -932,7 +932,26 @@ def verify(page, d):
     return passed, fails
 
 
-MUTATIONS = [
+def mutations(d):
+    """변이 목록.
+
+    시세에 따라 움직이는 값은 **엔진에서 끌어옵니다.** 국채 수익률과 격자의
+    주당가치를 리터럴로 적어 두었더니, 금리가 5.251%에서 5.368%로 움직인 날
+    세 건이 "대상 없음"으로 조용히 통과했습니다 — 변이가 아무것도 바꾸지
+    않으면 검사도 실패하지 않습니다.
+    """
+    r30_ = f"{d['macro']['treasury_30y']['percent']:.3f}%"
+    c0_ = d["companies"][0]
+    cell0_ = next(c for row in c0_["grid"] for c in row["cells"]
+                  if not c.get("diverges"))
+    vps_ = f"${cell0_['value_per_share']:,.0f}"
+    # 매수 상한은 bond30_plus3 칸만 페이지에 찍힙니다 — 아무 칸이나 집으면
+    # 페이지에 없는 값을 훼손하려다 "대상 없음"이 됩니다.
+    cellb_ = next(c for row in c0_["grid"] for c in row["cells"]
+                  if not c.get("diverges")
+                  and c["discount_key"] == "bond30_plus3")
+    buy_ = f"${cellb_['buy_price_at_margin']['30%']:,.0f}"
+    return [
     ("해명 표 10년 CAGR 훼손", lambda p: p.replace(">6.95%<", ">3.95%<", 1)),
     ("기록 표 ROIC 훼손", lambda p: p.replace(">117.1%<", ">17.1%<", 1)),
     ("기록 표 영업이익 훼손", lambda p: p.replace(">155.2<", ">55.2<", 1)),
@@ -950,16 +969,18 @@ MUTATIONS = [
                       r"\g<1>12.0", p, count=1, flags=re.S)),
     ("기초율 분포 막대 값 훼손", lambda p: p.replace(">41.7%<", ">21.7%<", 1)),
     ("백분위 훼손", lambda p: p.replace(">상위 10.2%<", ">상위 40.2%<", 1)),
-    ("30년 국채 훼손", lambda p: p.replace(">5.251%<", ">3.251%<", 1)),
+    ("30년 국채 훼손",
+     lambda p: p.replace(f">{r30_}<", ">3.251%<", 1)),
     ("명목 GDP 상한 훼손", lambda p: p.replace(">5.44%<", ">8.44%<", 1)),
     ("버핏 인용문 훼손",
      lambda p: p.replace("discounted at an appropriate interest rate",
                          "discounted at the cost of capital", 1)),
     ("버핏 인용 블록 하나 제거",
      lambda p: p.replace('<blockquote class="bq">', '<div class="bqx">', 1)),
-    ("격자 한 칸 훼손", lambda p: p.replace("<b>$556</b>", "<b>$956</b>", 1)),
-    ("안전마진 매수상한 훼손", lambda p: p.replace("<b>$389</b>",
-                                           "<b>$689</b>", 1)),
+    ("격자 한 칸 훼손",
+     lambda p: p.replace(f"<b>{vps_}</b>", "<b>$9,999</b>", 1)),
+    ("안전마진 매수상한 훼손",
+     lambda p: p.replace(f"<b>{buy_}</b>", "<b>$9,998</b>", 1)),
     ("안전마진 판정 뒤집기",
      lambda p: p.replace("<b>불합격</b>", "<b>합격</b>", 1)),
     ("발산 표기 제거", lambda p: p.replace(">발산<", ">999<", 1)),
@@ -983,7 +1004,7 @@ MUTATIONS = [
                                          "<table>", 1)),
     ("맨 :root 에서 토큰 제거",
      lambda p: p.replace("--quote:#4a3f6b; --quote-bg:#efecf6;", "", 1)),
-]
+    ]
 
 
 def main():
@@ -1007,9 +1028,10 @@ def main():
         if fails:
             return 1
     if args.mutate:
-        print(f"\n변이 검정 {len(MUTATIONS)}건")
+        muts = mutations(d)
+        print(f"\n변이 검정 {len(muts)}건")
         survived = []
-        for name, mut in MUTATIONS:
+        for name, mut in muts:
             bad = mut(page)
             if bad == page:
                 survived.append(f"{name} (대상 없음)")
@@ -1028,7 +1050,7 @@ def main():
         if survived:
             print(f"\n변이 {len(survived)}건이 통과했습니다: {survived}")
             return 1
-        print(f"  변이 {len(MUTATIONS)}/{len(MUTATIONS)}건 모두 포착")
+        print(f"  변이 {len(muts)}/{len(muts)}건 모두 포착")
     return 0
 
 

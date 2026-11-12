@@ -1,11 +1,11 @@
 {
- "generated": "2026-11-06",
- "roic_study_generated": "2026-11-06",
+ "generated": "2026-11-12",
+ "roic_study_generated": "2026-11-12",
  "roic_study_window": [
   2016,
   2026
  ],
- "prices_fetched_utc": "2026-11-06T09:21:06.300959+00:00",
+ "prices_fetched_utc": "2026-11-12T23:19:18.488544+00:00",
  "wacc_for_roic_hurdle": 0.1,
  "market_assumptions": {
   "보수": {
@@ -58,8 +58,8 @@
    "data_as_of_note": "TTM 은 2025-12-31 직전 분기부터 2026-09-30 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
    "company_name": "MICROSOFT CORP",
    "sic": "7372",
-   "price": 535.9299926757812,
-   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "price": 523.0,
+   "price_as_of": "2026-11-12T14:30:00+00:00",
    "fifty_two_week_high": 559.15,
    "fifty_two_week_low": 349.2,
    "shares_outstanding": {
@@ -67,7 +67,7 @@
     "as_of": "2026-10-22",
     "classes": 1
    },
-   "market_cap": 3979920391862.2866,
+   "market_cap": 3883899750696.0,
    "ttm": {
     "operating_income": {
      "tag": "OperatingIncomeLoss",
@@ -480,13 +480,13 @@
      "enterprise_value": 1381526091042.3706,
      "equity_value": 1410554091042.3706,
      "value_per_share": 189.9430564558108,
-     "upside_vs_market": -0.6455823352832584,
+     "upside_vs_market": -0.6368201597403236,
      "first_year_reinvestment_rate": 0.43397049893224154,
      "implied_growth_at_price": null,
      "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 374832738254.20135,
-     "required_nopat_multiple": 2.859802950866684,
-     "price_to_value": 2.821529792537915,
+     "required_nopat_at_price": 365722978663.83234,
+     "required_nopat_multiple": 2.7902996372565596,
+     "price_to_value": 2.7534567978360034,
      "best_case_in_scenario": {
       "growth": 0.149925,
       "value_per_share": 213.73188459692483,
@@ -494,7 +494,7 @@
       "search_upper_bound": 0.15,
       "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 2.5074873301495804
+     "price_vs_best_case": 2.446991009255925
     },
     {
      "scenario": "중립",
@@ -596,13 +596,13 @@
      "enterprise_value": 2030218719876.741,
      "equity_value": 2059246719876.741,
      "value_per_share": 277.2950136785941,
-     "upside_vs_market": -0.48259097742576273,
+     "upside_vs_market": -0.4697992090275448,
      "first_year_reinvestment_rate": 0.39057344903901736,
      "implied_growth_at_price": null,
      "implied_growth_note": "이 시나리오의 가정(증분 ROIC 25%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 255066709121.11087,
-     "required_nopat_multiple": 1.94604273578078,
-     "price_to_value": 1.9327069230929794,
+     "required_nopat_at_price": 248867687097.52206,
+     "required_nopat_multiple": 1.8987470231434163,
+     "price_to_value": 1.8860779105324863,
      "best_case_in_scenario": {
       "growth": 0.249875,
       "value_per_share": 430.8553125927216,
@@ -610,7 +610,7 @@
       "search_upper_bound": 0.25,
       "note": "성장률 0 ~ 25%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 1.2438746303271988
+     "price_vs_best_case": 1.2138645728952189
     },
     {
      "scenario": "낙관",
@@ -712,13 +712,13 @@
      "enterprise_value": 3818811308531.905,
      "equity_value": 3847839308531.905,
      "value_per_share": 518.1441560126668,
-     "upside_vs_market": -0.03318686564697304,
+     "upside_vs_market": -0.009284596534097744,
      "first_year_reinvestment_rate": 0.5579620700557392,
-     "implied_growth_at_price": 0.20511897401196938,
+     "implied_growth_at_price": 0.19800311715051344,
      "implied_growth_note": null,
-     "required_nopat_at_price": 135602721851.71475,
-     "required_nopat_multiple": 1.034586962449621,
-     "price_to_value": 1.0343260393014635,
+     "required_nopat_at_price": 132307096710.69241,
+     "required_nopat_multiple": 1.0094428447102188,
+     "price_to_value": 1.0093716081345023,
      "best_case_in_scenario": {
       "growth": 0.349825,
       "value_per_share": 875.6870766417574,
@@ -726,7 +726,7 @@
       "search_upper_bound": 0.35,
       "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 0.6120108506466284
+     "price_vs_best_case": 0.5972453105117124
     }
    ],
    "model": "applied"
@@ -739,8 +739,8 @@
    "data_as_of_note": "TTM 은 2025-12-31 직전 분기부터 2026-09-30 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
    "company_name": "Alphabet Inc.",
    "sic": "7370",
-   "price": 281.739990234375,
-   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "price": 295.3500061035156,
+   "price_as_of": "2026-11-12T14:30:00+00:00",
    "fifty_two_week_high": 404.47,
    "fifty_two_week_low": 271.41,
    "shares_outstanding": {
@@ -749,7 +749,7 @@
     "classes": 3,
     "source": "goog_price.json (10-Q 표지, Class A+B+C)"
    },
-   "market_cap": 3463711439941.4062,
+   "market_cap": 3631032975036.621,
    "ttm": {
     "operating_income": {
      "tag": "OperatingIncomeLoss",
@@ -1162,13 +1162,13 @@
      "enterprise_value": 1364643457309.316,
      "equity_value": 1503623457309.316,
      "value_per_share": 122.30547074258304,
-     "upside_vs_market": -0.5658924008592494,
+     "upside_vs_market": -0.5858965017264403,
      "first_year_reinvestment_rate": 0.4641677014245276,
      "implied_growth_at_price": null,
      "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 313382259672.5063,
-     "required_nopat_multiple": 2.4363370682162064,
-     "price_to_value": 2.30357635291192,
+     "required_nopat_at_price": 329153639017.64075,
+     "required_nopat_multiple": 2.5589489740579894,
+     "price_to_value": 2.4148552334600004,
      "best_case_in_scenario": {
       "growth": 0.149925,
       "value_per_share": 135.68794384971133,
@@ -1176,7 +1176,7 @@
       "search_upper_bound": 0.15,
       "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 2.076381896879738
+     "price_vs_best_case": 2.176685693097736
     },
     {
      "scenario": "중립",
@@ -1278,13 +1278,13 @@
      "enterprise_value": 1881075302348.5725,
      "equity_value": 2020055302348.5725,
      "value_per_share": 164.31229073926895,
-     "upside_vs_market": -0.4167945750172697,
+     "upside_vs_market": -0.4436692488786338,
      "first_year_reinvestment_rate": 0.5520604111554663,
      "implied_growth_at_price": null,
      "implied_growth_note": "이 시나리오의 가정(증분 ROIC 19%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 19%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 227346055612.4234,
-     "required_nopat_multiple": 1.7674632354113577,
-     "price_to_value": 1.714661690654904,
+     "required_nopat_at_price": 238787548469.8384,
+     "required_nopat_multiple": 1.8564131753134494,
+     "price_to_value": 1.7974918660964783,
      "best_case_in_scenario": {
       "growth": 0.18908349855340803,
       "value_per_share": 199.796470130309,
@@ -1292,7 +1292,7 @@
       "search_upper_bound": 0.1891780875972066,
       "note": "성장률 0 ~ 19%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 1.4101349741095113
+     "price_vs_best_case": 1.4782543751192692
     },
     {
      "scenario": "낙관",
@@ -1394,13 +1394,13 @@
      "enterprise_value": 3927962252400.7305,
      "equity_value": 4066942252400.7305,
      "value_per_share": 330.80708088504394,
-     "upside_vs_market": 0.17415735199625315,
+     "upside_vs_market": 0.12005103791703053,
      "first_year_reinvestment_rate": 0.5967870446886784,
-     "implied_growth_at_price": 0.1607572854790167,
+     "implied_growth_at_price": 0.17489785434844435,
      "implied_growth_note": null,
-     "required_nopat_at_price": 108874531581.23308,
-     "required_nopat_multiple": 0.8464265250790952,
-     "price_to_value": 0.8516746058778595,
+     "required_nopat_at_price": 114353787300.38536,
+     "required_nopat_multiple": 0.8890240665888053,
+     "price_to_value": 0.892816457596173,
      "best_case_in_scenario": {
       "growth": 0.349825,
       "value_per_share": 528.0954769809819,
@@ -1408,7 +1408,7 @@
       "search_upper_bound": 0.35,
       "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 0.5335019944594626
+     "price_vs_best_case": 0.559273879397668
     }
    ],
    "model": "applied"
@@ -1421,16 +1421,16 @@
    "data_as_of_note": "TTM 은 2025-10-26 직전 분기부터 2026-07-26 까지 4개 분기입니다. 기업마다 결산월이 달라 기준 분기말이 다릅니다.",
    "company_name": "NVIDIA CORP",
    "sic": "3674",
-   "price": 181.60000610351562,
-   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "price": 166.19000244140625,
+   "price_as_of": "2026-11-12T14:30:00+00:00",
    "fifty_two_week_high": 243.37,
-   "fifty_two_week_low": 164.27,
+   "fifty_two_week_low": 148.8,
    "shares_outstanding": {
     "value": 24100000000,
     "as_of": "2026-08-21",
     "classes": 1
    },
-   "market_cap": 4376560147094.7266,
+   "market_cap": 4005179058837.8906,
    "ttm": {
     "operating_income": {
      "tag": "OperatingIncomeLoss",
@@ -1843,13 +1843,13 @@
      "enterprise_value": 1837826493886.765,
      "equity_value": 1876025493886.765,
      "value_per_share": 77.84338148907739,
-     "upside_vs_market": -0.5713470326388365,
+     "upside_vs_market": -0.5316000941962638,
      "first_year_reinvestment_rate": 0.6666666666666667,
      "implied_growth_at_price": null,
      "implied_growth_note": "이 시나리오의 가정(증분 ROIC 15%, 할인율 11%)으로는 초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 391563989452.03046,
-     "required_nopat_multiple": 2.3605934300792755,
-     "price_to_value": 2.3328894843680046,
+     "required_nopat_at_price": 358044543837.8112,
+     "required_nopat_multiple": 2.158517178870483,
+     "price_to_value": 2.1349278418066313,
      "best_case_in_scenario": {
       "growth": 0.149925,
       "value_per_share": 83.4093691618266,
@@ -1857,7 +1857,7 @@
       "search_upper_bound": 0.15,
       "note": "성장률 0 ~ 15%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 2.1772135184380135
+     "price_vs_best_case": 1.992462047266811
     },
     {
      "scenario": "중립",
@@ -1959,13 +1959,13 @@
      "enterprise_value": 2992077948818.919,
      "equity_value": 3030276948818.919,
      "value_per_share": 125.73763273107548,
-     "upside_vs_market": -0.3076121778354869,
+     "upside_vs_market": -0.24341036834988372,
      "first_year_reinvestment_rate": 0.6,
-     "implied_growth_at_price": null,
-     "implied_growth_note": "이 시나리오의 가정(증분 ROIC 25%, 할인율 10%)으로는 초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다. 그 위의 성장률은 재투자율이 100% 를 넘어 자기 현금으로 조달할 수 없습니다.",
-     "required_nopat_at_price": 240510670569.59586,
-     "required_nopat_multiple": 1.4499492397272715,
-     "price_to_value": 1.4442772792765806,
+     "implied_growth_at_price": 0.24600367455884126,
+     "implied_growth_note": null,
+     "required_nopat_at_price": 219921993982.96967,
+     "required_nopat_multiple": 1.3258277781178127,
+     "price_to_value": 1.3217204653188381,
      "best_case_in_scenario": {
       "growth": 0.249875,
       "value_per_share": 168.08064663694327,
@@ -1973,7 +1973,7 @@
       "search_upper_bound": 0.25,
       "note": "성장률 0 ~ 25%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 1.080433766391763
+     "price_vs_best_case": 0.9887515651958382
     },
     {
      "scenario": "낙관",
@@ -2075,13 +2075,13 @@
      "enterprise_value": 5835871147250.393,
      "equity_value": 5874070147250.393,
      "value_per_share": 243.73735050831505,
-     "upside_vs_market": 0.3421659819184142,
+     "upside_vs_market": 0.4666186107930874,
      "first_year_reinvestment_rate": 0.7142857142857143,
-     "implied_growth_at_price": 0.1641534836772755,
+     "implied_growth_at_price": 0.13842563360685306,
      "implied_growth_note": null,
-     "required_nopat_at_price": 123310925774.29437,
-     "required_nopat_multiple": 0.7433956366803562,
-     "price_to_value": 0.745064331440332,
+     "required_nopat_at_price": 112755016698.19472,
+     "required_nopat_multiple": 0.6797579930644903,
+     "price_to_value": 0.6818405225740596,
      "best_case_in_scenario": {
       "growth": 0.349825,
       "value_per_share": 341.5509813272682,
@@ -2089,7 +2089,7 @@
       "search_upper_bound": 0.35,
       "note": "성장률 0 ~ 35%(증분 ROIC) 구간에서 얻을 수 있는 최대값. 그 위에서는 재투자가 잉여현금을 다 먹습니다."
      },
-     "price_vs_best_case": 0.5316922393190541
+     "price_vs_best_case": 0.4865745131095551
     }
    ],
    "model": "applied"
@@ -2099,8 +2099,8 @@
    "korean": "스페이스X",
    "cik": "0001181412",
    "company_name": "SPACE EXPLORATION TECHNOLOGIES CORP",
-   "price": 123.62000274658203,
-   "price_as_of": "2026-11-05T14:30:00+00:00",
+   "price": 139.94000244140625,
+   "price_as_of": "2026-11-12T14:30:00+00:00",
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "shares_outstanding": {
@@ -2108,7 +2108,7 @@
     "as_of": "2026-09-30",
     "source": "10-Q 표지"
    },
-   "market_cap": 1678636017295.8374,
+   "market_cap": 1900245293151.8555,
    "balance_sheet": {
     "balance_sheet_date": "2026-09-30",
     "cash_and_securities": 89855000000.0,
@@ -2225,7 +2225,7 @@
        "enterprise_value": 8227689661.506076,
        "equity_value": 59238689661.50607,
        "value_per_share": 4.362522252117687,
-       "upside_vs_market": -0.9647102236273142,
+       "upside_vs_market": -0.9688257669286214,
        "first_year_reinvestment_rate": 0.6666666666666667,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2330,7 +2330,7 @@
        "enterprise_value": 13395110413.200146,
        "equity_value": 64406110413.20015,
        "value_per_share": 4.7430672666028535,
-       "upside_vs_market": -0.9616318786505286,
+       "upside_vs_market": -0.9661064228679801,
        "first_year_reinvestment_rate": 0.6,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2435,7 +2435,7 @@
        "enterprise_value": 26126370940.798977,
        "equity_value": 77137370940.79898,
        "value_per_share": 5.680637082318211,
-       "upside_vs_market": -0.9540475897419014,
+       "upside_vs_market": -0.9594066243874997,
        "first_year_reinvestment_rate": 0.7142857142857143,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 35%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2548,7 +2548,7 @@
        "enterprise_value": 97716944022.39764,
        "equity_value": 148727944022.39764,
        "value_per_share": 10.952790634243879,
-       "upside_vs_market": -0.911399527658183,
+       "upside_vs_market": -0.9217322392228063,
        "first_year_reinvestment_rate": 0.6666666666666667,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 15%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2653,7 +2653,7 @@
        "enterprise_value": 159088311332.94305,
        "equity_value": 210099311332.94305,
        "value_per_share": 15.472369933937923,
-       "upside_vs_market": -0.8748392688062312,
+       "upside_vs_market": -0.8894356891238708,
        "first_year_reinvestment_rate": 0.6,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 25%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2758,7 +2758,7 @@
        "enterprise_value": 310292345939.44666,
        "equity_value": 361303345939.44666,
        "value_per_share": 26.607507617604142,
-       "upside_vs_market": -0.7847637354276,
+       "upside_vs_market": -0.8098648910003781,
        "first_year_reinvestment_rate": 0.7142857142857143,
        "implied_growth_at_price": null,
        "implied_growth_note": "초기 성장률을 증분 ROIC 35%까지 올려도 현재 시가총액에 닿지 않습니다."
@@ -2855,7 +2855,7 @@
     "nine_months_annualised": 36110666666.666664,
     "q3_2026": 14575000000.0,
     "q3_annualised": 58300000000.0,
-    "market_cap_to_q3_annualised_revenue": 28.79307062257011,
+    "market_cap_to_q3_annualised_revenue": 32.59425888768191,
     "note": "사업부별 공시 매출의 합. 연결 매출과 같습니다."
    },
    "quarterly": {
@@ -2947,11 +2947,11 @@
       "terminal_growth": 0.02
      },
      "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 10%, 증분 ROIC 15%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
-     "required_nopat_at_price": 146903248368.5878,
-     "required_nopat_per_share": 10.818414343367538,
-     "vs_q3_annualised": 16.656528031850545,
-     "vs_nine_months_annualised": 197.8228499442335,
-     "as_share_of_q3_annualised_revenue": 2.519781275619002
+     "required_nopat_at_price": 166904859394.4168,
+     "required_nopat_per_share": 12.291395492629562,
+     "vs_q3_annualised": 18.92439752033172,
+     "vs_nine_months_annualised": 224.75741906062052,
+     "as_share_of_q3_annualised_revenue": 2.8628620822369952
     },
     {
      "scenario": "중립",
@@ -2963,11 +2963,11 @@
       "terminal_growth": 0.025
      },
      "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 15%, 증분 ROIC 25%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
-     "required_nopat_at_price": 90232502798.39473,
-     "required_nopat_per_share": 6.645003520023177,
-     "vs_q3_annualised": 10.230952881821171,
-     "vs_nine_months_annualised": 121.50889146026762,
-     "as_share_of_q3_annualised_revenue": 1.5477273207271822
+     "required_nopat_at_price": 102518108752.67691,
+     "required_nopat_per_share": 7.549753940104345,
+     "vs_q3_annualised": 11.623948218808751,
+     "vs_nine_months_annualised": 138.05293395189457,
+     "as_share_of_q3_annualised_revenue": 1.7584581261179573
     },
     {
      "scenario": "낙관",
@@ -2979,11 +2979,11 @@
       "terminal_growth": 0.03
      },
      "rule": "10년 ROIC 기록이 없어(10-K 미제출) 기업별 규칙을 쓸 수 없습니다. 상한값(성장 25%, 증분 ROIC 35%)을 그대로 적용 — 세 기업에 쓴 가정 중 가장 관대한 쪽입니다.",
-     "required_nopat_at_price": 46262618738.08205,
-     "required_nopat_per_share": 3.406923833719865,
-     "vs_q3_annualised": 5.245456546367625,
-     "vs_nine_months_annualised": 62.29816689749804,
-     "as_share_of_q3_annualised_revenue": 0.7935269080288516
+     "required_nopat_at_price": 52561505354.35108,
+     "required_nopat_per_share": 3.8707935307718597,
+     "vs_q3_annualised": 5.9596516554511885,
+     "vs_nine_months_annualised": 70.78037349091177,
+     "as_share_of_q3_annualised_revenue": 0.901569560108938
     }
    ],
    "model": "base_not_established",

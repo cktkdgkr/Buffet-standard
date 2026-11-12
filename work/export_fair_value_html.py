@@ -732,12 +732,31 @@ def build(d):
             w(f"<p><strong>세 시나리오 모두 현재가보다 낮습니다.</strong> 가장 "
               f"관대한 낙관 가정에서도 {usd(v_hi['value_per_share'])}"
               f"({sg(v_hi['upside_vs_market'], 0)})입니다.</p>")
-        w(f"<p>보수·중립에서는 성장률을 증분 ROIC 직전까지 — 즉 10년간 "
-          f"잉여현금을 거의 전부 재투자하는 지점까지 — 올려도 천장이 "
-          f"주당 {usd(v_lo['best_case_in_scenario']['value_per_share'])}"
-          f"(보수)와 "
-          f"{usd(v_mid['best_case_in_scenario']['value_per_share'])}(중립)로 "
-          f"현재가 아래입니다.</p>")
+        # 이 문장은 데이터에서 만듭니다. "보수·중립은 어떤 성장률로도 현재가에
+        # 닿지 못한다"를 문장에 박아 두었더니, 주가가 빠져 중립의 천장이
+        # 현재가를 넘은 날 보고서가 표와 반대되는 말을 했습니다.
+        unreachable = [(s_, val(c, s_)) for s_ in ("보수", "중립")
+                       if val(c, s_)["implied_growth_at_price"] is None]
+        reachable = [(s_, val(c, s_)) for s_ in ("보수", "중립")
+                     if val(c, s_)["implied_growth_at_price"] is not None]
+        if unreachable:
+            w("<p>"
+              + "·".join(s_ for s_, _ in unreachable)
+              + f"에서는 성장률을 증분 ROIC 직전까지 — 즉 10년간 잉여현금을 "
+              f"거의 전부 재투자하는 지점까지 — 올려도 <strong>어떤 성장률로도"
+              f"</strong> 현재가에 닿지 못합니다 (천장 "
+              + ", ".join(
+                  f"{s_} {usd(v_['best_case_in_scenario']['value_per_share'])}"
+                  for s_, v_ in unreachable)
+              + ").</p>")
+        for s_, v_ in reachable:
+            w(f"<p>{s_} 가정에서는 성장률을 "
+              f"{pct(v_['implied_growth_at_price'])}까지 올리면 현재가가 "
+              f"설명됩니다. 그 성장률은 이 시나리오의 증분 ROIC "
+              f"{pct(v_['assumptions']['incremental_roic'])} 바로 아래이고, "
+              f"벌어들인 현금의 대부분을 10년 내내 다시 집어넣는다는 "
+              f"뜻입니다 — 가능하다는 말이 아니라 <strong>가격이 요구하는 "
+              f"조건</strong>입니다.</p>")
 
     # 스페이스X
     w(f"<h3>{esc(nm(sx))} — {usd(sx['price'], 2)} (별도 취급)</h3>")
@@ -1243,17 +1262,46 @@ def verify(page, d):
     # 트립와이어: 결론이 표와 어긋나지 않는지
     true("낙관에서만 설명된다는 서술", "낙관 시나리오에서만" in page)
     true("보수·중립에 해가 없다는 서술", "어떤 성장률로도" in page)
-    true("보수·중립 정당화 성장률이 실제로 없음",
-         all(val(c, s)["implied_growth_at_price"] is None
-             for c in applied for s in ("보수", "중립")))
-    true("낙관 정당화 성장률은 있음",
-         all(val(c, "낙관")["implied_growth_at_price"] is not None
-             for c in applied))
+    # 서술이 표와 어긋나지 않는지. "보수·중립에는 해가 없다"를 사실로
+    # 단정하지 않고, **페이지가 말한 것이 엔진과 맞는지**만 봅니다 — 주가가
+    # 움직이면 사실 쪽이 바뀌기 때문입니다.
+    for c in applied:
+        sec = section_of(page, f"{c['korean']}({c['ticker']}) —")
+        for s_ in ("보수", "중립"):
+            v_ = val(c, s_)
+            says_unreachable = (f"{s_} "
+                                f"{usd(v_['best_case_in_scenario']['value_per_share'])}"
+                                in sec and "어떤 성장률로도" in sec)
+            says_reachable = (f"{s_} 가정에서는 성장률을 "
+                              f"{pct(v_['implied_growth_at_price'])}까지"
+                              in sec) if v_["implied_growth_at_price"] \
+                else False
+            if v_["implied_growth_at_price"] is None:
+                true(f"{c['ticker']} {s_} 천장 서술 = 닿지 못함",
+                     says_unreachable)
+            else:
+                true(f"{c['ticker']} {s_} 천장 서술 = 정당화 성장률",
+                     says_reachable)
     true("스페이스X 단일 적정주가 없음", "valuations" not in sx)
     return passed, fails
 
 
-MUTATIONS = [
+def mutations(d):
+    """변이 목록.
+
+    값이 들어가는 항목은 **엔진에서 끌어옵니다.** 리터럴로 적어 두었더니
+    주가가 움직인 날 두 건이 "대상 없음"으로 조용히 통과했습니다 — 변이가
+    아무것도 바꾸지 않으면 검사도 실패하지 않습니다.
+    """
+    applied_ = [c for c in d["companies"] if c["model"] == "applied"]
+    ig_ = next((pct(v["implied_growth_at_price"])
+                for c in applied_ for v in c["valuations"]
+                if v["implied_growth_at_price"] is not None), None)
+    sx_ = next((c for c in d["companies"]
+                if c["model"] == "base_not_established"), None)
+    sx_nopat_ = (bn(sx_["reverse"][0]["required_nopat_at_price"]) + "십억"
+                 if sx_ and sx_.get("reverse") else None)
+    return [
     ("MSFT 축 막대 길이 훼손",
      lambda p: re.sub(r'(class="fl cheap" style="width:)[\d.]+',
                       r"\g<1>99.0", p, count=1)),
@@ -1264,13 +1312,15 @@ MUTATIONS = [
                                        '<span class="vv">$290</span>', 1)),
     ("시나리오 표 주당가치 훼손", lambda p: p.replace("<b>$277</b>",
                                               "<b>$377</b>", 1)),
-    ("정당화 성장률 표기 훼손", lambda p: p.replace(">20.5%<", ">30.5%<", 1)),
+    ("정당화 성장률 표기 훼손",
+     lambda p: p.replace(f">{ig_}<", ">99.9%<", 1) if ig_ else p),
     ("ROIC 중위 표기 훼손", lambda p: p.replace(">70.3%<", ">60.3%<", 1)),
     ("추세 투하자본 배수 표기 훼손", lambda p: p.replace(">10.59배<", ">1.59배<",
                                                 1)),
     ("천장 표기 훼손", lambda p: p.replace(">$214<", ">$414<", 1)),
-    ("스페이스X 요구 NOPAT 표기 훼손", lambda p: p.replace(">146.9십억<",
-                                                   ">46.9십억<", 1)),
+    ("스페이스X 요구 NOPAT 표기 훼손",
+     lambda p: p.replace(f">{sx_nopat_}<", ">9.9십억<", 1)
+     if sx_nopat_ else p),
     ("스페이스X 사업부 영업이익 표기 훼손",
      lambda p: p.replace('<td class="r pos">2.4</td>',
                          '<td class="r pos">3.4</td>', 1)),
@@ -1319,7 +1369,7 @@ MUTATIONS = [
      lambda p: p.replace("--cheap:#0f6b4f; --cheap-bg:#e6f2ec;", "", 1)),
     ("다크 블록의 color-scheme 제거",
      lambda p: p.replace("color-scheme:dark;", "", 1)),
-]
+    ]
 
 
 def main():
@@ -1343,9 +1393,10 @@ def main():
         if fails:
             return 1
     if args.mutate:
-        print(f"\n변이 검정 {len(MUTATIONS)}건")
+        muts = mutations(d)
+        print(f"\n변이 검정 {len(muts)}건")
         survived = []
-        for name, mut in MUTATIONS:
+        for name, mut in muts:
             bad = mut(page)
             if bad == page:
                 survived.append(f"{name} (대상 없음)")
@@ -1364,7 +1415,7 @@ def main():
         if survived:
             print(f"\n변이 {len(survived)}건이 통과했습니다: {survived}")
             return 1
-        print(f"  변이 {len(MUTATIONS)}/{len(MUTATIONS)}건 모두 포착")
+        print(f"  변이 {len(muts)}/{len(muts)}건 모두 포착")
     return 0
 
 

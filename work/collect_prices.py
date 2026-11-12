@@ -46,9 +46,30 @@ def quote(ticker):
         raise SystemExit(f"{ticker}: 종가 없음")
     ts, close = last
     as_of = datetime.fromtimestamp(ts, tz=timezone.utc)
+    # A session in progress carries a partial daily bar whose "close" is just
+    # the last trade. Calling that a closing price is wrong in exactly the
+    # situation where it matters most - a day the stock is moving - so the
+    # state travels with the price instead of being assumed by each reader.
+    # This endpoint does not always return marketState, so the session is read
+    # from the trading period the response itself carries: the last bar is
+    # partial when the regular session has started and not yet ended.
+    state = (meta.get("marketState") or "").upper() or None
+    mkt_ts = meta.get("regularMarketTime")
+    reg = (meta.get("currentTradingPeriod") or {}).get("regular") or {}
+    intraday = bool(
+        mkt_ts and reg.get("start") and reg.get("end")
+        and reg["start"] <= mkt_ts < reg["end"])
     return {
         "ticker": ticker,
         "price": close,
+        "market_state": state,
+        "is_intraday": intraday,
+        # The bar before the last one. meta.chartPreviousClose is the close
+        # before the whole requested window, not yesterday's.
+        "previous_close": next(
+            (c for _, c in reversed(list(zip(stamps, closes))[:-1])
+             if c is not None), None),
+        "regular_session": {"start": reg.get("start"), "end": reg.get("end")},
         "currency": meta.get("currency"),
         "exchange": meta.get("fullExchangeName"),
         "as_of_utc": as_of.isoformat(),
@@ -77,7 +98,9 @@ def main():
         age = (datetime.now(timezone.utc)
                - datetime.fromisoformat(q["as_of_utc"])).total_seconds() / 3600
         print(f"  {t:<6}{q['price']:>10,.2f} {q['currency']}  "
-              f"{q['exchange']}  종가 {q['as_of_utc'][:10]} "
+              f"{q['exchange']}  "
+              f"{'장중' if q['is_intraday'] else '종가'} "
+              f"{q['as_of_utc'][:10]} "
               f"({age:.0f}시간 전)  52주 {q['fifty_two_week_low']:,.0f}"
               f"~{q['fifty_two_week_high']:,.0f}")
 

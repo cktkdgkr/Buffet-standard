@@ -1,5 +1,5 @@
 {
- "fetched_utc": "2026-11-06T09:21:06.300959+00:00",
+ "fetched_utc": "2026-11-12T23:19:18.488544+00:00",
  "prices": {
   "TSLA": {
    "ticker": "TSLA",
@@ -15,15 +15,22 @@
   },
   "SPCX": {
    "ticker": "SPCX",
-   "price": 123.62000274658203,
+   "price": 139.94000244140625,
+   "market_state": null,
+   "is_intraday": false,
+   "previous_close": 139.75,
+   "regular_session": {
+    "start": 1794493800,
+    "end": 1794517200
+   },
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-11-05T14:30:00+00:00",
-   "regular_market_price": 123.62,
+   "as_of_utc": "2026-11-12T14:30:00+00:00",
+   "regular_market_price": 139.94,
    "fifty_two_week_high": 225.64,
    "fifty_two_week_low": 104.83,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPCX?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T09:21:06.300340+00:00"
+   "fetched_utc": "2026-11-12T23:19:18.487914+00:00"
   },
   "GOOGL": {
    "ticker": "GOOGL",
@@ -39,39 +46,60 @@
   },
   "GOOG": {
    "ticker": "GOOG",
-   "price": 281.739990234375,
+   "price": 295.3500061035156,
+   "market_state": null,
+   "is_intraday": false,
+   "previous_close": 290.6300048828125,
+   "regular_session": {
+    "start": 1794493800,
+    "end": 1794517200
+   },
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-11-05T14:30:00+00:00",
-   "regular_market_price": 281.74,
+   "as_of_utc": "2026-11-12T14:30:00+00:00",
+   "regular_market_price": 295.35,
    "fifty_two_week_high": 404.47,
    "fifty_two_week_low": 271.41,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GOOG?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T09:21:05.770693+00:00"
+   "fetched_utc": "2026-11-12T23:19:17.542751+00:00"
   },
   "MSFT": {
    "ticker": "MSFT",
-   "price": 535.9299926757812,
+   "price": 523.0,
+   "market_state": null,
+   "is_intraday": false,
+   "previous_close": 521.1300048828125,
+   "regular_session": {
+    "start": 1794493800,
+    "end": 1794517200
+   },
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-11-05T14:30:00+00:00",
-   "regular_market_price": 535.93,
+   "as_of_utc": "2026-11-12T14:30:00+00:00",
+   "regular_market_price": 523.0,
    "fifty_two_week_high": 559.15,
    "fifty_two_week_low": 349.2,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T09:21:05.058770+00:00"
+   "fetched_utc": "2026-11-12T23:19:16.254371+00:00"
   },
   "NVDA": {
    "ticker": "NVDA",
-   "price": 181.60000610351562,
+   "price": 166.19000244140625,
+   "market_state": null,
+   "is_intraday": false,
+   "previous_close": 173.72999572753906,
+   "regular_session": {
+    "start": 1794493800,
+    "end": 1794517200
+   },
    "currency": "USD",
    "exchange": "NasdaqGS",
-   "as_of_utc": "2026-11-05T14:30:00+00:00",
-   "regular_market_price": 181.6,
+   "as_of_utc": "2026-11-12T14:30:00+00:00",
+   "regular_market_price": 166.19,
    "fifty_two_week_high": 243.37,
-   "fifty_two_week_low": 164.27,
+   "fifty_two_week_low": 148.8,
    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=5d&interval=1d",
-   "fetched_utc": "2026-11-06T09:21:05.941055+00:00"
+   "fetched_utc": "2026-11-12T23:19:18.299600+00:00"
   }
  }
 }

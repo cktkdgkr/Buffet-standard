@@ -1,0 +1,1715 @@
+{
+ "generated": "2026-11-12",
+ "generated_utc": "2026-11-12T23:20:02.305625+00:00",
+ "ticker": "NVDA",
+ "korean": "엔비디아",
+ "company_name": "NVIDIA CORP",
+ "question": "CEO 사임 당일의 가격이 버핏 기준으로 매력적인가, 그리고 버핏이라면 CEO 리스크를 어떻게 반영했을까.",
+ "event": {
+  "accession": "0001045810-26-000082",
+  "form": "8-K",
+  "filed": "2026-11-12",
+  "report_date": "2026-11-11",
+  "items": "5.02,9.01",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm",
+  "press_release_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvidiaannouncesceotransiti.htm",
+  "resignation": "On November 11, 2026, the Board of Directors, or the Board, of NVIDIA Corporation accepted the resignation of Jen-Hsun Huang, as NVIDIA’s President, Chief Executive Officer and member of the Board, effective immediately.",
+  "interim": "Following Mr. Huang’s resignation, the Board appointed NVIDIA’s Executive Vice President and Chief Financial Officer Colette M. Kress, age 59, to serve as interim Chief Executive Officer, while the Board conducts a search for a new Chief Executive Officer.",
+  "chair": "On November 11, 2026, the Board appointed Harvey C. Jones, age 73, as Chair of the Board.",
+  "search": "The Board is initiating a search for a permanent Chief Executive Officer and will consider internal and external candidates.",
+  "earnings": "NVIDIA will report its third-quarter fiscal 2027 financial results on Tuesday, November 17, at approximately 1:20 p.m.",
+  "reason_stated_in_filing": false,
+  "reason_markers_found": [],
+  "submissions_age_days": 0.0004491845138888889
+ },
+ "filing_facts": {
+  "form": "10-K",
+  "filed": "2026-02-25",
+  "accession": "0001045810-26-000021",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+  "founder_tenure": "Jen-Hsun Huang co-founded NVIDIA in 1993 and has served as our President, Chief Executive Officer, and a member of the Board of Directors since our inception.",
+  "founder_since": 1993,
+  "key_personnel_risk_factor": "We may be unable to attract, retain, and motivate our executives and key employees.",
+  "customer_concentration_sentence": "For fiscal year 2026, sales to one direct customer represented 22% of total revenue and sales to another direct customer represented 14% of total revenue",
+  "customer_concentration": [
+   0.22,
+   0.14
+  ],
+  "customer_concentration_top2": 0.36
+ },
+ "price": {
+  "last": {
+   "date": "2026-11-12",
+   "open": 150.99000549316406,
+   "high": 167.13999938964844,
+   "low": 148.8000030517578,
+   "close": 166.19000244140625,
+   "volume": 740019481
+  },
+  "previous": {
+   "date": "2026-11-11",
+   "open": 172.8000030517578,
+   "high": 177.5399932861328,
+   "low": 170.77000427246094,
+   "close": 173.72999572753906,
+   "volume": 339214800
+  },
+  "is_intraday": false,
+  "as_of_utc": "2026-11-12T21:00:01+00:00",
+  "price": 166.19000244140625,
+  "change_today": -0.0434006416367948,
+  "change_today_at_low": -0.1434984935755077,
+  "change_today_at_open": -0.13089271164225524,
+  "window_high": {
+   "date": "2026-10-06",
+   "open": 242.10000610351562,
+   "high": 243.3699951171875,
+   "low": 238.92999267578125,
+   "close": 239.24000549316406,
+   "volume": 101701900
+  },
+  "window_days": 128,
+  "fifty_two_week_high": 243.37,
+  "fifty_two_week_low": 148.8,
+  "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=6mo&interval=1d",
+  "fetched_utc": "2026-11-12T23:20:02.293921+00:00",
+  "rows": [
+   {
+    "date": "2026-10-02",
+    "open": 236.05999755859375,
+    "high": 237.8800048828125,
+    "low": 233.60000610351562,
+    "close": 233.9499969482422,
+    "volume": 135167800
+   },
+   {
+    "date": "2026-10-05",
+    "open": 236.08999633789062,
+    "high": 240.10000610351562,
+    "low": 235.14999389648438,
+    "close": 238.89999389648438,
+    "volume": 127171500
+   },
+   {
+    "date": "2026-10-06",
+    "open": 242.10000610351562,
+    "high": 243.3699951171875,
+    "low": 238.92999267578125,
+    "close": 239.24000549316406,
+    "volume": 101701900
+   },
+   {
+    "date": "2026-10-07",
+    "open": 237.69000244140625,
+    "high": 239.0800018310547,
+    "low": 236.3800048828125,
+    "close": 237.47000122070312,
+    "volume": 81772400
+   },
+   {
+    "date": "2026-10-08",
+    "open": 234.9199981689453,
+    "high": 237.07000732421875,
+    "low": 229.85000610351562,
+    "close": 230.47999572753906,
+    "volume": 118697400
+   },
+   {
+    "date": "2026-10-09",
+    "open": 233.83999633789062,
+    "high": 233.9199981689453,
+    "low": 229.11000061035156,
+    "close": 229.27999877929688,
+    "volume": 84645600
+   },
+   {
+    "date": "2026-10-12",
+    "open": 228.72999572753906,
+    "high": 228.86000061035156,
+    "low": 224.89999389648438,
+    "close": 226.32000732421875,
+    "volume": 70690300
+   },
+   {
+    "date": "2026-10-13",
+    "open": 224.33999633789062,
+    "high": 228.63999938964844,
+    "low": 223.05999755859375,
+    "close": 228.52000427246094,
+    "volume": 84036900
+   },
+   {
+    "date": "2026-10-14",
+    "open": 225.52999877929688,
+    "high": 226.0,
+    "low": 219.63999938964844,
+    "close": 221.3000030517578,
+    "volume": 118730100
+   },
+   {
+    "date": "2026-10-15",
+    "open": 215.3000030517578,
+    "high": 218.47000122070312,
+    "low": 212.85000610351562,
+    "close": 217.22999572753906,
+    "volume": 127087900
+   },
+   {
+    "date": "2026-10-16",
+    "open": 216.55999755859375,
+    "high": 218.67999267578125,
+    "low": 213.32000732421875,
+    "close": 214.1300048828125,
+    "volume": 121252500
+   },
+   {
+    "date": "2026-10-19",
+    "open": 218.10000610351562,
+    "high": 219.6199951171875,
+    "low": 214.6999969482422,
+    "close": 217.08999633789062,
+    "volume": 98684700
+   },
+   {
+    "date": "2026-10-20",
+    "open": 215.97999572753906,
+    "high": 218.4600067138672,
+    "low": 212.77000427246094,
+    "close": 216.47000122070312,
+    "volume": 79609100
+   },
+   {
+    "date": "2026-10-21",
+    "open": 220.9600067138672,
+    "high": 222.19000244140625,
+    "low": 217.66000366210938,
+    "close": 221.97000122070312,
+    "volume": 87085700
+   },
+   {
+    "date": "2026-10-22",
+    "open": 217.1300048828125,
+    "high": 218.8800048828125,
+    "low": 211.25999450683594,
+    "close": 212.2100067138672,
+    "volume": 125407600
+   },
+   {
+    "date": "2026-10-23",
+    "open": 210.99000549316406,
+    "high": 213.85000610351562,
+    "low": 210.17999267578125,
+    "close": 210.9600067138672,
+    "volume": 80189800
+   },
+   {
+    "date": "2026-10-26",
+    "open": 213.11000061035156,
+    "high": 217.75,
+    "low": 212.61000061035156,
+    "close": 216.0,
+    "volume": 90829300
+   },
+   {
+    "date": "2026-10-27",
+    "open": 218.30999755859375,
+    "high": 219.19000244140625,
+    "low": 215.52999877929688,
+    "close": 217.94000244140625,
+    "volume": 84799700
+   },
+   {
+    "date": "2026-10-28",
+    "open": 219.9199981689453,
+    "high": 219.99000549316406,
+    "low": 214.47000122070312,
+    "close": 215.3800048828125,
+    "volume": 93030200
+   },
+   {
+    "date": "2026-10-29",
+    "open": 214.36000061035156,
+    "high": 215.3300018310547,
+    "low": 212.0800018310547,
+    "close": 213.66000366210938,
+    "volume": 77568100
+   },
+   {
+    "date": "2026-10-30",
+    "open": 208.94000244140625,
+    "high": 209.05999755859375,
+    "low": 200.9199981689453,
+    "close": 204.63999938964844,
+    "volume": 168386400
+   },
+   {
+    "date": "2026-11-02",
+    "open": 207.52999877929688,
+    "high": 209.97999572753906,
+    "low": 201.66000366210938,
+    "close": 202.05999755859375,
+    "volume": 119272200
+   },
+   {
+    "date": "2026-11-03",
+    "open": 207.9600067138672,
+    "high": 209.13999938964844,
+    "low": 205.92999267578125,
+    "close": 206.69000244140625,
+    "volume": 91943400
+   },
+   {
+    "date": "2026-11-04",
+    "open": 203.5,
+    "high": 206.7899932861328,
+    "low": 199.67999267578125,
+    "close": 200.1300048828125,
+    "volume": 149033300
+   },
+   {
+    "date": "2026-11-05",
+    "open": 196.07000732421875,
+    "high": 196.25,
+    "low": 181.4600067138672,
+    "close": 181.60000610351562,
+    "volume": 306127800
+   },
+   {
+    "date": "2026-11-06",
+    "open": 191.10000610351562,
+    "high": 194.89999389648438,
+    "low": 185.22000122070312,
+    "close": 186.63999938964844,
+    "volume": 180212300
+   },
+   {
+    "date": "2026-11-09",
+    "open": 173.07000732421875,
+    "high": 179.9199981689453,
+    "low": 170.24000549316406,
+    "close": 178.6699981689453,
+    "volume": 462719300
+   },
+   {
+    "date": "2026-11-10",
+    "open": 173.97000122070312,
+    "high": 174.69000244140625,
+    "low": 165.88999938964844,
+    "close": 168.88999938964844,
+    "volume": 429273200
+   },
+   {
+    "date": "2026-11-11",
+    "open": 172.8000030517578,
+    "high": 177.5399932861328,
+    "low": 170.77000427246094,
+    "close": 173.72999572753906,
+    "volume": 339214800
+   },
+   {
+    "date": "2026-11-12",
+    "open": 150.99000549316406,
+    "high": 167.13999938964844,
+    "low": 148.8000030517578,
+    "close": 166.19000244140625,
+    "volume": 740019481
+   }
+  ]
+ },
+ "price_decomposition": {
+  "window_high": {
+   "date": "2026-10-06",
+   "price": 243.3699951171875
+  },
+  "pre_event_close": {
+   "date": "2026-11-11",
+   "price": 173.72999572753906
+  },
+  "now": {
+   "date": "2026-11-12",
+   "price": 166.19000244140625
+  },
+  "before_event": -0.2861486657634824,
+  "on_event": -0.0434006416367948,
+  "total_from_high": -0.3171302717026293,
+  "fifty_two_week_high": 243.37,
+  "from_52w_high": -0.3171302854032697
+ },
+ "fundamentals": {
+  "data_as_of": "2026-07-26",
+  "ttm_nopat": 165875234787.41556,
+  "ttm_revenue": 302969000000,
+  "net_cash": 38199000000,
+  "shares_outstanding": 24100000000,
+  "market_cap": 4005179058837.8906,
+  "incremental_roic_used": 0.35,
+  "incremental_roic_basis": "10년 중위 ROIC 113.2%에 상한 35% 적용. 네 할인율·네 성장률 전부에 같은 값을 써서 격자가 성장률과 할인율의 효과만 보이게 했습니다.",
+  "next_earnings_note": "NVIDIA will report its third-quarter fiscal 2027 financial results on Tuesday, November 17, at approximately 1:20 p.m."
+ },
+ "macro": {
+  "treasury_30y": {
+   "label": "30년 미국 국채 수익률",
+   "symbol": "^TYX",
+   "percent": 5.433,
+   "rate": 0.054329999999999996,
+   "as_of_utc": "2026-11-12T19:59:54+00:00",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETYX?range=5d&interval=1d"
+  },
+  "treasury_10y": {
+   "label": "10년 미국 국채 수익률",
+   "symbol": "^TNX",
+   "percent": 5.103,
+   "rate": 0.05103,
+   "as_of_utc": "2026-11-12T19:59:54+00:00",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?range=5d&interval=1d"
+  },
+  "breakeven_inflation_10y": {
+   "label": "10년 기대인플레이션 (10-Year Breakeven Inflation Rate)",
+   "series": "FRED T10YIE",
+   "percent": 2.24,
+   "rate": 0.0224,
+   "as_of": "2026-11-05",
+   "source_url": "https://fred.stlouisfed.org/series/T10YIE",
+   "note": "시장가격에서 유도된 기대치입니다 — 제 전망이 아닙니다."
+  },
+  "nominal_gdp_long_run": {
+   "label": "장기 명목 GDP 성장률 (추정)",
+   "rate": 0.054400000000000004,
+   "note": "실질 3.2%(1950–2015, Base Rate Book) + 기대인플레이션 2.24%. 영구성장률의 상한입니다 — 어떤 기업도 경제보다 빠르게 영구히 성장할 수 없습니다."
+  }
+ },
+ "discount_options": [
+  {
+   "key": "bond30",
+   "rate": 0.054329999999999996,
+   "label": "30년 국채 5.43%",
+   "basis": "버핏을 문자 그대로 — 장기 국채 수익률로 할인하고 위험은 안전마진으로 처리. 1996년 \"국채에 큰 프리미엄을 얹는 것은 말이 안 된다\"는 취지의 발언에 해당합니다."
+  },
+  {
+   "key": "bond30_plus3",
+   "rate": 0.08432999999999999,
+   "label": "30년 국채 + 3%p = 8.43%",
+   "basis": "1994년 발언(국채 7% → 최소 10%)에서 유도한 스프레드. **3%포인트는 인용자의 해석이고 버핏의 규칙이 아닙니다.** 다만 2007년에 국채가 4¾%일 때 \"significantly higher\"를 요구했다는 발언과 방향이 같습니다."
+  },
+  {
+   "key": "project10",
+   "rate": 0.1,
+   "label": "프로젝트 기준 10%",
+   "basis": "50개사 ROIC 문턱과 같은 값. 기업 간 비교를 위해 고정한 요구수익률입니다."
+  },
+  {
+   "key": "project11",
+   "rate": 0.11,
+   "label": "프로젝트 보수 11%",
+   "basis": "보수 시나리오에 쓴 할인율."
+  }
+ ],
+ "margins_of_safety": [
+  0.0,
+  0.2,
+  0.3,
+  0.4
+ ],
+ "solve_fade_to": 0.035,
+ "grid": [
+  {
+   "growth_key": "base_rate_median",
+   "growth_label": "기초율 중위 5.5%",
+   "growth": 0.055400000000000005,
+   "fade_to": 0.0224,
+   "basis": "매출 $50십억 초과 기업의 10년 순이익 CAGR 중위값 3.3%(실질) + 기대인플레이션 2.24%. 즉 \"이 규모 기업의 역사적 중앙값만큼\" 성장한다는 가정.",
+   "growth_real": 0.033,
+   "base_rate_percentile_at_or_above": 0.50339,
+   "cells": [
+    {
+     "discount_key": "bond30",
+     "discount": 0.054329999999999996,
+     "diverges": false,
+     "value_per_share": 237.54021271315895,
+     "upside_vs_price": 0.42932913667239814,
+     "terminal_share": 0.754017435534696,
+     "nopat_cagr_10y": 0.03884661471822293,
+     "buy_price_at_margin": {
+      "0%": 237.54021271315895,
+      "20%": 190.03217017052717,
+      "30%": 166.27814889921126,
+      "40%": 142.52412762789535
+     },
+     "price_to_value": 0.69962891984983,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 237.54021271315895,
+       "pass": true,
+       "gap": 0.42932913667239814
+      },
+      "20%": {
+       "buy_limit": 190.03217017052717,
+       "pass": true,
+       "gap": 0.14346330933791873
+      },
+      "30%": {
+       "buy_limit": 166.27814889921126,
+       "pass": true,
+       "gap": 0.0005303956706788071
+      },
+      "40%": {
+       "buy_limit": 142.52412762789535,
+       "pass": false,
+       "gap": -0.14240251799656112
+      }
+     }
+    },
+    {
+     "discount_key": "bond30_plus3",
+     "discount": 0.08432999999999999,
+     "diverges": false,
+     "value_per_share": 120.82843440115958,
+     "upside_vs_price": -0.27295004136148227,
+     "terminal_share": 0.581065741518197,
+     "nopat_cagr_10y": 0.03884661471822293,
+     "buy_price_at_margin": {
+      "0%": 120.82843440115958,
+      "20%": 96.66274752092767,
+      "30%": 84.5799040808117,
+      "40%": 72.49706064069575
+     },
+     "price_to_value": 1.3754213009964427,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 120.82843440115958,
+       "pass": false,
+       "gap": -0.27295004136148227
+      },
+      "20%": {
+       "buy_limit": 96.66274752092767,
+       "pass": false,
+       "gap": -0.4183600330891858
+      },
+      "30%": {
+       "buy_limit": 84.5799040808117,
+       "pass": false,
+       "gap": -0.4910650289530376
+      },
+      "40%": {
+       "buy_limit": 72.49706064069575,
+       "pass": false,
+       "gap": -0.5637700248168893
+      }
+     }
+    },
+    {
+     "discount_key": "project10",
+     "discount": 0.1,
+     "diverges": false,
+     "value_per_share": 95.87104839303046,
+     "upside_vs_price": -0.42312385230975735,
+     "terminal_share": 0.5080887450012238,
+     "nopat_cagr_10y": 0.03884661471822293,
+     "buy_price_at_margin": {
+      "0%": 95.87104839303046,
+      "20%": 76.69683871442437,
+      "30%": 67.10973387512132,
+      "40%": 57.52262903581828
+     },
+     "price_to_value": 1.7334743410763385,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 95.87104839303046,
+       "pass": false,
+       "gap": -0.42312385230975735
+      },
+      "20%": {
+       "buy_limit": 76.69683871442437,
+       "pass": false,
+       "gap": -0.5384990818478058
+      },
+      "30%": {
+       "buy_limit": 67.10973387512132,
+       "pass": false,
+       "gap": -0.5961866966168301
+      },
+      "40%": {
+       "buy_limit": 57.52262903581828,
+       "pass": false,
+       "gap": -0.6538743113858544
+      }
+     }
+    },
+    {
+     "discount_key": "project11",
+     "discount": 0.11,
+     "diverges": false,
+     "value_per_share": 84.64634504722514,
+     "upside_vs_price": -0.49066523976333065,
+     "terminal_share": 0.466705309116557,
+     "nopat_cagr_10y": 0.03884661471822293,
+     "buy_price_at_margin": {
+      "0%": 84.64634504722514,
+      "20%": 67.71707603778012,
+      "30%": 59.25244153305759,
+      "40%": 50.78780702833508
+     },
+     "price_to_value": 1.9633452850053597,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 84.64634504722514,
+       "pass": false,
+       "gap": -0.49066523976333065
+      },
+      "20%": {
+       "buy_limit": 67.71707603778012,
+       "pass": false,
+       "gap": -0.5925321918106645
+      },
+      "30%": {
+       "buy_limit": 59.25244153305759,
+       "pass": false,
+       "gap": -0.6434656678343316
+      },
+      "40%": {
+       "buy_limit": 50.78780702833508,
+       "pass": false,
+       "gap": -0.6943991438579984
+      }
+     }
+    }
+   ]
+  },
+  {
+   "growth_key": "half_of_own",
+   "growth_label": "과거의 절반 25.0% (원값 33.8%, 상한 25%)",
+   "growth": 0.25,
+   "fade_to": 0.035,
+   "basis": "자기 10년 영업이익 CAGR 67.6%의 절반 = 33.8%이지만 상한 25%을 적용했습니다.",
+   "growth_real": 0.2276,
+   "base_rate_percentile_at_or_above": 0.066164,
+   "cells": [
+    {
+     "discount_key": "bond30",
+     "discount": 0.054329999999999996,
+     "diverges": false,
+     "value_per_share": 534.7660101573024,
+     "upside_vs_price": 2.217798918715615,
+     "terminal_share": 0.8482553114278623,
+     "nopat_cagr_10y": 0.14043479853499052,
+     "buy_price_at_margin": {
+      "0%": 534.7660101573024,
+      "20%": 427.8128081258419,
+      "30%": 374.3362071101117,
+      "40%": 320.85960609438143
+     },
+     "price_to_value": 0.31077143888131775,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 534.7660101573024,
+       "pass": true,
+       "gap": 2.217798918715615
+      },
+      "20%": {
+       "buy_limit": 427.8128081258419,
+       "pass": true,
+       "gap": 1.5742391349724918
+      },
+      "30%": {
+       "buy_limit": 374.3362071101117,
+       "pass": true,
+       "gap": 1.25245924310093
+      },
+      "40%": {
+       "buy_limit": 320.85960609438143,
+       "pass": true,
+       "gap": 0.9306793512293687
+      }
+     }
+    },
+    {
+     "discount_key": "bond30_plus3",
+     "discount": 0.08432999999999999,
+     "diverges": false,
+     "value_per_share": 244.66216338136266,
+     "upside_vs_price": 0.47218340325630237,
+     "terminal_share": 0.7246125746353763,
+     "nopat_cagr_10y": 0.14043479853499052,
+     "buy_price_at_margin": {
+      "0%": 244.66216338136266,
+      "20%": 195.72973070509013,
+      "30%": 171.26351436695384,
+      "40%": 146.79729802881758
+     },
+     "price_to_value": 0.6792631935587058,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 244.66216338136266,
+       "pass": true,
+       "gap": 0.47218340325630237
+      },
+      "20%": {
+       "buy_limit": 195.72973070509013,
+       "pass": true,
+       "gap": 0.17774672260504198
+      },
+      "30%": {
+       "buy_limit": 171.26351436695384,
+       "pass": true,
+       "gap": 0.03052838227941157
+      },
+      "40%": {
+       "buy_limit": 146.79729802881758,
+       "pass": false,
+       "gap": -0.11668995804621862
+      }
+     }
+    },
+    {
+     "discount_key": "project10",
+     "discount": 0.1,
+     "diverges": false,
+     "value_per_share": 184.2447478040969,
+     "upside_vs_price": 0.10863917863564776,
+     "terminal_share": 0.6667060969986714,
+     "nopat_cagr_10y": 0.14043479853499052,
+     "buy_price_at_margin": {
+      "0%": 184.2447478040969,
+      "20%": 147.39579824327754,
+      "30%": 128.97132346286782,
+      "40%": 110.54684868245813
+     },
+     "price_to_value": 0.9020067297555323,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 184.2447478040969,
+       "pass": true,
+       "gap": 0.10863917863564776
+      },
+      "20%": {
+       "buy_limit": 147.39579824327754,
+       "pass": false,
+       "gap": -0.11308865709148175
+      },
+      "30%": {
+       "buy_limit": 128.97132346286782,
+       "pass": false,
+       "gap": -0.22395257495504672
+      },
+      "40%": {
+       "buy_limit": 110.54684868245813,
+       "pass": false,
+       "gap": -0.3348164928186115
+      }
+     }
+    },
+    {
+     "discount_key": "project11",
+     "discount": 0.11,
+     "diverges": false,
+     "value_per_share": 157.51210659844241,
+     "upside_vs_price": -0.05221671409520201,
+     "terminal_share": 0.6319902052905247,
+     "nopat_cagr_10y": 0.14043479853499052,
+     "buy_price_at_margin": {
+      "0%": 157.51210659844241,
+      "20%": 126.00968527875393,
+      "30%": 110.25847461890969,
+      "40%": 94.50726395906544
+     },
+     "price_to_value": 1.0550935164944943,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 157.51210659844241,
+       "pass": false,
+       "gap": -0.05221671409520201
+      },
+      "20%": {
+       "buy_limit": 126.00968527875393,
+       "pass": false,
+       "gap": -0.2417733712761616
+      },
+      "30%": {
+       "buy_limit": 110.25847461890969,
+       "pass": false,
+       "gap": -0.33655169986664146
+      },
+      "40%": {
+       "buy_limit": 94.50726395906544,
+       "pass": false,
+       "gap": -0.4313300284571212
+      }
+     }
+    }
+   ]
+  },
+  {
+   "growth_key": "own_sustained",
+   "growth_label": "과거 유지 25.0% (원값 67.6%, 상한 25%)",
+   "growth": 0.25,
+   "fade_to": 0.045,
+   "basis": "자기 10년 CAGR 67.6%이 그대로 이어진다는 가정 — 제기된 의문이 정확히 이것입니다. 원값 67.6%은 상한 25%으로 깎였습니다. 상한 없이 돌리면 1년차 영업이익이 1.68배가 되어 10년 뒤 전 세계 이익보다 커집니다.",
+   "growth_real": 0.2276,
+   "base_rate_percentile_at_or_above": 0.066164,
+   "cells": [
+    {
+     "discount_key": "bond30",
+     "discount": 0.054329999999999996,
+     "diverges": false,
+     "value_per_share": 555.5765513910462,
+     "upside_vs_price": 2.3430202974268943,
+     "terminal_share": 0.8543607238981727,
+     "nopat_cagr_10y": 0.14563105129516707,
+     "buy_price_at_margin": {
+      "0%": 555.5765513910462,
+      "20%": 444.461241112837,
+      "30%": 388.90358597373233,
+      "40%": 333.3459308346277
+     },
+     "price_to_value": 0.29913069949640897,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 555.5765513910462,
+       "pass": true,
+       "gap": 2.3430202974268943
+      },
+      "20%": {
+       "buy_limit": 444.461241112837,
+       "pass": true,
+       "gap": 1.6744162379415157
+      },
+      "30%": {
+       "buy_limit": 388.90358597373233,
+       "pass": true,
+       "gap": 1.340114208198826
+      },
+      "40%": {
+       "buy_limit": 333.3459308346277,
+       "pass": true,
+       "gap": 1.0058121784561367
+      }
+     }
+    },
+    {
+     "discount_key": "bond30_plus3",
+     "discount": 0.08432999999999999,
+     "diverges": false,
+     "value_per_share": 252.6336662725232,
+     "upside_vs_price": 0.5201496032325679,
+     "terminal_share": 0.7342353041353721,
+     "nopat_cagr_10y": 0.14563105129516707,
+     "buy_price_at_margin": {
+      "0%": 252.6336662725232,
+      "20%": 202.10693301801857,
+      "30%": 176.84356639076623,
+      "40%": 151.58019976351392
+     },
+     "price_to_value": 0.6578299911229263,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 252.6336662725232,
+       "pass": true,
+       "gap": 0.5201496032325679
+      },
+      "20%": {
+       "buy_limit": 202.10693301801857,
+       "pass": true,
+       "gap": 0.2161196825860543
+      },
+      "30%": {
+       "buy_limit": 176.84356639076623,
+       "pass": true,
+       "gap": 0.06410472226279751
+      },
+      "40%": {
+       "buy_limit": 151.58019976351392,
+       "pass": false,
+       "gap": -0.08791023806045928
+      }
+     }
+    },
+    {
+     "discount_key": "project10",
+     "discount": 0.1,
+     "diverges": false,
+     "value_per_share": 189.69224088424048,
+     "upside_vs_price": 0.14141788373293052,
+     "terminal_share": 0.677508771286278,
+     "nopat_cagr_10y": 0.14563105129516707,
+     "buy_price_at_margin": {
+      "0%": 189.69224088424048,
+      "20%": 151.7537927073924,
+      "30%": 132.78456861896834,
+      "40%": 113.81534453054428
+     },
+     "price_to_value": 0.876103322237748,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 189.69224088424048,
+       "pass": true,
+       "gap": 0.14141788373293052
+      },
+      "20%": {
+       "buy_limit": 151.7537927073924,
+       "pass": false,
+       "gap": -0.08686569301365554
+      },
+      "30%": {
+       "buy_limit": 132.78456861896834,
+       "pass": false,
+       "gap": -0.20100748138694857
+      },
+      "40%": {
+       "buy_limit": 113.81534453054428,
+       "pass": false,
+       "gap": -0.3151492697602417
+      }
+     }
+    },
+    {
+     "discount_key": "project11",
+     "discount": 0.11,
+     "diverges": false,
+     "value_per_share": 161.88201222271488,
+     "upside_vs_price": -0.025922078075726884,
+     "terminal_share": 0.6433535399917472,
+     "nopat_cagr_10y": 0.14563105129516707,
+     "buy_price_at_margin": {
+      "0%": 161.88201222271488,
+      "20%": 129.5056097781719,
+      "30%": 113.3174085559004,
+      "40%": 97.12920733362893
+     },
+     "price_to_value": 1.0266119141931873,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 161.88201222271488,
+       "pass": false,
+       "gap": -0.025922078075726884
+      },
+      "20%": {
+       "buy_limit": 129.5056097781719,
+       "pass": false,
+       "gap": -0.22073766246058146
+      },
+      "30%": {
+       "buy_limit": 113.3174085559004,
+       "pass": false,
+       "gap": -0.3181454546530089
+      },
+      "40%": {
+       "buy_limit": 97.12920733362893,
+       "pass": false,
+       "gap": -0.41555324684543615
+      }
+     }
+    }
+   ]
+  },
+  {
+   "growth_key": "ai_sustained",
+   "growth_label": "AI 가속 25.0% → 10년차 8%",
+   "growth": 0.25,
+   "fade_to": 0.08,
+   "basis": "과거 속도로 시작하되 **감쇠를 거의 하지 않는** 가정. 10년차에도 8%로 성장합니다. AI 로 성장이 장기화된다는 주장을 가장 후하게 반영한 경우입니다.",
+   "growth_real": 0.2276,
+   "base_rate_percentile_at_or_above": 0.066164,
+   "cells": [
+    {
+     "discount_key": "bond30",
+     "discount": 0.054329999999999996,
+     "diverges": false,
+     "value_per_share": 634.6242894252791,
+     "upside_vs_price": 2.8186670684298782,
+     "terminal_share": 0.874594424710885,
+     "nopat_cagr_10y": 0.16373493468033096,
+     "buy_price_at_margin": {
+      "0%": 634.6242894252791,
+      "20%": 507.6994315402233,
+      "30%": 444.2370025976954,
+      "40%": 380.77457365516744
+     },
+     "price_to_value": 0.2618714808283012,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 634.6242894252791,
+       "pass": true,
+       "gap": 2.8186670684298782
+      },
+      "20%": {
+       "buy_limit": 507.6994315402233,
+       "pass": true,
+       "gap": 2.0549336547439028
+      },
+      "30%": {
+       "buy_limit": 444.2370025976954,
+       "pass": true,
+       "gap": 1.6730669479009146
+      },
+      "40%": {
+       "buy_limit": 380.77457365516744,
+       "pass": true,
+       "gap": 1.2912002410579269
+      }
+     }
+    },
+    {
+     "discount_key": "bond30_plus3",
+     "discount": 0.08432999999999999,
+     "diverges": false,
+     "value_per_share": 282.7463348707908,
+     "upside_vs_price": 0.7013438276497945,
+     "terminal_share": 0.7668855170194873,
+     "nopat_cagr_10y": 0.16373493468033096,
+     "buy_price_at_margin": {
+      "0%": 282.7463348707908,
+      "20%": 226.19706789663266,
+      "30%": 197.92243440955355,
+      "40%": 169.6478009224745
+     },
+     "price_to_value": 0.5877706691312254,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 282.7463348707908,
+       "pass": true,
+       "gap": 0.7013438276497945
+      },
+      "20%": {
+       "buy_limit": 226.19706789663266,
+       "pass": true,
+       "gap": 0.36107506211983575
+      },
+      "30%": {
+       "buy_limit": 197.92243440955355,
+       "pass": true,
+       "gap": 0.19094067935485604
+      },
+      "40%": {
+       "buy_limit": 169.6478009224745,
+       "pass": true,
+       "gap": 0.02080629658987676
+      }
+     }
+    },
+    {
+     "discount_key": "project10",
+     "discount": 0.1,
+     "diverges": false,
+     "value_per_share": 210.20794516883603,
+     "upside_vs_price": 0.26486516686194306,
+     "terminal_share": 0.714580751865207,
+     "nopat_cagr_10y": 0.16373493468033096,
+     "buy_price_at_margin": {
+      "0%": 210.20794516883603,
+      "20%": 168.16635613506884,
+      "30%": 147.1455616181852,
+      "40%": 126.12476710130161
+     },
+     "price_to_value": 0.7905981018363735,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 210.20794516883603,
+       "pass": true,
+       "gap": 0.26486516686194306
+      },
+      "20%": {
+       "buy_limit": 168.16635613506884,
+       "pass": true,
+       "gap": 0.011892133489554535
+      },
+      "30%": {
+       "buy_limit": 147.1455616181852,
+       "pass": false,
+       "gap": -0.11459438319663995
+      },
+      "40%": {
+       "buy_limit": 126.12476710130161,
+       "pass": false,
+       "gap": -0.2410808998828342
+      }
+     }
+    },
+    {
+     "discount_key": "project11",
+     "discount": 0.11,
+     "diverges": false,
+     "value_per_share": 178.3064617916477,
+     "upside_vs_price": 0.07290726982517115,
+     "terminal_share": 0.6826196365524837,
+     "nopat_cagr_10y": 0.16373493468033096,
+     "buy_price_at_margin": {
+      "0%": 178.3064617916477,
+      "20%": 142.64516943331816,
+      "30%": 124.81452325415339,
+      "40%": 106.98387707498863
+     },
+     "price_to_value": 0.9320469980252335,
+     "verdicts": {
+      "0%": {
+       "buy_limit": 178.3064617916477,
+       "pass": true,
+       "gap": 0.07290726982517115
+      },
+      "20%": {
+       "buy_limit": 142.64516943331816,
+       "pass": false,
+       "gap": -0.1416741841398631
+      },
+      "30%": {
+       "buy_limit": 124.81452325415339,
+       "pass": false,
+       "gap": -0.24896491112238028
+      },
+      "40%": {
+       "buy_limit": 106.98387707498863,
+       "pass": false,
+       "gap": -0.35625563810489724
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "required_growth": [
+  {
+   "discount_key": "bond30",
+   "discount": 0.054329999999999996,
+   "discount_label": "30년 국채 5.43%",
+   "margin_of_safety": 0.0,
+   "target_per_share": 166.19000244140625,
+   "reachable": true,
+   "growth_year1": -0.04327821355686576,
+   "nopat_cagr_10y": -0.004452577155995674,
+   "nopat_cagr_10y_real": -0.026852577155995674,
+   "base_rate_percentile_at_or_above": 0.7151131129505481,
+   "vs_own_cagr": -0.06405124265190007,
+   "terminal_share": 0.7061113416465676,
+   "value_per_share": 166.19000244140625
+  },
+  {
+   "discount_key": "bond30",
+   "discount": 0.054329999999999996,
+   "discount_label": "30년 국채 5.43%",
+   "margin_of_safety": 0.2,
+   "target_per_share": 207.7375030517578,
+   "reachable": true,
+   "growth_year1": 0.011037700296441133,
+   "nopat_cagr_10y": 0.02299026583444519,
+   "nopat_cagr_10y_real": 0.0005902658344451896,
+   "base_rate_percentile_at_or_above": 0.6385385914703636,
+   "vs_own_cagr": 0.01633566549777662,
+   "terminal_share": 0.739985281251828,
+   "value_per_share": 207.7375030517578
+  },
+  {
+   "discount_key": "bond30",
+   "discount": 0.054329999999999996,
+   "discount_label": "30년 국채 5.43%",
+   "margin_of_safety": 0.3,
+   "target_per_share": 237.41428920200894,
+   "reachable": true,
+   "growth_year1": 0.04383258144813544,
+   "nopat_cagr_10y": 0.0394124684066095,
+   "nopat_cagr_10y_real": 0.017012468406609502,
+   "base_rate_percentile_at_or_above": 0.5700580067444383,
+   "vs_own_cagr": 0.06487170055447687,
+   "terminal_share": 0.7585394200455746,
+   "value_per_share": 237.41428920200906
+  },
+  {
+   "discount_key": "bond30",
+   "discount": 0.054329999999999996,
+   "discount_label": "30년 국채 5.43%",
+   "margin_of_safety": 0.4,
+   "target_per_share": 276.98333740234375,
+   "reachable": true,
+   "growth_year1": 0.08201864457404234,
+   "nopat_cagr_10y": 0.058402947147846884,
+   "nopat_cagr_10y_real": 0.03600294714784688,
+   "base_rate_percentile_at_or_above": 0.4908677103934785,
+   "vs_own_cagr": 0.12138662097706948,
+   "terminal_share": 0.7784769554171798,
+   "value_per_share": 276.98333740234375
+  },
+  {
+   "discount_key": "bond30_plus3",
+   "discount": 0.08432999999999999,
+   "discount_label": "30년 국채 + 3%p = 8.43%",
+   "margin_of_safety": 0.0,
+   "target_per_share": 166.19000244140625,
+   "reachable": true,
+   "growth_year1": 0.1373327919266171,
+   "nopat_cagr_10y": 0.08567512296425561,
+   "nopat_cagr_10y_real": 0.06327512296425561,
+   "base_rate_percentile_at_or_above": 0.3771427372390541,
+   "vs_own_cagr": 0.2032509028635537,
+   "terminal_share": 0.6541860417455225,
+   "value_per_share": 166.19000244140625
+  },
+  {
+   "discount_key": "bond30_plus3",
+   "discount": 0.08432999999999999,
+   "discount_label": "30년 국채 + 3%p = 8.43%",
+   "margin_of_safety": 0.2,
+   "target_per_share": 207.7375030517578,
+   "reachable": true,
+   "growth_year1": 0.20217542721477294,
+   "nopat_cagr_10y": 0.11731349067641128,
+   "nopat_cagr_10y_real": 0.09491349067641128,
+   "base_rate_percentile_at_or_above": 0.24521074387936498,
+   "vs_own_cagr": 0.29921723385762605,
+   "terminal_share": 0.6961570724059126,
+   "value_per_share": 207.7375030517578
+  },
+  {
+   "discount_key": "bond30_plus3",
+   "discount": 0.08432999999999999,
+   "discount_label": "30년 국채 + 3%p = 8.43%",
+   "margin_of_safety": 0.3,
+   "target_per_share": 237.41428920200894,
+   "reachable": true,
+   "growth_year1": 0.2411863787843723,
+   "nopat_cagr_10y": 0.13618680613982503,
+   "nopat_cagr_10y_real": 0.11378680613982503,
+   "base_rate_percentile_at_or_above": 0.20456060334284668,
+   "vs_own_cagr": 0.35695297939117826,
+   "terminal_share": 0.7195236882526751,
+   "value_per_share": 237.41428920200897
+  },
+  {
+   "discount_key": "bond30_plus3",
+   "discount": 0.08432999999999999,
+   "discount_label": "30년 국채 + 3%p = 8.43%",
+   "margin_of_safety": 0.4,
+   "target_per_share": 276.98333740234375,
+   "reachable": true,
+   "growth_year1": 0.28649377513619456,
+   "nopat_cagr_10y": 0.15796341637874822,
+   "nopat_cagr_10y_real": 0.13556341637874822,
+   "base_rate_percentile_at_or_above": 0.173855582905965,
+   "vs_own_cagr": 0.42400738850728653,
+   "terminal_share": 0.7449592041068399,
+   "value_per_share": 276.98333740234386
+  },
+  {
+   "discount_key": "project10",
+   "discount": 0.1,
+   "discount_label": "프로젝트 기준 10%",
+   "margin_of_safety": 0.0,
+   "target_per_share": 166.19000244140625,
+   "reachable": true,
+   "growth_year1": 0.21778209127213857,
+   "nopat_cagr_10y": 0.12487796530467876,
+   "nopat_cagr_10y_real": 0.10247796530467876,
+   "base_rate_percentile_at_or_above": 0.22050606892040295,
+   "vs_own_cagr": 0.3223149115196568,
+   "terminal_share": 0.644887184731801,
+   "value_per_share": 166.19000244140628
+  },
+  {
+   "discount_key": "project10",
+   "discount": 0.1,
+   "discount_label": "프로젝트 기준 10%",
+   "margin_of_safety": 0.2,
+   "target_per_share": 207.7375030517578,
+   "reachable": true,
+   "growth_year1": 0.28755836849121175,
+   "nopat_cagr_10y": 0.15847331924035912,
+   "nopat_cagr_10y_real": 0.13607331924035912,
+   "base_rate_percentile_at_or_above": 0.17313661987109366,
+   "vs_own_cagr": 0.4255829740433718,
+   "terminal_share": 0.6911056068703821,
+   "value_per_share": 207.7375030517578
+  },
+  {
+   "discount_key": "project10",
+   "discount": 0.1,
+   "discount_label": "프로젝트 기준 10%",
+   "margin_of_safety": 0.3,
+   "target_per_share": 237.41428920200894,
+   "reachable": true,
+   "growth_year1": 0.3294854615905447,
+   "nopat_cagr_10y": 0.17849195000524043,
+   "nopat_cagr_10y_real": 0.15609195000524043,
+   "base_rate_percentile_at_or_above": 0.144910350492611,
+   "vs_own_cagr": 0.48763457444655317,
+   "terminal_share": 0.717036269634528,
+   "value_per_share": 237.414289202009
+  },
+  {
+   "discount_key": "project10",
+   "discount": 0.1,
+   "discount_label": "프로젝트 기준 10%",
+   "margin_of_safety": 0.4,
+   "target_per_share": 276.98333740234375,
+   "reachable": false,
+   "ceiling_per_share": 253.24787679116062,
+   "why": "증분 ROIC 까지 성장률을 올려도 닿지 못합니다 — 자기 현금으로 조달 가능한 어떤 성장률도 이 가격을 설명하지 못한다는 뜻입니다."
+  },
+  {
+   "discount_key": "project11",
+   "discount": 0.11,
+   "discount_label": "프로젝트 보수 11%",
+   "margin_of_safety": 0.0,
+   "target_per_share": 166.19000244140625,
+   "reachable": true,
+   "growth_year1": 0.2675021903237454,
+   "nopat_cagr_10y": 0.14885348522074304,
+   "nopat_cagr_10y_real": 0.12645348522074304,
+   "base_rate_percentile_at_or_above": 0.1867005858387523,
+   "vs_own_cagr": 0.3959000682832672,
+   "terminal_share": 0.6443632888984132,
+   "value_per_share": 166.19000244140628
+  },
+  {
+   "discount_key": "project11",
+   "discount": 0.11,
+   "discount_label": "프로젝트 보수 11%",
+   "margin_of_safety": 0.2,
+   "target_per_share": 207.7375030517578,
+   "reachable": true,
+   "growth_year1": 0.3404040371406406,
+   "nopat_cagr_10y": 0.18368541355077594,
+   "nopat_cagr_10y_real": 0.16128541355077594,
+   "base_rate_percentile_at_or_above": 0.13758756689340593,
+   "vs_own_cagr": 0.5037939367329234,
+   "terminal_share": 0.6935881965191154,
+   "value_per_share": 207.7375030517578
+  },
+  {
+   "discount_key": "project11",
+   "discount": 0.11,
+   "discount_label": "프로젝트 보수 11%",
+   "margin_of_safety": 0.3,
+   "target_per_share": 237.41428920200894,
+   "reachable": false,
+   "ceiling_per_share": 213.80223873779192,
+   "why": "증분 ROIC 까지 성장률을 올려도 닿지 못합니다 — 자기 현금으로 조달 가능한 어떤 성장률도 이 가격을 설명하지 못한다는 뜻입니다."
+  },
+  {
+   "discount_key": "project11",
+   "discount": 0.11,
+   "discount_label": "프로젝트 보수 11%",
+   "margin_of_safety": 0.4,
+   "target_per_share": 276.98333740234375,
+   "reachable": false,
+   "ceiling_per_share": 213.80223873779192,
+   "why": "증분 ROIC 까지 성장률을 올려도 닿지 못합니다 — 자기 현금으로 조달 가능한 어떤 성장률도 이 가격을 설명하지 못한다는 뜻입니다."
+  }
+ ],
+ "price_split": {
+  "discount_key": "bond30_plus3",
+  "discount": 0.08432999999999999,
+  "price": 166.19000244140625,
+  "ordinary_company_value": 120.82843440115958,
+  "ordinary_growth_label": "기초율 중위 5.5%",
+  "premium_in_price": 45.36156804024667,
+  "premium_share_of_price": 0.2729500413614822,
+  "exceptional_value": 252.6336662725232,
+  "exceptional_growth_label": "과거 유지 25.0% (원값 67.6%, 상한 25%)",
+  "price_position": 0.34415605053157267
+ },
+ "franchise": {
+  "roic_years": [
+   {
+    "fiscal_year": 2016,
+    "roic": 1.7860207811932696,
+    "operating_income": 1934000000.0,
+    "revenue": 6910000000.0,
+    "invested_capital_avg": 947000000.0
+   },
+   {
+    "fiscal_year": 2017,
+    "roic": 1.8509863429438542,
+    "operating_income": 3210000000.0,
+    "revenue": 9714000000.0,
+    "invested_capital_avg": 1647500000.0
+   },
+   {
+    "fiscal_year": 2018,
+    "roic": 1.155306905370844,
+    "operating_income": 3804000000.0,
+    "revenue": 11716000000.0,
+    "invested_capital_avg": 3128000000.0
+   },
+   {
+    "fiscal_year": 2019,
+    "roic": 0.7436204958269904,
+    "operating_income": 2846000000.0,
+    "revenue": 10918000000.0,
+    "invested_capital_avg": 3603000000.0
+   },
+   {
+    "fiscal_year": 2020,
+    "roic": 0.5522221509651767,
+    "operating_income": 4532000000.0,
+    "revenue": 16675000000.0,
+    "invested_capital_avg": 7796500000.0
+   },
+   {
+    "fiscal_year": 2021,
+    "roic": 0.666011520335137,
+    "operating_income": 10041000000.0,
+    "revenue": 26914000000.0,
+    "invested_capital_avg": 14322500000.0
+   },
+   {
+    "fiscal_year": 2022,
+    "roic": 0.22226653373213692,
+    "operating_income": 4224000000.0,
+    "revenue": 26974000000.0,
+    "invested_capital_avg": 18054000000.0
+   },
+   {
+    "fiscal_year": 2023,
+    "roic": 1.2490267535093018,
+    "operating_income": 32972000000.0,
+    "revenue": 60922000000.0,
+    "invested_capital_avg": 23230500000.0
+   },
+   {
+    "fiscal_year": 2024,
+    "roic": 1.9821923025857473,
+    "operating_income": 81453000000.0,
+    "revenue": 130497000000.0,
+    "invested_capital_avg": 35641500000.0
+   },
+   {
+    "fiscal_year": 2025,
+    "roic": 1.1082267992123584,
+    "operating_income": 130387000000.0,
+    "revenue": 215938000000.0,
+    "invested_capital_avg": 99868000000.0
+   }
+  ],
+  "roic_median": 1.1317668522916011,
+  "roic_latest": 1.1082267992123584,
+  "roic_peak": {
+   "fiscal_year": 2024,
+   "roic": 1.9821923025857473,
+   "operating_income": 81453000000.0,
+   "revenue": 130497000000.0,
+   "invested_capital_avg": 35641500000.0
+  },
+  "operating_income_cagr": 0.6756810916545413,
+  "revenue_cagr": 0.45696505314008307,
+  "invested_capital_cagr": null,
+  "trend": {
+   "peak_fiscal_year": 2024,
+   "peak_roic": 1.9821923025857473,
+   "last_fiscal_year": 2025,
+   "last_roic": 1.1082267992123584,
+   "operating_income_multiple": 1.6007636305599549,
+   "invested_capital_multiple": 2.802014505562336,
+   "note": "고점 이후 투하자본 배수가 영업이익 배수보다 크면 ROIC 은 떨어집니다. 이익이 멈춴 게 아니라 자본이 더 빨리 늘어서입니다."
+  },
+  "customer_concentration_top2": 0.36,
+  "founder_years": 33,
+  "tests": [
+   {
+    "criterion": "(1) 필요하거나 원하는 제품인가",
+    "verdict": "충족",
+    "evidence": "10년 매출 CAGR 45.7%, FY2026 매출 216십억 달러."
+   },
+   {
+    "criterion": "(2) 가까운 대체재가 없다고 고객이 여기는가",
+    "verdict": "다툼 있음",
+    "evidence": "CUDA 와 설치 기반은 전환비용이지만, 상위 두 고객이 매출의 36%이고 그들이 자체 가속기를 만들고 있습니다. 10-K 자신이 고객 집중을 위험요인으로 적습니다."
+   },
+   {
+    "criterion": "(3) 가격 규제를 받지 않는가",
+    "verdict": "부분 미충족",
+    "evidence": "가격 규제는 아니지만 수출 규제가 '팔 수 있는 상대'를 정합니다 — 10-K 위험요인에 명시돼 있습니다."
+   },
+   {
+    "criterion": "경영 부실을 견디는가 (버핏의 추가 조건)",
+    "verdict": "미검증",
+    "evidence": "창업자가 33년 내내 CEO 였으므로, 이 회사가 다른 경영진 아래에서 어떤 성과를 냈는지에 대한 **관측치가 0개**입니다. 모른다는 것이 결론입니다."
+   }
+  ]
+ },
+ "buffett": [
+  {
+   "key": "franchise",
+   "year": 1991,
+   "kind": "1차 (주주서한)",
+   "title": "프랜차이즈는 경영 부실을 견디고, 사업은 견디지 못한다",
+   "quote": "An economic franchise arises from a product or service that: (1) is needed or desired; (2) is thought by its customers to have no close substitute and; (3) is not subject to price regulation.",
+   "quote2": "Moreover, franchises can tolerate mis-management. Inept managers may diminish a franchise's profitability, but they cannot inflict mortal damage.",
+   "quote3": "And a business, unlike a franchise, can be killed by poor management.",
+   "why": "CEO 리스크의 크기는 CEO 가 아니라 **사업의 종류**가 정합니다. 프랜차이즈면 경영 부실을 견디고, 그냥 사업이면 죽을 수도 있습니다. 그래서 첫 질문은 '후임이 누구냐'가 아니라 '엔비디아는 어느 쪽이냐'입니다.",
+   "source_url": "https://www.berkshirehathaway.com/letters/1991.html",
+   "verified_against_source": [
+    "quote",
+    "quote2",
+    "quote3"
+   ]
+  },
+  {
+   "key": "superstar",
+   "year": 2007,
+   "kind": "1차 (주주서한)",
+   "title": "슈퍼스타가 필요한 사업은 위대한 사업이 아니다",
+   "quote": "Additionally, this criterion eliminates the business whose success depends on having a great manager.",
+   "quote2": "But if a business requires a superstar to produce great results, the business itself cannot be deemed great.",
+   "quote3": "The partnership's moat will go when the surgeon goes.",
+   "why": "버핏은 CEO 리스크를 **할인율에 얹지 않습니다.** 선별 기준으로 씁니다 — 한 사람에게 달린 사업은 애초에 사지 않습니다. 그래서 '얼마를 더 할인할까'는 버핏의 질문이 아니고, '이 해자가 사람의 것이었나 사업의 것이었나'가 버핏의 질문입니다.",
+   "source_url": "https://www.berkshirehathaway.com/letters/2007ltr.pdf",
+   "verified_against_source": [
+    "quote",
+    "quote2",
+    "quote3"
+   ]
+  },
+  {
+   "key": "change",
+   "year": 2007,
+   "kind": "1차 (주주서한)",
+   "title": "빠르게 변하는 산업은 '지속되는 해자'에서 탈락한다",
+   "quote": "Our criterion of “enduring” causes us to rule out companies in industries prone to rapid and continuous change.",
+   "quote2": "A moat that must be continuously rebuilt will eventually be no moat at all.",
+   "quote3": "Long-term competitive advantage in a stable industry is what we seek in a business.",
+   "why": "이 조건은 CEO 와 무관하게 적용됩니다. 가속컴퓨팅은 2년마다 아키텍처를 갈아 끼우는 산업이고, 해자를 계속 다시 쌓아야 하는 쪽입니다. 사임이 없었어도 이 기준에서는 통과하기 어렵습니다.",
+   "source_url": "https://www.berkshirehathaway.com/letters/2007ltr.pdf",
+   "verified_against_source": [
+    "quote",
+    "quote2",
+    "quote3"
+   ]
+  },
+  {
+   "key": "jockey",
+   "year": 1989,
+   "kind": "1차 (주주서한)",
+   "title": "좋은 기수도 나쁜 말로는 이기지 못한다",
+   "quote": "Good jockeys will do well on good horses, but not on broken-down nags.",
+   "quote2": "I've said many times that when a management with a reputation for brilliance tackles a business with a reputation for bad economics, it is the reputation of the business that remains intact.",
+   "quote3": null,
+   "why": "반대 방향으로도 읽어야 합니다. 경영자가 사업의 경제성을 이기지 못한다면, 경영자가 바뀌었다고 사업의 경제성이 사라지는 것도 아닙니다. CUDA 소프트웨어 자산과 설치 기반은 사람과 함께 걸어 나가지 않습니다.",
+   "source_url": "https://www.berkshirehathaway.com/letters/1989.html",
+   "verified_against_source": [
+    "quote",
+    "quote2"
+   ]
+  },
+  {
+   "key": "severe_change",
+   "year": 1987,
+   "kind": "1차 (주주서한)",
+   "title": "급격한 변화와 예외적 수익률은 잘 섞이지 않는다",
+   "quote": "Severe change and exceptional returns usually don't mix.",
+   "quote2": "Experience, however, indicates that the best business returns are usually achieved by companies that are doing something quite similar today to what they were doing five or ten years ago.",
+   "quote3": null,
+   "why": "오늘의 사건은 '급격한 변화' 그 자체입니다. 경영진 교체, 임시 CEO 가 CFO 를 겸임, 후임 미정 — 버핏의 표현을 빌리면 예외적 수익률을 기대하기 좋은 환경이 아닙니다.",
+   "source_url": "https://www.berkshirehathaway.com/letters/1987.html",
+   "verified_against_source": [
+    "quote",
+    "quote2"
+   ]
+  }
+ ],
+ "base_rates": {
+  "source": "Credit Suisse HOLT, \"The Base Rate Book\" (Mauboussin·Callahan·Majd), 2016-09-26, Exhibit 4",
+  "source_url": "https://sorfis.com/wp-content/uploads/2021/09/The-Base-Rate-Book-Integrating-the-Past-to-Better-Anticipate-the-Future-September-2016.pdf",
+  "period": "1950-2015",
+  "reference_class": "매출 $50,000백만 초과 (Mega)",
+  "real_terms": true,
+  "real_terms_note": "문서 명시: \"these data are adjusted for inflation\". 명목 가정과 비교하려면 인플레이션 기대치를 더해야 합니다.",
+  "survivorship_note": "문서 명시: 각 표본은 그 기간을 생존한 기업만 포함합니다(10년 표본은 10년 생존). 상장 기업의 약 절반이 10년 안에 사라집니다 — 즉 이 기초율은 위쪽으로 치우쳐 있습니다.",
+  "net_income_10y": {
+   "bands": [
+    [
+     "<-50",
+     0.0
+    ],
+    [
+     "-50~-40",
+     0.0
+    ],
+    [
+     "-40~-30",
+     0.002
+    ],
+    [
+     "-30~-20",
+     0.019
+    ],
+    [
+     "-20~-10",
+     0.062
+    ],
+    [
+     "-10~0",
+     0.276
+    ],
+    [
+     "0~10",
+     0.417
+    ],
+    [
+     "10~20",
+     0.141
+    ],
+    [
+     "20~30",
+     0.061
+    ],
+    [
+     "30~40",
+     0.019
+    ],
+    [
+     "40~50",
+     0.002
+    ],
+    [
+     "50~60",
+     0.001
+    ],
+    [
+     "60~70",
+     0.0
+    ],
+    [
+     "70~80",
+     0.0
+    ],
+    [
+     "80~90",
+     0.0
+    ],
+    [
+     ">90",
+     0.0
+    ]
+   ],
+   "mean": 0.038,
+   "median": 0.033,
+   "stdev": 0.112
+  },
+  "sales_10y": {
+   "bands": [
+    [
+     "<-25",
+     0.0
+    ],
+    [
+     "-25~-20",
+     0.003
+    ],
+    [
+     "-20~-15",
+     0.01
+    ],
+    [
+     "-15~-10",
+     0.031
+    ],
+    [
+     "-10~-5",
+     0.098
+    ],
+    [
+     "-5~0",
+     0.269
+    ],
+    [
+     "0~5",
+     0.378
+    ],
+    [
+     "5~10",
+     0.172
+    ],
+    [
+     "10~15",
+     0.03
+    ],
+    [
+     "15~20",
+     0.009
+    ],
+    [
+     "20~25",
+     0.0
+    ],
+    [
+     "25~30",
+     0.0
+    ],
+    [
+     "30~35",
+     0.0
+    ],
+    [
+     "35~40",
+     0.0
+    ],
+    [
+     "40~45",
+     0.0
+    ],
+    [
+     ">45",
+     0.0
+    ]
+   ],
+   "mean": 0.008,
+   "median": 0.011,
+   "stdev": 0.058
+  },
+  "gdp_real_1950_2015": 0.032,
+  "gdp_note": "문서: \"From 1950-2015, U.S. GDP grew at 3.2 percent per year, adjusted for inflation\". 매출 성장률과 GDP 성장률의 상관계수는 0.66."
+ },
+ "scenario_valuations": [
+  {
+   "scenario": "보수",
+   "value_per_share": 77.84338148907739,
+   "assumptions": {
+    "growth": 0.1,
+    "fade_to": 0.025,
+    "incremental_roic": 0.15,
+    "discount": 0.11,
+    "terminal_growth": 0.02
+   },
+   "upside_vs_price": -0.5316000941962638,
+   "implied_growth_at_price": null
+  },
+  {
+   "scenario": "중립",
+   "value_per_share": 125.73763273107548,
+   "assumptions": {
+    "growth": 0.15,
+    "fade_to": 0.035,
+    "incremental_roic": 0.25,
+    "discount": 0.1,
+    "terminal_growth": 0.025
+   },
+   "upside_vs_price": -0.24341036834988372,
+   "implied_growth_at_price": 0.24600367455884126
+  },
+  {
+   "scenario": "낙관",
+   "value_per_share": 243.73735050831505,
+   "assumptions": {
+    "growth": 0.25,
+    "fade_to": 0.045,
+    "incremental_roic": 0.35,
+    "discount": 0.09,
+    "terminal_growth": 0.03
+   },
+   "upside_vs_price": 0.4666186107930874,
+   "implied_growth_at_price": 0.13842563360685306
+  }
+ ],
+ "sources": {
+  "fair_value_generated": "2026-11-12",
+  "buffett_standard_generated": "2026-11-12",
+  "eight_k": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm",
+  "ten_k": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+  "price": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=6mo&interval=1d"
+ },
+ "limits": [
+  "**가격은 이 날의 종가입니다.** 장중에는 시초 -13.1%, 저가 -14.3%까지 갔다가 -4.3%로 마쳤습니다 — 어느 시점의 가격을 쓰느냐가 판정을 바꿉니다. 판정은 가격에 직접 달려 있으므로 다음 거래일에 다시 돌려 보십시오.",
+  "**사임 사유가 공시에 없습니다.** 8-K 는 사임 사실만 적습니다. 사유에 따라 이 사건이 '승계 문제'인지 '회사에 번지는 문제'인지가 갈리는데, 지금은 알 수 없습니다. 모른다는 사실 자체를 가격에 반영해야 합니다.",
+  "**5일 뒤 실적이 나옵니다.** 3분기(FY2027) 실적 발표가 예정대로 11월 17일입니다. 영업 데이터로 사건을 확인하기 전의 판정입니다.",
+  "**TTM 은 2026-07-26 까지입니다.** 분기가 하나 비어 있고, 그 분기는 5일 뒤에 채워집니다.",
+  "**증분 ROIC 은 격자 전체에 같은 값(35%)을 씁니다.** 성장률과 할인율의 효과만 분리하기 위해서입니다. 실제 증분 수익률이 떨어지면 모든 칸이 함께 내려갑니다.",
+  "**CEO 리스크를 숫자 하나로 환산하지 않았습니다.** 버핏이 그렇게 하지 않기 때문입니다. 대신 '가격이 요구하는 성장률'과 '그 성장이 없을 때의 가치'를 나란히 둡니다."
+ ]
+}

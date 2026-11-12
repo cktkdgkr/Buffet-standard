@@ -1104,8 +1104,12 @@ def mutate(d):
                 continue
             ran += 1
             open(OUT, "w").write(original.replace(a_, b_, 1))
-            run = subprocess.run([sys.executable, __file__, "--verify"],
-                                 capture_output=True, text=True)
+            # --no-build, or the subprocess would rebuild the page from the
+            # engine and overwrite the corruption before checking it: every
+            # mutation then "passes" because nothing was ever mutated.
+            run = subprocess.run(
+                [sys.executable, __file__, "--verify", "--no-build"],
+                capture_output=True, text=True)
             hit = run.returncode != 0
             caught += hit
             line = next((l.strip() for l in run.stdout.split("\n")
@@ -1122,18 +1126,27 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--mutate", action="store_true")
+    ap.add_argument("--no-build", action="store_true",
+                    help="페이지를 다시 만들지 않고 디스크의 것을 검사합니다 "
+                         "(변이 검정이 내부적으로 씁니다).")
     args = ap.parse_args()
     d = load()
-    if args.verify:
-        code = verify(d, OUT)
-        if args.mutate:
-            code = mutate(d) or code
-        return code
+    if args.no_build:
+        return verify(d, OUT)
+    # Always build first, then verify what was just built. --verify used to
+    # skip the build, so the runner checked last week's page against this
+    # week's engine and never regenerated it; the 자료 기준일 check is what
+    # caught that, and it only caught it because the dates had moved apart.
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     page = build(d)
     with open(OUT, "w") as fh:
         fh.write(page + "\n")
     print(f"wrote {OUT} ({len(page) / 1024:.0f} KB)")
+    if args.verify:
+        code = verify(d, OUT)
+        if args.mutate:
+            code = mutate(d) or code
+        return code
     return 0
 
 
