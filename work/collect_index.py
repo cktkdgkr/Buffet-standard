@@ -128,6 +128,23 @@ def monthly(symbol):
     return {"rows": rows, "source_url": url}
 
 
+def daily(symbol):
+    """
+    일봉 종가, 1995년부터. 고점·저점은 월말 종가로 찾으면 낙폭이 작게
+    잡힙니다(2020년 S&P 500: 일봉 −33.9%, 월말 −20%). 그래서 순환의
+    날짜와 수준은 일봉으로 정하고, 가치선은 그 달의 월별 값을 씁니다.
+    """
+    res, url = yahoo(symbol, "period1=788918400&period2=9999999999"
+                             "&interval=1d")
+    q = res["indicators"]["quote"][0]
+    rows = [{"date": datetime.fromtimestamp(t, tz=timezone.utc)
+             .date().isoformat(), "close": c}
+            for t, c in zip(res["timestamp"], q["close"]) if c is not None]
+    if len(rows) < 7000:
+        raise SystemExit(f"{symbol} 일봉이 {len(rows)}개뿐입니다")
+    return {"rows": rows, "source_url": url}
+
+
 def latest(symbol):
     """
     최근 일봉과 **장이 열려 있는지**. 장중의 마지막 일봉은 미완성이라
@@ -631,6 +648,109 @@ def ndx_constituents(members, refresh):
     return out
 
 
+# ------------------------------------------------------- 나스닥100 P/E 기록
+WPR = "https://worldperatio.com/index/nasdaq-100/"
+SIBLIS = "https://siblisresearch.com/data/nasdaq-100-pe-ratio/"
+SIBLIS_API = "https://siblisresearch.com/api/v1/NDX/pe-trailing?format=csv"
+
+
+def ndx_pe_history(refresh):
+    """
+    나스닥100 의 월별 12개월 P/E (1990~). 지수 단위 이익의 30년 기록은
+    무료로 공표되지 않습니다 — S&P 다우존스의 multpl 같은 사본이 없습니다.
+    worldperatio.com 이 QQQ 로 계산한 월별 계열을 차트 데이터로 싣고 있어
+    그것을 씁니다. **2차 출처이고 계산 방법이 공개되지 않았습니다.** 그래서
+    두 가지로 검정합니다(analyse_index.ndx_pe_checks):
+      - 오늘 값 ↔ 우리가 SEC 공시에서 직접 모은 구성종목 순이익 P/E.
+      - 과거 값 ↔ Siblis Research 가 무료로 공개한 연말·분기말 값(계산
+        방법이 다름: 회계상 일회성 손익을 뺀 '정상화' 순이익).
+
+    날짜 표기: 차트의 점은 매월 1일로 찍혀 있지만, 그 값을 **그 달 말
+    종가**로 나눠야 이익이 매끄럽습니다(월간 변화 중위 1.2% — 전월말 종가로
+    나누면 5.5%, 가격의 잡음이 이익에 섞입니다). 12개월 이익은 천천히
+    움직이므로 매끄러운 쪽이 맞는 해석입니다. 마지막 점만은 페이지 본문의
+    '계산일'(오늘에 가까운 날) 값이라 월말 값이 아닙니다 — 따로 표시합니다.
+    """
+    p, net, age = sec_cache.fetch(WPR, os.path.join(CACHE, "wpr_ndx.html"),
+                                  max_age_days=1.0, refresh=refresh,
+                                  min_bytes=100000)
+    t = open(p, encoding="utf-8", errors="ignore").read()
+    m = re.search(r"detailPE_data\s*=\s*\[(.*?)\];", t, re.S)
+    if not m:
+        raise SystemExit("worldperatio: P/E 계열을 찾지 못했습니다")
+    pts = re.findall(r"Date\.UTC\((\d+),\s*(\d+),\s*(\d+)\),\s*([-\d.]+)\]",
+                     m.group(1))
+    rows = [{"month": f"{int(y):04d}-{int(mo) + 1:02d}", "pe": float(v)}
+            for y, mo, _, v in pts]
+    if len(rows) < 400 or rows[0]["month"] > "1995-01":
+        raise SystemExit(f"worldperatio: 점이 {len(rows)}개, "
+                         f"시작 {rows[0]['month'] if rows else None}")
+    flat = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", t)))
+    c = re.search(r"P/E\) Ratio for Nasdaq 100 Index is ([\d.]+) , "
+                  r"calculated on (\d{1,2} [A-Z][a-z]+ \d{4})", flat)
+    if not c:
+        raise SystemExit("worldperatio: 계산일 문구를 찾지 못했습니다")
+    cur = {"pe": float(c.group(1)),
+           "date": datetime.strptime(c.group(2), "%d %B %Y").date()
+           .isoformat()}
+    # 마지막 점이 본문의 현재값과 같으면 그 점은 월말 값이 아니라 계산일
+    # 값입니다.
+    last_live = abs(rows[-1]["pe"] - cur["pe"]) < 0.01
+    return {"rows": rows, "current": cur, "last_point_is_current": last_live,
+            "source_url": WPR, "fetched_age_days": age,
+            "method_note": ("P/E Ratio is calculated on the QQQ Etf, whose "
+                            "benchmark is the Nasdaq 100 Index (페이지 문구)")}
+
+
+def siblis_ndx(refresh):
+    """Siblis Research 가 무료로 공개한 나스닥100 12개월 P/E — 대조용."""
+    p, _, age = sec_cache.fetch(SIBLIS, os.path.join(CACHE, "siblis_ndx.html"),
+                                max_age_days=1.0, refresh=refresh,
+                                min_bytes=20000)
+    t = open(p, encoding="utf-8", errors="ignore").read()
+    i = t.find("Ten years of trailing")
+    tb = re.search(r"<table>(.*?)</table>", t[i:], re.S) if i > 0 else None
+    if not tb:
+        raise SystemExit("Siblis: 연말 표를 찾지 못했습니다")
+    head = [re.sub(r"<[^>]+>", "", h).strip()
+            for h in re.findall(r"<th scope=\"col\"[^>]*>(.*?)</th>",
+                                tb.group(1))]
+    col = head.index("NASDAQ 100") - 1          # 첫 열은 행 머리(th)
+    mon = {m_: i_ + 1 for i_, m_ in enumerate(
+        "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split())}
+    pts = []
+    for r in re.findall(r"<tr[^>]*>(.*?)</tr>", tb.group(1), re.S):
+        th = re.search(r"<th scope=\"row\">(.*?)</th>", r)
+        tds = [re.sub(r"<[^>]+>", "", x).strip()
+               for x in re.findall(r"<td[^>]*>(.*?)</td>", r, re.S)]
+        if not th or len(tds) <= col:
+            continue
+        lab = th.group(1).strip()
+        a = re.fullmatch(r"(\d{4}) ([A-Z][a-z]{2})", lab)
+        b = re.fullmatch(r"([A-Z][a-z]{2}) (\d{4})", lab)
+        y, mo = (a.group(1), a.group(2)) if a else (b.group(2), b.group(1))
+        pts.append({"month": f"{y}-{mon[mo]:02d}", "pe": float(tds[col]),
+                    "source": "page"})
+    if len(pts) < 10:
+        raise SystemExit(f"Siblis: 연말 값이 {len(pts)}개뿐입니다")
+    pa, _, _ = sec_cache.fetch(SIBLIS_API,
+                               os.path.join(CACHE, "siblis_ndx_api.csv"),
+                               max_age_days=1.0, refresh=refresh, min_bytes=100)
+    have = {x["month"] for x in pts}
+    for line in open(pa, encoding="utf-8").read().splitlines()[1:]:
+        f = line.split(",")
+        if len(f) == 3 and f[0] == "NDX" and f[1][:7] not in have:
+            pts.append({"month": f[1][:7], "pe": float(f[2]),
+                        "source": "free_api"})
+    pts.sort(key=lambda x: x["month"])
+    return {"points": pts, "source_url": SIBLIS, "api_url": SIBLIS_API,
+            "fetched_age_days": age,
+            "method_note": ("Aggregate normalised net income over the "
+                            "previous twelve months. Major purely accounting "
+                            "gains and losses are removed. (페이지 문구) — "
+                            "월말 값")}
+
+
 # ------------------------------------------------------------------ 거시
 def macro():
     out = {}
@@ -665,6 +785,9 @@ def main():
               # 30년 국채 수익률의 월별 기록 — 과거의 매수 구간을 같은 규칙으로
               # 되짚을 때 그 달의 할인율로 씁니다.
               "TYX": {"monthly": monthly("%5ETYX")}}
+    # 고점·저점은 일봉으로 찾습니다.
+    prices["SPX"]["daily"] = daily("%5EGSPC")
+    prices["NDX"]["daily"] = daily("%5ENDX")
     for k, v in prices.items():
         if "latest" not in v:
             continue
@@ -705,11 +828,19 @@ def main():
     print(f"    {len(mem['members'])}개 ({mem['trade_date']})")
     cons = ndx_constituents(mem["members"], a.refresh)
 
+    print("  나스닥100 P/E 30년 기록 (worldperatio) · 대조 (Siblis)")
+    npe = ndx_pe_history(a.refresh)
+    sib = siblis_ndx(a.refresh)
+    print(f"    worldperatio {len(npe['rows'])}점 {npe['rows'][0]['month']}~"
+          f"{npe['rows'][-1]['month']} · 현재 {npe['current']['pe']} "
+          f"({npe['current']['date']}) · Siblis {len(sib['points'])}점")
+
     out = {
         "generated": date.today().isoformat(),
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "prices": prices, "spx": spx, "shiller": sh, "ishares": ish,
         "ndx_members": mem, "ndx_constituents": cons, "macro": macro(),
+        "ndx_pe_history": npe, "siblis_ndx": sib,
     }
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, indent=1)

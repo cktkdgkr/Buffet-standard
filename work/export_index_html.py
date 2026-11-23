@@ -47,9 +47,10 @@ def pts(x):
     return "—" if x is None else f"{x:,.0f}"
 
 
-def table(headers, rows, caption=None, align=None):
+def table(headers, rows, caption=None, align=None, tag=None):
     align = align or (["l"] + ["r"] * (len(headers) - 1))
-    o = ['<figure class="tw">', '<div class="scroll"><table>',
+    o = [f'<figure class="tw"{f" data-t={chr(34)}{tag}{chr(34)}" if tag else ""}>',
+         '<div class="scroll"><table>',
          "<thead><tr>" + "".join(f'<th class="{a}">{esc(h)}</th>'
                                  for h, a in zip(headers, align))
          + "</tr></thead><tbody>"]
@@ -117,29 +118,51 @@ def ladder(X, prefix):
     return "\n".join(o)
 
 
-def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p"):
-    """지난 30년: 지수 · 버핏 기준 가치 · 안전마진 30% 매수선 (로그 축).
+SVG_H, SVG_T, SVG_B = 300, 12, 28
 
-    key 는 그래프를 구분하는 표식입니다. 같은 페이지에 할인율만 다른 그래프가
-    둘 있어서, 검증기가 표식으로 먼저 그래프를 특정한 뒤 좌표를 읽습니다.
-    """
+
+def chart_geom(bt):
+    """그래프의 좌표계 — 그리는 쪽과 검증하는 쪽이 같이 씁니다."""
     rows = [r for r in bt["rows"] if r["value_own30"]]
-    W, H, L, R, T, B = 720, 300, 52, 12, 12, 28
+    W, L, R = 720, 52, 12
     vals = [r["price"] for r in rows] + [r["value_own30"] for r in rows] + \
         [r["buy30_own30"] for r in rows]
     lo, hi = math.log(min(vals) * 0.9), math.log(max(vals) * 1.1)
+    idx = {r["month"]: i for i, r in enumerate(rows)}
 
     def X(i):
         return L + (W - L - R) * i / (len(rows) - 1)
 
     def Y(v):
-        return T + (H - T - B) * (1 - (math.log(v) - lo) / (hi - lo))
+        return SVG_T + (SVG_H - SVG_T - SVG_B) * (1 - (math.log(v) - lo)
+                                                  / (hi - lo))
+    return rows, idx, X, Y, lo, hi
 
+
+def chart_cycles(cv, idx):
+    """그래프에 표시할 순환 — 고점과 저점의 달이 그래프 안에 있는 것만."""
+    return [(i, c) for i, c in enumerate(cv["cycles"], 1)
+            if c["peak_date"][:7] in idx and c["trough_date"][:7] in idx]
+
+
+def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
+                 cv=None, basis=None):
+    """지난 30년: 지수 · 버핏 기준 가치 · 안전마진 30% 매수선 (로그 축).
+
+    key 는 그래프를 구분하는 표식입니다. 같은 페이지에 할인율만 다른 그래프가
+    넷(두 지수 × 두 할인율) 있어서, 검증기가 표식으로 먼저 그래프를 특정한
+    뒤 좌표를 읽습니다.
+
+    cv 를 주면 고점(▲)·저점(▼)과, 고점 때의 가치를 저점까지 수평으로 끌어온
+    점선을 그립니다 — 저점이 그 점선 아래면 '그때 가치 아래로 내려왔다'.
+    """
+    rows, idx, X, Y, lo, hi = chart_geom(bt)
+    W, H, L, R, T, B = 720, SVG_H, 52, 12, SVG_T, SVG_B
     def line(key):
         return " ".join(f"{X(i):.1f},{Y(r[key]):.1f}"
                         for i, r in enumerate(rows))
     ticks = []
-    for v in (250, 500, 1000, 2000, 4000, 8000):
+    for v in (125, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000):
         if math.exp(lo) <= v <= math.exp(hi):
             ticks.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(v):.1f}" '
                          f'y2="{Y(v):.1f}" class="grid"/>'
@@ -158,25 +181,163 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p"):
             x1 = X(min(i + 0.5, len(rows) - 1))
             shade.append(f'<rect x="{x0:.1f}" y="{T}" width="{x1 - x0:.1f}" '
                          f'height="{H - T - B}" class="zone"/>')
+    # 고점·저점 표식과 '그때 가치' 점선
+    marks = []
+    for i, c in (chart_cycles(cv, idx) if cv else []):
+        xp, xt = X(idx[c["peak_date"][:7]]), X(idx[c["trough_date"][:7]])
+        yp, yt = Y(c["peak"]), Y(c["trough"])
+        yv = Y(c["value_at_peak"])
+        marks.append(
+            f'<line class="carry" data-carry="{i}" x1="{xp:.1f}" '
+            f'y1="{yv:.1f}" x2="{xt:.1f}" y2="{yv:.1f}"/>'
+            f'<path class="mk-pk" data-cyc="{i}" data-kind="peak" '
+            f'data-x="{xp:.1f}" data-y="{yp:.1f}" '
+            f'd="M{xp:.1f},{yp - 7:.1f}l-3.6,-6h7.2z"/>'
+            f'<path class="mk-tr" data-cyc="{i}" data-kind="trough" '
+            f'data-x="{xt:.1f}" data-y="{yt:.1f}" '
+            f'd="M{xt:.1f},{yt + 7:.1f}l-3.6,6h7.2z"/>'
+            f'<text class="mk-n" x="{xp:.1f}" '
+            f'y="{yp - (16 if i % 2 else 25):.1f}" '
+            f'text-anchor="middle">{i}</text>')
+    basis = basis or "그 달의 12개월 EPS"
+    lab = esc(label)
     return (
         f'<figure class="chart" data-chart="{key}">'
         f'<svg viewBox="0 0 {W} {H}" role="img" '
-        f'aria-label="지난 30년 S&amp;P 500 지수와 버핏 기준 가치, 안전마진 30% '
+        f'aria-label="지난 30년 {lab} 지수와 버핏 기준 가치, 안전마진 30% '
         f'매수선" data-n="{len(rows)}" data-lo="{lo:.6f}" '
         f'data-hi="{hi:.6f}">'
         + "".join(shade) + "".join(ticks) + "".join(years)
         + f'<polyline class="l-buy" data-line="buy30" points="{line("buy30_own30")}"/>'
         + f'<polyline class="l-val" data-line="value" points="{line("value_own30")}"/>'
         + f'<polyline class="l-px" data-line="price" points="{line("price")}"/>'
+        + "".join(marks)
         + "</svg>"
-        + '<div class="legend"><span><i class="sw px"></i>S&amp;P 500 (월말)</span>'
+        + f'<div class="legend"><span><i class="sw px"></i>{lab} (월말)</span>'
           '<span><i class="sw val"></i>버핏 기준 가치</span>'
           '<span><i class="sw buy"></i>안전마진 30% 매수선</span>'
-          '<span><i class="sw zone"></i>매수선 아래였던 달</span></div>'
-        + f"<figcaption>로그 축. 가치 = 그 달의 12개월 EPS·할인율 {disc_text}·"
-          f"그 달까지의 30년 EPS 기록(성장률)·ROE {bt['roe'] * 100:.1f}% 로 "
-          f"계산. 지금의 잣대를 과거에 댄 것이지 그때의 판단은 "
-          f"아닙니다.</figcaption></figure>")
+          '<span><i class="sw zone"></i>매수선 아래였던 달</span>'
+        + ('<span><b class="mk-key pk">▼</b>고점 · <b class="mk-key tr">▲'
+           '</b>저점 (번호 = 아래 표)</span><span><i class="sw mk"></i>고점 '
+           '때 가치를 저점까지 끌어온 높이</span>' if cv else "")
+        + "</div>"
+        + f"<figcaption>로그 축. 가치 = {basis}·할인율 {disc_text}·"
+          f"그 달까지의 S&amp;P 500 30년 EPS 기록(성장률)·ROE "
+          f"{bt['roe'] * 100:.1f}% 로 계산. 고점·저점은 일봉 종가라 월말 "
+          f"선보다 위·아래로 튀어나올 수 있습니다. 지금의 잣대를 과거에 댄 "
+          f"것이지 그때의 판단은 아닙니다.</figcaption></figure>")
+
+
+def cycle_table(cv, tag, label, disc):
+    """고점마다 그때 계산한 가치·매수선과 그 뒤의 저점."""
+    rows = []
+    for i, c in enumerate(cv["cycles"], 1):
+        if c["reached_buy30"]:
+            res = ("<b>매수선 아래</b>", "over")
+        elif c["reached_value"]:
+            res = ("가치 아래", "")
+        else:
+            res = ("못 미침", "under")
+        note = []
+        if c["open"]:
+            note.append("진행 중 — 저점 미확정")
+        if "lag_month" in c and (c["reached_value_lag"] != c["reached_value"]
+                                 or c["reached_buy30_lag"]
+                                 != c["reached_buy30"]):
+            note.append("발표 시차 반영 시 뒤집힘")
+        if c.get("robust_to_source") is False:
+            note.append("이익 출처 오차 안")
+        rows.append([
+            f"{i}", f'{esc(c["peak_date"])}<br>{pts(c["peak"])}',
+            f'<b>{pts(c["value_at_peak"])}</b>', pts(c["buy30_at_peak"]),
+            sg(c["peak_vs_value"], 0),
+            f'{esc(c["trough_date"])}<br>{pts(c["trough"])}',
+            sg(c["drawdown"], 0), (sg(c["trough_vs_value"], 0), ""),
+            res, (" · ".join(note), "flag" if note else "")])
+    return table(
+        ["#", "고점", "그때 가치", "그때 매수선", "고점 ÷ 가치", "저점",
+         "낙폭", "저점 ÷ 그때 가치", "결과", "비고"], rows,
+        caption=(f"{esc(label)} · 할인율 {esc(disc)}. 고점 = 그 뒤 "
+                 f"{pct(cv_rule_down, 0)} 이상 빠진 일봉 고점, 저점 = 그 뒤 "
+                 f"{pct(cv_rule_up, 0)} 이상 반등하기 전의 최저 종가. 그때 가치 "
+                 f"= 고점이 있는 달의 그래프 선 값. '발표 시차' = 같은 할인율·"
+                 f"성장률에서 {cv['lag_months']}개월 전 이익으로 바꾸면 결과 칸이 "
+                 f"달라짐(그 달의 12개월 이익은 1~2개월 뒤에 발표됨). 초록 = "
+                 f"저점이 그때 매수선 아래로 내려옴, 빨강 = 그때 가치에도 못 "
+                 f"미침."),
+        align=["r", "l", "r", "r", "r", "l", "r", "r", "l", "w"], tag=tag)
+
+
+cv_rule_down, cv_rule_up = 0.15, 0.20
+
+
+def cycle_groups(cv, cut=0.5):
+    """고점이 가치보다 얼마나 높았나(고점 ÷ 가치)로 나눈 두 무리."""
+    closed = [c for c in cv["cycles"] if not c["open"]]
+    lo = [c for c in closed if c["peak_vs_value"] <= cut]
+    hi = [c for c in closed if c["peak_vs_value"] > cut]
+    def med(xs):
+        xs = sorted(xs)
+        if not xs:
+            return None
+        m = len(xs) // 2
+        return xs[m] if len(xs) % 2 else (xs[m - 1] + xs[m]) / 2
+    return {"lo": len(lo), "lo_v": sum(c["reached_value"] for c in lo),
+            "lo_b": sum(c["reached_buy30"] for c in lo),
+            "hi": len(hi), "hi_v": sum(c["reached_value"] for c in hi),
+            "hi_b": sum(c["reached_buy30"] for c in hi),
+            "lo_disc": med(c["discount_at_peak"] for c in lo),
+            "hi_disc": med(c["discount_at_peak"] for c in hi),
+            "lo_pe": med(c["peak"] / c["eps_at_peak"] for c in lo),
+            "hi_pe": med(c["peak"] / c["eps_at_peak"] for c in hi)}
+
+
+def cycle_prose(cv, key, label, fixed):
+    """표 아래의 해설 — 숫자는 전부 data-v 로 검증됩니다."""
+    g = cycle_groups(cv)
+    closed = cv["closed"]
+    o = [f'<p><b>확정된 순환 <span data-v="{key}-n">{closed}개</span> 중 저점이 '
+         f'고점 때 계산한 가치 아래로 내려온 것은 '
+         f'<span data-v="{key}-rv">{cv["reached_value"]}개</span>, 매수선(안전마진 '
+         f'30%) 아래까지 내려온 것은 <span data-v="{key}-rb">'
+         f'{cv["reached_buy30"]}개</span>였습니다.</b> 저점은 그때 가치보다 중위 '
+         f'<span data-v="{key}-med">{sg(cv["median_trough_vs_value"], 0)}</span>'
+         f'에 있었습니다.']
+    o.append(f' 결과를 가른 것은 하락의 크기보다 <b>고점에서 이미 지수가 가치보다 '
+             f'얼마나 높았나</b>입니다. 저점이 가치에 닿으려면 (1 + 고점 프리미엄) '
+             f'× (1 − 낙폭) ≤ 1 이어야 합니다 — 고점이 가치의 2배였다면 50%가 '
+             f'빠져야 겨우 가치입니다. 고점 프리미엄이 50% 이하였던 순환 '
+             f'<span data-v="{key}-glo">{g["lo"]}개</span> 중 '
+             f'{g["lo_v"]}개가 가치에, {g["lo_b"]}개가 매수선에 닿았고, 50% '
+             f'넘게 높았던 순환 <span data-v="{key}-ghi">{g["hi"]}개</span> 중에는 '
+             f'{g["hi_v"]}개와 {g["hi_b"]}개였습니다.')
+    if g["lo"] and g["hi"]:
+        pe_txt = (f' 두 무리의 고점 때 P/E(12개월 이익 대비) 중위는 '
+                  f'<span data-v="{key}-pelo">{g["lo_pe"]:.1f}배</span>와 '
+                  f'<span data-v="{key}-pehi">{g["hi_pe"]:.1f}배</span>')
+        if not fixed:
+            o.append(pe_txt + f', 할인율(국채 + 3%p) 중위는 '
+                     f'<span data-v="{key}-dlo">{pct(g["lo_disc"])}</span>와 '
+                     f'<span data-v="{key}-dhi">{pct(g["hi_disc"])}</span>'
+                     f'였습니다 — <b>이익에 비해 지수가 덜 비쌌거나 금리가 '
+                     f'낮았던 때</b>에 가치선이 고점 근처나 위에 있었고, 그래서 '
+                     f'보통의 하락으로도 저점이 점선 아래로 내려갔습니다.')
+        else:
+            o.append(pe_txt + '였습니다. 할인율을 10%로 묶으면 저금리의 도움이 '
+                     '사라져 가치선이 대부분 지수 아래에 머뭅니다.')
+    elif not g["lo"]:
+        o.append(' 이 할인율에서는 모든 고점이 가치보다 50% 넘게 높았습니다.')
+    if cv["flips_with_lag"]:
+        o.append(f' 단, <span data-v="{key}-flip">'
+                 f'{len(cv["flips_with_lag"])}개</span> 순환은 발표 시차를 반영하면 '
+                 f'결과가 뒤집히는 경계선에 있습니다(비고 칸).')
+    if cv.get("not_robust_to_source"):
+        o.append(f' 이익을 2차 출처에서 가져온 만큼(오차 중위 '
+                 f'{pct(cv["source_error"], 0)}), <span data-v="{key}-src">'
+                 f'{len(cv["not_robust_to_source"])}개</span> 순환은 그 오차 '
+                 f'안에서 결과가 달라질 수 있습니다.')
+    o.append("</p>")
+    return "".join(o)
 
 
 def build(d):
@@ -271,6 +432,7 @@ h2{font-size:clamp(1.28rem,3.3vw,1.6rem);line-height:1.3;font-weight:700;
   margin-block:2.9rem .35rem;border-top:2px solid var(--fg);
   padding-block:.6rem 0}
 h3{font-size:1.06rem;line-height:1.4;font-weight:700;margin-block:1.9rem .25rem}
+h4{font-size:.98rem;line-height:1.4;font-weight:700;margin-block:1.5rem .25rem}
 p{margin:0 0 1rem}
 a{color:var(--accent);text-underline-offset:.18em}
 ul,ol{margin:0 0 1rem;padding-left:1.15rem}
@@ -370,6 +532,12 @@ figcaption{font-size:.78rem;color:var(--dim2);margin-block:.45rem 0}
   vertical-align:middle}
 .sw.px{background:var(--px)} .sw.val{background:var(--val);height:.25rem}
 .sw.buy{background:var(--buy)} .sw.zone{background:var(--zone);height:.7rem}
+.sw.mk{background:none;border-top:2px dotted var(--flag);width:1.1rem}
+.mk-key{font-weight:400;margin-right:.25rem} .mk-key.pk{color:var(--flag)}
+.mk-key.tr{color:var(--accent)}
+.chart .mk-pk{fill:var(--flag)} .chart .mk-tr{fill:var(--accent)}
+.chart .mk-n{font-family:var(--mono);font-size:9px;fill:var(--flag)}
+.chart .carry{stroke:var(--flag);stroke-width:1.6;stroke-dasharray:3 2}
 
 blockquote{margin:0 0 1rem;background:var(--quote);
   border-left:3px solid var(--accent);padding:.85rem 1rem}
@@ -629,7 +797,7 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
                     "조달할 수 없는 성장입니다."))
 
     w("<h3>30년을 같은 잣대로 되짚으면</h3>")
-    w(backtest_svg(bt))
+    w(backtest_svg(bt, cv=s["cycles"]["bond"]))
     w(table(["구간", "개월 수", "뒤 10년 실질 총수익률 (중위)"],
             [["매수선(안전마진 30%) 아래", f'{bt["below_buy30"]["months"]}',
               pct(bt["below_buy30"]["fwd10_real_median"])],
@@ -670,11 +838,33 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'떨어지지 않았고, 실제로 EPS 는 2009년 말 다시 '
       f'{by_bt["2009-12"]["eps"]:,.2f}로 돌아왔습니다.</p>')
 
+    w("<h3>고점에서 계산한 가치 vs 그 뒤의 저점</h3>")
+    w(f'<p>지난 30년의 고점마다, <b>그 고점의 시점에서</b> 같은 잣대로 계산한 '
+      f'버핏 기준 가치와 안전마진 30% 매수선을 그 뒤에 온 저점과 비교했습니다. '
+      f'고점과 저점은 일봉 종가에서 규칙으로 찾았습니다 — 고점은 그 뒤 '
+      f'{pct(cv_rule_down, 0)} 이상 빠진 고점, 저점은 그 뒤 {pct(cv_rule_up, 0)} '
+      f'이상 반등하기 전의 최저점입니다. 하락 문턱을 20%로 두면 1998·2011·'
+      f'2018·2025년의 −19%대 하락이 소수점 차이로 빠집니다. 위 그래프의 '
+      f'번호(▼ 고점, ▲ 저점)가 아래 표의 번호이고, 노란 점선이 고점 때의 '
+      f'가치를 저점까지 수평으로 끌어온 높이입니다 — 저점(▲가 가리키는 '
+      f'곳)이 그 점선 아래면 저점이 그때 가치 아래로 내려온 것입니다.</p>')
+    w(cycle_table(s["cycles"]["bond"], "cyc-spx-bond", "S&P 500",
+                  "30년 국채+3%p"))
+    w(cycle_prose(s["cycles"]["bond"], "cs-b", "S&P 500", False))
+    c09 = next((c for c in s["cycles"]["bond"]["cycles"]
+                if c["peak_date"].startswith("2009-")), None)
+    if c09:
+        w(f'<p>2009년 1월 고점(반등 고점)의 가치가 '
+          f'<span data-v="c09-v">{pts(c09["value_at_peak"])}</span>로 유난히 '
+          f'낮은 것은 앞 문단의 이유 — 그 달의 12개월 이익이 상각으로 '
+          f'무너졌기 때문입니다. 저점 {pts(c09["trough"])}은 그 가치의 '
+          f'{c09["trough"] / c09["value_at_peak"]:.1f}배였습니다.</p>')
+
     b10 = s["backtest_fixed10"]
     w("<h3>할인율을 10%로 고정하면</h3>")
     w('<p>금리 수준과 무관하게 매달 같은 10%로 할인한 판입니다. 저금리 시기에 '
       '할인율이 낮아져 가치가 부풀던 효과를 걷어 냅니다.</p>')
-    w(backtest_svg(b10, "fixed10", "10% 고정"))
+    w(backtest_svg(b10, "fixed10", "10% 고정", cv=s["cycles"]["fixed10"]))
     w(table(["구간 (10% 고정)", "개월 수", "뒤 10년 실질 총수익률 (중위)"],
             [["매수선(안전마진 30%) 아래", f'{b10["below_buy30"]["months"]}',
               pct(b10["below_buy30"]["fwd10_real_median"])],
@@ -711,6 +901,10 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'새로 투자한 돈의 수익률을 낮게 잡는다는 뜻입니다. 그래서 이 보고서의 '
       f'"비싸다" 판정은 방향으로 읽고, 매수선 숫자 자체는 엄격한 쪽으로 '
       f'읽으십시오.</p>')
+    w("<h4>10% 고정에서 — 고점 때 가치 vs 그 뒤의 저점</h4>")
+    w(cycle_table(s["cycles"]["fixed10"], "cyc-spx-fixed10", "S&P 500",
+                  "10% 고정"))
+    w(cycle_prose(s["cycles"]["fixed10"], "cs-f", "S&P 500", True))
 
     w("<h3>70년 기록 — 시작 시점의 CAPE 와 뒤 10년</h3>")
     rows = [[f'{b["quintile"]}분위', f'{b["cape_from"]:.1f} ~ {b["cape_to"]:.1f}',
@@ -788,11 +982,93 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
                     f'{pct(pr["max_drawdown_30y"]["drawdown"], 0)} '
                     f'({esc(pr["max_drawdown_30y"]["peak"])} 고점 → '
                     f'{esc(pr["max_drawdown_30y"]["trough"])} 바닥).'))
-    w('<p><b>나스닥100 에는 30년 이익 기록이 없습니다.</b> 가격 기록은 30년이 '
-      '있지만 가격 상승률은 이익 성장과 밸류에이션 변화가 섞인 값입니다. '
-      '그래서 성장률 가정의 "자기 기록" 자리에 미국 대형주 참조군인 '
-      'S&amp;P 500 의 30년 EPS 기록을 쓰고, 가장 관대한 가정 하나만 나스닥100 의 '
-      '10년 가격 상승률로 두었습니다.</p>')
+    w('<p><b>나스닥100 에는 공식 30년 이익 기록이 없습니다.</b> 가격 기록은 '
+      '30년이 있지만 가격 상승률은 이익 성장과 밸류에이션 변화가 섞인 값입니다. '
+      '그래서 아래 판정 격자에서는 성장률 가정의 "자기 기록" 자리에 미국 대형주 '
+      '참조군인 S&amp;P 500 의 30년 EPS 기록을 쓰고, 가장 관대한 가정 하나만 '
+      '나스닥100 의 10년 가격 상승률로 두었습니다. 30년 그래프에는 2차 출처의 '
+      '이익 기록을 씁니다(다음 절).</p>')
+
+    # ---- 30년 이익 기록 (2차 출처) 과 그 검정
+    hist = n["history"]
+    chk = hist["checks"]
+    sb, mv, cvn = chk["siblis"], chk["siblis_moved_to_today"], \
+        chk["convention"]
+    w("<h3>30년 이익 기록 — 2차 출처를 검정해서 쓰기</h3>")
+    w(f'<p>지수 단위 이익의 30년 기록을 무료로 공표하는 곳이 없어, '
+      f'worldperatio.com 이 QQQ 로 계산해 싣는 <b>월별 P/E</b>'
+      f'({esc(hist["series"][0]["month"])}~)를 가져와 <code>1포인트당 이익 = '
+      f'그 달 말 지수 ÷ P/E</code>로 되돌렸습니다. 계산 방법이 공개되지 않은 '
+      f'2차 출처라 그대로 믿지 않고 세 가지로 검정했습니다.</p>')
+    w(table(["검정", "결과", "읽는 법"],
+            [["오늘: worldperatio vs 우리 SEC 집계 (순이익)",
+              f'<span data-v="nh-today">{chk["today"]["wpr_pe"]:.2f} vs '
+              f'{chk["today"]["ours_pe_net_income"]:.2f} '
+              f'({sg(chk["today"]["rel"])})</span>',
+              ("둘 다 보고 기준 순이익 — 맞아야 하고, 맞습니다", "")],
+             [f"과거: Siblis 공개값 {sb['n']}개 시점 대비",
+              f'<span data-v="nh-sib">중위 {pct(sb["median_abs_rel"])} · 최대 '
+              f'{pct(sb["max_abs_rel"])} ({esc(sb["worst"]["month"])})</span>',
+              ("Siblis 는 일회성 손익을 뺀 '정상화' 순이익이라 같지 않음. "
+               "이 차이를 이 계열의 오차로 씁니다", "flag")],
+             ["Siblis 최신값을 오늘 지수로 옮기면 vs 우리 P/NOPAT",
+              f'<span data-v="nh-moved">{mv["pe_at_today_price"]:.1f} vs '
+              f'{mv["ours_pe_nopat"]:.1f} ({sg(mv["rel"])})</span>',
+              ("둘 다 평가이익을 뺀 이익 — 맞습니다", "")],
+             ["날짜 해석: 그 달 말 vs 전월 말 종가로 나눔",
+              f'<span data-v="nh-conv">월간 변화 중위 '
+              f'{pct(cvn["same_month_end"]["median_abs_change"])} vs '
+              f'{pct(cvn["previous_month_end"]["median_abs_change"])}</span>',
+              ("12개월 이익은 천천히 움직이므로 매끄러운 쪽(그 달 말)이 "
+               "맞는 해석", "")]],
+            align=["l", "r", "w"]))
+    w(f'<p>즉 이 계열은 <b>보고 기준 순이익</b>에 가깝습니다 — 평가이익이 '
+      f'섞이므로 Siblis 보다 P/E 가 낮게(이익이 높게) 나온 시점이 '
+      f'{sb["n"]}개 중 {pct(sb["share_wpr_lower"], 0)}였고, 차이가 가장 큰 '
+      f'때는 {esc(sb["worst"]["month"])}({sg(sb["worst"]["rel"], 0)})였습니다. '
+      f'그만큼 이 그래프의 가치는 후한 쪽입니다. 판정 격자의 '
+      f'NOPAT 기준과 짝을 맞추려 백테스트의 재투자 수익률은 구성종목 '
+      f'<b>순이익 ÷ 자기자본 {pct(hist["roe"])}</b>를 씁니다. 오늘의 ROE 를 '
+      f'30년 전체에 댄 것이라, 이익이 무너졌던 2001~02년에는 후한 쪽입니다.</p>')
+
+    nb, nf = n["backtest"], n["backtest_fixed10"]
+    nbasis = "그 달의 12개월 이익(worldperatio P/E 환산)"
+    w("<h3>30년을 같은 잣대로 되짚으면 — 나스닥100</h3>")
+    w(backtest_svg(nb, "ndx-bond", "30년 국채+3%p", "나스닥100",
+                   cv=n["cycles"]["bond"], basis=nbasis))
+    w(f'<p>국채 + 3%p 로는 30년 {nb["months"]}개월 중 '
+      f'<b data-v="nb-months">{nb["below_value"]["months"]}개월</b>이 가치 '
+      f'아래, {nb["below_buy30"]["months"]}개월이 매수선 아래였습니다. 뒤 10년 '
+      f'수익률 표는 나스닥100 의 총수익(배당 재투자) 30년 기록이 없어 내지 '
+      f'않았습니다.</p>')
+    w(cycle_table(n["cycles"]["bond"], "cyc-ndx-bond", "나스닥100",
+                  "30년 국채+3%p"))
+    w(cycle_prose(n["cycles"]["bond"], "cn-b", "나스닥100", False))
+    ob = [c for c in n["cycles"]["bond"]["cycles"] if c["open"]]
+    if ob:
+        c = ob[0]
+        w(f'<p><b>지금 진행 중인 하락.</b> 나스닥100 은 '
+          f'{esc(c["peak_date"])} 고점 {pts(c["peak"])}에서 '
+          f'{esc(c["trough_date"])} {pts(c["trough"])}까지 '
+          f'<span data-v="cn-open-dd">{sg(c["drawdown"], 1)}</span> 내려와 '
+          f'있습니다(저점 미확정). 그 고점의 시점에서 계산한 가치는 '
+          f'<span data-v="cn-open-v">{pts(c["value_at_peak"])}</span>, 매수선은 '
+          f'<span data-v="cn-open-b">{pts(c["buy30_at_peak"])}</span>입니다 — '
+          f'가치까지 {sg(c["value_at_peak"] / c["trough"] - 1, 0)}, 매수선까지 '
+          f'{sg(c["buy30_at_peak"] / c["trough"] - 1, 0)} 더 남았습니다. 이 '
+          f'가치는 순이익(평가이익 포함) 기준이라 위 판정 격자의 NOPAT 기준 '
+          f'가치보다 높게 나옵니다.</p>')
+
+    w("<h3>할인율을 10%로 고정하면 — 나스닥100</h3>")
+    w(backtest_svg(nf, "ndx-fixed10", "10% 고정", "나스닥100",
+                   cv=n["cycles"]["fixed10"], basis=nbasis))
+    w(f'<p>10% 고정으로는 가치 아래였던 달이 '
+      f'<b data-v="nf-months">{nf["below_value"]["months"]}개월</b>, 매수선 '
+      f'아래였던 달이 <b data-v="nf-buy">{nf["below_buy30"]["months"]}개월'
+      f'</b>입니다.</p>')
+    w(cycle_table(n["cycles"]["fixed10"], "cyc-ndx-fixed10", "나스닥100",
+                  "10% 고정"))
+    w(cycle_prose(n["cycles"]["fixed10"], "cn-f", "나스닥100", True))
 
     w("<h3>버핏 기준 판정 — 성장률 × 할인율</h3>")
     rows = []
@@ -891,6 +1167,18 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'{pct(bt["below_value"]["fwd10_real_median"])}, 가치 위에서 산 달은 '
       f'{pct(bt["above_value"]["fwd10_real_median"])}였습니다. CAPE 5분위에서 '
       f'시작한 10년은 중위 {pct(fw["buckets"][-1]["fwd10_real_median"])}.</li>')
+    sb_, sf_ = s["cycles"]["bond"], s["cycles"]["fixed10"]
+    nb_, nf_ = n["cycles"]["bond"], n["cycles"]["fixed10"]
+    w(f'<li><b>30년의 고점마다 그때 계산한 가치를 그 뒤 저점과 비교하면</b>, '
+      f'국채 + 3%p 로 S&amp;P 500 은 {sb_["closed"]}번 중 '
+      f'{sb_["reached_value"]}번, 나스닥100 은 {nb_["closed"]}번 중 '
+      f'{nb_["reached_value"]}번 저점이 그 가치 아래로 내려왔습니다. 그중 '
+      f'{cycle_groups(sb_)["lo_v"]}번과 {cycle_groups(nb_)["lo_v"]}번은 고점이 '
+      f'가치보다 50% 이하로만 높았던 순환입니다. 할인율을 '
+      f'10%로 묶으면 {sf_["reached_value"]}번과 {nf_["reached_value"]}번, '
+      f'매수선까지는 {sf_["reached_buy30"]}번과 {nf_["reached_buy30"]}번입니다 — '
+      f'<b>가치보다 훨씬 비싼 고점에서 산 뒤의 하락은 그 가치까지 내려오지 '
+      f'않는 것이 보통이었습니다.</b></li>')
     w('<li><b>그래도 버핏의 처방은 "기다려라"가 아니라 "나눠 사라"입니다.</b> '
       '지수를 사려는 사람이 이 매수선까지 기다리면 몇 년, 혹은 다시 오지 '
       '않을 수 있습니다(위 그래프에서 매수선 아래였던 기간은 대부분 저금리 '
@@ -918,6 +1206,15 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
         "영구성장률과 기초율 명목 환산에 들어갑니다.",
         "<b>백테스트의 ROE 와 영구성장률은 고정값입니다.</b> 그때의 판단이 "
         "아니라 지금의 잣대를 그때에 댄 것입니다.",
+        "<b>나스닥100 의 30년 이익은 2차 출처(worldperatio, 방법 비공개)입니다.</b> "
+        f"오늘 값은 우리 SEC 집계와 {pct(abs(n['history']['checks']['today']['rel']))} "
+        "안에서 맞지만, 과거 값은 Siblis 공개값과 중위 "
+        f"{pct(n['history']['checks']['siblis']['median_abs_rel'])} 다릅니다. "
+        "고점·저점 표의 '이익 출처 오차 안' 표시가 그 오차로 결과가 바뀔 수 "
+        "있는 순환입니다.",
+        "<b>고점·저점 표의 '그때 가치'는 그 달의 12개월 이익을 씁니다.</b> "
+        "실제로는 1~2개월 뒤에 발표되는 숫자라, 3개월 전 이익으로 바꿔 결과가 "
+        "뒤집히는 순환을 따로 표시했습니다.",
         "<b>국채 + 3%p 는 해석입니다.</b> 1994년 발언에서 읽은 스프레드이고 "
         "버핏이 정한 규칙이 아닙니다. 2007년 그는 형식적인 할인율이 없다고 "
         "말했습니다.",
@@ -929,6 +1226,9 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'(S&amp;P 다우존스 공표치) · <a href="{esc(d["sources"]["shiller"])}">'
       f'실러 ie_data</a> · <a href="{esc(d["sources"]["ndx_members"])}">나스닥 '
       f'구성종목</a> · SEC EDGAR companyfacts · '
+      f'<a href="https://worldperatio.com/index/nasdaq-100/">worldperatio</a> '
+      f'(나스닥100 P/E 기록) · <a href="https://siblisresearch.com/data/'
+      f'nasdaq-100-pe-ratio/">Siblis Research</a> (대조) · '
       f'<a href="{esc(d["sources"]["ishares_ndx"])}">iShares</a> · Yahoo '
       f'Finance · <a href="{esc(d["base_rates"]["source_url"])}">Base Rate '
       f'Book</a> · <a href="https://www.berkshirehathaway.com/letters/">버크셔 '
@@ -1027,6 +1327,7 @@ def verify(page, d):
         true(f"허용 호스트 {host}", host in (
             "fonts.googleapis.com", "www.multpl.com", "img1.wsimg.com",
             "indexes.nasdaqomx.com", "www.ishares.com", "sorfis.com",
+            "worldperatio.com", "siblisresearch.com",
             "www.berkshirehathaway.com"), host)
 
     # --------------------------------------------------------- 카드·본문
@@ -1136,8 +1437,11 @@ def verify(page, d):
     # -------------------------------------------- 30년 선 그래프 (좌표 = 값)
     # 할인율만 다른 그래프가 둘이라 표식으로 먼저 특정합니다 — 페이지 전체에서
     # 첫 그래프를 집으면 둘째 그래프가 틀려도 통과합니다.
-    for ckey, btk in (("bond", "backtest"), ("fixed10", "backtest_fixed10")):
-        btc = s[btk]
+    for ckey, X, btk in (("bond", s, "backtest"),
+                         ("fixed10", s, "backtest_fixed10"),
+                         ("ndx-bond", n, "backtest"),
+                         ("ndx-fixed10", n, "backtest_fixed10")):
+        btc = X[btk]
         rows_bt = [r for r in btc["rows"] if r["value_own30"]]
         mfig = re.search(rf'<figure class="chart" data-chart="{ckey}">'
                          r'(.*?)</figure>', page, re.S)
@@ -1160,15 +1464,151 @@ def verify(page, d):
             ptsl = [tuple(map(float, p.split(",")))
                     for p in mm.group(1).split()]
             eq(f"그래프 {ckey} 선 {key} 점 수", len(ptsl), len(rows_bt))
-            for i in range(0, len(rows_bt), 40):
+            # 모든 점을 봅니다 — 표본만 보면 그 사이의 점이 틀려도 통과합니다
+            # (40개 간격 표본이 나스닥 그래프의 101번째 점 훼손을 놓쳤습니다).
+            for i in range(len(rows_bt)):
                 want = T_ + (H - T_ - B) * (1 - (math.log(rows_bt[i][line])
                                                  - lo) / (hi - lo))
                 near(f"그래프 {ckey} {key} {rows_bt[i]['month']} 높이",
                      ptsl[i][1], want, 0.06)
         eq(f"그래프 {ckey} 매수선 아래 음영 수", fig.count('class="zone"/>'),
            sum(1 for r in rows_bt if r["below_buy30"]))
-        disc = "10% 고정" if ckey == "fixed10" else "30년 국채+3%p"
+        disc = "10% 고정" if ckey.endswith("fixed10") else "30년 국채+3%p"
         true(f"그래프 {ckey} 캡션의 할인율", f"할인율 {disc}" in fig)
+        true(f"그래프 {ckey} 지수 이름", f'{esc(X["label"])} (월말)' in fig)
+        # 고점·저점 표식과 '그때 가치' 점선 — 위치가 값에 비례하는가.
+        cv = X["cycles"]["fixed10" if ckey.endswith("fixed10") else "bond"]
+        idx = {r["month"]: i for i, r in enumerate(rows_bt)}
+        Wd, Ld, Rd = 720, 52, 12
+
+        def gx(m):
+            return Ld + (Wd - Ld - Rd) * idx[m] / (len(rows_bt) - 1)
+
+        def gy(v):
+            return T_ + (H - T_ - B) * (1 - (math.log(v) - lo) / (hi - lo))
+        shown = chart_cycles(cv, idx)
+        eq(f"그래프 {ckey} 고점 표식 수", fig.count('data-kind="peak"'),
+           len(shown))
+        eq(f"그래프 {ckey} 저점 표식 수", fig.count('data-kind="trough"'),
+           len(shown))
+        true(f"그래프 {ckey} 표식이 순환의 대부분",
+             len(shown) >= len(cv["cycles"]) - 1)
+        for i, c in shown:
+            for kind, lvl, dte in (("peak", c["peak"], c["peak_date"]),
+                                   ("trough", c["trough"], c["trough_date"])):
+                mk = re.search(rf'data-cyc="{i}" data-kind="{kind}" '
+                               r'data-x="([\d.]+)" data-y="([\d.]+)"', fig)
+                if true(f"그래프 {ckey} #{i} {kind} 표식", bool(mk)):
+                    near(f"그래프 {ckey} #{i} {kind} 가로", float(mk.group(1)),
+                         gx(dte[:7]), 0.06)
+                    near(f"그래프 {ckey} #{i} {kind} 높이", float(mk.group(2)),
+                         gy(lvl), 0.06)
+            mc = re.search(rf'data-carry="{i}" x1="([\d.]+)" y1="([\d.]+)" '
+                           r'x2="([\d.]+)" y2="([\d.]+)"', fig)
+            if true(f"그래프 {ckey} #{i} 점선", bool(mc)):
+                near(f"그래프 {ckey} #{i} 점선 높이 = 그때 가치",
+                     float(mc.group(2)), gy(c["value_at_peak"]), 0.06)
+                near(f"그래프 {ckey} #{i} 점선 끝 = 저점의 달",
+                     float(mc.group(3)), gx(c["trough_date"][:7]), 0.06)
+
+    # ------------------------------------------------- 고점·저점 표 (넷)
+    for tag, X, k in (("cyc-spx-bond", s, "bond"),
+                      ("cyc-spx-fixed10", s, "fixed10"),
+                      ("cyc-ndx-bond", n, "bond"),
+                      ("cyc-ndx-fixed10", n, "fixed10")):
+        mt = re.search(rf'<figure class="tw" data-t="{tag}">(.*?)</figure>',
+                       page, re.S)
+        if not true(f"표 {tag} 존재", bool(mt)):
+            continue
+        (heads, rows), = tables_of(mt.group(1))
+        cv = X["cycles"][k]
+        eq(f"표 {tag} 행 수", len(rows), len(cv["cycles"]))
+        true(f"표 {tag} 캡션의 할인율",
+             ("10% 고정" if k == "fixed10" else "30년 국채+3%p")
+             in mt.group(1))
+        for i, (r, c) in enumerate(zip(rows, cv["cycles"]), 1):
+            nm = f"표 {tag} #{i}"
+            eq(f"{nm} 번호", r[0], str(i))
+            eq(f"{nm} 고점", r[1], f'{c["peak_date"]}{pts(c["peak"])}')
+            eq(f"{nm} 그때 가치", r[2], pts(c["value_at_peak"]))
+            eq(f"{nm} 그때 매수선", r[3], pts(c["buy30_at_peak"]))
+            eq(f"{nm} 고점÷가치", r[4], sg(c["peak_vs_value"], 0))
+            eq(f"{nm} 저점", r[5], f'{c["trough_date"]}{pts(c["trough"])}')
+            eq(f"{nm} 낙폭", r[6], sg(c["drawdown"], 0))
+            eq(f"{nm} 저점÷가치", r[7], sg(c["trough_vs_value"], 0))
+            want = ("매수선 아래" if c["trough"] <= c["buy30_at_peak"] else
+                    "가치 아래" if c["trough"] <= c["value_at_peak"] else
+                    "못 미침")
+            eq(f"{nm} 결과", r[8], want)
+            eq(f"{nm} 진행 중 표시", "진행 중" in r[9], c["open"])
+            eq(f"{nm} 시차 표시", "발표 시차" in r[9],
+               c["peak_date"] in cv["flips_with_lag"])
+            eq(f"{nm} 출처 오차 표시", "출처 오차" in r[9],
+               c["peak_date"] in (cv.get("not_robust_to_source") or []))
+        bad = [m_.group(0) for m_ in re.finditer(
+            r'data-state="(over|under|)"[^>]*>(?:<b>)?(매수선 아래|가치 아래|못 미침)',
+            mt.group(1))
+            if {"매수선 아래": "over", "가치 아래": "",
+                "못 미침": "under"}[m_.group(2)] != m_.group(1)]
+        true(f"표 {tag} 결과 색 = 결과", not bad, str(bad[:2]))
+
+    # ------------------------------------------ 고점·저점 해설의 숫자
+    for key, X, k in (("cs-b", s, "bond"), ("cs-f", s, "fixed10"),
+                      ("cn-b", n, "bond"), ("cn-f", n, "fixed10")):
+        cv = X["cycles"][k]
+        g = cycle_groups(cv)
+        closed = [c for c in cv["cycles"] if not c["open"]]
+        eq(f"해설 {key} 순환 수", v_of(f"{key}-n"), f"{len(closed)}개")
+        eq(f"해설 {key} 가치 도달", v_of(f"{key}-rv"),
+           f'{sum(c["trough"] <= c["value_at_peak"] for c in closed)}개')
+        eq(f"해설 {key} 매수선 도달", v_of(f"{key}-rb"),
+           f'{sum(c["trough"] <= c["buy30_at_peak"] for c in closed)}개')
+        eq(f"해설 {key} 중위", v_of(f"{key}-med"),
+           sg(cv["median_trough_vs_value"], 0))
+        eq(f"해설 {key} 50% 이하 무리", v_of(f"{key}-glo"),
+           f'{sum(c["peak_vs_value"] <= 0.5 for c in closed)}개')
+        eq(f"해설 {key} 50% 초과 무리", v_of(f"{key}-ghi"),
+           f'{sum(c["peak_vs_value"] > 0.5 for c in closed)}개')
+        if g["lo"] and g["hi"]:
+            eq(f"해설 {key} P/E 낮은 무리", v_of(f"{key}-pelo"),
+               f'{g["lo_pe"]:.1f}배')
+            eq(f"해설 {key} P/E 높은 무리", v_of(f"{key}-pehi"),
+               f'{g["hi_pe"]:.1f}배')
+        if cv["flips_with_lag"]:
+            eq(f"해설 {key} 시차 경계", v_of(f"{key}-flip"),
+               f'{len(cv["flips_with_lag"])}개')
+        if cv.get("not_robust_to_source"):
+            eq(f"해설 {key} 출처 오차", v_of(f"{key}-src"),
+               f'{len(cv["not_robust_to_source"])}개')
+    ob = [c for c in n["cycles"]["bond"]["cycles"] if c["open"]]
+    if ob:
+        eq("본문 진행 중 하락", v_of("cn-open-dd"), sg(ob[0]["drawdown"], 1))
+        eq("본문 진행 중 그때 가치", v_of("cn-open-v"),
+           pts(ob[0]["value_at_peak"]))
+        eq("본문 진행 중 그때 매수선", v_of("cn-open-b"),
+           pts(ob[0]["buy30_at_peak"]))
+    c09 = next((c for c in s["cycles"]["bond"]["cycles"]
+                if c["peak_date"].startswith("2009-")), None)
+    if c09:
+        eq("본문 2009 반등 고점 가치", v_of("c09-v"), pts(c09["value_at_peak"]))
+    hck = n["history"]["checks"]
+    eq("나스닥 검정 오늘", v_of("nh-today"),
+       f'{hck["today"]["wpr_pe"]:.2f} vs {hck["today"]["ours_pe_net_income"]:.2f}'
+       f' ({sg(hck["today"]["rel"])})')
+    eq("나스닥 검정 Siblis", v_of("nh-sib"),
+       f'중위 {pct(hck["siblis"]["median_abs_rel"])} · 최대 '
+       f'{pct(hck["siblis"]["max_abs_rel"])} ({hck["siblis"]["worst"]["month"]})')
+    mv = hck["siblis_moved_to_today"]
+    eq("나스닥 검정 Siblis 이동", v_of("nh-moved"),
+       f'{mv["pe_at_today_price"]:.1f} vs {mv["ours_pe_nopat"]:.1f} '
+       f'({sg(mv["rel"])})')
+    eq("본문 나스닥 가치 아래 개월", v_of("nb-months"),
+       f'{n["backtest"]["below_value"]["months"]}개월')
+    eq("본문 나스닥 10% 가치 아래 개월", v_of("nf-months"),
+       f'{n["backtest_fixed10"]["below_value"]["months"]}개월')
+    eq("본문 나스닥 10% 매수선 아래 개월", v_of("nf-buy"),
+       f'{n["backtest_fixed10"]["below_buy30"]["months"]}개월')
+    true("나스닥 이익이 2차 출처임을 명시", "2차 출처" in page)
 
     bt = s["backtest"]
 
@@ -1369,6 +1809,48 @@ def mutations(d):
             r'(data-v="e09">)[^<]+', r"\g<1>66.00", p, count=1)),
         ("10% 고정 '한 번도' 서술", lambda p: re.sub(
             r'(data-v="b10-months">)[^<]+', r"\g<1>12개월", p, count=1)),
+        ("나스닥 그래프의 한 점", lambda p: re.sub(
+            r'(data-chart="ndx-fixed10".*?data-line="buy30" points="'
+            r'(?:[\d.]+,[\d.]+ ){100})([\d.]+),([\d.]+)',
+            r"\g<1>\g<2>,9.0", p, count=1, flags=re.S)),
+        ("고점 표식 높이", lambda p: re.sub(
+            r'(data-chart="ndx-bond".*?data-cyc="5" data-kind="peak" '
+            r'data-x="[\d.]+" data-y=")[\d.]+', r"\g<1>40.0", p, count=1,
+            flags=re.S)),
+        ("저점 표식 달", lambda p: re.sub(
+            r'(data-chart="bond".*?data-cyc="5" data-kind="trough" '
+            r'data-x=")[\d.]+', r"\g<1>300.0", p, count=1, flags=re.S)),
+        ("점선 높이", lambda p: re.sub(
+            r'(data-chart="fixed10".*?data-carry="5" x1="[\d.]+" y1=")[\d.]+',
+            r"\g<1>20.0", p, count=1, flags=re.S)),
+        ("고점 표식 하나 제거", lambda p: re.sub(
+            r'<path class="mk-pk" data-cyc="3"[^>]*/>', "", p, count=1)),
+        ("순환 표 그때 가치", lambda p: re.sub(
+            r'(data-t="cyc-ndx-bond".*?<tr>(?:.*?<tr>){6}.*?<td class="r">'
+            r'<b>)[\d,]+', r"\g<1>1,234", p, count=1, flags=re.S)),
+        ("순환 표 결과 글자", lambda p: re.sub(
+            r'(data-t="cyc-spx-fixed10".*?)못 미침', r"\g<1>가치 아래", p,
+            count=1, flags=re.S)),
+        ("순환 표 결과 색", lambda p: re.sub(
+            r'(data-t="cyc-spx-bond".*?)data-state="over"><b>매수선 아래',
+            r'\g<1>data-state="under"><b>매수선 아래', p, count=1,
+            flags=re.S)),
+        ("순환 표 시차 표시 지우기", lambda p: p.replace(
+            "발표 시차 반영 시 뒤집힘", "", 1)),
+        ("순환 표 행 하나 제거", lambda p: re.sub(
+            r'(data-t="cyc-ndx-fixed10".*?<tbody>\s*)<tr>.*?</tr>', r"\g<1>", p,
+            count=1, flags=re.S)),
+        ("순환 해설 도달 수", lambda p: re.sub(
+            r'(data-v="cn-b-rv">)[^<]+', r"\g<1>20개", p, count=1)),
+        ("순환 해설 P/E", lambda p: re.sub(
+            r'(data-v="cs-b-pehi">)[^<]+', r"\g<1>12.0배", p, count=1)),
+        ("진행 중 하락의 그때 가치", lambda p: re.sub(
+            r'(data-v="cn-open-v">)[^<]+', r"\g<1>25,000", p, count=1)),
+        ("나스닥 이익 검정 숫자", lambda p: re.sub(
+            r'(data-v="nh-sib">)[^<]+', r"\g<1>중위 1.0% · 최대 2.0% (2020-12)",
+            p, count=1)),
+        ("나스닥 그래프 이름", lambda p: p.replace(
+            "나스닥100 (월말)", "S&amp;P 500 (월말)", 1)),
         ("그래프 음영 하나 제거", lambda p: p.replace(
             'class="zone"/>', 'class="zonex"/>', 1)),
         ("30년 기록 표", lambda p: p.replace(

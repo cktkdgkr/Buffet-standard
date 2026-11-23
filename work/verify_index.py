@@ -48,6 +48,18 @@ ANCHOR = {
     "sndk_split": 8.0,                       # 2026-11-20 8:1 분할
     "pdd_ads_ratio": 4,                      # 20-F: ADS 1주 = 보통주 4주
     "ndx_members": 101,
+    # 널리 공표된 역사적 종가(일봉) — 순환의 고점·저점이 제대로 읽혔는지.
+    "spx_daily": {"2000-03-24": 1527.46, "2007-10-09": 1565.15,
+                  "2009-03-09": 676.53, "2020-03-23": 2237.40,
+                  "2022-01-03": 4796.56},
+    "ndx_daily": {"2000-03-27": 4704.73, "2002-10-07": 804.64,
+                  "2008-11-20": 1036.51},
+    # worldperatio 페이지의 차트 데이터(detailPE_data)에서 손으로 읽은 값
+    # — Date.UTC 의 달은 0부터 셉니다(Date.UTC(2000, 2, 1) = 2000년 3월).
+    "wpr_pe": {"2000-03": 71.8672, "2008-11": 14.2200, "2021-11": 29.6900},
+    "wpr_current": (26.37, "2026-11-20"),
+    # Siblis Research 나스닥100 페이지의 연말 표
+    "siblis_pe": {"2021-12": 38.00, "2026-10": 32.76},
 }
 GROWTH_KEYS = ["base_rate_median", "half_of_own", "own_sustained",
                "recent_10y"]
@@ -370,6 +382,9 @@ def verify(d, c):
     c.true("2009-03 의 30년 성장률이 음수(끝점 이익 붕괴)",
            by_b["2009-03"]["own30"] < 0)
 
+    check_ndx_history(c, d, raw)
+    check_cycles(c, d, raw)
+
     # ------------------------------------------------------------ CAPE 구간
     fw = s["forward_returns"]
     c.same("CAPE 5분위", [x["quintile"] for x in fw["buckets"]],
@@ -396,6 +411,226 @@ def verify(d, c):
             - __import__("datetime").date.fromisoformat(
                 s["level"]["date"])).days <= 7)
     return c
+
+
+def _months(m, k):
+    i = int(m[:4]) * 12 + int(m[5:7]) - 1 + k
+    return f"{i // 12:04d}-{i % 12 + 1:02d}"
+
+
+def check_ndx_history(c, d, raw):
+    """나스닥100 의 30년 이익(2차 출처)과 그 위의 백테스트."""
+    n, s = d["ndx"], d["spx"]
+    h = n["history"]
+    wpr = {r["month"]: r["pe"] for r in raw["ndx_pe_history"]["rows"]}
+    for m, v in ANCHOR["wpr_pe"].items():
+        c.eq(f"앵커 worldperatio P/E {m}", wpr.get(m), v, tol=0.00005)
+    cur = raw["ndx_pe_history"]["current"]
+    c.eq("앵커 worldperatio 현재 P/E", cur["pe"], ANCHOR["wpr_current"][0],
+         tol=0.005)
+    c.same("앵커 worldperatio 계산일", cur["date"], ANCHOR["wpr_current"][1])
+    sib = {p["month"]: p["pe"] for p in raw["siblis_ndx"]["points"]}
+    for m, v in ANCHOR["siblis_pe"].items():
+        c.eq(f"앵커 Siblis P/E {m}", sib.get(m), v, tol=0.005)
+
+    # 1포인트당 이익 = 그 달 말 지수 ÷ P/E — 원자료에서 다시.
+    px = {r["date"][:7]: r["close"]
+          for r in raw["prices"]["NDX"]["monthly"]["rows"]}
+    ser = {r["month"]: r for r in h["series"]}
+    for m in ("2000-03", "2008-11", "2021-11", "2015-06"):
+        c.eq(f"나스닥 {m} 1포인트당 이익", ser[m]["eps"], px[m] / wpr[m],
+             rel=1e-12)
+    chk = h["checks"]
+    c.eq("대조 worldperatio ↔ 우리 순이익 P/E", chk["today"]["rel"],
+         cur["pe"] / n["aggregate"]["pe_net_income"] - 1, rel=1e-12)
+    c.true("대조 worldperatio 현재값이 우리 순이익 집계와 ±10% 안",
+           abs(chk["today"]["rel"]) < 0.10, f"{chk['today']['rel']:+.3f}")
+    rels = sorted(abs(wpr[m] / v - 1) for m, v in sib.items()
+                  if m in wpr and m != raw["ndx_pe_history"]["rows"][-1]
+                  ["month"])
+    med = (rels[len(rels) // 2] if len(rels) % 2 else
+           (rels[len(rels) // 2 - 1] + rels[len(rels) // 2]) / 2)
+    c.eq("대조 Siblis 중위 오차 재계산", chk["siblis"]["median_abs_rel"], med,
+         rel=1e-12)
+    c.eq("대조 Siblis 최대 오차 재계산", chk["siblis"]["max_abs_rel"],
+         rels[-1], rel=1e-12)
+    mv = chk["siblis_moved_to_today"]
+    c.eq("대조 Siblis 를 오늘 가격으로", mv["pe_at_today_price"],
+         sib[mv["month"]] * n["level"]["price"] / px[mv["month"]], rel=1e-12)
+    c.true("대조 Siblis(정상화) 를 오늘로 옮기면 우리 P/NOPAT 와 ±10% 안",
+           abs(mv["pe_at_today_price"] / n["aggregate"]["pe_nopat"] - 1)
+           < 0.10, f"{mv['pe_at_today_price']:.2f} vs "
+           f"{n['aggregate']['pe_nopat']:.2f}")
+    cv = chk["convention"]
+    c.true("날짜 해석: 그 달 말 종가로 나눈 이익이 더 매끄러움",
+           cv["same_month_end"]["median_abs_change"]
+           < cv["previous_month_end"]["median_abs_change"] / 2)
+    c.true("트립와이어 나스닥 P/E 기록 5~200배",
+           all(5 <= r["pe"] <= 200 for r in h["series"]))
+    c.eq("나스닥 백테스트 ROE = 순이익 ÷ 자기자본(상한)", h["roe"],
+         min(n["aggregate"]["roe_net_income"], d["cap_return"]), rel=0)
+
+    # S&P 500 의 30년 EPS 기록 — multpl 원자료에서 직접(실질 → 명목).
+    cpi = {r["date"][:7]: r["value"] for r in raw["spx"]["cpi"]["rows"]}
+    er = {r["date"][:7]: r["value"] for r in raw["spx"]["eps"]["rows"]}
+    base = cpi[max(cpi)]
+    sp_last = max(m for m in er if m in cpi)
+
+    def own30(m):
+        m = min(m, sp_last)
+        m0 = f"{int(m[:4]) - 30:04d}{m[4:]}"
+        e1, e0 = er[m] * cpi[m] / base, er[m0] * cpi[m0] / base
+        return (e1 / e0) ** (1 / 30) - 1
+
+    for btk, label, fixed in (("backtest", "나스닥 백테스트", None),
+                              ("backtest_fixed10", "나스닥 백테스트(10% 고정)",
+                               0.10)):
+        b = n[btk]
+        c.true(f"{label} 30년(360개월 이상)", b["months"] >= 360)
+        c.same(f"{label} 고정 할인율 표기", b["fixed_discount"], fixed)
+        c.eq(f"{label} ROE", b["roe"], h["roe"], rel=0)
+        tyx = {r["date"][:7]: r["close"] / 100
+               for r in raw["prices"]["TYX"]["monthly"]["rows"]}
+        for r in b["rows"][::25] + b["rows"][-1:]:
+            m = r["month"]
+            c.eq(f"{label} {m} 이익 = 원자료", r["eps"], px[m] / wpr[m],
+                 rel=1e-12)
+            c.eq(f"{label} {m} 성장률 = S&P 30년", r["own30"], own30(m),
+                 rel=1e-9)
+            c.eq(f"{label} {m} 할인율", r["discount"],
+                 fixed if fixed is not None else tyx[m] + 0.03, rel=1e-12)
+            if r["value_own30"] is None:
+                continue
+            got = dcf(r["eps"], min(r["own30"], d["cap_growth"]), 0.045,
+                      b["roe"], r["discount"], b["terminal"])
+            c.eq(f"{label} {m} 가치 재계산", r["value_own30"], got["value"],
+                 rel=1e-9)
+            c.same(f"{label} {m} 가치 판정", r["below_value"],
+                   r["price"] <= r["value_own30"])
+        c.same(f"{label} 매수선 아래 개월 수", b["below_buy30"]["months"],
+               sum(1 for r in b["rows"] if r["below_buy30"]))
+        c.same(f"{label} 가치 아래 개월 수", b["below_value"]["months"],
+               sum(1 for r in b["rows"] if r["below_value"]))
+
+
+def zigzag_indep(daily, down, up):
+    """
+    엔진(find_cycles)과 따로 쓴 고점·저점 찾기. 인덱스로 걸으며, 확정된
+    저점마다 그 앞 구간의 최고가를 **다시 찾아** 고점으로 삼습니다.
+    """
+    cl = [r["close"] for r in daily]
+    dt = [r["date"] for r in daily]
+    out, i0, n_ = [], 0, len(cl)
+    while i0 < n_:
+        # 고점 후보: i0 부터 걷다가 최고가 대비 down 이상 빠지는 첫 날.
+        hi_i, j = i0, i0
+        while j < n_ and cl[j] > cl[hi_i] * (1 - down):
+            if cl[j] > cl[hi_i]:
+                hi_i = j
+            j += 1
+        if j >= n_:
+            break
+        lo_i, k = j, j
+        while k < n_ and cl[k] < cl[lo_i] * (1 + up):
+            if cl[k] < cl[lo_i]:
+                lo_i = k
+            k += 1
+        out.append((dt[hi_i], cl[hi_i], dt[lo_i], cl[lo_i],
+                    dt[k] if k < n_ else None))
+        i0 = k
+    return out
+
+
+def check_cycles(c, d, raw):
+    for key, X in (("spx", d["spx"]), ("ndx", d["ndx"])):
+        tag = "S&P" if key == "spx" else "나스닥"
+        daily = raw["prices"][key.upper()]["daily"]["rows"]
+        dmap = {r["date"]: r["close"] for r in daily}
+        for dte, v in ANCHOR[f"{key}_daily"].items():
+            c.eq(f"앵커 {tag} 일봉 {dte}", dmap.get(dte), v, tol=0.006)
+        # 일봉 ↔ 월봉(같은 Yahoo 의 다른 계열): 월의 마지막 일봉 = 월말 종가.
+        last_of = {}
+        for r in daily:
+            last_of[r["date"][:7]] = r["close"]
+        mon = [r for r in raw["prices"][key.upper()]["monthly"]["rows"]
+               if "1996-01" <= r["date"][:7]][:-1]
+        bad = [r["date"][:7] for r in mon
+               if abs(last_of.get(r["date"][:7], 0) / r["close"] - 1) > 1e-4]
+        c.true(f"{tag} 일봉의 월말 = 월봉 종가 ({len(mon)}개월)", not bad,
+               str(bad[:5]))
+
+        rule = X["cycles"]["rule"]
+        ind = zigzag_indep(daily, rule["down"], rule["up"])
+        for k in ("bond", "fixed10"):
+            cv = X["cycles"][k]
+            b = X["backtest" if k == "bond" else "backtest_fixed10"]
+            by = {r["month"]: r for r in b["rows"]}
+            got = [(r["peak_date"], r["trough_date"]) for r in cv["cycles"]]
+            want = [(p, t) for p, _, t, _, _ in ind if p[:7] >= b["from"]]
+            c.same(f"{tag}[{k}] 고점·저점 = 독립 구현", got, want)
+            for r in cv["cycles"]:
+                nm = f"{tag}[{k}] {r['peak_date']}"
+                c.eq(f"{nm} 고점 종가", r["peak"], dmap[r["peak_date"]],
+                     rel=0)
+                c.eq(f"{nm} 저점 종가", r["trough"], dmap[r["trough_date"]],
+                     rel=0)
+                c.true(f"{nm} 낙폭 ≥ {rule['down']:.0%}",
+                       r["drawdown"] <= -rule["down"] + 1e-12)
+                c.eq(f"{nm} 낙폭 = 저점÷고점−1", r["drawdown"],
+                     r["trough"] / r["peak"] - 1, rel=1e-12)
+                c.true(f"{nm} 미확정은 마지막 하나뿐",
+                       not r["open"] or r is cv["cycles"][-1])
+                row = by[r["value_month"]]
+                c.true(f"{nm} 가치의 달 = 고점의 달(또는 마지막 달)",
+                       r["value_month"] == r["peak_date"][:7]
+                       or (r["peak_date"][:7] > b["to"]
+                           and r["value_month"] == b["to"]))
+                g = dcf(row["eps"], min(row["own30"], d["cap_growth"]), 0.045,
+                        b["roe"], row["discount"], b["terminal"])
+                c.eq(f"{nm} 그때 가치 재계산", r["value_at_peak"], g["value"],
+                     rel=1e-9)
+                c.eq(f"{nm} 그때 매수선", r["buy30_at_peak"],
+                     g["value"] * 0.7, rel=1e-9)
+                c.same(f"{nm} 저점이 가치 아래", r["reached_value"],
+                       r["trough"] <= g["value"])
+                c.same(f"{nm} 저점이 매수선 아래", r["reached_buy30"],
+                       r["trough"] <= g["value"] * 0.7)
+                c.eq(f"{nm} 저점 ÷ 가치", r["trough_vs_value"],
+                     r["trough"] / g["value"] - 1, rel=1e-9)
+                if "lag_month" in r:
+                    c.same(f"{nm} 시차 달", r["lag_month"],
+                           _months(r["value_month"], -cv["lag_months"]))
+                    kk = by[r["lag_month"]]["eps"] / row["eps"]
+                    c.eq(f"{nm} 시차 반영 가치", r["value_at_peak_lag"],
+                         g["value"] * kk, rel=1e-9)
+            closed = [r for r in cv["cycles"] if not r["open"]]
+            c.same(f"{tag}[{k}] 확정 순환 수", cv["closed"], len(closed))
+            c.same(f"{tag}[{k}] 가치 아래 도달 수", cv["reached_value"],
+                   sum(r["trough"] <= r["value_at_peak"] for r in closed))
+            c.same(f"{tag}[{k}] 매수선 아래 도달 수", cv["reached_buy30"],
+                   sum(r["trough"] <= r["buy30_at_peak"] for r in closed))
+            c.same(f"{tag}[{k}] 시차로 뒤집히는 순환", cv["flips_with_lag"],
+                   [r["peak_date"] for r in cv["cycles"]
+                    if "lag_month" in r and (
+                        (r["trough"] <= r["value_at_peak_lag"])
+                        != (r["trough"] <= r["value_at_peak"])
+                        or (r["trough"] <= r["buy30_at_peak_lag"])
+                        != (r["trough"] <= r["buy30_at_peak"]))])
+        c.true(f"{tag} 두 판의 순환이 같음",
+               [r["peak_date"] for r in X["cycles"]["bond"]["cycles"]]
+               == [r["peak_date"] for r in X["cycles"]["fixed10"]["cycles"]])
+    # 나스닥 이익 출처 오차: Siblis 중위 오차를 그대로 씀.
+    e = d["ndx"]["history"]["checks"]["siblis"]["median_abs_rel"]
+    for k in ("bond", "fixed10"):
+        cv = d["ndx"]["cycles"][k]
+        c.eq(f"나스닥[{k}] 출처 오차 = Siblis 중위 오차", cv["source_error"], e,
+             rel=0)
+        c.same(f"나스닥[{k}] 출처 오차에 민감한 순환", cv["not_robust_to_source"],
+               [r["peak_date"] for r in cv["cycles"] if (
+                   (r["trough"] <= r["value_at_peak"] * (1 - e))
+                   != (r["trough"] <= r["value_at_peak"] * (1 + e))
+                   or (r["trough"] <= r["buy30_at_peak"] * (1 - e))
+                   != (r["trough"] <= r["buy30_at_peak"] * (1 + e)))])
 
 
 def _poke(d, path, fn):
@@ -475,6 +710,44 @@ MUTATIONS = [
     ("버핏 인용문 훼손", lambda d: _poke(
         d, ["index_passages", 0, "quotes", 0],
         lambda v: v.replace("space out", "concentrate"))),
+    ("나스닥 백테스트 가치", lambda d: _poke(
+        d, ["ndx", "backtest", "rows", 50, "value_own30"], lambda v: v * 1.2)),
+    ("나스닥 백테스트 이익", lambda d: _poke(
+        d, ["ndx", "backtest_fixed10", "rows", 75, "eps"], lambda v: v * 1.1)),
+    ("나스닥 이익 계열 한 달", lambda d: _poke(
+        d, ["ndx", "history", "series"],
+        lambda ss: [({**r, "eps": r["eps"] * 1.3} if r["month"] == "2008-11"
+                     else r) for r in ss])),
+    ("worldperatio 대조 오차", lambda d: _poke(
+        d, ["ndx", "history", "checks", "today", "rel"], lambda v: 0.0)),
+    ("Siblis 중위 오차", lambda d: _poke(
+        d, ["ndx", "history", "checks", "siblis", "median_abs_rel"],
+        lambda v: v / 2)),
+    ("날짜 해석 근거 뒤집기", lambda d: _poke(
+        d, ["ndx", "history", "checks", "convention", "same_month_end",
+            "median_abs_change"], lambda v: 0.2)),
+    ("나스닥 ROE 바꾸기", lambda d: _poke(
+        d, ["ndx", "history", "roe"], lambda v: 0.139)),
+    ("순환 고점 날짜 하루 밀기", lambda d: _poke(
+        d, ["spx", "cycles", "bond", "cycles", 4, "peak_date"],
+        lambda v: "2007-10-10")),
+    ("순환 저점 수준", lambda d: _poke(
+        d, ["ndx", "cycles", "fixed10", "cycles", 7, "trough"],
+        lambda v: v * 0.9)),
+    ("순환 하나 빼기", lambda d: _poke(
+        d, ["spx", "cycles", "fixed10", "cycles"], lambda v: v[:5] + v[6:])),
+    ("순환 그때 가치", lambda d: _poke(
+        d, ["ndx", "cycles", "bond", "cycles", 14, "value_at_peak"],
+        lambda v: v * 0.8)),
+    ("순환 매수선 도달 뒤집기", lambda d: _poke(
+        d, ["spx", "cycles", "bond", "cycles", 4, "reached_buy30"],
+        lambda v: not v)),
+    ("순환 도달 수", lambda d: _poke(
+        d, ["ndx", "cycles", "bond", "reached_value"], lambda v: v + 1)),
+    ("순환 시차 반전 목록", lambda d: _poke(
+        d, ["spx", "cycles", "bond", "flips_with_lag"], lambda v: [])),
+    ("출처 오차 민감 목록", lambda d: _poke(
+        d, ["ndx", "cycles", "bond", "not_robust_to_source"], lambda v: [])),
     ("생성일을 다른 날로", lambda d: _poke(
         d, ["generated"], lambda v: "2026-12-31")),
 ]

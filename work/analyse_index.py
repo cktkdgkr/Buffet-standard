@@ -25,6 +25,7 @@ S&P 500 과 나스닥100 을 이 프로젝트의 버핏 기준으로 판정합�
 """
 
 import json
+import math
 import os
 import statistics as st
 import sys
@@ -406,6 +407,32 @@ def implied_return(base_earn, level, inc_return, g, fade_to, terminal):
 
 def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl,
                  fixed_discount=None):
+    """S&P 500 판 백테스트 — 점을 만들어 공통 계산(_backtest)에 넘깁니다."""
+    by = {r["month"]: r for r in rows}
+    sh = {r["date"]: r for r in raw["shiller"]["rows"] if r["real_tr_price"]}
+    last = max(m for m in by if by[m].get("price"))
+    start = shift(last, -30)
+    points = []
+    for m in sorted(by):
+        r = by[m]
+        if m < start or not r.get("price"):
+            continue
+        m30 = shift(m, -30)
+        if m30 not in by or r["eps_nominal"] <= 0:
+            continue
+        p = {"month": m, "price": r["price"], "eps": r["eps_nominal"],
+             "own30": cagr(by[m30]["eps_nominal"], r["eps_nominal"], 30)}
+        m10 = shift(m, 10)
+        if m in sh and m10 in sh:
+            p["fwd10_real"] = (sh[m10]["real_tr_price"]
+                               / sh[m]["real_tr_price"]) ** 0.1 - 1
+        points.append(p)
+    return _backtest(raw, points, roe, terminal, base_rate_real, infl,
+                     fixed_discount)
+
+
+def _backtest(raw, points, roe, terminal, base_rate_real, infl,
+              fixed_discount=None):
     """
     같은 규칙을 지난 30년의 매달에 적용했다면 언제가 매수 구간이었나.
 
@@ -419,41 +446,32 @@ def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl,
     매수 구간에 샀을 때와 아닐 때의 뒤 10년 실질 총수익률은 실러 자료로
     셉니다(2024-09 까지라 시작점은 2014년까지).
     """
-    by = {r["month"]: r for r in rows}
     tyx = {ym(r["date"]): r["close"] / 100
            for r in raw["prices"]["TYX"]["monthly"]["rows"]}
-    sh = {r["date"]: r for r in raw["shiller"]["rows"] if r["real_tr_price"]}
-    last = max(m for m in by if by[m].get("price"))
-    start = shift(last, -30)
     out = []
-    for m in sorted(by):
-        r = by[m]
-        if m < start or not r.get("price") or m not in tyx:
+    for p in points:
+        m = p["month"]
+        if m not in tyx:
             continue
-        m30 = shift(m, -30)
-        if m30 not in by or r["eps_nominal"] <= 0:
-            continue
-        own = cagr(by[m30]["eps_nominal"], r["eps_nominal"], 30)
+        own = p["own30"]
         # 버핏 기준은 그 달의 30년 국채 + 3%p. fixed_discount 를 주면 금리와
         # 무관하게 그 값으로 고정합니다 — 저금리 시기의 영향을 걷어 낸 판.
         k = fixed_discount if fixed_discount is not None else tyx[m] + 0.03
-        rec = {"month": m, "price": r["price"], "eps": r["eps_nominal"],
+        rec = {"month": m, "price": p["price"], "eps": p["eps"],
                "discount": k, "own30": own}
         for key, g, fade in (("base", base_rate_real + infl, infl),
                              ("own30", min(own, CAP_GROWTH), 0.045)):
-            v = dcf(r["eps_nominal"], 0.0, 1.0, g, fade, roe, k, terminal)
+            v = dcf(p["eps"], 0.0, 1.0, g, fade, roe, k, terminal)
             rec[f"value_{key}"] = (None if v["diverges"]
                                    else v["value_per_share"])
         rec["buy30_own30"] = (rec["value_own30"] * 0.7
                               if rec["value_own30"] else None)
         rec["below_buy30"] = bool(rec["buy30_own30"]
-                                  and r["price"] <= rec["buy30_own30"])
+                                  and p["price"] <= rec["buy30_own30"])
         rec["below_value"] = bool(rec["value_own30"]
-                                  and r["price"] <= rec["value_own30"])
-        m10 = shift(m, 10)
-        if m in sh and m10 in sh:
-            rec["fwd10_real"] = (sh[m10]["real_tr_price"]
-                                 / sh[m]["real_tr_price"]) ** 0.1 - 1
+                                  and p["price"] <= rec["value_own30"])
+        if "fwd10_real" in p:
+            rec["fwd10_real"] = p["fwd10_real"]
         out.append(rec)
 
     def summary(sel):
@@ -494,6 +512,247 @@ def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl,
 def _next(m):
     y, mo = int(m[:4]), int(m[5:7])
     return f"{y + (mo == 12):04d}-{(mo % 12) + 1:02d}"
+
+
+def add_months(m, k):
+    i = int(m[:4]) * 12 + int(m[5:7]) - 1 + k
+    return f"{i // 12:04d}-{i % 12 + 1:02d}"
+
+
+# ------------------------------------------------- 나스닥100 의 30년 이익
+def ndx_series(raw):
+    """
+    월별 나스닥100 1포인트당 12개월 이익 = 그 달 말 지수 ÷ 그 달 P/E.
+
+    P/E 는 worldperatio 의 월별 계열(QQQ 기준, 2차 출처). 차트 점은 매월
+    1일로 찍혀 있지만 **그 달 말 종가**로 나눠야 이익이 매끄럽습니다 —
+    ndx_pe_checks 가 그 근거(월간 변화의 크기)를 계산해 둡니다. 마지막 점은
+    페이지의 계산일 값이고, Yahoo 월봉의 마지막 막대도 같은 날의 종가라
+    짝이 맞습니다.
+    """
+    px = {ym(r["date"]): r["close"]
+          for r in raw["prices"]["NDX"]["monthly"]["rows"]}
+    rows = []
+    for r in raw["ndx_pe_history"]["rows"]:
+        m = r["month"]
+        if m in px and r["pe"] > 0:
+            rows.append({"month": m, "price": px[m], "pe": r["pe"],
+                         "eps": px[m] / r["pe"]})
+    return rows
+
+
+def ndx_pe_checks(raw, agg):
+    """
+    2차 출처를 그대로 믿지 않습니다. 세 가지로 검정합니다.
+
+    (1) 날짜 해석: 같은 P/E 를 그 달 말 종가로 나눈 이익과 전월 말 종가로
+        나눈 이익 중 어느 쪽이 매끄러운가. 12개월 이익은 천천히 움직이므로
+        매끄러운 쪽이 맞는 해석입니다.
+    (2) 오늘: worldperatio 의 현재 P/E ↔ 우리가 SEC 공시에서 직접 모은
+        구성종목 **순이익** P/E. 둘 다 보고 기준 순이익이면 맞아야 합니다.
+    (3) 과거: ↔ Siblis Research 의 공개 값. Siblis 는 회계상 일회성 손익을
+        뺀 '정상화' 순이익이라 같은 값을 기대하지 않습니다 — 차이의 크기가
+        이 계열의 불확실성입니다. 대신 Siblis 의 최신 값을 오늘 가격으로
+        옮기면 우리 **NOPAT** P/E 와 맞아야 합니다(둘 다 평가이익을 뺀 것).
+    """
+    h = raw["ndx_pe_history"]
+    px = {ym(r["date"]): r["close"]
+          for r in raw["prices"]["NDX"]["monthly"]["rows"]}
+    ms = sorted(px)
+    pe = {r["month"]: r["pe"] for r in h["rows"]}
+    live = h["rows"][-1]["month"] if h["last_point_is_current"] else None
+
+    def roughness(k):
+        e = {}
+        for m, v in pe.items():
+            if m < "1996-01" or m == live or m not in px:
+                continue
+            i = ms.index(m) + k
+            if 0 <= i < len(ms):
+                e[m] = px[ms[i]] / v
+        ks = sorted(e)
+        ch = [abs(math.log(e[b] / e[a])) for a, b in zip(ks, ks[1:])]
+        return {"months": len(ch), "median_abs_change": st.median(ch)}
+    conv = {"same_month_end": roughness(0), "previous_month_end": roughness(-1)}
+
+    cur = h["current"]
+    today = {"wpr_pe": cur["pe"], "wpr_date": cur["date"],
+             "ours_pe_net_income": agg["pe_net_income"],
+             "rel": cur["pe"] / agg["pe_net_income"] - 1,
+             "ishares_pe": raw["ishares"]["NDX"]["pe"]}
+    sib = []
+    for p in raw["siblis_ndx"]["points"]:
+        w = pe.get(p["month"])
+        if w and p["month"] != live:
+            sib.append({"month": p["month"], "siblis": p["pe"], "wpr": w,
+                        "rel": w / p["pe"] - 1, "source": p["source"]})
+    rels = [abs(x["rel"]) for x in sib]
+    last_s = raw["siblis_ndx"]["points"][-1]
+    lvl = raw["prices"]["NDX"]["latest"]["price"]
+    moved = last_s["pe"] * lvl / px[last_s["month"]]
+    return {
+        "convention": conv,
+        "today": today,
+        "siblis": {"points": sib, "n": len(sib),
+                   "median_abs_rel": st.median(rels), "max_abs_rel": max(rels),
+                   "worst": max(sib, key=lambda x: abs(x["rel"])),
+                   "share_wpr_lower": sum(x["rel"] < 0 for x in sib) / len(sib)},
+        "siblis_moved_to_today": {
+            "month": last_s["month"], "siblis_pe": last_s["pe"],
+            "level_then": px[last_s["month"]], "level_now": lvl,
+            "pe_at_today_price": moved, "ours_pe_nopat": agg["pe_nopat"],
+            "rel": moved / agg["pe_nopat"] - 1,
+            "note": "Siblis 이익이 그 뒤 변하지 않았다는 가정의 환산"},
+    }
+
+
+def ndx_backtest(raw, nrows, spx_rows, roe, terminal, base_rate_real, infl,
+                 fixed_discount=None):
+    """
+    S&P 500 과 같은 규칙. 나스닥100 은 30년 넘는 이익 기록이 없어 성장률
+    가정(30년 기록)은 본 격자와 똑같이 **S&P 500 의 그 달까지 30년 EPS
+    기록**을 씁니다. S&P EPS 가 끝난 뒤의 달은 마지막 값을 이어 씁니다.
+    재투자 수익률은 오늘 구성종목 집계의 순이익 ÷ 자기자본(이익이 순이익
+    기준이므로 짝을 맞춤). 뒤 10년 수익률은 나스닥100 총수익 기록이 없어
+    내지 않습니다.
+    """
+    sp = {r["month"]: r for r in spx_rows}
+    last_sp = max(sp)
+    last = nrows[-1]["month"]
+    start = shift(last, -30)
+    points, carried = [], []
+    for r in nrows:
+        m = r["month"]
+        if m < start:
+            continue
+        ms_ = m if m in sp else (last_sp if m > last_sp else None)
+        if ms_ is None or shift(ms_, -30) not in sp:
+            continue
+        if ms_ != m:
+            carried.append(m)
+        points.append({"month": m, "price": r["price"], "eps": r["eps"],
+                       "own30": cagr(sp[shift(ms_, -30)]["eps_nominal"],
+                                     sp[ms_]["eps_nominal"], 30)})
+    out = _backtest(raw, points, roe, terminal, base_rate_real, infl,
+                    fixed_discount)
+    out["own30_carried"] = {"months": carried, "from": last_sp}
+    return out
+
+
+# ------------------------------------------------------ 고점과 저점
+# 고점 = 그 뒤 15% 이상 빠진 일봉 고점. 저점 = 그 뒤 20% 이상 반등하기 전의
+# 최저 종가. 하락 문턱을 20% 로 두면 S&P 500 의 1998·2011·2018·2025 년
+# 하락(−19.3~−19.8%)이 소수점 차이로 빠집니다. 반등 문턱 20% 는 '강세장'의
+# 관행적 기준이고, 그보다 작은 반등은 같은 하락의 중간으로 봅니다(2022 년
+# 여름 S&P 500 +17% 반등). 두 지수에 같은 규칙을 씁니다.
+CYCLE_DOWN = 0.15
+CYCLE_UP = 0.20
+LAG_MONTHS = 3          # 분기 이익이 발표되기까지의 대략의 시차
+
+
+def find_cycles(daily, down=CYCLE_DOWN, up=CYCLE_UP):
+    px = [(r["date"], r["close"]) for r in daily]
+    out, state, hi, lo, peak = [], "up", px[0], None, None
+
+    def recovered(after, level):
+        return next((d for d, c in px if d > after and c >= level), None)
+    for d, c in px:
+        if state == "up":
+            if c > hi[1]:
+                hi = (d, c)
+            if c <= hi[1] * (1 - down):
+                state, lo, peak = "down", (d, c), hi
+        else:
+            if c < lo[1]:
+                lo = (d, c)
+            if c >= lo[1] * (1 + up):
+                out.append({"peak_date": peak[0], "peak": peak[1],
+                            "trough_date": lo[0], "trough": lo[1],
+                            "drawdown": lo[1] / peak[1] - 1,
+                            "confirmed": d, "open": False,
+                            "recovered": recovered(lo[0], peak[1])})
+                state, hi = "up", (d, c)
+    if state == "down":
+        out.append({"peak_date": peak[0], "peak": peak[1],
+                    "trough_date": lo[0], "trough": lo[1],
+                    "drawdown": lo[1] / peak[1] - 1, "confirmed": None,
+                    "open": True, "recovered": None})
+    return out
+
+
+def cycle_vs_value(cycles, bt, source_error=None):
+    """
+    각 고점에서 **그때 계산한** 버핏 기준 가치·매수선을 그 뒤의 저점과
+    비교합니다. 가치는 그래프의 선과 같은 값(고점이 있는 달의 월별 값)을
+    씁니다. 엄밀히 그 달의 12개월 이익은 1~2개월 뒤에 발표되므로, 같은
+    할인율·성장률에서 LAG_MONTHS 전 이익으로 바꿔도 결론(저점이 가치·매수선
+    아래로 내려왔는가)이 같은지 함께 셉니다.
+
+    source_error 를 주면(나스닥100 — 이익이 2차 출처) 이익을 ±그만큼 바꿔도
+    결론이 같은지 셉니다.
+    """
+    by = {r["month"]: r for r in bt["rows"]}
+    first, last = bt["from"], bt["to"]
+    out = []
+    for c in cycles:
+        pm, tm = c["peak_date"][:7], c["trough_date"][:7]
+        if pm < first:
+            continue
+        up_ = pm if pm in by else (last if pm > last else None)
+        if not up_ or not by[up_]["value_own30"]:
+            continue
+        rp = by[up_]
+        v, b = rp["value_own30"], rp["buy30_own30"]
+        rec = {**c, "value_month": up_, "eps_at_peak": rp["eps"],
+               "discount_at_peak": rp["discount"],
+               "own30_at_peak": rp["own30"],
+               "value_at_peak": v, "buy30_at_peak": b,
+               "peak_vs_value": c["peak"] / v - 1,
+               "trough_vs_value": c["trough"] / v - 1,
+               "trough_vs_buy30": c["trough"] / b - 1,
+               "reached_value": c["trough"] <= v,
+               "reached_buy30": c["trough"] <= b}
+        ut = tm if tm in by else (last if tm > last else None)
+        if ut and by[ut]["value_own30"]:
+            rt = by[ut]
+            rec.update({"trough_value_month": ut,
+                        "value_at_trough": rt["value_own30"],
+                        "buy30_at_trough": rt["buy30_own30"],
+                        "trough_vs_value_then": c["trough"]
+                        / rt["value_own30"] - 1})
+        ml = add_months(up_, -LAG_MONTHS)
+        if ml in by and by[ml]["eps"] > 0:
+            k = by[ml]["eps"] / rp["eps"]
+            rec.update({"lag_month": ml, "value_at_peak_lag": v * k,
+                        "buy30_at_peak_lag": b * k,
+                        "reached_value_lag": c["trough"] <= v * k,
+                        "reached_buy30_lag": c["trough"] <= b * k})
+        if source_error is not None:
+            e = source_error
+            rec["robust_to_source"] = (
+                (c["trough"] <= v * (1 - e)) == (c["trough"] <= v * (1 + e))
+                and (c["trough"] <= b * (1 - e))
+                == (c["trough"] <= b * (1 + e)))
+        out.append(rec)
+    closed = [r for r in out if not r["open"]]
+    flips = [r["peak_date"] for r in out if "reached_value_lag" in r and (
+        r["reached_value_lag"] != r["reached_value"]
+        or r["reached_buy30_lag"] != r["reached_buy30"])]
+    return {
+        "cycles": out,
+        "closed": len(closed), "open": len(out) - len(closed),
+        "reached_value": sum(r["reached_value"] for r in closed),
+        "reached_buy30": sum(r["reached_buy30"] for r in closed),
+        "median_trough_vs_value": (st.median(r["trough_vs_value"]
+                                             for r in closed)
+                                   if closed else None),
+        "median_peak_vs_value": (st.median(r["peak_vs_value"] for r in closed)
+                                 if closed else None),
+        "lag_months": LAG_MONTHS, "flips_with_lag": flips,
+        "source_error": source_error,
+        "not_robust_to_source": [r["peak_date"] for r in out
+                                 if r.get("robust_to_source") is False],
+    }
 
 
 # 버핏이 '지수'에 대해 직접 쓴 문장. 받은 원문과 **대조해 통과해야** 씁니다.
@@ -780,6 +1039,11 @@ def main():
     spx["backtest_fixed10"] = spx_backtest(raw, rows, roe, terminal,
                                    br["net_income_10y"]["median"], infl,
                                            fixed_discount=0.10)
+    spx_cyc = find_cycles(raw["prices"]["SPX"]["daily"]["rows"])
+    spx["cycles"] = {
+        "rule": {"down": CYCLE_DOWN, "up": CYCLE_UP, "basis": "일봉 종가"},
+        "bond": cycle_vs_value(spx_cyc, spx["backtest"]),
+        "fixed10": cycle_vs_value(spx_cyc, spx["backtest_fixed10"])}
     spx["required"] = required_growth(eps_now, lvl["price"], roe, discounts,
                                       terminal, br["net_income_10y"]["bands"],
                                       infl)
@@ -845,6 +1109,39 @@ def main():
           f"· P/E(순이익) {agg['pe_net_income']:.1f} · iShares "
           f"{raw['ishares']['NDX']['pe']} · ROE {nroe:.1%}")
     spx["price_record"] = price_record(raw, "SPX")
+
+    # 나스닥100 의 30년 — 이익 기록(2차 출처)을 먼저 검정한 뒤 같은 잣대.
+    nrows = ndx_series(raw)
+    chk = ndx_pe_checks(raw, agg)
+    if abs(chk["today"]["rel"]) > 0.10:
+        raise SystemExit(f"worldperatio 현재 P/E 가 우리 순이익 집계와 "
+                         f"{chk['today']['rel']:+.1%} 어긋납니다")
+    if not (chk["convention"]["same_month_end"]["median_abs_change"]
+            < chk["convention"]["previous_month_end"]["median_abs_change"]):
+        raise SystemExit("worldperatio 날짜 해석(그 달 말)이 근거를 잃었습니다")
+    nroe_ni = min(agg["roe_net_income"], CAP_RETURN)
+    err = chk["siblis"]["median_abs_rel"]
+    ndx["history"] = {
+        "basis": ("worldperatio 월별 P/E(QQQ 기준, 2차 출처) → 1포인트당 "
+                  "이익 = 그 달 말 지수 ÷ P/E"),
+        "checks": chk, "roe": nroe_ni,
+        "series": [r for r in nrows if r["month"] >= "1995-01"]}
+    ndx["backtest"] = ndx_backtest(raw, nrows, rows, nroe_ni, terminal,
+                                   br["net_income_10y"]["median"], infl)
+    ndx["backtest_fixed10"] = ndx_backtest(
+        raw, nrows, rows, nroe_ni, terminal, br["net_income_10y"]["median"],
+        infl, fixed_discount=0.10)
+    ndx_cyc = find_cycles(raw["prices"]["NDX"]["daily"]["rows"])
+    ndx["cycles"] = {
+        "rule": {"down": CYCLE_DOWN, "up": CYCLE_UP, "basis": "일봉 종가"},
+        "bond": cycle_vs_value(ndx_cyc, ndx["backtest"], err),
+        "fixed10": cycle_vs_value(ndx_cyc, ndx["backtest_fixed10"], err)}
+    for lab, X in (("S&P 500", spx), ("나스닥100", ndx)):
+        for k in ("bond", "fixed10"):
+            cv = X["cycles"][k]
+            print(f"  {lab} 순환[{k}] {cv['closed']}+{cv['open']}개 · 저점이 "
+                  f"고점 때 가치 아래 {cv['reached_value']} · 매수선 아래 "
+                  f"{cv['reached_buy30']} · 시차 반전 {cv['flips_with_lag']}")
 
     out = {
         "generated": date.today().isoformat(),
