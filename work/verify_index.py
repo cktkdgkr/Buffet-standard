@@ -336,19 +336,39 @@ def verify(d, c):
     check_grid(c, "나스닥100", n, d)
 
     # ------------------------------------------------------------ 백테스트
-    b = s["backtest"]
-    c.true("백테스트 30년(360개월 이상)", b["months"] >= 360)
-    for r in b["rows"][::45]:
-        if r["value_own30"] is None:
-            continue
-        c.same(f"백테스트 {r['month']} 매수선 판정", r["below_buy30"],
-               r["price"] <= r["buy30_own30"])
-        c.eq(f"백테스트 {r['month']} 매수선 = 가치×0.7", r["buy30_own30"],
-             r["value_own30"] * 0.7, rel=1e-12)
-    c.same("백테스트 매수선 아래 개월 수", b["below_buy30"]["months"],
-           sum(1 for r in b["rows"] if r["below_buy30"]))
-    c.same("백테스트 가치 아래 개월 수", b["below_value"]["months"],
-           sum(1 for r in b["rows"] if r["below_value"]))
+    # 두 판(버핏 기준·10% 고정)을 같은 방식으로. 가치는 그 달의 EPS·성장률·
+    # 할인율로 **독립 재계산**합니다 — 판정 플래그만 보면 가치 자체가 틀려도
+    # 플래그와 서로 맞기만 하면 통과합니다.
+    for btk, label, fixed in (("backtest", "백테스트", None),
+                              ("backtest_fixed10", "백테스트(10% 고정)", 0.10)):
+        b = s[btk]
+        c.true(f"{label} 30년(360개월 이상)", b["months"] >= 360)
+        c.same(f"{label} 고정 할인율 표기", b["fixed_discount"], fixed)
+        if fixed is not None:
+            c.true(f"{label} 할인율이 전부 {fixed:.0%}",
+                   all(abs(r["discount"] - fixed) < 1e-12 for r in b["rows"]))
+        for r in b["rows"][::30]:
+            if r["value_own30"] is None:
+                continue
+            got = dcf(r["eps"], min(r["own30"], d["cap_growth"]), 0.045,
+                      b["roe"], r["discount"], b["terminal"])
+            c.eq(f"{label} {r['month']} 가치 재계산", r["value_own30"],
+                 got["value"], rel=1e-9)
+            c.same(f"{label} {r['month']} 매수선 판정", r["below_buy30"],
+                   r["price"] <= r["buy30_own30"])
+            c.eq(f"{label} {r['month']} 매수선 = 가치×0.7",
+                 r["buy30_own30"], r["value_own30"] * 0.7, rel=1e-12)
+        c.same(f"{label} 매수선 아래 개월 수", b["below_buy30"]["months"],
+               sum(1 for r in b["rows"] if r["below_buy30"]))
+        c.same(f"{label} 가치 아래 개월 수", b["below_value"]["months"],
+               sum(1 for r in b["rows"] if r["below_value"]))
+    # 앵커: 2009년 3월의 12개월 EPS (multpl 실질 → 명목)
+    by_b = {r["month"]: r for r in s["backtest"]["rows"]}
+    sh09 = {r["date"]: r for r in raw["shiller"]["rows"]}.get("2009-03")
+    c.eq("앵커 2009-03 EPS = 실러", by_b["2009-03"]["eps"],
+         sh09["earnings"], rel=0.01)
+    c.true("2009-03 의 30년 성장률이 음수(끝점 이익 붕괴)",
+           by_b["2009-03"]["own30"] < 0)
 
     # ------------------------------------------------------------ CAPE 구간
     fw = s["forward_returns"]
@@ -433,6 +453,12 @@ MUTATIONS = [
         d, ["ndx", "level", "price"], lambda v: v + 100)),
     ("iShares P/E (앵커)", lambda d: _poke(
         d, ["ndx", "ishares", "pe"], lambda v: 40.0)),
+    ("10% 고정 가치", lambda d: _poke(
+        d, ["spx", "backtest_fixed10", "rows", 30, "value_own30"],
+        lambda v: v * 1.3)),
+    ("10% 고정 할인율 바꾸기", lambda d: _poke(
+        d, ["spx", "backtest_fixed10", "rows", 5, "discount"],
+        lambda v: 0.08)),
     ("백테스트 판정 뒤집기", lambda d: _poke(
         d, ["spx", "backtest", "rows", 0, "below_buy30"], lambda v: not v)),
     ("백테스트 매수선 개월 수", lambda d: _poke(

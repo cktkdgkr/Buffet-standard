@@ -404,7 +404,8 @@ def implied_return(base_earn, level, inc_return, g, fade_to, terminal):
     return (lo + hi) / 2
 
 
-def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl):
+def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl,
+                 fixed_discount=None):
     """
     같은 규칙을 지난 30년의 매달에 적용했다면 언제가 매수 구간이었나.
 
@@ -433,7 +434,9 @@ def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl):
         if m30 not in by or r["eps_nominal"] <= 0:
             continue
         own = cagr(by[m30]["eps_nominal"], r["eps_nominal"], 30)
-        k = tyx[m] + 0.03
+        # 버핏 기준은 그 달의 30년 국채 + 3%p. fixed_discount 를 주면 금리와
+        # 무관하게 그 값으로 고정합니다 — 저금리 시기의 영향을 걷어 낸 판.
+        k = fixed_discount if fixed_discount is not None else tyx[m] + 0.03
         rec = {"month": m, "price": r["price"], "eps": r["eps_nominal"],
                "discount": k, "own30": own}
         for key, g, fade in (("base", base_rate_real + infl, infl),
@@ -477,12 +480,13 @@ def spx_backtest(raw, rows, roe, terminal, base_rate_real, infl):
             "to": out[-1]["month"] if out else None,
             "months": len(out),
             "roe": roe, "terminal": terminal,
+            "fixed_discount": fixed_discount,
             "below_buy30": summary(below),
             "below_value": summary(below_v),
             "above_value": summary(above),
             "runs_below_value": runs,
             "rows": [{k: x.get(k) for k in (
-                "month", "price", "value_base", "value_own30",
+                "month", "price", "eps", "own30", "value_base", "value_own30",
                 "buy30_own30", "discount", "below_buy30", "below_value",
                 "fwd10_real")} for x in out]}
 
@@ -773,6 +777,9 @@ def main():
     spx["roe_sensitivity"] = sens
     spx["backtest"] = spx_backtest(raw, rows, roe, terminal,
                                    br["net_income_10y"]["median"], infl)
+    spx["backtest_fixed10"] = spx_backtest(raw, rows, roe, terminal,
+                                   br["net_income_10y"]["median"], infl,
+                                           fixed_discount=0.10)
     spx["required"] = required_growth(eps_now, lvl["price"], roe, discounts,
                                       terminal, br["net_income_10y"]["bands"],
                                       infl)

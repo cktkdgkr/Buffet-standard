@@ -117,8 +117,12 @@ def ladder(X, prefix):
     return "\n".join(o)
 
 
-def backtest_svg(bt):
-    """지난 30년: 지수 · 버핏 기준 가치 · 안전마진 30% 매수선 (로그 축)."""
+def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p"):
+    """지난 30년: 지수 · 버핏 기준 가치 · 안전마진 30% 매수선 (로그 축).
+
+    key 는 그래프를 구분하는 표식입니다. 같은 페이지에 할인율만 다른 그래프가
+    둘 있어서, 검증기가 표식으로 먼저 그래프를 특정한 뒤 좌표를 읽습니다.
+    """
     rows = [r for r in bt["rows"] if r["value_own30"]]
     W, H, L, R, T, B = 720, 300, 52, 12, 12, 28
     vals = [r["price"] for r in rows] + [r["value_own30"] for r in rows] + \
@@ -155,7 +159,8 @@ def backtest_svg(bt):
             shade.append(f'<rect x="{x0:.1f}" y="{T}" width="{x1 - x0:.1f}" '
                          f'height="{H - T - B}" class="zone"/>')
     return (
-        f'<figure class="chart"><svg viewBox="0 0 {W} {H}" role="img" '
+        f'<figure class="chart" data-chart="{key}">'
+        f'<svg viewBox="0 0 {W} {H}" role="img" '
         f'aria-label="지난 30년 S&amp;P 500 지수와 버핏 기준 가치, 안전마진 30% '
         f'매수선" data-n="{len(rows)}" data-lo="{lo:.6f}" '
         f'data-hi="{hi:.6f}">'
@@ -168,9 +173,10 @@ def backtest_svg(bt):
           '<span><i class="sw val"></i>버핏 기준 가치</span>'
           '<span><i class="sw buy"></i>안전마진 30% 매수선</span>'
           '<span><i class="sw zone"></i>매수선 아래였던 달</span></div>'
-        + "<figcaption>로그 축. 가치 = 그 달의 12개월 EPS·30년 국채+3%p·"
-          "그 달까지의 30년 EPS 기록(성장률)·ROE 13.9% 로 계산. 지금의 잣대를 "
-          "과거에 댄 것이지 그때의 판단은 아닙니다.</figcaption></figure>")
+        + f"<figcaption>로그 축. 가치 = 그 달의 12개월 EPS·할인율 {disc_text}·"
+          f"그 달까지의 30년 EPS 기록(성장률)·ROE {bt['roe'] * 100:.1f}% 로 "
+          f"계산. 지금의 잣대를 과거에 댄 것이지 그때의 판단은 "
+          f"아닙니다.</figcaption></figure>")
 
 
 def build(d):
@@ -648,6 +654,64 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
         '때문입니다 — 직전 12개월 이익만 보는 방식의 약점이고, CAPE 가 10년 '
         '평균을 쓰는 이유입니다.</p>')
 
+    # ---- 2008~09년에 가치가 지수보다 크게 꺼진 이유
+    by_bt = {r["month"]: r for r in bt["rows"]}
+    e07, e09 = by_bt["2007-06"], by_bt["2009-03"]
+    w(f'<p><b>2008~09년에 가치선이 지수보다 훨씬 깊게 꺼진 이유.</b> 이 '
+      f'가치는 직전 12개월 보고이익에 비례합니다. S&amp;P 500 의 12개월 EPS 가 '
+      f'2007년 6월 <b data-v="e07">{e07["eps"]:,.2f}</b>에서 2009년 3월 '
+      f'<b data-v="e09">{e09["eps"]:,.2f}</b>로 '
+      f'{sg(e09["eps"] / e07["eps"] - 1, 0)} 줄었고 — 금융사 손실과 대규모 '
+      f'상각이 보고이익에 그대로 들어갔습니다 — 같은 기간 지수는 '
+      f'{sg(e09["price"] / e07["price"] - 1, 0)}였습니다. 게다가 성장률 '
+      f'가정(그 달까지의 30년 EPS 기록)도 끝점 이익이 무너지면서 '
+      f'{pct(e07["own30"])}에서 <b data-v="g09">{pct(e09["own30"])}</b>로 '
+      f'내려가 두 번 깎였습니다. 시장은 이익이 회복할 것을 보고 그만큼 '
+      f'떨어지지 않았고, 실제로 EPS 는 2009년 말 다시 '
+      f'{by_bt["2009-12"]["eps"]:,.2f}로 돌아왔습니다.</p>')
+
+    b10 = s["backtest_fixed10"]
+    w("<h3>할인율을 10%로 고정하면</h3>")
+    w('<p>금리 수준과 무관하게 매달 같은 10%로 할인한 판입니다. 저금리 시기에 '
+      '할인율이 낮아져 가치가 부풀던 효과를 걷어 냅니다.</p>')
+    w(backtest_svg(b10, "fixed10", "10% 고정"))
+    w(table(["구간 (10% 고정)", "개월 수", "뒤 10년 실질 총수익률 (중위)"],
+            [["매수선(안전마진 30%) 아래", f'{b10["below_buy30"]["months"]}',
+              pct(b10["below_buy30"]["fwd10_real_median"])],
+             ["가치 아래", f'{b10["below_value"]["months"]}',
+              pct(b10["below_value"]["fwd10_real_median"])],
+             ["가치 위", f'{b10["above_value"]["months"]}',
+              pct(b10["above_value"]["fwd10_real_median"])]],
+            caption="'—' = 해당하는 달이 없음."))
+    near10 = min((r for r in b10["rows"] if r["value_own30"]),
+                 key=lambda r: r["price"] / r["value_own30"])
+    if b10["below_value"]["months"] == 0:
+        w(f'<p><b>10% 고정으로는 지난 30년 동안 S&amp;P 500 이 가치 아래로 '
+          f'내려온 달이 <span data-v="b10-months">한 번도</span> '
+          f'없었습니다.</b> 가장 가까웠던 때가 '
+          f'<span data-v="b10-near">{esc(near10["month"])}</span>로, 지수 '
+          f'{pts(near10["price"])}가 가치 {pts(near10["value_own30"])}보다 '
+          f'{sg(near10["price"] / near10["value_own30"] - 1, 0)} 높았습니다. '
+          f'그런데 그 30년 동안 아무 때나 산 사람의 뒤 10년 실질 수익률 중위는 '
+          f'<b data-v="b10-fwd">{pct(b10["above_value"]["fwd10_real_median"])}'
+          f'</b>였습니다. 즉 이 잣대를 10% 로 고정해 지켰다면 30년 내내 '
+          f'시장 밖에 있었을 것입니다.</p>')
+    else:
+        w(f'<p>10% 고정으로는 가치 아래였던 달이 '
+          f'<span data-v="b10-months">{b10["below_value"]["months"]}개월'
+          f'</span>입니다.</p>')
+    w(f'<p><b>이건 모형이 보수적이라는 신호입니다.</b> 가장 유력한 원인은 '
+      f'재투자 수익률로 쓴 ROE {pct(s["incremental_return"])}입니다. 이 값이면 '
+      f'연 {pct(rec["windows"]["30"]["eps_cagr_nominal"])} 성장에 이익의 '
+      f'{pct(rec["windows"]["30"]["eps_cagr_nominal"] / s["incremental_return"], 0)}'
+      f'를 재투자해야 한다고 계산되는데, 실제 S&amp;P 500 은 배당만으로 이익의 '
+      f'{pct(rec["payout_median_30y"], 0)}(30년 중위)를 내주고도 그만큼 '
+      f'성장했습니다. 자사주 매입은 자료가 없어 더하지 못했지만, 더하면 '
+      f'실제 재투자는 모형의 가정보다 적었을 가능성이 큽니다 — 장부상 ROE 가 '
+      f'새로 투자한 돈의 수익률을 낮게 잡는다는 뜻입니다. 그래서 이 보고서의 '
+      f'"비싸다" 판정은 방향으로 읽고, 매수선 숫자 자체는 엄격한 쪽으로 '
+      f'읽으십시오.</p>')
+
     w("<h3>70년 기록 — 시작 시점의 CAPE 와 뒤 10년</h3>")
     rows = [[f'{b["quintile"]}분위', f'{b["cape_from"]:.1f} ~ {b["cape_to"]:.1f}',
              f'{b["months"]}', f'<b>{pct(b["fwd10_real_median"])}</b>',
@@ -1070,30 +1134,68 @@ def verify(page, d):
                  X["level"]["price"], axis * 0.0001)
 
     # -------------------------------------------- 30년 선 그래프 (좌표 = 값)
-    bt = s["backtest"]
-    rows_bt = [r for r in bt["rows"] if r["value_own30"]]
-    msv = re.search(r'data-n="(\d+)" data-lo="([-\d.]+)" data-hi="([-\d.]+)"',
-                    page)
-    if true("그래프 존재", bool(msv)):
+    # 할인율만 다른 그래프가 둘이라 표식으로 먼저 특정합니다 — 페이지 전체에서
+    # 첫 그래프를 집으면 둘째 그래프가 틀려도 통과합니다.
+    for ckey, btk in (("bond", "backtest"), ("fixed10", "backtest_fixed10")):
+        btc = s[btk]
+        rows_bt = [r for r in btc["rows"] if r["value_own30"]]
+        mfig = re.search(rf'<figure class="chart" data-chart="{ckey}">'
+                         r'(.*?)</figure>', page, re.S)
+        if not true(f"그래프 {ckey} 존재", bool(mfig)):
+            continue
+        fig = mfig.group(1)
+        msv = re.search(r'data-n="(\d+)" data-lo="([-\d.]+)" '
+                        r'data-hi="([-\d.]+)"', fig)
+        if not true(f"그래프 {ckey} 축 정보", bool(msv)):
+            continue
         nn, lo, hi = int(msv.group(1)), float(msv.group(2)), \
             float(msv.group(3))
-        eq("그래프 점 수", nn, len(rows_bt))
+        eq(f"그래프 {ckey} 점 수", nn, len(rows_bt))
         H, T_, B = 300, 12, 28
         for key, line in (("price", "price"), ("value", "value_own30"),
                           ("buy30", "buy30_own30")):
-            mm = re.search(rf'data-line="{key}" points="([^"]+)"', page)
-            if not true(f"그래프 선 {key}", bool(mm)):
+            mm = re.search(rf'data-line="{key}" points="([^"]+)"', fig)
+            if not true(f"그래프 {ckey} 선 {key}", bool(mm)):
                 continue
             ptsl = [tuple(map(float, p.split(",")))
                     for p in mm.group(1).split()]
-            eq(f"그래프 선 {key} 점 수", len(ptsl), len(rows_bt))
+            eq(f"그래프 {ckey} 선 {key} 점 수", len(ptsl), len(rows_bt))
             for i in range(0, len(rows_bt), 40):
                 want = T_ + (H - T_ - B) * (1 - (math.log(rows_bt[i][line])
                                                  - lo) / (hi - lo))
-                near(f"그래프 {key} {rows_bt[i]['month']} 높이",
+                near(f"그래프 {ckey} {key} {rows_bt[i]['month']} 높이",
                      ptsl[i][1], want, 0.06)
-        eq("그래프 매수선 아래 음영 수", page.count('class="zone"/>'),
+        eq(f"그래프 {ckey} 매수선 아래 음영 수", fig.count('class="zone"/>'),
            sum(1 for r in rows_bt if r["below_buy30"]))
+        disc = "10% 고정" if ckey == "fixed10" else "30년 국채+3%p"
+        true(f"그래프 {ckey} 캡션의 할인율", f"할인율 {disc}" in fig)
+
+    bt = s["backtest"]
+
+    # 2008~09 설명 문단의 숫자
+    by_bt = {r["month"]: r for r in s["backtest"]["rows"]}
+    eq("본문 2007-06 EPS", v_of("e07"), f'{by_bt["2007-06"]["eps"]:,.2f}')
+    eq("본문 2009-03 EPS", v_of("e09"), f'{by_bt["2009-03"]["eps"]:,.2f}')
+    eq("본문 2009-03 성장률 가정", v_of("g09"), pct(by_bt["2009-03"]["own30"]))
+    b10 = s["backtest_fixed10"]
+    true("10% 고정판 할인율이 전부 10%",
+         all(abs(r["discount"] - 0.10) < 1e-12 for r in b10["rows"]))
+    if b10["below_value"]["months"] == 0:
+        eq("본문 10% 고정 개월", v_of("b10-months"), "한 번도")
+        near10 = min((r for r in b10["rows"] if r["value_own30"]),
+                     key=lambda r: r["price"] / r["value_own30"])
+        eq("본문 10% 고정 최근접 달", v_of("b10-near"), near10["month"])
+        eq("본문 10% 고정 수익률", v_of("b10-fwd"),
+           pct(b10["above_value"]["fwd10_real_median"]))
+    bt10t = [t for t in T if t[0][:1] == ["구간 (10% 고정)"]]
+    if true("10% 고정 표", len(bt10t) == 1):
+        for lab, key in (("매수선(안전마진 30%) 아래", "below_buy30"),
+                         ("가치 아래", "below_value"),
+                         ("가치 위", "above_value")):
+            hit = [r for r in bt10t[0][1] if r[0] == lab]
+            if true(f"10% 고정 행 {lab}", len(hit) == 1):
+                eq(f"10% 고정 {lab} 개월", hit[0][1], f'{b10[key]["months"]}')
+    true("모형이 보수적이라는 단서", "모형이 보수적이라는 신호" in page)
 
     # ---------------------------------------------- 기대수익률·요구 성장률
     irt = [t for t in T if t[0][:2] == ["성장률 가정", "기대수익률"]]
@@ -1257,6 +1359,16 @@ def mutations(d):
         ("그래프 선 한 점", lambda p: re.sub(
             r'(data-line="price" points=")([\d.]+),([\d.]+)',
             r"\g<1>\g<2>,5.0", p, count=1)),
+        ("10% 고정 그래프의 한 점", lambda p: re.sub(
+            r'(data-chart="fixed10".*?data-line="value" points=")'
+            r'([\d.]+),([\d.]+)', r"\g<1>\g<2>,5.0", p, count=1,
+            flags=re.S)),
+        ("10% 고정 그래프 캡션", lambda p: p.replace("할인율 10% 고정",
+                                                "할인율 30년 국채+3%p", 1)),
+        ("2009년 EPS 숫자", lambda p: re.sub(
+            r'(data-v="e09">)[^<]+', r"\g<1>66.00", p, count=1)),
+        ("10% 고정 '한 번도' 서술", lambda p: re.sub(
+            r'(data-v="b10-months">)[^<]+', r"\g<1>12개월", p, count=1)),
         ("그래프 음영 하나 제거", lambda p: p.replace(
             'class="zone"/>', 'class="zonex"/>', 1)),
         ("30년 기록 표", lambda p: p.replace(
