@@ -147,6 +147,29 @@ def check_grid(c, tag, X, d):
             c.eq(f"{tag} {row['key']} 기대수익률 되넣기 = 지수",
                  back["value"], lvl, rel=1e-6)
             c.true(f"{tag} {row['key']} 기대수익률 > 터미널", ir > tg)
+        # 가치·매수선에 샀을 때의 기대수익률: 되넣으면 그 가격이 나와야 하고,
+        # 가치에 산 경우는 정의상 버핏 기준 할인율과 같아야 합니다.
+        ra = row.get("returns_at")
+        bc = next(x for x in row["cells"]
+                  if x["discount_key"] == "bond30_plus3")
+        if c.true(f"{tag} {row['key']} 가치·매수선 기대수익률 있음",
+                  bool(ra) and ra.get("value") is not None
+                  and ra.get("buy30") is not None):
+            c.eq(f"{tag} {row['key']} 가치 가격 = 격자", ra["value_price"],
+                 bc["value"], rel=1e-12)
+            c.eq(f"{tag} {row['key']} 매수선 가격 = 격자", ra["buy30_price"],
+                 bc["buy_level"]["30%"], rel=1e-12)
+            c.eq(f"{tag} {row['key']} 가치에 사면 = 할인율", ra["value"],
+                 bc["discount"], tol=1e-6)
+            for k_, price in (("value", ra["value_price"]),
+                              ("buy30", ra["buy30_price"])):
+                back = dcf(base, row["growth"], row["fade_to"], inc,
+                           ra[k_], tg)
+                c.eq(f"{tag} {row['key']} {k_} 기대수익률 되넣기",
+                     back["value"], price, rel=1e-6)
+            c.true(f"{tag} {row['key']} 지금 < 가치 < 매수선 수익률 순서",
+                   ir is None or ir < ra["value"] < ra["buy30"],
+                   f"{ir} / {ra['value']} / {ra['buy30']}")
         prev_vals = vals
     # 요구 성장률
     seen = 0
@@ -412,6 +435,10 @@ MUTATIONS = [
         d, ["spx", "backtest", "rows", 0, "below_buy30"], lambda v: not v)),
     ("백테스트 매수선 개월 수", lambda d: _poke(
         d, ["spx", "backtest", "below_buy30", "months"], lambda v: v + 5)),
+    ("S&P 매수선 기대수익률", lambda d: _poke(
+        d, ["spx", "grid", 2, "returns_at", "buy30"], lambda v: v + 0.01)),
+    ("나스닥 가치 기대수익률", lambda d: _poke(
+        d, ["ndx", "grid", 0, "returns_at", "value"], lambda v: v + 0.005)),
     ("버핏 원문 대조 수", lambda d: _poke(
         d, ["index_passages", 0, "verified"], lambda v: 0)),
     ("버핏 인용문 훼손", lambda d: _poke(

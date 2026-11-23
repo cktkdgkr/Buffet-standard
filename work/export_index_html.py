@@ -37,6 +37,12 @@ def sg(x, nd=1):
     return "—" if x is None else f"{x * 100:+.{nd}f}%"
 
 
+def rng(vals, nd=1):
+    """수익률 범위. 소수 첫째 자리까지 같으면 한 값만 씁니다."""
+    lo, hi = pct(min(vals), nd), pct(max(vals), nd)
+    return lo if lo == hi else f"{lo} ~ {hi}"
+
+
 def pts(x):
     return "—" if x is None else f"{x:,.0f}"
 
@@ -291,6 +297,10 @@ footer.page{border-top:1px solid var(--line);margin-block:3rem 0;
 .card dd{margin:0;text-align:right;font-family:var(--mono);
   font-variant-numeric:tabular-nums}
 .card dd.strong{font-weight:500;color:var(--accent)}
+.card .ctitle{font-size:.76rem;font-weight:700;letter-spacing:.04em;
+  color:var(--dim2);margin:.8rem 0 .3rem;border-top:1px solid var(--line);
+  padding-top:.6rem}
+.cnote{font-size:.8rem;color:var(--dim);margin:.6rem 0 0}
 .card dd[data-state="flag"]{color:var(--flag)}
 
 .verdict{border:2px solid var(--fg);background:var(--panel);
@@ -400,11 +410,25 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
         # 매수선은 판정이 아니라 가격이라 의미색(under)을 쓰지 않습니다.
         w(f'<dt>안전마진 30% 매수선</dt><dd class="strong" '
           f'data-v="{key}-buy">{pts(blo)} ~ {pts(bhi)}</dd>')
-        w(f'<dt>지금 사면 기대수익률</dt><dd data-state="flag" '
-          f'data-v="{key}-ir">{pct(min(irs), 1)} ~ {pct(max(irs), 1)}</dd>')
-        w(f'<dt>30년 국채</dt><dd>{pct(r30, 2)}</dd>')
+        ra = [g["returns_at"] for g in X["grid"]]
+        w('</dl><p class="ctitle">기대수익률 — 그 가격에 샀을 때</p><dl>')
+        w(f'<dt>지금 지수에 사면</dt><dd data-state="flag" '
+          f'data-v="{key}-ir">{rng([g["implied_return"] for g in X["grid"]])}'
+          f'</dd>')
+        w(f'<dt>버핏 기준 가치에 사면</dt><dd '
+          f'data-v="{key}-ir-value">{rng([x["value"] for x in ra])}</dd>')
+        w(f'<dt>안전마진 30% 매수선에 사면</dt><dd class="strong" '
+          f'data-v="{key}-ir-buy">{rng([x["buy30"] for x in ra])}</dd>')
+        w(f'<dt>비교: 30년 국채</dt><dd>{pct(r30, 2)}</dd>')
         w("</dl></div>")
     w("</div>")
+    w(f'<p class="cnote">기대수익률 = 그 가격에 사서 각 성장률 가정(4개)이 '
+      f'그대로 실현될 때의 연수익률, 범위는 가정 사이의 차이입니다. '
+      f'<b>버핏 기준 가치에 사면 정의상 할인율 {pct(r30 + 0.03, 2)}와 '
+      f'같습니다</b> — 가치란 그 수익률을 내는 가격이기 때문입니다. '
+      f'30% 싸게 사도 연 수익률이 2%p 남짓만 오르는 것은, 이 수익률이 '
+      f'<b>영원히 보유하며 현금흐름만 받는다</b>고 가정한 값이라 시장 '
+      f'가격이 가치로 되돌아가며 생기는 차익은 넣지 않았기 때문입니다.</p>')
 
     # ------------------------------------------------------------ verdict
     rq_s0 = req_of(s, "bond30_plus3", 0.0)
@@ -951,8 +975,12 @@ def verify(page, d):
         eq(f"카드 {key} 가치", v_of(f"{key}-value"), f"{pts(lo)} ~ {pts(hi)}")
         eq(f"카드 {key} 매수선", v_of(f"{key}-buy"),
            f"{pts(blo)} ~ {pts(bhi)}")
-        eq(f"카드 {key} 기대수익률", v_of(f"{key}-ir"),
-           f"{pct(min(irs))} ~ {pct(max(irs))}")
+        eq(f"카드 {key} 기대수익률", v_of(f"{key}-ir"), rng(irs))
+        ra = [g["returns_at"] for g in X["grid"]]
+        eq(f"카드 {key} 가치에 사면", v_of(f"{key}-ir-value"),
+           rng([x["value"] for x in ra]))
+        eq(f"카드 {key} 매수선에 사면", v_of(f"{key}-ir-buy"),
+           rng([x["buy30"] for x in ra]))
         eq(f"판정 {key} 가치", v_of(f"v-{key}"), f"{pts(lo)}~{pts(hi)}")
         eq(f"판정 {key} 매수선", v_of(f"b-{key}"), f"{pts(blo)}~{pts(bhi)}")
         eq(f"판정 {key} 기대수익률", v_of(f"ir-{key}"),
@@ -1162,6 +1190,9 @@ def verify(page, d):
             eq(f"버핏 {p['key']} 인용{i} 전문", a, b)
         true(f"버핏 {p['key']} 출처", p["source_url"] in mm.group(1))
     true("3%p 가 해석임을 명시", "인용자의 해석" in page)
+    true("가치에 사면 = 할인율임을 명시", "정의상 할인율" in page)
+    true("기대수익률이 재평가 차익을 넣지 않음을 명시",
+         "영원히 보유하며 현금흐름만 받는다" in page)
     true("순수 국채 할인율의 한계 명시", "발산" in page)
     true("2009년 약점 명시", "2009년 바닥" in page)
     true("자료 기준일", f'<b>{d["generated"]}</b>' in page)
@@ -1191,6 +1222,13 @@ def mutations(d):
             r'(data-v="spx-buy">)[^<]+', r"\g<1>1 ~ 2", p, count=1)),
         ("카드 기대수익률", lambda p: re.sub(
             r'(data-v="ndx-ir">)[^<]+', r"\g<1>9.9% ~ 9.9%", p, count=1)),
+        ("카드 매수선 기대수익률", lambda p: re.sub(
+            r'(data-v="spx-ir-buy">)[^<]+', r"\g<1>20.0% ~ 21.0%", p,
+            count=1)),
+        ("카드 가치 기대수익률", lambda p: re.sub(
+            r'(data-v="ndx-ir-value">)[^<]+', r"\g<1>9.9%", p, count=1)),
+        ("가치=할인율 설명 제거", lambda p: p.replace("정의상 할인율",
+                                                 "대체로 할인율", 1)),
         ("판정 본문 가치", lambda p: re.sub(
             r'(data-v="v-spx">)[^<]+', r"\g<1>1~2", p, count=1)),
         ("판정 본문 CAPE", lambda p: re.sub(

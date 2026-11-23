@@ -91,6 +91,10 @@ footer.page{border-top:1px solid var(--line);margin-block:3rem 0;
 .card dd{margin:0;text-align:right;font-family:var(--mono);
   font-variant-numeric:tabular-nums}
 .card dd.strong{font-weight:500;color:var(--accent)}
+.card .ctitle{font-size:.76rem;font-weight:700;letter-spacing:.04em;
+  color:var(--dim2);margin:.8rem 0 .3rem;border-top:1px solid var(--line);
+  padding-top:.6rem}
+.cnote{font-size:.8rem;color:var(--dim);margin:.6rem 0 0}
 .card dd[data-state="flag"]{color:var(--flag)}
 
 .verdict{border:2px solid var(--fg);background:var(--panel);
@@ -177,8 +181,11 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
 <dl>
 <dt>버핏 기준 가치</dt><dd data-v="spx-value">4,411 ~ 5,546</dd>
 <dt>안전마진 30% 매수선</dt><dd class="strong" data-v="spx-buy">3,088 ~ 3,882</dd>
-<dt>지금 사면 기대수익률</dt><dd data-state="flag" data-v="spx-ir">6.2% ~ 7.3%</dd>
-<dt>30년 국채</dt><dd>5.30%</dd>
+</dl><p class="ctitle">기대수익률 — 그 가격에 샀을 때</p><dl>
+<dt>지금 지수에 사면</dt><dd data-state="flag" data-v="spx-ir">6.2% ~ 7.3%</dd>
+<dt>버핏 기준 가치에 사면</dt><dd data-v="spx-ir-value">8.3%</dd>
+<dt>안전마진 30% 매수선에 사면</dt><dd class="strong" data-v="spx-ir-buy">10.1% ~ 10.7%</dd>
+<dt>비교: 30년 국채</dt><dd>5.30%</dd>
 </dl></div>
 <div class="card" data-card="ndx">
 <h3>나스닥100</h3>
@@ -187,10 +194,14 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
 <dl>
 <dt>버핏 기준 가치</dt><dd data-v="ndx-value">14,032 ~ 23,062</dd>
 <dt>안전마진 30% 매수선</dt><dd class="strong" data-v="ndx-buy">9,822 ~ 16,143</dd>
-<dt>지금 사면 기대수익률</dt><dd data-state="flag" data-v="ndx-ir">5.7% ~ 7.9%</dd>
-<dt>30년 국채</dt><dd>5.30%</dd>
+</dl><p class="ctitle">기대수익률 — 그 가격에 샀을 때</p><dl>
+<dt>지금 지수에 사면</dt><dd data-state="flag" data-v="ndx-ir">5.7% ~ 7.9%</dd>
+<dt>버핏 기준 가치에 사면</dt><dd data-v="ndx-ir-value">8.3%</dd>
+<dt>안전마진 30% 매수선에 사면</dt><dd class="strong" data-v="ndx-ir-buy">10.3% ~ 10.8%</dd>
+<dt>비교: 30년 국채</dt><dd>5.30%</dd>
 </dl></div>
 </div>
+<p class="cnote">기대수익률 = 그 가격에 사서 각 성장률 가정(4개)이 그대로 실현될 때의 연수익률, 범위는 가정 사이의 차이입니다. <b>버핏 기준 가치에 사면 정의상 할인율 8.30%와 같습니다</b> — 가치란 그 수익률을 내는 가격이기 때문입니다. 30% 싸게 사도 연 수익률이 2%p 남짓만 오르는 것은, 이 수익률이 <b>영원히 보유하며 현금흐름만 받는다</b>고 가정한 값이라 시장 가격이 가치로 되돌아가며 생기는 차익은 넣지 않았기 때문입니다.</p>
 <div class="verdict">
 <h3>한 줄 판정</h3>
 <p><b>두 지수 모두 버핏 기준으로는 안전마진이 없습니다.</b> 버핏의 할인율(장기 국채 + 3%p = 8.30%)로 계산한 가치가 S&amp;P 500 은 <b data-v="v-spx">4,411~5,546</b>, 나스닥100 은 <b data-v="v-ndx">14,032~23,062</b>이고, 둘 다 지금 지수(6,910, 25,029)보다 낮습니다. 안전마진 30%를 적용한 매수선은 S&amp;P 500 <b data-v="b-spx">3,088~3,882</b>, 나스닥100 <b data-v="b-ndx">9,822~16,143</b>입니다.</p>

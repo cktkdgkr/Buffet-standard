@@ -631,6 +631,24 @@ def grid_for(base_earn, level, inc_return, options, discounts, terminal):
                     "pass": {f"{int(m * 100)}%": v * (1 - m) > level
                              for m in MARGINS}})
             row["cells"].append(cell)
+        # 그 가격에 샀을 때의 기대수익률 — 지금 지수뿐 아니라 버핏 기준 가치와
+        # 안전마진 30% 매수선에 샀을 때도. 가치에 산 경우는 정의상 할인율과
+        # 같아야 하지만, 하드코딩하지 않고 같은 풀이로 계산해 그 사실을
+        # 검산합니다(검증기가 할인율과 대조).
+        bc = next((c for c in row["cells"]
+                   if c["discount_key"] == "bond30_plus3"
+                   and not c.get("diverges")), None)
+        if bc:
+            row["returns_at"] = {
+                "discount_key": "bond30_plus3",
+                "value_price": bc["value"],
+                "buy30_price": bc["buy_level"]["30%"],
+                "value": implied_return(base_earn, bc["value"], inc_return,
+                                        g["growth"], g["fade_to"], terminal),
+                "buy30": implied_return(base_earn, bc["buy_level"]["30%"],
+                                        inc_return, g["growth"],
+                                        g["fade_to"], terminal),
+            }
         rows.append(row)
     return rows
 

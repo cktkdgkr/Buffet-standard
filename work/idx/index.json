@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-23",
- "generated_utc": "2026-11-23T01:59:56.978290+00:00",
+ "generated_utc": "2026-11-23T06:26:02.161159+00:00",
  "collected": "2026-11-23",
  "macro": {
   "treasury_30y": {
@@ -3588,7 +3588,14 @@
       }
      }
     ],
-    "implied_return": 0.06283882959676962
+    "implied_return": 0.06283882959676962,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 4489.117532369747,
+     "buy30_price": 3142.382272658823,
+     "value": 0.08302999999999999,
+     "buy30": 0.10665149778232494
+    }
    },
    {
     "key": "half_of_own",
@@ -3682,7 +3689,14 @@
       }
      }
     ],
-    "implied_return": 0.06199792463166447
+    "implied_return": 0.06199792463166447,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 4411.145511385918,
+     "buy30_price": 3087.8018579701425,
+     "value": 0.08302999999999999,
+     "buy30": 0.10712648237449429
+    }
    },
    {
     "key": "own_sustained",
@@ -3776,7 +3790,14 @@
       }
      }
     ],
-    "implied_return": 0.06723498615159074
+    "implied_return": 0.06723498615159074,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 4879.55045156391,
+     "buy30_price": 3415.685316094737,
+     "value": 0.08302999999999999,
+     "buy30": 0.1042737309333116
+    }
    },
    {
     "key": "recent_10y",
@@ -3870,7 +3891,14 @@
       }
      }
     ],
-    "implied_return": 0.07349506889742063
+    "implied_return": 0.07349506889742063,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 5546.425871169368,
+     "buy30_price": 3882.4981098185576,
+     "value": 0.08302999999999999,
+     "buy30": 0.10148223168376325
+    }
    }
   ],
   "roe_sensitivity": [
@@ -10384,7 +10412,14 @@
       }
      }
     ],
-    "implied_return": 0.0579954149582038
+    "implied_return": 0.0579954149582038,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 14405.760480606454,
+     "buy30_price": 10084.032336424518,
+     "value": 0.08302999999999999,
+     "buy30": 0.10754862979708046
+    }
    },
    {
     "key": "half_of_own",
@@ -10478,7 +10513,14 @@
       }
      }
     ],
-    "implied_return": 0.057048534744874854
+    "implied_return": 0.057048534744874854,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 14032.12831598526,
+     "buy30_price": 9822.489821189682,
+     "value": 0.08302999999999999,
+     "buy30": 0.107717825804163
+    }
    },
    {
     "key": "own_sustained",
@@ -10572,7 +10614,14 @@
       }
      }
     ],
-    "implied_return": 0.06328382682818157
+    "implied_return": 0.06328382682818157,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 16275.435359504834,
+     "buy30_price": 11392.804751653382,
+     "value": 0.08302999999999996,
+     "buy30": 0.10586164451811847
+    }
    },
    {
     "key": "recent_10y",
@@ -10666,7 +10715,14 @@
       }
      }
     ],
-    "implied_return": 0.07911311072618477
+    "implied_return": 0.07911311072618477,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 23061.6984161726,
+     "buy30_price": 16143.188891320819,
+     "value": 0.08302999999999999,
+     "buy30": 0.10288192013845845
+    }
    }
   ],
   "roe_sensitivity": [
@@ -11004,7 +11060,14 @@
       }
      }
     ],
-    "implied_return": 0.06409800377014407
+    "implied_return": 0.06409800377014407,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 16984.183363670032,
+     "buy30_price": 11888.928354569021,
+     "value": 0.08302999999999996,
+     "buy30": 0.10767407568704127
+    }
    },
    {
     "key": "half_of_own",
@@ -11098,7 +11161,14 @@
       }
      }
     ],
-    "implied_return": 0.0629701830173629
+    "implied_return": 0.0629701830173629,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 16524.114418129364,
+     "buy30_price": 11566.880092690553,
+     "value": 0.08302999999999999,
+     "buy30": 0.10780011287573898
+    }
    },
    {
     "key": "own_sustained",
@@ -11192,7 +11262,14 @@
       }
      }
     ],
-    "implied_return": 0.07012989077097428
+    "implied_return": 0.07012989077097428,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 19286.261765682244,
+     "buy30_price": 13500.38323597757,
+     "value": 0.08302999999999999,
+     "buy30": 0.10608185224307895
+    }
    },
    {
     "key": "recent_10y",
@@ -11286,7 +11363,14 @@
       }
      }
     ],
-    "implied_return": 0.08827186407676121
+    "implied_return": 0.08827186407676121,
+    "returns_at": {
+     "discount_key": "bond30_plus3",
+     "value_price": 27685.063988001908,
+     "buy30_price": 19379.544791601333,
+     "value": 0.08302999999999996,
+     "buy30": 0.10334749908958735
+    }
    }
   ]
  },
