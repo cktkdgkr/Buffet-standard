@@ -1,0 +1,525 @@
+<title>지수 매수선 판정</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f7f7f4; --panel:#ffffff; --panel2:#eceee9;
+  --fg:#1b1f1c; --dim:#4c5550; --dim2:#7a837e;
+  --line:#d8dcd6; --line2:#c2c8c1;
+  --accent:#24584a; --accent-soft:#e3ece8;
+  --over:#2d6a4a; --over-soft:#e5efe8;
+  --under:#9c3f2c; --under-soft:#f6e7e2;
+  --pos:#2d6a4a; --neg:#9c3f2c;
+  --flag:#8a6410; --flag-soft:#f5edd9;
+  --buy:#2d6a4a; --val:#7fa89a; --now:#1b1f1c; --px:#1b1f1c;
+  --zone:#e3efe7; --quote:#f1f1ec;
+  --display:"Noto Serif KR",Georgia,"Times New Roman",serif;
+  --body:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121614; --panel:#1a1f1c; --panel2:#222925;
+  --fg:#e9eeeb; --dim:#a7b2ac; --dim2:#7d8882;
+  --line:#2d3530; --line2:#3c4640;
+  --accent:#86c2ae; --accent-soft:#1c2a25;
+  --over:#7fc39a; --over-soft:#15271d;
+  --under:#e39a81; --under-soft:#2b1a15;
+  --pos:#7fc39a; --neg:#e39a81;
+  --flag:#d9b45c; --flag-soft:#2b2412;
+  --buy:#7fc39a; --val:#3f6b5d; --now:#e9eeeb; --px:#e9eeeb;
+  --zone:#17271f; --quote:#1d221f;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#121614; --panel:#1a1f1c; --panel2:#222925;
+  --fg:#e9eeeb; --dim:#a7b2ac; --dim2:#7d8882;
+  --line:#2d3530; --line2:#3c4640;
+  --accent:#86c2ae; --accent-soft:#1c2a25;
+  --over:#7fc39a; --over-soft:#15271d;
+  --under:#e39a81; --under-soft:#2b1a15;
+  --pos:#7fc39a; --neg:#e39a81;
+  --flag:#d9b45c; --flag-soft:#2b2412;
+  --buy:#7fc39a; --val:#3f6b5d; --now:#e9eeeb; --px:#e9eeeb;
+  --zone:#17271f; --quote:#1d221f;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);
+  font-size:16px;line-height:1.72;margin:0;-webkit-text-size-adjust:100%;
+  /* 한국어 복합명사가 음절에서 끊기지 않게 — 없으면 "자/본비용" */
+  word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:54rem;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(1.75rem,5vw,2.5rem);line-height:1.22;font-weight:700;
+  letter-spacing:-.015em}
+h2{font-size:clamp(1.28rem,3.3vw,1.6rem);line-height:1.3;font-weight:700;
+  margin-block:2.9rem .35rem;border-top:2px solid var(--fg);
+  padding-block:.6rem 0}
+h3{font-size:1.06rem;line-height:1.4;font-weight:700;margin-block:1.9rem .25rem}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-underline-offset:.18em}
+ul,ol{margin:0 0 1rem;padding-left:1.15rem}
+li{margin-block:.42rem}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel2);
+  padding:.08rem .3rem;border-radius:2px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 .55rem}
+.lede{font-size:1.06rem;color:var(--dim);margin-block:.9rem 0}
+.meta{font-family:var(--mono);font-size:.75rem;line-height:1.9;
+  color:var(--dim2);border-top:1px solid var(--line);
+  margin-block:1.3rem 0;padding-block:.85rem 0}
+.meta b{color:var(--dim);font-weight:500}
+header.page{padding-block:2.5rem 0}
+footer.page{border-top:1px solid var(--line);margin-block:3rem 0;
+  padding-block:1.1rem 2.6rem;font-size:.84rem;color:var(--dim)}
+
+.cards{display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-block:1.5rem 0}
+@media(min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--panel);padding:1.05rem 1.1rem 1.15rem;min-width:0}
+.card h3{margin:0 0 .15rem;font-size:1.02rem}
+.card .lvl{font-family:var(--display);font-size:2rem;font-weight:700;
+  line-height:1.1;font-variant-numeric:tabular-nums}
+.card .sub{font-size:.8rem;color:var(--dim2);margin:0 0 .65rem}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:.3rem .9rem;
+  margin:0;font-size:.9rem}
+.card dt{color:var(--dim)}
+.card dd{margin:0;text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums}
+.card dd.strong{font-weight:500;color:var(--accent)}
+.card dd[data-state="flag"]{color:var(--flag)}
+
+.verdict{border:2px solid var(--fg);background:var(--panel);
+  padding:1.05rem 1.1rem;margin-block:1.4rem}
+.verdict h3{margin-top:0}
+.callout{border:1px solid var(--line2);background:var(--panel2);
+  padding:.95rem 1.05rem;margin-block:1.2rem;font-size:.93rem}
+
+figure.tw{margin:1rem 0 1.4rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:.44rem .62rem;border-bottom:1px solid var(--line);
+  white-space:nowrap}
+thead th{background:var(--panel2);font-weight:700;font-size:.78rem;
+  color:var(--dim);border-bottom:1px solid var(--line2)}
+tbody tr:last-child td{border-bottom:0}
+td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.l,th.l{text-align:left} td.r,th.r{text-align:right}
+td.w,th.w{text-align:left;white-space:normal;min-width:13rem}
+td.l,td.w{font-family:var(--body)}
+td[data-state="over"]{color:var(--over);background:var(--over-soft)}
+td[data-state="under"]{color:var(--under);background:var(--under-soft)}
+td[data-state="pos"]{color:var(--pos)}
+td[data-state="neg"]{color:var(--neg)}
+td[data-state="flag"]{color:var(--flag);background:var(--flag-soft)}
+figcaption{font-size:.78rem;color:var(--dim2);margin-block:.45rem 0}
+
+/* 범위 막대: 안전마진 30% 매수선까지(진한색) + 가치까지(옅은색) + 현재 지수(선) */
+.ladder{border:1px solid var(--line);background:var(--panel);
+  padding:.9rem 1rem;margin-block:1rem 1.4rem}
+.lrow{display:grid;grid-template-columns:1fr;gap:.2rem;margin-block:.55rem}
+@media(min-width:640px){.lrow{grid-template-columns:13rem 1fr 7.5rem;
+  align-items:center;gap:.7rem}}
+.llab{font-size:.84rem;color:var(--dim);min-width:0}
+.ltrack{position:relative;height:1.15rem;background:var(--panel2);
+  border:1px solid var(--line)}
+.lbuy{position:absolute;left:0;top:0;bottom:0;background:var(--buy);
+  opacity:.85}
+.lval{position:absolute;top:0;bottom:0;background:var(--val);opacity:.7}
+.lnow{position:absolute;top:-.3rem;bottom:-.3rem;width:2px;
+  background:var(--now)}
+.lnum{font-family:var(--mono);font-size:.78rem;color:var(--dim);
+  text-align:right}
+.laxis{display:flex;justify-content:space-between;font-family:var(--mono);
+  font-size:.72rem;color:var(--dim2);margin-top:.4rem}
+.lkey{font-size:.76rem;color:var(--dim2);margin:.35rem 0 0}
+
+.chart{margin:1rem 0 1.4rem;border:1px solid var(--line);
+  background:var(--panel);padding:.6rem .6rem .8rem;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:34rem;height:auto}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .tick{font-family:var(--mono);font-size:11px;fill:var(--dim2)}
+.chart .zone{fill:var(--zone)}
+.chart polyline{fill:none;stroke-linejoin:round}
+.chart .l-px{stroke:var(--px);stroke-width:1.6}
+.chart .l-val{stroke:var(--val);stroke-width:2}
+.chart .l-buy{stroke:var(--buy);stroke-width:2;stroke-dasharray:5 4}
+.legend{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:.78rem;
+  color:var(--dim);margin-top:.5rem}
+.sw{display:inline-block;width:.85rem;height:.2rem;margin-right:.35rem;
+  vertical-align:middle}
+.sw.px{background:var(--px)} .sw.val{background:var(--val);height:.25rem}
+.sw.buy{background:var(--buy)} .sw.zone{background:var(--zone);height:.7rem}
+
+blockquote{margin:0 0 1rem;background:var(--quote);
+  border-left:3px solid var(--accent);padding:.85rem 1rem}
+blockquote p{margin:0 0 .5rem;font-family:var(--mono);font-size:.84rem;
+  line-height:1.75;color:var(--dim)}
+blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
+  display:block;margin-top:.4rem}
+</style>
+<div class="wrap">
+<header class="page">
+<p class="eyebrow">2026-11-23 · S&amp;P 500 · Nasdaq-100</p>
+<h1>S&amp;P 500·나스닥100, 버핏 기준으로 얼마에 사야 하나</h1>
+<p class="lede">이 프로젝트가 개별 기업에 써 온 잣대 — 성장률 가정 × 할인율의 격자, 안전마진 매수선, 거꾸로 푼 요구 성장률 — 를 두 지수에 그대로 댔습니다. 성장률은 S&amp;P 500 의 <b>30년 이익 기록</b>에서 규칙으로 뽑았습니다.</p>
+<p class="meta">자료 기준일 <b>2026-11-23</b> · 지수 종가 <b>2026-11-20</b><br>S&amp;P 500 이익 <b>12개월 누적 2026-06</b> (S&amp;P 보고 기준) · 나스닥100 이익 <b>구성종목 SEC 공시 집계</b><br>30년 국채 <b>5.30%</b> · 기대인플레이션 <b>2.24%</b> (FRED 2026-11-05)</p>
+</header>
+<div class="cards">
+<div class="card" data-card="spx">
+<h3>S&amp;P 500</h3>
+<div class="lvl" data-v="spx-level">6,910</div>
+<p class="sub">2026-11-20 종가 · P/E <span data-v="spx-pe">23.4</span>배</p>
+<dl>
+<dt>버핏 기준 가치</dt><dd data-v="spx-value">4,411 ~ 5,546</dd>
+<dt>안전마진 30% 매수선</dt><dd class="strong" data-v="spx-buy">3,088 ~ 3,882</dd>
+<dt>지금 사면 기대수익률</dt><dd data-state="flag" data-v="spx-ir">6.2% ~ 7.3%</dd>
+<dt>30년 국채</dt><dd>5.30%</dd>
+</dl></div>
+<div class="card" data-card="ndx">
+<h3>나스닥100</h3>
+<div class="lvl" data-v="ndx-level">25,029</div>
+<p class="sub">2026-11-20 종가 · P/NOPAT <span data-v="ndx-pe">29.8</span>배</p>
+<dl>
+<dt>버핏 기준 가치</dt><dd data-v="ndx-value">14,032 ~ 23,062</dd>
+<dt>안전마진 30% 매수선</dt><dd class="strong" data-v="ndx-buy">9,822 ~ 16,143</dd>
+<dt>지금 사면 기대수익률</dt><dd data-state="flag" data-v="ndx-ir">5.7% ~ 7.9%</dd>
+<dt>30년 국채</dt><dd>5.30%</dd>
+</dl></div>
+</div>
+<div class="verdict">
+<h3>한 줄 판정</h3>
+<p><b>두 지수 모두 버핏 기준으로는 안전마진이 없습니다.</b> 버핏의 할인율(장기 국채 + 3%p = 8.30%)로 계산한 가치가 S&amp;P 500 은 <b data-v="v-spx">4,411~5,546</b>, 나스닥100 은 <b data-v="v-ndx">14,032~23,062</b>이고, 둘 다 지금 지수(6,910, 25,029)보다 낮습니다. 안전마진 30%를 적용한 매수선은 S&amp;P 500 <b data-v="b-spx">3,088~3,882</b>, 나스닥100 <b data-v="b-ndx">9,822~16,143</b>입니다.</p>
+<p>같은 사실을 수익률로 바꾸면 더 분명합니다. 지금 가격에 사서 각 성장률 가정이 그대로 실현되면 기대수익률은 S&amp;P 500 <b data-v="ir-spx">6.2%~7.3%</b>, 나스닥100 <b data-v="ir-ndx">5.7%~7.9%</b>입니다. 30년 국채 5.30% 위의 몫은 <b>1~3%p</b> — 버핏이 국채보다 "significantly higher"를 요구한다고 말한 것과 비교하면 얇습니다.</p>
+<p>S&amp;P 500 은 <b>안전마진을 0으로 해도</b> 자기 돈으로 조달 가능한 어떤 성장률로도 지금 가격이 설명되지 않습니다(성장률을 ROE 13.9% 직전까지 올려도 가치 천장이 <b data-v="ceil-spx">5,544</b>). 나스닥100 은 안전마진 0에서만 1년차 <b data-v="rq-ndx">21.3%</b>(10년 평균 12.3%) 성장을 요구하고, 안전마진 20% 이상에서는 해가 없습니다.</p>
+<p><b>다만 버핏이 지수 투자자에게 준 처방은 "매수선까지 기다려라"가 아닙니다.</b> 그는 1993년과 2013년에 같은 말을 했습니다 — <b>나눠서 사라</b>, 그리고 가장 큰 위험은 <b>극단적으로 들뜬 시점에 한꺼번에 들어가는 것</b>이다. 지금 S&amp;P 500 의 CAPE 는 <b data-v="cape">37.0</b>로 1950년 이후 <b data-v="cape-pct">96%</b>의 달보다 높습니다.</p>
+</div>
+<h2>이 보고서가 쓰는 잣대</h2>
+<p>개별 기업에 쓴 모형을 그대로 씁니다: 10년간 성장률이 감쇠하고, 성장에 필요한 재투자(= 성장률 ÷ 재투자 수익률)를 뺀 현금을 할인하고, 그 뒤는 영구가치로 둡니다. 영구성장률은 기대인플레이션 2.24%(실질 0%).</p>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">항목</th><th class="l">개별 기업</th><th class="w">지수에서</th></tr></thead><tbody>
+<tr><td class="l">분자</td><td class="l">NOPAT (영업이익 × (1 − 세율))</td><td class="w">S&amp;P 500: S&amp;P 보고 기준 EPS. 나스닥100: 구성종목 NOPAT 합 (순이익은 민감도로)</td></tr>
+<tr><td class="l">재투자 수익률</td><td class="l">증분 ROIC</td><td class="w">ROE. S&amp;P 500 은 1999~2025년 중위, 나스닥100 은 구성종목 NOPAT÷자기자본</td></tr>
+<tr><td class="l">할인율</td><td class="l">국채 · 국채+3%p · 10% · 11%</td><td class="w">같음. <b>국채+3%p 는 1994년 발언(국채 7% → 10%)에서 읽은 인용자의 해석이고 버핏의 규칙이 아닙니다</b></td></tr>
+<tr><td class="l">성장률 가정</td><td class="l">자기 10년 영업이익 기록에서 규칙으로</td><td class="w">자기 <b>30년</b> EPS 기록에서 같은 규칙으로 (절반·유지) + 기초율 중위 + 최근 10년</td></tr>
+<tr><td class="l">안전마진</td><td class="l">0·20·30·40%</td><td class="w">같음</td></tr>
+</tbody></table></div>
+</figure>
+<div class="callout"><p><b>왜 순수 국채 할인율 칸은 판정에서 빼고  읽는가.</b> 30년 국채로 할인하면서 영구성장률을 명목 GDP 로 두면 분모가 음수가 되어 발산합니다 — 이 프로젝트가 앞선 보고서에서 확인한 사실입니다. 그래서 국채 칸은 "할인율이 이 정도로 낮아야 지금 가격이 설명된다"는 참고로만 둡니다.</p></div>
+<h2>S&amp;P 500</h2>
+<h3>30년 기록 — 이익은 무엇을 해 왔나</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">기간</th><th class="r">이익 창</th><th class="r">EPS 연평균 (명목)</th><th class="r">EPS 연평균 (실질)</th><th class="r">지수 연평균</th></tr></thead><tbody>
+<tr><td class="l">10년</td><td class="r">2016-06 → 2026-06</td><td class="r">13.01%</td><td class="r">9.39%</td><td class="r">12.13%</td></tr>
+<tr><td class="l">20년</td><td class="r">2006-06 → 2026-06</td><td class="r">7.13%</td><td class="r">4.49%</td><td class="r">8.31%</td></tr>
+<tr><td class="l">30년</td><td class="r">1996-06 → 2026-06</td><td class="r">7.38%</td><td class="r">4.70%</td><td class="r">7.65%</td></tr>
+</tbody></table></div>
+<figcaption>EPS 는 12개월 누적 보고 기준. 실질 = 2026년 9월 달러. 지수 연평균은 월말 종가, 배당 제외.</figcaption>
+</figure>
+<p>30년 동안 이익은 연 <b data-v="eps30">7.38%</b>(실질 4.70%) 늘었고, 지수는 연 7.65% 올랐습니다. 지수가 이익보다 빨리 오른 만큼 배수가 올라갔습니다. <b>기간을 어떻게 자르느냐가 답을 바꿉니다</b> — 20년 창은 고점(2006)에서, 10년 창은 회복기에서 시작해 연 7.1%와 13.0%로 벌어집니다. 그래서 성장률 가정은 30년 창을 기준으로 두고, 최근 10년은 가장 관대한 가정으로 따로 둡니다.</p>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">지표</th><th class="r">값</th><th class="w">의미</th></tr></thead><tbody>
+<tr><td class="l">지금 P/E (보고 기준)</td><td class="r"><b>23.4</b></td><td class="w">지수 ÷ 12개월 EPS</td></tr>
+<tr><td class="l">30년 P/E 중위</td><td class="r">23.3</td><td class="w">지금은 30년 중 아래쪽 51%의 달보다 높음</td></tr>
+<tr><td class="l">CAPE (10년 평균 실질이익)</td><td class="r" data-state="flag"><b>37.0</b></td><td class="w">1950년 이후 96%, 최근 30년 90%의 달보다 높음</td></tr>
+<tr><td class="l">ROE 중위 (1999~2025)</td><td class="r">13.9%</td><td class="w">재투자 수익률로 씀. 최신 분기 18.4%</td></tr>
+<tr><td class="l">배당성향 중위 (30년)</td><td class="r">38%</td><td class="w">자사주 매입 제외</td></tr>
+</tbody></table></div>
+</figure>
+<p class="meta" style="border:0;padding:0">교차확인: multpl 의 EPS (실질)를 같은 사이트의 CPI 로 명목으로 되돌린 값이 실러의 명목 EPS 와 겹치는 342개월 동안 중위 0.00%, 최대 0.42% 차이. 우리 CAPE 를 실러의 마지막 값(2024-09)에 이으면 -0.9%.</p>
+<h3>버핏 기준 판정 — 성장률 × 할인율</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="w">성장률 가정</th><th class="l">할인율</th><th class="r">가치</th><th class="r">지금 대비</th><th class="r">매수선 (안전마진 30%)</th><th class="r">판정</th></tr></thead><tbody>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>9,250</b></td><td class="r" data-state="pos">+34%</td><td class="r"><b>6,475</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>4,489</b></td><td class="r" data-state="neg">-35%</td><td class="r"><b>3,142</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>3,437</b></td><td class="r" data-state="neg">-50%</td><td class="r"><b>2,406</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>3,011</b></td><td class="r" data-state="neg">-56%</td><td class="r"><b>2,108</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록의 절반 3.7%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>9,032</b></td><td class="r" data-state="pos">+31%</td><td class="r"><b>6,322</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록의 절반 3.7%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>4,411</b></td><td class="r" data-state="neg">-36%</td><td class="r"><b>3,088</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록의 절반 3.7%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>3,392</b></td><td class="r" data-state="neg">-51%</td><td class="r"><b>2,374</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록의 절반 3.7%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>2,979</b></td><td class="r" data-state="neg">-57%</td><td class="r"><b>2,086</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록 유지 7.4%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>10,580</b></td><td class="r" data-state="pos">+53%</td><td class="r"><b>7,406</b></td><td class="r" data-state="over"><b>합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록 유지 7.4%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>4,880</b></td><td class="r" data-state="neg">-29%</td><td class="r"><b>3,416</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록 유지 7.4%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>3,643</b></td><td class="r" data-state="neg">-47%</td><td class="r"><b>2,550</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">30년 EPS 기록 유지 7.4%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>3,148</b></td><td class="r" data-state="neg">-54%</td><td class="r"><b>2,203</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 13.0%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>12,853</b></td><td class="r" data-state="pos">+86%</td><td class="r"><b>8,997</b></td><td class="r" data-state="over"><b>합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 13.0%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>5,546</b></td><td class="r" data-state="neg">-20%</td><td class="r"><b>3,882</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 13.0%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>3,985</b></td><td class="r" data-state="neg">-42%</td><td class="r"><b>2,790</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 13.0%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>3,366</b></td><td class="r" data-state="neg">-51%</td><td class="r"><b>2,356</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+</tbody></table></div>
+<figcaption>지수 포인트 단위. 재투자 수익률 ROE 13.9%. 판정 = 매수선이 지금 지수 6,910보다 높은가. 초록·빨강은 이 판정에만 씁니다.</figcaption>
+</figure>
+<h3>적절한 매수 가격 — 안전마진 사다리</h3>
+<p>버핏 기준 할인율 8.30%에서, 성장률 가정마다 가치와 안전마진별 매수선입니다. 막대의 진한 부분이 안전마진 30% 매수선까지, 옅은 부분이 가치까지, 세로선이 지금 지수입니다.</p>
+<div class="ladder" data-axis="7255.9096">
+<div class="lrow" data-g="spx-base_rate_median"><span class="llab">기초율 중위 5.5%</span><span class="ltrack"><span class="lbuy" data-bar="spx-base_rate_median-buy30" style="width:43.308%"></span><span class="lval" data-bar="spx-base_rate_median-value" style="width:18.561%;left:43.308%"></span><span class="lnow" data-bar="spx-now" style="left:95.238%"></span></span><span class="lnum">3,142 · 4,489</span></div>
+<div class="lrow" data-g="spx-half_of_own"><span class="llab">30년 EPS 기록의 절반 3.7%</span><span class="ltrack"><span class="lbuy" data-bar="spx-half_of_own-buy30" style="width:42.556%"></span><span class="lval" data-bar="spx-half_of_own-value" style="width:18.238%;left:42.556%"></span><span class="lnow" data-bar="spx-now" style="left:95.238%"></span></span><span class="lnum">3,088 · 4,411</span></div>
+<div class="lrow" data-g="spx-own_sustained"><span class="llab">30년 EPS 기록 유지 7.4%</span><span class="ltrack"><span class="lbuy" data-bar="spx-own_sustained-buy30" style="width:47.075%"></span><span class="lval" data-bar="spx-own_sustained-value" style="width:20.175%;left:47.075%"></span><span class="lnow" data-bar="spx-now" style="left:95.238%"></span></span><span class="lnum">3,416 · 4,880</span></div>
+<div class="lrow" data-g="spx-recent_10y"><span class="llab">최근 10년 유지 13.0%</span><span class="ltrack"><span class="lbuy" data-bar="spx-recent_10y-buy30" style="width:53.508%"></span><span class="lval" data-bar="spx-recent_10y-value" style="width:22.932%;left:53.508%"></span><span class="lnow" data-bar="spx-now" style="left:95.238%"></span></span><span class="lnum">3,882 · 5,546</span></div>
+<div class="laxis"><span>0</span><span>7,256</span></div>
+<p class="lkey">진한 막대 = 안전마진 30% 매수선까지 · 옅은 막대 = 가치까지 · 세로선 = 지금 6,910 · 오른쪽 숫자 = 매수선 · 가치</p>
+</div>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">성장률 가정</th><th class="r">가치 (0%)</th><th class="r">20%</th><th class="r">30%</th><th class="r">40%</th></tr></thead><tbody>
+<tr><td class="l">기초율 중위 5.5%</td><td class="r" data-state="under">4,489</td><td class="r" data-state="under">3,591</td><td class="r" data-state="under"><b>3,142</b></td><td class="r" data-state="under">2,693</td></tr>
+<tr><td class="l">30년 EPS 기록의 절반 3.7%</td><td class="r" data-state="under">4,411</td><td class="r" data-state="under">3,529</td><td class="r" data-state="under"><b>3,088</b></td><td class="r" data-state="under">2,647</td></tr>
+<tr><td class="l">30년 EPS 기록 유지 7.4%</td><td class="r" data-state="under">4,880</td><td class="r" data-state="under">3,904</td><td class="r" data-state="under"><b>3,416</b></td><td class="r" data-state="under">2,928</td></tr>
+<tr><td class="l">최근 10년 유지 13.0%</td><td class="r" data-state="under">5,546</td><td class="r" data-state="under">4,437</td><td class="r" data-state="under"><b>3,882</b></td><td class="r" data-state="under">3,328</td></tr>
+</tbody></table></div>
+<figcaption>안전마진별 매수선. 초록 = 지금 지수가 그 아래(합격), 빨강 = 지금 지수가 그 위(불합격).</figcaption>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">ROE 가정</th><th class="r">ROE</th><th class="r">기초율 …</th><th class="r">30년 …</th><th class="r">30년 …</th><th class="r">최근 …</th></tr></thead><tbody>
+<tr><td class="l">전 기간 중위</td><td class="r">13.9%</td><td class="r" data-state="under">4,489</td><td class="r" data-state="under">4,411</td><td class="r" data-state="under">4,880</td><td class="r" data-state="under">5,546</td></tr>
+<tr><td class="l">최근 10년 중위</td><td class="r">15.5%</td><td class="r" data-state="under">4,612</td><td class="r" data-state="under">4,522</td><td class="r" data-state="under">5,059</td><td class="r" data-state="under">5,833</td></tr>
+<tr><td class="l">최신 분기</td><td class="r">18.4%</td><td class="r" data-state="under">4,791</td><td class="r" data-state="under">4,685</td><td class="r" data-state="under">5,320</td><td class="r" data-state="under">6,250</td></tr>
+<tr><td class="l">상한</td><td class="r">35.0%</td><td class="r" data-state="under">5,231</td><td class="r" data-state="under">5,085</td><td class="r" data-state="under">5,965</td><td class="r" data-state="over">7,278</td></tr>
+</tbody></table></div>
+<figcaption>ROE 를 바꿔도 판정이 바뀌는가 — 버핏 기준 할인율, 안전마진 0% 의 가치. 열은 위 표의 성장률 가정 순서와 같습니다. ROE 를 상한 35% 까지 올리고 최근 10년 성장률을 써야 겨우 지금 지수에 닿습니다.</figcaption>
+</figure>
+<h3>거꾸로 — 지금 가격이 요구하는 것</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">성장률 가정</th><th class="r">기대수익률</th><th class="r">30년 국채 대비</th></tr></thead><tbody>
+<tr><td class="l">기초율 중위 5.5%</td><td class="r"><b>6.28%</b></td><td class="r" data-state="flag">+0.98%</td></tr>
+<tr><td class="l">30년 EPS 기록의 절반 3.7%</td><td class="r"><b>6.20%</b></td><td class="r" data-state="flag">+0.90%</td></tr>
+<tr><td class="l">30년 EPS 기록 유지 7.4%</td><td class="r"><b>6.72%</b></td><td class="r" data-state="flag">+1.42%</td></tr>
+<tr><td class="l">최근 10년 유지 13.0%</td><td class="r"><b>7.35%</b></td><td class="r" data-state="flag">+2.05%</td></tr>
+</tbody></table></div>
+<figcaption>기대수익률 = 가치가 지금 지수와 같아지는 할인율. 이 칸은 '높을수록 좋다'입니다.</figcaption>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">할인율</th><th class="r">요구 조건</th><th class="r">1년차 성장률</th><th class="r">10년 평균</th><th class="r">기초율 위치</th></tr></thead><tbody>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 0%</td><td class="r">-4.2%</td><td class="r">-0.4%</td><td class="r">상위 71.3%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 20%</td><td class="r">2.4%</td><td class="r">2.9%</td><td class="r">상위 61.2%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 30%</td><td class="r">6.3%</td><td class="r">4.9%</td><td class="r">상위 53.0%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 40%</td><td class="r">10.8%</td><td class="r">7.1%</td><td class="r">상위 43.8%</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 0%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 5,544</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 5,544</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 5,544</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 5,544</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 0%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,984</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,984</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,984</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,984</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 0%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,364</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,364</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,364</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 3,364</td></tr>
+</tbody></table></div>
+<figcaption>요구 성장률은 <b>낮을수록 가격이 설명되기 쉽다</b>는 뜻이라 다른 판정 칸과 방향이 반대입니다. '없음' = 성장률을 재투자 수익률(ROE) 직전까지 올려도 닿지 못함 — 그 위는 자기 돈으로 조달할 수 없는 성장입니다.</figcaption>
+</figure>
+<h3>30년을 같은 잣대로 되짚으면</h3>
+<figure class="chart"><svg viewBox="0 0 720 300" role="img" aria-label="지난 30년 S&amp;P 500 지수와 버핏 기준 가치, 안전마진 30% 매수선" data-n="361" data-lo="4.284385" data-hi="9.164497"><rect x="360.9" y="12" width="1.8" height="260" class="zone"/><rect x="382.7" y="12" width="1.8" height="260" class="zone"/><rect x="384.6" y="12" width="1.8" height="260" class="zone"/><rect x="386.4" y="12" width="1.8" height="260" class="zone"/><rect x="388.2" y="12" width="1.8" height="260" class="zone"/><rect x="390.0" y="12" width="1.8" height="260" class="zone"/><rect x="391.8" y="12" width="1.8" height="260" class="zone"/><rect x="393.7" y="12" width="1.8" height="260" class="zone"/><rect x="395.5" y="12" width="1.8" height="260" class="zone"/><rect x="397.3" y="12" width="1.8" height="260" class="zone"/><rect x="399.1" y="12" width="1.8" height="260" class="zone"/><rect x="401.0" y="12" width="1.8" height="260" class="zone"/><rect x="402.8" y="12" width="1.8" height="260" class="zone"/><rect x="404.6" y="12" width="1.8" height="260" class="zone"/><rect x="406.4" y="12" width="1.8" height="260" class="zone"/><rect x="408.2" y="12" width="1.8" height="260" class="zone"/><rect x="410.1" y="12" width="1.8" height="260" class="zone"/><rect x="411.9" y="12" width="1.8" height="260" class="zone"/><rect x="413.7" y="12" width="1.8" height="260" class="zone"/><rect x="415.5" y="12" width="1.8" height="260" class="zone"/><rect x="417.4" y="12" width="1.8" height="260" class="zone"/><rect x="419.2" y="12" width="1.8" height="260" class="zone"/><rect x="455.6" y="12" width="1.8" height="260" class="zone"/><rect x="457.4" y="12" width="1.8" height="260" class="zone"/><rect x="459.3" y="12" width="1.8" height="260" class="zone"/><rect x="461.1" y="12" width="1.8" height="260" class="zone"/><rect x="490.2" y="12" width="1.8" height="260" class="zone"/><rect x="492.1" y="12" width="1.8" height="260" class="zone"/><rect x="543.1" y="12" width="1.8" height="260" class="zone"/><rect x="552.2" y="12" width="1.8" height="260" class="zone"/><rect x="554.0" y="12" width="1.8" height="260" class="zone"/><rect x="557.7" y="12" width="1.8" height="260" class="zone"/><rect x="559.5" y="12" width="1.8" height="260" class="zone"/><rect x="561.3" y="12" width="1.8" height="260" class="zone"/><rect x="563.1" y="12" width="1.8" height="260" class="zone"/><rect x="565.0" y="12" width="1.8" height="260" class="zone"/><rect x="566.8" y="12" width="1.8" height="260" class="zone"/><rect x="568.6" y="12" width="1.8" height="260" class="zone"/><rect x="570.4" y="12" width="1.8" height="260" class="zone"/><rect x="572.2" y="12" width="1.8" height="260" class="zone"/><rect x="574.1" y="12" width="1.8" height="260" class="zone"/><rect x="575.9" y="12" width="1.8" height="260" class="zone"/><rect x="577.7" y="12" width="1.8" height="260" class="zone"/><rect x="597.8" y="12" width="1.8" height="260" class="zone"/><rect x="599.6" y="12" width="1.8" height="260" class="zone"/><rect x="601.4" y="12" width="1.8" height="260" class="zone"/><rect x="603.2" y="12" width="1.8" height="260" class="zone"/><rect x="605.0" y="12" width="1.8" height="260" class="zone"/><rect x="606.9" y="12" width="1.8" height="260" class="zone"/><rect x="608.7" y="12" width="1.8" height="260" class="zone"/><rect x="610.5" y="12" width="1.8" height="260" class="zone"/><rect x="612.3" y="12" width="1.8" height="260" class="zone"/><rect x="614.2" y="12" width="1.8" height="260" class="zone"/><rect x="616.0" y="12" width="1.8" height="260" class="zone"/><rect x="619.6" y="12" width="1.8" height="260" class="zone"/><line x1="52" x2="708" y1="206.1" y2="206.1" class="grid"/><text x="46" y="210.1" class="tick" text-anchor="end">250</text><line x1="52" x2="708" y1="169.2" y2="169.2" class="grid"/><text x="46" y="173.2" class="tick" text-anchor="end">500</text><line x1="52" x2="708" y1="132.2" y2="132.2" class="grid"/><text x="46" y="136.2" class="tick" text-anchor="end">1,000</text><line x1="52" x2="708" y1="95.3" y2="95.3" class="grid"/><text x="46" y="99.3" class="tick" text-anchor="end">2,000</text><line x1="52" x2="708" y1="58.4" y2="58.4" class="grid"/><text x="46" y="62.4" class="tick" text-anchor="end">4,000</text><line x1="52" x2="708" y1="21.4" y2="21.4" class="grid"/><text x="46" y="25.4" class="tick" text-anchor="end">8,000</text><text x="52.0" y="292" class="tick" text-anchor="middle">1996</text><text x="161.3" y="292" class="tick" text-anchor="middle">2001</text><text x="270.7" y="292" class="tick" text-anchor="middle">2006</text><text x="380.0" y="292" class="tick" text-anchor="middle">2011</text><text x="489.3" y="292" class="tick" text-anchor="middle">2016</text><text x="598.7" y="292" class="tick" text-anchor="middle">2021</text><text x="708.0" y="292" class="tick" text-anchor="middle">2026</text><polyline class="l-buy" data-line="buy30" points="52.0,196.2 53.8,196.1 55.6,196.7 57.5,194.7 59.3,191.0 61.1,187.1 62.9,188.2 64.8,188.8 66.6,188.0 68.4,189.8 70.2,188.4 72.0,187.9 73.9,186.8 75.7,182.4 77.5,185.1 79.3,183.3 81.2,181.4 83.0,180.9 84.8,180.3 86.6,179.3 88.4,180.5 90.3,180.7 92.1,181.1 93.9,180.1 95.7,178.6 97.6,180.0 99.4,176.3 101.2,173.5 103.0,175.5 104.8,174.9 106.7,175.3 108.5,175.0 110.3,179.4 112.1,179.7 114.0,178.9 115.8,179.1 117.6,179.4 119.4,179.1 121.2,177.5 123.1,176.1 124.9,175.1 126.7,174.6 128.5,174.6 130.4,173.6 132.2,169.3 134.0,165.5 135.8,166.2 137.6,166.4 139.5,164.7 141.3,163.0 143.1,161.3 144.9,162.5 146.8,163.0 148.6,162.4 150.4,162.4 152.2,165.0 154.0,164.8 155.9,167.9 157.7,174.8 159.5,178.9 161.3,182.9 163.2,185.2 165.0,188.9 166.8,194.9 168.6,192.0 170.4,198.7 172.3,203.5 174.1,203.1 175.9,202.9 177.7,206.7 179.6,203.2 181.4,201.9 183.2,199.5 185.0,195.2 186.8,189.3 188.7,184.2 190.5,189.6 192.3,191.7 194.1,190.7 196.0,189.6 197.8,186.0 199.6,186.0 201.4,182.9 203.2,175.8 205.1,175.8 206.9,182.5 208.7,178.6 210.5,173.2 212.4,171.1 214.2,166.5 216.0,161.9 217.8,159.6 219.6,157.2 221.5,155.1 223.3,159.0 225.1,158.2 226.9,156.5 228.8,154.9 230.6,151.7 232.4,150.7 234.2,149.3 236.0,151.4 237.9,149.0 239.7,145.8 241.5,146.5 243.3,146.6 245.2,142.7 247.0,139.6 248.8,137.1 250.6,139.1 252.4,135.5 254.3,138.2 256.1,139.4 257.9,137.9 259.7,135.2 261.6,136.1 263.4,133.4 265.2,137.2 267.0,139.8 268.8,139.8 270.7,139.2 272.5,137.0 274.3,133.9 276.1,131.7 278.0,130.5 279.8,128.1 281.6,130.3 283.4,131.2 285.2,128.0 287.1,129.6 288.9,128.9 290.7,130.7 292.5,131.5 294.4,130.8 296.2,131.4 298.0,133.0 299.8,135.2 301.6,134.6 303.5,138.8 305.3,139.3 307.1,141.9 308.9,142.4 310.8,147.6 312.6,153.1 314.4,154.5 316.2,157.4 318.0,157.5 319.9,158.6 321.7,174.2 323.5,183.7 325.3,203.6 327.2,228.0 329.0,243.9 330.8,261.3 332.6,265.0 334.4,266.4 336.3,264.5 338.1,252.9 339.9,241.9 341.7,232.3 343.6,193.5 345.4,169.3 347.2,157.5 349.0,152.4 350.8,149.3 352.7,148.1 354.5,144.1 356.3,138.6 358.1,133.0 360.0,132.5 361.8,125.3 363.6,126.0 365.4,128.6 367.2,128.4 369.1,130.1 370.9,131.5 372.7,129.6 374.5,128.8 376.4,127.1 378.2,124.3 380.0,125.7 381.8,122.1 383.6,114.5 385.5,103.9 387.3,108.2 389.1,106.2 390.9,103.5 392.8,103.8 394.6,105.7 396.4,109.1 398.2,105.7 400.0,98.7 401.9,100.3 403.7,97.4 405.5,99.4 407.3,102.2 409.2,102.3 411.0,101.2 412.8,103.6 414.6,106.7 416.4,105.2 418.3,105.1 420.1,100.9 421.9,106.7 423.7,108.8 425.6,110.2 427.4,110.0 429.2,109.5 431.0,107.7 432.8,109.0 434.7,109.9 436.5,105.4 438.3,105.1 440.1,104.7 442.0,102.9 443.8,100.5 445.6,100.5 447.4,99.6 449.2,95.7 451.1,97.2 452.9,95.6 454.7,94.0 456.5,92.0 458.4,83.7 460.2,90.6 462.0,90.2 463.8,94.6 465.6,96.9 467.5,101.8 469.3,99.8 471.1,100.8 472.9,100.8 474.8,102.5 476.6,104.2 478.4,105.5 480.2,101.4 482.0,98.9 483.9,99.0 485.7,99.7 487.5,99.0 489.3,93.2 491.2,90.3 493.0,90.8 494.8,92.3 496.6,95.6 498.4,101.4 500.3,100.9 502.1,99.6 503.9,97.2 505.7,97.0 507.6,95.1 509.4,92.8 511.2,91.7 513.0,92.2 514.8,89.0 516.7,90.8 518.5,90.8 520.3,89.8 522.1,87.9 524.0,90.4 525.8,92.4 527.6,89.2 529.4,90.2 531.2,87.6 533.1,86.7 534.9,87.1 536.7,84.8 538.5,86.6 540.4,89.3 542.2,87.8 544.0,83.2 545.8,82.8 547.6,83.8 549.5,79.5 551.3,81.3 553.1,75.3 554.9,74.2 556.8,74.4 558.6,64.0 560.4,67.3 562.2,67.3 564.0,66.8 565.9,69.3 567.7,65.3 569.5,61.2 571.3,57.0 573.2,57.7 575.0,64.6 576.8,68.0 578.6,62.5 580.4,69.6 582.3,69.8 584.1,75.3 585.9,74.5 587.7,77.0 589.6,74.9 591.4,75.4 593.2,74.4 595.0,67.4 596.8,62.2 598.7,54.1 600.5,48.3 602.3,46.8 604.1,48.1 606.0,42.2 607.8,36.1 609.6,36.1 611.4,40.3 613.2,42.0 615.1,47.2 616.9,56.6 618.7,59.0 620.5,60.7 622.4,59.0 624.2,64.1 626.0,72.0 627.8,79.3 629.6,76.1 631.5,79.8 633.3,75.4 635.1,78.8 636.9,75.4 638.8,74.5 640.6,76.2 642.4,75.5 644.2,77.4 646.0,79.5 647.9,85.3 649.7,88.0 651.5,81.5 653.3,74.8 655.2,77.4 657.0,79.5 658.8,79.3 660.6,84.2 662.4,82.3 664.3,80.3 666.1,78.5 667.9,76.1 669.7,75.0 671.6,78.3 673.4,76.3 675.2,80.4 677.0,80.2 678.8,76.3 680.7,77.0 682.5,77.3 684.3,79.6 686.1,77.5 688.0,77.7 689.8,77.1 691.6,74.2 693.4,72.7 695.2,72.2 697.1,73.6 698.9,72.3 700.7,68.0 702.5,69.3 704.4,68.0 706.2,65.7 708.0,62.5"/><polyline class="l-val" data-line="value" points="52.0,177.2 53.8,177.1 55.6,177.7 57.5,175.7 59.3,172.0 61.1,168.1 62.9,169.2 64.8,169.8 66.6,169.0 68.4,170.8 70.2,169.4 72.0,168.9 73.9,167.8 75.7,163.4 77.5,166.1 79.3,164.3 81.2,162.4 83.0,161.9 84.8,161.3 86.6,160.3 88.4,161.4 90.3,161.7 92.1,162.1 93.9,161.1 95.7,159.6 97.6,161.0 99.4,157.3 101.2,154.5 103.0,156.5 104.8,155.9 106.7,156.3 108.5,156.0 110.3,160.4 112.1,160.7 114.0,159.9 115.8,160.1 117.6,160.4 119.4,160.1 121.2,158.5 123.1,157.1 124.9,156.1 126.7,155.6 128.5,155.6 130.4,154.6 132.2,150.3 134.0,146.5 135.8,147.2 137.6,147.4 139.5,145.7 141.3,144.0 143.1,142.3 144.9,143.5 146.8,144.0 148.6,143.4 150.4,143.4 152.2,146.0 154.0,145.8 155.9,148.9 157.7,155.8 159.5,159.9 161.3,163.9 163.2,166.2 165.0,169.9 166.8,175.9 168.6,173.0 170.4,179.7 172.3,184.5 174.1,184.1 175.9,183.9 177.7,187.7 179.6,184.2 181.4,182.9 183.2,180.5 185.0,176.2 186.8,170.3 188.7,165.2 190.5,170.6 192.3,172.7 194.1,171.7 196.0,170.6 197.8,167.0 199.6,167.0 201.4,163.9 203.2,156.8 205.1,156.8 206.9,163.5 208.7,159.6 210.5,154.2 212.4,152.1 214.2,147.5 216.0,142.9 217.8,140.6 219.6,138.2 221.5,136.1 223.3,140.0 225.1,139.2 226.9,137.5 228.8,135.9 230.6,132.7 232.4,131.7 234.2,130.3 236.0,132.4 237.9,130.0 239.7,126.8 241.5,127.5 243.3,127.6 245.2,123.7 247.0,120.6 248.8,118.0 250.6,120.1 252.4,116.5 254.3,119.2 256.1,120.4 257.9,118.9 259.7,116.2 261.6,117.1 263.4,114.4 265.2,118.2 267.0,120.8 268.8,120.8 270.7,120.2 272.5,118.0 274.3,114.9 276.1,112.7 278.0,111.5 279.8,109.1 281.6,111.3 283.4,112.2 285.2,109.0 287.1,110.6 288.9,109.9 290.7,111.7 292.5,112.5 294.4,111.8 296.2,112.4 298.0,114.0 299.8,116.2 301.6,115.6 303.5,119.8 305.3,120.3 307.1,122.9 308.9,123.4 310.8,128.6 312.6,134.1 314.4,135.5 316.2,138.4 318.0,138.5 319.9,139.6 321.7,155.2 323.5,164.7 325.3,184.6 327.2,208.9 329.0,224.9 330.8,242.3 332.6,246.0 334.4,247.4 336.3,245.5 338.1,233.9 339.9,222.9 341.7,213.3 343.6,174.5 345.4,150.3 347.2,138.5 349.0,133.4 350.8,130.3 352.7,129.1 354.5,125.1 356.3,119.6 358.1,114.0 360.0,113.5 361.8,106.3 363.6,107.0 365.4,109.6 367.2,109.4 369.1,111.1 370.9,112.5 372.7,110.6 374.5,109.8 376.4,108.1 378.2,105.3 380.0,106.7 381.8,103.1 383.6,95.5 385.5,84.9 387.3,89.2 389.1,87.2 390.9,84.5 392.8,84.8 394.6,86.7 396.4,90.1 398.2,86.7 400.0,79.7 401.9,81.3 403.7,78.4 405.5,80.4 407.3,83.2 409.2,83.3 411.0,82.2 412.8,84.6 414.6,87.7 416.4,86.2 418.3,86.1 420.1,81.9 421.9,87.7 423.7,89.8 425.6,91.2 427.4,91.0 429.2,90.5 431.0,88.7 432.8,89.9 434.7,90.9 436.5,86.4 438.3,86.1 440.1,85.6 442.0,83.9 443.8,81.5 445.6,81.5 447.4,80.6 449.2,76.7 451.1,78.2 452.9,76.6 454.7,75.0 456.5,73.0 458.4,64.7 460.2,71.6 462.0,71.2 463.8,75.6 465.6,77.9 467.5,82.7 469.3,80.8 471.1,81.8 472.9,81.8 474.8,83.5 476.6,85.2 478.4,86.5 480.2,82.3 482.0,79.9 483.9,80.0 485.7,80.7 487.5,80.0 489.3,74.2 491.2,71.3 493.0,71.8 494.8,73.3 496.6,76.6 498.4,82.4 500.3,81.9 502.1,80.6 503.9,78.2 505.7,78.0 507.6,76.1 509.4,73.8 511.2,72.7 513.0,73.2 514.8,70.0 516.7,71.8 518.5,71.8 520.3,70.8 522.1,68.9 524.0,71.4 525.8,73.4 527.6,70.2 529.4,71.2 531.2,68.6 533.1,67.7 534.9,68.1 536.7,65.8 538.5,67.6 540.4,70.3 542.2,68.8 544.0,64.2 545.8,63.8 547.6,64.8 549.5,60.5 551.3,62.3 553.1,56.3 554.9,55.2 556.8,55.4 558.6,45.0 560.4,48.3 562.2,48.3 564.0,47.8 565.9,50.3 567.7,46.3 569.5,42.2 571.3,38.0 573.2,38.6 575.0,45.6 576.8,49.0 578.6,43.5 580.4,50.6 582.3,50.8 584.1,56.2 585.9,55.5 587.7,58.0 589.6,55.9 591.4,56.4 593.2,55.4 595.0,48.4 596.8,43.2 598.7,35.1 600.5,29.3 602.3,27.8 604.1,29.1 606.0,23.2 607.8,17.1 609.6,17.1 611.4,21.3 613.2,23.0 615.1,28.2 616.9,37.6 618.7,40.0 620.5,41.7 622.4,40.0 624.2,45.1 626.0,53.0 627.8,60.3 629.6,57.1 631.5,60.8 633.3,56.4 635.1,59.8 636.9,56.4 638.8,55.5 640.6,57.2 642.4,56.5 644.2,58.4 646.0,60.5 647.9,66.3 649.7,68.9 651.5,62.5 653.3,55.8 655.2,58.4 657.0,60.5 658.8,60.3 660.6,65.2 662.4,63.3 664.3,61.3 666.1,59.4 667.9,57.1 669.7,56.0 671.6,59.3 673.4,57.3 675.2,61.4 677.0,61.2 678.8,57.3 680.7,58.0 682.5,58.3 684.3,60.6 686.1,58.5 688.0,58.7 689.8,58.1 691.6,55.2 693.4,53.7 695.2,53.2 697.1,54.6 698.9,53.3 700.7,49.0 702.5,50.3 704.4,49.0 706.2,46.7 708.0,43.5"/><polyline class="l-px" data-line="price" points="52.0,153.5 53.8,156.0 55.6,155.0 57.5,152.2 59.3,150.8 61.1,147.1 62.9,148.2 64.8,145.1 66.6,144.7 68.4,147.1 70.2,144.0 72.0,141.0 73.9,138.7 75.7,134.7 77.5,137.9 79.3,135.1 81.2,137.0 83.0,134.7 84.8,133.8 86.6,133.3 88.4,129.7 90.3,127.1 92.1,126.6 93.9,127.6 95.7,125.5 97.6,126.2 99.4,134.6 101.2,131.3 103.0,127.2 104.8,124.2 106.7,121.2 108.5,119.1 110.3,120.8 112.1,118.8 114.0,116.8 115.8,118.2 117.6,115.4 119.4,117.1 121.2,117.4 123.1,119.0 124.9,115.7 126.7,114.7 128.5,111.7 130.4,114.5 132.2,115.6 134.0,110.7 135.8,112.3 137.6,113.5 139.5,112.3 141.3,113.1 143.1,110.0 144.9,112.9 146.8,113.2 148.6,117.6 150.4,117.4 152.2,115.6 154.0,120.8 155.9,124.3 157.7,120.4 159.5,120.1 161.3,121.4 163.2,122.0 165.0,125.6 166.8,130.1 168.6,129.1 170.4,125.3 172.3,124.9 174.1,125.7 175.9,126.8 177.7,124.9 179.6,128.3 181.4,128.8 183.2,132.8 185.0,137.2 186.8,136.9 188.7,143.1 190.5,138.7 192.3,135.7 194.1,139.1 196.0,140.5 197.8,141.4 199.6,141.0 201.4,136.9 203.2,134.2 205.1,133.6 206.9,132.8 208.7,131.8 210.5,132.4 212.4,129.6 214.2,129.2 216.0,126.6 217.8,125.7 219.6,125.0 221.5,125.9 223.3,126.8 225.1,126.2 226.9,125.2 228.8,127.1 230.6,127.0 232.4,126.5 234.2,125.7 236.0,123.7 237.9,122.0 239.7,123.4 241.5,122.4 243.3,123.4 245.2,124.5 247.0,122.9 248.8,122.9 250.6,121.0 252.4,121.6 254.3,121.3 256.1,122.2 257.9,120.4 259.7,120.4 261.6,119.1 263.4,119.1 265.2,118.5 267.0,117.8 268.8,119.5 270.7,119.5 272.5,119.2 274.3,118.1 276.1,116.8 278.0,115.2 279.8,114.3 281.6,113.6 283.4,112.9 285.2,114.0 287.1,113.5 288.9,111.3 290.7,109.6 292.5,110.5 294.4,112.2 296.2,111.6 298.0,109.7 299.8,108.9 301.6,111.3 303.5,111.8 305.3,115.1 307.1,117.0 308.9,117.3 310.8,114.9 312.6,114.3 314.4,119.1 316.2,119.6 318.0,119.0 319.9,124.0 321.7,133.9 323.5,138.1 325.3,137.7 327.2,142.4 329.0,148.6 330.8,144.3 332.6,139.5 334.4,136.7 336.3,136.7 338.1,132.9 339.9,131.1 341.7,129.3 343.6,130.3 345.4,127.4 347.2,126.4 349.0,128.4 350.8,126.9 352.7,123.9 354.5,123.1 356.3,127.7 358.1,130.6 360.0,127.1 361.8,129.7 363.6,125.2 365.4,123.3 367.2,123.4 369.1,120.0 370.9,118.8 372.7,117.2 374.5,117.2 376.4,115.7 378.2,116.4 380.0,117.4 381.8,118.6 383.6,121.7 385.5,125.7 387.3,120.2 389.1,120.5 390.9,120.0 392.8,117.7 394.6,115.6 396.4,114.0 398.2,114.4 400.0,117.8 401.9,115.8 403.7,115.1 405.5,114.1 407.3,112.8 409.2,113.8 411.0,113.7 412.8,113.3 414.6,110.7 416.4,110.1 418.3,108.2 420.1,107.3 421.9,106.2 423.7,107.0 425.6,104.4 427.4,106.1 429.2,104.5 431.0,102.2 432.8,100.7 434.7,99.5 436.5,101.4 438.3,99.2 440.1,98.8 442.0,98.5 443.8,97.4 445.6,96.4 447.4,97.2 449.2,95.2 451.1,96.0 452.9,94.8 454.7,93.5 456.5,93.8 458.4,95.4 460.2,92.6 462.0,93.5 463.8,93.1 465.6,92.5 467.5,93.6 469.3,92.6 471.1,96.1 472.9,97.5 474.8,93.2 476.6,93.2 478.4,94.1 480.2,96.9 482.0,97.1 483.9,93.7 485.7,93.6 487.5,92.8 489.3,92.7 491.2,90.9 493.0,90.9 494.8,91.0 496.6,92.0 498.4,90.3 500.3,89.3 502.1,88.3 503.9,86.4 505.7,86.4 507.6,85.9 509.4,85.3 511.2,85.1 513.0,84.1 514.8,84.0 516.7,83.0 518.5,81.8 520.3,80.4 522.1,79.8 524.0,76.9 525.8,79.0 527.6,80.5 529.4,80.4 531.2,79.2 533.1,79.0 534.9,77.1 536.7,75.5 538.5,75.3 540.4,79.1 542.2,78.1 544.0,83.3 545.8,79.2 547.6,77.7 549.5,76.7 551.3,74.7 553.1,78.3 554.9,74.7 556.8,74.1 558.6,75.0 560.4,74.1 562.2,73.0 564.0,71.3 565.9,69.8 567.7,69.8 569.5,74.5 571.3,81.6 573.2,75.3 575.0,72.9 576.8,72.0 578.6,69.1 580.4,65.5 582.3,67.6 584.1,69.1 585.9,63.7 587.7,61.7 589.6,62.3 591.4,61.0 593.2,58.7 595.0,56.0 596.8,55.7 598.7,54.6 600.5,53.4 602.3,51.8 604.1,54.4 606.0,50.9 607.8,51.3 609.6,49.0 611.4,51.9 613.2,53.6 615.1,51.7 616.9,56.6 618.7,56.6 620.5,61.3 622.4,56.7 624.2,59.0 626.0,64.2 627.8,60.1 629.6,57.3 631.5,60.6 633.3,57.4 635.1,58.8 636.9,56.9 638.8,56.2 640.6,56.0 642.4,52.7 644.2,51.1 646.0,52.0 647.9,54.7 649.7,55.9 651.5,51.3 653.3,49.0 655.2,48.2 657.0,45.5 658.8,43.8 660.6,46.1 662.4,43.6 664.3,41.8 666.1,41.2 667.9,40.0 669.7,38.9 671.6,39.5 673.4,36.5 675.2,37.8 677.0,36.4 678.8,37.2 680.7,40.3 682.5,40.7 684.3,37.6 686.1,35.0 688.0,33.8 689.8,32.8 691.6,31.0 693.4,29.8 695.2,29.7 697.1,29.7 698.9,29.0 700.7,29.5 702.5,32.3 704.4,27.0 706.2,24.3 708.0,24.9"/></svg><div class="legend"><span><i class="sw px"></i>S&amp;P 500 (월말)</span><span><i class="sw val"></i>버핏 기준 가치</span><span><i class="sw buy"></i>안전마진 30% 매수선</span><span><i class="sw zone"></i>매수선 아래였던 달</span></div><figcaption>로그 축. 가치 = 그 달의 12개월 EPS·30년 국채+3%p·그 달까지의 30년 EPS 기록(성장률)·ROE 13.9% 로 계산. 지금의 잣대를 과거에 댄 것이지 그때의 판단은 아닙니다.</figcaption></figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">구간</th><th class="r">개월 수</th><th class="r">뒤 10년 실질 총수익률 (중위)</th></tr></thead><tbody>
+<tr><td class="l">매수선(안전마진 30%) 아래</td><td class="r">55</td><td class="r">10.9%</td></tr>
+<tr><td class="l">가치 아래</td><td class="r">176</td><td class="r">9.6%</td></tr>
+<tr><td class="l">가치 위</td><td class="r">185</td><td class="r">4.8%</td></tr>
+</tbody></table></div>
+<figcaption>1996-06~2026-06 의 361개월. 뒤 10년 수익률은 실러 자료가 있는 2014년 시작분까지만 셉니다(그래서 개월 수보다 적음). 시작점이 겹치므로 독립 관측 수는 훨씬 적습니다.</figcaption>
+</figure>
+<p>지금의 잣대로는 지난 30년 중 <b data-v="bt-months">176개월</b>이 가치 아래였고, 그중 55개월이 안전마진 30% 매수선 아래였습니다. 가장 긴 구간은 2005-04~2006-03(12개월), 2006-07~2007-04(10개월), 2010-05~2022-09(149개월). 이 구간 대부분은 <b>금리가 낮았던 시기</b>입니다 — 국채 2~3%에 3%p 를 더한 할인율에서는 같은 이익이 훨씬 비싸게 평가됩니다. 그리고 <b>2009년 바닥은 이 잣대로 매수 구간이 아니었습니다</b>. 12개월 보고이익이 상각으로 거의 0이 되어 가치도 함께 꺼졌기 때문입니다 — 직전 12개월 이익만 보는 방식의 약점이고, CAPE 가 10년 평균을 쓰는 이유입니다.</p>
+<h3>70년 기록 — 시작 시점의 CAPE 와 뒤 10년</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">CAPE 5분위</th><th class="r">CAPE 범위</th><th class="r">개월</th><th class="r">뒤 10년 실질 (중위)</th><th class="r">범위</th><th class="r">손실 비율</th></tr></thead><tbody>
+<tr><td class="l">1분위</td><td class="r">6.6 ~ 11.7</td><td class="r">155</td><td class="r"><b>10.6%</b></td><td class="r">3.8% ~ 16.2%</td><td class="r">0%</td></tr>
+<tr><td class="l">2분위</td><td class="r">11.8 ~ 16.7</td><td class="r">155</td><td class="r"><b>11.6%</b></td><td class="r">-1.9% ~ 16.1%</td><td class="r">5%</td></tr>
+<tr><td class="l">3분위</td><td class="r">16.7 ~ 20.3</td><td class="r">156</td><td class="r"><b>6.9%</b></td><td class="r">-4.0% ~ 15.2%</td><td class="r">21%</td></tr>
+<tr><td class="l">4분위</td><td class="r">20.3 ~ 23.7</td><td class="r">155</td><td class="r"><b>4.8%</b></td><td class="r">-4.0% ~ 14.1%</td><td class="r">32%</td></tr>
+<tr><td class="l">5분위</td><td class="r">23.7 ~ 44.2</td><td class="r">156</td><td class="r"><b>4.9%</b></td><td class="r">-5.9% ~ 9.8%</td><td class="r">24%</td></tr>
+</tbody></table></div>
+<figcaption>실러 자료, 1950-01~2014-09 시작. 실질 총수익률(배당 재투자). 모형 없이 기록만으로 센 것입니다.</figcaption>
+</figure>
+<p>지금 CAPE 37.0는 5분위(가장 비싼 구간)의 위쪽입니다. CAPE 가 30을 넘었던 달에서 시작한 뒤 10년 실질 수익률은 중위 <b data-v="cape30">-0.8%</b>, 가장 좋았던 경우도 4.5%였습니다 — 다만 그 표본은 1997, 1998, 1999, 2000, 2001, 2002년 한 번의 거품뿐이라 일반화하기에는 얇습니다.</p>
+<h2>나스닥100</h2>
+<h3>이익을 어떻게 만들었나</h3>
+<p>나스닥100 의 지수 단위 이익은 무료로 공표되지 않습니다. 그래서 구성종목 100개(알파벳 두 종목은 하나로)의 12개월 이익을 <b>SEC 공시에서 직접</b> 모아 <code>지수 P/E = Σ시가총액 ÷ Σ이익</code>으로 만들었습니다. 시가총액 가중 지수에서는 이것이 정의입니다. 나스닥100 은 상위 종목 비중을 깎는 수정 가중이라 그만큼 다를 수 있습니다.</p>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">지표</th><th class="r">값</th><th class="w">비고</th></tr></thead><tbody>
+<tr><td class="l">P/NOPAT (기본)</td><td class="r"><b>29.8</b></td><td class="w">영업이익 × (1 − 세율)의 합</td></tr>
+<tr><td class="l">P/E (순이익)</td><td class="r">25.7</td><td class="w">보유 지분 평가이익이 섞여 낮게 나옴</td></tr>
+<tr><td class="l">iShares 공표 P/E (CNDX)</td><td class="r">31.1</td><td class="w">2026-11-19 · 보유종목 P/E 가중평균이라 방식이 다름</td></tr>
+<tr><td class="l">순이익 − NOPAT</td><td class="r">189십억 달러</td><td class="w" data-state="flag">대부분 평가이익 (아래 표)</td></tr>
+<tr><td class="l">ROE (NOPAT ÷ 자기자본)</td><td class="r">26.2%</td><td class="w">재투자 수익률로 씀</td></tr>
+<tr><td class="l">상위 10개 비중</td><td class="r">69%</td><td class="w">시가총액 기준</td></tr>
+</tbody></table></div>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">종목</th><th class="r">순이익</th><th class="r">NOPAT</th><th class="r">차이</th></tr></thead><tbody>
+<tr><td class="l">GOOG</td><td class="r">235.7</td><td class="r">128.6</td><td class="r" data-state="pos">+107.1</td></tr>
+<tr><td class="l">AMZN</td><td class="r">134.8</td><td class="r">81.1</td><td class="r" data-state="pos">+53.7</td></tr>
+<tr><td class="l">NVDA</td><td class="r">192.9</td><td class="r">165.9</td><td class="r" data-state="pos">+27.0</td></tr>
+<tr><td class="l">INTC</td><td class="r">-12.0</td><td class="r">1.4</td><td class="r" data-state="neg">-13.4</td></tr>
+<tr><td class="l">MSFT</td><td class="r">142.6</td><td class="r">131.1</td><td class="r" data-state="pos">+11.6</td></tr>
+<tr><td class="l">LITE</td><td class="r">-6.6</td><td class="r">0.7</td><td class="r" data-state="neg">-7.3</td></tr>
+</tbody></table></div>
+<figcaption>단위 십억 달러, 12개월. 알파벳·아마존의 순이익에는 보유 지분의 평가이익이 크게 들어 있습니다 — 이 프로젝트가 영업이익에서 출발하는 이유이고, 같은 종목이 S&amp;P 500 의 보고 기준 EPS 에도 들어 있습니다.</figcaption>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">종목</th><th class="r">비중</th><th class="r">시가총액 (조$)</th><th class="r">P/NOPAT</th><th class="r">이익 기간</th></tr></thead><tbody>
+<tr><td class="l">AAPL</td><td class="r">14.0%</td><td class="r">4.98</td><td class="r">37.9</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">MSFT</td><td class="r">10.1%</td><td class="r">3.60</td><td class="r">27.5</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">GOOG</td><td class="r">9.2%</td><td class="r">3.27</td><td class="r">25.4</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">NVDA</td><td class="r">8.5%</td><td class="r">3.03</td><td class="r">18.2</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">AMZN</td><td class="r">7.5%</td><td class="r">2.67</td><td class="r">32.9</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">SPCX</td><td class="r">4.5%</td><td class="r">1.59</td><td class="r">381.0</td><td class="r">2개 분기 연율화</td></tr>
+<tr><td class="l">AVGO</td><td class="r">4.1%</td><td class="r">1.45</td><td class="r">35.9</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">META</td><td class="r">4.1%</td><td class="r">1.44</td><td class="r">19.1</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">TSLA</td><td class="r">3.8%</td><td class="r">1.37</td><td class="r">506.8</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">WMT</td><td class="r">2.9%</td><td class="r">1.02</td><td class="r">41.0</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">AMD</td><td class="r">2.0%</td><td class="r">0.70</td><td class="r">90.8</td><td class="r">최근 4개 분기 합</td></tr>
+<tr><td class="l">MU</td><td class="r">1.9%</td><td class="r">0.67</td><td class="r">7.9</td><td class="r">최근 4개 분기 합</td></tr>
+</tbody></table></div>
+<figcaption>연율화 = 상장한 지 1년이 안 돼 연속 분기가 넷이 안 되는 종목(스페이스X 등) — 있는 분기를 연율화했습니다.</figcaption>
+</figure>
+<p class="meta" style="border:0;padding:0">검산에서 바로잡은 것: 샌디스크가 2026-11-20 에 8:1 로 분할해 공시 주식수(분할 전) × 시세(분할 후)로 시가총액이 8분의 1로 나왔던 것, 종류주식이 여럿인 회사(알파벳·메타·컴캐스트 …)의 표지 주식수가 비거나 2009년 값이 남아 있던 것, 몇 년 전에 쓰지 않게 된 순이익 태그를 집었던 것(브로드컴·부킹). 외화 보고 기업 4곳은 Yahoo 환율로, ADS 는 20-F 원문에서 확인한 비율로 환산했습니다.</p>
+<h3>30년 가격 기록</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">기간</th><th class="r">출발 → 지금</th><th class="r">지수 연평균</th></tr></thead><tbody>
+<tr><td class="l">10년</td><td class="r">4,811 → 25,029</td><td class="r">17.93%</td></tr>
+<tr><td class="l">20년</td><td class="r">1,791 → 25,029</td><td class="r">14.09%</td></tr>
+<tr><td class="l">30년</td><td class="r">834 → 25,029</td><td class="r">12.01%</td></tr>
+</tbody></table></div>
+<figcaption>월말 종가. 30년 최대 낙폭 -81% (2000-03 고점 → 2002-09 바닥).</figcaption>
+</figure>
+<p><b>나스닥100 에는 30년 이익 기록이 없습니다.</b> 가격 기록은 30년이 있지만 가격 상승률은 이익 성장과 밸류에이션 변화가 섞인 값입니다. 그래서 성장률 가정의 "자기 기록" 자리에 미국 대형주 참조군인 S&amp;P 500 의 30년 EPS 기록을 쓰고, 가장 관대한 가정 하나만 나스닥100 의 10년 가격 상승률로 두었습니다.</p>
+<h3>버핏 기준 판정 — 성장률 × 할인율</h3>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="w">성장률 가정</th><th class="l">할인율</th><th class="r">가치</th><th class="r">지금 대비</th><th class="r">매수선 (안전마진 30%)</th><th class="r">판정</th></tr></thead><tbody>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>29,211</b></td><td class="r" data-state="pos">+17%</td><td class="r"><b>20,447</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>14,406</b></td><td class="r" data-state="neg">-42%</td><td class="r"><b>10,084</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>11,121</b></td><td class="r" data-state="neg">-56%</td><td class="r"><b>7,785</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">기초율 중위 5.5%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>9,786</b></td><td class="r" data-state="neg">-61%</td><td class="r"><b>6,850</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>28,407</b></td><td class="r" data-state="pos">+13%</td><td class="r"><b>19,885</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>14,032</b></td><td class="r" data-state="neg">-44%</td><td class="r"><b>9,822</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>10,847</b></td><td class="r" data-state="neg">-57%</td><td class="r"><b>7,593</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>9,555</b></td><td class="r" data-state="neg">-62%</td><td class="r"><b>6,688</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>34,103</b></td><td class="r" data-state="pos">+36%</td><td class="r"><b>23,872</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>16,275</b></td><td class="r" data-state="neg">-35%</td><td class="r"><b>11,393</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>12,365</b></td><td class="r" data-state="neg">-51%</td><td class="r"><b>8,655</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>10,787</b></td><td class="r" data-state="neg">-57%</td><td class="r"><b>7,551</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 17.9%</td><td class="l">30년 국채 5.30%</td><td class="r"><b>51,504</b></td><td class="r" data-state="pos">+106%</td><td class="r"><b>36,053</b></td><td class="r" data-state="over"><b>합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 17.9%</td><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r"><b>23,062</b></td><td class="r" data-state="neg">-8%</td><td class="r"><b>16,143</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 17.9%</td><td class="l">프로젝트 기준 10%</td><td class="r"><b>16,917</b></td><td class="r" data-state="neg">-32%</td><td class="r"><b>11,842</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+<tr><td class="w">최근 10년 유지 17.9%</td><td class="l">프로젝트 보수 11%</td><td class="r"><b>14,463</b></td><td class="r" data-state="neg">-42%</td><td class="r"><b>10,124</b></td><td class="r" data-state="under"><b>불합격</b></td></tr>
+</tbody></table></div>
+<figcaption>지수 포인트 단위. 1포인트당 NOPAT 839.6, 재투자 수익률 26.2%.</figcaption>
+</figure>
+<h3>적절한 매수 가격 — 안전마진 사다리</h3>
+<div class="ladder" data-axis="26280.4295">
+<div class="lrow" data-g="ndx-base_rate_median"><span class="llab">기초율 중위 5.5%</span><span class="ltrack"><span class="lbuy" data-bar="ndx-base_rate_median-buy30" style="width:38.371%"></span><span class="lval" data-bar="ndx-base_rate_median-value" style="width:16.445%;left:38.371%"></span><span class="lnow" data-bar="ndx-now" style="left:95.238%"></span></span><span class="lnum">10,084 · 14,406</span></div>
+<div class="lrow" data-g="ndx-half_of_own"><span class="llab">S&amp;P 500 30년 EPS 기록의 절반 3.7%</span><span class="ltrack"><span class="lbuy" data-bar="ndx-half_of_own-buy30" style="width:37.376%"></span><span class="lval" data-bar="ndx-half_of_own-value" style="width:16.018%;left:37.376%"></span><span class="lnow" data-bar="ndx-now" style="left:95.238%"></span></span><span class="lnum">9,822 · 14,032</span></div>
+<div class="lrow" data-g="ndx-own_sustained"><span class="llab">S&amp;P 500 30년 EPS 기록 유지 7.4%</span><span class="ltrack"><span class="lbuy" data-bar="ndx-own_sustained-buy30" style="width:43.351%"></span><span class="lval" data-bar="ndx-own_sustained-value" style="width:18.579%;left:43.351%"></span><span class="lnow" data-bar="ndx-now" style="left:95.238%"></span></span><span class="lnum">11,393 · 16,275</span></div>
+<div class="lrow" data-g="ndx-recent_10y"><span class="llab">최근 10년 유지 17.9%</span><span class="ltrack"><span class="lbuy" data-bar="ndx-recent_10y-buy30" style="width:61.427%"></span><span class="lval" data-bar="ndx-recent_10y-value" style="width:26.326%;left:61.427%"></span><span class="lnow" data-bar="ndx-now" style="left:95.238%"></span></span><span class="lnum">16,143 · 23,062</span></div>
+<div class="laxis"><span>0</span><span>26,280</span></div>
+<p class="lkey">진한 막대 = 안전마진 30% 매수선까지 · 옅은 막대 = 가치까지 · 세로선 = 지금 25,029 · 오른쪽 숫자 = 매수선 · 가치</p>
+</div>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">성장률 가정</th><th class="r">가치 (0%)</th><th class="r">20%</th><th class="r">30%</th><th class="r">40%</th></tr></thead><tbody>
+<tr><td class="l">기초율 중위 5.5%</td><td class="r" data-state="under">14,406</td><td class="r" data-state="under">11,525</td><td class="r" data-state="under"><b>10,084</b></td><td class="r" data-state="under">8,643</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="r" data-state="under">14,032</td><td class="r" data-state="under">11,226</td><td class="r" data-state="under"><b>9,822</b></td><td class="r" data-state="under">8,419</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="r" data-state="under">16,275</td><td class="r" data-state="under">13,020</td><td class="r" data-state="under"><b>11,393</b></td><td class="r" data-state="under">9,765</td></tr>
+<tr><td class="l">최근 10년 유지 17.9%</td><td class="r" data-state="under">23,062</td><td class="r" data-state="under">18,449</td><td class="r" data-state="under"><b>16,143</b></td><td class="r" data-state="under">13,837</td></tr>
+</tbody></table></div>
+<figcaption>버핏 기준 할인율 8.30%.</figcaption>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">성장률 가정</th><th class="r">기대수익률</th><th class="r">30년 국채 대비</th></tr></thead><tbody>
+<tr><td class="l">기초율 중위 5.5%</td><td class="r"><b>5.80%</b></td><td class="r" data-state="flag">+0.50%</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="r"><b>5.70%</b></td><td class="r" data-state="flag">+0.40%</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="r"><b>6.33%</b></td><td class="r" data-state="flag">+1.03%</td></tr>
+<tr><td class="l">최근 10년 유지 17.9%</td><td class="r"><b>7.91%</b></td><td class="r" data-state="flag">+2.61%</td></tr>
+</tbody></table></div>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">할인율</th><th class="r">요구 조건</th><th class="r">1년차 성장률</th><th class="r">10년 평균</th><th class="r">기초율 위치</th></tr></thead><tbody>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 0%</td><td class="r">0.5%</td><td class="r">2.0%</td><td class="r">상위 64.8%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 20%</td><td class="r">6.1%</td><td class="r">4.8%</td><td class="r">상위 53.4%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 30%</td><td class="r">9.5%</td><td class="r">6.5%</td><td class="r">상위 46.4%</td></tr>
+<tr><td class="l">30년 국채 5.30%</td><td class="r">안전마진 40%</td><td class="r">13.4%</td><td class="r">8.4%</td><td class="r">상위 38.3%</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 0%</td><td class="r">21.3%</td><td class="r">12.3%</td><td class="r">상위 22.4%</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 29,383</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 29,383</td></tr>
+<tr><td class="l">30년 국채 + 3%p = 8.30%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 29,383</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 0%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 21,103</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 21,103</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 21,103</td></tr>
+<tr><td class="l">프로젝트 기준 10%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 21,103</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 0%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 17,812</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 20%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 17,812</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 30%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 17,812</td></tr>
+<tr><td class="l">프로젝트 보수 11%</td><td class="r">안전마진 40%</td><td class="r" data-state="flag">없음</td><td class="r">—</td><td class="r" data-state="flag">천장 17,812</td></tr>
+</tbody></table></div>
+<figcaption>방향 주의: 요구 성장률은 낮을수록 좋습니다.</figcaption>
+</figure>
+<figure class="tw">
+<div class="scroll"><table>
+<thead><tr><th class="l">성장률 가정</th><th class="r">가치 (NOPAT)</th><th class="r">가치 (순이익)</th><th class="r">순이익으로도 안전마진 0% 판정</th></tr></thead><tbody>
+<tr><td class="l">기초율 중위 5.5%</td><td class="r">14,406</td><td class="r">16,984</td><td class="r" data-state="under">불합격</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록의 절반 3.7%</td><td class="r">14,032</td><td class="r">16,524</td><td class="r" data-state="under">불합격</td></tr>
+<tr><td class="l">S&amp;P 500 30년 EPS 기록 유지 7.4%</td><td class="r">16,275</td><td class="r">19,286</td><td class="r" data-state="under">불합격</td></tr>
+<tr><td class="l">최근 10년 유지 17.9%</td><td class="r">23,062</td><td class="r">27,685</td><td class="r" data-state="over">합격</td></tr>
+</tbody></table></div>
+<figcaption>평가이익이 섞인 순이익을 분자로 써도 판정이 바뀌는지. 순이익 쪽 재투자 수익률은 순이익 ÷ 자기자본.</figcaption>
+</figure>
+<h2>버핏이 지수에 대해 직접 한 말</h2>
+<h3>지수는 나눠서 산다</h3>
+<blockquote data-bq="space_out">
+<p>&ldquo;That investor should both own a large number of equities and space out his purchases.&rdquo;</p>
+<p>&ldquo;By periodically investing in an index fund, for example, the know-nothing investor can actually out-perform most investment professionals.&rdquo;</p>
+<span class="src"><a href="https://www.berkshirehathaway.com/letters/1993.html">1993년 주주서한</a> · 원문 대조 2문장</span></blockquote>
+<p>기업을 분석하지 않는 투자자에게 버핏의 처방은 &#x27;안전마진이 생길 때까지 기다려라&#x27;가 아니라 **나눠서 사라**입니다. 지수에는 한 번의 진입 가격보다 진입 시점의 분산이 먼저입니다.</p>
+<h3>가장 큰 위험은 들뜬 시점에 들어가는 것</h3>
+<blockquote data-bq="exuberance">
+<p>&ldquo;The main danger is that the timid or beginning investor will enter the market at a time of extreme exuberance and then become disillusioned when paper losses occur.&rdquo;</p>
+<p>&ldquo;The antidote to that kind of mistiming is for an investor to accumulate shares over a long period and never to sell when the news is bad and stocks are well off their highs.&rdquo;</p>
+<span class="src"><a href="https://www.berkshirehathaway.com/letters/2013ltr.pdf">2013년 주주서한</a> · 원문 대조 2문장</span></blockquote>
+<p>같은 처방을 20년 뒤에 다시 적었습니다. 그리고 위험을 명시합니다 — &#x27;극단적 들뜸&#x27;의 시점에 들어가는 것. 그 시점을 재는 잣대가 이 보고서의 CAPE·P/E 위치와 요구 성장률입니다.</p>
+<h3>자기 유언장의 지시</h3>
+<blockquote data-bq="will">
+<p>&ldquo;Put 10% of the cash in short-term government bonds and 90% in a very low-cost S&amp;P 500 index fund.&rdquo;</p>
+<span class="src"><a href="https://www.berkshirehathaway.com/letters/2013ltr.pdf">2013년 주주서한</a> · 원문 대조 1문장</span></blockquote>
+<p>버핏 자신의 유언 지시입니다. 지수를 &#x27;언젠가 싸지면&#x27;이 아니라 기본 자산으로 둡니다. 다만 이건 상속 자금의 장기 배분이고, 가격과 무관하게 한 번에 사라는 말은 아닙니다 — 같은 서한이 바로 앞에서 나눠 사라고 적습니다.</p>
+<h2>결론</h2>
+<ol>
+<li><b>S&amp;P 500 의 버핏 기준 매수선(안전마진 30%)은 3,088~3,882</b>입니다. 30년 EPS 기록(연 7.38%)이 이어진다고 보면 가치 4,880, 매수선 3,416. 지금 6,910는 그 가치보다 +42% 높습니다.</li>
+<li><b>나스닥100 의 매수선은 9,822~16,143</b>입니다. 가장 관대한 가정(10년 가격 상승률 연 17.9% 지속)에서도 가치는 23,062로 지금 25,029보다 낮습니다.</li>
+<li><b>판정을 가르는 것은 할인율입니다.</b> 국채 + 3%p 를 받아들이면 두 지수 모두 비싸고, 순수 국채(5.30%)로 할인하면 둘 다 싸 보입니다. 지금 가격이 약속하는 수익률은 국채보다 1~3%p 높을 뿐입니다.</li>
+<li><b>지난 30년의 기록은 이 잣대를 지지합니다.</b> 가치 아래에서 산 달의 뒤 10년 실질 수익률 중위는 9.6%, 가치 위에서 산 달은 4.8%였습니다. CAPE 5분위에서 시작한 10년은 중위 4.9%.</li>
+<li><b>그래도 버핏의 처방은 "기다려라"가 아니라 "나눠 사라"입니다.</b> 지수를 사려는 사람이 이 매수선까지 기다리면 몇 년, 혹은 다시 오지 않을 수 있습니다(위 그래프에서 매수선 아래였던 기간은 대부분 저금리 시기였습니다). 이 보고서가 말할 수 있는 것은 <b>지금은 버핏이 경고한 "들뜬 시점"에 가깝다</b>는 것이고, 그렇다면 한 번에 사지 말고 오래 나눠 사라는 것이 그의 문장이 가리키는 방향입니다.</li>
+</ol>
+<h2>이 분석의 한계</h2>
+<ul>
+<li><b>S&amp;P 500 의 이익은 2026-06 까지입니다.</b> 3분기 보고 기준 EPS 는 아직 multpl 에 실리지 않았고, S&amp;P 원본 스프레드시트는 이 환경에서 403 으로 막힙니다.</li>
+<li><b>보고 기준 EPS 에는 2018년 이후 보유 지분 평가손익이 들어갑니다</b> (회계기준 변경). 그래서 최근 이익은 30년 전과 정의가 조금 다르고, 알파벳·아마존 같은 평가이익이 지금의 EPS 를 높입니다 — 이 보고서의 S&amp;P 500 가치는 그만큼 후한 쪽입니다.</li>
+<li><b>나스닥100 은 구성종목을 시가총액으로 가중했습니다.</b> 지수의 실제 수정 가중과 다르고, 외국 발행인 6곳은 연간 이익, 상장 1년 미만 2곳은 연율화 이익입니다.</li>
+<li><b>기대인플레이션은 FRED 가 이 환경에서 닿지 않아 2026-11-05 값(2.24%)을 그대로 썼습니다.</b> 영구성장률과 기초율 명목 환산에 들어갑니다.</li>
+<li><b>백테스트의 ROE 와 영구성장률은 고정값입니다.</b> 그때의 판단이 아니라 지금의 잣대를 그때에 댄 것입니다.</li>
+<li><b>국채 + 3%p 는 해석입니다.</b> 1994년 발언에서 읽은 스프레드이고 버핏이 정한 규칙이 아닙니다. 2007년 그는 형식적인 할인율이 없다고 말했습니다.</li>
+</ul>
+<footer class="page">
+출처: <a href="https://www.multpl.com/s-p-500-earnings">multpl</a> (S&amp;P 다우존스 공표치) · <a href="https://img1.wsimg.com/blobby/go/e5e77e0b-59d1-44d9-ab25-4763ac982e53/downloads/ie_data.xls">실러 ie_data</a> · <a href="https://indexes.nasdaqomx.com/Index/Weighting/NDX">나스닥 구성종목</a> · SEC EDGAR companyfacts · <a href="https://www.ishares.com/uk/individual/en/products/253741/ishares-nasdaq-100-ucits-etf">iShares</a> · Yahoo Finance · <a href="https://sorfis.com/wp-content/uploads/2021/09/The-Base-Rate-Book-Integrating-the-Past-to-Better-Anticipate-the-Future-September-2016.pdf">Base Rate Book</a> · <a href="https://www.berkshirehathaway.com/letters/">버크셔 주주서한</a>.<br>자료 기준일 2026-11-23. 재현: <code>bash work/run_index.sh</code>.<br>투자 판단은 읽는 분의 몫입니다.
+</footer>
+</div>

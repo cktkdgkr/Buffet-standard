@@ -25,3 +25,6 @@ work/*.xlsx
 
 # 8-K·10-K·주주서한 원문 캐시 — 재수신 가능한 파생물입니다.
 work/fv/nvda_cache/
+
+# 지수 수집 캐시 (multpl·실러·SEC companyfacts·iShares) — 재수신 가능합니다.
+work/idx/cache/
