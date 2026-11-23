@@ -554,15 +554,17 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
                 (sg(c["upside_vs_level"], 0),
                  "pos" if c["upside_vs_level"] > 0 else "neg"),
                 f'<b>{pts(c["buy_level"]["30%"])}</b>',
+                sg(c["buy_vs_level"]["30%"], 0),
                 (f'<b>{"합격" if c["pass"]["30%"] else "불합격"}</b>',
                  "over" if c["pass"]["30%"] else "under")])
     w(table(["성장률 가정", "할인율", "가치", "지금 대비", "매수선 (안전마진 30%)",
-             "판정"], rows,
+             "매수선 지금 대비", "판정"], rows,
             caption=f"지수 포인트 단위. 재투자 수익률 ROE "
                     f"{pct(s['incremental_return'])}. 판정 = 매수선이 지금 "
-                    f"지수 {pts(s['level']['price'])}보다 높은가. 초록·빨강은 "
-                    f"이 판정에만 씁니다.",
-            align=["w", "l", "r", "r", "r", "r"]))
+                    f"지수 {pts(s['level']['price'])}보다 높은가. '매수선 지금 "
+                    f"대비' = 지수가 그 매수선까지 내려오려면 몇 % 빠져야 "
+                    f"하는가. 초록·빨강은 판정에만 씁니다.",
+            align=["w", "l", "r", "r", "r", "r", "r"]))
 
     w("<h3>적절한 매수 가격 — 안전마진 사다리</h3>")
     w(f'<p>버핏 기준 할인율 {pct(r30 + 0.03, 2)}에서, 성장률 가정마다 가치와 '
@@ -738,14 +740,15 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
                 (sg(c["upside_vs_level"], 0),
                  "pos" if c["upside_vs_level"] > 0 else "neg"),
                 f'<b>{pts(c["buy_level"]["30%"])}</b>',
+                sg(c["buy_vs_level"]["30%"], 0),
                 (f'<b>{"합격" if c["pass"]["30%"] else "불합격"}</b>',
                  "over" if c["pass"]["30%"] else "under")])
     w(table(["성장률 가정", "할인율", "가치", "지금 대비", "매수선 (안전마진 30%)",
-             "판정"], rows,
+             "매수선 지금 대비", "판정"], rows,
             caption=f"지수 포인트 단위. 1포인트당 NOPAT "
                     f"{n['earnings']['per_point_nopat']:,.1f}, 재투자 수익률 "
                     f"{pct(n['incremental_return'])}.",
-            align=["w", "l", "r", "r", "r", "r"]))
+            align=["w", "l", "r", "r", "r", "r", "r"]))
     w("<h3>적절한 매수 가격 — 안전마진 사다리</h3>")
     w(ladder(n, "ndx"))
     rows = []
@@ -1019,7 +1022,9 @@ def verify(page, d):
                    sg(c["upside_vs_level"], 0))
                 eq(f"{tag} {g['key']}/{c['discount_key']} 매수선", r[4],
                    pts(c["buy_level"]["30%"]))
-                eq(f"{tag} {g['key']}/{c['discount_key']} 판정", r[5],
+                eq(f"{tag} {g['key']}/{c['discount_key']} 매수선 지금 대비",
+                   r[5], sg(c["buy_vs_level"]["30%"], 0))
+                eq(f"{tag} {g['key']}/{c['discount_key']} 판정", r[6],
                    "합격" if c["pass"]["30%"] else "불합격")
     bad = [m_.group(0) for m_ in re.finditer(
         r'data-state="(over|under)"><b>(합격|불합격)</b>', page)
@@ -1210,6 +1215,9 @@ def mutations(d):
                                            "<b>9,999</b>", 1)),
         ("S&P 매수선", lambda p: p.replace(
             f'<b>{pts(c["buy_level"]["30%"])}</b>', "<b>8,888</b>", 1)),
+        ("매수선 지금 대비", lambda p: p.replace(
+            f'<td class="r">{sg(c["buy_vs_level"]["30%"], 0)}</td>',
+            '<td class="r">-1%</td>', 1)),
         ("나스닥 격자 가치", lambda p: p.replace(
             f'<b>{pts(cn["value"])}</b>', "<b>99,999</b>", 1)),
         ("판정 색 뒤집기", lambda p: p.replace(

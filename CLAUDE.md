@@ -362,8 +362,8 @@ python3 work/export_roic_html.py --verify --mutate   # 페이지 수치 되읽�
 ## 지수 판정 (S&P 500·나스닥100)
 
 - `bash work/run_index.sh` — 수집(시세·S&P 이익·실러·나스닥100 구성종목 SEC
-  집계) → 산출 → 검증 → 보고서 → 페이지 검증. 663건 + 페이지 541건, 변이
-  26+34건. 기초율·버핏 인용·기대인플레이션은 `fv/buffett_standard.json`에서
+  집계) → 산출 → 검증 → 보고서 → 페이지 검증. 791건 + 페이지 573건, 변이
+  27+35건. 기초율·버핏 인용·기대인플레이션은 `fv/buffett_standard.json`에서
   읽으므로 그게 오늘 것이 아니면 먼저 돌리십시오.
 - **multpl 의 이익·배당 표는 실질입니다.** 페이지 문구: "inflation adjusted,
   constant September, 2026 dollars". 명목인 줄 알고 실러의 명목 이익과

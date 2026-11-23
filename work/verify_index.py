@@ -135,6 +135,8 @@ def check_grid(c, tag, X, d):
                      cell["value"] * (1 - m), rel=1e-12)
                 c.same(f"{nm} 판정 {k}", cell["pass"][k],
                        cell["value"] * (1 - m) > lvl)
+                c.eq(f"{nm} 매수선 지금 대비 {k}", cell["buy_vs_level"][k],
+                     cell["buy_level"][k] / lvl - 1, rel=1e-9)
             vals.append(cell["value"])
         # 할인율이 오르면 가치는 내려가야 합니다.
         clean = [v for v in vals if v is not None]
@@ -435,6 +437,9 @@ MUTATIONS = [
         d, ["spx", "backtest", "rows", 0, "below_buy30"], lambda v: not v)),
     ("백테스트 매수선 개월 수", lambda d: _poke(
         d, ["spx", "backtest", "below_buy30", "months"], lambda v: v + 5)),
+    ("S&P 매수선 지금 대비", lambda d: _poke(
+        d, ["spx", "grid", 1, "cells", 1, "buy_vs_level", "30%"],
+        lambda v: v + 0.05)),
     ("S&P 매수선 기대수익률", lambda d: _poke(
         d, ["spx", "grid", 2, "returns_at", "buy30"], lambda v: v + 0.01)),
     ("나스닥 가치 기대수익률", lambda d: _poke(

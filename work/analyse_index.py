@@ -629,7 +629,12 @@ def grid_for(base_earn, level, inc_return, options, discounts, terminal):
                     "buy_level": {f"{int(m * 100)}%": v * (1 - m)
                                   for m in MARGINS},
                     "pass": {f"{int(m * 100)}%": v * (1 - m) > level
-                             for m in MARGINS}})
+                             for m in MARGINS},
+                    # 매수선이 지금 지수보다 몇 % 아래(위)인가 — 거기까지
+                    # 얼마나 내려와야 하는지.
+                    "buy_vs_level": {f"{int(m * 100)}%":
+                                     v * (1 - m) / level - 1
+                                     for m in MARGINS}})
             row["cells"].append(cell)
         # 그 가격에 샀을 때의 기대수익률 — 지금 지수뿐 아니라 버핏 기준 가치와
         # 안전마진 30% 매수선에 샀을 때도. 가치에 산 경우는 정의상 할인율과
