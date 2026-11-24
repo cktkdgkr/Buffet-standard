@@ -331,6 +331,8 @@ def verify(d, c):
     c.true("트립와이어 구성종목 시가총액 ≥ 50억 달러",
            all(r["market_cap"] >= 5e9 for r in cs),
            str([r["symbol"] for r in cs if r["market_cap"] < 5e9]))
+    off = [r["symbol"] for r in cs if r.get("price_date") != n["level"]["date"]]
+    c.true("트립와이어 구성종목 시세일 = 지수 종가일", not off, str(off))
     c.true("트립와이어 이익 자료 460일 이내",
            all(r["earnings_age_days"] <= 460 for r in cs))
     c.true("대조 P/NOPAT 가 iShares 와 ±20% 안",

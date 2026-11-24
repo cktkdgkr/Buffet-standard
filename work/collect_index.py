@@ -164,13 +164,22 @@ def latest(symbol):
     rows = [(t, c) for t, c in zip(res["timestamp"], q["close"])
             if c is not None]
     t, c = rows[-1]
+    prev = rows[-2][1] if len(rows) > 1 else None
     reg = (meta.get("currentTradingPeriod") or {}).get("regular") or {}
     mt = meta.get("regularMarketTime")
+    mp = meta.get("regularMarketPrice")
+    # 일봉의 마지막 막대가 종가 없이(None) 올 때가 있습니다 — 2026-11-23
+    # 엔비디아는 막대의 close 가 비고 meta 에만 165.05 가 있었고, 그대로
+    # 두면 지수(11-23)와 구성종목(11-20)의 날짜가 어긋나 P/NOPAT 가 틀어집니다.
+    # meta 의 시각이 마지막 막대보다 뒤면 meta 의 가격을 씁니다.
+    if (mt and mp and datetime.fromtimestamp(mt, tz=timezone.utc).date()
+            > datetime.fromtimestamp(t, tz=timezone.utc).date()):
+        t, c, prev = mt, mp, c
     return {
         "price": c,
         "date": datetime.fromtimestamp(t, tz=timezone.utc).date()
         .isoformat(),
-        "previous_close": rows[-2][1] if len(rows) > 1 else None,
+        "previous_close": prev,
         "is_intraday": bool(mt and reg.get("start") and reg.get("end")
                             and reg["start"] <= mt < reg["end"]),
         "fifty_two_week_high": meta.get("fiftyTwoWeekHigh"),

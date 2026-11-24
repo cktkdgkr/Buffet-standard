@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-24",
- "generated_utc": "2026-11-24T01:42:57.552597+00:00",
+ "generated_utc": "2026-11-24T01:45:48.143865+00:00",
  "prices": {
   "SPX": {
    "monthly": {
@@ -78549,7 +78549,7 @@
     }
    ],
    "source_url": "https://www.multpl.com/s-p-500-earnings/table/by-month",
-   "fetched_age_days": 1.0043583116435186,
+   "fetched_age_days": 1.006897892662037,
    "from_network": false
   },
   "pe": {
@@ -86020,7 +86020,7 @@
     }
    ],
    "source_url": "https://www.multpl.com/s-p-500-pe-ratio/table/by-month",
-   "fetched_age_days": 1.0043807914467593,
+   "fetched_age_days": 1.0069205017592593,
    "from_network": false
   },
   "book_value": {
@@ -86443,7 +86443,7 @@
     }
    ],
    "source_url": "https://www.multpl.com/s-p-500-book-value/table/by-quarter",
-   "fetched_age_days": 1.0042701878125,
+   "fetched_age_days": 1.0068097826273148,
    "from_network": false
   },
   "dividend": {
@@ -93914,7 +93914,7 @@
     }
    ],
    "source_url": "https://www.multpl.com/s-p-500-dividend/table/by-month",
-   "fetched_age_days": 1.004294579826389,
+   "fetched_age_days": 1.0068343241319444,
    "from_network": false
   },
   "cpi": {
@@ -101397,7 +101397,7 @@
     }
    ],
    "source_url": "https://www.multpl.com/cpi/table/by-month",
-   "fetched_age_days": 0.9974402171064815,
+   "fetched_age_days": 0.9999805467824073,
    "from_network": false
   }
  },
@@ -119855,7 +119855,7 @@
    }
   ],
   "source_url": "https://img1.wsimg.com/blobby/go/e5e77e0b-59d1-44d9-ab25-4763ac982e53/downloads/ie_data.xls",
-  "fetched_age_days": 1.0043190506712965,
+  "fetched_age_days": 1.0068589632523148,
   "last_with_earnings": "2024-06"
  },
  "ishares": {
@@ -120314,11 +120314,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 342.55999755859375,
-   "price_date": "2026-11-20",
+   "price": 349.08,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 4978144230441.04,
-   "pe": 37.66328148621933
+   "market_cap": 5072894092560.0,
+   "pe": 38.38013310051068
   },
   {
    "symbol": "ABNB",
@@ -120348,11 +120348,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 170.36000061035156,
-   "price_date": "2026-11-20",
+   "price": 173.96,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 101704920364.37988,
-   "pe": 31.713414519607074
+   "market_cap": 103854120000.0,
+   "pe": 32.38357343311506
   },
   {
    "symbol": "ADBE",
@@ -120382,11 +120382,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 217.7100067138672,
-   "price_date": "2026-11-20",
+   "price": 223.98,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 84732734613.03711,
-   "pe": 11.632720292838702
+   "market_cap": 87173016000.0,
+   "pe": 11.967739703459637
   },
   {
    "symbol": "ADI",
@@ -120416,11 +120416,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 345.9200134277344,
-   "price_date": "2026-11-20",
+   "price": 378.75,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 167620892159.41635,
-   "pe": 40.53705683462854
+   "market_cap": 183529169868.75,
+   "pe": 44.384278677541786
   },
   {
    "symbol": "ADP",
@@ -120450,11 +120450,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 301.7099914550781,
-   "price_date": "2026-11-20",
+   "price": 302.11,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 119102864855.5315,
-   "pe": 26.31758548160056
+   "market_cap": 119260772001.52,
+   "pe": 26.35247746188793
   },
   {
    "symbol": "ADSK",
@@ -120484,11 +120484,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 244.47999572753906,
-   "price_date": "2026-11-20",
+   "price": 255.33,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 51096319107.055664,
-   "pe": 31.118342939741574
+   "market_cap": 53363970000.0,
+   "pe": 32.49937271619976
   },
   {
    "symbol": "AEP",
@@ -120518,11 +120518,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 125.13999938964844,
-   "price_date": "2026-11-20",
+   "price": 127.19,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 68089293736.60469,
-   "pe": 17.933336951275994
+   "market_cap": 69204709226.45,
+   "pe": 18.227114735158555
   },
   {
    "symbol": "ALAB",
@@ -120552,11 +120552,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 180.35000610351562,
-   "price_date": "2026-11-20",
+   "price": 222.12,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 31521948293.035126,
-   "pe": 68.32930498529261
+   "market_cap": 38822594499.0,
+   "pe": 84.15472531019414
   },
   {
    "symbol": "ALNY",
@@ -120586,11 +120586,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 143.82000732421875,
-   "price_date": "2026-11-20",
+   "price": 155.98,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 19262903161.308105,
-   "pe": 7.070929959268664
+   "market_cap": 20891583104.48,
+   "pe": 7.668777630920047
   },
   {
    "symbol": "AMAT",
@@ -120620,11 +120620,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 302.6300048828125,
-   "price_date": "2026-11-20",
+   "price": 346.87,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 240166398050.0775,
-   "pe": 25.916304958463098
+   "market_cap": 275275145053.41,
+   "pe": 29.704882384095175
   },
   {
    "symbol": "AMD",
@@ -120654,11 +120654,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 424.3900146484375,
-   "price_date": "2026-11-20",
+   "price": 453.46,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 696036652476.6056,
-   "pe": 91.35538160868954
+   "market_cap": 743713964838.46,
+   "pe": 97.61306796672267
   },
   {
    "symbol": "AMGN",
@@ -120688,11 +120688,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 435.6400146484375,
-   "price_date": "2026-11-20",
+   "price": 449.04,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 235642689427.10815,
-   "pe": 25.092395849974245
+   "market_cap": 242890895469.6,
+   "pe": 25.864220580300287
   },
   {
    "symbol": "AMZN",
@@ -120722,11 +120722,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 246.82000732421875,
-   "price_date": "2026-11-20",
+   "price": 255.39,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 2668898875884.7104,
-   "pe": 19.80203797241937
+   "market_cap": 2761567391969.34,
+   "pe": 20.489596984465976
   },
   {
    "symbol": "APP",
@@ -120756,11 +120756,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 348.2900085449219,
-   "price_date": "2026-11-20",
+   "price": 373.92,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 116596697870.57495,
-   "pe": 23.257432939117646
+   "market_cap": 125176824480.0,
+   "pe": 24.968902670870676
   },
   {
    "symbol": "ARM",
@@ -120795,11 +120795,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 152.1999969482422,
-   "price_date": "2026-11-20",
+   "price": 176.67,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 161949206107.16107,
-   "pe": 173.0226560973943
+   "market_cap": 187986641370.84,
+   "pe": 200.840428815
   },
   {
    "symbol": "ASML",
@@ -120807,14 +120807,14 @@
    "cik": "0000937966",
    "net_income_local": 9609400000,
    "currency": "EUR",
-   "fx_usd": 1.0920606851577759,
+   "fx_usd": 1.091941475868225,
    "fx_source": "https://query1.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?range=5d&interval=1d",
-   "net_income_usd": 10494047947.955132,
+   "net_income_usd": 10492902418.208122,
    "nopat_local": 9306481600.196386,
-   "nopat_usd": 10163242672.7187,
+   "nopat_usd": 10162133253.658924,
    "nopat_basis": "영업이익 × (1 − 세율) · 최근 회계연도",
-   "operating_income_usd": 12341814627.242088,
-   "equity_usd": 21417712569.451332,
+   "operating_income_usd": 12340467395.37716,
+   "equity_usd": 21415374613.022804,
    "equity_as_of": "2025-12-31",
    "effective_tax_rate": 0.17651958162737483,
    "tax_rate_note": "실효세율 (법인세 ÷ 세전이익)",
@@ -120829,11 +120829,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 1,
-   "price": 1266.219970703125,
-   "price_date": "2026-11-20",
+   "price": 1383.78,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 488023544484.76685,
-   "pe": 46.504794613585034
+   "market_cap": 533333256473.7,
+   "pe": 50.828001178036075
   },
   {
    "symbol": "AVGO",
@@ -120863,11 +120863,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 304.4100036621094,
-   "price_date": "2026-11-20",
+   "price": 313.55,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 1453140684686.2046,
-   "pe": 37.975713698842405
+   "market_cap": 1496771644170.75,
+   "pe": 39.11594522855743
   },
   {
    "symbol": "AXON",
@@ -120897,11 +120897,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 291.1400146484375,
-   "price_date": "2026-11-20",
+   "price": 307.6,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 23708320964.541992,
-   "pe": 91.71852282309564
+   "market_cap": 25048702211.2,
+   "pe": 96.90395067971681
   },
   {
    "symbol": "BKNG",
@@ -120931,11 +120931,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 144.91000366210938,
-   "price_date": "2026-11-20",
+   "price": 144.94,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 107769751875.38535,
-   "pe": 15.013896889855857
+   "market_cap": 107792060189.58,
+   "pe": 15.017004763106716
   },
   {
    "symbol": "BKR",
@@ -120965,11 +120965,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 44.810001373291016,
-   "price_date": "2026-11-20",
+   "price": 46.04,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 44499847738.91574,
-   "pe": 15.355364989273893
+   "market_cap": 45721332896.92,
+   "pe": 15.776857452353347
   },
   {
    "symbol": "CCEP",
@@ -120977,14 +120977,14 @@
    "cik": "0001650107",
    "net_income_local": 1942000000,
    "currency": "EUR",
-   "fx_usd": 1.0920606851577759,
+   "fx_usd": 1.091941475868225,
    "fx_source": "https://query1.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?range=5d&interval=1d",
-   "net_income_usd": 2120781850.5764008,
+   "net_income_usd": 2120550346.1360931,
    "nopat_local": 2151555858.310627,
-   "nopat_usd": 2349629564.78193,
+   "nopat_usd": 2349373079.336632,
    "nopat_basis": "영업이익 × (1 − 세율) · 최근 회계연도",
-   "operating_income_usd": 3050125493.645668,
-   "equity_usd": 8556295468.211174,
+   "operating_income_usd": 3049792542.0999527,
+   "equity_usd": 8555361463.427544,
    "equity_as_of": "2025-12-31",
    "effective_tax_rate": 0.22966134682755937,
    "tax_rate_note": "실효세율 (법인세 ÷ 세전이익)",
@@ -120999,11 +120999,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 3,
-   "price": 115.52999877929688,
-   "price_date": "2026-11-20",
+   "price": 115.59,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 51882968688.82864,
-   "pe": 24.464076149429292
+   "market_cap": 51909914430.090004,
+   "pe": 24.47945389491758
   },
   {
    "symbol": "CDNS",
@@ -121033,11 +121033,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 281.5799865722656,
-   "price_date": "2026-11-20",
+   "price": 304.13,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 77259635135.71167,
-   "pe": 55.960141889769496
+   "market_cap": 83446885270.0,
+   "pe": 60.44164629778382
   },
   {
    "symbol": "CEG",
@@ -121067,11 +121067,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 237.41000366210938,
-   "price_date": "2026-11-20",
+   "price": 251.72,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 84116116145.90237,
-   "pe": 24.275935395642822
+   "market_cap": 89186253441.88,
+   "pe": 25.739178482505054
   },
   {
    "symbol": "CMCSA",
@@ -121101,11 +121101,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 24.899999618530273,
-   "price_date": "2026-11-20",
+   "price": 24.72,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 88693798641.20483,
-   "pe": 7.837910802510148
+   "market_cap": 88052640000.0,
+   "pe": 7.781251325556734
   },
   {
    "symbol": "COST",
@@ -121135,11 +121135,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 1102.1500244140625,
-   "price_date": "2026-11-20",
+   "price": 1097.91,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 488395022818.9376,
-   "pe": 52.93681149132209
+   "market_cap": 486516143560.59,
+   "pe": 52.733161018923695
   },
   {
    "symbol": "CPRT",
@@ -121169,11 +121169,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 31.09000015258789,
-   "price_date": "2026-11-20",
+   "price": 31.62,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 28799613894.02681,
-   "pe": 19.403217672004967
+   "market_cap": 29290568892.24,
+   "pe": 19.733989700148896
   },
   {
    "symbol": "CRWD",
@@ -121203,11 +121203,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 229.44000244140625,
-   "price_date": "2026-11-20",
+   "price": 208.97,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 236460068294.3448,
-   "pe": 2015.6339731687433
+   "market_cap": 215363754993.37,
+   "pe": 1835.804684846266
   },
   {
    "symbol": "CRWV",
@@ -121237,11 +121237,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 39.5099983215332,
-   "price_date": "2026-11-20",
+   "price": 48.33,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 22086089061.73706,
-   "pe": -8.74099093520115
+   "market_cap": 27016470000.0,
+   "pe": -10.692283215512882
   },
   {
    "symbol": "CSCO",
@@ -121271,11 +121271,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 3,
-   "price": 90.63999938964844,
-   "price_date": "2026-11-20",
+   "price": 96.8,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 357343500991.4806,
-   "pe": 23.88819446430113
+   "market_cap": 381628984211.2,
+   "pe": 25.511664162791632
   },
   {
    "symbol": "CSX",
@@ -121305,11 +121305,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 49.099998474121094,
-   "price_date": "2026-11-20",
+   "price": 49.86,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 90510849298.19756,
-   "pe": 25.275299999496664
+   "market_cap": 91911834750.6,
+   "pe": 25.66652743663781
   },
   {
    "symbol": "CTAS",
@@ -121339,11 +121339,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 220.00999450683594,
-   "price_date": "2026-11-20",
+   "price": 223.68,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 87360489029.73137,
-   "pe": 42.39691121096537
+   "market_cap": 88817756802.24,
+   "pe": 43.104137704862666
   },
   {
    "symbol": "DASH",
@@ -121373,11 +121373,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 152.60000610351562,
-   "price_date": "2026-11-20",
+   "price": 161.35,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 67191919087.46338,
-   "pe": 63.209707514076555
+   "market_cap": 71044663900.0,
+   "pe": 66.83411467544686
   },
   {
    "symbol": "DDOG",
@@ -121407,11 +121407,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 157.3699951171875,
-   "price_date": "2026-11-20",
+   "price": 169.02,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 59015951348.87695,
-   "pe": 225.2388273529262
+   "market_cap": 63384866280.00001,
+   "pe": 241.91312054653363
   },
   {
    "symbol": "DXCM",
@@ -121441,11 +121441,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 79.31999969482422,
-   "price_date": "2026-11-20",
+   "price": 82.42,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 29582467019.22441,
-   "pe": 29.85112716369769
+   "market_cap": 30738614991.24,
+   "pe": 31.017774965933402
   },
   {
    "symbol": "EXC",
@@ -121475,11 +121475,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 45.70000076293945,
-   "price_date": "2026-11-20",
+   "price": 46.05,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 46760612870.04586,
-   "pe": 16.82641700973223
+   "market_cap": 47118734939.1,
+   "pe": 16.955284253004677
   },
   {
    "symbol": "FANG",
@@ -121509,11 +121509,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 175.75,
-   "price_date": "2026-11-20",
+   "price": 173.2,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 49063748055.75,
-   "pe": 23.910208604166666
+   "market_cap": 48351870061.2,
+   "pe": 23.56328950350877
   },
   {
    "symbol": "FAST",
@@ -121543,11 +121543,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 50.61000061035156,
-   "price_date": "2026-11-20",
+   "price": 52.06,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 58064929007.937256,
-   "pe": 40.942694265926704
+   "market_cap": 59728515465.28001,
+   "pe": 42.115720959864625
   },
   {
    "symbol": "FER",
@@ -121555,14 +121555,14 @@
    "cik": "0001468522",
    "net_income_local": 888000000,
    "currency": "EUR",
-   "fx_usd": 1.0920606851577759,
+   "fx_usd": 1.091941475868225,
    "fx_source": "https://query1.finance.yahoo.com/v8/finance/chart/EURUSD%3DX?range=5d&interval=1d",
-   "net_income_usd": 969749888.420105,
+   "net_income_usd": 969644030.5709839,
    "nopat_local": 888000000,
-   "nopat_usd": 969749888.420105,
+   "nopat_usd": 969644030.5709839,
    "nopat_basis": "순이익 (영업이익 기간 2024-12-31 ≠ 순이익 기간 2025-12-31)",
    "operating_income_usd": null,
-   "equity_usd": 6451894527.91214,
+   "equity_usd": 6451190239.429474,
    "equity_as_of": "2025-12-31",
    "effective_tax_rate": null,
    "tax_rate_note": null,
@@ -121577,11 +121577,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 57.34000015258789,
-   "price_date": "2026-11-20",
+   "price": 59.61,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 82641410656.99765,
-   "pe": 85.21930411524481
+   "market_cap": 85913053298.81999,
+   "pe": 88.60267334212257
   },
   {
    "symbol": "FTNT",
@@ -121611,11 +121611,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 124.55999755859375,
-   "price_date": "2026-11-20",
+   "price": 131.1,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 91515443545.23505,
-   "pe": 40.09790279333788
+   "market_cap": 96320447045.09999,
+   "pe": 42.20323666700258
   },
   {
    "symbol": "GEHC",
@@ -121645,11 +121645,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 80.63999938964844,
-   "price_date": "2026-11-20",
+   "price": 81.31,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 36460394415.87697,
-   "pe": 16.92683120514251
+   "market_cap": 36763327038.61,
+   "pe": 17.06746844875116
   },
   {
    "symbol": "GILD",
@@ -121679,11 +121679,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 166.42999267578125,
-   "price_date": "2026-11-20",
+   "price": 170.59,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 206429546443.50867,
-   "pe": -53.43762527660074
+   "market_cap": 211589364162.26,
+   "pe": -54.77332750770386
   },
   {
    "symbol": "GOOG",
@@ -121713,11 +121713,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 264.0,
-   "price_date": "2026-11-20",
+   "price": 279.53,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 3265152000000.0,
-   "pe": 13.853352227888703
+   "market_cap": 3457227039999.9995,
+   "pe": 14.668286167658064
   },
   {
    "symbol": "GOOGL",
@@ -121753,11 +121753,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 212.63999938964844,
-   "price_date": "2026-11-20",
+   "price": 221.97,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 67483115073.81973,
-   "pe": 9.56935834852804
+   "market_cap": 70444070240.46,
+   "pe": 9.98923287584515
   },
   {
    "symbol": "HONA",
@@ -121787,11 +121787,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 150.7100067138672,
-   "price_date": "2026-11-20",
+   "price": 154.62,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 47779870132.06964,
-   "pe": 24.578122495920596
+   "market_cap": 49019462482.32,
+   "pe": 25.21577288185185
   },
   {
    "symbol": "IDXX",
@@ -121821,11 +121821,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 676.2100219726562,
-   "price_date": "2026-11-20",
+   "price": 687.02,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 53276061986.79352,
-   "pe": 45.06552831716154
+   "market_cap": 54127739780.299995,
+   "pe": 45.78595149201778
   },
   {
    "symbol": "INTC",
@@ -121855,11 +121855,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 51.279998779296875,
-   "price_date": "2026-11-20",
+   "price": 59.66,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 272553193511.9629,
-   "pe": -22.65235983310862
+   "market_cap": 317092900000.0,
+   "pe": -26.354130651595746
   },
   {
    "symbol": "INTU",
@@ -121889,11 +121889,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 270.44000244140625,
-   "price_date": "2026-11-20",
+   "price": 275.46,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 71400217244.56787,
-   "pe": 14.828705554427387
+   "market_cap": 72725571900.0,
+   "pe": 15.103960934579439
   },
   {
    "symbol": "ISRG",
@@ -121923,11 +121923,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 399.04998779296875,
-   "price_date": "2026-11-20",
+   "price": 416.23,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 138328171436.4093,
-   "pe": 46.77673861639703
+   "market_cap": 144283514743.14,
+   "pe": 48.79058391151766
   },
   {
    "symbol": "KDP",
@@ -121957,11 +121957,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 34.84000015258789,
-   "price_date": "2026-11-20",
+   "price": 35.43,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 47415440721.66424,
-   "pe": 28.788974330093648
+   "market_cap": 48218400040.5,
+   "pe": 29.276502756830602
   },
   {
    "symbol": "KLAC",
@@ -121991,11 +121991,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 126.87000274658203,
-   "price_date": "2026-11-20",
+   "price": 145.85,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 165306847707.14322,
-   "pe": 31.437204115448914
+   "market_cap": 190037071144.75,
+   "pe": 36.140270520816635
   },
   {
    "symbol": "LIN",
@@ -122025,11 +122025,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 502.8299865722656,
-   "price_date": "2026-11-20",
+   "price": 517.0,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 230841090430.11496,
-   "pe": 32.94435427859497
+   "market_cap": 237346313743.0,
+   "pe": 33.872743505494505
   },
   {
    "symbol": "LITE",
@@ -122059,11 +122059,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 460.5400085449219,
-   "price_date": "2026-11-20",
+   "price": 544.38,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 41770978775.024414,
-   "pe": -6.349137980699865
+   "market_cap": 49375266000.0,
+   "pe": -7.504980392156862
   },
   {
    "symbol": "LRCX",
@@ -122093,11 +122093,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 183.27000427246094,
-   "price_date": "2026-11-20",
+   "price": 209.76,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 228935574507.0343,
-   "pe": 27.093371393115955
+   "market_cap": 262026108960.0,
+   "pe": 31.009469367235535
   },
   {
    "symbol": "MAR",
@@ -122127,11 +122127,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 406.6400146484375,
-   "price_date": "2026-11-20",
+   "price": 415.63,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 104711591768.11707,
-   "pe": 39.469126184740695
+   "market_cap": 107026552525.11,
+   "pe": 40.341708452736526
   },
   {
    "symbol": "MCHP",
@@ -122161,11 +122161,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 55.439998626708984,
-   "price_date": "2026-11-20",
+   "price": 61.22,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 30171757133.502583,
-   "pe": 36.00018748777304
+   "market_cap": 33317370444.94,
+   "pe": 39.753454772628565
   },
   {
    "symbol": "MDLZ",
@@ -122195,11 +122195,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 66.27999877929688,
-   "price_date": "2026-11-20",
+   "price": 66.25,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 83899766214.90714,
-   "pe": 20.573753363145446
+   "market_cap": 83861792608.75,
+   "pe": 20.564441542116235
   },
   {
    "symbol": "MELI",
@@ -122229,11 +122229,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 1355.0,
-   "price_date": "2026-11-20",
+   "price": 1425.08,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 68694166710.0,
-   "pe": 36.34611995238095
+   "market_cap": 72246998594.16,
+   "pe": 38.22592518209524
   },
   {
    "symbol": "META",
@@ -122263,11 +122263,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 560.8400268554688,
-   "price_date": "2026-11-20",
+   "price": 597.6,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 1443041389099.121,
-   "pe": 19.176884597790284
+   "market_cap": 1537624800000.0,
+   "pe": 20.43382370529841
   },
   {
    "symbol": "MNST",
@@ -122297,11 +122297,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 43.689998626708984,
-   "price_date": "2026-11-20",
+   "price": 42.43,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 85523693183.94647,
-   "pe": 39.38204049467936
+   "market_cap": 83057230850.46,
+   "pe": 38.24628131637719
   },
   {
    "symbol": "MPWR",
@@ -122331,11 +122331,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 1142.050048828125,
-   "price_date": "2026-11-20",
+   "price": 1333.88,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 55695496781.25,
-   "pe": 62.071271584605974
+   "market_cap": 65050659840.00001,
+   "pe": 72.49737244548265
   },
   {
    "symbol": "MRNA",
@@ -122365,11 +122365,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 195.0,
-   "price_date": "2026-11-20",
+   "price": 212.08,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 78901090125.0,
-   "pe": -28.29010043922553
+   "market_cap": 85812016378.0,
+   "pe": -30.768023082825387
   },
   {
    "symbol": "MRVL",
@@ -122399,11 +122399,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 3,
-   "price": 122.27999877929688,
-   "price_date": "2026-11-20",
+   "price": 144.74,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 107227330929.56543,
-   "pe": 40.61795178967591
+   "market_cap": 126922506000.00002,
+   "pe": 48.0785279745445
   },
   {
    "symbol": "MSFT",
@@ -122433,11 +122433,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 484.5199890136719,
-   "price_date": "2026-11-20",
+   "price": 492.5,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 3598139702748.4297,
-   "pe": 25.22691212112675
+   "market_cap": 3657400816860.0,
+   "pe": 25.642397633473788
   },
   {
    "symbol": "MSTR",
@@ -122467,11 +122467,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 77.80000305175781,
-   "price_date": "2026-11-20",
+   "price": 84.4,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 33302213506.30188,
-   "pe": -2.436870124209323
+   "market_cap": 36127335600.0,
+   "pe": -2.6435967919749324
   },
   {
    "symbol": "MU",
@@ -122501,11 +122501,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 594.510009765625,
-   "price_date": "2026-11-20",
+   "price": 707.7,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 672642424815.1748,
-   "pe": 7.916327423121077
+   "market_cap": 800708207132.4,
+   "pe": 9.423533372552344
   },
   {
    "symbol": "NBIS",
@@ -122535,11 +122535,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 81.30999755859375,
-   "price_date": "2026-11-20",
+   "price": 97.8,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 20138855804.57263,
-   "pe": 244.10734308572887
+   "market_cap": 24223098718.8,
+   "pe": 293.61331780363633
   },
   {
    "symbol": "NFLX",
@@ -122569,11 +122569,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 3,
-   "price": 56.72999954223633,
-   "price_date": "2026-11-20",
+   "price": 58.1,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 232951866597.46317,
-   "pe": 15.775536040392035
+   "market_cap": 238577534964.30002,
+   "pe": 16.156507162747037
   },
   {
    "symbol": "NVDA",
@@ -122603,11 +122603,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 125.52999877929688,
-   "price_date": "2026-11-20",
+   "price": 165.05,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 3025272970581.0547,
-   "pe": 15.68482297492757
+   "market_cap": 3977705000000.0005,
+   "pe": 20.62279978639458
   },
   {
    "symbol": "NXPI",
@@ -122637,11 +122637,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 235.14999389648438,
-   "price_date": "2026-11-20",
+   "price": 256.03,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 59270258589.79065,
-   "pe": 18.361294482586942
+   "market_cap": 64533126517.63999,
+   "pe": 19.991674881548946
   },
   {
    "symbol": "ODFL",
@@ -122671,11 +122671,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 168.08999633789062,
-   "price_date": "2026-11-20",
+   "price": 171.27,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 34633243683.1994,
-   "pe": 29.80285633425588
+   "market_cap": 35288451275.22,
+   "pe": 30.366680442466
   },
   {
    "symbol": "ORLY",
@@ -122705,11 +122705,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 92.6500015258789,
-   "price_date": "2026-11-20",
+   "price": 93.62,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 74309816336.27924,
-   "pe": 27.41959475881849
+   "market_cap": 75087802383.46,
+   "pe": 27.70666399399432
   },
   {
    "symbol": "PANW",
@@ -122739,11 +122739,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 343.32000732421875,
-   "price_date": "2026-11-20",
+   "price": 353.43,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 281865726013.1836,
-   "pe": 619.485112116887
+   "market_cap": 290166030000.0,
+   "pe": 637.7275384615384
   },
   {
    "symbol": "PAYX",
@@ -122773,11 +122773,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 112.62999725341797,
-   "price_date": "2026-11-20",
+   "price": 112.54,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 40094079696.26043,
-   "pe": 22.200487096489717
+   "market_cap": 40062042431.420006,
+   "pe": 22.182747747187157
   },
   {
    "symbol": "PCAR",
@@ -122807,11 +122807,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 102.19999694824219,
-   "price_date": "2026-11-20",
+   "price": 105.39,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 53808843017.03325,
-   "pe": 19.483956627089565
+   "market_cap": 55488396623.31,
+   "pe": 20.09211595151899
   },
   {
    "symbol": "PDD",
@@ -122824,14 +122824,14 @@
    },
    "net_income_local": 97842539000,
    "currency": "CNY",
-   "fx_usd": 0.1501186043024063,
+   "fx_usd": 0.15013211965560913,
    "fx_source": "https://query1.finance.yahoo.com/v8/finance/chart/CNYUSD%3DX?range=5d&interval=1d",
-   "net_income_usd": 14687985396.083757,
+   "net_income_usd": 14689307772.556602,
    "nopat_local": 76180860631.37549,
-   "nopat_usd": 11436164472.53822,
+   "nopat_usd": 11437194083.776947,
    "nopat_basis": "영업이익 × (1 − 세율) · 최근 회계연도",
-   "operating_income_usd": 13976361963.299795,
-   "equity_usd": 62056802658.052505,
+   "operating_income_usd": 13977620271.484196,
+   "equity_usd": 62062389704.44465,
    "equity_as_of": "2025-12-31",
    "effective_tax_rate": 0.1817495495202416,
    "tax_rate_note": "실효세율 (법인세 ÷ 세전이익)",
@@ -122846,11 +122846,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 12,
-   "price": 83.68000030517578,
-   "price_date": "2026-11-20",
+   "price": 87.14,
+   "price_date": "2026-11-23",
    "ads_ratio": 4,
-   "market_cap": 124046730372.39075,
-   "pe": 8.445455726383361
+   "market_cap": 129175813160.0,
+   "pe": 8.793866611014412
   },
   {
    "symbol": "PEP",
@@ -122880,11 +122880,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 140.5399932861328,
-   "price_date": "2026-11-20",
+   "price": 140.21,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 191519623920.4173,
-   "pe": 17.577057995633012
+   "market_cap": 191069928509.32,
+   "pe": 17.535786390356094
   },
   {
    "symbol": "PLTR",
@@ -122914,11 +122914,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 143.49000549316406,
-   "price_date": "2026-11-20",
+   "price": 159.36,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 369332655878.9978,
-   "pe": 100.66014896793573
+   "market_cap": 410180847360.00006,
+   "pe": 111.79316137314142
   },
   {
    "symbol": "PYPL",
@@ -122948,11 +122948,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 53.290000915527344,
-   "price_date": "2026-11-20",
+   "price": 55.24,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 44265781460.910385,
-   "pe": 9.364455566090625
+   "market_cap": 45885564381.520004,
+   "pe": 9.707121722343983
   },
   {
    "symbol": "QCOM",
@@ -122982,11 +122982,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 149.94000244140625,
-   "price_date": "2026-11-20",
+   "price": 165.38,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 160435802612.3047,
-   "pe": 11.773376576818425
+   "market_cap": 176956600000.0,
+   "pe": 12.985734204153518
   },
   {
    "symbol": "REGN",
@@ -123016,11 +123016,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 920.6900024414062,
-   "price_date": "2026-11-20",
+   "price": 942.24,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 97224864257.8125,
-   "pe": 20.182020230375826
+   "market_cap": 99500544000.0,
+   "pe": 20.654407771827128
   },
   {
    "symbol": "RKLB",
@@ -123050,11 +123050,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 45.41999816894531,
-   "price_date": "2026-11-20",
+   "price": 49.63,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 28706388802.03514,
-   "pe": -126.52730663496904
+   "market_cap": 31367198011.45,
+   "pe": -138.25518453206334
   },
   {
    "symbol": "ROP",
@@ -123084,11 +123084,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 3,
-   "price": 459.8299865722656,
-   "price_date": "2026-11-20",
+   "price": 458.13,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 45539919817.23514,
-   "pe": 17.579586881773842
+   "market_cap": 45371559217.77,
+   "pe": 17.514595335946726
   },
   {
    "symbol": "ROST",
@@ -123118,11 +123118,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 213.4600067138672,
-   "price_date": "2026-11-20",
+   "price": 217.04,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 68190463005.36575,
-   "pe": 25.644545843917857
+   "market_cap": 69334102994.4,
+   "pe": 26.074637191521973
   },
   {
    "symbol": "SBUX",
@@ -123152,11 +123152,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 103.12999725341797,
-   "price_date": "2026-11-20",
+   "price": 106.36,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 117578509868.62183,
-   "pe": 46.53625816061974
+   "market_cap": 121261036000.0,
+   "pe": 47.993760785244994
   },
   {
    "symbol": "SHOP",
@@ -123186,11 +123186,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 123.72000122070312,
-   "price_date": "2026-11-20",
+   "price": 134.3,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 159688714095.83417,
-   "pe": 75.11228320594269
+   "market_cap": 173344601450.6,
+   "pe": 81.53556041890876
   },
   {
    "symbol": "SNDK",
@@ -123225,11 +123225,11 @@
     }
    ],
    "earnings_candidates": 2,
-   "price": 94.3949966430664,
-   "price_date": "2026-11-19",
+   "price": 87.71,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 107451233052.1524,
-   "pe": 5.532449441465987
+   "market_cap": 99841601633.2,
+   "pe": 5.140644713891463
   },
   {
    "symbol": "SNPS",
@@ -123259,11 +123259,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 396.1700134277344,
-   "price_date": "2026-11-20",
+   "price": 426.99,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 75920692619.06598,
-   "pe": 70.52162735072206
+   "market_cap": 81826931475.54001,
+   "pe": 76.00784673718766
   },
   {
    "symbol": "SPCX",
@@ -123293,11 +123293,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 2,
-   "price": 127.79000091552734,
-   "price_date": "2026-11-20",
+   "price": 133.35,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 1594180261421.2036,
-   "pe": 206.33966624659638
+   "market_cap": 1663541250000.0,
+   "pe": 215.31727284493917
   },
   {
    "symbol": "STX",
@@ -123327,11 +123327,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 457.010009765625,
-   "price_date": "2026-11-20",
+   "price": 520.1,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 104911724665.8977,
-   "pe": 23.865269487237878
+   "market_cap": 119394732790.90001,
+   "pe": 27.1598573227707
   },
   {
    "symbol": "TER",
@@ -123361,11 +123361,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 204.77999877929688,
-   "price_date": "2026-11-20",
+   "price": 233.51,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 31971226319.19803,
-   "pe": 23.28451782373344
+   "market_cap": 36456690606.01,
+   "pe": 26.551263743682032
   },
   {
    "symbol": "TMUS",
@@ -123395,11 +123395,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 165.60000610351562,
-   "price_date": "2026-11-20",
+   "price": 166.36,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 175415544222.8867,
-   "pe": 15.522125849295344
+   "market_cap": 176220584911.56003,
+   "pe": 15.593362084024426
   },
   {
    "symbol": "TRI",
@@ -123429,11 +123429,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 101.55999755859375,
-   "price_date": "2026-11-20",
+   "price": 102.46,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 45654516149.46863,
-   "pe": 30.395816344519726
+   "market_cap": 46059096466.36,
+   "pe": 30.665177407696405
   },
   {
    "symbol": "TSLA",
@@ -123463,11 +123463,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 345.82000732421875,
-   "price_date": "2026-11-20",
+   "price": 385.46,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 1366942781836.584,
-   "pe": 424.7802305272169
+   "market_cap": 1523630077865.16,
+   "pe": 473.4711242589061
   },
   {
    "symbol": "TTWO",
@@ -123497,11 +123497,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 210.0,
-   "price_date": "2026-11-20",
+   "price": 209.36,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 39314832480.0,
-   "pe": -163.47123692307693
+   "market_cap": 39195015847.68,
+   "pe": -162.9730388676923
   },
   {
    "symbol": "TXN",
@@ -123531,11 +123531,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 5,
-   "price": 263.75,
-   "price_date": "2026-11-20",
+   "price": 291.19,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 241006920845.0,
-   "pe": 33.88259817868691
+   "market_cap": 266080778316.04,
+   "pe": 37.40767303754253
   },
   {
    "symbol": "VRTX",
@@ -123565,11 +123565,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 515.02001953125,
-   "price_date": "2026-11-20",
+   "price": 538.54,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 130576977815.3877,
-   "pe": 32.84211821609892
+   "market_cap": 136540178955.95999,
+   "pe": 34.341955017973284
   },
   {
    "symbol": "WDAY",
@@ -123599,11 +123599,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 174.52000427246094,
-   "price_date": "2026-11-20",
+   "price": 176.08,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 42985498692.337036,
-   "pe": 34.360910225689075
+   "market_cap": 43369736560.0,
+   "pe": 34.668054804156675
   },
   {
    "symbol": "WDC",
@@ -123633,11 +123633,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 261.1099853515625,
-   "price_date": "2026-11-20",
+   "price": 297.25,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 97739543285.33899,
-   "pe": 9.753472037255662
+   "market_cap": 111267591710.25,
+   "pe": 11.103441942944816
   },
   {
    "symbol": "WMT",
@@ -123667,11 +123667,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 4,
-   "price": 127.94999694824219,
-   "price_date": "2026-11-20",
+   "price": 129.58,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 1015122807324.0779,
-   "pe": 45.983095095310645
+   "market_cap": 1028054837908.7802,
+   "pe": 46.568891008732564
   },
   {
    "symbol": "XEL",
@@ -123701,11 +123701,11 @@
    "split_multiplier": 1.0,
    "splits": [],
    "earnings_candidates": 6,
-   "price": 79.30000305175781,
-   "price_date": "2026-11-20",
+   "price": 80.51,
+   "price_date": "2026-11-23",
    "ads_ratio": 1,
-   "market_cap": 50900645685.24536,
-   "pe": 19.07105495887799
+   "market_cap": 51677311808.48,
+   "pe": 19.36205013431248
   }
  ],
  "macro": {
@@ -125496,7 +125496,7 @@
   },
   "last_point_is_current": true,
   "source_url": "https://worldperatio.com/index/nasdaq-100/",
-  "fetched_age_days": 0.6851998859490741,
+  "fetched_age_days": 0.6871809870138889,
   "method_note": "P/E Ratio is calculated on the QQQ Etf, whose benchmark is the Nasdaq 100 Index (페이지 문구)"
  },
  "siblis_ndx": {
@@ -125589,7 +125589,7 @@
   ],
   "source_url": "https://siblisresearch.com/data/nasdaq-100-pe-ratio/",
   "api_url": "https://siblisresearch.com/api/v1/NDX/pe-trailing?format=csv",
-  "fetched_age_days": 0.6851951194560185,
+  "fetched_age_days": 0.6871761969675926,
   "method_note": "Aggregate normalised net income over the previous twelve months. Major purely accounting gains and losses are removed. (페이지 문구) — 월말 값"
  }
 }
