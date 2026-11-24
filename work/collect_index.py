@@ -125,6 +125,15 @@ def monthly(symbol):
     rows = [{"date": datetime.fromtimestamp(t, tz=timezone.utc)
              .date().isoformat(), "close": c}
             for t, c in zip(res["timestamp"], q["close"]) if c is not None]
+    # Yahoo 는 진행 중인 달에 '그 달 1일' 막대와 별도로 최신 거래일 막대를
+    # 하나 더 붙여 줄 때가 있습니다(2026-11-01 막대 = 11-20 종가, 2026-11-23
+    # 막대 = 11-23 종가). 달마다 마지막 막대 하나만 남깁니다 — 남기지 않으면
+    # 같은 달의 종가가 둘이 되고, 무엇을 집느냐가 사전 순서에 달립니다.
+    by = {}
+    for r in rows:
+        by[r["date"][:7]] = {"date": r["date"][:7] + "-01", "close": r["close"],
+                             "bar_date": r["date"]}
+    rows = [by[m] for m in sorted(by)]
     return {"rows": rows, "source_url": url}
 
 

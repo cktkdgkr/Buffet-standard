@@ -247,19 +247,26 @@ def cycle_table(cv, tag, label, disc):
             note.append("발표 시차 반영 시 뒤집힘")
         if c.get("robust_to_source") is False:
             note.append("이익 출처 오차 안")
+        warn = bool(note)
+        if c["legs"]:
+            note.append(f'중간 반등 {len(c["legs"])}번 포함 ('
+                        + ", ".join(esc(g["peak_date"]) for g in c["legs"])
+                        + " 고점)")
         rows.append([
             f"{i}", f'{esc(c["peak_date"])}<br>{pts(c["peak"])}',
             f'<b>{pts(c["value_at_peak"])}</b>', pts(c["buy30_at_peak"]),
             sg(c["peak_vs_value"], 0),
             f'{esc(c["trough_date"])}<br>{pts(c["trough"])}',
             sg(c["drawdown"], 0), (sg(c["trough_vs_value"], 0), ""),
-            res, (" · ".join(note), "flag" if note else "")])
+            res, (" · ".join(note), "flag" if warn else "")])
     return table(
         ["#", "고점", "그때 가치", "그때 매수선", "고점 ÷ 가치", "저점",
          "낙폭", "저점 ÷ 그때 가치", "결과", "비고"], rows,
         caption=(f"{esc(label)} · 할인율 {esc(disc)}. 고점 = 그 뒤 "
                  f"{pct(cv_rule_down, 0)} 이상 빠진 일봉 고점, 저점 = 그 뒤 "
-                 f"{pct(cv_rule_up, 0)} 이상 반등하기 전의 최저 종가. 그때 가치 "
+                 f"{pct(cv_rule_up, 0)} 이상 반등하기 전의 최저 종가. 반등이 "
+                 f"하락을 시작한 고점을 넘지 못하고 다시 직전 저점 아래(또는 "
+                 f"5% 이내)까지 빠지면 한 번의 하락으로 묶음. 그때 가치 "
                  f"= 고점이 있는 달의 그래프 선 값. '발표 시차' = 같은 할인율·"
                  f"성장률에서 {cv['lag_months']}개월 전 이익으로 바꾸면 결과 칸이 "
                  f"달라짐(그 달의 12개월 이익은 1~2개월 뒤에 발표됨). 초록 = "
@@ -844,7 +851,16 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'고점과 저점은 일봉 종가에서 규칙으로 찾았습니다 — 고점은 그 뒤 '
       f'{pct(cv_rule_down, 0)} 이상 빠진 고점, 저점은 그 뒤 {pct(cv_rule_up, 0)} '
       f'이상 반등하기 전의 최저점입니다. 하락 문턱을 20%로 두면 1998·2011·'
-      f'2018·2025년의 −19%대 하락이 소수점 차이로 빠집니다. 위 그래프의 '
+      f'2018·2025년의 −19%대 하락이 소수점 차이로 빠집니다.</p>')
+    sr = s["cycles"]["rule"]
+    w(f'<p><b>연속된 하락은 하나로 묶었습니다.</b> 하락 중에 20% 넘게 '
+      f'반등했더라도, 그 반등이 하락을 시작한 고점을 넘지 못하고 다시 직전 '
+      f'저점 아래(또는 {pct(sr["merge_tol"], 0)} 이내의 재시험)까지 빠졌다면 '
+      f'같은 하락 속의 반등으로 봅니다 — 2000~2002년과 2007~2009년이 '
+      f'그렇습니다. 묶기 전 <span data-v="cs-raw">{sr["raw_cycles"]}개</span>'
+      f'였던 S&amp;P 500 의 순환이 묶은 뒤 '
+      f'<span data-v="cs-merged">{len(s["cycles"]["bond"]["cycles"])}개'
+      f'</span>(그래프 구간 안)가 됐습니다. 위 그래프의 '
       f'번호(▼ 고점, ▲ 저점)가 아래 표의 번호이고, 노란 점선이 고점 때의 '
       f'가치를 저점까지 수평으로 끌어온 높이입니다 — 저점(▲가 가리키는 '
       f'곳)이 그 점선 아래면 저점이 그때 가치 아래로 내려온 것입니다.</p>')
@@ -1041,6 +1057,26 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'아래, {nb["below_buy30"]["months"]}개월이 매수선 아래였습니다. 뒤 10년 '
       f'수익률 표는 나스닥100 의 총수익(배당 재투자) 30년 기록이 없어 내지 '
       f'않았습니다.</p>')
+    nr = n["cycles"]["rule"]
+    w(f'<p>같은 규칙으로 찾고 같은 방식으로 묶었습니다. 나스닥100 은 하락 중의 '
+      f'반등이 커서 묶기 전 <span data-v="cn-raw">{nr["raw_cycles"]}개</span>'
+      f'였던 순환이 <span data-v="cn-merged">'
+      f'{len(n["cycles"]["bond"]["cycles"])}개</span>가 됐습니다 — '
+      + ", ".join(f'{c["peak_date"][:4]}~'
+                  f'{max([c["trough_date"]] + [g["trough_date"] for g in c["legs"]])[:4]}년의 '
+                  f'{len(c["legs"]) + 1}개 구간'
+                  for c in n["cycles"]["bond"]["cycles"]
+                  if len(c["legs"]) >= 2)
+      + '이 각각 하나로 묶였습니다. '
+      + "".join(f'{g["trough_date"][:7]} 저점은 {c["trough_date"][:7]} 저점보다 '
+                f'<span data-v="cn-retest">{sg(g["trough"] / c["trough"] - 1)}'
+                f'</span>였는데(재시험), '
+                for c in n["cycles"]["bond"]["cycles"] for g in c["legs"]
+                if g["trough_date"] > c["trough_date"])
+      + f'이런 재시험을 같은 하락으로 보는 허용폭을 '
+      f'<span data-v="cn-band">{pct(nr["merge_tol_band"][0])}~'
+      f'{pct(nr["merge_tol_band"][1])}</span> 사이의 어느 값으로 잡아도 결과가 '
+      f'같습니다.</p>')
     w(cycle_table(n["cycles"]["bond"], "cyc-ndx-bond", "나스닥100",
                   "30년 국채+3%p"))
     w(cycle_prose(n["cycles"]["bond"], "cn-b", "나스닥100", False))
@@ -1050,12 +1086,14 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
         w(f'<p><b>지금 진행 중인 하락.</b> 나스닥100 은 '
           f'{esc(c["peak_date"])} 고점 {pts(c["peak"])}에서 '
           f'{esc(c["trough_date"])} {pts(c["trough"])}까지 '
-          f'<span data-v="cn-open-dd">{sg(c["drawdown"], 1)}</span> 내려와 '
-          f'있습니다(저점 미확정). 그 고점의 시점에서 계산한 가치는 '
-          f'<span data-v="cn-open-v">{pts(c["value_at_peak"])}</span>, 매수선은 '
-          f'<span data-v="cn-open-b">{pts(c["buy30_at_peak"])}</span>입니다 — '
-          f'가치까지 {sg(c["value_at_peak"] / c["trough"] - 1, 0)}, 매수선까지 '
-          f'{sg(c["buy30_at_peak"] / c["trough"] - 1, 0)} 더 남았습니다. 이 '
+          f'<span data-v="cn-open-dd">{sg(c["drawdown"], 1)}</span> 내려갔고, '
+          f'{esc(n["level"]["date"])} 종가는 {pts(n["level"]["price"])}입니다'
+          f'(저점 미확정 — 저점에서 20% 반등해야 확정). 그 고점의 시점에서 '
+          f'계산한 가치는 <span data-v="cn-open-v">{pts(c["value_at_peak"])}'
+          f'</span>, 매수선은 <span data-v="cn-open-b">'
+          f'{pts(c["buy30_at_peak"])}</span>입니다 — 지금 지수에서 가치까지 '
+          f'{sg(c["value_at_peak"] / n["level"]["price"] - 1, 0)}, 매수선까지 '
+          f'{sg(c["buy30_at_peak"] / n["level"]["price"] - 1, 0)}입니다. 이 '
           f'가치는 순이익(평가이익 포함) 기준이라 위 판정 격자의 NOPAT 기준 '
           f'가치보다 높게 나옵니다.</p>')
 
@@ -1545,6 +1583,13 @@ def verify(page, d):
                c["peak_date"] in cv["flips_with_lag"])
             eq(f"{nm} 출처 오차 표시", "출처 오차" in r[9],
                c["peak_date"] in (cv.get("not_robust_to_source") or []))
+            eq(f"{nm} 중간 반등 표시", bool(re.search(
+                r"중간 반등 (\d+)번", r[9])) and int(re.search(
+                    r"중간 반등 (\d+)번", r[9]).group(1)), len(c["legs"])
+               or False)
+            for g_ in c["legs"]:
+                true(f"{nm} 중간 반등 {g_['peak_date']}",
+                     g_["peak_date"] in r[9])
         bad = [m_.group(0) for m_ in re.finditer(
             r'data-state="(over|under|)"[^>]*>(?:<b>)?(매수선 아래|가치 아래|못 미침)',
             mt.group(1))
@@ -1591,6 +1636,21 @@ def verify(page, d):
                 if c["peak_date"].startswith("2009-")), None)
     if c09:
         eq("본문 2009 반등 고점 가치", v_of("c09-v"), pts(c09["value_at_peak"]))
+    for key, X in (("cs", s), ("cn", n)):
+        rr = X["cycles"]["rule"]
+        if v_of(f"{key}-raw") is not None or key == "cs":
+            eq(f"본문 {key} 묶기 전 순환", v_of(f"{key}-raw"),
+               f'{rr["raw_cycles"]}개')
+            eq(f"본문 {key} 묶은 뒤 순환", v_of(f"{key}-merged"),
+               f'{len(X["cycles"]["bond"]["cycles"])}개')
+    rt = [g["trough"] / c["trough"] - 1 for c in n["cycles"]["bond"]["cycles"]
+          for g in c["legs"] if g["trough_date"] > c["trough_date"]]
+    if rt:
+        eq("본문 나스닥 재시험 차이", v_of("cn-retest"), sg(rt[0]))
+    eq("본문 나스닥 허용폭 범위", v_of("cn-band"),
+       f'{pct(n["cycles"]["rule"]["merge_tol_band"][0])}~'
+       f'{pct(n["cycles"]["rule"]["merge_tol_band"][1])}')
+    true("연속 하락 묶기 설명", "연속된 하락은 하나로 묶었습니다" in page)
     hck = n["history"]["checks"]
     eq("나스닥 검정 오늘", v_of("nh-today"),
        f'{hck["today"]["wpr_pe"]:.2f} vs {hck["today"]["ours_pe_net_income"]:.2f}'
@@ -1835,6 +1895,12 @@ def mutations(d):
             r'(data-t="cyc-spx-bond".*?)data-state="over"><b>매수선 아래',
             r'\g<1>data-state="under"><b>매수선 아래', p, count=1,
             flags=re.S)),
+        ("중간 반등 표시 지우기", lambda p: re.sub(
+            r"중간 반등 \d+번 포함 \([^)]*\)", "", p, count=1)),
+        ("묶기 전 순환 수", lambda p: re.sub(
+            r'(data-v="cn-raw">)[^<]+', r"\g<1>16개", p, count=1)),
+        ("묶기 설명 제거", lambda p: p.replace(
+            "연속된 하락은 하나로 묶었습니다", "하락을 그대로 두었습니다", 1)),
         ("순환 표 시차 표시 지우기", lambda p: p.replace(
             "발표 시차 반영 시 뒤집힘", "", 1)),
         ("순환 표 행 하나 제거", lambda p: re.sub(

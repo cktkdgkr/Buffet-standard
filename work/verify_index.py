@@ -29,9 +29,9 @@ YEARS = 10
 
 # ---- 원 출처에서 손으로 읽은 값 -------------------------------------------
 ANCHOR = {
-    # Yahoo Finance, 2026-11-20 종가
-    "spx_close": (6910.39, "2026-11-20"),
-    "ndx_close": (25028.98, "2026-11-20"),
+    # Yahoo Finance, 2026-11-23 종가 (chart API 일봉을 따로 받아 확인)
+    "spx_close": (7237.17, "2026-11-23"),
+    "ndx_close": (26746.10, "2026-11-23"),
     # multpl.com — EPS 는 실질(2026년 9월 달러), 장부가치는 명목
     "multpl_eps_real_2026_06": 298.03,
     "multpl_cpi_2026_09": 336.94,
@@ -49,10 +49,10 @@ ANCHOR = {
     "pdd_ads_ratio": 4,                      # 20-F: ADS 1주 = 보통주 4주
     "ndx_members": 101,
     # 널리 공표된 역사적 종가(일봉) — 순환의 고점·저점이 제대로 읽혔는지.
-    "spx_daily": {"2000-03-24": 1527.46, "2007-10-09": 1565.15,
+    "spx_daily": {"2026-11-20": 6910.39, "2000-03-24": 1527.46, "2007-10-09": 1565.15,
                   "2009-03-09": 676.53, "2020-03-23": 2237.40,
                   "2022-01-03": 4796.56},
-    "ndx_daily": {"2000-03-27": 4704.73, "2002-10-07": 804.64,
+    "ndx_daily": {"2026-11-20": 25028.98, "2000-03-27": 4704.73, "2002-10-07": 804.64,
                   "2008-11-20": 1036.51},
     # worldperatio 페이지의 차트 데이터(detailPE_data)에서 손으로 읽은 값
     # — Date.UTC 의 달은 0부터 셉니다(Date.UTC(2000, 2, 1) = 2000년 3월).
@@ -441,6 +441,13 @@ def check_ndx_history(c, d, raw):
         c.eq(f"나스닥 {m} 1포인트당 이익", ser[m]["eps"], px[m] / wpr[m],
              rel=1e-12)
     chk = h["checks"]
+    dday = {r["date"]: r["close"]
+            for r in raw["prices"]["NDX"]["daily"]["rows"]}
+    live_m = (raw["ndx_pe_history"]["rows"][-1]["month"]
+              if raw["ndx_pe_history"]["last_point_is_current"] else None)
+    c.true("나스닥 마지막 점은 계산일 종가로 나눔",
+           live_m is None or abs(ser[live_m]["eps"] * wpr[live_m]
+                                 - dday[cur["date"]]) < 1e-6)
     c.eq("대조 worldperatio ↔ 우리 순이익 P/E", chk["today"]["rel"],
          cur["pe"] / n["aggregate"]["pe_net_income"] - 1, rel=1e-12)
     c.true("대조 worldperatio 현재값이 우리 순이익 집계와 ±10% 안",
@@ -493,7 +500,8 @@ def check_ndx_history(c, d, raw):
                for r in raw["prices"]["TYX"]["monthly"]["rows"]}
         for r in b["rows"][::25] + b["rows"][-1:]:
             m = r["month"]
-            c.eq(f"{label} {m} 이익 = 원자료", r["eps"], px[m] / wpr[m],
+            ref = (dday[cur["date"]] if m == live_m else px[m])
+            c.eq(f"{label} {m} 이익 = 원자료", r["eps"], ref / wpr[m],
                  rel=1e-12)
             c.eq(f"{label} {m} 성장률 = S&P 30년", r["own30"], own30(m),
                  rel=1e-9)
@@ -541,6 +549,23 @@ def zigzag_indep(daily, down, up):
     return out
 
 
+def merge_indep(raw_c, tol):
+    """연속된 하락 묶기 — 엔진과 따로, 묶음의 시작 인덱스로 걸으며."""
+    out, i = [], 0
+    while i < len(raw_c):
+        p0, pk, t0, tr, _ = raw_c[i]
+        low, low_d, legs, j = tr, t0, [], i + 1
+        while (j < len(raw_c) and raw_c[j][1] < pk
+               and raw_c[j][3] <= low * (1 + tol)):
+            legs.append(raw_c[j][0])
+            if raw_c[j][3] < low:
+                low, low_d = raw_c[j][3], raw_c[j][2]
+            j += 1
+        out.append((p0, low_d, legs))
+        i = j
+    return out
+
+
 def check_cycles(c, d, raw):
     for key, X in (("spx", d["spx"]), ("ndx", d["ndx"])):
         tag = "S&P" if key == "spx" else "나스닥"
@@ -560,13 +585,28 @@ def check_cycles(c, d, raw):
                str(bad[:5]))
 
         rule = X["cycles"]["rule"]
-        ind = zigzag_indep(daily, rule["down"], rule["up"])
+        zz = zigzag_indep(daily, rule["down"], rule["up"])
+        c.same(f"{tag} 묶기 전 순환 수", rule["raw_cycles"], len(zz))
+        ind = merge_indep(zz, rule["merge_tol"])
+        # 허용폭 범위: 양 끝에서는 같은 결과, 바로 바깥에서는 다른 결과.
+        lo_t, hi_t = rule["merge_tol_band"]
+        c.true(f"{tag} 묶기 허용폭 {rule['merge_tol']:.0%} 이 범위 안",
+               lo_t <= rule["merge_tol"] <= hi_t)
+        for t_ in (lo_t, hi_t):
+            c.same(f"{tag} 허용폭 {t_:.3f} 에서도 같은 결과",
+                   merge_indep(zz, t_), ind)
+        for t_ in (round(lo_t - 0.001, 3), round(hi_t + 0.001, 3)):
+            if 0 <= t_ <= 0.3:
+                c.true(f"{tag} 허용폭 {t_:.3f} 에서는 다른 결과",
+                       merge_indep(zz, t_) != ind)
         for k in ("bond", "fixed10"):
             cv = X["cycles"][k]
             b = X["backtest" if k == "bond" else "backtest_fixed10"]
             by = {r["month"]: r for r in b["rows"]}
-            got = [(r["peak_date"], r["trough_date"]) for r in cv["cycles"]]
-            want = [(p, t) for p, _, t, _, _ in ind if p[:7] >= b["from"]]
+            got = [(r["peak_date"], r["trough_date"],
+                    [g_["peak_date"] for g_ in r["legs"]])
+                   for r in cv["cycles"]]
+            want = [(p, t, lg) for p, t, lg in ind if p[:7] >= b["from"]]
             c.same(f"{tag}[{k}] 고점·저점 = 독립 구현", got, want)
             for r in cv["cycles"]:
                 nm = f"{tag}[{k}] {r['peak_date']}"
@@ -578,6 +618,11 @@ def check_cycles(c, d, raw):
                        r["drawdown"] <= -rule["down"] + 1e-12)
                 c.eq(f"{nm} 낙폭 = 저점÷고점−1", r["drawdown"],
                      r["trough"] / r["peak"] - 1, rel=1e-12)
+                c.true(f"{nm} 중간 반등의 고점이 하락 시작 고점보다 낮음",
+                       all(g_["peak"] < r["peak"] for g_ in r["legs"]))
+                c.eq(f"{nm} 저점 = 중간 반등 포함 최저", r["trough"],
+                     min([dmap[r["trough_date"]]]
+                         + [g_["trough"] for g_ in r["legs"]]), rel=0)
                 c.true(f"{nm} 미확정은 마지막 하나뿐",
                        not r["open"] or r is cv["cycles"][-1])
                 row = by[r["value_month"]]
@@ -728,8 +773,19 @@ MUTATIONS = [
             "median_abs_change"], lambda v: 0.2)),
     ("나스닥 ROE 바꾸기", lambda d: _poke(
         d, ["ndx", "history", "roe"], lambda v: 0.139)),
+    ("나스닥 마지막 점을 월봉 종가로", lambda d: _poke(
+        d, ["ndx", "history", "series"],
+        lambda ss: ss[:-1] + [{**ss[-1], "eps": ss[-1]["price"]
+                               / ss[-1]["pe"]}])),
+    ("묶기 허용폭 범위", lambda d: _poke(
+        d, ["ndx", "cycles", "rule", "merge_tol_band"], lambda v: [0.0, 0.3])),
+    ("중간 반등 하나 빼기", lambda d: _poke(
+        d, ["spx", "cycles", "bond", "cycles", 1, "legs"], lambda v: v[1:])),
+    ("묶인 하락의 저점을 첫 구간 저점으로", lambda d: _poke(
+        d, ["spx", "cycles", "fixed10", "cycles", 1],
+        lambda r: {**r, "trough_date": "2001-09-21", "trough": 965.80})),
     ("순환 고점 날짜 하루 밀기", lambda d: _poke(
-        d, ["spx", "cycles", "bond", "cycles", 4, "peak_date"],
+        d, ["spx", "cycles", "bond", "cycles", 2, "peak_date"],
         lambda v: "2007-10-10")),
     ("순환 저점 수준", lambda d: _poke(
         d, ["ndx", "cycles", "fixed10", "cycles", 7, "trough"],

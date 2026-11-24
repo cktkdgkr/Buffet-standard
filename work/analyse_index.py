@@ -532,12 +532,20 @@ def ndx_series(raw):
     """
     px = {ym(r["date"]): r["close"]
           for r in raw["prices"]["NDX"]["monthly"]["rows"]}
+    h = raw["ndx_pe_history"]
+    live = h["rows"][-1]["month"] if h["last_point_is_current"] else None
+    day = {r["date"]: r["close"] for r in raw["prices"]["NDX"]["daily"]["rows"]}
     rows = []
-    for r in raw["ndx_pe_history"]["rows"]:
+    for r in h["rows"]:
         m = r["month"]
         if m in px and r["pe"] > 0:
+            # 마지막 점은 계산일 값 — 그날의 종가로 나눕니다. 월봉의 마지막
+            # 막대는 그 뒤 거래일일 수 있습니다(11-20 P/E 를 11-23 종가로
+            # 나누면 이익이 그 사이 지수 상승만큼 부풉니다).
+            ref = day[h["current"]["date"]] if m == live else px[m]
             rows.append({"month": m, "price": px[m], "pe": r["pe"],
-                         "eps": px[m] / r["pe"]})
+                         "eps": ref / r["pe"], "eps_price_date":
+                         h["current"]["date"] if m == live else "month_end"})
     return rows
 
 
@@ -678,6 +686,72 @@ def find_cycles(daily, down=CYCLE_DOWN, up=CYCLE_UP):
                     "drawdown": lo[1] / peak[1] - 1, "confirmed": None,
                     "open": True, "recovered": None})
     return out
+
+
+# 연속된 하락은 하나로. 지그재그는 하락 중의 20% 넘는 반등(약세장 반등)에서
+# 순환을 끊습니다 — 2000~2002 년 S&P 500 은 고점 셋, 나스닥100 은 여섯으로
+# 쪼개집니다. 그 반등이 **하락이 시작된 고점을 넘지 못했고**, 그 뒤 다시
+# **직전 저점 아래(또는 MERGE_TOL 이내의 재시험)**까지 빠졌다면 같은 하락의
+# 중간 반등으로 봅니다(낮은 고점 + 낮은 저점 = 하락 추세가 이어짐). 재시험
+# 허용폭은 나스닥100 의 2009-03(2008-11 저점보다 0.7% 위)을 위한 것이고,
+# 결과가 같은 허용폭의 범위를 함께 기록합니다.
+MERGE_TOL = 0.05
+
+
+def merge_cycles(cycles, tol=MERGE_TOL):
+    out = []
+    for c in cycles:
+        if (out and c["peak"] < out[-1]["peak"]
+                and c["trough"] <= out[-1]["trough"] * (1 + tol)):
+            m = out[-1]
+            m["legs"].append({"peak_date": c["peak_date"], "peak": c["peak"],
+                              "trough_date": c["trough_date"],
+                              "trough": c["trough"]})
+            if c["trough"] < m["trough"]:
+                m["trough"], m["trough_date"] = c["trough"], c["trough_date"]
+            m["open"], m["confirmed"] = c["open"], c["confirmed"]
+            m["drawdown"] = m["trough"] / m["peak"] - 1
+        else:
+            out.append({**c, "legs": []})
+    return out
+
+
+def merge_tolerance_band(cycles, tol=MERGE_TOL):
+    """MERGE_TOL 대신 0~30% 의 어떤 값을 써도 같은 결과가 나오는 범위."""
+    key = [(c["peak_date"], c["trough_date"]) for c in
+           merge_cycles(cycles, tol)]
+    same = [t / 1000 for t in range(0, 301)
+            if [(c["peak_date"], c["trough_date"])
+                for c in merge_cycles(cycles, t / 1000)] == key]
+    lo = hi = tol
+    while round(lo - 0.001, 3) in same:
+        lo = round(lo - 0.001, 3)
+    while round(hi + 0.001, 3) in same:
+        hi = round(hi + 0.001, 3)
+    return [lo, hi]
+
+
+def recovered_after(daily, c):
+    """저점 뒤 처음으로 고점을 다시 넘은 날."""
+    return next((r["date"] for r in daily
+                 if r["date"] > c["trough_date"] and r["close"] >= c["peak"]),
+                None)
+
+
+def cycles_for(raw, key):
+    daily = raw["prices"][key]["daily"]["rows"]
+    out = merge_cycles(find_cycles(daily))
+    for c in out:
+        c["recovered"] = recovered_after(daily, c)
+    return out
+
+
+def cycle_rule(raw, key):
+    raw_c = find_cycles(raw["prices"][key]["daily"]["rows"])
+    return {"down": CYCLE_DOWN, "up": CYCLE_UP, "basis": "일봉 종가",
+            "merge_tol": MERGE_TOL,
+            "merge_tol_band": merge_tolerance_band(raw_c),
+            "raw_cycles": len(raw_c)}
 
 
 def cycle_vs_value(cycles, bt, source_error=None):
@@ -1039,9 +1113,9 @@ def main():
     spx["backtest_fixed10"] = spx_backtest(raw, rows, roe, terminal,
                                    br["net_income_10y"]["median"], infl,
                                            fixed_discount=0.10)
-    spx_cyc = find_cycles(raw["prices"]["SPX"]["daily"]["rows"])
+    spx_cyc = cycles_for(raw, "SPX")
     spx["cycles"] = {
-        "rule": {"down": CYCLE_DOWN, "up": CYCLE_UP, "basis": "일봉 종가"},
+        "rule": cycle_rule(raw, "SPX"),
         "bond": cycle_vs_value(spx_cyc, spx["backtest"]),
         "fixed10": cycle_vs_value(spx_cyc, spx["backtest_fixed10"])}
     spx["required"] = required_growth(eps_now, lvl["price"], roe, discounts,
@@ -1131,9 +1205,9 @@ def main():
     ndx["backtest_fixed10"] = ndx_backtest(
         raw, nrows, rows, nroe_ni, terminal, br["net_income_10y"]["median"],
         infl, fixed_discount=0.10)
-    ndx_cyc = find_cycles(raw["prices"]["NDX"]["daily"]["rows"])
+    ndx_cyc = cycles_for(raw, "NDX")
     ndx["cycles"] = {
-        "rule": {"down": CYCLE_DOWN, "up": CYCLE_UP, "basis": "일봉 종가"},
+        "rule": cycle_rule(raw, "NDX"),
         "bond": cycle_vs_value(ndx_cyc, ndx["backtest"], err),
         "fixed10": cycle_vs_value(ndx_cyc, ndx["backtest_fixed10"], err)}
     for lab, X in (("S&P 500", spx), ("나스닥100", ndx)):
