@@ -738,6 +738,28 @@ def recovered_after(daily, c):
                 None)
 
 
+def now_point(cv, level, eps, own30, roe, terminal, discount):
+    """
+    고점·저점 표의 '지금' 줄 — 같은 잣대(그래프와 같은 이익·성장률·ROE)를
+    오늘에 댄 가치와 매수선. 할인율은 오늘의 30년 국채 + 3%p(또는 10%).
+    과거 고점 가운데 지금보다 프리미엄이 높았던 순환에서 저점이 가치에
+    닿은 횟수를 함께 셉니다 — 지금 지수를 과거 고점과 같은 눈금에 놓기.
+    """
+    v = dcf(eps, 0.0, 1.0, min(own30, CAP_GROWTH), 0.045, roe, discount,
+            terminal)["value_per_share"]
+    prem = level["price"] / v - 1
+    closed = [c for c in cv["cycles"] if not c["open"]]
+    higher = [c for c in closed if c["peak_vs_value"] >= prem]
+    return {"date": level["date"], "level": level["price"], "eps": eps,
+            "own30": own30, "roe": roe, "discount": discount,
+            "value": v, "buy30": v * 0.7, "level_vs_value": prem,
+            "value_vs_level": v / level["price"] - 1,
+            "buy30_vs_level": v * 0.7 / level["price"] - 1,
+            "higher_premium_cycles": len(higher),
+            "higher_premium_reached_value": sum(c["reached_value"]
+                                                for c in higher)}
+
+
 def cycles_for(raw, key):
     daily = raw["prices"][key]["daily"]["rows"]
     out = merge_cycles(find_cycles(daily))
@@ -1118,6 +1140,10 @@ def main():
         "rule": cycle_rule(raw, "SPX"),
         "bond": cycle_vs_value(spx_cyc, spx["backtest"]),
         "fixed10": cycle_vs_value(spx_cyc, spx["backtest_fixed10"])}
+    for k, disc in (("bond", r30 + 0.03), ("fixed10", 0.10)):
+        spx["cycles"][k]["now"] = now_point(
+            spx["cycles"][k], lvl, eps_now, w30["eps_cagr_nominal"], roe,
+            terminal, disc)
     spx["required"] = required_growth(eps_now, lvl["price"], roe, discounts,
                                       terminal, br["net_income_10y"]["bands"],
                                       infl)
@@ -1210,6 +1236,12 @@ def main():
         "rule": cycle_rule(raw, "NDX"),
         "bond": cycle_vs_value(ndx_cyc, ndx["backtest"], err),
         "fixed10": cycle_vs_value(ndx_cyc, ndx["backtest_fixed10"], err)}
+    # 나스닥100 의 '지금' 줄은 그래프와 같은 순이익(worldperatio) 기준 —
+    # 판정 격자의 NOPAT 기준과 다릅니다(표 캡션에 적음).
+    for k, disc in (("bond", r30 + 0.03), ("fixed10", 0.10)):
+        ndx["cycles"][k]["now"] = now_point(
+            ndx["cycles"][k], nlvl, nrows[-1]["eps"], w30["eps_cagr_nominal"],
+            nroe_ni, terminal, disc)
     for lab, X in (("S&P 500", spx), ("나스닥100", ndx)):
         for k in ("bond", "fixed10"):
             cv = X["cycles"][k]

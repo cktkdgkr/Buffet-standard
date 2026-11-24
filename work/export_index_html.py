@@ -121,12 +121,14 @@ def ladder(X, prefix):
 SVG_H, SVG_T, SVG_B = 300, 12, 28
 
 
-def chart_geom(bt):
+def chart_geom(bt, now=None):
     """그래프의 좌표계 — 그리는 쪽과 검증하는 쪽이 같이 씁니다."""
     rows = [r for r in bt["rows"] if r["value_own30"]]
     W, L, R = 720, 52, 12
     vals = [r["price"] for r in rows] + [r["value_own30"] for r in rows] + \
         [r["buy30_own30"] for r in rows]
+    if now:
+        vals += [now["level"], now["value"], now["buy30"]]
     lo, hi = math.log(min(vals) * 0.9), math.log(max(vals) * 1.1)
     idx = {r["month"]: i for i, r in enumerate(rows)}
 
@@ -146,7 +148,7 @@ def chart_cycles(cv, idx):
 
 
 def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
-                 cv=None, basis=None):
+                 cv=None, basis=None, now=None):
     """지난 30년: 지수 · 버핏 기준 가치 · 안전마진 30% 매수선 (로그 축).
 
     key 는 그래프를 구분하는 표식입니다. 같은 페이지에 할인율만 다른 그래프가
@@ -156,7 +158,7 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
     cv 를 주면 고점(▲)·저점(▼)과, 고점 때의 가치를 저점까지 수평으로 끌어온
     점선을 그립니다 — 저점이 그 점선 아래면 '그때 가치 아래로 내려왔다'.
     """
-    rows, idx, X, Y, lo, hi = chart_geom(bt)
+    rows, idx, X, Y, lo, hi = chart_geom(bt, now)
     W, H, L, R, T, B = 720, SVG_H, 52, 12, SVG_T, SVG_B
     def line(key):
         return " ".join(f"{X(i):.1f},{Y(r[key]):.1f}"
@@ -199,6 +201,20 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
             f'<text class="mk-n" x="{xp:.1f}" '
             f'y="{yp - (16 if i % 2 else 25):.1f}" '
             f'text-anchor="middle">{i}</text>')
+    # 지금 지수(가로 점선 + 숫자)와 같은 잣대로 오늘 계산한 가치·매수선(오른쪽 끝 점)
+    nowm = []
+    if now:
+        yl, xr = Y(now["level"]), W - R
+        nowm.append(
+            f'<line class="nowline" data-now="line" x1="{L}" y1="{yl:.1f}" '
+            f'x2="{xr}" y2="{yl:.1f}"/>'
+            f'<text class="now-t" data-now="label" x="{L + 6}" '
+            f'y="{yl - 5:.1f}" text-anchor="start">지금 {pts(now["level"])} '
+            f'({esc(now["date"])})</text>'
+            f'<circle class="now-val" data-now="value" cx="{xr}" '
+            f'cy="{Y(now["value"]):.1f}" r="3.5"/>'
+            f'<circle class="now-buy" data-now="buy30" cx="{xr}" '
+            f'cy="{Y(now["buy30"]):.1f}" r="3.5"/>')
     basis = basis or "그 달의 12개월 EPS"
     lab = esc(label)
     return (
@@ -211,7 +227,7 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
         + f'<polyline class="l-buy" data-line="buy30" points="{line("buy30_own30")}"/>'
         + f'<polyline class="l-val" data-line="value" points="{line("value_own30")}"/>'
         + f'<polyline class="l-px" data-line="price" points="{line("price")}"/>'
-        + "".join(marks)
+        + "".join(marks) + "".join(nowm)
         + "</svg>"
         + f'<div class="legend"><span><i class="sw px"></i>{lab} (월말)</span>'
           '<span><i class="sw val"></i>버핏 기준 가치</span>'
@@ -220,6 +236,8 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
         + ('<span><b class="mk-key pk">▼</b>고점 · <b class="mk-key tr">▲'
            '</b>저점 (번호 = 아래 표)</span><span><i class="sw mk"></i>고점 '
            '때 가치를 저점까지 끌어온 높이</span>' if cv else "")
+        + ('<span><i class="sw now"></i>지금 지수 · 오른쪽 끝 점 = 오늘의 가치'
+           '(옅은)·매수선(진한)</span>' if now else "")
         + "</div>"
         + f"<figcaption>로그 축. 가치 = {basis}·할인율 {disc_text}·"
           f"그 달까지의 S&amp;P 500 30년 EPS 기록(성장률)·ROE "
@@ -228,7 +246,7 @@ def backtest_svg(bt, key="bond", disc_text="30년 국채+3%p", label="S&P 500",
           f"것이지 그때의 판단은 아닙니다.</figcaption></figure>")
 
 
-def cycle_table(cv, tag, label, disc):
+def cycle_table(cv, tag, label, disc, note_now=""):
     """고점마다 그때 계산한 가치·매수선과 그 뒤의 저점."""
     rows = []
     for i, c in enumerate(cv["cycles"], 1):
@@ -259,6 +277,14 @@ def cycle_table(cv, tag, label, disc):
             f'{esc(c["trough_date"])}<br>{pts(c["trough"])}',
             sg(c["drawdown"], 0), (sg(c["trough_vs_value"], 0), ""),
             res, (" · ".join(note), "flag" if warn else "")])
+    nw = cv.get("now")
+    if nw:
+        rows.append([
+            "<b>지금</b>", f'{esc(nw["date"])}<br><b>{pts(nw["level"])}</b>',
+            f'<b>{pts(nw["value"])}</b>', pts(nw["buy30"]),
+            sg(nw["level_vs_value"], 0), "—", "—", "—",
+            (f'가치까지 {sg(nw["value_vs_level"], 0)}', "flag"),
+            (f'매수선까지 {sg(nw["buy30_vs_level"], 0)}', "")])
     return table(
         ["#", "고점", "그때 가치", "그때 매수선", "고점 ÷ 가치", "저점",
          "낙폭", "저점 ÷ 그때 가치", "결과", "비고"], rows,
@@ -271,7 +297,10 @@ def cycle_table(cv, tag, label, disc):
                  f"성장률에서 {cv['lag_months']}개월 전 이익으로 바꾸면 결과 칸이 "
                  f"달라짐(그 달의 12개월 이익은 1~2개월 뒤에 발표됨). 초록 = "
                  f"저점이 그때 매수선 아래로 내려옴, 빨강 = 그때 가치에도 못 "
-                 f"미침."),
+                 f"미침. '지금' 줄 = 마지막 종가와, 같은 잣대(그래프와 같은 "
+                 f"이익·성장률·ROE)에 오늘의 할인율을 넣어 계산한 가치·매수선 "
+                 f"— '고점 ÷ 가치' 칸은 지금 지수 ÷ 가치, 결과·비고 칸은 지금 "
+                 f"지수가 가치·매수선까지 몇 % 내려가야 하는가." + note_now),
         align=["r", "l", "r", "r", "r", "l", "r", "r", "l", "w"], tag=tag)
 
 
@@ -334,6 +363,17 @@ def cycle_prose(cv, key, label, fixed):
                      '사라져 가치선이 대부분 지수 아래에 머뭅니다.')
     elif not g["lo"]:
         o.append(' 이 할인율에서는 모든 고점이 가치보다 50% 넘게 높았습니다.')
+    nw = cv.get("now")
+    if nw:
+        o.append(f' <b>지금 {pts(nw["level"])}은 같은 잣대로 오늘 계산한 가치 '
+                 f'{pts(nw["value"])}보다 <span data-v="{key}-nowp">'
+                 f'{sg(nw["level_vs_value"], 0)}</span> '
+                 f'{"높습니다" if nw["level_vs_value"] > 0 else "낮습니다"}.</b> '
+                 f'과거 고점 가운데 프리미엄이 지금 이상이었던 순환 '
+                 f'<span data-v="{key}-nowh">{nw["higher_premium_cycles"]}개'
+                 f'</span>에서 저점이 그때 가치에 닿은 것은 '
+                 f'<span data-v="{key}-nowr">'
+                 f'{nw["higher_premium_reached_value"]}개</span>였습니다.')
     if cv["flips_with_lag"]:
         o.append(f' 단, <span data-v="{key}-flip">'
                  f'{len(cv["flips_with_lag"])}개</span> 순환은 발표 시차를 반영하면 '
@@ -545,6 +585,11 @@ figcaption{font-size:.78rem;color:var(--dim2);margin-block:.45rem 0}
 .chart .mk-pk{fill:var(--flag)} .chart .mk-tr{fill:var(--accent)}
 .chart .mk-n{font-family:var(--mono);font-size:9px;fill:var(--flag)}
 .chart .carry{stroke:var(--flag);stroke-width:1.6;stroke-dasharray:3 2}
+.chart .nowline{stroke:var(--now);stroke-width:1;stroke-dasharray:6 3;opacity:.7}
+.chart .now-t{font-family:var(--mono);font-size:10.5px;font-weight:500;
+  fill:var(--now)}
+.chart .now-val{fill:var(--val)} .chart .now-buy{fill:var(--buy)}
+.sw.now{background:none;border-top:1.5px dashed var(--now);width:1.1rem}
 
 blockquote{margin:0 0 1rem;background:var(--quote);
   border-left:3px solid var(--accent);padding:.85rem 1rem}
@@ -804,7 +849,7 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
                     "조달할 수 없는 성장입니다."))
 
     w("<h3>30년을 같은 잣대로 되짚으면</h3>")
-    w(backtest_svg(bt, cv=s["cycles"]["bond"]))
+    w(backtest_svg(bt, cv=s["cycles"]["bond"], now=s["cycles"]["bond"]["now"]))
     w(table(["구간", "개월 수", "뒤 10년 실질 총수익률 (중위)"],
             [["매수선(안전마진 30%) 아래", f'{bt["below_buy30"]["months"]}',
               pct(bt["below_buy30"]["fwd10_real_median"])],
@@ -880,7 +925,8 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
     w("<h3>할인율을 10%로 고정하면</h3>")
     w('<p>금리 수준과 무관하게 매달 같은 10%로 할인한 판입니다. 저금리 시기에 '
       '할인율이 낮아져 가치가 부풀던 효과를 걷어 냅니다.</p>')
-    w(backtest_svg(b10, "fixed10", "10% 고정", cv=s["cycles"]["fixed10"]))
+    w(backtest_svg(b10, "fixed10", "10% 고정", cv=s["cycles"]["fixed10"],
+                   now=s["cycles"]["fixed10"]["now"]))
     w(table(["구간 (10% 고정)", "개월 수", "뒤 10년 실질 총수익률 (중위)"],
             [["매수선(안전마진 30%) 아래", f'{b10["below_buy30"]["months"]}',
               pct(b10["below_buy30"]["fwd10_real_median"])],
@@ -1051,7 +1097,8 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
     nbasis = "그 달의 12개월 이익(worldperatio P/E 환산)"
     w("<h3>30년을 같은 잣대로 되짚으면 — 나스닥100</h3>")
     w(backtest_svg(nb, "ndx-bond", "30년 국채+3%p", "나스닥100",
-                   cv=n["cycles"]["bond"], basis=nbasis))
+                   cv=n["cycles"]["bond"], basis=nbasis,
+                   now=n["cycles"]["bond"]["now"]))
     w(f'<p>국채 + 3%p 로는 30년 {nb["months"]}개월 중 '
       f'<b data-v="nb-months">{nb["below_value"]["months"]}개월</b>이 가치 '
       f'아래, {nb["below_buy30"]["months"]}개월이 매수선 아래였습니다. 뒤 10년 '
@@ -1077,8 +1124,11 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
       f'<span data-v="cn-band">{pct(nr["merge_tol_band"][0])}~'
       f'{pct(nr["merge_tol_band"][1])}</span> 사이의 어느 값으로 잡아도 결과가 '
       f'같습니다.</p>')
+    ndx_now_note = (" 나스닥100 의 '지금' 줄은 그래프와 같은 순이익(평가이익 "
+                    "포함) 기준이라 위 판정 격자의 NOPAT 기준 가치보다 높게 "
+                    "나옵니다.")
     w(cycle_table(n["cycles"]["bond"], "cyc-ndx-bond", "나스닥100",
-                  "30년 국채+3%p"))
+                  "30년 국채+3%p", ndx_now_note))
     w(cycle_prose(n["cycles"]["bond"], "cn-b", "나스닥100", False))
     ob = [c for c in n["cycles"]["bond"]["cycles"] if c["open"]]
     if ob:
@@ -1099,13 +1149,14 @@ blockquote .src{font-family:var(--mono);font-size:.74rem;color:var(--dim2);
 
     w("<h3>할인율을 10%로 고정하면 — 나스닥100</h3>")
     w(backtest_svg(nf, "ndx-fixed10", "10% 고정", "나스닥100",
-                   cv=n["cycles"]["fixed10"], basis=nbasis))
+                   cv=n["cycles"]["fixed10"], basis=nbasis,
+                   now=n["cycles"]["fixed10"]["now"]))
     w(f'<p>10% 고정으로는 가치 아래였던 달이 '
       f'<b data-v="nf-months">{nf["below_value"]["months"]}개월</b>, 매수선 '
       f'아래였던 달이 <b data-v="nf-buy">{nf["below_buy30"]["months"]}개월'
       f'</b>입니다.</p>')
     w(cycle_table(n["cycles"]["fixed10"], "cyc-ndx-fixed10", "나스닥100",
-                  "10% 고정"))
+                  "10% 고정", ndx_now_note))
     w(cycle_prose(n["cycles"]["fixed10"], "cn-f", "나스닥100", True))
 
     w("<h3>버핏 기준 판정 — 성장률 × 할인율</h3>")
@@ -1549,6 +1600,35 @@ def verify(page, d):
                 near(f"그래프 {ckey} #{i} 점선 끝 = 저점의 달",
                      float(mc.group(3)), gx(c["trough_date"][:7]), 0.06)
 
+    # ------------------------------------------------- 그래프의 '지금' 표식
+    for ckey, X, k in (("bond", s, "bond"), ("fixed10", s, "fixed10"),
+                       ("ndx-bond", n, "bond"), ("ndx-fixed10", n, "fixed10")):
+        mfig = re.search(rf'<figure class="chart" data-chart="{ckey}">'
+                         r'(.*?)</figure>', page, re.S)
+        if not mfig:
+            continue
+        fig = mfig.group(1)
+        msv = re.search(r'data-lo="([-\d.]+)" data-hi="([-\d.]+)"', fig)
+        lo_, hi_ = float(msv.group(1)), float(msv.group(2))
+
+        def gy2(v):
+            return 12 + (300 - 12 - 28) * (1 - (math.log(v) - lo_)
+                                           / (hi_ - lo_))
+        nw = X["cycles"][k]["now"]
+        ml = re.search(r'data-now="line" x1="[\d.]+" y1="([\d.]+)"', fig)
+        if true(f"그래프 {ckey} 지금 선", bool(ml)):
+            near(f"그래프 {ckey} 지금 선 높이", float(ml.group(1)),
+                 gy2(X["level"]["price"]), 0.06)
+        mt = re.search(r'data-now="label"[^>]*>([^<]+)<', fig)
+        eq(f"그래프 {ckey} 지금 숫자", mt.group(1) if mt else None,
+           f'지금 {pts(X["level"]["price"])} ({X["level"]["date"]})')
+        for kind, v in (("value", nw["value"]), ("buy30", nw["value"] * 0.7)):
+            mc = re.search(rf'data-now="{kind}" cx="[\d.]+" cy="([\d.]+)"',
+                           fig)
+            if true(f"그래프 {ckey} 지금 {kind} 점", bool(mc)):
+                near(f"그래프 {ckey} 지금 {kind} 높이", float(mc.group(1)),
+                     gy2(v), 0.06)
+
     # ------------------------------------------------- 고점·저점 표 (넷)
     for tag, X, k in (("cyc-spx-bond", s, "bond"),
                       ("cyc-spx-fixed10", s, "fixed10"),
@@ -1560,7 +1640,20 @@ def verify(page, d):
             continue
         (heads, rows), = tables_of(mt.group(1))
         cv = X["cycles"][k]
-        eq(f"표 {tag} 행 수", len(rows), len(cv["cycles"]))
+        eq(f"표 {tag} 행 수", len(rows), len(cv["cycles"]) + 1)
+        nw = cv["now"]
+        r = rows[-1]
+        eq(f"표 {tag} 지금 줄 이름", r[0], "지금")
+        eq(f"표 {tag} 지금 지수", r[1], f'{nw["date"]}{pts(X["level"]["price"])}')
+        eq(f"표 {tag} 지금 날짜 = 종가일", nw["date"], X["level"]["date"])
+        eq(f"표 {tag} 지금 가치", r[2], pts(nw["value"]))
+        eq(f"표 {tag} 지금 매수선", r[3], pts(nw["value"] * 0.7))
+        eq(f"표 {tag} 지금 지수÷가치", r[4],
+           sg(X["level"]["price"] / nw["value"] - 1, 0))
+        eq(f"표 {tag} 지금 가치까지", r[8],
+           f'가치까지 {sg(nw["value"] / X["level"]["price"] - 1, 0)}')
+        eq(f"표 {tag} 지금 매수선까지", r[9],
+           f'매수선까지 {sg(nw["value"] * 0.7 / X["level"]["price"] - 1, 0)}')
         true(f"표 {tag} 캡션의 할인율",
              ("10% 고정" if k == "fixed10" else "30년 국채+3%p")
              in mt.group(1))
@@ -1608,6 +1701,13 @@ def verify(page, d):
            f'{sum(c["trough"] <= c["value_at_peak"] for c in closed)}개')
         eq(f"해설 {key} 매수선 도달", v_of(f"{key}-rb"),
            f'{sum(c["trough"] <= c["buy30_at_peak"] for c in closed)}개')
+        nw = cv["now"]
+        prem = X["level"]["price"] / nw["value"] - 1
+        eq(f"해설 {key} 지금 프리미엄", v_of(f"{key}-nowp"), sg(prem, 0))
+        hc = [c for c in closed if c["peak_vs_value"] >= prem]
+        eq(f"해설 {key} 프리미엄 이상 순환", v_of(f"{key}-nowh"), f"{len(hc)}개")
+        eq(f"해설 {key} 그중 가치 도달", v_of(f"{key}-nowr"),
+           f'{sum(c["trough"] <= c["value_at_peak"] for c in hc)}개')
         eq(f"해설 {key} 중위", v_of(f"{key}-med"),
            sg(cv["median_trough_vs_value"], 0))
         eq(f"해설 {key} 50% 이하 무리", v_of(f"{key}-glo"),
@@ -1895,6 +1995,27 @@ def mutations(d):
             r'(data-t="cyc-spx-bond".*?)data-state="over"><b>매수선 아래',
             r'\g<1>data-state="under"><b>매수선 아래', p, count=1,
             flags=re.S)),
+        ("지금 줄 가치", lambda p: re.sub(
+            r'(data-t="cyc-spx-bond".*?<td class="r"><b>지금</b></td>.*?'
+            r'<td class="l">.*?</td><td class="r"><b>)[\d,]+',
+            r"\g<1>1,111", p, count=1, flags=re.S)),
+        ("지금 줄 매수선까지", lambda p: re.sub(
+            r'(data-t="cyc-ndx-fixed10".*?)매수선까지 [-+]\d+%',
+            r"\g<1>매수선까지 -1%", p, count=1, flags=re.S)),
+        ("지금 줄 제거", lambda p: re.sub(
+            r'(data-t="cyc-ndx-bond".*?)<tr><td class="r"><b>지금</b>.*?</tr>',
+            r"\g<1>", p, count=1, flags=re.S)),
+        ("그래프 지금 선 높이", lambda p: re.sub(
+            r'(data-chart="ndx-bond".*?data-now="line" x1="[\d.]+" y1=")'
+            r'[\d.]+', r"\g<1>50.0", p, count=1, flags=re.S)),
+        ("그래프 지금 숫자", lambda p: re.sub(
+            r'(data-chart="fixed10".*?data-now="label"[^>]*>)지금 [\d,]+',
+            r"\g<1>지금 9,999", p, count=1, flags=re.S)),
+        ("그래프 지금 가치 점", lambda p: re.sub(
+            r'(data-chart="bond".*?data-now="value" cx="[\d.]+" cy=")[\d.]+',
+            r"\g<1>30.0", p, count=1, flags=re.S)),
+        ("해설 지금 프리미엄", lambda p: re.sub(
+            r'(data-v="cn-b-nowp">)[^<]+', r"\g<1>+5%", p, count=1)),
         ("중간 반등 표시 지우기", lambda p: re.sub(
             r"중간 반등 \d+번 포함 \([^)]*\)", "", p, count=1)),
         ("묶기 전 순환 수", lambda p: re.sub(

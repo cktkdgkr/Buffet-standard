@@ -39,8 +39,8 @@ ANCHOR = {
     # 실러 ie_data.xls
     "shiller_e_2024_06": 196.76,
     "shiller_cape_2024_09": 35.2288,
-    # iShares 펀드 페이지 (2026-11-19 기준)
-    "ishares_ivv_pe": 27.49, "ishares_cndx_pe": 31.10,
+    # iShares 펀드 페이지 (2026-11-20 기준)
+    "ishares_ivv_pe": 26.86, "ishares_cndx_pe": 30.54,
     # SEC 공시 (companyfacts)
     "mu_ttm_net_income": 84.969e9,           # FY2026 10-K, 2026-09-03 결산
     "nvda_ttm_operating_income": 197.579e9,  # 2025-10-26~2026-07-26 4개 분기
@@ -661,6 +661,43 @@ def check_cycles(c, d, raw):
                         != (r["trough"] <= r["value_at_peak"])
                         or (r["trough"] <= r["buy30_at_peak_lag"])
                         != (r["trough"] <= r["buy30_at_peak"]))])
+        # '지금' 줄: 같은 잣대를 오늘에 — 독립 재계산.
+        for k, disc in (("bond", d["macro"]["treasury_30y"]["rate"] + 0.03),
+                        ("fixed10", 0.10)):
+            nw = X["cycles"][k]["now"]
+            b = X["backtest" if k == "bond" else "backtest_fixed10"]
+            c.eq(f"{tag}[{k}] 지금 할인율", nw["discount"], disc, rel=1e-12)
+            c.eq(f"{tag}[{k}] 지금 지수", nw["level"], X["level"]["price"],
+                 rel=0)
+            c.eq(f"{tag}[{k}] 지금 ROE = 그래프 ROE", nw["roe"], b["roe"],
+                 rel=0)
+            g = dcf(nw["eps"], min(nw["own30"], d["cap_growth"]), 0.045,
+                    nw["roe"], disc, d["terminal"])
+            c.eq(f"{tag}[{k}] 지금 가치 재계산", nw["value"], g["value"],
+                 rel=1e-9)
+            c.eq(f"{tag}[{k}] 지금 매수선", nw["buy30"], g["value"] * 0.7,
+                 rel=1e-9)
+            closed = [r for r in X["cycles"][k]["cycles"] if not r["open"]]
+            prem = nw["level"] / g["value"] - 1
+            hc = [r for r in closed if r["peak_vs_value"] >= prem]
+            c.same(f"{tag}[{k}] 지금보다 프리미엄 높던 순환", 
+                   nw["higher_premium_cycles"], len(hc))
+            c.same(f"{tag}[{k}] 그중 가치 도달",
+                   nw["higher_premium_reached_value"],
+                   sum(r["trough"] <= r["value_at_peak"] for r in hc))
+        if key == "spx":
+            # S&P 500 의 '지금' 가치는 판정 격자의 '30년 EPS 기록 유지' 칸과
+            # 같은 값이어야 합니다(같은 이익·성장률·ROE·할인율).
+            row = next(r for r in X["grid"] if r["key"] == "own_sustained")
+            for k, dk in (("bond", "bond30_plus3"), ("fixed10", "project10")):
+                cell = next(x for x in row["cells"] if x["discount_key"] == dk)
+                c.eq(f"S&P[{k}] 지금 가치 = 격자 칸", X["cycles"][k]["now"]
+                     ["value"], cell["value"], rel=1e-9)
+        else:
+            c.eq("나스닥 지금 이익 = 계산일 종가 ÷ P/E",
+                 X["cycles"]["bond"]["now"]["eps"],
+                 dmap[raw["ndx_pe_history"]["current"]["date"]]
+                 / raw["ndx_pe_history"]["current"]["pe"], rel=1e-3)
         c.true(f"{tag} 두 판의 순환이 같음",
                [r["peak_date"] for r in X["cycles"]["bond"]["cycles"]]
                == [r["peak_date"] for r in X["cycles"]["fixed10"]["cycles"]])
@@ -777,6 +814,15 @@ MUTATIONS = [
         d, ["ndx", "history", "series"],
         lambda ss: ss[:-1] + [{**ss[-1], "eps": ss[-1]["price"]
                                / ss[-1]["pe"]}])),
+    ("지금 가치", lambda d: _poke(
+        d, ["spx", "cycles", "bond", "now", "value"], lambda v: v * 1.1)),
+    ("지금 할인율", lambda d: _poke(
+        d, ["ndx", "cycles", "fixed10", "now", "discount"], lambda v: 0.09)),
+    ("지금보다 프리미엄 높던 순환 수", lambda d: _poke(
+        d, ["ndx", "cycles", "bond", "now", "higher_premium_cycles"],
+        lambda v: v + 2)),
+    ("나스닥 지금 이익", lambda d: _poke(
+        d, ["ndx", "cycles", "bond", "now", "eps"], lambda v: v * 1.07)),
     ("묶기 허용폭 범위", lambda d: _poke(
         d, ["ndx", "cycles", "rule", "merge_tol_band"], lambda v: [0.0, 0.3])),
     ("중간 반등 하나 빼기", lambda d: _poke(
